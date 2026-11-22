@@ -1,3 +1,4 @@
+import SPL.Dimensions
 import SPL.Instant
 import SPL.Calendar
 import SPL.Runtime

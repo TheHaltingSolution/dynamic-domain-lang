@@ -10,7 +10,7 @@ from .codecs import fail
 
 ROOT = Path(__file__).resolve().parent.parent
 LIB = ROOT / ".lake" / "build" / "lib" / "lean"
-MODULES = ["SPL/Instant", "SPL/Calendar", "SPL/Runtime", "SPL/Fold", "SPL/Syntax", "SPL/Parser", "SPL/Check", "SPL/Link", "SPL/IR", "SPL/Elaborate", "SPL/ValidateIR",
+MODULES = ["SPL/Instant", "SPL/Calendar", "SPL/Dimensions", "SPL/Runtime", "SPL/Fold", "SPL/Syntax", "SPL/Parser", "SPL/Check", "SPL/Link", "SPL/IR", "SPL/Elaborate", "SPL/ValidateIR",
            "SPL/Bindings", "SPL/Emit", "SPL/Core", "SPL/Proofs", "SPL/Trace", "SPL/Interpret", "SPL/Readable", "SPL"]
 
 

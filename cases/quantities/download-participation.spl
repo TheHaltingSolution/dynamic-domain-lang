@@ -1,0 +1,40 @@
+// Selected period view: every supplied usage row must be in the half-open
+// period and available before cutoff. This schedule does not filter a raw ledger.
+schedule DownloadParticipation language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input agreement: Id<Agreement>;
+  input participant: Id<Participant>;
+  input pool: Id<Pool>;
+  input asset: Id<Asset>;
+  input accounting_period: Period;
+  input observation_cutoff: Instant;
+  input usage: List<{record_id: Id<Usage>, quantity: Quantity<Download>, effective_date: Date, observed_at: Instant, evidence_ref: Text}>;
+  input attestations: List<{evidence_id: Text, observed_at: Instant, approval_ref: Id<Decision>, evidence_ref: Text, kind: Text}>;
+  input unit_rate: Rate<Download,USD>;
+  input participation: Ratio;
+  input rounding: Text;
+  input quantity_policy: Text;
+  opening meter: Quantity<Download> from "download-meter";
+  require rounding == "exact_no_rounding" and quantity_policy == "nonnegative_selected_period" else "Q_POLICY";
+  require participation >= 0 and participation <= 1 else "Q_SHARE_DOMAIN";
+  require unit_rate >= unit_rate * 0 and meter >= meter * 0 else "Q_NONNEGATIVE";
+  define checked_attestations = for each support in attestations {
+    require support.observed_at < observation_cutoff else "Q_EVIDENCE_AFTER_CUTOFF";
+    yield support;
+  };
+  define checked_usage = for each row in usage {
+    require in_period(row.effective_date, accounting_period) else "Q_OUTSIDE_PERIOD";
+    require row.observed_at < observation_cutoff else "Q_USAGE_AFTER_CUTOFF";
+    require row.quantity >= row.quantity * 0 else "Q_NONNEGATIVE";
+    require sum(filter(checked_attestations, support => support.evidence_id == row.evidence_ref), support => 1) == 1 else "Q_EVIDENCE_REQUIRED";
+    yield row.quantity;
+  };
+  define period_quantity = sum(checked_usage, amount => amount) citing "QUANTITY-PARTICIPATION";
+  define gross = period_quantity * unit_rate;
+  define earned = gross * participation;
+  closing meter = meter + period_quantity;
+  emit "earned" = earned;
+  emit "gross" = gross;
+  emit "period_quantity" = period_quantity;
+  emit "usage_detail" = usage;
+  emit "reconciliation" = earned == gross * participation;
+}

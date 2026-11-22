@@ -16,7 +16,7 @@
         "surface": {"const": "spl/0.1-draft"}, "core": {"const": "spl-core/0.1-draft"},
         "ir": {"const": "spl-ir/0.1"}, "package": {"const": "spl-module/1"},
         "toolchain": {"const": "leanprover/lean4:v4.35.0"},
-        "codecs": {"type": "array", "items": {"enum": ["spl-exact/1", "spl-instant/1"]}, "uniqueItems": true},
+        "codecs": {"type": "array", "items": {"enum": ["spl-exact/1", "spl-instant/1", "spl-quantity/1"]}, "uniqueItems": true},
         "capabilities": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
       }
     },
@@ -65,7 +65,7 @@
       "properties": {
         "opening": {"$ref": "#/$defs/name"}, "closing": {"$ref": "#/$defs/name"},
         "purpose": {"type": "string", "minLength": 1}, "unit": {"type": "string", "minLength": 1},
-        "key_fields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["agreement_id", "participant_id", "pool_id", "purpose", "vintage_id", "asset_id"]}},
+        "key_fields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["agreement_id", "participant_id", "pool_id", "purpose", "vintage_id", "asset_id", "unit"]}},
         "movement_kinds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
         "history_required": {"type": "boolean"}
       }
@@ -86,7 +86,7 @@
       "properties": {"name": {"$ref": "#/$defs/name"},
         "role": {"enum": ["input", "parameter", "evidence", "opening", "result", "detail", "reconciliation"]},
         "type": {"$ref": "#/$defs/type"},
-        "dimensions": {"type": "array", "uniqueItems": true, "items": {"enum": ["agreement", "participant", "asset", "pool", "purpose", "period", "currency"]}},
+        "dimensions": {"type": "array", "uniqueItems": true, "items": {"enum": ["agreement", "participant", "asset", "pool", "purpose", "period", "currency", "unit"]}},
         "domain": {"type": "object", "additionalProperties": false, "properties": {
           "minimum": {}, "maximum": {}, "choices": {"type": "array", "minItems": 1, "uniqueItems": true},
           "min_items": {"type": "integer", "minimum": 0}, "max_items": {"type": "integer", "minimum": 0},
@@ -96,7 +96,7 @@
       "properties": {
         "kind": {"enum": ["unique", "references", "member_of", "equals", "conservation", "evidence"]},
         "path": {"type": "string", "minLength": 1}, "fields": {"type": "array", "items": {"type": "string", "minLength": 1}},
-        "target": {"type": "string"}, "value": {}
+        "target": {"type": "string"}, "value": {}, "required": {"type": "boolean"}
       }}
   }
 }

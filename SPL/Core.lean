@@ -102,8 +102,8 @@ def lower (inputs : Nat → Rat) : Expr kind → Eval Value
     assertValue (← lower inputs condition) code
     lower inputs body
 
-/-- Numeric lowering entry used by the real source emitter. Each demanded
-surface arithmetic node materializes a typed core node; boundary decoding and
+/-- Scalar numeric lowering entry used by the real source emitter. Each demanded
+scalar arithmetic node materializes a typed core node; boundary decoding and
 operand evaluation remain outside the lowering theorem. -/
 def numericBinary (op : Arithmetic) (left right : Value) : Eval Value := do
   let a ← asNum left

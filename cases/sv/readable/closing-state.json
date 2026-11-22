@@ -13,7 +13,7 @@
       "SV-7-POOL-RECOVERY"
     ],
     "pool_id": "pool-1",
-    "prior_result_ref": "result@sha256:05619e4d2d6f8b59287d5d60a505c69d1ad188811e5eba743f27ce157799c1af",
+    "prior_result_ref": "result@sha256:a1e0ea701a0084e2375039b01bb9dd162fb957c5f32ecd6abefac35decc34d06",
     "provenance_ref": "synthetic-approved-opening",
     "quantity": "0",
     "scenario_id": "SV-01",

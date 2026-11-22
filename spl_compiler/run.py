@@ -20,7 +20,7 @@ def identities():
     # E1 runtime pin covers generated helper imports and their repository-local
     # transport/checker dependencies. Upstream Lean libraries are toolchain-pinned.
     runtime_sources = [ROOT / "SPL" / (name + ".lean") for name in
-                       ["Runtime", "Core", "Fold", "Instant", "Calendar", "Bindings", "Check", "Syntax"]]
+                       ["Runtime", "Core", "Fold", "Instant", "Calendar", "Dimensions", "Bindings", "Check", "Syntax"]]
     return (build_identity(sorted((ROOT / "SPL").glob("*.lean")) + sorted((ROOT / "spl_compiler").glob("*.py")) + [ROOT / "lean-toolchain", ROOT / "SPL.lean"]),
             build_identity(runtime_sources + [ROOT / "lean-toolchain"]))
 

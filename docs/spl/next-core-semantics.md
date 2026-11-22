@@ -1,11 +1,79 @@
 # Proposed next core semantics
 
-Execution note: K1-K3 now have the bounded implementations recorded in
-[implementation.md](implementation.md). Their original proposal and starting
-point below remain historical design material. The dimensional slice described
-next is planned compiler work, not an implemented capability.
+Execution note: K1-K3 and the M1b dimensional slice now have bounded
+implementations recorded in [implementation.md](implementation.md). M1b is
+locally verified profile `0.4.3-dev`, completed 22 November 2026 on
+`feature/spl-typed-quantities`; `main` remains at merged `018dde1` unchanged.
+The [implementation baseline](implementation-baseline.json) records local
+verification, not a GitHub release or push. The previous
+[`0.4.2-dev` record](baselines/implementation-0.4.2-dev.json) is preserved
+byte-for-byte. The original proposals and starting points below remain
+historical design material.
 
-## Next dimensional slice: quantities and per-unit rates
+## M1b implemented dimensional boundary
+
+The dictionary `spl.units/1` admits exactly `Download` and `UsageMinute`, with
+case-sensitive names and no implicit conversion. Existing generic syntax admits
+`Quantity<U>` and `Rate<U,USD>` as typed inputs. There is no new English literal
+grammar. Money and Ratio retain their legacy runtime representation and typed-IR
+assumptions; the new tagged values do not establish an intrinsically typed runtime.
+
+In the matrix, `Q` is `Quantity<U>`, `R` is `Rate<U,USD>` and `s` is Ratio.
+Two operands written as Q/Q or R/R must have identical unit/currency types.
+
+| Operation | Result and requirement |
+| --- | --- |
+| `Q + Q`, `Q - Q`; `R + R`, `R - R` | Matching dimensional type retained |
+| Equality and ordering comparisons | Bool, for matching dimensional types |
+| `Q * s`, `s * Q`, `Q / s` | Quantity retained; demanded division rejects zero |
+| `R * s`, `s * R`, `R / s` | Rate retained; demanded division rejects zero |
+| `Q * R`, `R * Q` | Money<USD>, for a matching denominator unit |
+| `Q / Q`, `R / R` | Ratio; demanded division rejects zero |
+| Unary negation, `abs`, matching `min`/`max` | Dimensional type retained |
+| `quantize(value, quantum, mode)` | Positive matching-dimensional quantum; type retained |
+| Empty `sum` | Tagged zero of the checked quantity/rate type |
+
+Quantization uses the existing explicit modes `floor`, `ceiling`, `toward_zero`,
+`half_even` and `half_away_from_zero`. Signed and fractional dimensional values
+are valid exact core values. Money/Quantity, Quantity*Money, unmatched dimensions,
+other products/quotients, non-USD rates and FX are unsupported. Legacy scalar
+arithmetic signatures and outputs are unchanged.
+
+Records, lists, Options, tuples, maps as values, sum/filter/map, finite folds and
+registered imports/exports retain tags. Sorting admits dimensional scalar keys
+and dimensional tuple components. Quantity/Rate remain unsupported in Map,
+grouping and ordered-fold key types, including nested tuple keys.
+
+Every descriptor in the import closure must declare capability
+`spl.quantities/1`, codec `spl-quantity/1` and its used admitted units in
+`interface.dictionaries["spl.units/1"]` when it uses these types. Unused local
+schemas and export signatures are also admitted. Canonical domain bounds and
+conservation targets require explicit matching dimensions; empty declared
+quantity/rate collections cannot be reconciled against an untagged scalar zero.
+The [module boundary](module-interface-v1.md#m1b-dimensional-interfaces-and-state)
+defines recursive transport and complete dimensional state identity.
+
+Defensive IR admission checks every type-bearing position recursively, including
+otherwise empty collection paths; 15 negative direct-IR cases reject unknown
+units and unsupported rate currencies. Final local verification passed one
+complete combined run of 352 Python checks in 1638.702 seconds, 16 native suites,
+the 86-target build and both smokes, with compiler/schema sources unchanged.
+All 35 review paths passed: 24 legacy, four quantity and seven M1 cases.
+
+The [selected Download source](../../cases/quantities/download-participation.spl)
+computes 100 Download * USD 1.50/Download = USD 150, then a separate 50% share =
+USD 75. Its proposed policy requires nonnegative selected-period facts/rate and
+opening meter; it does not impose a universal returns/loss rule. Actual native
+successor carry adds 0.5 Download to the prior tagged meter, giving 100.5 and
+USD 0.375 earned. Existing toy and scalar proof scopes do not cover the new
+tagged runtime paths. Completed local verification and remaining work are recorded
+in [the implementation report](implementation.md#m1b-candidate-quantities-and-monetary-rates).
+
+## Original dimensional proposal: quantities and per-unit rates
+
+The following proposal is retained as the design history superseded by the
+implemented M1b boundary above; its future-tense statements are not the current
+implementation inventory.
 
 The next type extension should first admit typed inputs and outputs for
 `Quantity<U>` and `Rate<U,USD>`. Existing generic type syntax is sufficient;

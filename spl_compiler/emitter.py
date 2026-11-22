@@ -15,7 +15,8 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
-from .model import InstantValue, MapValue, OptionValue
+from .model import InstantValue, MapValue, OptionValue, QuantityValue, RateValue
+from .dimensions import typed_zero
 
 
 def _string(value: str) -> str:
@@ -53,6 +54,12 @@ def lean_value(value) -> str:
     """Render validated Python values without ever passing through float."""
     if isinstance(value, bool):
         return f"(.flag {'true' if value else 'false'})"
+    if isinstance(value, QuantityValue):
+        number = value.value
+        return f"(.quantity {_string(value.unit)} (mkRat ({number.numerator}) {number.denominator}))"
+    if isinstance(value, RateValue):
+        number = value.value
+        return f"(.rate {_string(value.per_unit)} {_string(value.currency)} (mkRat ({number.numerator}) {number.denominator}))"
     if isinstance(value, InstantValue):
         number = value.seconds
         return f"(.instant (mkRat ({number.numerator}) {number.denominator}) {_string(value.canonical)})"
@@ -74,6 +81,12 @@ def lean_value(value) -> str:
     if isinstance(value, list):
         return "(.seq " + _list(lean_value(item) for item in value) + ")"
     if isinstance(value, dict):
+        if set(value) == {"value", "unit"}:
+            from .evaluator import parse_exact
+            return lean_value(QuantityValue(parse_exact(value["value"]), value["unit"]))
+        if set(value) == {"value", "per_unit", "currency"}:
+            from .evaluator import parse_exact
+            return lean_value(RateValue(parse_exact(value["value"]), value["per_unit"], value["currency"]))
         if (set(value) == {"numerator", "denominator"}) or (
             set(value) == {"value", "currency"}
         ):
@@ -150,7 +163,8 @@ class _Emitter:
         if kind == "field":
             return _do([], f"SPL.field (← {self.expression(expr['expr'], env)}) {_string(expr['name'])}")
         if kind == "unary":
-            target = "SPL.Core.numericUnary" if expr["op"] == "-" else f"SPL.unary {_string(expr['op'])}"
+            dimensional = expr["expr"]["_type"].name in {"Quantity", "Rate"}
+            target = "SPL.Core.numericUnary" if expr["op"] == "-" and not dimensional else f"SPL.unary {_string(expr['op'])}"
             return _do([], f"{target} (← {self.expression(expr['expr'], env)})")
         if kind == "binary":
             left = self.expression(expr["left"], env)
@@ -159,7 +173,8 @@ class _Emitter:
                 function = "conjunction" if expr["op"] == "and" else "disjunction"
                 return f"(SPL.{function} {left} (fun _ => {right}))"
             arithmetic = {"+": "add", "-": "subtract", "*": "multiply", "/": "divide"}.get(expr["op"])
-            target = f"SPL.Core.numericBinary .{arithmetic}" if arithmetic else f"SPL.binary {_string(expr['op'])}"
+            dimensional = any(expr[key]["_type"].name in {"Quantity", "Rate"} for key in ("left", "right"))
+            target = f"SPL.Core.numericBinary .{arithmetic}" if arithmetic and not dimensional else f"SPL.binary {_string(expr['op'])}"
             return _do([], f"{target} (← {left}) (← {right})")
         if kind == "if":
             return "(SPL.conditional " + self.expression(expr["condition"], env) + (
@@ -237,6 +252,9 @@ class _Emitter:
                 lam = args[1]
                 nested = dict(env, **{lam["name"]: f"(pure {variable})"})
                 body = self.expression(lam["body"], nested)
+                if name == "sum" and expr["_type"].name in {"Quantity", "Rate"}:
+                    zero = lean_value(typed_zero(expr["_type"]))
+                    return _do([], f"SPL.sumValuesFrom {zero} (← {self.expression(args[0], env)}) (fun {variable} => {body})")
                 return _do([], f"SPL.{function} (← {self.expression(args[0], env)}) (fun {variable} => {body})")
             if name == "tuple":
                 return "(SPL.tupleValues " + _list(self.expression(a,env) for a in args) + ")"
@@ -254,6 +272,8 @@ class _Emitter:
                 return _do([],"SPL."+function+" "+" ".join(values))
             if name in {"min", "max"}:
                 return _do([], f"SPL.extrema {'true' if name == 'max' else 'false'} " + " ".join(values))
+            if name == "abs":
+                return _do([], "SPL.absolute " + " ".join(values))
             if name == "in_period":
                 return _do([], "SPL.inPeriod " + " ".join(values))
             if name == "add_calendar_months":
@@ -375,34 +395,21 @@ def run_generated(checked, inputs, openings, output_path=None, timeout=180):
     """Build runtime if necessary, run emitted Lean, parse its exact JSON result."""
     root = Path(__file__).resolve().parents[1]
     build = root / ".lake" / "build" / "lib" / "lean"
-    runtime_source = root / "SPL" / "Runtime.lean"
-    runtime_object = build / "SPL" / "Runtime.olean"
-    instant_source = root / "SPL" / "Instant.lean"
-    instant_object = build / "SPL" / "Instant.olean"
-    runtime_object.parent.mkdir(parents=True, exist_ok=True)
+    (build / "SPL").mkdir(parents=True, exist_ok=True)
     lean = _lean_executable()
     environment = dict(os.environ)
     environment["LEAN_PATH"] = str(build) + (os.pathsep + environment["LEAN_PATH"] if environment.get("LEAN_PATH") else "")
-    if not instant_object.exists() or instant_object.stat().st_mtime < instant_source.stat().st_mtime:
-        process = subprocess.run([lean, "-o", str(instant_object), str(instant_source)], cwd=root, env=environment, text=True, encoding="utf-8", capture_output=True, timeout=timeout)
-        if process.returncode:
-            raise RuntimeError("Lean exact timestamp compilation failed:\n" + process.stdout + process.stderr)
-    if not runtime_object.exists() or runtime_object.stat().st_mtime < max(runtime_source.stat().st_mtime, instant_object.stat().st_mtime):
-        process = subprocess.run([lean, "-o", str(runtime_object), str(runtime_source)], cwd=root, env=environment, text=True, encoding="utf-8", capture_output=True, timeout=timeout)
-        if process.returncode:
-            raise RuntimeError("Lean target runtime compilation failed:\n" + process.stdout + process.stderr)
-    fold_source = root / "SPL" / "Fold.lean"
-    fold_object = build / "SPL" / "Fold.olean"
-    if not fold_object.exists() or fold_object.stat().st_mtime < max(fold_source.stat().st_mtime, runtime_object.stat().st_mtime):
-        process = subprocess.run([lean,"-o",str(fold_object),str(fold_source)],cwd=root,env=environment,text=True,encoding="utf-8",capture_output=True,timeout=timeout)
-        if process.returncode:
-            raise RuntimeError("Lean finite fold runtime compilation failed:\n" + process.stdout + process.stderr)
-    core_source = root / "SPL" / "Core.lean"
-    core_object = build / "SPL" / "Core.olean"
-    if not core_object.exists() or core_object.stat().st_mtime < max(core_source.stat().st_mtime, runtime_object.stat().st_mtime):
-        process = subprocess.run([lean, "-o", str(core_object), str(core_source)], cwd=root, env=environment, text=True, encoding="utf-8", capture_output=True, timeout=timeout)
-        if process.returncode:
-            raise RuntimeError("Lean typed core compilation failed:\n" + process.stdout + process.stderr)
+    dependencies = {"Instant": (), "Calendar": (), "Dimensions": (),
+                    "Runtime": ("Instant", "Calendar", "Dimensions"), "Fold": ("Runtime",), "Core": ("Runtime",)}
+    for name, imported in dependencies.items():
+        source = root / "SPL" / (name + ".lean")
+        target = build / "SPL" / (name + ".olean")
+        required_time = max([source.stat().st_mtime] + [
+            (build / "SPL" / (dependency + ".olean")).stat().st_mtime for dependency in imported])
+        if not target.exists() or target.stat().st_mtime < required_time:
+            process = subprocess.run([lean, "-o", str(target), str(source)], cwd=root, env=environment, text=True, encoding="utf-8", capture_output=True, timeout=timeout)
+            if process.returncode:
+                raise RuntimeError(f"Lean {name} compilation failed:\n" + process.stdout + process.stderr)
     driver_dir = root / ".lake" / "spl"
     driver_dir.mkdir(parents=True, exist_ok=True)
     if output_path is None:

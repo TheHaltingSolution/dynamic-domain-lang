@@ -5,6 +5,7 @@ from datetime import date
 from typing import Any
 
 from .model import BOOL, DATE, INSTANT, INT, RATIO, TEXT, USD, CheckedSchedule, SPLException, Type
+from .dimensions import validate_currency, validate_unit
 
 
 def ident(kind: str) -> Type:
@@ -138,6 +139,15 @@ def type_from_ast(value: dict[str, Any]) -> Type:
         if len(args) != 1 or args[0]["name"] != "USD" or args[0].get("args"):
             fail("UNSUPPORTED_CURRENCY", "The implemented profile supports Money<USD> only")
         return USD
+    if name in {"Quantity", "Rate"}:
+        if len(args) != (1 if name == "Quantity" else 2):
+            fail("TYPE_ARITY", f"{name} has invalid dimension argument count")
+        if any(arg.get("args") or arg.get("fields") for arg in args):
+            fail("UNSUPPORTED_TYPE", "Dimension arguments must be atomic")
+        validate_unit(args[0]["name"])
+        if name == "Rate":
+            validate_currency(args[1]["name"])
+        return Type(name, tuple(Type(arg["name"]) for arg in args))
     if name in {"List", "Option"} and len(args) == 1:
         return Type(name, (type_from_ast(args[0]),))
     if name == "Id" and len(args) == 1 and not args[0].get("args"):
@@ -158,6 +168,12 @@ def compatible(left: Type, right: Type) -> bool:
 def key_type(typ: Type) -> bool:
     return typ.name in {"Bool", "Int", "Nat", "Date", "Id"} or (
         typ.name == "Tuple" and len(typ.args) >= 2 and all(map(key_type,typ.args)))
+
+
+def scalar_type(typ: Type) -> bool:
+    """Ordered scalar values, including tuples, distinct from admitted map keys."""
+    return typ.numeric or typ.name in {"Date", "Instant", "Text", "Id"} or (
+        typ.name == "Tuple" and all(map(scalar_type, typ.args)))
 
 
 class Scope:
@@ -293,19 +309,19 @@ class Checker:
             if left_node["kind"] == "number" and right_node["kind"] != "number":
                 right = self.expr(right_node, scope)
                 hint = right if right.name in {"Int", "Nat", "Ratio", "Rational"} else None
-                if op == "*" and right.name == "Money":
+                if op == "*" and right.name in {"Money", "Quantity", "Rate"}:
                     hint = RATIO
                 left = self.expr(left_node, scope, hint)
             else:
                 left = self.expr(left_node, scope)
                 hint = left if left.name in {"Int", "Nat", "Ratio", "Rational"} else None
-                if op in {"*", "/"} and left.name == "Money":
+                if op in {"*", "/"} and left.name in {"Money", "Quantity", "Rate"}:
                     hint = RATIO
                 right = self.expr(right_node, scope, hint if right_node["kind"] == "number" else None)
             if op in {"==", "!=", "<", "<=", ">", ">="}:
                 if not compatible(left, right):
                     fail("TYPE_MISMATCH", f"Cannot compare {left} with {right}", node)
-                if op not in {"==", "!="} and not (left.numeric or left.name in {"Date", "Instant", "Text", "Id"} or key_type(left)):
+                if op not in {"==", "!="} and not (scalar_type(left) or key_type(left)):
                     fail("TYPE_MISMATCH", f"No total comparison for {left}", node)
                 return BOOL
             if not left.numeric or not right.numeric:
@@ -314,6 +330,21 @@ class Checker:
                 fail("UNSUPPORTED_OPERATOR", "Nat subtraction is outside this emitted profile", node)
             if op in {"+", "-"} and compatible(left, right):
                 return left
+            if left.name in {"Quantity", "Rate"} or right.name in {"Quantity", "Rate"}:
+                if op == "*":
+                    if left.name in {"Quantity", "Rate"} and right == RATIO:
+                        return left
+                    if right.name in {"Quantity", "Rate"} and left == RATIO:
+                        return right
+                    quantity, rate = (left, right) if left.name == "Quantity" else (right, left)
+                    if quantity.name == "Quantity" and rate.name == "Rate" and quantity.args[0] == rate.args[0]:
+                        return USD
+                if op == "/" and left.name in {"Quantity", "Rate"}:
+                    if right == RATIO:
+                        return left
+                    if left == right:
+                        return RATIO
+                fail("TYPE_MISMATCH", f"Operator {op} is not defined for {left} and {right}", node)
             if op == "*":
                 if left.name == "Money" and right == RATIO:
                     return left
@@ -540,7 +571,7 @@ class Checker:
                     if not body.numeric:
                         fail("TYPE_MISMATCH", "sum requires numeric mapped values", node)
                     return body
-                if name == "sort_by" and not (body.numeric or body.name in {"Text", "Date", "Instant", "Id"} or key_type(body)):
+                if name == "sort_by" and not (scalar_type(body) or key_type(body)):
                     fail("TYPE_MISMATCH", "sort_by requires a scalar total-order key", node)
                 return source if name in {"filter", "sort_by"} else Type("List", (body,))
             if name == "instant":
@@ -550,10 +581,11 @@ class Checker:
                     from .instant import parse_instant
                     parse_instant(args[0]["value"])
                 return INSTANT
-            if name in {"min", "max"}:
-                self.arity(node, 2)
+            if name in {"min", "max", "abs"}:
+                self.arity(node, 1 if name == "abs" else 2)
                 typ = self.expr(args[0], scope, expected)
-                self.expr(args[1], scope, typ)
+                if name != "abs":
+                    self.expr(args[1], scope, typ)
                 if not typ.numeric:
                     fail("TYPE_MISMATCH", f"{name} requires numeric operands", node)
                 return typ

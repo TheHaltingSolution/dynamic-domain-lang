@@ -1,5 +1,73 @@
 # SPL iteration log
 
+## 22 November 2026: M1b typed quantities verified locally
+
+Profile `0.4.3-dev` completed local verification on `feature/spl-typed-quantities`;
+`main` remains at merged `018dde1` unchanged. The
+[implementation baseline](implementation-baseline.json) records local evidence;
+this is not a GitHub release or push. The published M1a `0.4.2-dev` record is
+preserved byte-for-byte at
+[`baselines/implementation-0.4.2-dev.json`](baselines/implementation-0.4.2-dev.json).
+Historical release and verification narratives below retain their dated scopes.
+
+The new finite dictionary `spl.units/1` admits Download and UsageMinute.
+`Quantity<U>` and `Rate<U,USD>` have strict exact tags in bindings, IR/runtime,
+outputs and audit. Matching arithmetic, typed empty sums, explicit positive
+matching-dimensional quantization, containers/folds and imports/exports retain
+dimensions. Sorting permits dimensional scalars and tuple components; dimensional
+Map/group/ordered-fold keys remain rejected. Money/Quantity, non-USD rates and
+FX remain unsupported. No English literal grammar was added; prices are typed
+parameters. Signed fractional values remain valid core values.
+
+Canonical descriptors require the quantity capability/codec and explicit used
+units across the full import closure. All local schemas/export signatures are
+admitted, including unused imports. Bounds and conservation require matching
+explicit dimensional tags, including empty declared collections. New nested
+dimensional state includes its complete checked-type hash in slot/cell/scope
+units and the state key. The public hash helper expands AST built-ins through
+the checker, so a nested `Period` hashes identically to checked Type input.
+Evidence constraints can explicitly declare `required:false`, retaining the
+default required behavior and checks on every supplied event.
+
+The [synthetic registered source](../../cases/quantities/download-participation.spl)
+and [policy](../../cases/quantities/policy.md) give 100 Download * USD 1.50/Download
+= USD 150, followed by a separate 50% participation = USD 75. Its neutral adapter
+does no economic calculation; the [independent oracle](../../oracles/quantities.py)
+has no compiler imports. Nonnegative quantities/rate/opening and a selected
+half-open period view are this case's policy, not universal core restrictions.
+Out-of-period supplied rows block; all supplied observations, including unused
+evidence, must precede cutoff. Empty usage plus empty evidence is valid zero
+activity; nonempty usage still needs its referenced evidence. Actual native
+closing-cell carry into a next-period 0.5 Download run produces tagged meter
+100.5 and USD 0.375 earnings.
+
+The final complete combined run passed all 352 Python checks in 1638.702
+seconds, the 86-target build, both smokes and all 16 native suites, with
+compiler/schema sources unchanged throughout verification. All 35 current
+review paths also passed: 24 legacy paths (15 registered, six original/readable
+and three direct mechanisms), four quantity cases and seven M1 cases. The
+review evidence is retained under
+`C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/quantity-0.4.3`.
+All 34 checked-in case manifests were checked: 26 bound packages match current
+identities and closures, and eight deliberately unbound templates resolve.
+
+Defensive IR audit found that an unsupported unit or rate currency could hide
+in a type annotation on an empty collection path. Recursive type admission was
+added at every type-bearing IR position, with 15 negative direct-IR cases in
+`Tests/SPLQuantities.lean`. Changed text was normalized to Git LF before the
+final build, review reruns and verification, preserving raw/reference/archive
+bytes that have explicit `-text` handling. An earlier full-suite attempt
+encountered a fixture error and was interrupted; the restarted complete run
+above supplies the final verification evidence.
+
+Earlier focused checks also passed: one actual generated mirror regression
+in 7.136 seconds, 13 canonical module checks in 27.621 seconds and eight
+independent oracle checks. Their historical counts are not added to the final
+combined count.
+Existing toy and scalar proof scopes are unchanged. New tagged runtime paths,
+frontend/emitter/containers, canonical transport and economic policy are not
+proved correct by the existing scalar lemmas.
+
 ## 21 November 2026: M1a financial library and archive-transport experiment
 
 Published profile `0.4.2-dev` implements the selected M1a ordinary-royalty slice

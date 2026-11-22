@@ -11,6 +11,12 @@ The implementation is [`modules.py`](../../spl_compiler/modules.py). Descriptors
 contain exact file/module pins, typed ports and a finite constraint vocabulary.
 Economic expressions and function preconditions remain checked SPL source.
 
+M1b adds the dimensional boundary below as verified local profile `0.4.3-dev` on
+`feature/spl-typed-quantities`. The published M1a
+`0.4.2-dev` record remains
+[archived](baselines/implementation-0.4.2-dev.json), and legacy state identities
+and issued package pins are preserved.
+
 ## Registration and replay
 
 A registration contains a namespaced ID, immutable revision, registry-relative
@@ -81,6 +87,13 @@ reference, an evidence reference and `observed_at < cutoff`. Equality with the
 cutoff remains excluded. Other conditional economic evidence belongs in checked
 source assertions.
 
+An evidence constraint may explicitly set `required:false`; the default is
+`true`, preserving existing descriptors. This permits an empty supplied event
+collection. Every supplied event still undergoes the same authority/reference/
+kind/cutoff checks, including unused events. Only evidence constraints may use
+`required`. Per-fact conditional evidence relationships remain checked source
+assertions; this option does not waive them.
+
 The required manifest resource profile is `{"max_input_rows":100000,
 "lean_timeout_seconds":180}`. Input rows count top-level array values separately
 in inputs, parameters and evidence, plus arrays in structured state-cell payloads;
@@ -134,6 +147,69 @@ and readable binding/footer support where applicable. `function_sources` maps an
 existing application-trace function label to its pinned exported definition.
 These links support human review; they do not establish semantic equivalence or
 approve the selected interpretation.
+
+## M1b dimensional interfaces and state
+
+The finite dictionary `spl.units/1` admits `Download` and `UsageMinute`, with
+exact case and no conversion. Existing generic syntax admits `Quantity<U>` and
+`Rate<U,USD>`; prices are typed parameters, with no new English literal grammar.
+Transport is explicitly tagged:
+
+```json
+{"value":"100","unit":"Download"}
+{"value":"1.50","per_unit":"Download","currency":"USD"}
+```
+
+Each `value` uses the existing exact decimal-string or canonical rational-object
+codec. Floats, booleans, missing tags and unknown envelope fields fail. Records,
+lists, tuples, Options and map values retain tags recursively, including output,
+audit and successor-state transport. These are distinct runtime values rather
+than ordinary Ratio bindings. Non-USD rates, FX and Money/Quantity are outside
+this slice; the [operation matrix](next-core-semantics.md#m1b-implemented-dimensional-boundary)
+specifies matching arithmetic, typed zero, rounding and sorting/key restrictions.
+
+Every descriptor using these types must declare capability `spl.quantities/1`,
+codec `spl-quantity/1` in addition to the existing exact/instant codecs, and
+`interface.dictionaries: {"spl.units/1":["Download"]}` (or the admitted used
+units for that descriptor). Every descriptor in the import closure is checked,
+including unused local structural schemas, export results and parameters.
+Missing unit declarations, unknown units and unsupported signature currencies
+fail before execution.
+
+Quantity/rate `minimum` and `maximum` domain bounds must have explicit matching
+tags. Conservation fields and their target must match Quantity/Rate kind, unit
+and currency. Equal numeric magnitudes in different dimensions do not reconcile.
+For an empty declared dimensional collection, the registered field type still
+requires a matching tagged target; untagged scalar zero cannot stand in for it.
+Legacy Money/scalar bound and conservation behavior remains unchanged.
+
+If an opening type contains a Quantity or Rate anywhere, its unit identifier is
+`dimensioned:<sha256>` of the complete normalized checked type. Use
+`spl_compiler.modules.dimensioned_state_unit(typ)` with either a checked Type or
+an expanded type AST. AST input first passes through `checker.type_from_ast`,
+so built-in structures such as nested `Period` expand identically; descriptor-
+local aliases must first be expanded with their owning descriptor. The signature
+at every node is `{"name":name,"args":[...],"fields":[[name,type],...]}`,
+including empty arrays. It retains checked names, sorts record fields by name,
+retains argument order and hashes compact sorted-key UTF-8 JSON using SHA-256.
+For `Quantity<Download>`, the identifier is
+`dimensioned:495808ae9a33038bcc29cf5b3fc3c7cff8da359bf26c7daf90e0e5852e171978`.
+
+That exact identifier is required in the state slot's `unit`, cell's `unit` and
+cell's `scope.unit`; `unit` must also be in `key_fields` and the canonical
+`state_key`. This distinguishes quantities, rates, units and complete compound
+shapes, including nested lists/records/Options. Such state uses `transition`
+movement retaining tagged opening/closing payloads. Existing Money-only and
+`structured` state keep their established rules; no issued state is migrated.
+
+The [selected Download witness](../../cases/quantities/README.md) produces
+100 Download * USD 1.50/Download = USD 150, then a separately declared 50% share
+= USD 75. A successor consumes its actual native closing meter and adds 0.5,
+giving 100.5 Download and USD 0.375 earned. It requires nonnegative selected
+period quantities/rate/opening, strict observation cutoff and per-row evidence;
+signed fractional values remain valid in the core. Its `required:false` evidence
+constraint permits empty usage with empty evidence without weakening supplied
+event checks. The policy remains proposed and results remain unissued.
 
 ## Cedar synthetic witness
 

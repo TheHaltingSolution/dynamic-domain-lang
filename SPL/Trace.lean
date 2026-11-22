@@ -159,7 +159,7 @@ def nodeJson (node : Node) : Lean.Json := Lean.Json.mkObj ([
     else if node.status == "failed" then "blocked"
     else if node.status == "discarded" then "discarded"
     else match node.result with
-      | some (.num value) => if value == 0 then "calculated_zero" else "calculated"
+      | some (.num value) | some (.quantity _ value) | some (.rate _ _ value) => if value == 0 then "calculated_zero" else "calculated"
       | some _ => "calculated"
       | none => "decision")),
   ("dependencies", toJson node.dependencies),

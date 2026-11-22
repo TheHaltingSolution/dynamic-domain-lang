@@ -151,8 +151,9 @@ class CalendarMonthsTests(unittest.TestCase):
             self.assertEqual(exact(result['closing_state'][0]['quantity']), expected['closing_balance'])
 
     def test_capability_must_be_explicitly_declared(self):
-        descriptor = {'imports': [], 'interface': {'exports': [], 'ports': []},
-                      'compatibility': {'capabilities': ['spl.core/1']}}
+        descriptor = {'imports': [], 'interface': {'exports': [], 'ports': [],
+                                                  'schemas': [], 'dictionaries': {}},
+                      'compatibility': {'capabilities': ['spl.core/1'], 'codecs': ['spl-exact/1']}}
         syntax = parse(schedule('emit "x"=add_calendar_months(date "2025-01-31",1,"clamp_day");'))
         with self.assertRaises(DataError) as raised:
             _check_capabilities(descriptor, syntax)

@@ -35,7 +35,7 @@
         "purpose": {"type": "string", "minLength": 1}, "unit": {"type": "string", "minLength": 1},
         "scope": {"type": "object", "additionalProperties": false, "required": ["agreement_id", "participant_id", "pool_id"],
           "properties": {"agreement_id": {"type": "string"}, "participant_id": {"type": "string"}, "pool_id": {"type": "string"},
-            "vintage_id": {"type": "string"}, "asset_id": {"type": "string"}}},
+            "vintage_id": {"type": "string"}, "asset_id": {"type": "string"}, "unit": {"type": "string", "minLength": 1}}},
         "boundary": {"type": "string"}, "quantity": {}, "provenance_ref": {"type": "string", "minLength": 1},
         "scenario_id": {"type": "string", "minLength": 1}, "prior_result_ref": {"type": "string", "pattern": "^result@sha256:[0-9a-f]{64}$"}
       }}},

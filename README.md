@@ -10,6 +10,17 @@ Reusable functions, keyed collections and ordered folds support these additions.
 The ordinary-royalty library adds selected marginal/whole-base tiers, cumulative
 meters, caps and a separate nonrecoupable guarantee; its executable cases and
 readable policy are in [cases/m1](cases/m1/README.md).
+The M1b feature branch adds exact `Quantity<U>` and `Rate<U,USD>` inputs,
+tagged outputs and dimension-safe state for the finite `spl.units/1` dictionary
+(`Download`, `UsageMinute`). Its [synthetic Download demo](cases/quantities/README.md)
+checks USD 150 gross, USD 75 participation, zero/fractional activity and actual
+successor meter carry. It uses existing generic type syntax; no new literal
+grammar was added. The verified local baseline is `0.4.3-dev` on
+`feature/spl-typed-quantities`, based on merged `018dde1`. Its single combined
+Python regression run passed all 352 tests; 16 native suites and all 35 review
+paths also passed. `main` is unchanged; this local record includes no GitHub
+release or push. The [historical `0.4.2-dev` record](docs/spl/baselines/implementation-0.4.2-dev.json)
+is preserved.
 See
 [the implementation and demo instructions](docs/spl/implementation.md).
 The initial toy compiler infrastructure remains separate. Complete SPL compiler
@@ -37,7 +48,12 @@ lean --version
 lake build
 lake exe smoke
 lake exe participation
+python scripts/quantity_demo.py
 ```
+
+The quantity demo checks four cases against native interpretation, generated
+Lean and independent financial controls. Its review artifacts are written to
+the external project artifacts folder; use `--output` to choose another location.
 
 `lean-toolchain` pins Lean to **4.35.0**. Elan installs that version when needed;
 Lake comes with it. No separate C compiler installation was needed on the

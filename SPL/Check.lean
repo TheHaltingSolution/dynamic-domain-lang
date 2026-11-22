@@ -1,5 +1,6 @@
 import SPL.Syntax
 import SPL.Instant
+import SPL.Dimensions
 
 /-! Native static checking for the bounded SV/LG SPL implementation.
 This checker establishes structural types and ports, not contractual authority.
@@ -11,6 +12,8 @@ open SPL.Syntax
 inductive Ty where
   | atom : String → Ty
   | money : String → Ty
+  | quantity : String → Ty
+  | rate : String → String → Ty
   | list : Ty → Ty
   | option : Ty → Ty
   | tuple : List Ty → Ty
@@ -153,6 +156,13 @@ partial def parseType : TypeExpr → Except Diagnostic Ty
     else match name, args with
       | "Money", [.named "USD" []] => pure usdTy
       | "Money", _ => error "UNSUPPORTED_CURRENCY" "Only Money<USD> is supported"
+      | "Quantity", [.named unit []] =>
+        if Dimensions.admitted unit then pure (.quantity unit)
+        else error "UNSUPPORTED_UNIT" ("Unknown quantity unit " ++ unit)
+      | "Rate", [.named unit [], .named currency []] =>
+        if !Dimensions.admitted unit then error "UNSUPPORTED_UNIT" ("Unknown rate unit " ++ unit)
+        else if currency != "USD" then error "UNSUPPORTED_CURRENCY" "Only Rate<U,USD> is supported"
+        else pure (.rate unit currency)
       | "List", [arg] => return .list (← parseType arg)
       | "Option", [arg] => return .option (← parseType arg)
       | "Tuple", args =>
@@ -180,14 +190,18 @@ partial def compatible (a b : Ty) : Bool :=
   | _, _ => a == b
 
 def numeric : Ty → Bool
-  | .money _ => true
+  | .money _ | .quantity _ | .rate _ _ => true
   | .atom name => ["Int", "Nat", "Ratio", "Rational"].contains name
   | _ => false
 
 partial def scalar : Ty → Bool
   | .atom name => name != "Bool"
-  | .money _ => true
+  | .money _ | .quantity _ | .rate _ _ => true
   | .tuple items => items.all scalar
+  | _ => false
+
+def dimensional : Ty → Bool
+  | .quantity _ | .rate _ _ => true
   | _ => false
 
 def constrain (found : Ty) (expected : Option Ty) (span : Span) : Except Diagnostic Ty := do
@@ -263,12 +277,12 @@ partial def inferRaw (context : Context) (expression : Expr) (expected : Option 
       return boolTy
     let (a, b) ← if isNumber left && !isNumber right then do
         let b ← infer context right
-        let hint := if op == "*" && b == usdTy then some ratioTy else dimensionless b
+        let hint := if op == "*" && (b == usdTy || dimensional b) then some ratioTy else dimensionless b
         let a ← infer context left hint
         pure (a, b)
       else do
         let a ← infer context left
-        let hint := if (op == "*" || op == "/") && a == usdTy then some ratioTy else dimensionless a
+        let hint := if (op == "*" || op == "/") && (a == usdTy || dimensional a) then some ratioTy else dimensionless a
         let b ← infer context right (if isNumber right then hint else none)
         pure (a, b)
     if ["==", "!=", "<", "<=", ">", ">="].contains op then
@@ -280,10 +294,17 @@ partial def inferRaw (context : Context) (expression : Expr) (expected : Option 
       return ← error "UNSUPPORTED_OPERATOR" "Nat subtraction is outside this emitted profile" span
     if (op == "+" || op == "-") && compatible a b then return a
     if op == "*" then
+      if dimensional a && b == ratioTy then return a
+      if a == ratioTy && dimensional b then return b
+      match a, b with
+      | .quantity u, .rate v c | .rate v c, .quantity u => if u == v then return .money c
+      | _, _ => pure ()
       if a == usdTy && b == ratioTy then return usdTy
       if a == ratioTy && b == usdTy then return usdTy
-      if compatible a b && a != usdTy then return a
+      if compatible a b && a != usdTy && !dimensional a then return a
     if op == "/" then
+      if dimensional a && b == ratioTy then return a
+      if dimensional a && compatible a b then return ratioTy
       if a == usdTy && b == ratioTy then return usdTy
       if a == usdTy && b == usdTy then return ratioTy
       if a == b && (a == ratioTy || a == .atom "Rational") then return a
@@ -447,6 +468,11 @@ partial def inferRaw (context : Context) (expression : Expr) (expected : Option 
       if name == "sort_by" then
         unless scalar bodyTy || keyType bodyTy do error "TYPE_MISMATCH" "sort_by requires total-order key" span
       return if name == "map" then .list bodyTy else .list itemTy
+    if name == "abs" then
+      let [value] := args | return ← error "BUILTIN_ARITY" "abs requires one argument" span
+      let ty ← infer context value expected
+      unless numeric ty do error "TYPE_MISMATCH" "abs requires number" span
+      return ty
     if name == "min" || name == "max" then
       let [a, b] := args | return ← error "BUILTIN_ARITY" "min/max require two arguments" span
       let ty ← infer context a expected

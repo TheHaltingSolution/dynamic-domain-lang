@@ -1,11 +1,24 @@
 # Screen Participation Language design
 
-Implementation continuation, 21 November 2026: K1-K3, generic registered methods
+Implementation continuation, 22 November 2026: K1-K3, generic registered methods
 and the disclosed calendar-month extension are executable. The
 M1a continuation adds reusable tier/cap/guarantee modules and
-[seven ordinary-royalty cases](../../cases/m1/README.md). Typed quantity/rate
-and FX extensions remain planned, with their boundary recorded in
-[the core continuation](next-core-semantics.md#next-dimensional-slice-quantities-and-per-unit-rates).
+[seven ordinary-royalty cases](../../cases/m1/README.md). The M1b feature branch
+implements exact `Quantity<U>` and `Rate<U,USD>` values, tagged transport and
+dimension-safe state, with `Download` and `UsageMinute` admitted by the finite
+`spl.units/1` dictionary. Existing generic type syntax supplies these typed
+inputs; no new literal grammar was added. The
+[synthetic quantity demo](../../cases/quantities/README.md) checks 100 Download
+at USD 1.50/Download, a separately declared 50% share, zero/fractional activity
+and actual successor carry. FX remains planned. See
+[the dimensional boundary](next-core-semantics.md#m1b-implemented-dimensional-boundary).
+The verified local `0.4.3-dev` baseline is on `feature/spl-typed-quantities`,
+based on merged `018dde1`. All 352 Python tests passed in one combined run,
+along with 16 native suites, the 86-target build and both smokes. All 35 review
+paths passed: 24 legacy, four quantity and seven M1a paths. Implementation
+identities and source pins remained unchanged through verification. `main` is
+unchanged; this is a local baseline record with no GitHub release or push. The
+[historical `0.4.2-dev` record](baselines/implementation-0.4.2-dev.json) is preserved.
 See the [implementation report](implementation.md),
 [fold/function semantics](folds-and-linking.md) and
 [module interface](module-interface-v1.md). The ledger's execution update
@@ -17,6 +30,17 @@ E1 API change. The [current demo instructions](implementation.md) calculate
 statements and closing state for the original 15 registered runs, six
 original/readable legacy runs, three direct mechanisms and the separate seven
 M1a runs.
+
+Run the quantity review from the repository root with the pinned Python setup:
+
+```powershell
+python scripts/quantity_demo.py
+```
+
+All four demo cases passed native/generated comparison and independent
+financial controls. This evidence does not extend the scalar proof scope or
+establish contract approval; see the case README for focused verification and
+remaining limits.
 
 Initial design draft 0.1 · 15 November 2026
 

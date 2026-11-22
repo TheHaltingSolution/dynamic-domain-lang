@@ -23,7 +23,7 @@ class Type:
 
     @property
     def numeric(self) -> bool:
-        return self.name in {"Int", "Nat", "Ratio", "Rational", "Money"}
+        return self.name in {"Int", "Nat", "Ratio", "Rational", "Money", "Quantity", "Rate"}
 
 
 BOOL = Type("Bool")
@@ -33,6 +33,32 @@ TEXT = Type("Text")
 DATE = Type("Date")
 INSTANT = Type("Instant")
 USD = Type("Money", (Type("USD"),))
+
+
+@dataclass(frozen=True)
+class QuantityValue:
+    value: Fraction
+    unit: str
+
+    def __post_init__(self) -> None:
+        from .dimensions import validate_unit
+        validate_unit(self.unit)
+        if not isinstance(self.value, Fraction):
+            raise SPLException("INVALID_EXACT_NUMBER", "Quantity requires an exact Fraction")
+
+
+@dataclass(frozen=True)
+class RateValue:
+    value: Fraction
+    per_unit: str
+    currency: str = "USD"
+
+    def __post_init__(self) -> None:
+        from .dimensions import validate_currency, validate_unit
+        validate_unit(self.per_unit)
+        validate_currency(self.currency)
+        if not isinstance(self.value, Fraction):
+            raise SPLException("INVALID_EXACT_NUMBER", "Rate requires an exact Fraction")
 
 
 @dataclass(frozen=True, order=True)
@@ -123,6 +149,10 @@ def encode_fraction(value: Fraction) -> str | dict[str, str]:
 
 
 def encode_value(value: Any) -> Any:
+    if isinstance(value, QuantityValue):
+        return {"value": encode_fraction(value.value), "unit": value.unit}
+    if isinstance(value, RateValue):
+        return {"value": encode_fraction(value.value), "per_unit": value.per_unit, "currency": value.currency}
     if isinstance(value, OptionValue):
         return {"some":encode_value(value.value)} if value.present else {"none":True}
     if isinstance(value, MapValue):

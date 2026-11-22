@@ -1,0 +1,470 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.quantities/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1",
+      "spl-quantity/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [
+        "record_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.usage",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_id"
+      ],
+      "kind": "unique",
+      "path": "evidence.attestations",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "evidence",
+      "path": "evidence.attestations",
+      "required": false,
+      "target": "",
+      "value": "usage_attestation"
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.accounting_period",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.observation_cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    }
+  ],
+  "id": "synthetic:download-participation",
+  "imports": [],
+  "interface": {
+    "dictionaries": {
+      "spl.units/1": [
+        "Download"
+      ]
+    },
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [
+          "agreement"
+        ],
+        "domain": {},
+        "name": "agreement",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Agreement"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "participant"
+        ],
+        "domain": {},
+        "name": "participant",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Participant"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "pool"
+        ],
+        "domain": {},
+        "name": "pool",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Pool"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "asset"
+        ],
+        "domain": {},
+        "name": "asset",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Asset"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "period"
+        ],
+        "domain": {},
+        "name": "accounting_period",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Period"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "observation_cutoff",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [
+          "unit",
+          "period"
+        ],
+        "domain": {},
+        "name": "usage",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageRow"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "attestations",
+        "role": "evidence",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Attestation"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [
+          "unit",
+          "currency"
+        ],
+        "domain": {},
+        "name": "unit_rate",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Download"
+            },
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Rate"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "maximum": "1",
+          "minimum": "0"
+        },
+        "name": "participation",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "exact_no_rounding"
+          ],
+          "methodology": true
+        },
+        "name": "rounding",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "nonnegative_selected_period"
+          ],
+          "methodology": true
+        },
+        "name": "quantity_policy",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [
+          "unit"
+        ],
+        "domain": {},
+        "name": "meter",
+        "role": "opening",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Download"
+            }
+          ],
+          "name": "Quantity"
+        }
+      },
+      {
+        "dimensions": [
+          "currency"
+        ],
+        "domain": {},
+        "name": "earned",
+        "role": "result",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [
+          "currency"
+        ],
+        "domain": {},
+        "name": "gross",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [
+          "unit"
+        ],
+        "domain": {},
+        "name": "period_quantity",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Download"
+            }
+          ],
+          "name": "Quantity"
+        }
+      },
+      {
+        "dimensions": [
+          "unit",
+          "period"
+        ],
+        "domain": {},
+        "name": "usage_detail",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageRow"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "reconciliation",
+        "role": "reconciliation",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      }
+    ],
+    "schemas": [
+      {
+        "fields": {
+          "effective_date": {
+            "args": [],
+            "name": "Date"
+          },
+          "evidence_ref": {
+            "args": [],
+            "name": "Text"
+          },
+          "observed_at": {
+            "args": [],
+            "name": "Instant"
+          },
+          "quantity": {
+            "args": [
+              {
+                "args": [],
+                "name": "Download"
+              }
+            ],
+            "name": "Quantity"
+          },
+          "record_id": {
+            "args": [
+              {
+                "args": [],
+                "name": "Usage"
+              }
+            ],
+            "name": "Id"
+          }
+        },
+        "name": "UsageRow"
+      },
+      {
+        "fields": {
+          "approval_ref": {
+            "args": [
+              {
+                "args": [],
+                "name": "Decision"
+              }
+            ],
+            "name": "Id"
+          },
+          "evidence_id": {
+            "args": [],
+            "name": "Text"
+          },
+          "evidence_ref": {
+            "args": [],
+            "name": "Text"
+          },
+          "kind": {
+            "args": [],
+            "name": "Text"
+          },
+          "observed_at": {
+            "args": [],
+            "name": "Instant"
+          }
+        },
+        "name": "Attestation"
+      }
+    ]
+  },
+  "policy": {
+    "decision_ids": [
+      "QUANTITY-PARTICIPATION"
+    ],
+    "discriminating_cases": [
+      "100x1.50x50%",
+      "zero",
+      "fractional",
+      "unit-mismatch",
+      "successor-carry"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:download-policy",
+    "readable": {
+      "locator": "cases/quantities/policy.md",
+      "sha256": "59009a0ea04b3436f9a7b40acbc9ba285ff6f6e9757b41ce6aea1bac9c865428"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/quantities/download-participation.spl",
+    "sha256": "5e273568096b03a20c2af17a8824b583943f7941263c991e7287ac4a00924043"
+  },
+  "state": [
+    {
+      "closing": "meter",
+      "history_required": false,
+      "key_fields": [
+        "agreement_id",
+        "participant_id",
+        "pool_id",
+        "asset_id",
+        "purpose",
+        "unit"
+      ],
+      "movement_kinds": [
+        "transition"
+      ],
+      "opening": "meter",
+      "purpose": "download-meter",
+      "unit": "dimensioned:495808ae9a33038bcc29cf5b3fc3c7cff8da359bf26c7daf90e0e5852e171978"
+    }
+  ]
+}

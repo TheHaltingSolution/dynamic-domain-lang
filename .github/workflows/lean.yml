@@ -42,6 +42,7 @@ jobs:
       - run: lake env lean --run Tests/SPLIR.lean
       - run: lake env lean --run Tests/SPLValidateIR.lean
       - run: lake env lean --run Tests/SPLCalendar.lean
+      - run: lake env lean --run Tests/SPLQuantities.lean
       - run: lake env lean --run Tests/SPLTrace.lean
       - run: lake env lean --run Tests/SPLPriority.lean
       - run: lake env lean --run Tests/SPLCollections.lean

@@ -1,0 +1,11 @@
+{
+  "schema_version": "quantity-neutral/1",
+  "case_id": "DOWNLOAD-SYNTHETIC-100",
+  "scope": {"contract_id": "download-agreement", "participant_id": "download-participant", "pool_id": "download-pool", "asset_id": "download-film", "currency": "USD", "unit": "Download"},
+  "period": {"start": "2026-01-01", "end": "2026-04-01"},
+  "cutoff": "2026-04-03T00:00:00Z",
+  "usage": [{"record_id": "usage-100", "quantity": "100", "unit": "Download", "effective_date": "2026-02-01", "observed_at": "2026-04-02T00:00:00Z", "evidence_ref": "download-report"}],
+  "evidence": [{"evidence_id": "download-report", "observed_at": "2026-04-02T00:00:00Z"}],
+  "terms": {"rate": "1.50", "per_unit": "Download", "currency": "USD", "participation": "0.5", "rounding": "exact_no_rounding", "quantity_policy": "nonnegative_selected_period"},
+  "opening_state": {"scope": {"contract_id": "download-agreement", "participant_id": "download-participant", "pool_id": "download-pool", "asset_id": "download-film", "currency": "USD", "unit": "Download"}, "quantity": "0", "unit": "Download"}
+}

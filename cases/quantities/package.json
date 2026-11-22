@@ -1,0 +1,112 @@
+{
+  "decisions": [
+    {
+      "decision_id": "QUANTITY-PARTICIPATION",
+      "evidence_ref": "explicit-synthetic-policy-selection",
+      "policy_id": "synthetic:download-policy",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "attestations": [
+      {
+        "approval_ref": "QUANTITY-PARTICIPATION",
+        "evidence_id": "download-report",
+        "evidence_ref": "download-report",
+        "kind": "usage_attestation",
+        "observed_at": "2026-04-02T00:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "accounting_period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "agreement": "download-agreement",
+    "asset": "download-film",
+    "observation_cutoff": "2026-04-03T00:00:00Z",
+    "participant": "download-participant",
+    "pool": "download-pool",
+    "usage": [
+      {
+        "effective_date": "2026-02-01",
+        "evidence_ref": "download-report",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "quantity": {
+          "unit": "Download",
+          "value": "100"
+        },
+        "record_id": "usage-100"
+      }
+    ]
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "DOWNLOAD-SYNTHETIC-100",
+    "runtime_build": "unbound",
+    "scenario_id": "DOWNLOAD-SYNTHETIC"
+  },
+  "module_ref": {
+    "id": "synthetic:download-participation",
+    "locator": "cases/quantities/descriptor.json",
+    "revision": "1",
+    "sha256": "7a1310ea0c6202f003872d16d74b5c04ac449fbf88252ee017a876638502a8d6"
+  },
+  "parameters": {
+    "participation": "0.5",
+    "quantity_policy": "nonnegative_selected_period",
+    "rounding": "exact_no_rounding",
+    "unit_rate": {
+      "currency": "USD",
+      "per_unit": "Download",
+      "value": "1.50"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "download-agreement",
+    "asset_ids": [
+      "download-film"
+    ],
+    "participant_ids": [
+      "download-participant"
+    ],
+    "pool_id": "download-pool",
+    "purpose": "download-meter"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "meter",
+      "provenance_ref": "explicit-synthetic-opening",
+      "purpose": "download-meter",
+      "quantity": {
+        "unit": "Download",
+        "value": "0"
+      },
+      "scenario_id": "DOWNLOAD-SYNTHETIC",
+      "scope": {
+        "agreement_id": "download-agreement",
+        "asset_id": "download-film",
+        "participant_id": "download-participant",
+        "pool_id": "download-pool",
+        "unit": "dimensioned:495808ae9a33038bcc29cf5b3fc3c7cff8da359bf26c7daf90e0e5852e171978"
+      },
+      "state_key": "{\"agreement_id\":\"download-agreement\",\"asset_id\":\"download-film\",\"participant_id\":\"download-participant\",\"pool_id\":\"download-pool\",\"purpose\":\"download-meter\",\"unit\":\"dimensioned:495808ae9a33038bcc29cf5b3fc3c7cff8da359bf26c7daf90e0e5852e171978\"}",
+      "unit": "dimensioned:495808ae9a33038bcc29cf5b3fc3c7cff8da359bf26c7daf90e0e5852e171978"
+    }
+  ]
+}

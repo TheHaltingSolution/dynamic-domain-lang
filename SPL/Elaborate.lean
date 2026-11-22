@@ -37,11 +37,11 @@ mutual
       -- Match the checker's bidirectional hints, including money × literal ratio.
       let (aHint, bHint) ← if Check.isNumber a && !Check.isNumber b then do
           let bTy ← liftCheck (Check.infer context b)
-          pure (if op == "*" && bTy == Check.usdTy then some Check.ratioTy else Check.dimensionless bTy, none)
+          pure (if op == "*" && (bTy == Check.usdTy || Check.dimensional bTy) then some Check.ratioTy else Check.dimensionless bTy, none)
         else do
           let aTy ← liftCheck (Check.infer context a)
           pure (none, if Check.isNumber b then
-            (if (op == "*" || op == "/") && aTy == Check.usdTy then some Check.ratioTy else Check.dimensionless aTy)
+            (if (op == "*" || op == "/") && (aTy == Check.usdTy || Check.dimensional aTy) then some Check.ratioTy else Check.dimensionless aTy)
             else none)
       return .binary m op (← expression context a aHint citation) (← expression context b bHint citation)
     | .ite _ condition yes no =>
@@ -145,6 +145,7 @@ mutual
         else if name == "tuple" then (match ty with | .tuple ts => ts.map some | _ => [])
         else if name == "lookup" then lookupHints
         else if name == "tuple_get" || name == "entries" then args.map (fun _ => none)
+        else if name == "abs" then [some ty]
         else if name == "min" || name == "max" then [some ty, some ty]
         else if name == "add_calendar_months" then [some Check.dateTy, some (.atom "Nat"), some Check.textTy]
         else if name == "in_period" then [some Check.dateTy, some Check.periodTy]

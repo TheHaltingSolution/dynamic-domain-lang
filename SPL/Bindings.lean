@@ -183,6 +183,23 @@ partial def decode (type : Check.Ty) (value : Json) : Except String Value := do
     let _ ← exactFields value ["value", "currency"]
     unless (← str (← value.getObjVal? "currency")) == currency do throw "UNSUPPORTED_CURRENCY"
     return .num (← exact (← value.getObjVal? "value"))
+  | .quantity unit =>
+    unless Dimensions.admitted unit do throw "UNSUPPORTED_UNIT"
+    let _ ← exactFields value ["value", "unit"] |>.mapError (fun _ => "INVALID_QUANTITY")
+    let tag ← str (← value.getObjVal? "unit") |>.mapError (fun _ => "INVALID_QUANTITY")
+    unless Dimensions.admitted tag do throw "UNSUPPORTED_UNIT"
+    unless tag == unit do throw "UNIT_MISMATCH"
+    return .quantity unit (← exact (← value.getObjVal? "value"))
+  | .rate unit currency =>
+    unless Dimensions.admitted unit do throw "UNSUPPORTED_UNIT"
+    unless currency == "USD" do throw "UNSUPPORTED_CURRENCY"
+    let _ ← exactFields value ["value", "per_unit", "currency"] |>.mapError (fun _ => "INVALID_RATE")
+    let tag ← str (← value.getObjVal? "per_unit") |>.mapError (fun _ => "INVALID_RATE")
+    let denomination ← str (← value.getObjVal? "currency") |>.mapError (fun _ => "INVALID_RATE")
+    unless Dimensions.admitted tag do throw "UNSUPPORTED_UNIT"
+    unless tag == unit do throw "UNIT_MISMATCH"
+    unless denomination == currency do throw "CURRENCY_MISMATCH"
+    return .rate unit currency (← exact (← value.getObjVal? "value"))
   | .list type =>
     let values ← value.getArr? |>.mapError (fun _ => "EXPECTED_LIST")
     checkCollectionSize values.size

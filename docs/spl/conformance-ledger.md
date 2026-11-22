@@ -1,5 +1,18 @@
 # SPL design conformance ledger
 
+M1b profile `0.4.3-dev` completed local verification on 22 November 2026 on
+`feature/spl-typed-quantities`; `main` remains at merged `018dde1` unchanged.
+The [implementation baseline](implementation-baseline.json) is a local record,
+not a GitHub release or push. The published M1a record is preserved byte-for-byte in
+[`baselines/implementation-0.4.2-dev.json`](baselines/implementation-0.4.2-dev.json).
+The [implementation report](implementation.md#m1b-candidate-quantities-and-monetary-rates)
+records one complete combined run of 352 Python checks in 1638.702 seconds,
+16 native suites, the 86-target build and both smokes, with compiler/schema
+sources unchanged. All 35 review paths pass: 24 legacy, four quantity and seven
+M1 cases. Defensive IR admission includes 15 negative unit/currency cases,
+including otherwise empty collection paths. Historical audit rows below keep their original
+snapshot scope; the execution updates supersede their absence statements.
+
 ## Execution update: reusable kernel implementation
 
 The original source audit below describes profile 0.3 before this implementation
@@ -20,6 +33,7 @@ are separate claims; unlisted audit gaps remain open.
 | Calendar-month derivation (E1) | `add_calendar_months(Date,Nat,Text) -> Date` with explicit clamp/reject policies, Gregorian range and demanded failures | `spl.calendar-months/1` capability admission; supplied-date and derived reserve registrations, independent oracle, `Tests/test_calendar_months.py` and `Tests/SPLCalendar.lean`; E0 omission/freeze/replay preserved in the extension record |
 | Selected financial compositions | Priority/pro-rata competing claims, usage-weighted pool and event-ordered fee rules over the reusable core | Angel and MQP variants, serialized two-period waterfall state, bounded authorized replacement-fact revision; source and neutral-oracle links in [implementation.md](implementation.md). These are selected methods, not all variants in C02–C14 |
 | M1a financial library | Four pure registered tier/cumulative-tier/cap/guarantee libraries and a canonical root reuse the existing core; no compiler branch or new natural-English tier syntax | [M1a source guide](../../cases/m1/README.md), [separately pinned readable policy](../../cases/m1/policy.md), seven [neutral fixtures](../../cases/m1/fixtures/period-marginal.json), [independent oracle](../../oracles/ordinary_royalties.py) and [module checks](../../Tests/test_m1_modules.py). Seven demo cases and the generic CLI marginal template pass. The final 17-group comparison passes in 481.020 seconds; published profile `0.4.2-dev` retains these bounded witnesses |
+| M1b quantities/rates | Finite `Quantity<U>` and `Rate<U,USD>`, exact tags, same-dimension arithmetic, typed zero, matching quantization, containers/imports and dimensional scalar/tuple sorting; dimensional Map/group/ordered-fold keys rejected | [Registered source and neutral fixture](../../cases/quantities/README.md), [independent oracle](../../oracles/quantities.py), [canonical checks](../../Tests/test_quantity_modules.py), [native checks](../../Tests/SPLQuantities.lean). Explicit closure capability/codec/unit dictionaries; matching dimensional bounds/conservation; complete type-hashed state and 15 negative defensive IR admission cases. Native carry gives 100.5 Download and USD 0.375 after the initial 100/150/75 witness. Local profile `0.4.3-dev` verification is complete; no FX or Money/Quantity, and proof scopes are unchanged. |
 
 Phase builds and focused checks have been run during implementation. E1's
 combined verification history, source pins, registered case outputs and measured
@@ -41,14 +55,15 @@ Calendar-month deadline derivation was deliberately outside frozen E0
 (`0.4.0-dev`) and is implemented in E1 (`0.4.1-dev`). The
 [extension record](extensibility-experiment.md) retains the actual old-compiler
 rejection, legitimate supplied-date method, corrected E0 archive and targeted
-replay. Units/FX, broader calendar
+replay. Broader unit dictionaries/FX, broader calendar
 families, signed-loss policies and full historical replay are not implied by
 these kernel additions.
 
 ## Current C1 family coverage: E1
 
-This matrix now also includes the implemented M1a continuation after E1; the
-heading retains the existing link anchor. M1a is published as profile `0.4.2-dev`.
+This matrix includes the implemented M1a continuation and locally verified
+M1b slice after E1; the heading retains the existing link anchor. M1a remains
+recorded in archived profile `0.4.2-dev`, and M1b in local profile `0.4.3-dev`.
 
 This matrix evaluates the required variants in [the C1 release scope](release-scope-ld02.md),
 not every possible royalty method or vendor configuration. **I** means the stated
@@ -63,7 +78,7 @@ coverage or professional approval is implied.
 | Family | Native | Canonical | Executed witness and remaining required variants |
 | --- | --- | --- | --- |
 | C01 Scoped rule selection | I | P | Identified unique/priority selection, fallback, no winner, tied winner, zero and lazy bodies have [priority checks](../../Tests/test_priority.py). Registered [Cedar](../../cases/modules/priority-rates/priority-rates.spl) adds scope/effective-period predicates and two recipients. Broader canonical unique/fallback and independently scoped rule/evidence variants still need dedicated acceptance packages. |
-| C02 Units, bases and rates | P | P | SV/LG and [Angel](../../cases/r1/angel-guild.spl) calculate exact percentage rates over explicitly selected gross/net bases and separate shares. Declared dimensional quantity units and a typed fixed-money-per-unit canonical witness remain absent; numeric usage weights are not a quantity algebra. |
+| C02 Units, bases and rates | P | P | M1b adds finite Download/UsageMinute quantities and USD per-unit rates, tagged containers/outputs/state and the [100 Download → USD 150 → USD 75 canonical witness](../../cases/quantities/README.md), with separate participation. Full-closure dictionary/codec admission and dimensional state identity are enforced. Broader units, conversions, FX and additional financial base/rate methods remain open. Existing SV/LG/Angel percentage methods retain their own policies. |
 | C03 Deductions and fees | P | P | SV eligible deduction schedules, Angel marketing/cost order and [waterfall](../../cases/waterfall/waterfall.spl) fee-before-cost-before-recovery execute. General pre-basis/pre-share/post-share alternatives, scoped cumulative deduction caps and prior-consumption identity need additional registered methods and discriminators. |
 | C04 Tiers and escalation | P | P | [M1a tiers](../../cases/m1/tiers.spl) and [cumulative library](../../cases/m1/cumulative-tiers.spl), under the [selected policy](../../cases/m1/policy.md), give period basis 150 → marginal 20 versus whole-base 30, and prior basis 80 + current 70 → current earnings 12 / closing basis 150. Lower-inclusive equality gives 10 versus 20 at basis 100. [Checks](../../Tests/test_m1_modules.py) cover exact fractions, split facts, physical permutations, serialized next-period cumulative carry, invalid/duplicate/gapped/overlapping tables and cutoff/scope failures. MQP's prospective whole-receipt variants remain separate. Whole-base is period-only; crossing-row alternatives and selected retroactive historical recalculation remain gaps. |
 | C05 Caps, floors and guarantees | P | P | [M1a cap](../../cases/m1/cap.spl), [guarantee](../../cases/m1/guarantee.spl) and [canonical root](../../cases/m1/ordinary.spl) give cap 100 / prior consumption 70 / new entitlement 80 → allowed 30 / closing consumption 100; separate period-cap carry requires explicit new-period reset, while cumulative cap cannot reset. Nonrecoupable period floor 100 / earned 80 → entitlement 100, distinct from advance 150 / earnings 80 → payable 0 / closing advance 70 ([advance checks](../../Tests/test_module_mechanisms.py)). The only selected composition reports marginal tiers 20 then explicit cap 15. [M1a checks](../../Tests/test_m1_modules.py) include equality, empty activity, serialized cap carry, method/purpose/scope/period guards and supplied-table validation. Broader term meters, recoupable minimum policies, guarantee/cap/advance precedence and minimum-payment bookkeeping remain gaps. |

@@ -80,8 +80,26 @@ private def decimal (text : String) : Eval Value := do
   if d == 0 then throw "INVALID_NUMBER"
   pure (.num (mkRat n d))
 
+private def dimensionalNumeric (op : String) (left right : Value) : Eval Value := do
+  let a ← magnitude left
+  let b ← magnitude right
+  if op == "/" && b == 0 then throw "DIVISION_BY_ZERO"
+  if (op == "+" || op == "-") && sameDimension left right then
+    return withMagnitude left (if op == "+" then a + b else a - b)
+  match op, left, right with
+  | "*", .quantity u _, .rate v _ _ | "*", .rate v _ _, .quantity u _ =>
+    if u == v then pure (.num (a * b)) else throw "TYPE_MISMATCH"
+  | "*", .num _, .quantity .. | "*", .num _, .rate .. => pure (withMagnitude right (a * b))
+  | "*", .quantity .., .num _ | "*", .rate .., .num _ => pure (withMagnitude left (a * b))
+  | "/", .quantity .., .num _ | "/", .rate .., .num _ => pure (withMagnitude left (a / b))
+  | "/", .quantity .., .quantity .. | "/", .rate .., .rate .. =>
+    if sameDimension left right then pure (.num (a / b)) else throw "TYPE_MISMATCH"
+  | _, _, _ => throw "TYPE_MISMATCH"
+
 /-- Arithmetic is interpreted directly, independently of target helper lowering. -/
 private def numeric (op : String) (a b : Value) : Eval Value := do
+  if ["+", "-", "*", "/"].contains op && !(sameDimension a (.num 0) && sameDimension b (.num 0)) then
+    return ← dimensionalNumeric op a b
   match op with
   | "+" => pure (.num ((← asNum a) + (← asNum b)))
   | "-" => pure (.num ((← asNum a) - (← asNum b)))
@@ -100,8 +118,9 @@ private def numeric (op : String) (a b : Value) : Eval Value := do
   | _ => throw "IR_UNKNOWN_OPERATOR"
 
 private def roundValue (value quantum mode : Value) : Eval Value := do
-  let x ← asNum value
-  let q ← asNum quantum
+  unless sameDimension value quantum do throw "TYPE_MISMATCH"
+  let x ← magnitude value
+  let q ← magnitude quantum
   let mode ← asText mode
   if q ≤ 0 then throw "INVALID_QUANTUM"
   let scaled := x / q
@@ -117,7 +136,7 @@ private def roundValue (value quantum mode : Value) : Eval Value := do
     | "half_away_from_zero" => pure (if fraction < mkRat 1 2 then low
         else if fraction > mkRat 1 2 then high else if scaled < 0 then low else high)
     | _ => throw "INVALID_ROUNDING_MODE"
-  pure (.num ((rounded : Rat) * q))
+  pure (withMagnitude value ((rounded : Rat) * q))
 
 private def builtin (name : String) (values : List Value) : Eval Value := do
   match name, values with
@@ -153,6 +172,9 @@ private def builtin (name : String) (values : List Value) : Eval Value := do
         | _, _, _, _ => false
       | _, _ => false
     pure (.flag valid)
+  | "abs", [value] =>
+    let n ← magnitude value
+    pure (withMagnitude value (if n < 0 then -n else n))
   | "min", [a, b] => pure (if (← SPL.compare a b) == .gt then b else a)
   | "max", [a, b] => pure (if (← SPL.compare a b) == .lt then b else a)
   | "in_period", [date, period] =>
@@ -311,7 +333,7 @@ mutual
       pure (← lift (field value.value name), [value], obj [("field", .str name)])
     | .unary _ op body =>
       let value ← evaluate context body
-      let result ← if op == "-" then do pure (.num (-(← lift (asNum value.value))))
+      let result ← if op == "-" then do pure (withMagnitude value.value (-(← lift (magnitude value.value))))
         else if op == "not" then do pure (.flag (!(← lift (asBool value.value))))
         else throw "IR_UNKNOWN_OPERATOR"
       pure (result, [value], obj [("operator", .str op)])
@@ -448,7 +470,7 @@ mutual
       try
         let result ← evaluate context body
         let status := match result.value with
-          | .num value => if value == 0 then "calculated_zero" else "calculated"
+          | .num value | .quantity _ value | .rate _ _ value => if value == 0 then "calculated_zero" else "calculated"
           | _ => "calculated"
         pure (result.value, predicates ++ [result], obj (details ++ [
           ("decision_node", .str decision), ("selection_status", .str status)]))
@@ -471,8 +493,12 @@ mutual
             ("selected", .bool flag), ("reason", .str (if flag then "predicate_true" else "predicate_false"))]
         pure (.seq chosen, source :: values, obj [("operation", .str op), ("candidates", .arr candidates.toArray)])
       | "sum" =>
-        let numbers ← values.mapM fun value => lift (asNum value.value)
-        pure (.num (numbers.foldl (· + ·) 0), source :: values, detail)
+        let mut total := match mdata.ty with
+          | .quantity unit => Value.quantity unit 0
+          | .rate unit currency => Value.rate unit currency 0
+          | _ => .num 0
+        for value in values do total ← lift (numeric "+" total value.value)
+        pure (total, source :: values, detail)
       | "sort_by" =>
         let mut sorted := []
         for (item, value) in items.zip values do

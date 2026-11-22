@@ -89,6 +89,8 @@ def spanJson (s : Syntax.Span) : Lean.Json := obj [
 partial def typeJson : Ty → Lean.Json
   | .atom name => obj [("kind", str "atom"), ("name", str name)]
   | .money currency => obj [("kind", str "money"), ("currency", str currency)]
+  | .quantity unit => obj [("kind", str "quantity"), ("unit", str unit)]
+  | .rate unit currency => obj [("kind", str "rate"), ("unit", str unit), ("currency", str currency)]
   | .list ty => obj [("kind", str "list"), ("item", typeJson ty)]
   | .option ty => obj [("kind", str "option"), ("item", typeJson ty)]
   | .tuple types => obj [("kind", str "tuple"), ("items", arr (types.map typeJson))]

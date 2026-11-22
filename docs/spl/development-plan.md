@@ -1,5 +1,17 @@
 # SPL development plan: feature coverage, validation and scale
 
+M1b typed quantities completed local profile `0.4.3-dev` verification on
+22 November 2026 on `feature/spl-typed-quantities`; `main` remains at merged
+`018dde1` unchanged. The [implementation baseline](implementation-baseline.json)
+records the local result; no GitHub release or push is claimed. One full combined
+run passed 352 Python checks in 1638.702 seconds, with 16 native suites, the
+86-target build and both smokes, while compiler/schema sources stayed unchanged.
+All 35 review paths passed: 24 legacy, four quantity and seven M1 cases.
+The published M1a record remains preserved byte-for-byte at
+[`baselines/implementation-0.4.2-dev.json`](baselines/implementation-0.4.2-dev.json).
+Read the [implemented boundary and verification results](implementation.md#m1b-candidate-quantities-and-monetary-rates)
+before treating the older dated verification counts below as current totals.
+
 ## Execution update: E1 and implemented M1a continuation
 
 The reusable K1–K3 kernel, generic registered module boundary and selected Angel,
@@ -42,23 +54,25 @@ and unmeasured-workload statements are not the current implementation inventory.
 This continuation follows the finite K1-K3, M1-M3 and I1 sequence in
 [the release scope](release-scope-ld02.md#finite-implementation-sequence).
 K1-K3 and the bounded **M1a ordinary royalties** library are available for the
-stated variants. Typed quantities, currency foundations, further financial
-variants and audit integration remain planned. The table separates current
+stated variants. The M1b quantity/rate slice now has complete local integration
+verification. Currency foundations, further financial variants and audit
+integration remain unfinished. The table separates current
 execution from unfinished validation and later deliverables.
 
 | Workstream | Next deliverable | Acceptance boundary |
 | --- | --- | --- |
 | Verification baseline | Clean isolated frozen-E1 verification completed in the shorter workspace; the old freeze remains untouched. | All 263 tests pass in 1100.923 seconds, plus the 84-target build, both smokes and 15 native suites. All 287 frozen files and compiler/runtime/module identities are unchanged; no derived-fixture changes or new files outside `.lake`. Preserve the original full-run/rerun history and first long-path attempt (61 failures/two errors, 281 characters, `LongPathsEnabled=0`). |
 | M1a financial library | Implemented: reusable period marginal/whole-base tiers, cumulative marginal meter, period/cumulative caps, separate nonrecoupable period guarantee, and explicit period tiers-then-cap composition. | Seven registered demo cases and generic CLI template pass financial checkpoints; 16 oracle checks pass. The final 17-group comparison passes in 481.020 seconds. Boundary/failure/state-carry checks are in `Tests/test_m1_modules.py`; published profile `0.4.2-dev` records the bounded slice. |
-| M1b typed quantities | Explicit quantity and monetary-per-unit types, initially with USD results. Start with typed inputs using existing generic type syntax. | Quantity 100 at USD 1.50/unit gives USD 150; separately selected 50% participation gives USD 75. Wrong units, malformed transport and invalid dimensional arithmetic fail across native and canonical paths; zero and fractional quantities remain exact. |
+| M1b typed quantities | Locally verified profile `0.4.3-dev`: finite `spl.units/1` Download/UsageMinute dictionary, tagged Quantity/Rate inputs and results, matching arithmetic/rounding, typed zero, containers/imports and complete dimensional state identity. No new literal grammar. | The registered source gives 100 Download at USD 1.50/Download = USD 150, then 50% = USD 75; actual native successor meter/earnings are 100.5 / USD 0.375. The complete combined 352-Python/16-native verification and 35 review paths pass. Fifteen negative IR admission cases guard unsupported units/currencies, including empty collection paths. Explicit matching bounds/conservation include empty types, and signed exact core values remain distinct from the nonnegative selected-case policy. Existing proof scopes are unchanged. |
 | Audit transport | Experimental post-generation archive prototype implemented separately from canonical/compiler defaults; production integration remains planned. | Thirteen checks and 31 actual-trace round-trips pass. The real 100-receipt, 2,480-node trace shrinks from 7,604,969 to 2,853,622 bytes; one small priority-rates trace grows 47,096 to 48,598 bytes, so there is no universal shrink claim. Native generation memory is unchanged; no 1,000-/10,000-record scalability claim follows. Matching-workload byte/memory/timing measurements remain required. |
 | M3a currency foundation | After the quantity/type boundary is established, add finite USD/EUR support and directional FX observations. | EUR 100 at USD 1.10/EUR gives USD 110. Reject mixed-currency addition, reversed/missing/ambiguous quotes and invalid date/cutoff selections. Retain exact pre-round values, explicit rounding and currency in outputs and state identity. |
 
 M1a implements the already specified synthetic economic variants. It did not
 require a new vendor session or another approval round. The modules remain core
 `.spl` source with a separately pinned readable policy; no new natural-English
-tier syntax or compiler/backend case branch was introduced. Quantity/FX interface
-design and compact-trace design can proceed independently; changes to shared
+tier syntax or compiler/backend case branch was introduced. The bounded quantity
+interface is implemented; later FX interface design and compact-trace design
+can proceed independently. Changes to shared
 checker/runtime/transport files need assigned ownership and sequential
 integration. The clean verification run must not share files with active
 development, source normalization or fixture-authoring changes. The completed
@@ -125,8 +139,9 @@ pairwise interactions and bounded histories, followed by emitted-program branch
 measurement and mutation tests. Do not postpone this work until full C1, or
 describe a finite corpus as every possible feature combination.
 
-The first quantity slice needs no new readable literal grammar; economic policy
-text must still identify the units, rate and separately applied share. FX must
+The implemented quantity slice uses typed parameters and existing generic
+syntax, with no new readable literal grammar. Its economic policy identifies
+the units, rate and separately applied share. FX must
 extend the checker, bindings, canonical codecs, state scopes/keys and output
 validation together. Accepting an EUR literal alone is not multi-currency
 support. Use an explicit initial quote-date policy with no inferred fallback;

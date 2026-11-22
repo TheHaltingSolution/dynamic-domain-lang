@@ -98,8 +98,8 @@ mutual
       pure binderVar
     | .field _ value name =>
       pure (block [] ("SPL.field (← " ++ (← expression value env) ++ ") " ++ quoted name))
-    | .unary _ op value =>
-      let target := if op == "-" then "SPL.Core.numericUnary" else "SPL.unary " ++ quoted op
+    | .unary m op value =>
+      let target := if op == "-" && !Check.dimensional m.ty then "SPL.Core.numericUnary" else "SPL.unary " ++ quoted op
       pure (block [] (target ++ " (← " ++ (← expression value env) ++ ")"))
     | .binary _ op left right =>
       let a ← expression left env
@@ -110,7 +110,7 @@ mutual
         let arithmetic := match op with
           | "+" => some "add" | "-" => some "subtract" | "*" => some "multiply" | "/" => some "divide" | _ => none
         let target := match arithmetic with
-          | some op => "SPL.Core.numericBinary ." ++ op
+          | some arithmetic => if Check.dimensional left.meta.ty || Check.dimensional right.meta.ty then "SPL.binary " ++ quoted op else "SPL.Core.numericBinary ." ++ arithmetic
           | none => "SPL.binary " ++ quoted op
         pure (block [] (target ++ " (← " ++ a ++ ") (← " ++ b ++ ")"))
     | .ite _ condition yes no =>
@@ -171,7 +171,10 @@ mutual
       let binderVar ← fresh
       let target ← match name with
         | "filter" => pure "filterValues"
-        | "sum" => pure "sumValues"
+        | "sum" => pure (match m.ty with
+          | .quantity unit => "sumValuesFrom (.quantity " ++ quoted unit ++ " 0)"
+          | .rate unit currency => "sumValuesFrom (.rate " ++ quoted unit ++ " " ++ quoted currency ++ " 0)"
+          | _ => "sumValues")
         | "sort_by" => pure "sortValues"
         | "map" => pure "mapValues"
         | "group_by" => pure "groupValues"
@@ -199,6 +202,7 @@ mutual
         ") (fun _ => " ++ (← expression args[1]! env) ++ ")")
       let values ← args.mapM fun e => do pure ("(← " ++ (← expression e env) ++ ")")
       let target ← match name with
+        | "abs" => pure "absolute"
         | "min" => pure "extrema false"
         | "max" => pure "extrema true"
         | "in_period" => pure "inPeriod"
@@ -283,6 +287,8 @@ private partial def typeSource : Ty → String
       "(.named \"Id\" [(.named " ++ quoted (String.intercalate ":" ((name.splitOn ":").drop 1)) ++ " [])])"
     else "(.named " ++ quoted name ++ " [])"
   | .money currency => "(.named \"Money\" [(.named " ++ quoted currency ++ " [])])"
+  | .quantity unit => "(.named \"Quantity\" [(.named " ++ quoted unit ++ " [])])"
+  | .rate unit currency => "(.named \"Rate\" [(.named " ++ quoted unit ++ " []), (.named " ++ quoted currency ++ " [])])"
   | .list item => "(.named \"List\" [" ++ typeSource item ++ "])"
   | .option item => "(.named \"Option\" [" ++ typeSource item ++ "])"
   | .tuple items => "(.named \"Tuple\" " ++ brackets (items.map typeSource) ++ ")"

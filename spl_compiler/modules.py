@@ -20,7 +20,7 @@ from .model import SPLException
 
 SCHEMA_ROOT = Path(__file__).resolve().parent.parent / "schemas"
 CAPABILITIES = {"spl.core/1", "spl.instant/1", "spl.priority/1", "spl.tuple-map/1",
-                "spl.group-join/1", "spl.fold/1", "spl.modules/1", "spl.calendar-months/1"}
+                "spl.group-join/1", "spl.fold/1", "spl.modules/1", "spl.calendar-months/1", "spl.quantities/1"}
 INPUT_ROLES = {"input": "inputs", "parameter": "parameters", "evidence": "evidence"}
 OUTPUT_ROLES = {"result", "detail", "reconciliation"}
 
@@ -140,7 +140,9 @@ def _parse_source(path):
 
 def _check_capabilities(descriptor, syntax):
     from .model import Type
+    from .dimensions import UNIT_DICTIONARY, UNITS
     required = {"spl.core/1"}
+    used_units = set()
     if descriptor["imports"] or descriptor["interface"]["exports"]:
         required.add("spl.modules/1")
 
@@ -150,11 +152,19 @@ def _check_capabilities(descriptor, syntax):
                 required.add("spl.instant/1")
             if value.name in {"Tuple", "Map"}:
                 required.add("spl.tuple-map/1")
+            if value.name in {"Quantity", "Rate"}:
+                required.add("spl.quantities/1")
+                if value.args:
+                    used_units.add(value.args[0].name)
             for child in value.args:
                 scan(child)
             for _, child in value.fields:
                 scan(child)
         elif isinstance(value, dict):
+            if value.get("name") in {"Quantity", "Rate"} and "args" in value:
+                required.add("spl.quantities/1")
+                if value["args"]:
+                    used_units.add(value["args"][0]["name"])
             if value.get("kind") == "select_rules":
                 required.add("spl.priority/1")
             if value.get("kind") == "fold":
@@ -183,9 +193,21 @@ def _check_capabilities(descriptor, syntax):
     scan(syntax)
     for port in descriptor["interface"]["ports"]:
         scan(_port_type(port, descriptor))
+    for schema in descriptor["interface"]["schemas"]:
+        scan(schema["fields"])
+    for export in descriptor["interface"]["exports"]:
+        scan(export)
     missing = required - set(descriptor["compatibility"]["capabilities"])
     if missing:
         fail("MODULE_CAPABILITY_UNDECLARED", repr(sorted(missing)))
+    codecs = set(descriptor["compatibility"]["codecs"])
+    if "spl.quantities/1" in required and "spl-quantity/1" not in codecs:
+        fail("MODULE_CODEC_VERSION", "Dimensional interfaces require spl-quantity/1")
+    declared_units = set(descriptor["interface"]["dictionaries"].get(UNIT_DICTIONARY, []))
+    if declared_units - UNITS or used_units - UNITS:
+        fail("UNSUPPORTED_UNIT", repr(sorted((declared_units | used_units) - UNITS)))
+    if used_units - declared_units:
+        fail("MODULE_UNIT_UNDECLARED", repr(sorted(used_units - declared_units)))
 
 
 @dataclass
@@ -224,7 +246,8 @@ def resolve_module(reference, registry_root) -> ResolvedModule:
         _validate_document(descriptor, "spl-module-descriptor.schema.json")
         if (descriptor["id"], descriptor["revision"]) != identity:
             fail("MODULE_IDENTITY_MISMATCH", "Descriptor identity differs from registration")
-        if set(descriptor["compatibility"]["codecs"]) != {"spl-exact/1", "spl-instant/1"}:
+        codecs = set(descriptor["compatibility"]["codecs"])
+        if not {"spl-exact/1", "spl-instant/1"} <= codecs or codecs - {"spl-exact/1", "spl-instant/1", "spl-quantity/1"}:
             fail("MODULE_CODEC_VERSION", "The registered interface requires both exact codecs")
         unsupported = set(descriptor["compatibility"]["capabilities"]) - CAPABILITIES
         if unsupported:
@@ -237,6 +260,14 @@ def resolve_module(reference, registry_root) -> ResolvedModule:
         _unique(descriptor["interface"]["schemas"], "name", "MODULE_DUPLICATE_SCHEMA")
         _unique(descriptor["interface"]["exports"], "name", "MODULE_DUPLICATE_EXPORT")
         _unique(descriptor["imports"], "alias", "MODULE_IMPORT_COLLISION")
+        # Every registered signature is admitted before linking, including
+        # unused structural schemas and exports in imported descriptors.
+        for schema in descriptor["interface"]["schemas"]:
+            _port_type({"type": {"name": schema["name"], "args": []}}, descriptor)
+        for export in descriptor["interface"]["exports"]:
+            _port_type({"type": export["result"]}, descriptor)
+            for parameter in export["parameters"]:
+                _port_type(parameter, descriptor)
         _check_capabilities(descriptor, _parse_source(source))
         if identity != (reference["id"], reference["revision"]):
             if descriptor["constraints"] or descriptor["state"] or any(port["domain"] for port in descriptor["interface"]["ports"]):
@@ -293,6 +324,54 @@ def _quantity(value):
     return amount(value) if isinstance(value, dict) and "currency" in value else exact(value)
 
 
+def _measure(value):
+    """Preserve new dimensions while retaining legacy Money/scalar bounds."""
+    from .codecs import dimensional_amount
+    if isinstance(value, dict) and "per_unit" in value:
+        decoded = dimensional_amount(value, value["per_unit"], currency=value.get("currency", "USD"))
+        return ("Rate", decoded.per_unit, decoded.currency), decoded.value
+    if isinstance(value, dict) and "unit" in value:
+        decoded = dimensional_amount(value, value["unit"])
+        return ("Quantity", decoded.unit), decoded.value
+    return None, _quantity(value)
+
+
+def _type_path(typ, parts):
+    for part in parts:
+        if part == "*" and typ.name == "List":
+            typ = typ.args[0]
+        elif part in dict(typ.fields):
+            typ = dict(typ.fields)[part]
+        else:
+            return None
+    return typ
+
+
+def _constraint_row_type(descriptor, path, field):
+    """Retain declared collection dimensions even when no rows are supplied."""
+    parts = path.split(".")
+    if len(parts) < 2:
+        return None
+    for port in descriptor["interface"]["ports"]:
+        group = INPUT_ROLES.get(port["role"], "outputs" if port["role"] in OUTPUT_ROLES else "")
+        if parts[:2] == [group, port["name"]]:
+            typ = _type_path(_port_type(port, descriptor), parts[2:])
+            if typ is None:
+                return None
+            if typ.name == "List":
+                typ = typ.args[0]
+            return _type_path(typ, field.split("."))
+    return None
+
+
+def _measure_type_dimension(typ):
+    if typ.name == "Quantity":
+        return ("Quantity", typ.args[0].name)
+    if typ.name == "Rate":
+        return ("Rate", typ.args[0].name, typ.args[1].name)
+    return None
+
+
 def _constraints(package, descriptor, outputs=None):
     context = {**package, "dictionaries": descriptor["interface"]["dictionaries"]}
     if outputs is not None:
@@ -300,6 +379,8 @@ def _constraints(package, descriptor, outputs=None):
     decisions = {d["decision_id"] for d in package["decisions"]}
     for constraint in descriptor["constraints"]:
         kind, path, fields = constraint["kind"], constraint["path"], constraint["fields"]
+        if "required" in constraint and kind != "evidence":
+            fail("MODULE_CONSTRAINT_DEFINITION", "Only evidence constraints can declare required")
         if path.startswith("outputs.") and outputs is None:
             continue
         if not path.startswith("outputs.") and outputs is not None:
@@ -323,11 +404,20 @@ def _constraints(package, descriptor, outputs=None):
         elif kind == "conservation":
             if len(fields) != 1:
                 fail("MODULE_CONSTRAINT_DEFINITION", "Conservation requires one exact quantity field")
-            total = sum((_quantity(value[0]) for value in values), Fraction())
-            if total != _quantity(_path(context, constraint["target"])):
+            target_dimension, target = _measure(_path(context, constraint["target"]))
+            row_type = _constraint_row_type(descriptor, path, fields[0])
+            if row_type is not None and _measure_type_dimension(row_type) != target_dimension:
+                fail("MODULE_CONSERVATION_DIMENSION", "Conserved values require the target's explicit dimension")
+            total = Fraction()
+            for value in values:
+                dimension, measured = _measure(value[0])
+                if dimension != target_dimension:
+                    fail("MODULE_CONSERVATION_DIMENSION", "Conserved values require the target's explicit dimension")
+                total += measured
+            if total != target:
                 fail("MODULE_CONSERVATION", path)
         elif kind == "evidence":
-            if not rows:
+            if not rows and constraint.get("required", True):
                 fail("MODULE_EVIDENCE_REQUIRED", path)
             for row in rows:
                 if not isinstance(row, dict) or not {"observed_at", "approval_ref", "evidence_ref", "kind"} <= row.keys():
@@ -344,8 +434,13 @@ def _domain(value, port):
     if "choices" in domain and canonical(value) not in {canonical(x) for x in domain["choices"]}:
         fail("MODULE_PARAMETER_DOMAIN", port["name"])
     for key, compare in [("minimum", lambda a, b: a < b), ("maximum", lambda a, b: a > b)]:
-        if key in domain and compare(_quantity(value), _quantity(domain[key])):
-            fail("MODULE_PARAMETER_DOMAIN", port["name"])
+        if key in domain:
+            dimension, measured = _measure(value)
+            bound_dimension, bound = _measure(domain[key])
+            if dimension != bound_dimension:
+                fail("MODULE_PARAMETER_DIMENSION", "Bounds require the port's explicit dimension: " + port["name"])
+            if compare(measured, bound):
+                fail("MODULE_PARAMETER_DOMAIN", port["name"])
     for key, compare in [("min_items", lambda a, b: a < b), ("max_items", lambda a, b: a > b)]:
         if key in domain and (not isinstance(value, list) or compare(len(value), domain[key])):
             fail("MODULE_CARDINALITY", port["name"])
@@ -371,6 +466,26 @@ def _type_ast(value, descriptor, active=()):
 def _port_type(port, descriptor):
     from .checker import type_from_ast
     return type_from_ast(_type_ast(port["type"], descriptor))
+
+
+def dimensioned_state_unit(typ):
+    """Stable state unit for a fully expanded type, including nested dimensions.
+
+    AST input first passes through the compiler's type admission, expanding
+    built-in structural schemas exactly as checked Type input does. The signature
+    retains checked names, sorts record fields and includes an explicit fields
+    list at every node. Argument order is significant.
+    Accept either a checked Type or an expanded type AST; descriptor-local names
+    must first be expanded with the owning descriptor.
+    """
+    if isinstance(typ, dict):
+        from .checker import type_from_ast
+        typ = type_from_ast(typ)
+
+    def normalized(value):
+        return {"name": value.name, "args": [normalized(arg) for arg in value.args],
+                "fields": [[name, normalized(child)] for name, child in sorted(value.fields)]}
+    return "dimensioned:" + digest(normalized(typ))
 
 
 def _scope_value(value, typ, package):
@@ -499,6 +614,15 @@ def validate_module_package(package, resolved):
     openings = {}
     for name, slot in slots.items():
         cell, scope = cells[name], package["scope"]
+        from .dimensions import contains_dimension
+        state_type = _port_type(opening_ports[name], descriptor)
+        dimensional = contains_dimension(state_type)
+        if dimensional:
+            expected_unit = dimensioned_state_unit(state_type)
+            if slot["unit"] != expected_unit or cell["unit"] != expected_unit or cell["scope"].get("unit") != expected_unit:
+                fail("MODULE_STATE_TYPE", "Dimensional state must retain its complete type in slot, cell and scope units")
+            if "unit" not in slot["key_fields"]:
+                fail("MODULE_STATE_KEY", "Dimensional state keys require unit")
         if cell["purpose"] != slot["purpose"] or cell["unit"] != slot["unit"]:
             fail("MODULE_STATE_PURPOSE", name)
         if (cell["scope"]["agreement_id"] != scope["agreement_id"] or cell["scope"]["pool_id"] != scope["pool_id"] or
@@ -521,13 +645,12 @@ def validate_module_package(package, resolved):
         expected_key = canonical({field: key_record[field] for field in slot["key_fields"]})
         if cell["state_key"] != expected_key:
             fail("MODULE_STATE_KEY", name)
-        state_type = _port_type(opening_ports[name], descriptor)
         is_money = state_type.name == "Money"
         if slot["movement_kinds"] != (["net_change"] if is_money else ["transition"]):
             fail("MODULE_STATE_MOVEMENT_UNSUPPORTED", "Declare net_change for money or transition for structured state")
         if is_money and slot["unit"] != state_type.args[0].name:
             fail("MODULE_STATE_TYPE", "State currency differs from its opening port")
-        if not is_money and slot["unit"] != "structured":
+        if not is_money and not dimensional and slot["unit"] != "structured":
             fail("MODULE_STATE_TYPE", "Non-money state must declare the structured unit")
         openings[name] = money(exact(cell["quantity"])) if is_money else cell["quantity"]
         decode_value(openings[name], state_type, "state." + name)
