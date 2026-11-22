@@ -1,0 +1,73 @@
+{
+  "inputs": {
+    "eligible_costs": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "10000"
+        },
+        "asset_id": "picture-a",
+        "eligibility_decision_id": "SV-8-COST-SCHEDULE",
+        "fact_id": "cost-a",
+        "incurred_date": "2026-01-01"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "5500"
+        },
+        "asset_id": "picture-b",
+        "eligibility_decision_id": "SV-8-COST-SCHEDULE",
+        "fact_id": "cost-b",
+        "incurred_date": "2026-01-01"
+      }
+    ],
+    "pictures": [
+      {
+        "asset_id": "picture-a",
+        "contribution_present": false,
+        "funding_share": "0"
+      },
+      {
+        "asset_id": "picture-b",
+        "contribution_present": true,
+        "funding_share": "0.4"
+      }
+    ],
+    "policy": {
+      "agreement_id": "sv",
+      "participant_id": "skouras",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "pool-1"
+    },
+    "receipts": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "100000"
+        },
+        "asset_id": "picture-a",
+        "cash_received_date": "2026-01-01",
+        "fact_id": "receipt-a"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "60000"
+        },
+        "asset_id": "picture-b",
+        "cash_received_date": "2026-01-01",
+        "fact_id": "receipt-b"
+      }
+    ]
+  },
+  "openings": {
+    "prepayment": {
+      "currency": "USD",
+      "value": "15000"
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "decisions": [
+    {
+      "decision_id": "RR-01-FUNDED-AS-OF-POOLED",
+      "evidence_ref": "existing-synthetic-fixture-and-selected-policy",
+      "policy_id": "synthetic:advance-issues-policy",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "synthetic-prospective",
+      "evidence_ref": "existing-synthetic-fixture-and-selected-policy",
+      "policy_id": "synthetic:advance-issues-policy",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "earned": {
+      "currency": "USD",
+      "value": "10000"
+    },
+    "evidence": [
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "15000"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-prospective",
+        "balance_purpose": "participation_prepayment",
+        "currency": "USD",
+        "disbursement_id": "disbursement-1",
+        "eligible": true,
+        "evidence_id": "evidence-1",
+        "funded_date": "2026-06-30",
+        "issue_id": "advance-1",
+        "observed_at": "2026-07-02T10:00:00Z",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "source_title_id": "title-a"
+      }
+    ],
+    "issues": [
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "15000"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-prospective",
+        "balance_purpose": "participation_prepayment",
+        "currency": "USD",
+        "disbursement_id": "disbursement-1",
+        "event_id": "issue-1",
+        "evidence_ref": "evidence-1",
+        "funded_date": "2026-06-30",
+        "issue_id": "advance-1",
+        "observed_at": "2026-07-02T09:00:00Z",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "source_title_id": "title-a"
+      }
+    ],
+    "scope": {
+      "agreement_id": "synthetic-deal",
+      "participant_id": "participant",
+      "period": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "pool_id": "pool"
+    }
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2026-07-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "synthetic:advance-issues",
+        "locator": "cases/mechanisms/advance-issues-module.json",
+        "revision": "1",
+        "sha256": "de6d9d98b99d336b708f54102a3acf5146c864e23b2bf39f32c695f85f22eca0"
+      }
+    ],
+    "period": {
+      "end": "2026-07-01",
+      "start": "2026-04-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "advance-issues-canonical",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "advance-issues-synthetic"
+  },
+  "module_ref": {
+    "id": "synthetic:advance-issues",
+    "locator": "cases/mechanisms/advance-issues-module.json",
+    "revision": "1",
+    "sha256": "de6d9d98b99d336b708f54102a3acf5146c864e23b2bf39f32c695f85f22eca0"
+  },
+  "parameters": {
+    "authority": "synthetic-prospective",
+    "balance_purpose": "participation_prepayment",
+    "currency": "USD",
+    "observation_cutoff": "2026-07-03T00:00:00Z"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "synthetic-deal",
+    "asset_ids": [
+      "title-a"
+    ],
+    "participant_ids": [
+      "participant"
+    ],
+    "pool_id": "pool",
+    "purpose": "participation_prepayment"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-04-01",
+      "opening_port": "prepayment",
+      "provenance_ref": "synthetic-original-prepayment-snapshot",
+      "purpose": "participation_prepayment",
+      "quantity": "0",
+      "scenario_id": "advance-issues-synthetic",
+      "scope": {
+        "agreement_id": "synthetic-deal",
+        "participant_id": "participant",
+        "pool_id": "pool"
+      },
+      "state_key": "{\"agreement_id\":\"synthetic-deal\",\"participant_id\":\"participant\",\"pool_id\":\"pool\",\"purpose\":\"participation_prepayment\"}",
+      "unit": "USD"
+    }
+  ]
+}

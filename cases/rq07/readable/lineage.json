@@ -1,0 +1,57 @@
+[
+  {
+    "allocation_id": "application/APP-02/PIC-A",
+    "fact_ids": [
+      "application/APP-02"
+    ],
+    "policy_ref": "APR-RQ07-01",
+    "source_rows": [
+      "raw_cash_applications.csv:record-2"
+    ],
+    "view_id": "application/APP-02/PIC-A",
+    "weight": "0.4"
+  },
+  {
+    "allocation_id": "application/APP-02/PIC-B",
+    "fact_ids": [
+      "application/APP-02"
+    ],
+    "policy_ref": "APR-RQ07-01",
+    "source_rows": [
+      "raw_cash_applications.csv:record-2"
+    ],
+    "view_id": "application/APP-02/PIC-B",
+    "weight": "0.6"
+  },
+  {
+    "fact_ids": [
+      "receipt/APP-01"
+    ],
+    "source_rows": [
+      "raw_cash_applications.csv:record-1"
+    ],
+    "view_id": "receipt/APP-01"
+  },
+  {
+    "date_selector": "posting_date",
+    "fact_ids": [
+      "cost/COST-A:1"
+    ],
+    "policy_ref": "SV-8-COST-SCHEDULE",
+    "source_rows": [
+      "raw_cost_lines.csv:record-1"
+    ],
+    "view_id": "cost/COST-A:1"
+  },
+  {
+    "date_selector": "posting_date",
+    "fact_ids": [
+      "cost/COST-B:1"
+    ],
+    "policy_ref": "SV-8-COST-SCHEDULE",
+    "source_rows": [
+      "raw_cost_lines.csv:record-2"
+    ],
+    "view_id": "cost/COST-B:1"
+  }
+]

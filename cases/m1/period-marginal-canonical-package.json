@@ -1,0 +1,186 @@
+{
+  "decisions": [
+    {
+      "decision_id": "TIERS_SELECTED",
+      "evidence_ref": "project-selected-synthetic-policy",
+      "policy_id": "spl:policy:m1:tiers",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "CUMULATIVE_TIERS_SELECTED",
+      "evidence_ref": "project-selected-synthetic-policy",
+      "policy_id": "spl:policy:m1:cumulative-tiers",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "CAP_SELECTED",
+      "evidence_ref": "project-selected-synthetic-policy",
+      "policy_id": "spl:policy:m1:cap",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "GUARANTEE_SELECTED",
+      "evidence_ref": "project-selected-synthetic-policy",
+      "policy_id": "spl:policy:m1:guarantee",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "ORDINARY_SELECTED",
+      "evidence_ref": "project-selected-synthetic-policy",
+      "policy_id": "spl:policy:m1:ordinary",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "ORDINARY_SELECTED",
+        "evidence_id": "evidence-1",
+        "evidence_ref": "evidence-1",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-01-16T00:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "facts": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "150"
+        },
+        "effective_date": "2026-01-15",
+        "evidence_id": "evidence-1",
+        "fact_scope": {
+          "asset_id": "m1-asset",
+          "contract_id": "m1-agreement",
+          "currency": "USD",
+          "participant_id": "m1-participant",
+          "pool_id": "m1-pool"
+        },
+        "id": "basis-1",
+        "observed_at": "2026-01-16T00:00:00Z"
+      }
+    ],
+    "project": "m1-asset",
+    "scope": {
+      "agreement_id": "m1-agreement",
+      "participant_id": "m1-participant",
+      "period": {
+        "end": "2026-02-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "m1-pool"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-02-02T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-02-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "m1-period-marginal-run",
+    "runtime_build": "unbound",
+    "scenario_id": "m1-period-marginal"
+  },
+  "module_ref": {
+    "id": "m1:ordinary",
+    "locator": "cases/m1/ordinary-module.json",
+    "revision": "1",
+    "sha256": "9ee11b6ff56784b772a61add3b0e246a8b39a0574674c8ca2fd285464677da1b"
+  },
+  "parameters": {
+    "brackets": [
+      {
+        "id": "lower",
+        "lower": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "rate": "0.1",
+        "sequence": "1",
+        "upper": {
+          "some": {
+            "currency": "USD",
+            "value": "100"
+          }
+        }
+      },
+      {
+        "id": "upper",
+        "lower": {
+          "currency": "USD",
+          "value": "100"
+        },
+        "rate": "0.2",
+        "sequence": "2",
+        "upper": {
+          "none": true
+        }
+      }
+    ],
+    "cap": {
+      "currency": "USD",
+      "value": "100"
+    },
+    "cutoff": "2026-02-02T00:00:00Z",
+    "floor": {
+      "currency": "USD",
+      "value": "100"
+    },
+    "method": "period_marginal",
+    "reset_period_cap": false
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "m1-agreement",
+    "asset_ids": [
+      "m1-asset"
+    ],
+    "participant_ids": [
+      "m1-participant"
+    ],
+    "pool_id": "m1-pool",
+    "purpose": "selected_synthetic_calculation"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "meter",
+      "provenance_ref": "selected-synthetic-original-opening",
+      "purpose": "m1_selected_method_meter",
+      "quantity": {
+        "balance": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "method": "period_marginal",
+        "period": {
+          "end": "2026-02-01",
+          "start": "2026-01-01"
+        }
+      },
+      "scenario_id": "m1-period-marginal",
+      "scope": {
+        "agreement_id": "m1-agreement",
+        "asset_id": "m1-asset",
+        "participant_id": "m1-participant",
+        "pool_id": "m1-pool"
+      },
+      "state_key": "{\"agreement_id\":\"m1-agreement\",\"asset_id\":\"m1-asset\",\"participant_id\":\"m1-participant\",\"pool_id\":\"m1-pool\",\"purpose\":\"m1_selected_method_meter\"}",
+      "unit": "structured"
+    }
+  ]
+}

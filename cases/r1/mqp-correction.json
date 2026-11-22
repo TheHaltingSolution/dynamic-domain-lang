@@ -1,0 +1,79 @@
+{
+  "case_id": "mqp-correction-rr03-selected",
+  "status": "selected_synthetic_method_not_historical_or_vendor_certified",
+  "scope": {
+    "contract_id": "mqp-lionsgate-synthetic",
+    "pool_id": "uncrossed-project-pool",
+    "currency": "USD"
+  },
+  "period": {
+    "start": "2008-01-01",
+    "end": "2008-04-01"
+  },
+  "observed_through": "2008-04-01",
+  "policy": {
+    "application": "prospective_receipts_limited",
+    "rounding": "exact_no_rounding"
+  },
+  "previously_recognized_ids": [],
+  "authorizations": [
+    {
+      "id": "authorized-overpaid-fee",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "authorized": true,
+      "authorized_date": "2008-02-05",
+      "original_fee_id": "synthetic-prior-fee-payment",
+      "amount": "10",
+      "evidence_id": "synthetic-correction-authority"
+    }
+  ],
+  "capacities": [
+    {
+      "id": "capacity-1",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "date": "2008-02-10",
+      "sequence": 0,
+      "amount": "4",
+      "evidence_id": "synthetic-future-capacity"
+    },
+    {
+      "id": "capacity-2",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "date": "2008-03-10",
+      "sequence": 0,
+      "amount": "12",
+      "evidence_id": "synthetic-future-capacity"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "synthetic-correction-authority",
+      "observed_date": "2008-02-05"
+    },
+    {
+      "id": "synthetic-future-capacity",
+      "observed_date": "2008-03-31"
+    }
+  ],
+  "expected": {
+    "authorized_amount": "10",
+    "applied": "10",
+    "closing_correction": "0",
+    "movements": [
+      {
+        "applied": "4",
+        "closing_correction": "6"
+      },
+      {
+        "applied": "6",
+        "closing_correction": "0"
+      }
+    ]
+  }
+}

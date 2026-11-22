@@ -1,0 +1,63 @@
+// CORR-01 selected synthetic restatement: reconstruct from original opening.
+schedule AuthorizedRestatement language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input project: Id<Asset>;
+  input cutoff: Instant;
+  input rate: Ratio;
+  input original: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, run_id: Id<Run>, obligation_id: Id<Obligation>, opening_snapshot_id: Id<Snapshot>, opening_boundary: Date, opening_prepaid: Money<USD>, issued: Money<USD>, application_id: Id<Application>, evidence_id: Id<Evidence>, observed_at: Instant};
+  input bank: {id: Id<BankReceipt>, amount: Money<USD>, effective_date: Date, observed_at: Instant, evidence_id: Id<Evidence>};
+  input application: {id: Id<Application>, bank_id: Id<BankReceipt>, invoice_id: Id<Invoice>, amount: Money<USD>, effective_date: Date, observed_at: Instant, evidence_id: Id<Evidence>};
+  input authorization: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, correction_id: Id<Correction>, replacement_id: Id<Application>, original_run_id: Id<Run>, original_opening_id: Id<Snapshot>, authorized: Bool, route: Text, approved_at: Instant, observed_at: Instant, evidence_id: Id<Evidence>};
+  input corrections: List<{id: Id<Correction>, replacement_id: Id<Application>, replaces_id: Id<Application>, original_run_id: Id<Run>, bank_id: Id<BankReceipt>, invoice_id: Id<Invoice>, amount: Money<USD>, reallocated_amount: Money<USD>, other_scope_id: Id<OtherScope>, effective_date: Date, observed_at: Instant, evidence_id: Id<Evidence>}>;
+  input payment: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, id: Id<Disbursement>, obligation_id: Id<Obligation>, original_run_id: Id<Run>, amount: Money<USD>, disbursed_at: Instant, observed_at: Instant, evidence_id: Id<Evidence>};
+  input evidence: List<{evidence_id: Id<Evidence>, observed_at: Instant, approval_ref: Id<Decision>, evidence_ref: Id<Evidence>, kind: Text}>;
+  opening entitlement: Money<USD> from "original-opening/entitlement";
+  opening recognized: List<Id<Correction>> from "original-opening/corrections";
+
+  require rate >= 0 and rate <= 1 else "REV_RATE_DOMAIN";
+  require original.opening_boundary == scope.period.start and original.opening_prepaid == USD 0 and entitlement == USD 0 else "REV_ORIGINAL_OPENING_REQUIRED";
+  require original.run_id == authorization.original_run_id and original.opening_snapshot_id == authorization.original_opening_id else "REV_ORIGINAL_LINEAGE";
+  require authorization.authorized and authorization.route == "restatement_only" else "REV_AUTHORIZATION_REQUIRED";
+  require authorization.approved_at <= authorization.observed_at and authorization.observed_at < cutoff else "REV_AUTHORIZATION_CUTOFF";
+  define available_evidence = for each item in evidence {
+    require item.observed_at < cutoff else "REV_EVIDENCE_CUTOFF";
+    yield item;
+  };
+  define evidence_index = make_map(available_evidence, item => item.evidence_id, item => true);
+  require original.observed_at < cutoff and bank.observed_at < cutoff and application.observed_at < cutoff and payment.observed_at < cutoff else "REV_FACT_CUTOFF";
+  require require_some(lookup(evidence_index, original.evidence_id), "REV_EVIDENCE_REQUIRED") and require_some(lookup(evidence_index, bank.evidence_id), "REV_EVIDENCE_REQUIRED") and require_some(lookup(evidence_index, application.evidence_id), "REV_EVIDENCE_REQUIRED") and require_some(lookup(evidence_index, authorization.evidence_id), "REV_EVIDENCE_REQUIRED") and require_some(lookup(evidence_index, payment.evidence_id), "REV_EVIDENCE_REQUIRED") else "REV_EVIDENCE_REQUIRED";
+  require application.id == original.application_id and application.bank_id == bank.id else "REV_APPLICATION_LINEAGE";
+  require in_period(bank.effective_date, scope.period) and in_period(application.effective_date, scope.period) else "REV_AFFECTED_PERIOD";
+  require bank.amount >= USD 0 and application.amount == bank.amount else "REV_ORIGINAL_CASH_CONTROL";
+  define original_recomputed = application.amount * rate;
+  require original.issued == original_recomputed else "REV_ORIGINAL_RESULT_MISMATCH";
+  define correction_index = make_map(corrections, item => item.id, item => item);
+  require sum(entries(correction_index), item => 1) == 1 else "REV_ONE_CORRECTION_REQUIRED";
+  define correction = require_some(lookup(correction_index, authorization.correction_id), "REV_AUTHORIZED_CORRECTION_REQUIRED");
+  define prior_index = make_map(recognized, item => item, item => true);
+  require not is_some(lookup(prior_index, correction.id)) else "REV_CORRECTION_ALREADY_RECOGNIZED";
+  require sum(recognized, item => 1) == 0 else "REV_ORIGINAL_HISTORY_REQUIRED";
+  require correction.original_run_id == original.run_id and correction.replaces_id == application.id and correction.replacement_id == authorization.replacement_id and correction.replacement_id != application.id else "REV_REPLACEMENT_LINEAGE";
+  require correction.bank_id == bank.id and correction.invoice_id == application.invoice_id else "REV_REPLACEMENT_CASH_LINEAGE";
+  require correction.observed_at < cutoff and require_some(lookup(evidence_index, correction.evidence_id), "REV_EVIDENCE_REQUIRED") else "REV_CORRECTION_CUTOFF";
+  require in_period(correction.effective_date, scope.period) else "REV_AFFECTED_PERIOD";
+  require correction.amount >= USD 0 and correction.reallocated_amount >= USD 0 and correction.amount + correction.reallocated_amount == bank.amount else "REV_CASH_CONSERVATION";
+  require payment.obligation_id == original.obligation_id and payment.original_run_id == original.run_id else "REV_PAYMENT_LINEAGE";
+  // Actual cash can occur after the affected quarter; it is reconciled as of cutoff.
+  require payment.disbursed_at <= payment.observed_at and payment.disbursed_at < cutoff and payment.amount >= USD 0 else "REV_PAYMENT_DATE_AMOUNT";
+  define revised = correction.amount * rate;
+  require payment.amount <= revised else "REV_OVERPAYMENT_POLICY_UNSUPPORTED";
+  define outstanding = revised - payment.amount;
+  closing entitlement = revised;
+  closing recognized = append(recognized, correction.id);
+  emit "comparison" = {original_run_id: original.run_id, opening_snapshot_id: original.opening_snapshot_id,
+    obligation_id: original.obligation_id, correction_id: correction.id, replacement_id: correction.replacement_id,
+    affected_period: scope.period, as_of_cutoff: cutoff, bank_cash: bank.amount,
+    original_application: application.amount, revised_application: correction.amount, reallocated_cash: correction.reallocated_amount,
+    original_issued: original.issued, original_recomputed: original_recomputed, revised_entitlement: revised,
+    correction_delta: revised - original.issued, actual_paid_asof: payment.amount, outstanding_asof: outstanding,
+    actual_payment_at: payment.disbursed_at, correction_effective_date: correction.effective_date,
+    approved_at: authorization.approved_at, correction_observed_at: correction.observed_at};
+  emit "cash_control" = correction.amount + correction.reallocated_amount == bank.amount;
+  emit "observations" = {original: original, bank: bank, application: application, authorization: authorization, corrections: corrections, payment: payment};
+}

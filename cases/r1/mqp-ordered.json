@@ -1,0 +1,174 @@
+{
+  "case_id": "mqp-rr03-selected",
+  "status": "selected_synthetic_method_not_historical_or_vendor_certified",
+  "scope": {
+    "contract_id": "mqp-lionsgate-synthetic",
+    "pool_id": "uncrossed-project-pool",
+    "currency": "USD"
+  },
+  "period": {
+    "start": "2008-01-01",
+    "end": "2008-04-01"
+  },
+  "observed_through": "2008-04-01",
+  "project_id": "project-a",
+  "policy": {
+    "trigger": "agreement_date",
+    "threshold_comparison": "at_least",
+    "same_day_order": "explicit_unique_sequence",
+    "application": "whole_receipt_prospective",
+    "rounding": "exact_no_rounding",
+    "threshold": "1000",
+    "lower_rate": "1/10",
+    "upper_rate": "1/5"
+  },
+  "opening_actual_paid": "900",
+  "opening_fee_available_paid": "900",
+  "events": [
+    {
+      "id": "accrual",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-a",
+      "date": "2008-01-10",
+      "sequence": 0,
+      "kind": "accrual",
+      "evidence_id": "synthetic-event-register",
+      "amount": "100"
+    },
+    {
+      "id": "receipt-before-payment",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-a",
+      "date": "2008-01-15",
+      "sequence": 0,
+      "kind": "receipt",
+      "evidence_id": "synthetic-event-register",
+      "amount": "100",
+      "receipt_class": "eligible"
+    },
+    {
+      "id": "actual-payment",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-a",
+      "date": "2008-01-20",
+      "sequence": 0,
+      "kind": "actual_payment",
+      "evidence_id": "synthetic-event-register",
+      "amount": "100",
+      "disputed": true
+    },
+    {
+      "id": "dispute",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-a",
+      "date": "2008-01-20",
+      "sequence": 1,
+      "kind": "dispute",
+      "evidence_id": "synthetic-event-register",
+      "payment_id": "actual-payment"
+    },
+    {
+      "id": "receipt-during-dispute",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-a",
+      "date": "2008-01-25",
+      "sequence": 0,
+      "kind": "receipt",
+      "evidence_id": "synthetic-event-register",
+      "amount": "100",
+      "receipt_class": "eligible"
+    },
+    {
+      "id": "agreement",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-a",
+      "date": "2008-02-05",
+      "sequence": 0,
+      "kind": "agreement",
+      "evidence_id": "synthetic-event-register",
+      "payment_id": "actual-payment",
+      "agreed_amount": "100",
+      "agreed_actual_date": "2008-01-20"
+    },
+    {
+      "id": "receipt-after-agreement",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-a",
+      "date": "2008-02-10",
+      "sequence": 0,
+      "kind": "receipt",
+      "evidence_id": "synthetic-event-register",
+      "amount": "100",
+      "receipt_class": "eligible"
+    },
+    {
+      "id": "excluded-principal-license",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-a",
+      "date": "2008-02-10",
+      "sequence": 1,
+      "kind": "receipt",
+      "evidence_id": "synthetic-event-register",
+      "amount": "700",
+      "receipt_class": "principal_US_TV_license"
+    },
+    {
+      "id": "other-project-payment",
+      "contract_id": "mqp-lionsgate-synthetic",
+      "pool_id": "uncrossed-project-pool",
+      "currency": "USD",
+      "project_id": "project-b",
+      "date": "2008-01-01",
+      "sequence": 0,
+      "kind": "actual_payment",
+      "evidence_id": "synthetic-event-register",
+      "amount": "10000",
+      "disputed": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "synthetic-event-register",
+      "observed_date": "2008-03-31"
+    }
+  ],
+  "expected": {
+    "eligible_receipts": "300",
+    "fee": "40",
+    "adjusted_receipts_before_RPPA": "260",
+    "closing_actual_paid": "1000",
+    "closing_fee_available_paid": "1000",
+    "receipt_fees": [
+      "10",
+      "10",
+      "20"
+    ]
+  },
+  "sensitivity_expected": {
+    "actual_date": {
+      "fee": "50",
+      "adjusted_receipts_before_RPPA": "250",
+      "receipt_fees": [
+        "10",
+        "20",
+        "20"
+      ]
+    }
+  }
+}

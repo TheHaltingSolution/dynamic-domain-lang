@@ -1,0 +1,90 @@
+{
+  "decisions": [
+    {
+      "decision_id": "CALENDAR_DERIVED_SELECTED",
+      "evidence_ref": "project-owned-selected-synthetic-fixture",
+      "policy_id": "spl:policy:r1:calendar-derived",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "close_date": "2025-02-28",
+    "creation_date": "2025-01-31",
+    "observed_at": "2025-02-01T00:00:00Z",
+    "scope": {
+      "agreement_id": "dyn-cal-open-synthetic",
+      "participant_id": "synthetic-reserve-holder",
+      "period": {
+        "end": "2025-03-01",
+        "start": "2025-02-01"
+      },
+      "pool_id": "reserve-pool"
+    },
+    "vintage_id": "vintage-1"
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2025-03-01T00:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "r1:calendar-derived",
+        "locator": "cases/extensibility/calendar-derived-module.json",
+        "revision": "1",
+        "sha256": "2ce240933efc18ae865e93d34f87df0f87983b1dbe346208a277ca1b6fedd63b"
+      }
+    ],
+    "period": {
+      "end": "2025-03-01",
+      "start": "2025-02-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "dyn-cal-e0-supplied-due-run",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "dyn-cal-e0-supplied-due"
+  },
+  "module_ref": {
+    "id": "r1:calendar-derived",
+    "locator": "cases/extensibility/calendar-derived-module.json",
+    "revision": "1",
+    "sha256": "2ce240933efc18ae865e93d34f87df0f87983b1dbe346208a277ca1b6fedd63b"
+  },
+  "parameters": {
+    "cutoff": "2025-03-01T00:00:00Z",
+    "invalid_day_policy": "clamp_day",
+    "months": "1"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "dyn-cal-open-synthetic",
+    "asset_ids": [],
+    "participant_ids": [
+      "synthetic-reserve-holder"
+    ],
+    "pool_id": "reserve-pool",
+    "purpose": "selected_synthetic_calculation"
+  },
+  "state_cells": [
+    {
+      "boundary": "2025-02-01",
+      "opening_port": "reserve",
+      "provenance_ref": "synthetic-supplied-deadline",
+      "purpose": "return_reserve",
+      "quantity": "20",
+      "scenario_id": "dyn-cal-e0-supplied-due",
+      "scope": {
+        "agreement_id": "dyn-cal-open-synthetic",
+        "participant_id": "synthetic-reserve-holder",
+        "pool_id": "reserve-pool",
+        "vintage_id": "vintage-1"
+      },
+      "state_key": "{\"agreement_id\":\"dyn-cal-open-synthetic\",\"participant_id\":\"synthetic-reserve-holder\",\"pool_id\":\"reserve-pool\",\"purpose\":\"return_reserve\",\"vintage_id\":\"vintage-1\"}",
+      "unit": "USD"
+    }
+  ]
+}

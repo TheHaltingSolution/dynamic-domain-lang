@@ -1,0 +1,574 @@
+{
+  "adapter": {
+    "adapter_id": "authored-fixture",
+    "observation_policy_ref": "fixture-observation@1",
+    "source_digest": "c5500bd6c260ef811a20f42c6974e3ac58fe3fe8239bd188518a0777de342eae",
+    "source_fixture": "LG-01",
+    "version": "1"
+  },
+  "agreements": [
+    {
+      "agreement_id": "lg",
+      "asset_ids": [
+        "work-D"
+      ],
+      "calendar_ref": "calendar-quarter@1",
+      "document_refs": [
+        "public-development-contract"
+      ],
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "interpretation_ref": "synthetic-interpretation@1",
+      "role_ids": [
+        "participant-role",
+        "distributor-role"
+      ],
+      "version": "synthetic-v1"
+    }
+  ],
+  "allocations": [],
+  "assets": [
+    {
+      "asset_id": "work-D",
+      "kind": "picture"
+    }
+  ],
+  "evidence_events": [
+    {
+      "agreement_id": "lg",
+      "approval_ref": "LG-OUTSIDE-HURDLE",
+      "effective_date": "2025-12-31",
+      "event_id": "outside-hurdle",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "hurdle_attestation",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "satisfied": true,
+      "subject_ref": "lg"
+    },
+    {
+      "agreement_id": "lg",
+      "approval_ref": "LG-GATE-HISTORY",
+      "asset_id": "work-D",
+      "effective_date": "2026-01-01",
+      "event_id": "work-history",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "gate_history",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "satisfied": true,
+      "subject_ref": "work-D"
+    },
+    {
+      "agreement_id": "lg",
+      "amount": {
+        "currency": "USD",
+        "value": "175"
+      },
+      "approval_ref": "LG-NET-BRANCH",
+      "effective_date": "2026-01-01",
+      "event_id": "net-worksheet",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "crossed_net_worksheet",
+      "member_ids": [
+        "work-D"
+      ],
+      "observed_at": "2026-01-01T00:00:00Z",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "crossed-group",
+      "subject_ref": "crossed-group"
+    }
+  ],
+  "financial_facts": [
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "180"
+      },
+      "asset_id": "work-D",
+      "batch_ref": {
+        "batch_id": "authored",
+        "source_system": "synthetic",
+        "version": "1"
+      },
+      "channel": "other",
+      "dates": {
+        "cash_received_date": "2026-02-01"
+      },
+      "event_kind": "cash_receipt",
+      "fact_id": "lg-other",
+      "source_row": "lg-other",
+      "temporal_basis": {
+        "date": "2026-02-01",
+        "kind": "cash_received_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "120"
+      },
+      "asset_id": "work-D",
+      "batch_ref": {
+        "batch_id": "authored",
+        "source_system": "synthetic",
+        "version": "1"
+      },
+      "channel": "home_video",
+      "dates": {
+        "cash_received_date": "2026-03-01"
+      },
+      "event_kind": "cash_receipt",
+      "fact_id": "lg-video",
+      "source_row": "lg-video",
+      "temporal_basis": {
+        "date": "2026-03-01",
+        "kind": "cash_received_date"
+      }
+    }
+  ],
+  "incorporated_policies": [],
+  "interpretations": [
+    {
+      "decisions": [
+        {
+          "adopted_policy": "Bounded synthetic LG-01: LG-OUTSIDE-HURDLE",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "LG-OUTSIDE-HURDLE",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "LG-OUTSIDE-HURDLE",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic LG-01: LG-GATE-HISTORY",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "LG-GATE-HISTORY",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "LG-GATE-HISTORY",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic LG-01: LG-TRUE-CASH",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "LG-TRUE-CASH",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "LG-TRUE-CASH",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic LG-01: LG-TRUE-CASH-COST",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "LG-TRUE-CASH-COST",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "LG-TRUE-CASH-COST",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic LG-01: LG-GROSS-VIDEO-PROXY",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "LG-GROSS-VIDEO-PROXY",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "LG-GROSS-VIDEO-PROXY",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic LG-01: LG-GROSS-BRANCH",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "LG-GROSS-BRANCH",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "LG-GROSS-BRANCH",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic LG-01: LG-NET-BRANCH",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "LG-NET-BRANCH",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "LG-NET-BRANCH",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic LG-01: LG-GREATER-OF",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "LG-GREATER-OF",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "LG-GREATER-OF",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic LG-01: SYNTHETIC-PAYMENT-HOLDBACK",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SYNTHETIC-PAYMENT-HOLDBACK",
+          "discriminating_case_ref": "LG-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SYNTHETIC-PAYMENT-HOLDBACK",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "lg",
+            "pool_id": "crossed-group"
+          }
+        }
+      ],
+      "interpretation_id": "synthetic-interpretation",
+      "version": "1"
+    }
+  ],
+  "manifest": {
+    "batch_refs": [
+      "batch@1#sha256:886301fabef6742e90b9b00a7a300bf8c4a765da03ca74f29e39ed33092de7e7"
+    ],
+    "calendar_ref": "calendar@1#sha256:bd3b583d5e7977fe4cbb7a051b838665da81d85120411307e82e2524d296019a",
+    "compiler_build": "5b5c19fe9c38208f5b2ce11b3e79e8c8191db57f9edff65d192a3866050cef2a",
+    "core_version": "0.1-draft",
+    "cutoff": "2026-12-31T00:00:00Z",
+    "input_mode": "full_snapshot",
+    "interpretation_ref": "interpretation@1#sha256:4db71b40a8d570409ac80abbf67d54ccd2fae1f8e30a692714bc40c618d67c24",
+    "mapping_refs": [
+      "mapping@1#sha256:3caf54c7ab501ff0888e3e181a8d6baa71a7e234500cde77bfd106758926b61d"
+    ],
+    "mode": "final",
+    "opening_state_ref": "opening@1#sha256:d8d1e9eb06085f461f90b7f7bceed2050054475d448d8ae28c3811a5d77b5e36",
+    "output_currency": "USD",
+    "parameter_ref": "parameters@1#sha256:fd5cd789ddec7caa1f71e463b35c1e33c97f9868357885e6251ee13ca0eec41e",
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "policy_refs": [],
+    "reference_refs": [
+      "reference@1#sha256:263a4be0b4bdcecaca47ffbfba5bd15fb515b7342663ca44bdb355ef4bc9568a",
+      "reference@1#sha256:d07fbc55c8a6950a014c7b793cc79922132ff72f1c438d14b5c9916525c9200c",
+      "reference@1#sha256:b24c74cc2e3717e7655e620c776cc6c3c05e06c973cc690e5e13a3a66d160e41",
+      "reference@1#sha256:63801b7f06d8915d6efd1b7212d35febdca77b2fdeb844b479f92779a3fa3aeb"
+    ],
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_facts": 100000,
+      "parser_depth": 128,
+      "source_scalars": 1000000,
+      "source_tokens": 200000
+    },
+    "run_id": "LG-01-run",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "LG-01",
+    "schedule_ref": "schedule@1#sha256:17afb659a15322817da812d52e1a8d4f2bb1d18330df3aa0ae531b4b0839daa4",
+    "schema_version": "0.1-draft",
+    "surface_version": "0.1-draft"
+  },
+  "mappings": [
+    {
+      "authority_ref": "SYNTHETIC-PAYMENT-HOLDBACK",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "pool_membership",
+      "mapping_id": "member-work-D",
+      "mapping_version": "1",
+      "pool_id": "crossed-group",
+      "purpose": "participation_prepayment",
+      "source_code": "work-D",
+      "source_namespace": "synthetic",
+      "target_ref": "work-D"
+    }
+  ],
+  "opening_aliases": [
+    {
+      "alias": "lg/work-D/true-cash/cumulative-gross",
+      "state_key": "lg/seller-group/cumulative_gross/crossed-group/gross/USD"
+    },
+    {
+      "alias": "lg/work-D/true-cash/cumulative-cost",
+      "state_key": "lg/seller-group/cumulative_cost/crossed-group/cost/USD"
+    },
+    {
+      "alias": "synthetic/work-D/payment-holdback",
+      "state_key": "lg/seller-group/synthetic_payment_holdback/crossed-group/hold/USD"
+    }
+  ],
+  "parameters": {
+    "cost_date_basis": "incurred_date",
+    "cost_decisions": [],
+    "payment_holdback_addition": {
+      "currency": "USD",
+      "value": "0"
+    },
+    "payment_holdback_release": {
+      "currency": "USD",
+      "value": "0"
+    },
+    "policy": {
+      "agreement_id": "lg",
+      "asset_id": "work-D",
+      "gross_rate": "0.20",
+      "net_rate": "0.20",
+      "participant_id": "seller-group",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "crossed-group",
+      "video_proxy": "0.25"
+    },
+    "producer_fee_offset": {
+      "currency": "USD",
+      "value": "12"
+    }
+  },
+  "parties": [
+    {
+      "name": "Synthetic participant",
+      "party_id": "seller-group"
+    },
+    {
+      "name": "Synthetic distributor",
+      "party_id": "distributor"
+    }
+  ],
+  "profile": "lg-cleared-v1",
+  "references": [
+    {
+      "description": "Explicit Gregorian half-open period",
+      "kind": "calendar",
+      "reference_id": "calendar-quarter@1"
+    },
+    {
+      "description": "Explicit synthetic opening snapshot; no historical ledger claim",
+      "kind": "source",
+      "reference_id": "synthetic-approved-opening"
+    },
+    {
+      "description": "Selected public provision; synthetic inputs and unapproved wider policies",
+      "kind": "source",
+      "reference_id": "public-development-contract"
+    },
+    {
+      "description": "Synthetic supplied observation instants; not historical capture dates",
+      "kind": "synthetic_observation_policy",
+      "reference_id": "fixture-observation@1"
+    }
+  ],
+  "roles": [
+    {
+      "agreement_id": "lg",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "party_id": "seller-group",
+      "role": "participant",
+      "role_id": "participant-role"
+    },
+    {
+      "agreement_id": "lg",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "party_id": "distributor",
+      "role": "distributor",
+      "role_id": "distributor-role"
+    }
+  ],
+  "source_batches": [
+    {
+      "adapter_version": "1",
+      "batch_id": "authored",
+      "control_totals": [],
+      "format": "json",
+      "ingested_at": "2026-04-03T00:00:00Z",
+      "row_count": 2,
+      "sha256": "9b668fb4c9d837aacf0c00e7d59bb15d1a319b9ef74be2875854f8534f2d028f",
+      "snapshot_locator": "authored-fixture",
+      "source_system": "synthetic",
+      "version": "1"
+    }
+  ],
+  "state_cells": [
+    {
+      "agreement_id": "lg",
+      "balance_kind": "cumulative_gross",
+      "boundary": "2026-01-01",
+      "participant_id": "seller-group",
+      "policy_lineage": [
+        "SYNTHETIC-PAYMENT-HOLDBACK"
+      ],
+      "pool_id": "crossed-group",
+      "provenance_ref": "synthetic-approved-opening",
+      "quantity": "100",
+      "scenario_id": "LG-01",
+      "scope": {
+        "agreement_id": "lg",
+        "asset_ids": [
+          "work-D"
+        ],
+        "pool_id": "crossed-group"
+      },
+      "state_key": "lg/seller-group/cumulative_gross/crossed-group/gross/USD",
+      "unit": "USD"
+    },
+    {
+      "agreement_id": "lg",
+      "balance_kind": "cumulative_cost",
+      "boundary": "2026-01-01",
+      "participant_id": "seller-group",
+      "policy_lineage": [
+        "SYNTHETIC-PAYMENT-HOLDBACK"
+      ],
+      "pool_id": "crossed-group",
+      "provenance_ref": "synthetic-approved-opening",
+      "quantity": "100",
+      "scenario_id": "LG-01",
+      "scope": {
+        "agreement_id": "lg",
+        "asset_ids": [
+          "work-D"
+        ],
+        "pool_id": "crossed-group"
+      },
+      "state_key": "lg/seller-group/cumulative_cost/crossed-group/cost/USD",
+      "unit": "USD"
+    },
+    {
+      "agreement_id": "lg",
+      "balance_kind": "synthetic_payment_holdback",
+      "boundary": "2026-01-01",
+      "participant_id": "seller-group",
+      "policy_lineage": [
+        "SYNTHETIC-PAYMENT-HOLDBACK"
+      ],
+      "pool_id": "crossed-group",
+      "provenance_ref": "synthetic-approved-opening",
+      "quantity": "0",
+      "scenario_id": "LG-01",
+      "scope": {
+        "agreement_id": "lg",
+        "asset_ids": [
+          "work-D"
+        ],
+        "pool_id": "crossed-group"
+      },
+      "state_key": "lg/seller-group/synthetic_payment_holdback/crossed-group/hold/USD",
+      "unit": "USD"
+    }
+  ]
+}

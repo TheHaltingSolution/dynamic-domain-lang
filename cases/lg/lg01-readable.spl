@@ -1,0 +1,129 @@
+Participation Schedule for Lionsgate Derivative Participation
+
+Incorporate policy "lg-cleared@1".
+Account for each calendar quarter.
+Require Outside Hurdle Agreement == Agreement or fail "LG_HURDLE_WRONG_SCOPE".
+Outside Hurdle Attained is the supplied outside hurdle attainment citing "LG-OUTSIDE-HURDLE".
+Require Outside Hurdle Attained or fail "LG_OUTSIDE_HURDLE_NOT_ATTAINED".
+Require Outside Hurdle Effective Date < Quarter Start or fail "LG_HURDLE_TIMING_POLICY_REQUIRED".
+Require Gate History Picture == Picture Identifier or fail "LG_GATE_HISTORY_WRONG_WORK".
+Require Gate History Start == Quarter Start and Gate History End == Quarter End or fail "LG_GATE_HISTORY_WRONG_PERIOD".
+Work Cleared Throughout is the supplied continuous work gate evidence citing "LG-GATE-HISTORY".
+Require Work Cleared Throughout or fail "LG_GATE_HISTORY_POLICY_REQUIRED".
+Require Opening Gate Gross >= Opening Gate Cost or fail "LG_CROSSING_POLICY_REQUIRED".
+Require Producer Fee Offset >= USD 0 or fail "LG_NEGATIVE_FEE_OFFSET".
+Require Crossed Net Subtotal >= USD 0 or fail "LG_NET_LOSS_POLICY_REQUIRED".
+Require Opening Payment Holdback >= USD 0 and Payment Holdback Addition >= USD 0 and Payment Holdback Release >= USD 0 or fail "SYNTHETIC_INVALID_HOLDBACK_MOVEMENT".
+
+Current Cash Receipts are the receipts for this Picture received during the quarter.
+Current Actual Costs are the actual costs for this Picture incurred during the quarter.
+True Cash is the sum of current cash receipts citing "LG-TRUE-CASH".
+Actual Cost is the sum of current actual costs citing "LG-TRUE-CASH-COST".
+Next Gate Gross is Opening Gate Gross plus True Cash.
+Next Gate Cost is Opening Gate Cost plus Actual Cost.
+Require Next Gate Gross >= Next Gate Cost or fail "LG_RECROSSING_POLICY_REQUIRED".
+Breakeven Satisfied is Next Gate Gross >= Next Gate Cost.
+Gross Payout Base is the current receipts adjusted by the supplied video proxy citing "LG-GROSS-VIDEO-PROXY".
+If Breakeven Satisfied:
+  Gross Candidate is the greater of USD 0 and (Gross Participation Rate of Gross Payout Base less Producer Fee Offset) citing "LG-GROSS-BRANCH".
+Otherwise:
+  Gross Candidate is USD 0 citing "LG-GROSS-BRANCH".
+Net Candidate is Net Participation Rate of Crossed Net Subtotal citing "LG-NET-BRANCH".
+Contingent Earned Participation is the greater of Gross Candidate and Net Candidate citing "LG-GREATER-OF".
+Selected Branch is if Gross Candidate == Net Candidate then "tie" else (if Gross Candidate > Net Candidate then "gross" else "net").
+
+For settlement with the Participant:
+  Before Payment Holdback is Contingent Earned Participation plus Payment Holdback Release.
+  Require Payment Holdback Release <= Opening Payment Holdback or fail "SYNTHETIC_HOLDBACK_RELEASE_EXCEEDS_OPENING".
+  Require Payment Holdback Addition <= Before Payment Holdback or fail "SYNTHETIC_HOLDBACK_ADDITION_EXCEEDS_AVAILABLE".
+  Participation Payable is Before Payment Holdback less Payment Holdback Addition citing "SYNTHETIC-PAYMENT-HOLDBACK".
+  Closing Gate Gross Balance is Next Gate Gross.
+  Closing Gate Cost Balance is Next Gate Cost.
+  Closing Payment Holdback Balance is Opening Payment Holdback plus Payment Holdback Addition less Payment Holdback Release.
+  Report "comparison": True Cash, Gross Payout Base, Gross Candidate, Net Candidate, Selected Branch, Contingent Earned Participation, Outside Hurdle Evidence, Work Gate Evidence.
+  Report "settlement": Agreement, Participant, Picture Identifier, Net Pool, Quarter, Contingent Earned Participation, Payment Holdback Addition, Payment Holdback Release, Participation Payable.
+
+// Selected synthetic policies: cleared work throughout, prior-period outside
+// hurdle attainment, gross-only fee offset and separate payment holdback.
+Bindings:
+  Schedule LionsgateDerivativePilot.
+  Settle "the Participant" with policy.participant_id.
+  Using language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft".
+  input receipts: List<LGReceipt>;
+  input actual_costs: List<LGCost>;
+  input policy: LGPolicy;
+  input outside_hurdle: LGHurdleAttestation;
+  input work_gate_history: LGGateHistoryAttestation;
+  input crossed_net_subtotal: Money<USD>;
+  input producer_fee_offset: Money<USD>;
+  input payment_holdback_addition: Money<USD>;
+  input payment_holdback_release: Money<USD>;
+  opening gate_gross: Money<USD> from "lg/work-D/true-cash/cumulative-gross";
+  opening gate_cost: Money<USD> from "lg/work-D/true-cash/cumulative-cost";
+  opening payment_holdback: Money<USD> from "synthetic/work-D/payment-holdback";
+  Bind "calendar quarter" to policy.period.
+  Bind "Outside Hurdle Agreement" to outside_hurdle.agreement_id.
+  Bind "Agreement" to policy.agreement_id.
+  Bind "Outside Hurdle Attained" to outside_hurdle_attained.
+  Bind "the supplied outside hurdle attainment" to outside_hurdle.attained.
+  Bind "Outside Hurdle Effective Date" to outside_hurdle.effective_date.
+  Bind "Quarter Start" to policy.period.start.
+  Bind "Quarter End" to policy.period.end.
+  Bind "Gate History Picture" to work_gate_history.asset_id.
+  Bind "Picture Identifier" to policy.asset_id.
+  Bind "Gate History Start" to work_gate_history.period.start.
+  Bind "Gate History End" to work_gate_history.period.end.
+  Bind "Work Cleared Throughout" to work_cleared_throughout.
+  Bind "the supplied continuous work gate evidence" to work_gate_history.cleared_throughout.
+  Bind "Opening Gate Gross" to gate_gross.
+  Bind "Gate Gross Balance" to gate_gross.
+  Bind "Opening Gate Cost" to gate_cost.
+  Bind "Gate Cost Balance" to gate_cost.
+  Bind "Producer Fee Offset" to producer_fee_offset.
+  Bind "Crossed Net Subtotal" to crossed_net_subtotal.
+  Bind "Opening Payment Holdback" to payment_holdback.
+  Bind "Payment Holdback Balance" to payment_holdback.
+  Bind "Payment Holdback Addition" to payment_holdback_addition.
+  Bind "Payment Holdback Release" to payment_holdback_release.
+  Bind "Current Cash Receipts" to current_receipts.
+  Bind "the receipts for this Picture received during the quarter" to filter(receipts, r => r.asset_id == policy.asset_id and in_period(r.cash_received_date, accounting_period)).
+  Bind "Current Actual Costs" to current_costs.
+  Bind "the actual costs for this Picture incurred during the quarter" to filter(actual_costs, c => c.asset_id == policy.asset_id and in_period(c.incurred_date, accounting_period)).
+  Bind "True Cash" to cash_measure.
+  Bind "the sum of current cash receipts" to sum(current_receipts, r => r.amount).
+  Bind "Actual Cost" to actual_cost_measure.
+  Bind "the sum of current actual costs" to sum(current_costs, c => c.amount).
+  Bind "Next Gate Gross" to next_gate_gross.
+  Bind "Next Gate Cost" to next_gate_cost.
+  Bind "Breakeven Satisfied" to breakeven_satisfied.
+  Bind "Gross Payout Base" to payout_base.
+  Bind "the current receipts adjusted by the supplied video proxy" to sum(current_receipts, r => r.amount * (if r.is_home_video then policy.video_proxy else 1)).
+  Bind "Gross Candidate" to gross_candidate.
+  Bind "Gross Participation Rate" to policy.gross_rate.
+  Bind "Net Candidate" to net_candidate.
+  Bind "Net Participation Rate" to policy.net_rate.
+  Bind "Contingent Earned Participation" to contingent_earned.
+  Bind "Selected Branch" to selected_label.
+  Bind "Before Payment Holdback" to before_holdback.
+  Bind "Participation Payable" to payable.
+  Bind "Outside Hurdle Evidence" to outside_hurdle.
+  Bind "Work Gate Evidence" to work_gate_history.
+  Bind "Participant" to settlement_participant.
+  Bind "Net Pool" to policy.pool_id.
+  Bind "Quarter" to accounting_period.
+  Field "True Cash" as cash_measure.
+  Field "Gross Payout Base" as payout_base.
+  Field "Gross Candidate" as gross_candidate.
+  Field "Net Candidate" as net_candidate.
+  Field "Selected Branch" as selected_label.
+  Field "Contingent Earned Participation" as earned.
+  Field "Outside Hurdle Evidence" as outside_hurdle.
+  Field "Work Gate Evidence" as work_gate_history.
+  Field "Agreement" as agreement_id.
+  Field "Participant" as participant_id.
+  Field "Picture Identifier" as asset_id.
+  Field "Net Pool" as net_pool_id.
+  Field "Quarter" as period.
+  Field "Payment Holdback Addition" as payment_holdback_addition.
+  Field "Payment Holdback Release" as payment_holdback_release.
+  Field "Participation Payable" as payable.

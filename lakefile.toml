@@ -1,0 +1,55 @@
+name = "dynamic-domain-lang"
+version = "0.1.0"
+defaultTargets = ["Participation", "Generated", "SPL", "participation", "smoke", "spl", "spl_smoke", "spl_sv", "spl_lg", "spl_rq07", "spl_sv_readable", "spl_lg_readable", "spl_rq07_readable"]
+
+[leanOptions]
+warningAsError = true
+
+[[lean_lib]]
+name = "Participation"
+
+[[lean_lib]]
+name = "Generated"
+
+[[lean_lib]]
+name = "SPL"
+
+[[lean_exe]]
+name = "participation"
+root = "Main"
+
+[[lean_exe]]
+name = "smoke"
+root = "Tests.Main"
+
+[[lean_exe]]
+name = "spl"
+root = "SPL.Main"
+
+[[lean_exe]]
+name = "spl_smoke"
+root = "Tests.SPLMain"
+
+[[lean_exe]]
+name = "spl_sv"
+root = "Demos.SV"
+
+[[lean_exe]]
+name = "spl_lg"
+root = "Demos.LG"
+
+[[lean_exe]]
+name = "spl_rq07"
+root = "Demos.RQ07"
+
+[[lean_exe]]
+name = "spl_sv_readable"
+root = "Demos.SVReadable"
+
+[[lean_exe]]
+name = "spl_lg_readable"
+root = "Demos.LGReadable"
+
+[[lean_exe]]
+name = "spl_rq07_readable"
+root = "Demos.RQ07Readable"

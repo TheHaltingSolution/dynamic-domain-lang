@@ -1,0 +1,10 @@
+// General exact weighted-money allocation. No rounding or implicit fallback.
+schedule Proportional language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input amount: Money<USD>;
+  input weight: Ratio;
+  input total_weight: Ratio;
+  require amount >= USD 0 and weight >= 0 else "WF_ALLOCATION_DOMAIN";
+  require total_weight > 0 else "WF_ZERO_DENOMINATOR";
+  require weight <= total_weight else "WF_WEIGHT_EXCEEDS_TOTAL";
+  define allocated = amount * (weight / total_weight);
+}

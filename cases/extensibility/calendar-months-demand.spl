@@ -1,0 +1,22 @@
+// DYN-CAL-01 disclosed demand. E0 must record whether this API is admitted.
+// Existing supplied-date/calendar-relation workarounds remain legitimate.
+schedule DerivedDeadline language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input vintage_id: Id<Vintage>;
+  input creation_date: Date;
+  input months: Nat;
+  input invalid_day_policy: Text;
+  input close_date: Date;
+  input cutoff: Instant;
+  input observed_at: Instant;
+  opening reserve: Money<USD> from "dynamic/reserve";
+  require observed_at < cutoff else "DYN_EVIDENCE_AFTER_CUTOFF";
+  require in_period(close_date, scope.period) else "DYN_CLOSE_OUTSIDE_PERIOD";
+  require reserve >= USD 0 else "DYN_NEGATIVE_RESERVE";
+  define deadline = add_calendar_months(creation_date, months, invalid_day_policy);
+  define released = if close_date >= deadline then reserve else USD 0;
+  closing reserve = reserve - released;
+  emit "reserve_ledger" = {agreement_id: scope.agreement_id, participant_id: scope.participant_id,
+    pool_id: scope.pool_id, vintage_id: vintage_id, period: scope.period, close_date: close_date,
+    deadline: deadline, available: reserve, released: released, closing_balance: reserve - released};
+}

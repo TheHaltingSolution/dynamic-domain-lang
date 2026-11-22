@@ -1,0 +1,226 @@
+{
+  "decisions": [
+    {
+      "decision_id": "SYNTHETIC-RES-VINTAGE",
+      "evidence_ref": "existing-synthetic-fixture-and-selected-policy",
+      "policy_id": "synthetic:reserve-vintage-policy",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "synthetic-vintage",
+      "evidence_ref": "existing-synthetic-fixture-and-selected-policy",
+      "policy_id": "synthetic:reserve-vintage-policy",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "evidence": [
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "20"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-vintage",
+        "currency": "USD",
+        "effective_date": "2026-05-01",
+        "evidence_id": "evidence-add-1",
+        "kind": "authorized_addition",
+        "observed_at": "2026-05-02T09:00:00-07:00",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "purpose": "return_reserve",
+        "vintage_id": "vintage-2"
+      },
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "7"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-vintage",
+        "currency": "USD",
+        "effective_date": "2026-05-01",
+        "evidence_id": "evidence-apply-1",
+        "kind": "actual_return",
+        "observed_at": "2026-05-02T09:00:00-07:00",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "purpose": "return_reserve",
+        "vintage_id": "vintage-1"
+      },
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "5"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-vintage",
+        "currency": "USD",
+        "effective_date": "2026-05-01",
+        "evidence_id": "evidence-release-1",
+        "kind": "authorized_release",
+        "observed_at": "2026-05-02T09:00:00-07:00",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "purpose": "return_reserve",
+        "vintage_id": "vintage-1"
+      }
+    ],
+    "movements": [
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "20"
+        },
+        "currency": "USD",
+        "effective_date": "2026-05-01",
+        "event_id": "add-1",
+        "evidence_ref": "evidence-add-1",
+        "kind": "addition",
+        "observed_at": "2026-05-02T09:00:00-07:00",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "purpose": "return_reserve",
+        "vintage_id": "vintage-2"
+      },
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "7"
+        },
+        "currency": "USD",
+        "effective_date": "2026-05-01",
+        "event_id": "apply-1",
+        "evidence_ref": "evidence-apply-1",
+        "kind": "application",
+        "observed_at": "2026-05-02T09:00:00-07:00",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "purpose": "return_reserve",
+        "vintage_id": "vintage-1"
+      },
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "5"
+        },
+        "currency": "USD",
+        "effective_date": "2026-05-01",
+        "event_id": "release-1",
+        "evidence_ref": "evidence-release-1",
+        "kind": "release",
+        "observed_at": "2026-05-02T09:00:00-07:00",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "purpose": "return_reserve",
+        "vintage_id": "vintage-1"
+      }
+    ],
+    "scope": {
+      "agreement_id": "synthetic-deal",
+      "participant_id": "participant",
+      "period": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "pool_id": "pool"
+    }
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2026-07-15T00:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "synthetic:reserve-vintage",
+        "locator": "cases/mechanisms/reserve-vintage-module.json",
+        "revision": "1",
+        "sha256": "34c6220bfe0792cce3e7ffd40e71086c262c6dff6bf78049e9c1c4ca7ab0dbb4"
+      }
+    ],
+    "period": {
+      "end": "2026-07-01",
+      "start": "2026-04-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "reserve-vintage-canonical",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "reserve-vintage-synthetic"
+  },
+  "module_ref": {
+    "id": "synthetic:reserve-vintage",
+    "locator": "cases/mechanisms/reserve-vintage-module.json",
+    "revision": "1",
+    "sha256": "34c6220bfe0792cce3e7ffd40e71086c262c6dff6bf78049e9c1c4ca7ab0dbb4"
+  },
+  "parameters": {
+    "authority": "synthetic-vintage",
+    "observation_cutoff": "2026-07-15T00:00:00Z",
+    "purpose": "return_reserve"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "synthetic-deal",
+    "asset_ids": [],
+    "participant_ids": [
+      "participant"
+    ],
+    "pool_id": "pool",
+    "purpose": "return_reserve"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-04-01",
+      "opening_port": "reserve_vintages",
+      "provenance_ref": "synthetic-original-reserve_vintages-snapshot",
+      "purpose": "return_reserve",
+      "quantity": [
+        {
+          "agreement_id": "synthetic-deal",
+          "balance": {
+            "currency": "USD",
+            "value": "12"
+          },
+          "currency": "USD",
+          "participant_id": "participant",
+          "pool_id": "pool",
+          "purpose": "return_reserve",
+          "vintage_id": "vintage-1"
+        },
+        {
+          "agreement_id": "synthetic-deal",
+          "balance": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "currency": "USD",
+          "participant_id": "participant",
+          "pool_id": "pool",
+          "purpose": "return_reserve",
+          "vintage_id": "vintage-2"
+        }
+      ],
+      "scenario_id": "reserve-vintage-synthetic",
+      "scope": {
+        "agreement_id": "synthetic-deal",
+        "participant_id": "participant",
+        "pool_id": "pool"
+      },
+      "state_key": "{\"agreement_id\":\"synthetic-deal\",\"participant_id\":\"participant\",\"pool_id\":\"pool\",\"purpose\":\"return_reserve\"}",
+      "unit": "structured"
+    }
+  ]
+}

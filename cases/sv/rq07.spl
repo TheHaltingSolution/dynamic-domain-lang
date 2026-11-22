@@ -1,0 +1,41 @@
+// RQ-07 profile: GL posting selects cost recognition; missing incurred dates remain absent.
+schedule SkourasVenturaPostingPilot language "spl/0.1-draft"
+  core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input pictures: List<SVPicture>;
+  input receipts: List<SVReceipt>;
+  input eligible_costs: List<SVPostingCost>;
+  input policy: SVPolicy;
+  opening prepayment: Money<USD> from "sv/participant-prepayment/main-pool";
+  require prepayment >= USD 0 else "NEGATIVE_OPENING_ADVANCE";
+  define title_results = for each picture in pictures {
+    require picture.funding_share >= 0 and picture.funding_share <= 1
+      else "INVALID_FUNDING_SHARE";
+    define cash_rows = filter(receipts, r =>
+      r.asset_id == picture.asset_id and in_period(r.cash_received_date, policy.period));
+    define cost_rows = filter(eligible_costs, c =>
+      c.asset_id == picture.asset_id and in_period(c.recognition_date, policy.period));
+    define cash = sum(cash_rows, r => r.amount) citing "SV-8-CASH";
+    define allowed_cost = sum(cost_rows, c => c.amount) citing "SV-8-COST-SCHEDULE";
+    define fee_rate = choose unique {
+      when picture.contribution_present => 0.075;
+      otherwise => 0.25;
+    } citing "SV-8-FEE";
+    define fee = cash * fee_rate;
+    define basis = cash - fee - allowed_cost citing "SV-8-BASIS";
+    define share = if picture.contribution_present
+      then picture.funding_share else 0.20 citing "SV-8-SHARE";
+    define earned = basis * share;
+    require earned >= USD 0 else "SV_NEGATIVE_EARNINGS_OUTSIDE_PILOT";
+    yield { asset_id: picture.asset_id, cash: cash, fee: fee,
+      allowed_cost: allowed_cost, basis: basis, share: share, earned: earned };
+  };
+  define earned_total = sum(title_results, t => t.earned);
+  define recouped = min(earned_total, prepayment) citing "SV-7-POOL-RECOVERY";
+  define payable = earned_total - recouped;
+  closing prepayment = prepayment - recouped;
+  require earned_total == recouped + payable else "SV_SETTLEMENT_RECONCILIATION";
+  emit "titles" = title_results;
+  emit "pool" = { agreement_id: policy.agreement_id,
+    participant_id: policy.participant_id, pool_id: policy.pool_id,
+    period: policy.period, earned: earned_total, recouped: recouped, payable: payable };
+}

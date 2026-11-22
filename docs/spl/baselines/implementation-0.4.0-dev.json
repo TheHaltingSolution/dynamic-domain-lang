@@ -1,0 +1,1414 @@
+{
+  "capabilities": [
+    "identified-priority",
+    "tuple-map-group-join",
+    "structural-record-option",
+    "ordered-fold",
+    "pure-first-order-module-linking",
+    "generic-canonical-registration",
+    "exact-canonical-instant"
+  ],
+  "checks": {
+    "benchmark": "r1-benchmarks-e0-30warm; 30 cached native-process samples each at100/1000 receipts, one fullaudit each; no production capacity claim",
+    "build": "passed (82 targets)",
+    "date": "2026-11-21",
+    "legacy_cases": 6,
+    "native_suite_status": "passed",
+    "native_suites": [
+      "SPLParser",
+      "SPLCheck",
+      "SPLBindings",
+      "SPLInstant",
+      "SPLCore",
+      "SPLEmit",
+      "SPLReadable",
+      "SPLIR",
+      "SPLValidateIR",
+      "SPLTrace",
+      "SPLPriority",
+      "SPLCollections",
+      "SPLFold",
+      "SPLTraceScaling"
+    ],
+    "proof_scope": "Full compiler correctness deferred; existing scalar proofs not widened",
+    "python_command": "python -m unittest discover -s Tests -v",
+    "python_elapsed_seconds": "1016.996",
+    "python_log_sha256": "2a925333d6d4b8a654eb042cd7d0f22f9ce6bd5d82b0b242f7d5789cd8842ccd",
+    "python_status": "passed",
+    "python_tests": 256,
+    "registered_review_cases": 14,
+    "smoke": "passed",
+    "spl_smoke": "passed",
+    "standalone_mechanisms": 3,
+    "trace_quota_100000": "passed, retained valid prefix and no consumable output"
+  },
+  "compiler_wrapper_reference_build": "2c0a17ea8a1d4d401bcee2d88bcda902c6cfa272ddac0600f2a4801f92f2126e",
+  "date": "2026-11-21",
+  "experiment": {
+    "omitted_operation": "add_calendar_months",
+    "probe": "e0-absence-probe.json",
+    "stage": "E0",
+    "workaround": "supplied-deadline"
+  },
+  "implementation_profile": "spl-implementation/0.4.0-dev",
+  "module_build": "83f6f3761e2f7534acdb99bfc7494b3711441d067080d6f5685eb81570629b2e",
+  "pinned_files": {
+    "Demos/LG.lean": "adb1cc6bbdd0ccc9f333c583d2d8fb723f1dec9eeaa4f7afe7c4cf29c305336d",
+    "Demos/LGReadable.lean": "50fffdf34b0b64c075b99a12494b433a8bf54089076bcf3929aa0d721c6f60bc",
+    "Demos/RQ07.lean": "b1b5daf774eb368322b31297ae932fa7eba7234d4a2af0269b6167567811eb28",
+    "Demos/RQ07Readable.lean": "2af4a70f8176c699ffaaf4da065c674be6b70b46f5b0e103eb9de24b0cca1970",
+    "Demos/SV.lean": "ef23268f4f7e1144776a4418778e4a3eb7d815996bffed3b8bd6b233e62578c9",
+    "Demos/SVReadable.lean": "5ebf0cb28599631d9494988b75dbe6b9d1737993e02c3f315f16667302b369ea",
+    "README.md": "51279c36957ad3be62895f1125eadbe8d9550861db8bb9d2671fe8b349c511ed",
+    "SPL.lean": "2b7b1aaf9817b4596211137cc667aa8eb6717a143df8eaba4ba09dab8a9fcfb2",
+    "SPL/Bindings.lean": "219f36af8b06aed705ec010df1effcb51e1ccfc531f3d91dc42e4ed2c38767e9",
+    "SPL/Check.lean": "f07913d0ef717ca2833c0883148987a12cbe9fd284ee18ed4eb45c8cadbba670",
+    "SPL/Core.lean": "7240c5af0898d9611af639abe38cef7b8ca5ac7c640f5a3079901702fb9617f1",
+    "SPL/Elaborate.lean": "eb09abd7b7dca952ec568826e4bd73bdd2e350e124b277cd2548c3a84bf83dbf",
+    "SPL/Emit.lean": "594f08f820351ad616311efb41516868a06a45fa5bfe3a236c09b64cda2dc90a",
+    "SPL/Fold.lean": "d1188ef3f0f8033e2bef0befc4acda0bb41aa3f0fccef3de0dfa09a59e99db44",
+    "SPL/IR.lean": "7a1ec049d8960a75069564b90fdb273f40cbc06900790943f7aa51a9b5be198c",
+    "SPL/Instant.lean": "32ca19e8a4ff3007f438399a36c5f956eb220df4e57444b72d2559ad5e5cb1fd",
+    "SPL/Interpret.lean": "cc9deb3b69039aa5f56a91f724475bfd66780477654f5af466f9b2b4e7dd3006",
+    "SPL/Link.lean": "30406190bf9ee93569fe77f26d6e348b4360ccca0eb45b1ad5871819ded9a239",
+    "SPL/Main.lean": "bb2f6328b9fb109497398550efdefa83e715f00229dd7680e3a9e464faab6c20",
+    "SPL/Parser.lean": "afe936bab4cb13f068ddd598c91316268882c689536b271ace9a8d8892a9ae6d",
+    "SPL/Proofs.lean": "881994012b19faa24becb2936ec0abce9848c38abaeb963d2e465d8cf7237a67",
+    "SPL/Readable.lean": "376edbe955da2b2c65779039598a6f0389fde4957cf58d58d072555b89380891",
+    "SPL/Runtime.lean": "78d3cab57b04e0db437b688bd519684a198f1dd2c1516e713b2a8f9d8787e0b1",
+    "SPL/Syntax.lean": "6471e71f76b4ed9b1a717c2fd5c0fadbe15c7b5a548df8d6aba36f319340f41c",
+    "SPL/Trace.lean": "3f4a937ceda19007ce23e27a8e89c0f642af0ad1f1b5da4e6594c03fac936ced",
+    "SPL/ValidateIR.lean": "ed8d7e7ac7d714c90bb3759739782c8896321f67ea15a683c4eebb5a2e5a7d3d",
+    "Tests/Main.lean": "7b1e85de0455ee7771d7a94558766a3b8d36186d9931b805b8f56c39ce2976af",
+    "Tests/SPLBindings.lean": "5f50dfab53956c48a758aa1a45b31fb15096c85fbd1fe856fccccf24f34c6e7f",
+    "Tests/SPLCheck.lean": "c17f7ba9bfecc203b16617d0a0d0ef1dc37d922600cab53c7ca6dee5acd53d22",
+    "Tests/SPLCollections.lean": "3d34f54c2503bcf493643b7908e581a01ac3176e739109a6adf0c3750bc985e7",
+    "Tests/SPLCore.lean": "a07cbc943f6e88e0ef34c141be6f6788ffdcda314caf2f49516edc590ff95fa9",
+    "Tests/SPLEmit.lean": "95bbfe1dc10f8579fee2fd6eac6359b62fdf1816526e26c3af5b1593dd8785ab",
+    "Tests/SPLFold.lean": "6dcefc896ed9d6fa660163a3ef5ee9f595039b5e0b6915609ef8a9904e636f62",
+    "Tests/SPLIR.lean": "d3e06e12edd46dddd4060328da738dd200436031b527159cc790162a432d578b",
+    "Tests/SPLInstant.lean": "bb117255e0be8cc6776b9068fc70981ff9d47398729b1ecc1c3f5e0a6e11fd97",
+    "Tests/SPLMain.lean": "0dad0d42e4f0edf28c8e370005b3164aea23b3938ffb05c2f2587c801af09b5c",
+    "Tests/SPLParser.lean": "58c35f99348478506fe15877522bf2d686fb2c07de33f85add2f7a5a69d9b4f0",
+    "Tests/SPLPriority.lean": "4f7793162a1e8f007e34da98bbc22adedb9976356aee78184ab41321c1233d76",
+    "Tests/SPLReadable.lean": "e847ba33cbd5e1cc2f3f3648ab7bc6d63c85a0110bd7cd39322687ff49b28754",
+    "Tests/SPLTrace.lean": "ad8530497f8f0ecd32c4d14ff30a450daf8d1a64e493d09679e95c9f06d7fbce",
+    "Tests/SPLTraceScaling.lean": "fc90e52d378c764e5cdeee0850fb627532474122316463dab75430478f3da73a",
+    "Tests/SPLValidateIR.lean": "6fab46ad1db22468bfe71de7f525e26fb0f47539105802f0c81b602fab0f299b",
+    "Tests/test_acceptance.py": "41348adcad16822b23475f31959a968e5d3c96d7e524390f827edfaf211d7c99",
+    "Tests/test_advance_answer.py": "3a0d3d968a956ae8715bc0628a6bee9f6f1d1681e4df928736090ed6ad60fdce",
+    "Tests/test_benchmark_generator.py": "73bbe05bd9c15190e2294efca314899713a730c3dd36b47cf64250ce9f99fd75",
+    "Tests/test_canonical_precision.py": "8887bcde6fd7bb07e079b0c4ef31f3001db57364bd6d661d7277ac50d0057735",
+    "Tests/test_collections.py": "6fbfa5ced6746ce277ada29eff62b92d85c789f4791c942f4578ac96bdc04bda",
+    "Tests/test_core.py": "0f8836af02f4f809b2779067b0d262b25e98b270faaa97c5bff85b34b44b52cd",
+    "Tests/test_data.py": "18c0715e6c5a6b4ad2255231a56daea9df362576affb70468647c7ec7e6b5a55",
+    "Tests/test_emitter.py": "0e5edb9423ddabdfa851813b0247d4b28f6788b74e4cb85ed9bd2e48187f7c38",
+    "Tests/test_fold.py": "082de90b60631dd3fcfb1cb6d2a3988cc6e574b176de511bfeef240fb31de120",
+    "Tests/test_linking.py": "d9c33ebcbfba83b33fae39ff8be6cc2db56f7c941df068e95d2f7487b22db3d7",
+    "Tests/test_mechanisms.py": "5e36a2d7609ebd0ee219d7096f509e9c6c73f37e986e0381df35ef00e1281f03",
+    "Tests/test_module_mechanisms.py": "90774b9f3546d298cf71febda8487c0db8a54d46ec7b4ecb143d0f429d30135c",
+    "Tests/test_modules.py": "8fb882477c810075b5da6d922ad47a4352b3af800fcb2cbca0ee344f8cce9811",
+    "Tests/test_native_core.py": "cf67f22c269a33e919274f9da0b9539d0f3ce8c71d08bff4f2ee00bc4991dfec",
+    "Tests/test_native_fold_linking.py": "3cfb41d8ba17d8c953d96e7825035f39c79e1ea00011eedc1aceb1e9998cd9e5",
+    "Tests/test_parser.py": "697d8d2d471d1dc5f5ebc14e9e9c4f7f1ada8b2198e74e7b71c6f637bd0235c9",
+    "Tests/test_pipeline.py": "767d55be531cd51bafabf3d68744872b62afcde0ffabdf8a7fd7e6cf42603ec8",
+    "Tests/test_policies.py": "30c15a6538e5b065272f514d74b181bd9d9fbd6e157f4aca723e5e95d0b749a5",
+    "Tests/test_priority.py": "11fe11f0ad44ef92c40d44f99c2a1c1b885ce4e7b6d46d41679ca5b8b5dc3452",
+    "Tests/test_r1_modules.py": "4a2139dd987560638932c6180bb5aeb923ebec9eaa090809432eefdcfd725cbc",
+    "Tests/test_r1_oracles.py": "07c039492aca9acb3594b7b8981726cb527ece501fdc771559ac4039c7916983",
+    "Tests/test_readable.py": "ffe1235c45402e953a53c09fc85e712ba098d7ff3004e4a19067d0c7d0b96b92",
+    "Tests/test_reserve_answer.py": "9a604967a8384d68f8988c672f073c3140b92f9e7b83b604e3705ff5a99a972f",
+    "Tests/test_revision.py": "501a7bfacb48a1e4178b97f8c1a19e80d60384e0e79262376102e67da4243133",
+    "Tests/test_supplied_deadline.py": "47a197f1c8669994769613443589f65b8f038566bc8ff08ecae4333c0ade4491",
+    "Tests/test_waterfall.py": "66fa10dc4df1b6e9ca0b3409d410ab4ef764a5bf9dcf36e871f319a530572608",
+    "cases/extensibility/build_modules.py": "70f6e5e7da29cfcb4f8ff85037052670a0aa0d42be6e8248e867aa062ba281a2",
+    "cases/extensibility/calendar-months-demand.spl": "230771ca738afad260dc3f24215c427fbfb246f8fee3279a4acb5c260aaccdad",
+    "cases/extensibility/calendar-supplied-module.json": "5aa845905781d057865a5d4bbe05cd3d24ac252bc875dc3ef03d5c8af94e3ab0",
+    "cases/extensibility/policy.md": "cc3fe2a643b3782afaa298a2e49e350163fdc91e4288b1de529580b24a5ab92e",
+    "cases/extensibility/supplied-deadline.spl": "8819d6ad46e21764f7d67fc9c937b27ed5a4733ca8859d575e5d58151c606506",
+    "cases/k1/bindings.json": "b61ea92c0f1f58db825629ba557e2e9ef882150e3c90db84c5325fb4e9f388dd",
+    "cases/k1/expected.json": "6dc0e42b94157de3a3a0c88646ec448edebaa184de6014053feb7fdf76fe07e2",
+    "cases/k1/priority.spl": "6f3e752f117ed3d4f1128d1c4fc272309f7b3e5b7cb66b761e445bd4efc26f70",
+    "cases/lg/bindings.json": "a00dc6c10167e52ad356fd969daa17f854bb18f7f109e304388a1e405ecb5c8b",
+    "cases/lg/canonical-package.json": "46d182dcea880dd33827a31961b93f39af2596d22b42f44a72f7d2ee13601f79",
+    "cases/lg/closing-state.json": "082e5e6e46bb2e562f446ea96b54126e6305f33d9f92c89f6a90e4d21782581b",
+    "cases/lg/lg01-readable.spl": "d7f654b16fbee7f72326579d5378648144a77394d1322f57f49a865bf4b9faf9",
+    "cases/lg/lg01.spl": "17afb659a15322817da812d52e1a8d4f2bb1d18330df3aa0ae531b4b0839daa4",
+    "cases/lg/lineage.json": "1e7bf35aafbf7518f63ea3b1178bd880bada29eac08bd691d8a7dadcbc35e1c4",
+    "cases/lg/readable/bindings.json": "a00dc6c10167e52ad356fd969daa17f854bb18f7f109e304388a1e405ecb5c8b",
+    "cases/lg/readable/canonical-package.json": "a591418cbe9ad5db8e688078828a688570a29c3444f2f637f1171cadf16eb608",
+    "cases/lg/readable/closing-state.json": "ae9dea6f0dc3d31b996105577f945ee5fc16aa992bb4b98d0150d19f7f78ba7b",
+    "cases/lg/readable/lineage.json": "1e7bf35aafbf7518f63ea3b1178bd880bada29eac08bd691d8a7dadcbc35e1c4",
+    "cases/lg/readable/statement.json": "d8022f7bfb75e48eb641568cf23afff4464ee9e22ca72a294a557a1ace41743a",
+    "cases/lg/statement.json": "d8022f7bfb75e48eb641568cf23afff4464ee9e22ca72a294a557a1ace41743a",
+    "cases/mechanisms/README.md": "25a6904e36aa1343de7164934921f75098f982c438c277b1e494682e2feb5126",
+    "cases/mechanisms/advance-issues-bindings.json": "9eebf359545c0471b7055d641639cae90dddcadcde4610afa5a64962670419b2",
+    "cases/mechanisms/advance-issues-module-package.json": "5fea898f51e1a4cc154949579159e9fdce7f1a5b7f124cf8db28ea3c7aae8712",
+    "cases/mechanisms/advance-issues-module.json": "de6d9d98b99d336b708f54102a3acf5146c864e23b2bf39f32c695f85f22eca0",
+    "cases/mechanisms/advance-issues-policy.md": "3d311caef24c0955c2feacbd55fcfd0f38eff7f563f4df1f69ee71ff598f9719",
+    "cases/mechanisms/advance-issues.spl": "b07e5790b347636f4e90c1df25ef544b3ea34fde3529d69f007cbec18b784620",
+    "cases/mechanisms/correction-payments-bindings.json": "2c784c4995812a80d6e3da6501f2df6a75832e7ac2aa745b3ffed37def43a02c",
+    "cases/mechanisms/correction-payments-module-package.json": "1a2dee96be71a3f0b2ad8e799b5569fc2dd0d9140385ae4a00d302ed39fca57f",
+    "cases/mechanisms/correction-payments-module.json": "d008f789138d09823ab5d74146dcabff9e01d92e95805e0f292465dd4c0ef445",
+    "cases/mechanisms/correction-payments-policy.md": "00d943cc76675282832023497e60c655dbae33825d0aae87e2172615b8bbe604",
+    "cases/mechanisms/correction-payments.spl": "c990eb2770cbab83d10040a8c5a1411869ff3a7a2239b371d81bed1cc71acb75",
+    "cases/mechanisms/register_modules.py": "cd70e4edd774cc8d26ba9e5b2bd8ecdf57e05b1ab37e8af77178befb93b8c03e",
+    "cases/mechanisms/reserve-vintage-bindings.json": "b8e495c98cc12fe3ae7c53aa152d8f83521aa40f62237fe6df828f3279ca47cc",
+    "cases/mechanisms/reserve-vintage-module-package.json": "34d30eedd4fff30503ba2e348d55154e9bae0239cd8d06e2de5f7a1564805412",
+    "cases/mechanisms/reserve-vintage-module.json": "34c6220bfe0792cce3e7ffd40e71086c262c6dff6bf78049e9c1c4ca7ab0dbb4",
+    "cases/mechanisms/reserve-vintage-policy.md": "0ed39bce943523e4f9b2a6294d1fd15bb74490fc725d82888193fb041396ed18",
+    "cases/mechanisms/reserve-vintage.spl": "0e77f982aa3e699c6142912de6859642a23cd4f864101f4c084bedb3da79a87f",
+    "cases/mechanisms/results-summary.json": "9d468aa20c412ccb6d0388b2d6d2ab86d9cddc5bf0b887edfa6049bebf9e74cc",
+    "cases/modules/priority-rates/build_fixture.py": "87319ea80813e71e55d7895a4179039faafde206c7148c5e7d5565b8818d61bc",
+    "cases/modules/priority-rates/descriptor.json": "ffff7caaed2482bc136e90c5751077cc06502e954749e3b2c2a70ee6582c49b0",
+    "cases/modules/priority-rates/package.json": "85277419feb02962ce70b4676aa01fc76fe9ff9f3d99311251c7f80360730ef4",
+    "cases/modules/priority-rates/policy.md": "1336ee05320b61227d7c9bc8075646277cb93b7a012d5830bf9a0c59b5f59147",
+    "cases/modules/priority-rates/priority-rates.spl": "d05481c4c6204354d0c56151ac3b23ae3eeeec3c21f0dc6d9db048c97bc2817c",
+    "cases/r1/README.md": "264cf666e97b2b2a33d01d8519a20da0c2ecc2bc4a2c81a212fe1177f7580e5a",
+    "cases/r1/advance-issues-canonical-package.json": "5fea898f51e1a4cc154949579159e9fdce7f1a5b7f124cf8db28ea3c7aae8712",
+    "cases/r1/angel-canonical-package.json": "ca486fd9ccbbb4e3b6463024f9b9e80e1a9cf19151af6379b0a11ce826a96d93",
+    "cases/r1/angel-guild-module.json": "bff550766737c0822afe387f4d3786f51b70efc17597698c03a92c13b7bb05a3",
+    "cases/r1/angel-guild.json": "11fce63f765ebcd1130fe4116f1eba82a5746727be965d17765aca6deaa343e6",
+    "cases/r1/angel-guild.spl": "f0d3c8b227ee150b84bde4809d15713bc4fd5e691cc9b0a40b540f8cc9052c5a",
+    "cases/r1/angel-other-usage-canonical-package.json": "98e84222bcecb83a2df393d21f00585b496e273a5484559eb3244dc9f0cea529",
+    "cases/r1/angel-policy.md": "713a6b39c373e447336847b42616a13586824112c6f32a9f7cfe1d63c6e775ca",
+    "cases/r1/authorized-revision-canonical-package.json": "14a1159d408a59deb2446c141a792fb512e3f39cdaf57718f2e7ed66e29e3ada",
+    "cases/r1/build_modules.py": "6e8a615b19f66f9de37f9be68ad99aa741d37365aad45d7bfbc54cfd5cea9e31",
+    "cases/r1/correction-payments-canonical-package.json": "1a2dee96be71a3f0b2ad8e799b5569fc2dd0d9140385ae4a00d302ed39fca57f",
+    "cases/r1/mqp-actual-date-canonical-package.json": "3b32d7ac656bc3cd8a7b5ffbdfc984b3ec7992a81a468c0670526d28b418614d",
+    "cases/r1/mqp-canonical-package.json": "1151e4d28690163286fb210bc71b8e68c26d51b148ab034ea2119ecc3b955ee3",
+    "cases/r1/mqp-correction.json": "a5a969ce3e9a9157f75d127fd8adb08edc6dcf138cb7e001ae260e45ba29cc7d",
+    "cases/r1/mqp-ordered-module.json": "442ce91da1f781e9ecf7b2436c129aed79e70f0338e14af272370829cdc10ab0",
+    "cases/r1/mqp-ordered.json": "247aec95d9a3828c90ae5718abcc1e2ffbf3e77493b65f04123707fa9a478225",
+    "cases/r1/mqp-ordered.spl": "746b57c6aeb7b9f84eb422cf829d51b3d05eb6ea97210d8d6d666155fe1ce372",
+    "cases/r1/mqp-policy.md": "14e0eaad83ae4c591c0d5373339d6abaa7532e126194ed8f01d87e7933c5d77a",
+    "cases/r1/priority-rates-canonical-package.json": "85277419feb02962ce70b4676aa01fc76fe9ff9f3d99311251c7f80360730ef4",
+    "cases/r1/reserve-vintage-canonical-package.json": "34d30eedd4fff30503ba2e348d55154e9bae0239cd8d06e2de5f7a1564805412",
+    "cases/r1/supplied-deadline-canonical-package.json": "0a1bc230b8489adf1b5be19968cc09a6efff711ef5c180fc7aa853f31397ed0b",
+    "cases/r1/supplied-due-reserve.json": "c11de43384b7ad72c2e92288ffa2edf7c310eaca50c42f58bd533cc99d8210ce",
+    "cases/r1/waterfall-priority-120-canonical-package.json": "37e7070d13932a4ac88c3456f6b1076c49b1d3d70ed5833d0d612c170b37e795",
+    "cases/r1/waterfall-pro-rata-120-canonical-package.json": "aa2c09243ca78249681b857eaa0620935afd56643bf411827cf246b73d42b037",
+    "cases/r1/waterfall-roundlake-like-p1-canonical-package.json": "487a300b5af7881803ec902a1fd50b050c4bd797acdf90a5963d4bfd7fadcb91",
+    "cases/r1/waterfall-roundlake-like-p2-canonical-package.json": "b03190b70fa375761d3201d048e3dd97e0e80d9b204b1e41105c86180c51dcd5",
+    "cases/r1/weighted-allocation-module.json": "a8550f4d4bbf347f96e54bbca1ffbe6dc6ebe15436b45c933146804319edf5a7",
+    "cases/r1/weighted-allocation.spl": "433d4b5c993a392351d5b74fb6bd49e1c2f081db28a96602751cc8979cc42d74",
+    "cases/revision/README.md": "23df80f8183a8e13169f86a2f86781604ca1f12939277e7dc12c810f63418579",
+    "cases/revision/build_modules.py": "a167a21c5cc062d0088cce65f97b0ad460b098f73c7bfd7a1c1da91592d672cb",
+    "cases/revision/canonical-package.json": "14a1159d408a59deb2446c141a792fb512e3f39cdaf57718f2e7ed66e29e3ada",
+    "cases/revision/neutral.json": "a936deedc71014496dc4cd0ea32b7ca15cf5b5c86f4f823e3c120e4ca4650cc8",
+    "cases/revision/policy.md": "3b32fa3464c3404de412d9024b37ce004a0f58e2af6e789ad298ee4442488006",
+    "cases/revision/restatement-module.json": "23ff299b2efb6a0283bc13f373b4ae4c4bf8a5bd307321741a730671ae71395e",
+    "cases/revision/restatement.spl": "2fcc9f186a7091f9a438e5cbc41dcfd56781998523de1334610dc87c6448c3c9",
+    "cases/rq07/README.md": "43b0a3c021c06018da9a925ca09c42d1f80ddec782907570bac00631623be531",
+    "cases/rq07/bindings.json": "fc99bd0f35e1d55f540356e4105e5a007e00ab666ec52111234a04a5310f9bbb",
+    "cases/rq07/canonical-package.json": "62129d664017b379e9c4e441be7eb136b978137159025016135a172e2d6a1f97",
+    "cases/rq07/closing-state.json": "665f0fdb34a903957d45f9b26dbd0d915806f1c629354c0fe9b784a54cac7cc2",
+    "cases/rq07/control-comparison.json": "80c5afa29cacd4f1d0be870338b4c974bf7d063274216f104577c4599ca25959",
+    "cases/rq07/lineage.json": "38586b887f6084eb64454e789952e1e600ef95bc8757edb8ec27827cc2f22d6d",
+    "cases/rq07/readable/bindings.json": "fc99bd0f35e1d55f540356e4105e5a007e00ab666ec52111234a04a5310f9bbb",
+    "cases/rq07/readable/canonical-package.json": "d28b27cf7ff8900a5776f9e393fbf9a5b345ebcaf4b53b097d5de0b48531a053",
+    "cases/rq07/readable/closing-state.json": "651628732990b69d4bd75cae18971ac878839c2f2812923dc3df8e68192e4085",
+    "cases/rq07/readable/lineage.json": "38586b887f6084eb64454e789952e1e600ef95bc8757edb8ec27827cc2f22d6d",
+    "cases/rq07/readable/statement.json": "df06b1767b6ae90fbb93c62fe43406f4bbe5b34d7b081cf3e2489274e22e132a",
+    "cases/rq07/source/raw_acquisition_funding.csv": "ed4ecc44984fcb954630f50e359b1c6ecad10d5115961d1460c1751aed8a3deb",
+    "cases/rq07/source/raw_bank_receipts.csv": "d6ef50afb7f2f16e4cfedc5d21af370da63b3e4b89e65343b102595f80c34457",
+    "cases/rq07/source/raw_cash_applications.csv": "e0165cbe8f01594313ab655c067dfc8060c778811f35b52ae2e91f04253a3950",
+    "cases/rq07/source/raw_cost_lines.csv": "866b99113b1071df1b4785f20e94f03f0500bec2b9e97bcb7ddb5b1892667de3",
+    "cases/rq07/source/raw_invoice_lines.csv": "cab1d020d3467eb955c88291a1cbe2aa0f0a67973a8a41842cd0381c380c7cbb",
+    "cases/rq07/source/scenario.json": "28470ae6aff0ad1e3916cdc4bf5d140d86eda794a3c5080d8ab76317de717455",
+    "cases/rq07/statement.json": "df06b1767b6ae90fbb93c62fe43406f4bbe5b34d7b081cf3e2489274e22e132a",
+    "cases/sv/bindings.json": "4a9f4313b039e636aaf7367f7d43343b285c11e8b44f9f4f192a7a9ef038a03e",
+    "cases/sv/canonical-package.json": "d9384c1d8450422cab16886ffee9ec81718b1ee5b705b8d5e6e7f229a458bf44",
+    "cases/sv/closing-state.json": "1816a0622a40ddd779e67b90d02fc5b730da585c960294b68bf9526ed52e9dbd",
+    "cases/sv/lineage.json": "8fefc124decd173d1e4ea7262012168bb1de3265b5755b064e160fdd2bdb1f24",
+    "cases/sv/readable/bindings.json": "4a9f4313b039e636aaf7367f7d43343b285c11e8b44f9f4f192a7a9ef038a03e",
+    "cases/sv/readable/canonical-package.json": "9ddfffa0ef25dce205c3fde52c2112944b117317a4b4c8a9f5db8586ceeca64e",
+    "cases/sv/readable/closing-state.json": "62ce2cbbbde005f1eb10fe9739fbec4361f839df9064b91e6ee0341571965cb5",
+    "cases/sv/readable/lineage.json": "8fefc124decd173d1e4ea7262012168bb1de3265b5755b064e160fdd2bdb1f24",
+    "cases/sv/readable/statement.json": "7cf8ba397fd09919f0aa6af0598f6a3afb76bc5c787931c862868b1c25f44dce",
+    "cases/sv/rq07-readable.spl": "eb7c6d9713f20e073ce0521a7d27cb1e770d0f4ef3b3fec1f613848f1aa1a57a",
+    "cases/sv/rq07.spl": "25ee60e824461ec0bce0630eea9dc77947146e4e1239e9a2d23cb5324bb651aa",
+    "cases/sv/statement.json": "7cf8ba397fd09919f0aa6af0598f6a3afb76bc5c787931c862868b1c25f44dce",
+    "cases/sv/sv01-readable.spl": "b1071eb9128c45b55826ab9c0e9535f63ddc0f16a58297b662bee7de33695c29",
+    "cases/sv/sv01.spl": "0ecd2b31d1be9e8e3764cacc8e1135422fb32786bae8f8a3a1833db9615d6cec",
+    "cases/waterfall/README.md": "ce979fb852fe316b78d7c65f6473a1fb447996b6c739f3b476204926274a32d5",
+    "cases/waterfall/build_modules.py": "26f62e5932a1305f3a5927e3f90c73335e7df09478cbb83a2a1e7d1580803a4d",
+    "cases/waterfall/policy.md": "c545da1200b067ac25423389b092578b5303bced444aecb70bd14b8033c9e89f",
+    "cases/waterfall/priority-120-expected.json": "f965a7b9606791428f54d1e6946a907d159f67ba9e67f2e10ce69f6a97d0a4a0",
+    "cases/waterfall/priority-120.json": "9fe3c0d5214c50477a1c903a36a30d24813e3dbe4d688c6d74f9bbc518125921",
+    "cases/waterfall/pro-rata-120-expected.json": "cea98071c71ae829ecd87ce3e5271b36502dc3d5fa0fb32991ae46074ba1a1f3",
+    "cases/waterfall/pro-rata-120.json": "e7a2dbc6240af47b0aa51d8d21ccb2616e14a03360ee40f9079c72fdd8713649",
+    "cases/waterfall/proportional-module.json": "bbc535fbb36bcfc55325cd9a772c33e859e83209056a94479fc901bb390509a5",
+    "cases/waterfall/proportional.spl": "c210c11328700083e1776aa21c2eb2f4d5ba2a9ce0b4850375a8729c06c27efd",
+    "cases/waterfall/roundlake-like-p1-expected.json": "a88d7ed73115c5d30b1bc1e917437df3e06ab1ae7e31834c46f6d09cc3625ece",
+    "cases/waterfall/roundlake-like-p1.json": "987bd2a71b5d4d517107a5d1a4ddf06f73556122487699f4c9e0c583d45afed8",
+    "cases/waterfall/roundlake-like-p2-expected.json": "8a220a233b9e55d21acbf951d3379267d5d8c2567526c72a7cde17e9b5a4204c",
+    "cases/waterfall/roundlake-like-p2.json": "4f4962b7c0b868a7f4094f4b1046c28cd7516ed77d78070b9a33322bb220c574",
+    "cases/waterfall/waterfall-module.json": "4486bc5b58e4f66f1936e4b859ca2fc5fc20af9d7d0d94a49c71d3dfec909572",
+    "cases/waterfall/waterfall.spl": "0f98cee414aa6427f9a69d22c6d2dff9b805cbc2125d20102bccc39599493ab8",
+    "docs/spl/README.md": "604b0ddb3aae10c81fa5239c725020d89332c5b42294c2b5da06fd1b120ca72a",
+    "docs/spl/baselines/implementation-0.2.0-dev.json": "979f6e08069954e60bd44980685c3a67089a458e3dd8ba10dc90becd00d2fc4d",
+    "docs/spl/baselines/implementation-0.3.0-dev.json": "fb52fe296d013065ce15ea7444bcd3d06ba824168a15bf7f213587e3be87d9fb",
+    "docs/spl/compiler-handoff.md": "01b94e3c2941b293a140a648546d8059fd421cf8e92375dd276ba0d0429e86f6",
+    "docs/spl/conformance-ledger.md": "7933c4e00f21e2d4913751e2d0781d2cfb30046c6336e4a6bab79e9e88f00d17",
+    "docs/spl/core-and-compilation.md": "d35b3aec883ebdcad50fb1cc36a02ee3e73ddc51d095d9680b4ceb4ca26a4faa",
+    "docs/spl/data-and-run-contract.md": "5f7fc2c44d3b50a44bde2b3f235cf26b947b4f2bdb93eee6a2114ce4eb59b5f3",
+    "docs/spl/development-plan.md": "33b37210531d8eb88bf2dad51bd2d85c26ec7fccefc234c42fabaee1688b2ce8",
+    "docs/spl/extensibility-experiment.md": "a42ba0b6f302a15197f176d7b2d944fdeff60e38cd2c140efcbcd53e9a8e69e0",
+    "docs/spl/folds-and-linking.md": "7b8fc46f8ad58eba8597528fcd23c7ec31a5c59dfe5a61ae6e9c7dbe43a9c89a",
+    "docs/spl/implementation-answers.md": "f0a9bc7fb2040dbce9cceadd3d49190ec71355f7b74de6e3bc92b0dc00344fc8",
+    "docs/spl/implementation-questions.md": "e19d4811b4b58af68a5ca99b226762cecdad4dbd29ce6030e0913f193bac1216",
+    "docs/spl/implementation.md": "1c8e666853d0470f6f70cd173d643fdee3eced55af8b9f93101d73859f8fa1a5",
+    "docs/spl/iteration-log.md": "8888e9730795beb32060da419c4307dc7a0325f90ba977bf8b9438776f5c060f",
+    "docs/spl/language-reference.md": "c4a98a987f2c90e67e5e39575742cde482f37e1ef5d34cd767fc63a7ac08ab15",
+    "docs/spl/module-interface-v1.md": "38875eaf530c15bbec3ad67b1401e34cf627a0968c1b0e76265497d5f5998a9f",
+    "docs/spl/next-core-semantics.md": "0947f346a9475a5c05dbe8470cba5d4644ca40216526d599164b425df7b05bfc",
+    "docs/spl/policies/lg-cleared.md": "c13d63e8496981bb635a339a4578a1e0d49bbf85da5cc60623b01e572758b0a7",
+    "docs/spl/policies/manifest.json": "e440900fe4d74341b8c8a6f925ee012220d1a4b2e360c460a510575a88e79648",
+    "docs/spl/policies/rq07-posted.md": "4a19b9ec065fb1e6e4bafa605f0a9392ac7c14790c9e27cc4d47712de3c4cac9",
+    "docs/spl/policies/sv-incurred.md": "fb3e2f04fefb08bb51d17e3367354443f7d312c9daf99a8f6acf8c07b780aee8",
+    "docs/spl/policy-modules.md": "c74180dcdc16d3c5cad2e8cf9b431f1a04d8e089377fbbdef4e81e978e090a53",
+    "docs/spl/readable-language.md": "26e1dbc2c205a9419dd525947556e028660f93b6595c40de1d0a065ee4edbbbe",
+    "docs/spl/release-scope-ld02.md": "a513b7a38aa098a33d0e24692c660b09d5e445fe348f573836adee3c447b1022",
+    "docs/spl/requirements-and-validation.md": "2ca63db9b7297186c6549a8cad1cdecd03d5e132aad135d03397d51f26d03b2b",
+    "docs/spl/research-answers-2026-11-20.md": "da8096cad86f3cf40457f5e48bde36dc503944c4c4a99f69c03399f1bd4550b3",
+    "docs/spl/research-followups.md": "960a874aaf1173ca5deddfe6af50faab382869da51950c0f15895396e718781c",
+    "docs/spl/research-questions.md": "2500131126542fee03549d0e38073cdf3b260499a98b90c56d89f8bbf4698a79",
+    "docs/spl/research-request-rr03.md": "9075ca9749928db3695ddc46b04f8ae2a8d280986d508b37f78a7167a7be5d93",
+    "docs/spl/rr03-response-integration.md": "6b0d13bc4f1336f65ad7bf953755c940983762b36d8ce9a1c550f3d8cf2d1c55",
+    "docs/spl/vendor-feature-evidence.md": "a86dd39ba341654bdac1eaf378a22813f1875fd84dffa7bcde9b2dba135e6ea9",
+    "lakefile.toml": "396287dceda1e6a2beeebb72224209b2dd04ef6ff6ce0769e52516b49b081077",
+    "lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+    "oracles/__init__.py": "ce44ff7e7c474fe50ee1d3e3dfb95091b8ea1313eaa93e28e8954abb970c8880",
+    "oracles/r1.py": "849b40d2670a201b3710dc5949ea3a56873e0d737984afb869aaca9c123d7cd3",
+    "oracles/revision.py": "18d34e8f1aff8433935b481cb25ad89341afbcfa86e253d22fa446c3238c6ccc",
+    "oracles/waterfall.py": "13f138c222e614794941596d13d294b3b0892a39dfca0a66f7d7a23ee7721de5",
+    "schemas/spl-bounded-package.schema.json": "ae4a5dc08e6f9c089d86627e9a2879c037303252396e3c0c1a10ec3876b7abac",
+    "schemas/spl-module-descriptor.schema.json": "8bc8236e58a0741b2f78d0db49ebcf0d761a75f66857657fc2d3afabd9712934",
+    "schemas/spl-module-package.schema.json": "8c2e8fbe8b036d87521c14e76a5550847e0be40683fef01aae9fb587cbeca4f5",
+    "scripts/r1_demo.py": "a4a3863ebd62e3e9acf66a803b7b48a9de7309b7a5d84dfe5c52c9f08b2a5c29",
+    "scripts/spl_benchmark.py": "27b9d3daba6d52f9dedff9e6b3837603d0cd6077f9b831153c15694f9c234b6c",
+    "scripts/spl_check.py": "91addd0026271606ecac44ee326b3ac58f8baecba4bf69b0ea8257af2fff9517",
+    "scripts/spl_demo.py": "77aa0aa37220d86d2bf3e8e9e62450a43917ca5ff7ecf41c518c08033f653ff2",
+    "scripts/spl_freeze.py": "b3a0e156bc7921b28041ca03768dcb0588c1e6b32d3a0ce30a105e779e7911b7",
+    "spl_compiler/__init__.py": "f33e35070284521040b29e1f306f734cb986e14c3e8a71bbccb88d397dc09fdd",
+    "spl_compiler/__main__.py": "024faf6e390b01e5cd006c58fe9ef8ce149353d467f01dd8aad186e3e4a18359",
+    "spl_compiler/adapter.py": "a82b9d700cc9de2937d63fb7a4e90937ea8e43ac9fc4d2b80deef07b1bcb78f4",
+    "spl_compiler/checker.py": "b60aebf1aa7e8c6e7b1c4060d16aae92b88155815de9968a336d7705d7fabca7",
+    "spl_compiler/codecs.py": "d20e393035f30c0bf9caf6d23c1b72815144b87370c24b4ac91ab793161a1cda",
+    "spl_compiler/emitter.py": "5497a668051c708987e05904f86f5ffc79f415a5bf4e76bd86b6bf783832d1d5",
+    "spl_compiler/evaluator.py": "0dd2cc331324f99e9e6b7c1a0908dc7a49c3d2b6c41d460c80dcdfc860df4883",
+    "spl_compiler/fixtures.py": "97c2c6b06f779119f7ba953c26c383ebf3bb185a071e224dd2334cf949172261",
+    "spl_compiler/instant.py": "d640cc618ab57abf56e5e934d49dd1fabe9f8a5e7ceb416b369fb2779de1c124",
+    "spl_compiler/lean_tools.py": "0eed6e4a93b8fe2930cb58c031e3d7c375aec8fbbf892c323b0ef0b33dec218a",
+    "spl_compiler/linker.py": "04c10461a6b7ce0f0a7625eb92dd19e40a266fb497edd2a0efa82bead7074614",
+    "spl_compiler/mechanisms.py": "7fa7d8fa0b0682a19cc1ef6f7584a3caf000b89e06b7d0890490dc2a52b89593",
+    "spl_compiler/model.py": "5ae136f5bd171885d0e8e4f5fd3a06b19827b28d08e69b8d92c0dcb0507844f3",
+    "spl_compiler/modules.py": "60d0967022aca794be23b1bc37bb29fae172ce408761b93980860439fcdfe05a",
+    "spl_compiler/parser.py": "4cb6f08133cef687b51e2c91b616afa11060498002e98c1f3cdc89671a2b4993",
+    "spl_compiler/policies.py": "f73f3413724151ee9a11302d955b467a73297569f4cca1c8f5686c192a1ee9e4",
+    "spl_compiler/readable.py": "a9bf7a19b838f93e66e5f5c4f5c8677e65824e328f2a861ab694fb16a948a4b7",
+    "spl_compiler/run.py": "73c70578996283377c6a03ee1bf623e3d4e3a3adf773b0c990f1a9d2194df9e0",
+    "spl_compiler/schema.py": "02ae054bfe9a14d6ada4e6bd6835607dae05ef06628b241dbf765742e914c396"
+  },
+  "registered_methods": [
+    {
+      "artifact_subdirectory": "priority-rates",
+      "case": "priority-rates",
+      "module_closure": [
+        {
+          "id": "cedar:priority-rates",
+          "locator": "cases/modules/priority-rates/descriptor.json",
+          "revision": "1",
+          "sha256": "ffff7caaed2482bc136e90c5751077cc06502e954749e3b2c2a70ee6582c49b0"
+        }
+      ],
+      "result_digest": "91508b55715e2cbb56ede9bed96e67cfe4de1d9a094ea980c85a890be1c1ddfa",
+      "results": {
+        "rate_detail": {
+          "rate": "0.4",
+          "total": "40"
+        },
+        "reconciliation": true,
+        "statements": [
+          {
+            "agreement_id": "cedar-distribution",
+            "asset_id": "cedar-film",
+            "earned": "20",
+            "participant_id": "oak-participant",
+            "pool_id": "willow-screen-trust"
+          },
+          {
+            "agreement_id": "cedar-distribution",
+            "asset_id": "cedar-film",
+            "earned": "20",
+            "participant_id": "pine-participant",
+            "pool_id": "willow-screen-trust"
+          }
+        ]
+      },
+      "semantic_run_digest": "478550a25968c0864b3c7a096b6930625b7bb778eb5ae900787d3543e55decbd",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "angel",
+      "case": "angel",
+      "module_closure": [
+        {
+          "id": "r1:weighted-allocation",
+          "locator": "cases/r1/weighted-allocation-module.json",
+          "revision": "1",
+          "sha256": "a8550f4d4bbf347f96e54bbca1ffbe6dc6ebe15436b45c933146804319edf5a7"
+        },
+        {
+          "id": "r1:angel-guild",
+          "locator": "cases/r1/angel-guild-module.json",
+          "revision": "1",
+          "sha256": "bff550766737c0822afe387f4d3786f51b70efc17597698c03a92c13b7bb05a3"
+        }
+      ],
+      "result_digest": "f0cbf9d8450a3c1198ed4855ffc335b972e5770ee7b02784625fd02db3c82ccc",
+      "results": {
+        "comparison": {
+          "allocation_residual": "0",
+          "angel_share": "500",
+          "filmmaker_pool": "500",
+          "focal_title_amount": "85",
+          "gross_guild": "1500",
+          "marketing": "375",
+          "net_guild": "1000",
+          "other_costs": "125",
+          "other_titles_amount": "415",
+          "qualified_minutes": "1000"
+        },
+        "settlements": [
+          {
+            "agreement_id": "angel-010-mofac-synthetic",
+            "asset_id": "king-of-kings",
+            "earned": "85",
+            "participant_id": "recipient-king-of-kings",
+            "payable": "85",
+            "period": {
+              "end": "2025-07-01",
+              "start": "2025-04-01"
+            },
+            "pool_id": "guild-platform-pool"
+          },
+          {
+            "agreement_id": "angel-010-mofac-synthetic",
+            "asset_id": "other-titles",
+            "earned": "415",
+            "participant_id": "recipient-other-titles",
+            "payable": "415",
+            "period": {
+              "end": "2025-07-01",
+              "start": "2025-04-01"
+            },
+            "pool_id": "guild-platform-pool"
+          }
+        ],
+        "titles": [
+          {
+            "amount": "85",
+            "asset_id": "king-of-kings",
+            "minutes": "170",
+            "participant_id": "recipient-king-of-kings"
+          },
+          {
+            "amount": "415",
+            "asset_id": "other-titles",
+            "minutes": "830",
+            "participant_id": "recipient-other-titles"
+          }
+        ]
+      },
+      "semantic_run_digest": "02eb339bca85443e4caba5dabc85d2e64dc27e7894c5c08d378592045b3b3e0b",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "angel-other-usage",
+      "case": "angel-other-usage",
+      "module_closure": [
+        {
+          "id": "r1:weighted-allocation",
+          "locator": "cases/r1/weighted-allocation-module.json",
+          "revision": "1",
+          "sha256": "a8550f4d4bbf347f96e54bbca1ffbe6dc6ebe15436b45c933146804319edf5a7"
+        },
+        {
+          "id": "r1:angel-guild",
+          "locator": "cases/r1/angel-guild-module.json",
+          "revision": "1",
+          "sha256": "bff550766737c0822afe387f4d3786f51b70efc17597698c03a92c13b7bb05a3"
+        }
+      ],
+      "result_digest": "4df92a9cb4b052352427b193a426ffba9f6eeb1bccfa633a02a61a731f00ecb2",
+      "results": {
+        "comparison": {
+          "allocation_residual": "0",
+          "angel_share": "500",
+          "filmmaker_pool": "500",
+          "focal_title_amount": "42.5",
+          "gross_guild": "1500",
+          "marketing": "375",
+          "net_guild": "1000",
+          "other_costs": "125",
+          "other_titles_amount": "457.5",
+          "qualified_minutes": "2000"
+        },
+        "settlements": [
+          {
+            "agreement_id": "angel-010-mofac-synthetic",
+            "asset_id": "king-of-kings",
+            "earned": "42.5",
+            "participant_id": "recipient-king-of-kings",
+            "payable": "42.5",
+            "period": {
+              "end": "2025-07-01",
+              "start": "2025-04-01"
+            },
+            "pool_id": "guild-platform-pool"
+          },
+          {
+            "agreement_id": "angel-010-mofac-synthetic",
+            "asset_id": "other-titles",
+            "earned": "457.5",
+            "participant_id": "recipient-other-titles",
+            "payable": "457.5",
+            "period": {
+              "end": "2025-07-01",
+              "start": "2025-04-01"
+            },
+            "pool_id": "guild-platform-pool"
+          }
+        ],
+        "titles": [
+          {
+            "amount": "42.5",
+            "asset_id": "king-of-kings",
+            "minutes": "170",
+            "participant_id": "recipient-king-of-kings"
+          },
+          {
+            "amount": "457.5",
+            "asset_id": "other-titles",
+            "minutes": "1830",
+            "participant_id": "recipient-other-titles"
+          }
+        ]
+      },
+      "semantic_run_digest": "d706112b9f33a2ed1122e7fe96d0a0cb5177e4271305ce282dc1e4075fcd7402",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "mqp",
+      "case": "mqp",
+      "module_closure": [
+        {
+          "id": "r1:mqp-ordered",
+          "locator": "cases/r1/mqp-ordered-module.json",
+          "revision": "1",
+          "sha256": "442ce91da1f781e9ecf7b2436c129aed79e70f0338e14af272370829cdc10ab0"
+        }
+      ],
+      "result_digest": "2776969cefbf18827b0147c9e3a7a58016eb06ca1382fc680d92b56651fd9a9b",
+      "results": {
+        "comparison": {
+          "adjusted_receipts_before_RPPA": "260",
+          "agreement_id": "mqp-lionsgate-synthetic",
+          "closing_actual_paid": "1000",
+          "closing_fee_available_paid": "1000",
+          "eligible_receipts": "300",
+          "fee": "40",
+          "period": {
+            "end": "2008-04-01",
+            "start": "2008-01-01"
+          },
+          "pool_id": "uncrossed-project-pool",
+          "project_id": "project-a",
+          "threshold_comparison": "at_least",
+          "trigger": "agreement_date"
+        },
+        "history": [
+          {
+            "actual_paid": "900",
+            "fee_available_paid": "900",
+            "id": "accrual"
+          },
+          {
+            "actual_paid": "900",
+            "fee_available_paid": "900",
+            "id": "receipt-before-payment"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "900",
+            "id": "actual-payment"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "900",
+            "id": "dispute"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "900",
+            "id": "receipt-during-dispute"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "agreement"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "receipt-after-agreement"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "excluded-principal-license"
+          }
+        ],
+        "receipt_lines": [
+          {
+            "adjusted_receipts": "90",
+            "amount": "100",
+            "fee": "10",
+            "fee_available_paid": "900",
+            "id": "receipt-before-payment",
+            "rate": "0.1"
+          },
+          {
+            "adjusted_receipts": "90",
+            "amount": "100",
+            "fee": "10",
+            "fee_available_paid": "900",
+            "id": "receipt-during-dispute",
+            "rate": "0.1"
+          },
+          {
+            "adjusted_receipts": "80",
+            "amount": "100",
+            "fee": "20",
+            "fee_available_paid": "1000",
+            "id": "receipt-after-agreement",
+            "rate": "0.2"
+          }
+        ]
+      },
+      "semantic_run_digest": "0614dd492f38f4fef9750aa69ab7045d9082e7dc4ba1a35fd0fee70c830100b7",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "mqp-actual-date",
+      "case": "mqp-actual-date",
+      "module_closure": [
+        {
+          "id": "r1:mqp-ordered",
+          "locator": "cases/r1/mqp-ordered-module.json",
+          "revision": "1",
+          "sha256": "442ce91da1f781e9ecf7b2436c129aed79e70f0338e14af272370829cdc10ab0"
+        }
+      ],
+      "result_digest": "8693123e1ca78a6574f26d624a66d82b84237114c245489e1cd9c7d1ab873394",
+      "results": {
+        "comparison": {
+          "adjusted_receipts_before_RPPA": "250",
+          "agreement_id": "mqp-lionsgate-synthetic",
+          "closing_actual_paid": "1000",
+          "closing_fee_available_paid": "1000",
+          "eligible_receipts": "300",
+          "fee": "50",
+          "period": {
+            "end": "2008-04-01",
+            "start": "2008-01-01"
+          },
+          "pool_id": "uncrossed-project-pool",
+          "project_id": "project-a",
+          "threshold_comparison": "at_least",
+          "trigger": "actual_date"
+        },
+        "history": [
+          {
+            "actual_paid": "900",
+            "fee_available_paid": "900",
+            "id": "accrual"
+          },
+          {
+            "actual_paid": "900",
+            "fee_available_paid": "900",
+            "id": "receipt-before-payment"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "actual-payment"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "dispute"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "receipt-during-dispute"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "agreement"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "receipt-after-agreement"
+          },
+          {
+            "actual_paid": "1000",
+            "fee_available_paid": "1000",
+            "id": "excluded-principal-license"
+          }
+        ],
+        "receipt_lines": [
+          {
+            "adjusted_receipts": "90",
+            "amount": "100",
+            "fee": "10",
+            "fee_available_paid": "900",
+            "id": "receipt-before-payment",
+            "rate": "0.1"
+          },
+          {
+            "adjusted_receipts": "80",
+            "amount": "100",
+            "fee": "20",
+            "fee_available_paid": "1000",
+            "id": "receipt-during-dispute",
+            "rate": "0.2"
+          },
+          {
+            "adjusted_receipts": "80",
+            "amount": "100",
+            "fee": "20",
+            "fee_available_paid": "1000",
+            "id": "receipt-after-agreement",
+            "rate": "0.2"
+          }
+        ]
+      },
+      "semantic_run_digest": "e37221862b37fc6754525ea452a42426bbd1a8e547ff040c0480c4bc71588cf0",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "advance-issues",
+      "case": "advance-issues",
+      "module_closure": [
+        {
+          "id": "synthetic:advance-issues",
+          "locator": "cases/mechanisms/advance-issues-module.json",
+          "revision": "1",
+          "sha256": "de6d9d98b99d336b708f54102a3acf5146c864e23b2bf39f32c695f85f22eca0"
+        }
+      ],
+      "result_digest": "7269804f2c5d720872e2142bcf1268a00635e643621dfde467d1ecdb558fa9c1",
+      "results": {
+        "advance_issue_audit": [
+          {
+            "addition": "15000",
+            "disbursement_id": "disbursement-1",
+            "event_id": "issue-1",
+            "evidence_available": true,
+            "evidence_observations": [
+              "2026-07-02T10:00:00Z"
+            ],
+            "evidence_ref": "evidence-1",
+            "funded_date": "2026-06-30",
+            "funded_in_period": true,
+            "included": true,
+            "issue_available": true,
+            "issue_id": "advance-1",
+            "issue_observed_at": "2026-07-02T09:00:00Z",
+            "source_title_id": "title-a"
+          }
+        ],
+        "advances": {
+          "additions": "15000",
+          "agreement_id": "synthetic-deal",
+          "available": "15000",
+          "balance_purpose": "participation_prepayment",
+          "closing_balance": "5000",
+          "currency": "USD",
+          "earned": "10000",
+          "observation_cutoff": "2026-07-03T00:00:00Z",
+          "opening_balance": "0",
+          "participant_id": "participant",
+          "payable": "0",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "recovered": "10000"
+        }
+      },
+      "semantic_run_digest": "6b046789b15cb6c97297234fc96b5094814e5addccb2741738e5641ef3fd00cb",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "reserve-vintage",
+      "case": "reserve-vintage",
+      "module_closure": [
+        {
+          "id": "synthetic:reserve-vintage",
+          "locator": "cases/mechanisms/reserve-vintage-module.json",
+          "revision": "1",
+          "sha256": "34c6220bfe0792cce3e7ffd40e71086c262c6dff6bf78049e9c1c4ca7ab0dbb4"
+        }
+      ],
+      "result_digest": "04c6b968779ea196b14e2695c72d777c031e45f2aafd21205a9cbeb84c561083",
+      "results": {
+        "reserve_ledger": {
+          "additions": "20",
+          "agreement_id": "synthetic-deal",
+          "applications": "7",
+          "closing_balance": "20",
+          "currency": "USD",
+          "opening_balance": "12",
+          "participant_id": "participant",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "purpose": "return_reserve",
+          "releases": "5"
+        },
+        "reserve_vintage_ledger": [
+          {
+            "additions": "0",
+            "agreement_id": "synthetic-deal",
+            "applications": "7",
+            "closing_balance": "0",
+            "currency": "USD",
+            "opening_balance": "12",
+            "participant_id": "participant",
+            "period": {
+              "end": "2026-07-01",
+              "start": "2026-04-01"
+            },
+            "pool_id": "pool",
+            "purpose": "return_reserve",
+            "releases": "5",
+            "vintage_id": "vintage-1"
+          },
+          {
+            "additions": "20",
+            "agreement_id": "synthetic-deal",
+            "applications": "0",
+            "closing_balance": "20",
+            "currency": "USD",
+            "opening_balance": "0",
+            "participant_id": "participant",
+            "period": {
+              "end": "2026-07-01",
+              "start": "2026-04-01"
+            },
+            "pool_id": "pool",
+            "purpose": "return_reserve",
+            "releases": "0",
+            "vintage_id": "vintage-2"
+          }
+        ]
+      },
+      "semantic_run_digest": "3be0b9382071df08f5d62061f5001a9ec674d0f558407d0d6f864921c34420a8",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "correction-payments",
+      "case": "correction-payments",
+      "module_closure": [
+        {
+          "id": "synthetic:correction-payments",
+          "locator": "cases/mechanisms/correction-payments-module.json",
+          "revision": "1",
+          "sha256": "d008f789138d09823ab5d74146dcabff9e01d92e95805e0f292465dd4c0ef445"
+        }
+      ],
+      "result_digest": "f923f2b9d58c754302447ec8a28c410fc0a90068d598070443ee822931947300",
+      "results": {
+        "obligation_reconciliation": {
+          "actual_paid": "80",
+          "agreement_id": "synthetic-deal",
+          "correction_delta": "-10",
+          "obligation": "obligation-1",
+          "original_issued": "100",
+          "participant_id": "participant",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "remaining_obligation": "10",
+          "revised_entitlement": "90"
+        }
+      },
+      "semantic_run_digest": "f60ebf3b7ab2317d56b3e947f6933e5cf8d4b0c7beb55b746baf2f96b04142b1",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "waterfall-priority-120",
+      "case": "waterfall-priority-120",
+      "module_closure": [
+        {
+          "id": "waterfall:proportional",
+          "locator": "cases/waterfall/proportional-module.json",
+          "revision": "1",
+          "sha256": "bbc535fbb36bcfc55325cd9a772c33e859e83209056a94479fc901bb390509a5"
+        },
+        {
+          "id": "waterfall:waterfall",
+          "locator": "cases/waterfall/waterfall-module.json",
+          "revision": "1",
+          "sha256": "4486bc5b58e4f66f1936e4b859ca2fc5fc20af9d7d0d94a49c71d3dfec909572"
+        }
+      ],
+      "result_digest": "18f205f60f33fea229e2952081263c41e101b40b0e1334c886f54178f7a09cde",
+      "results": {
+        "claim_movements": [
+          {
+            "available_after": "20",
+            "available_before": "120",
+            "closing_balance": "0",
+            "id": "capital-claim-A",
+            "opening_balance": "100",
+            "participant_id": "capital-A",
+            "recovered": "100"
+          },
+          {
+            "available_after": "0",
+            "available_before": "20",
+            "closing_balance": "80",
+            "id": "capital-claim-B",
+            "opening_balance": "100",
+            "participant_id": "capital-B",
+            "recovered": "20"
+          }
+        ],
+        "control": {
+          "allocated_residual": "0",
+          "available_funds": "120",
+          "closing_claims": "80",
+          "deductions": "0",
+          "fee": "0",
+          "gross": "120",
+          "opening_claims": "200",
+          "recovered": "120",
+          "residual": "0"
+        },
+        "residual_lines": [
+          {
+            "participant_id": "capital-A",
+            "payable": "100",
+            "recovered": "100",
+            "residual": "0"
+          },
+          {
+            "participant_id": "capital-B",
+            "payable": "20",
+            "recovered": "20",
+            "residual": "0"
+          }
+        ],
+        "settlements": [
+          {
+            "agreement_id": "selected-synthetic-waterfall",
+            "asset_id": "synthetic-film",
+            "capital_recovery": "100",
+            "participant_id": "capital-A",
+            "payable": "100",
+            "period": {
+              "end": "2026-02-01",
+              "start": "2026-01-01"
+            },
+            "pool_id": "capital-pool",
+            "residual": "0"
+          },
+          {
+            "agreement_id": "selected-synthetic-waterfall",
+            "asset_id": "synthetic-film",
+            "capital_recovery": "20",
+            "participant_id": "capital-B",
+            "payable": "20",
+            "period": {
+              "end": "2026-02-01",
+              "start": "2026-01-01"
+            },
+            "pool_id": "capital-pool",
+            "residual": "0"
+          }
+        ]
+      },
+      "semantic_run_digest": "1b67f0668f7e823bc2ad03fe9ae8730665baf25961f4a14fa17f857d79ae3301",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "waterfall-pro-rata-120",
+      "case": "waterfall-pro-rata-120",
+      "module_closure": [
+        {
+          "id": "waterfall:proportional",
+          "locator": "cases/waterfall/proportional-module.json",
+          "revision": "1",
+          "sha256": "bbc535fbb36bcfc55325cd9a772c33e859e83209056a94479fc901bb390509a5"
+        },
+        {
+          "id": "waterfall:waterfall",
+          "locator": "cases/waterfall/waterfall-module.json",
+          "revision": "1",
+          "sha256": "4486bc5b58e4f66f1936e4b859ca2fc5fc20af9d7d0d94a49c71d3dfec909572"
+        }
+      ],
+      "result_digest": "3bf98e5dfd2ba2b108a1d767db8b5fce110c38532df002bb022a01d6705b41d3",
+      "results": {
+        "claim_movements": [
+          {
+            "available_after": "60",
+            "available_before": "120",
+            "closing_balance": "40",
+            "id": "capital-claim-A",
+            "opening_balance": "100",
+            "participant_id": "capital-A",
+            "recovered": "60"
+          },
+          {
+            "available_after": "0",
+            "available_before": "60",
+            "closing_balance": "40",
+            "id": "capital-claim-B",
+            "opening_balance": "100",
+            "participant_id": "capital-B",
+            "recovered": "60"
+          }
+        ],
+        "control": {
+          "allocated_residual": "0",
+          "available_funds": "120",
+          "closing_claims": "80",
+          "deductions": "0",
+          "fee": "0",
+          "gross": "120",
+          "opening_claims": "200",
+          "recovered": "120",
+          "residual": "0"
+        },
+        "residual_lines": [
+          {
+            "participant_id": "capital-A",
+            "payable": "60",
+            "recovered": "60",
+            "residual": "0"
+          },
+          {
+            "participant_id": "capital-B",
+            "payable": "60",
+            "recovered": "60",
+            "residual": "0"
+          }
+        ],
+        "settlements": [
+          {
+            "agreement_id": "selected-synthetic-waterfall",
+            "asset_id": "synthetic-film",
+            "capital_recovery": "60",
+            "participant_id": "capital-A",
+            "payable": "60",
+            "period": {
+              "end": "2026-02-01",
+              "start": "2026-01-01"
+            },
+            "pool_id": "capital-pool",
+            "residual": "0"
+          },
+          {
+            "agreement_id": "selected-synthetic-waterfall",
+            "asset_id": "synthetic-film",
+            "capital_recovery": "60",
+            "participant_id": "capital-B",
+            "payable": "60",
+            "period": {
+              "end": "2026-02-01",
+              "start": "2026-01-01"
+            },
+            "pool_id": "capital-pool",
+            "residual": "0"
+          }
+        ]
+      },
+      "semantic_run_digest": "2a697b6c25a6b56517220bf36bf5116e7ea7dfeb3b63c5ce8fcb2600234d08a9",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "waterfall-roundlake-like-p1",
+      "case": "waterfall-roundlake-like-p1",
+      "module_closure": [
+        {
+          "id": "waterfall:proportional",
+          "locator": "cases/waterfall/proportional-module.json",
+          "revision": "1",
+          "sha256": "bbc535fbb36bcfc55325cd9a772c33e859e83209056a94479fc901bb390509a5"
+        },
+        {
+          "id": "waterfall:waterfall",
+          "locator": "cases/waterfall/waterfall-module.json",
+          "revision": "1",
+          "sha256": "4486bc5b58e4f66f1936e4b859ca2fc5fc20af9d7d0d94a49c71d3dfec909572"
+        }
+      ],
+      "result_digest": "7541f04aec476b1315933693a34f2cb58fc76941c5ac222b601d29839069ffbe",
+      "results": {
+        "claim_movements": [
+          {
+            "available_after": "12",
+            "available_before": "60",
+            "closing_balance": "32",
+            "id": "capital-claim-A",
+            "opening_balance": "80",
+            "participant_id": "capital-A",
+            "recovered": "48"
+          },
+          {
+            "available_after": "0",
+            "available_before": "12",
+            "closing_balance": "8",
+            "id": "capital-claim-B",
+            "opening_balance": "20",
+            "participant_id": "capital-B",
+            "recovered": "12"
+          }
+        ],
+        "control": {
+          "allocated_residual": "0",
+          "available_funds": "60",
+          "closing_claims": "40",
+          "deductions": "15",
+          "fee": "25",
+          "gross": "100",
+          "opening_claims": "100",
+          "recovered": "60",
+          "residual": "0"
+        },
+        "residual_lines": [
+          {
+            "participant_id": "capital-A",
+            "payable": "48",
+            "recovered": "48",
+            "residual": "0"
+          },
+          {
+            "participant_id": "capital-B",
+            "payable": "12",
+            "recovered": "12",
+            "residual": "0"
+          }
+        ],
+        "settlements": [
+          {
+            "agreement_id": "selected-synthetic-waterfall",
+            "asset_id": "synthetic-film",
+            "capital_recovery": "48",
+            "participant_id": "capital-A",
+            "payable": "48",
+            "period": {
+              "end": "2026-02-01",
+              "start": "2026-01-01"
+            },
+            "pool_id": "capital-pool",
+            "residual": "0"
+          },
+          {
+            "agreement_id": "selected-synthetic-waterfall",
+            "asset_id": "synthetic-film",
+            "capital_recovery": "12",
+            "participant_id": "capital-B",
+            "payable": "12",
+            "period": {
+              "end": "2026-02-01",
+              "start": "2026-01-01"
+            },
+            "pool_id": "capital-pool",
+            "residual": "0"
+          }
+        ]
+      },
+      "semantic_run_digest": "9521ebb9f9b67315d4950908ebf87a4602f672d4a3dc3355f04ad13150e82c05",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "waterfall-roundlake-like-p2",
+      "case": "waterfall-roundlake-like-p2",
+      "module_closure": [
+        {
+          "id": "waterfall:proportional",
+          "locator": "cases/waterfall/proportional-module.json",
+          "revision": "1",
+          "sha256": "bbc535fbb36bcfc55325cd9a772c33e859e83209056a94479fc901bb390509a5"
+        },
+        {
+          "id": "waterfall:waterfall",
+          "locator": "cases/waterfall/waterfall-module.json",
+          "revision": "1",
+          "sha256": "4486bc5b58e4f66f1936e4b859ca2fc5fc20af9d7d0d94a49c71d3dfec909572"
+        }
+      ],
+      "result_digest": "5e583698df9b9cc2fe5c7e9b40f80a4d3dc78ddac89a8acc4f183df1eed36274",
+      "results": {
+        "claim_movements": [
+          {
+            "available_after": "43",
+            "available_before": "75",
+            "closing_balance": "0",
+            "id": "capital-claim-A",
+            "opening_balance": "32",
+            "participant_id": "capital-A",
+            "recovered": "32"
+          },
+          {
+            "available_after": "35",
+            "available_before": "43",
+            "closing_balance": "0",
+            "id": "capital-claim-B",
+            "opening_balance": "8",
+            "participant_id": "capital-B",
+            "recovered": "8"
+          }
+        ],
+        "control": {
+          "allocated_residual": "35",
+          "available_funds": "75",
+          "closing_claims": "0",
+          "deductions": "0",
+          "fee": "25",
+          "gross": "100",
+          "opening_claims": "40",
+          "recovered": "40",
+          "residual": "35"
+        },
+        "residual_lines": [
+          {
+            "participant_id": "capital-A",
+            "payable": "49.5",
+            "recovered": "32",
+            "residual": "17.5"
+          },
+          {
+            "participant_id": "capital-B",
+            "payable": "25.5",
+            "recovered": "8",
+            "residual": "17.5"
+          }
+        ],
+        "settlements": [
+          {
+            "agreement_id": "selected-synthetic-waterfall",
+            "asset_id": "synthetic-film",
+            "capital_recovery": "32",
+            "participant_id": "capital-A",
+            "payable": "49.5",
+            "period": {
+              "end": "2026-03-01",
+              "start": "2026-02-01"
+            },
+            "pool_id": "capital-pool",
+            "residual": "17.5"
+          },
+          {
+            "agreement_id": "selected-synthetic-waterfall",
+            "asset_id": "synthetic-film",
+            "capital_recovery": "8",
+            "participant_id": "capital-B",
+            "payable": "25.5",
+            "period": {
+              "end": "2026-03-01",
+              "start": "2026-02-01"
+            },
+            "pool_id": "capital-pool",
+            "residual": "17.5"
+          }
+        ]
+      },
+      "semantic_run_digest": "2087043c00aecfc11f5880e49e45c48f20a3e11edad66613a67cfd51f3f4121d",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "authorized-revision",
+      "case": "authorized-revision",
+      "module_closure": [
+        {
+          "id": "r1:restatement",
+          "locator": "cases/revision/restatement-module.json",
+          "revision": "1",
+          "sha256": "23ff299b2efb6a0283bc13f373b4ae4c4bf8a5bd307321741a730671ae71395e"
+        }
+      ],
+      "result_digest": "74736a3e3e51dd85aa9a3c1ae76f69d5b19c629f3fe9e0662c5dec725379e1da",
+      "results": {
+        "cash_control": true,
+        "comparison": {
+          "actual_paid_asof": "80",
+          "actual_payment_at": "2027-01-15T10:00:00Z",
+          "affected_period": {
+            "end": "2027-01-01",
+            "start": "2026-10-01"
+          },
+          "approved_at": "2027-02-03T10:00:00Z",
+          "as_of_cutoff": "2027-02-05T12:00:00Z",
+          "bank_cash": "500",
+          "correction_delta": "-10",
+          "correction_effective_date": "2026-12-15",
+          "correction_id": "correction-01",
+          "correction_observed_at": "2027-02-04T11:00:00.0000000001Z",
+          "obligation_id": "q4-original-obligation",
+          "opening_snapshot_id": "q4-original-opening",
+          "original_application": "500",
+          "original_issued": "100",
+          "original_recomputed": "100",
+          "original_run_id": "q4-original-run",
+          "outstanding_asof": "10",
+          "reallocated_cash": "50",
+          "replacement_id": "application-v2",
+          "revised_application": "450",
+          "revised_entitlement": "90"
+        },
+        "observations": {
+          "application": {
+            "amount": "500",
+            "bank_id": "bank-receipt-01",
+            "effective_date": "2026-12-15",
+            "evidence_id": "ev-application",
+            "id": "application-v1",
+            "invoice_id": "INV-01",
+            "observed_at": "2026-12-16T11:00:00Z"
+          },
+          "authorization": {
+            "agreement_id": "corr-agreement",
+            "approved_at": "2027-02-03T10:00:00Z",
+            "asset_id": "corr-picture",
+            "authorized": true,
+            "correction_id": "correction-01",
+            "evidence_id": "ev-authorization",
+            "observed_at": "2027-02-04T10:00:00.0000000001Z",
+            "original_opening_id": "q4-original-opening",
+            "original_run_id": "q4-original-run",
+            "participant_id": "corr-participant",
+            "pool_id": "corr-pool",
+            "replacement_id": "application-v2",
+            "route": "restatement_only"
+          },
+          "bank": {
+            "amount": "500",
+            "effective_date": "2026-12-15",
+            "evidence_id": "ev-bank",
+            "id": "bank-receipt-01",
+            "observed_at": "2026-12-16T10:00:00Z"
+          },
+          "corrections": [
+            {
+              "amount": "450",
+              "bank_id": "bank-receipt-01",
+              "effective_date": "2026-12-15",
+              "evidence_id": "ev-replacement",
+              "id": "correction-01",
+              "invoice_id": "INV-01",
+              "observed_at": "2027-02-04T11:00:00.0000000001Z",
+              "original_run_id": "q4-original-run",
+              "other_scope_id": "other-reconciled-scope",
+              "reallocated_amount": "50",
+              "replacement_id": "application-v2",
+              "replaces_id": "application-v1"
+            }
+          ],
+          "original": {
+            "agreement_id": "corr-agreement",
+            "application_id": "application-v1",
+            "asset_id": "corr-picture",
+            "evidence_id": "ev-original",
+            "issued": "100",
+            "obligation_id": "q4-original-obligation",
+            "observed_at": "2027-01-03T10:00:00Z",
+            "opening_boundary": "2026-10-01",
+            "opening_prepaid": "0",
+            "opening_snapshot_id": "q4-original-opening",
+            "participant_id": "corr-participant",
+            "pool_id": "corr-pool",
+            "run_id": "q4-original-run"
+          },
+          "payment": {
+            "agreement_id": "corr-agreement",
+            "amount": "80",
+            "asset_id": "corr-picture",
+            "disbursed_at": "2027-01-15T10:00:00Z",
+            "evidence_id": "ev-payment",
+            "id": "actual-disbursement-01",
+            "obligation_id": "q4-original-obligation",
+            "observed_at": "2027-01-16T10:00:00Z",
+            "original_run_id": "q4-original-run",
+            "participant_id": "corr-participant",
+            "pool_id": "corr-pool"
+          }
+        }
+      },
+      "semantic_run_digest": "4480b9d74929af28dec4cb72b41ffdec51fa9dc346638a10d6cd30ba41f0c572",
+      "status": "calculated"
+    },
+    {
+      "artifact_subdirectory": "supplied-deadline",
+      "case": "supplied-deadline",
+      "module_closure": [
+        {
+          "id": "r1:calendar-supplied",
+          "locator": "cases/extensibility/calendar-supplied-module.json",
+          "revision": "1",
+          "sha256": "5aa845905781d057865a5d4bbe05cd3d24ac252bc875dc3ef03d5c8af94e3ab0"
+        }
+      ],
+      "result_digest": "1d2d1f7889671fa35e2245250e3d42007f9f1a54b90bffab7ed864da5b7b50cc",
+      "results": {
+        "reserve_ledger": {
+          "agreement_id": "dyn-cal-open-synthetic",
+          "available": "20",
+          "close_date": "2025-02-28",
+          "closing_balance": "0",
+          "deadline": "2025-02-28",
+          "participant_id": "synthetic-reserve-holder",
+          "period": {
+            "end": "2025-03-01",
+            "start": "2025-02-01"
+          },
+          "pool_id": "reserve-pool",
+          "released": "20",
+          "vintage_id": "vintage-1"
+        }
+      },
+      "semantic_run_digest": "f8be85efdc744ae5cdf7845e23919b634dad1e03f62330ec0fe18489eb08c382",
+      "status": "calculated"
+    }
+  ],
+  "remaining_work": [
+    "broader C1 units/FX/calendar families",
+    "general dependent-period replay and additional gate/loss policies",
+    "sourced-method/accountant review",
+    "systematic emitted branch instrumentation/mutation campaign",
+    "audit volume and larger measured workloads",
+    "independent held-out evaluation",
+    "full compiler proof after demo"
+  ],
+  "runtime_build": "78d3cab57b04e0db437b688bd519684a198f1dd2c1516e713b2a8f9d8787e0b1",
+  "supersedes": {
+    "locator": "docs/spl/baselines/implementation-0.3.0-dev.json",
+    "sha256": "fb52fe296d013065ce15ea7444bcd3d06ba824168a15bf7f213587e3be87d9fb"
+  },
+  "toolchain": "leanprover/lean4:v4.35.0"
+}

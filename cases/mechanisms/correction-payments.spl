@@ -1,0 +1,34 @@
+// CORR-01: supplied revised entitlement under named synthetic restatement.
+// An outstanding obligation is reported; no new payment or issuance is created.
+schedule SyntheticCorrectionPayments language "spl/0.1-draft"
+  core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input obligation: Id<Obligation>;
+  input original_issued: Money<USD>;
+  input revised_entitlement: Money<USD>;
+  input correction_approved: Bool;
+  input correction_authority: Id<Decision>;
+  input required_authority: Id<Decision>;
+  input payments: List<PaymentApplication>;
+  input payment_cutoff: Date;
+  require correction_approved and correction_authority == required_authority else "CORR_AUTHORITY_REQUIRED";
+  require original_issued >= USD 0 and revised_entitlement >= USD 0 else "CORR_NEGATIVE_ENTITLEMENT";
+  define paid_amounts = for each payment in payments {
+    require payment.agreement_id == scope.agreement_id and
+      payment.participant_id == scope.participant_id and payment.pool_id == scope.pool_id
+      else "CORR_PAYMENT_WRONG_SCOPE";
+    require payment.obligation_id == obligation else "CORR_PAYMENT_WRONG_OBLIGATION";
+    require payment.approved and payment.authority_ref == required_authority else "CORR_PAYMENT_AUTHORITY_REQUIRED";
+    require payment.amount >= USD 0 else "CORR_NEGATIVE_PAYMENT";
+    require payment.paid_date < payment_cutoff else "CORR_PAYMENT_AFTER_CUTOFF";
+    yield payment.amount;
+  };
+  define actual_paid = sum(paid_amounts, amount => amount);
+  require revised_entitlement >= actual_paid else "CORR_OVERPAYMENT_POLICY_REQUIRED";
+  define remaining_obligation = revised_entitlement - actual_paid citing "SYNTHETIC-CORR-RESTATEMENT";
+  emit "obligation_reconciliation" = { agreement_id: scope.agreement_id, participant_id: scope.participant_id,
+    pool_id: scope.pool_id, period: scope.period, obligation: obligation,
+    original_issued: original_issued, revised_entitlement: revised_entitlement,
+    correction_delta: revised_entitlement - original_issued, actual_paid: actual_paid,
+    remaining_obligation: remaining_obligation };
+}

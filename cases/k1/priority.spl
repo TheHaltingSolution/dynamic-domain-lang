@@ -1,0 +1,13 @@
+schedule RegisteredPriority language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input territories: List<Text>;
+  define earnings = for each territory in territories {
+    define rate: Ratio = choose priority {
+      rule "US" priority 3 when territory == "US" => 0.20;
+      rule "CA" priority 7 when territory == "CA" => 0.40;
+      rule "FR" priority 9 when territory == "FR" => 0.0;
+      otherwise "default" => 0.10;
+    };
+    yield USD 100 * rate;
+  };
+  emit "earnings" = earnings;
+}

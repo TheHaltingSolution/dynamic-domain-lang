@@ -1,0 +1,86 @@
+[
+  {
+    "agreement_id": "lg",
+    "balance_kind": "cumulative_cost",
+    "boundary": "2026-04-01",
+    "movement": {
+      "closing": "100",
+      "net_change": "0",
+      "opening": "100"
+    },
+    "participant_id": "seller-group",
+    "policy_lineage": [
+      "SYNTHETIC-PAYMENT-HOLDBACK"
+    ],
+    "pool_id": "crossed-group",
+    "prior_result_ref": "result@sha256:a4c524f72b2f7a65822dfee96bfd8445159fef8edb696be2e1aced933cdb0003",
+    "provenance_ref": "synthetic-approved-opening",
+    "quantity": "100",
+    "scenario_id": "LG-01",
+    "scope": {
+      "agreement_id": "lg",
+      "asset_ids": [
+        "work-D"
+      ],
+      "pool_id": "crossed-group"
+    },
+    "state_key": "lg/seller-group/cumulative_cost/crossed-group/cost/USD",
+    "unit": "USD"
+  },
+  {
+    "agreement_id": "lg",
+    "balance_kind": "cumulative_gross",
+    "boundary": "2026-04-01",
+    "movement": {
+      "closing": "400",
+      "net_change": "300",
+      "opening": "100"
+    },
+    "participant_id": "seller-group",
+    "policy_lineage": [
+      "SYNTHETIC-PAYMENT-HOLDBACK"
+    ],
+    "pool_id": "crossed-group",
+    "prior_result_ref": "result@sha256:a4c524f72b2f7a65822dfee96bfd8445159fef8edb696be2e1aced933cdb0003",
+    "provenance_ref": "synthetic-approved-opening",
+    "quantity": "400",
+    "scenario_id": "LG-01",
+    "scope": {
+      "agreement_id": "lg",
+      "asset_ids": [
+        "work-D"
+      ],
+      "pool_id": "crossed-group"
+    },
+    "state_key": "lg/seller-group/cumulative_gross/crossed-group/gross/USD",
+    "unit": "USD"
+  },
+  {
+    "agreement_id": "lg",
+    "balance_kind": "synthetic_payment_holdback",
+    "boundary": "2026-04-01",
+    "movement": {
+      "closing": "0",
+      "net_change": "0",
+      "opening": "0"
+    },
+    "participant_id": "seller-group",
+    "policy_lineage": [
+      "SYNTHETIC-PAYMENT-HOLDBACK"
+    ],
+    "pool_id": "crossed-group",
+    "prior_result_ref": "result@sha256:a4c524f72b2f7a65822dfee96bfd8445159fef8edb696be2e1aced933cdb0003",
+    "provenance_ref": "synthetic-approved-opening",
+    "quantity": "0",
+    "scenario_id": "LG-01",
+    "scope": {
+      "agreement_id": "lg",
+      "asset_ids": [
+        "work-D"
+      ],
+      "pool_id": "crossed-group"
+    },
+    "state_key": "lg/seller-group/synthetic_payment_holdback/crossed-group/hold/USD",
+    "unit": "USD"
+  }
+]

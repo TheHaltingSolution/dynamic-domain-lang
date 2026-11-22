@@ -1,0 +1,37 @@
+{
+  "case_id": "dyn-cal-e0-supplied-due",
+  "status": "open_synthetic_baseline_supplied_date_only",
+  "scope": {
+    "contract_id": "dyn-cal-open-synthetic",
+    "pool_id": "reserve-pool",
+    "currency": "USD"
+  },
+  "period": {
+    "start": "2025-02-01",
+    "end": "2025-03-01"
+  },
+  "observed_through": "2025-02-28",
+  "close_date": "2025-02-28",
+  "policy": "inclusive_supplied_due_date",
+  "vintage": {
+    "id": "vintage-1",
+    "contract_id": "dyn-cal-open-synthetic",
+    "pool_id": "reserve-pool",
+    "currency": "USD",
+    "creation_date": "2025-01-31",
+    "supplied_due_date": "2025-02-28",
+    "available_balance": "20",
+    "evidence_id": "synthetic-supplied-deadline"
+  },
+  "evidence": [
+    {
+      "id": "synthetic-supplied-deadline",
+      "observed_date": "2025-02-01"
+    }
+  ],
+  "expected": {
+    "available": "20",
+    "released": "20",
+    "closing_balance": "0"
+  }
+}

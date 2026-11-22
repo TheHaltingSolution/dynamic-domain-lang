@@ -1,0 +1,71 @@
+{
+  "inputs": {
+    "authority": "synthetic-prospective",
+    "balance_purpose": "participation_prepayment",
+    "currency": "USD",
+    "earned": {
+      "currency": "USD",
+      "value": "10000"
+    },
+    "evidence": [
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "15000"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-prospective",
+        "balance_purpose": "participation_prepayment",
+        "currency": "USD",
+        "disbursement_id": "disbursement-1",
+        "eligible": true,
+        "evidence_id": "evidence-1",
+        "funded_date": "2026-06-30",
+        "issue_id": "advance-1",
+        "observed_at": "2026-07-02T10:00:00Z",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "source_title_id": "title-a"
+      }
+    ],
+    "issues": [
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "15000"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-prospective",
+        "balance_purpose": "participation_prepayment",
+        "currency": "USD",
+        "disbursement_id": "disbursement-1",
+        "event_id": "issue-1",
+        "evidence_ref": "evidence-1",
+        "funded_date": "2026-06-30",
+        "issue_id": "advance-1",
+        "observed_at": "2026-07-02T09:00:00Z",
+        "participant_id": "participant",
+        "pool_id": "pool",
+        "source_title_id": "title-a"
+      }
+    ],
+    "observation_cutoff": "2026-07-03T00:00:00Z",
+    "scope": {
+      "agreement_id": "synthetic-deal",
+      "participant_id": "participant",
+      "period": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "pool_id": "pool"
+    }
+  },
+  "openings": {
+    "prepayment": {
+      "currency": "USD",
+      "value": "0"
+    }
+  }
+}

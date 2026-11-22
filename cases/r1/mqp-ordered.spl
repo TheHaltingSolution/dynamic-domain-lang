@@ -1,0 +1,95 @@
+// Selected prospective agreement-date MQP method, with explicit actual-date
+// sensitivity. Output is adjusted receipts BEFORE RPPA, not producer payable.
+schedule MQPOrdered language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input project: Id<Asset>;
+  input cutoff: Instant;
+  input observed_through: Date;
+  input trigger: Text;
+  input threshold_comparison: Text;
+  input threshold: Money<USD>;
+  input lower_rate: Ratio;
+  input upper_rate: Ratio;
+  input evidence: List<{evidence_id: Id<Evidence>, observed_at: Instant, approval_ref: Id<Decision>, evidence_ref: Id<Evidence>, kind: Text}>;
+  input events: List<{id: Id<Event>, contract_id: Id<Agreement>, pool_id: Id<Pool>, currency: Text, project_id: Id<Asset>, effective_date: Date, sequence: Nat, kind: Text, evidence_id: Id<Evidence>, amount: Option<Money<USD>>, disputed: Option<Bool>, payment_id: Option<Id<Event>>, agreed_amount: Option<Money<USD>>, agreed_actual_date: Option<Date>, receipt_class: Option<Text>}>;
+  opening actual_paid: Money<USD> from "mqp/actual-paid";
+  opening fee_available_paid: Money<USD> from "mqp/fee-available-paid";
+  opening payment_registry: List<{id: Id<Event>, amount: Money<USD>, disputed: Bool, agreed: Bool, credited: Bool, paid_date: Date}> from "mqp/payment-registry";
+
+  require trigger == "agreement_date" or trigger == "actual_date" else "MQP_TRIGGER_REQUIRED";
+  require threshold_comparison == "at_least" or threshold_comparison == "greater_than" else "MQP_THRESHOLD_COMPARISON_REQUIRED";
+  require threshold > USD 0 and lower_rate >= 0 and lower_rate <= 1 and upper_rate >= 0 and upper_rate <= 1 else "MQP_TERM_DOMAIN";
+  require actual_paid >= USD 0 and fee_available_paid >= USD 0 and fee_available_paid <= actual_paid else "MQP_OPENING_STATE";
+  define checked_evidence = for each item in evidence {
+    require item.observed_at < cutoff else "MQP_EVIDENCE_AFTER_CUTOFF";
+    yield item;
+  };
+  define evidence_index = make_map(checked_evidence, item => item.evidence_id, item => true);
+  define unique_events = entries(make_map(events, event => event.id, event => event));
+  define available_events = for each entry in unique_events {
+    define event = entry.value;
+    require event.effective_date <= observed_through else "MQP_EVENT_AFTER_CUTOFF";
+    require require_some(lookup(evidence_index, event.evidence_id), "MQP_EVENT_EVIDENCE_REQUIRED") else "MQP_EVENT_EVIDENCE_REQUIRED";
+    yield event;
+  };
+  define selected = filter(available_events, event => event.contract_id == scope.agreement_id and event.pool_id == scope.pool_id and event.currency == "USD" and event.project_id == project);
+  define checked_events = for each event in selected {
+    require in_period(event.effective_date, scope.period) else "MQP_EVENT_OUTSIDE_PERIOD";
+    require event.kind == "accrual" or event.kind == "actual_payment" or event.kind == "dispute" or event.kind == "agreement" or event.kind == "receipt" else "MQP_EVENT_KIND";
+    yield event;
+  };
+  define checked_prior_payments = entries(make_map(payment_registry, payment => payment.id, payment => payment));
+  define initial: {actual: Money<USD>, available: Money<USD>, receipts: Money<USD>, fees: Money<USD>, payments: List<{id: Id<Event>, amount: Money<USD>, disputed: Bool, agreed: Bool, credited: Bool, paid_date: Date}>, receipt_lines: List<{id: Id<Event>, amount: Money<USD>, fee_available_paid: Money<USD>, rate: Ratio, fee: Money<USD>, adjusted_receipts: Money<USD>}>, history: List<{id: Id<Event>, actual_paid: Money<USD>, fee_available_paid: Money<USD>}>} = {
+    actual: actual_paid, available: fee_available_paid, receipts: USD 0, fees: USD 0,
+    payments: map(checked_prior_payments, entry => entry.value), receipt_lines: [], history: [] };
+  define result = ordered_fold checked_events from initial by item => tuple(item.effective_date, item.sequence) identified by item => item.id ties "reject" with state, event {
+    define has_amount = event.kind == "accrual" or event.kind == "actual_payment" or event.kind == "receipt";
+    define amount = if has_amount then require_some(event.amount, "MQP_AMOUNT_REQUIRED") else USD 0;
+    require amount >= USD 0 else "MQP_NEGATIVE_AMOUNT";
+    define linked = event.kind == "dispute" or event.kind == "agreement";
+    define linked_id = if linked then require_some(event.payment_id, "MQP_PAYMENT_LINK_REQUIRED") else event.id;
+    define payment_index = make_map(state.payments, payment => payment.id, payment => payment);
+    define prior = lookup(payment_index, linked_id);
+    require not linked or is_some(prior) else "MQP_PRIOR_PAYMENT_REQUIRED";
+    require not linked or require_some(prior, "MQP_PRIOR_PAYMENT_REQUIRED").disputed else "MQP_PAYMENT_NOT_DISPUTED";
+    require event.kind != "actual_payment" or not is_some(lookup(payment_index, event.id)) else "MQP_PAYMENT_ALREADY_RECORDED";
+    define is_agreement = event.kind == "agreement";
+    require not is_agreement or not require_some(prior, "MQP_PRIOR_PAYMENT_REQUIRED").agreed else "MQP_DUPLICATE_AGREEMENT";
+    require not is_agreement or require_some(event.agreed_amount, "MQP_AGREED_AMOUNT_REQUIRED") == require_some(prior, "MQP_PRIOR_PAYMENT_REQUIRED").amount else "MQP_AGREEMENT_AMOUNT_MISMATCH";
+    require not is_agreement or require_some(event.agreed_actual_date, "MQP_AGREED_DATE_REQUIRED") == require_some(prior, "MQP_PRIOR_PAYMENT_REQUIRED").paid_date else "MQP_AGREEMENT_DATE_MISMATCH";
+    define disputed = if event.kind == "actual_payment" then require_some(event.disputed, "MQP_DISPUTE_STATUS_REQUIRED") else false;
+    define credited = trigger == "actual_date" or not disputed;
+    define addition = if event.kind == "actual_payment" and credited then amount else
+      if is_agreement and not require_some(prior, "MQP_PRIOR_PAYMENT_REQUIRED").credited then require_some(prior, "MQP_PRIOR_PAYMENT_REQUIRED").amount else USD 0;
+    define next_actual = state.actual + (if event.kind == "actual_payment" then amount else USD 0);
+    define next_available = state.available + addition;
+    require next_available <= next_actual else "MQP_AVAILABLE_EXCEEDS_ACTUAL";
+    define next_payments = if event.kind == "actual_payment" then append(state.payments,
+      {id: event.id, amount: amount, disputed: disputed, agreed: false, credited: credited, paid_date: event.effective_date}) else
+      if is_agreement then map(state.payments, payment => if payment.id == linked_id then
+        {id: payment.id, amount: payment.amount, disputed: payment.disputed, agreed: true, credited: true, paid_date: payment.paid_date} else payment) else state.payments;
+    define is_receipt = event.kind == "receipt";
+    define receipt_class = if is_receipt then require_some(event.receipt_class, "MQP_RECEIPT_CLASS_REQUIRED") else "not_receipt";
+    require not is_receipt or receipt_class == "eligible" or receipt_class == "principal_US_TV_license" else "MQP_RECEIPT_CLASS";
+    define eligible = is_receipt and receipt_class == "eligible";
+    define reached = if threshold_comparison == "at_least" then state.available >= threshold else state.available > threshold;
+    define rate = if reached then upper_rate else lower_rate;
+    define fee = if eligible then amount * rate else USD 0;
+    define next_lines = if eligible then append(state.receipt_lines,
+      {id: event.id, amount: amount, fee_available_paid: state.available, rate: rate, fee: fee, adjusted_receipts: amount - fee}) else state.receipt_lines;
+    yield {actual: next_actual, available: next_available,
+      receipts: state.receipts + (if eligible then amount else USD 0), fees: state.fees + fee,
+      payments: next_payments, receipt_lines: next_lines,
+      history: append(state.history, {id: event.id, actual_paid: next_actual, fee_available_paid: next_available})};
+  };
+  closing actual_paid = result.actual;
+  closing fee_available_paid = result.available;
+  closing payment_registry = result.payments;
+  emit "receipt_lines" = result.receipt_lines;
+  emit "history" = result.history;
+  emit "comparison" = {agreement_id: scope.agreement_id, pool_id: scope.pool_id, project_id: project,
+    period: scope.period, trigger: trigger, threshold_comparison: threshold_comparison,
+    eligible_receipts: result.receipts, fee: result.fees,
+    adjusted_receipts_before_RPPA: result.receipts - result.fees,
+    closing_actual_paid: result.actual, closing_fee_available_paid: result.available};
+}

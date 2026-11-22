@@ -1,0 +1,3 @@
+invoice_id,line_no,invoice_date,buyer_ref,item_code,market_code,billed_amount,ccy,license_event_date
+INV-A,1,2026-01-29,BUYER-1,LEGACY-A,USA,110000.00,USD,
+INV-AB,1,2026-02-15,BUYER-1,PACKAGE-77,USA,100000.00,USD,2026-02-01

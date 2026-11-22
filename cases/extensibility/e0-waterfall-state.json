@@ -1,0 +1,122 @@
+{
+  "closing_state": [
+    {
+      "boundary": "2026-02-01",
+      "movement": {
+        "closing": [
+          {
+            "balance": {
+              "currency": "USD",
+              "value": "32"
+            },
+            "id": "capital-claim-A",
+            "kind": "capital",
+            "participant_id": "capital-A",
+            "principal": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "priority": "1",
+            "sequence": "1"
+          },
+          {
+            "balance": {
+              "currency": "USD",
+              "value": "8"
+            },
+            "id": "capital-claim-B",
+            "kind": "capital",
+            "participant_id": "capital-B",
+            "principal": {
+              "currency": "USD",
+              "value": "20"
+            },
+            "priority": "2",
+            "sequence": "1"
+          }
+        ],
+        "kind": "transition",
+        "opening": [
+          {
+            "balance": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "id": "capital-claim-A",
+            "kind": "capital",
+            "participant_id": "capital-A",
+            "principal": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "priority": "1",
+            "sequence": "1"
+          },
+          {
+            "balance": {
+              "currency": "USD",
+              "value": "20"
+            },
+            "id": "capital-claim-B",
+            "kind": "capital",
+            "participant_id": "capital-B",
+            "principal": {
+              "currency": "USD",
+              "value": "20"
+            },
+            "priority": "2",
+            "sequence": "1"
+          }
+        ]
+      },
+      "opening_port": "claim_ledger",
+      "prior_result_ref": "result@sha256:9521ebb9f9b67315d4950908ebf87a4602f672d4a3dc3355f04ad13150e82c05",
+      "provenance_ref": "selected-synthetic-opening-claims",
+      "purpose": "capital_recovery",
+      "quantity": [
+        {
+          "balance": {
+            "currency": "USD",
+            "value": "32"
+          },
+          "id": "capital-claim-A",
+          "kind": "capital",
+          "participant_id": "capital-A",
+          "principal": {
+            "currency": "USD",
+            "value": "80"
+          },
+          "priority": "1",
+          "sequence": "1"
+        },
+        {
+          "balance": {
+            "currency": "USD",
+            "value": "8"
+          },
+          "id": "capital-claim-B",
+          "kind": "capital",
+          "participant_id": "capital-B",
+          "principal": {
+            "currency": "USD",
+            "value": "20"
+          },
+          "priority": "2",
+          "sequence": "1"
+        }
+      ],
+      "scenario_id": "roundlake-like-selected",
+      "scope": {
+        "agreement_id": "selected-synthetic-waterfall",
+        "asset_id": "synthetic-film",
+        "participant_id": "capital-beneficiary-group",
+        "pool_id": "capital-pool"
+      },
+      "state_key": "{\"agreement_id\":\"selected-synthetic-waterfall\",\"asset_id\":\"synthetic-film\",\"participant_id\":\"capital-beneficiary-group\",\"pool_id\":\"capital-pool\",\"purpose\":\"capital_recovery\"}",
+      "unit": "structured"
+    }
+  ],
+  "freeze": "r1-core-e0-r2",
+  "origin": "Executed E0 canonical close, not recomputed under E1",
+  "source_file_sha256": "a4d206be6712f795c10711b3c12dc90313e5e753448875115ee718ae3911dd73"
+}

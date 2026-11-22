@@ -1,0 +1,943 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [
+        "agreement_id"
+      ],
+      "kind": "equals",
+      "path": "inputs.scope",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "pool_id"
+      ],
+      "kind": "equals",
+      "path": "inputs.scope",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "participant_id"
+      ],
+      "kind": "member_of",
+      "path": "inputs.scope",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [
+        "period"
+      ],
+      "kind": "equals",
+      "path": "inputs.scope",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "scope.purpose",
+      "target": "",
+      "value": "return_reserve"
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "parameters.authority",
+      "target": "decisions.*.decision_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.observation_cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    },
+    {
+      "fields": [
+        "event_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.movements",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_ref"
+      ],
+      "kind": "unique",
+      "path": "inputs.movements",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.evidence",
+      "target": "",
+      "value": ""
+    }
+  ],
+  "id": "synthetic:reserve-vintage",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "return_reserve"
+          ],
+          "methodology": true
+        },
+        "name": "purpose",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "observation_cutoff",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "synthetic-vintage"
+          ]
+        },
+        "name": "authority",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Decision"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "movements",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "event_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Event"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "agreement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Agreement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "participant_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Participant"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "pool_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Pool"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "purpose",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "vintage_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Vintage"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "ReserveEvidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "evidence",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "evidence_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "ReserveEvidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "agreement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Agreement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "participant_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Participant"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "pool_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Pool"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "purpose",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "vintage_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Vintage"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "approved",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "authority_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Decision"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "reserve_vintages",
+        "role": "opening",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "vintage_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Vintage"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "agreement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Agreement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "participant_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Participant"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "pool_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Pool"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "purpose",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "balance",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "reserve_vintage_ledger",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "additions",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "agreement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Agreement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "applications",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "closing_balance",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "opening_balance",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "participant_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Participant"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "period",
+                  {
+                    "args": [],
+                    "name": "Period"
+                  }
+                ],
+                [
+                  "pool_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Pool"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "purpose",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "releases",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "vintage_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Vintage"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "reserve_ledger",
+        "role": "result",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "additions",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "applications",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "closing_balance",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "currency",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "opening_balance",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "purpose",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "releases",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "SYNTHETIC-RES-VINTAGE",
+      "synthetic-vintage"
+    ],
+    "discriminating_cases": [
+      "vintage-1-zero-vintage-2-20",
+      "serialized-liquidation",
+      "wrong-scope-purpose-evidence",
+      "after-cutoff"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:reserve-vintage-policy",
+    "readable": {
+      "locator": "cases/mechanisms/reserve-vintage-policy.md",
+      "sha256": "0ed39bce943523e4f9b2a6294d1fd15bb74490fc725d82888193fb041396ed18"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/mechanisms/reserve-vintage.spl",
+    "sha256": "0e77f982aa3e699c6142912de6859642a23cd4f864101f4c084bedb3da79a87f"
+  },
+  "state": [
+    {
+      "closing": "reserve_vintages",
+      "history_required": false,
+      "key_fields": [
+        "agreement_id",
+        "participant_id",
+        "pool_id",
+        "purpose"
+      ],
+      "movement_kinds": [
+        "transition"
+      ],
+      "opening": "reserve_vintages",
+      "purpose": "return_reserve",
+      "unit": "structured"
+    }
+  ]
+}

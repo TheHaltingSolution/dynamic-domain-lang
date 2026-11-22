@@ -1,0 +1,89 @@
+{
+  "case_id": "roundlake-like-selected",
+  "status": "selected_synthetic_not_historical_not_professionally_approved",
+  "scope": {
+    "agreement_id": "selected-synthetic-waterfall",
+    "pool_id": "capital-pool",
+    "asset_id": "synthetic-film",
+    "participant_group": "capital-beneficiary-group",
+    "purpose": "capital_recovery",
+    "currency": "USD"
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-02-01"
+  },
+  "cutoff": "2026-02-01T00:00:00Z",
+  "policy": {
+    "fee_base": "gross_before_costs",
+    "fee_rate": "1/4",
+    "recovery_method": "pro_rata",
+    "rounding": "exact_no_rounding",
+    "ties": "reject"
+  },
+  "beneficiaries": [
+    {
+      "participant_id": "capital-A",
+      "residual_weight": "1"
+    },
+    {
+      "participant_id": "capital-B",
+      "residual_weight": "1"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "supplied-synthetic-evidence",
+      "observed_at": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "cash_records": [
+    {
+      "id": "cash-2026-01-01",
+      "agreement_id": "selected-synthetic-waterfall",
+      "pool_id": "capital-pool",
+      "asset_id": "synthetic-film",
+      "participant_group": "capital-beneficiary-group",
+      "purpose": "capital_recovery",
+      "currency": "USD",
+      "effective_date": "2026-01-01",
+      "amount": "100",
+      "evidence_id": "supplied-synthetic-evidence"
+    }
+  ],
+  "costs": [
+    {
+      "id": "cost-2026-01-01",
+      "agreement_id": "selected-synthetic-waterfall",
+      "pool_id": "capital-pool",
+      "asset_id": "synthetic-film",
+      "participant_group": "capital-beneficiary-group",
+      "purpose": "capital_recovery",
+      "currency": "USD",
+      "effective_date": "2026-01-01",
+      "amount": "15",
+      "evidence_id": "supplied-synthetic-evidence",
+      "eligible": true
+    }
+  ],
+  "opening_claims": [
+    {
+      "id": "capital-claim-A",
+      "participant_id": "capital-A",
+      "kind": "capital",
+      "priority": 1,
+      "sequence": 1,
+      "principal": "80",
+      "balance": "80"
+    },
+    {
+      "id": "capital-claim-B",
+      "participant_id": "capital-B",
+      "kind": "capital",
+      "priority": 2,
+      "sequence": 1,
+      "principal": "20",
+      "balance": "20"
+    }
+  ]
+}

@@ -1,0 +1,577 @@
+{
+  "version": "1",
+  "policies": {
+    "sv-incurred@1": {
+      "profile": "sv-incurred-v1",
+      "document": "docs/spl/policies/sv-incurred.md",
+      "bindings": {
+        "calendar quarter": "policy.period",
+        "Available Advance Balance": "prepayment",
+        "Valid Funding Share": "picture.funding_share >= 0 and picture.funding_share <= 1",
+        "the amounts Ventura received under the Acquisition Agreement for that Picture during the quarter": "sum(filter(receipts, r => r.asset_id == picture.asset_id and in_period(r.cash_received_date, accounting_period)), r => r.amount)",
+        "Skouras contributed no Acquisition Funds": "not picture.contribution_present",
+        "the deductions allowed by the Net Profits Schedule": "sum(filter(eligible_costs, c => c.asset_id == picture.asset_id and in_period(c.incurred_date, accounting_period)), c => c.amount)",
+        "the deductions allowed by the Adjusted Gross Receipts Schedule": "sum(filter(eligible_costs, c => c.asset_id == picture.asset_id and in_period(c.incurred_date, accounting_period)), c => c.amount)",
+        "Skouras Proportionate Funding Share": "picture.funding_share",
+        "the total Earned Participation across Pictures": "sum(title_results, t => t.earned)"
+      },
+      "iterations": {
+        "Picture distributed by Ventura": {
+          "item": "picture",
+          "collection": "pictures",
+          "target": "title_results"
+        }
+      },
+      "settlements": {
+        "Skouras": "policy.participant_id"
+      },
+      "parameter_paths": [
+        "parameters.policy",
+        "parameters.cost_date_basis",
+        "parameters.cost_decisions",
+        "manifest.period",
+        "manifest.cutoff",
+        "agreements",
+        "roles",
+        "mappings",
+        "evidence_events",
+        "state_cells",
+        "opening_aliases",
+        "interpretations",
+        "parameters.funding_snapshot"
+      ],
+      "core_signatures": {
+        "format": "spl-policy-core/1",
+        "language": "spl/0.1-draft",
+        "core": "spl-core/0.1-draft",
+        "schema": "spl-data/0.1-draft",
+        "declarations": [
+          {
+            "kind": "input",
+            "label": "pictures",
+            "sha256": "0f081d8773dfa98fc68de6c015d66849caf999aae7fe2525f88a0f1ba3f7d9ee"
+          },
+          {
+            "kind": "input",
+            "label": "receipts",
+            "sha256": "102a15f217e694b08e73c205be83683721724cf900a89f1304be0ebb02f5f0af"
+          },
+          {
+            "kind": "input",
+            "label": "eligible_costs",
+            "sha256": "846aa383a5cf5dda81d44beb56035f1a0e4e131eb796bccb201d625f9d9f3793"
+          },
+          {
+            "kind": "input",
+            "label": "policy",
+            "sha256": "f0e0131af84489800b04ed904be0cf813831f8d423c2d08ae63b46d6b44638ae"
+          },
+          {
+            "kind": "opening",
+            "label": "prepayment",
+            "sha256": "d357662ab7711891dacd687c22a678c6f45b14d33642b07d9512ce795fcf7999"
+          },
+          {
+            "kind": "define",
+            "label": "accounting_period",
+            "sha256": "4820e126022b8cb8116a53660f33ec2d30fd23d8d79e9b0a42a41e9224548296"
+          },
+          {
+            "kind": "require",
+            "label": "READABLE_CALENDAR_QUARTER_REQUIRED",
+            "sha256": "cd24dfa27ec63078866800374b872b67f375373721c02175b637de522a23a894"
+          },
+          {
+            "kind": "require",
+            "label": "NEGATIVE_OPENING_ADVANCE",
+            "sha256": "919d01f3aacddc205d4051cfddcb9ac8cff8e5062551596e060e17ad83b2d6c1"
+          },
+          {
+            "kind": "define",
+            "label": "title_results",
+            "sha256": "3a07d00b7a0a71fdb42b8e46dac2547f9019841aa6b8ca336188530cfb7c1f1b"
+          },
+          {
+            "kind": "define",
+            "label": "settlement_participant",
+            "sha256": "7b54a9343ad5bb19d98f8ca2777a5f6ae63efb46dd824e2ae4db0921f154107b"
+          },
+          {
+            "kind": "define",
+            "label": "earned_total",
+            "sha256": "e8e054bf6b9e249d464460f8bf60176d426f44aa4f9eec60a91a8c088c9f7270"
+          },
+          {
+            "kind": "define",
+            "label": "recouped",
+            "sha256": "e4655851f16b891ca9b94667133c61330fedfdd232cf4bca3684ae81a6df6101"
+          },
+          {
+            "kind": "define",
+            "label": "payable",
+            "sha256": "6d6c1069922d0fea4c3b3c3fa00bb486005418e5596f6a814d6b8dabde06a085"
+          },
+          {
+            "kind": "closing",
+            "label": "prepayment",
+            "sha256": "83f2733c3d78b059ab3ab874645746c0d32a5e8c07c29693d16f1235155b7bb0"
+          },
+          {
+            "kind": "require",
+            "label": "SV_SETTLEMENT_RECONCILIATION",
+            "sha256": "261f07b3d3fbf6cc2baf4892df8480eda52b282eb19a4a9b25e67e30dbf1ef67"
+          },
+          {
+            "kind": "emit",
+            "label": "titles",
+            "sha256": "56afe25f78b12dae16353b4bbaf3689528cc8990a90f0bbedbde46949456892d"
+          },
+          {
+            "kind": "emit",
+            "label": "pool",
+            "sha256": "bba45375852050fa188c3bc263bd6a0460acefcc72e3b9d4a8cf1f0f513ade4d"
+          }
+        ]
+      }
+    },
+    "rq07-posted@1": {
+      "profile": "sv-rq07-posted-v1",
+      "document": "docs/spl/policies/rq07-posted.md",
+      "bindings": {
+        "calendar quarter": "policy.period",
+        "Available Advance Balance": "prepayment",
+        "Valid Funding Share": "picture.funding_share >= 0 and picture.funding_share <= 1",
+        "the amounts Ventura received under the Acquisition Agreement for that Picture during the quarter": "sum(filter(receipts, r => r.asset_id == picture.asset_id and in_period(r.cash_received_date, accounting_period)), r => r.amount)",
+        "Skouras contributed no Acquisition Funds": "not picture.contribution_present",
+        "the deductions allowed by the Net Profits Schedule": "sum(filter(eligible_costs, c => c.asset_id == picture.asset_id and in_period(c.recognition_date, accounting_period)), c => c.amount)",
+        "the deductions allowed by the Adjusted Gross Receipts Schedule": "sum(filter(eligible_costs, c => c.asset_id == picture.asset_id and in_period(c.recognition_date, accounting_period)), c => c.amount)",
+        "Skouras Proportionate Funding Share": "picture.funding_share",
+        "the total Earned Participation across Pictures": "sum(title_results, t => t.earned)"
+      },
+      "iterations": {
+        "Picture distributed by Ventura": {
+          "item": "picture",
+          "collection": "pictures",
+          "target": "title_results"
+        }
+      },
+      "settlements": {
+        "Skouras": "policy.participant_id"
+      },
+      "parameter_paths": [
+        "parameters.policy",
+        "parameters.cost_date_basis",
+        "parameters.cost_decisions",
+        "manifest.period",
+        "manifest.cutoff",
+        "agreements",
+        "roles",
+        "mappings",
+        "evidence_events",
+        "state_cells",
+        "opening_aliases",
+        "interpretations",
+        "parameters.funding_snapshot"
+      ],
+      "core_signatures": {
+        "format": "spl-policy-core/1",
+        "language": "spl/0.1-draft",
+        "core": "spl-core/0.1-draft",
+        "schema": "spl-data/0.1-draft",
+        "declarations": [
+          {
+            "kind": "input",
+            "label": "pictures",
+            "sha256": "0f081d8773dfa98fc68de6c015d66849caf999aae7fe2525f88a0f1ba3f7d9ee"
+          },
+          {
+            "kind": "input",
+            "label": "receipts",
+            "sha256": "102a15f217e694b08e73c205be83683721724cf900a89f1304be0ebb02f5f0af"
+          },
+          {
+            "kind": "input",
+            "label": "eligible_costs",
+            "sha256": "7b7c6cfb58fb0ce0aa92f4d9c12e6c5bc320b1b762546bad3965320195f4e6e8"
+          },
+          {
+            "kind": "input",
+            "label": "policy",
+            "sha256": "f0e0131af84489800b04ed904be0cf813831f8d423c2d08ae63b46d6b44638ae"
+          },
+          {
+            "kind": "opening",
+            "label": "prepayment",
+            "sha256": "d357662ab7711891dacd687c22a678c6f45b14d33642b07d9512ce795fcf7999"
+          },
+          {
+            "kind": "define",
+            "label": "accounting_period",
+            "sha256": "4820e126022b8cb8116a53660f33ec2d30fd23d8d79e9b0a42a41e9224548296"
+          },
+          {
+            "kind": "require",
+            "label": "READABLE_CALENDAR_QUARTER_REQUIRED",
+            "sha256": "cd24dfa27ec63078866800374b872b67f375373721c02175b637de522a23a894"
+          },
+          {
+            "kind": "require",
+            "label": "NEGATIVE_OPENING_ADVANCE",
+            "sha256": "919d01f3aacddc205d4051cfddcb9ac8cff8e5062551596e060e17ad83b2d6c1"
+          },
+          {
+            "kind": "define",
+            "label": "title_results",
+            "sha256": "fd086ca4e55e96da5cc04023db0f92b049b1653c8e60d04a94820a22bb467f18"
+          },
+          {
+            "kind": "define",
+            "label": "settlement_participant",
+            "sha256": "7b54a9343ad5bb19d98f8ca2777a5f6ae63efb46dd824e2ae4db0921f154107b"
+          },
+          {
+            "kind": "define",
+            "label": "earned_total",
+            "sha256": "e8e054bf6b9e249d464460f8bf60176d426f44aa4f9eec60a91a8c088c9f7270"
+          },
+          {
+            "kind": "define",
+            "label": "recouped",
+            "sha256": "e4655851f16b891ca9b94667133c61330fedfdd232cf4bca3684ae81a6df6101"
+          },
+          {
+            "kind": "define",
+            "label": "payable",
+            "sha256": "6d6c1069922d0fea4c3b3c3fa00bb486005418e5596f6a814d6b8dabde06a085"
+          },
+          {
+            "kind": "closing",
+            "label": "prepayment",
+            "sha256": "83f2733c3d78b059ab3ab874645746c0d32a5e8c07c29693d16f1235155b7bb0"
+          },
+          {
+            "kind": "require",
+            "label": "SV_SETTLEMENT_RECONCILIATION",
+            "sha256": "261f07b3d3fbf6cc2baf4892df8480eda52b282eb19a4a9b25e67e30dbf1ef67"
+          },
+          {
+            "kind": "emit",
+            "label": "titles",
+            "sha256": "56afe25f78b12dae16353b4bbaf3689528cc8990a90f0bbedbde46949456892d"
+          },
+          {
+            "kind": "emit",
+            "label": "pool",
+            "sha256": "bba45375852050fa188c3bc263bd6a0460acefcc72e3b9d4a8cf1f0f513ade4d"
+          }
+        ]
+      }
+    },
+    "lg-cleared@1": {
+      "profile": "lg-cleared-v1",
+      "document": "docs/spl/policies/lg-cleared.md",
+      "bindings": {
+        "calendar quarter": "policy.period",
+        "Outside Hurdle Agreement": "outside_hurdle.agreement_id",
+        "Agreement": "policy.agreement_id",
+        "the supplied outside hurdle attainment": "outside_hurdle.attained",
+        "Outside Hurdle Effective Date": "outside_hurdle.effective_date",
+        "Quarter Start": "policy.period.start",
+        "Quarter End": "policy.period.end",
+        "Gate History Picture": "work_gate_history.asset_id",
+        "Picture Identifier": "policy.asset_id",
+        "Gate History Start": "work_gate_history.period.start",
+        "Gate History End": "work_gate_history.period.end",
+        "the supplied continuous work gate evidence": "work_gate_history.cleared_throughout",
+        "Opening Gate Gross": "gate_gross",
+        "Opening Gate Cost": "gate_cost",
+        "Producer Fee Offset": "producer_fee_offset",
+        "Crossed Net Subtotal": "crossed_net_subtotal",
+        "Opening Payment Holdback": "payment_holdback",
+        "Payment Holdback Addition": "payment_holdback_addition",
+        "Payment Holdback Release": "payment_holdback_release",
+        "the receipts for this Picture received during the quarter": "filter(receipts, r => r.asset_id == policy.asset_id and in_period(r.cash_received_date, accounting_period))",
+        "the actual costs for this Picture incurred during the quarter": "filter(actual_costs, c => c.asset_id == policy.asset_id and in_period(c.incurred_date, accounting_period))",
+        "the sum of current cash receipts": "sum(current_receipts, r => r.amount)",
+        "the sum of current actual costs": "sum(current_costs, c => c.amount)",
+        "the current receipts adjusted by the supplied video proxy": "sum(current_receipts, r => r.amount * (if r.is_home_video then policy.video_proxy else 1))",
+        "Gross Participation Rate": "policy.gross_rate",
+        "Net Participation Rate": "policy.net_rate"
+      },
+      "iterations": {},
+      "settlements": {
+        "the Participant": "policy.participant_id"
+      },
+      "parameter_paths": [
+        "parameters.policy",
+        "parameters.cost_date_basis",
+        "parameters.cost_decisions",
+        "manifest.period",
+        "manifest.cutoff",
+        "agreements",
+        "roles",
+        "mappings",
+        "evidence_events",
+        "state_cells",
+        "opening_aliases",
+        "interpretations",
+        "parameters.producer_fee_offset",
+        "parameters.payment_holdback_addition",
+        "parameters.payment_holdback_release"
+      ],
+      "core_signatures": {
+        "format": "spl-policy-core/1",
+        "language": "spl/0.1-draft",
+        "core": "spl-core/0.1-draft",
+        "schema": "spl-data/0.1-draft",
+        "declarations": [
+          {
+            "kind": "input",
+            "label": "receipts",
+            "sha256": "f9311c1c77c41fa6b4f453b605d81690257e27dc1999dfba2fadf74326613b1f"
+          },
+          {
+            "kind": "input",
+            "label": "actual_costs",
+            "sha256": "3ad9386c3a8710ffed6b2f49f1d8d7355f3a852ef70695368eb5dfa8e9c91b8d"
+          },
+          {
+            "kind": "input",
+            "label": "policy",
+            "sha256": "2ab3fea79671b8bddadb6c83a86e01cb58e9f71eacbe7cd79c7cb82b93c3c1dd"
+          },
+          {
+            "kind": "input",
+            "label": "outside_hurdle",
+            "sha256": "4a3447b5ec2c6ba20ce7abfc3ef1b92ca45618b09f5bc30c18ee9abcbbd8154c"
+          },
+          {
+            "kind": "input",
+            "label": "work_gate_history",
+            "sha256": "ccdd497b9a4ab9ed92630755fe64b91fc5e79cdf042007e6cc23d82162069c22"
+          },
+          {
+            "kind": "input",
+            "label": "crossed_net_subtotal",
+            "sha256": "0894ac3d2c70e48abe2cc357dcd8c6307cb37bf200d89ca77891175a9a31b892"
+          },
+          {
+            "kind": "input",
+            "label": "producer_fee_offset",
+            "sha256": "b84f908ce57986512ff1e78786fb0c176f49b4e02308355cc6c7024e56b24d41"
+          },
+          {
+            "kind": "input",
+            "label": "payment_holdback_addition",
+            "sha256": "6fa856e52a8517dcb71e6f2a990f280963368d9cf7b88153a7d9196b37e74f5d"
+          },
+          {
+            "kind": "input",
+            "label": "payment_holdback_release",
+            "sha256": "3555ba50cc8762668096fc240996b6d65fdeea4341a6408532ad0b623b0595eb"
+          },
+          {
+            "kind": "opening",
+            "label": "gate_gross",
+            "sha256": "6ff73cf3cdd368337334edd009fb3ebb1ebff9a0e1eb6f49f26519a4879f1a8e"
+          },
+          {
+            "kind": "opening",
+            "label": "gate_cost",
+            "sha256": "604c2ca94185b890c0c9e0fbbcabfbe27420f7f24fa135507f0cdd776f5de98b"
+          },
+          {
+            "kind": "opening",
+            "label": "payment_holdback",
+            "sha256": "a51d61d3df5008cc3194d5d225436e0575af3c56cbea833e3cd8d3fe71785b0f"
+          },
+          {
+            "kind": "define",
+            "label": "accounting_period",
+            "sha256": "4820e126022b8cb8116a53660f33ec2d30fd23d8d79e9b0a42a41e9224548296"
+          },
+          {
+            "kind": "require",
+            "label": "READABLE_CALENDAR_QUARTER_REQUIRED",
+            "sha256": "cd24dfa27ec63078866800374b872b67f375373721c02175b637de522a23a894"
+          },
+          {
+            "kind": "require",
+            "label": "LG_HURDLE_WRONG_SCOPE",
+            "sha256": "4f1e056b91fc022c38a218d1669d01446d942b08fe06ab94bed060a97932064d"
+          },
+          {
+            "kind": "define",
+            "label": "outside_hurdle_attained",
+            "sha256": "d9e8ac6e1f1f3468daf5bd9d762e6a60cf0976084f6239ab0ee4dd4589a0d327"
+          },
+          {
+            "kind": "require",
+            "label": "LG_OUTSIDE_HURDLE_NOT_ATTAINED",
+            "sha256": "528c4d370bb6557c5d5ed1fa306c19b664cee4e037bb7806854ab890235d4108"
+          },
+          {
+            "kind": "require",
+            "label": "LG_HURDLE_TIMING_POLICY_REQUIRED",
+            "sha256": "a1026f259ffed2f9e400f1c8c7b0586a9176b7dbc30d467437ec466441e814e0"
+          },
+          {
+            "kind": "require",
+            "label": "LG_GATE_HISTORY_WRONG_WORK",
+            "sha256": "c9429287c3d732bbca81888444864ef6a27e8c5f3797bca33eca3ecefb68e43b"
+          },
+          {
+            "kind": "require",
+            "label": "LG_GATE_HISTORY_WRONG_PERIOD",
+            "sha256": "9839e10fc4779455f05b579f71252034734389a4738789685d047e69f817a873"
+          },
+          {
+            "kind": "define",
+            "label": "work_cleared_throughout",
+            "sha256": "932f07cd012e9fd302d1faeab838345b4d65328d415c556fec9a82a4719856b2"
+          },
+          {
+            "kind": "require",
+            "label": "LG_GATE_HISTORY_POLICY_REQUIRED",
+            "sha256": "615916f809fd0f501e1f783205fd0f3dd67840c14d65f5647b31f71ed0b3f283"
+          },
+          {
+            "kind": "require",
+            "label": "LG_CROSSING_POLICY_REQUIRED",
+            "sha256": "7ecd6c37f12d810fdd85594ecbecd696dccf17382581e61245d587b44ff860bf"
+          },
+          {
+            "kind": "require",
+            "label": "LG_NEGATIVE_FEE_OFFSET",
+            "sha256": "acc4bd9efcbb3ad81a8d0515f3278957af13eefa391188aa4adc3039f2dc5ce7"
+          },
+          {
+            "kind": "require",
+            "label": "LG_NET_LOSS_POLICY_REQUIRED",
+            "sha256": "c8175b4c8d42b3e798ca144218df290b1f7b019dcac8553b092d8c4180bcff88"
+          },
+          {
+            "kind": "require",
+            "label": "SYNTHETIC_INVALID_HOLDBACK_MOVEMENT",
+            "sha256": "8dc4bc3e1f8bdc0212429adface87ed05b34bd9ea55a24c54625d0d394b67f6e"
+          },
+          {
+            "kind": "define",
+            "label": "current_receipts",
+            "sha256": "6d765dd465758078c302edc59f50ecf71756628b10e10a0d059b47afcb7c7c37"
+          },
+          {
+            "kind": "define",
+            "label": "current_costs",
+            "sha256": "8433602fe8714fba95a4a5642d1cd6f5768d23c101697ea475a2465e8f8d225f"
+          },
+          {
+            "kind": "define",
+            "label": "cash_measure",
+            "sha256": "eed25087163fa2bcbc79f68f796e28a817c678a202542a8506982f516d9e2554"
+          },
+          {
+            "kind": "define",
+            "label": "actual_cost_measure",
+            "sha256": "d631bc14168e5ca2b0f32941f6403627e05a55aa6c084d0cd75acf5dc52fd244"
+          },
+          {
+            "kind": "define",
+            "label": "next_gate_gross",
+            "sha256": "0b3762c88fc4390896d51a8aa6852e9ff881917b81288c49e402b409b8eea837"
+          },
+          {
+            "kind": "define",
+            "label": "next_gate_cost",
+            "sha256": "32b67ffea87b6d9c26f1fad1690182fc81ec3beada18024458b479c9b44727f7"
+          },
+          {
+            "kind": "require",
+            "label": "LG_RECROSSING_POLICY_REQUIRED",
+            "sha256": "125493d51dcb4896ac2ae2a0ce038e88b2d0ac204775a09c4b1a2b85f2d6c306"
+          },
+          {
+            "kind": "define",
+            "label": "breakeven_satisfied",
+            "sha256": "964adab0bcfc47c4c2f6f486d238aa6982431f673cbd41b48dd420c80d8d3013"
+          },
+          {
+            "kind": "define",
+            "label": "payout_base",
+            "sha256": "4c6f3c78dd49f3f345ecfe1acb7437874848529269d0f4477b1eeee880aa62bf"
+          },
+          {
+            "kind": "define",
+            "label": "gross_candidate",
+            "sha256": "cc02eb4472648cd056127076cfb50fe6b9e85f97c3b52e6f5b8cc7086b10f4ab"
+          },
+          {
+            "kind": "define",
+            "label": "net_candidate",
+            "sha256": "d11394b9af6ce2947b9df69d7de986944e2566f37958af90103f2566b3ffaca3"
+          },
+          {
+            "kind": "define",
+            "label": "contingent_earned",
+            "sha256": "1d5382ef09b209667c522e2c2054215080090b06e92d006d730209571d17c1a2"
+          },
+          {
+            "kind": "define",
+            "label": "selected_label",
+            "sha256": "84eabe01e93399d80eebf67a79bdd91a2b87da1b26273a6e5ba3e2da5a041b5d"
+          },
+          {
+            "kind": "define",
+            "label": "settlement_participant",
+            "sha256": "7b54a9343ad5bb19d98f8ca2777a5f6ae63efb46dd824e2ae4db0921f154107b"
+          },
+          {
+            "kind": "define",
+            "label": "before_holdback",
+            "sha256": "28566f291e5e54728394ce17c6aa908a1c2832bbf423236e46e70335b372d7c5"
+          },
+          {
+            "kind": "require",
+            "label": "SYNTHETIC_HOLDBACK_RELEASE_EXCEEDS_OPENING",
+            "sha256": "a4aaace449ee85d7e923b3baf0ed0c92635a285c9ed3523c15869931125a4f03"
+          },
+          {
+            "kind": "require",
+            "label": "SYNTHETIC_HOLDBACK_ADDITION_EXCEEDS_AVAILABLE",
+            "sha256": "a381950713cff180c2b0f36532dc3e7cd49e519e8c8c6636ece9432a3b697897"
+          },
+          {
+            "kind": "define",
+            "label": "payable",
+            "sha256": "a4b888bfd67cf9b0fa3d53ab023a3e8a17796fa903eb29f31d87cc19b8555515"
+          },
+          {
+            "kind": "closing",
+            "label": "gate_gross",
+            "sha256": "bf79ab65b691e58b3f8c523f584a72660ea3b400fbe8706fef9ae26d0ef45d3b"
+          },
+          {
+            "kind": "closing",
+            "label": "gate_cost",
+            "sha256": "711ad7cd2a411e0ae507b3b8b8b6e9378d0c4469d93a3cb47b6737863d41b89a"
+          },
+          {
+            "kind": "closing",
+            "label": "payment_holdback",
+            "sha256": "7c1257cbcbb4291d0966b1bbb7cb1e27c792a9b9ed103f516b838add87146bbe"
+          },
+          {
+            "kind": "emit",
+            "label": "comparison",
+            "sha256": "cc5fb23f0189854b4f8cabc0eb467996d4447f5e3abe2f0ad92eaa112002aae1"
+          },
+          {
+            "kind": "emit",
+            "label": "settlement",
+            "sha256": "35fd1e70b84bc8174084303f70df8914c7a184f5463e8390371f129491f654d2"
+          }
+        ]
+      }
+    }
+  }
+}

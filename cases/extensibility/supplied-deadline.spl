@@ -1,0 +1,20 @@
+// E0 legitimate workaround: the deadline is a separately evidenced input.
+schedule SuppliedDeadline language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input vintage_id: Id<Vintage>;
+  input creation_date: Date;
+  input supplied_due_date: Date;
+  input close_date: Date;
+  input cutoff: Instant;
+  input observed_at: Instant;
+  opening reserve: Money<USD> from "dynamic/reserve";
+  require observed_at < cutoff else "DYN_EVIDENCE_AFTER_CUTOFF";
+  require in_period(close_date, scope.period) else "DYN_CLOSE_OUTSIDE_PERIOD";
+  require reserve >= USD 0 else "DYN_NEGATIVE_RESERVE";
+  require supplied_due_date >= creation_date else "DYN_DUE_BEFORE_CREATION";
+  define released = if close_date >= supplied_due_date then reserve else USD 0;
+  closing reserve = reserve - released;
+  emit "reserve_ledger" = {agreement_id: scope.agreement_id, participant_id: scope.participant_id,
+    pool_id: scope.pool_id, vintage_id: vintage_id, period: scope.period, close_date: close_date,
+    deadline: supplied_due_date, available: reserve, released: released, closing_balance: reserve - released};
+}

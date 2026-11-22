@@ -1,0 +1,905 @@
+{
+  "adapter": {
+    "adapter_id": "spl-rq07-raw",
+    "observation_policy_ref": "fixture-observation@1",
+    "source_digest": "28470ae6aff0ad1e3916cdc4bf5d140d86eda794a3c5080d8ab76317de717455",
+    "source_fixture": "SPL-RQ07-SV-BUNDLE-01",
+    "version": "1.0.0"
+  },
+  "agreements": [
+    {
+      "agreement_id": "DEAL-SYN-SV",
+      "asset_ids": [
+        "PIC-A",
+        "PIC-B"
+      ],
+      "calendar_ref": "calendar-quarter@1",
+      "document_refs": [
+        "public-development-contract"
+      ],
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "interpretation_ref": "synthetic-interpretation@1",
+      "role_ids": [
+        "participant-role",
+        "distributor-role"
+      ],
+      "version": "synthetic-v1"
+    }
+  ],
+  "allocations": [
+    {
+      "allocation_group_id": "ALLOC-77-v1",
+      "allocation_id": "application/APP-02/PIC-A",
+      "authority_ref": "APR-RQ07-01",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "method": "exact_weight",
+      "method_version": "1",
+      "policy_ref": "APR-RQ07-01",
+      "scenario_id": "SPL-RQ07-SV-BUNDLE-01",
+      "source_fact_id": "application/APP-02",
+      "target_scope": {
+        "agreement_id": "DEAL-SYN-SV",
+        "asset_ids": [
+          "PIC-A"
+        ]
+      },
+      "weight": "0.4"
+    },
+    {
+      "allocation_group_id": "ALLOC-77-v1",
+      "allocation_id": "application/APP-02/PIC-B",
+      "authority_ref": "APR-RQ07-01",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "method": "exact_weight",
+      "method_version": "1",
+      "policy_ref": "APR-RQ07-01",
+      "scenario_id": "SPL-RQ07-SV-BUNDLE-01",
+      "source_fact_id": "application/APP-02",
+      "target_scope": {
+        "agreement_id": "DEAL-SYN-SV",
+        "asset_ids": [
+          "PIC-B"
+        ]
+      },
+      "weight": "0.6"
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "PIC-A",
+      "kind": "picture"
+    },
+    {
+      "asset_id": "PIC-B",
+      "kind": "picture"
+    },
+    {
+      "asset_id": "BUNDLE-77",
+      "kind": "bundle"
+    }
+  ],
+  "evidence_events": [
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "50000"
+      },
+      "approval_ref": "SV-8-SHARE",
+      "asset_id": "PIC-A",
+      "batch_ref": {
+        "batch_id": "raw_acquisition_funding",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "effective_date": "2025-12-15",
+      "event_id": "FUND-A-V",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "funding",
+      "observed_at": "2026-04-03T00:00:00Z",
+      "party_id": "DIST",
+      "source_row": "raw_acquisition_funding.csv:record-1",
+      "subject_ref": "PIC-A"
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "40000"
+      },
+      "approval_ref": "SV-8-SHARE",
+      "asset_id": "PIC-B",
+      "batch_ref": {
+        "batch_id": "raw_acquisition_funding",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "effective_date": "2025-12-15",
+      "event_id": "FUND-B-S",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "funding",
+      "observed_at": "2026-04-03T00:00:00Z",
+      "party_id": "PART",
+      "source_row": "raw_acquisition_funding.csv:record-2",
+      "subject_ref": "PIC-B"
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "60000"
+      },
+      "approval_ref": "SV-8-SHARE",
+      "asset_id": "PIC-B",
+      "batch_ref": {
+        "batch_id": "raw_acquisition_funding",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "effective_date": "2025-12-15",
+      "event_id": "FUND-B-V",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "funding",
+      "observed_at": "2026-04-03T00:00:00Z",
+      "party_id": "DIST",
+      "source_row": "raw_acquisition_funding.csv:record-3",
+      "subject_ref": "PIC-B"
+    }
+  ],
+  "financial_facts": [
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "110000"
+      },
+      "asset_id": "PIC-A",
+      "batch_ref": {
+        "batch_id": "raw_invoice_lines",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "dates": {
+        "invoice_date": "2026-01-29"
+      },
+      "event_kind": "invoice",
+      "fact_id": "invoice/INV-A:1",
+      "source_row": "raw_invoice_lines.csv:record-1",
+      "temporal_basis": {
+        "date": "2026-01-29",
+        "kind": "invoice_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "100000"
+      },
+      "asset_id": "BUNDLE-77",
+      "batch_ref": {
+        "batch_id": "raw_invoice_lines",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "dates": {
+        "invoice_date": "2026-02-15",
+        "license_date": "2026-02-01"
+      },
+      "event_kind": "invoice",
+      "fact_id": "invoice/INV-AB:1",
+      "source_row": "raw_invoice_lines.csv:record-2",
+      "temporal_basis": {
+        "date": "2026-02-15",
+        "kind": "invoice_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "60000"
+      },
+      "asset_id": "PIC-A",
+      "batch_ref": {
+        "batch_id": "raw_cash_applications",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "dates": {
+        "cash_received_date": "2026-03-31",
+        "invoice_date": "2026-01-29",
+        "posting_date": "2026-04-02"
+      },
+      "event_kind": "cash_receipt",
+      "external_event_ref": "APP-01",
+      "fact_id": "receipt/APP-01",
+      "parent_fact_id": "invoice/INV-A:1",
+      "source_row": "raw_cash_applications.csv:record-1",
+      "temporal_basis": {
+        "date": "2026-03-31",
+        "kind": "cash_received_date"
+      },
+      "territory": "US"
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "100000"
+      },
+      "asset_id": "BUNDLE-77",
+      "batch_ref": {
+        "batch_id": "raw_cash_applications",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "dates": {
+        "cash_received_date": "2026-03-31",
+        "invoice_date": "2026-02-15",
+        "posting_date": "2026-04-02"
+      },
+      "event_kind": "cash_receipt",
+      "external_event_ref": "APP-02",
+      "fact_id": "application/APP-02",
+      "parent_fact_id": "invoice/INV-AB:1",
+      "source_row": "raw_cash_applications.csv:record-2",
+      "temporal_basis": {
+        "date": "2026-03-31",
+        "kind": "cash_received_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "10000"
+      },
+      "asset_id": "PIC-A",
+      "batch_ref": {
+        "batch_id": "raw_cost_lines",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "category": "third_party_marketing",
+      "dates": {
+        "invoice_date": "2026-03-18",
+        "paid_date": "2026-03-26",
+        "posting_date": "2026-03-20"
+      },
+      "event_kind": "incurred_cost",
+      "fact_id": "cost/COST-A:1",
+      "source_row": "raw_cost_lines.csv:record-1",
+      "temporal_basis": {
+        "date": "2026-03-20",
+        "kind": "posting_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "5500"
+      },
+      "asset_id": "PIC-B",
+      "batch_ref": {
+        "batch_id": "raw_cost_lines",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "category": "actual_distribution",
+      "dates": {
+        "invoice_date": "2026-03-29",
+        "posting_date": "2026-03-30"
+      },
+      "event_kind": "incurred_cost",
+      "fact_id": "cost/COST-B:1",
+      "source_row": "raw_cost_lines.csv:record-2",
+      "temporal_basis": {
+        "date": "2026-03-30",
+        "kind": "posting_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "2000"
+      },
+      "asset_id": "PIC-B",
+      "batch_ref": {
+        "batch_id": "raw_cost_lines",
+        "source_system": "synthetic-screen",
+        "version": "1"
+      },
+      "category": "unsubstantiated_overhead",
+      "dates": {
+        "invoice_date": "2026-03-29",
+        "posting_date": "2026-03-30"
+      },
+      "event_kind": "incurred_cost",
+      "fact_id": "cost/COST-X:1",
+      "source_row": "raw_cost_lines.csv:record-3",
+      "temporal_basis": {
+        "date": "2026-03-30",
+        "kind": "posting_date"
+      }
+    }
+  ],
+  "incorporated_policies": [],
+  "interpretations": [
+    {
+      "decisions": [
+        {
+          "adopted_policy": "Bounded synthetic SPL-RQ07-SV-BUNDLE-01: SV-8-CASH",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-CASH",
+          "discriminating_case_ref": "SPL-RQ07-SV-BUNDLE-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-CASH",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "DEAL-SYN-SV",
+            "pool_id": "POOL-SV-AB"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SPL-RQ07-SV-BUNDLE-01: SV-8-COST-SCHEDULE",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "cost_terms": [
+            {
+              "branch": "unfunded",
+              "eligible": true,
+              "fact_id": "cost/COST-A:1"
+            },
+            {
+              "branch": "funded",
+              "eligible": true,
+              "fact_id": "cost/COST-B:1"
+            },
+            {
+              "branch": "funded",
+              "eligible": false,
+              "fact_id": "cost/COST-X:1"
+            }
+          ],
+          "decision_id": "SV-8-COST-SCHEDULE",
+          "discriminating_case_ref": "SPL-RQ07-SV-BUNDLE-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-COST-SCHEDULE",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "DEAL-SYN-SV",
+            "pool_id": "POOL-SV-AB"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SPL-RQ07-SV-BUNDLE-01: SV-8-FEE",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-FEE",
+          "discriminating_case_ref": "SPL-RQ07-SV-BUNDLE-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-FEE",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "DEAL-SYN-SV",
+            "pool_id": "POOL-SV-AB"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SPL-RQ07-SV-BUNDLE-01: SV-8-BASIS",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-BASIS",
+          "discriminating_case_ref": "SPL-RQ07-SV-BUNDLE-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-BASIS",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "DEAL-SYN-SV",
+            "pool_id": "POOL-SV-AB"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SPL-RQ07-SV-BUNDLE-01: SV-8-SHARE",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-SHARE",
+          "discriminating_case_ref": "SPL-RQ07-SV-BUNDLE-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-SHARE",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "DEAL-SYN-SV",
+            "pool_id": "POOL-SV-AB"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SPL-RQ07-SV-BUNDLE-01: SV-7-POOL-RECOVERY",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-7-POOL-RECOVERY",
+          "discriminating_case_ref": "SPL-RQ07-SV-BUNDLE-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-7-POOL-RECOVERY",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "DEAL-SYN-SV",
+            "pool_id": "POOL-SV-AB"
+          }
+        },
+        {
+          "adopted_policy": "Bank value cash; GL-posted costs; approved 2/5:3/5 collected bundle allocation; complete funding snapshot; scenario-only authority",
+          "allocation_terms": [
+            {
+              "asset_id": "PIC-A",
+              "weight": "0.4"
+            },
+            {
+              "asset_id": "PIC-B",
+              "weight": "0.6"
+            }
+          ],
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "RQ07-scenario",
+          "decision_id": "APR-RQ07-01",
+          "discriminating_case_ref": "SPL-RQ07-SV-BUNDLE-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "Source normalization and allocation authority",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "DEAL-SYN-SV",
+            "pool_id": "POOL-SV-AB"
+          }
+        }
+      ],
+      "interpretation_id": "synthetic-interpretation",
+      "version": "1"
+    }
+  ],
+  "manifest": {
+    "batch_refs": [
+      "batch@1#sha256:a0e6d1545666e22afa9063bba1d1b432f732f0e9b03c1703f75912005c93c770",
+      "batch@1#sha256:79d9370982cffe3a9357216d65e5c22b5e3291b05a00d534caa53b79ed577ac3",
+      "batch@1#sha256:25af9ce3c0013f299b7b751975c765e7681f35c29ffde82974252806f1ec4c4e",
+      "batch@1#sha256:3191cc0a201ac23c55d1f128c2fc9c6f15e4d1e0c580da178f1446a62ab8db0b",
+      "batch@1#sha256:62f12f5f3f131d4cc98bd5f01693546839e8fe7d2fbbcc685662f9a126727f10"
+    ],
+    "calendar_ref": "calendar@1#sha256:bd3b583d5e7977fe4cbb7a051b838665da81d85120411307e82e2524d296019a",
+    "compiler_build": "5b5c19fe9c38208f5b2ce11b3e79e8c8191db57f9edff65d192a3866050cef2a",
+    "core_version": "0.1-draft",
+    "cutoff": "2026-04-04T00:00:00Z",
+    "input_mode": "full_snapshot",
+    "interpretation_ref": "interpretation@1#sha256:b64c936e8c1710b2f0d3e767b9d462c9db41a86b3bfffd927da4cd6aed56df1d",
+    "mapping_refs": [
+      "mapping@1#sha256:bce512c2f0a4d829a2c06fa597d22e62ff7c4e042f8fa190719a0b2a71b700e5",
+      "mapping@1#sha256:1f99f15f5bb7c8c12f282fe74ef55b3cf5309cda381e898303a5f87ac8d32412",
+      "mapping@1#sha256:e76ffa47e12a20bab571592e9dc2034b64364678a12db30a5a6306bb50e120a9",
+      "mapping@1#sha256:c919b849a94b65f922b6eb0d01fcad60a1641382653d6a8c0d78a4925e68d5bf",
+      "mapping@1#sha256:fcf490516cca882228f75c979666376ae2efbe5af953a428de1a227603fb1110",
+      "mapping@1#sha256:5765c1d79de73efcb087284012d5171e96a8f5bee3b4a0cdbbbb2f5e9194f15e",
+      "mapping@1#sha256:5edd4406e1ccde28f50fca9c517d02df8bc8e31b9a530363fb68cea53b88ac69",
+      "mapping@1#sha256:e2ac53280e347aa1bb678553f9ea0debe13cc41c471a082722b11551f3189d06"
+    ],
+    "mode": "final",
+    "opening_state_ref": "opening@1#sha256:3d091d7fdbbe479075dfe776b863f93238743cc64cae408801d45f3419ad55c8",
+    "output_currency": "USD",
+    "parameter_ref": "parameters@1#sha256:277a29bca7841d653d5c9397ae835b7901d79712e7927feb2e0e37445a48e78e",
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "policy_refs": [],
+    "reference_refs": [
+      "reference@1#sha256:13b0700d6b5a950325442e8ec03469bd2bd4a21e836713bdf6ec705a92aec522",
+      "reference@1#sha256:263a4be0b4bdcecaca47ffbfba5bd15fb515b7342663ca44bdb355ef4bc9568a",
+      "reference@1#sha256:20f473334773541a7411a56fbaee0372cec65d33729b183126d5c17fc98ec7d6",
+      "reference@1#sha256:b24c74cc2e3717e7655e620c776cc6c3c05e06c973cc690e5e13a3a66d160e41",
+      "reference@1#sha256:63801b7f06d8915d6efd1b7212d35febdca77b2fdeb844b479f92779a3fa3aeb"
+    ],
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_facts": 100000,
+      "parser_depth": 128,
+      "source_scalars": 1000000,
+      "source_tokens": 200000
+    },
+    "run_id": "RUN-RQ07-01",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "SPL-RQ07-SV-BUNDLE-01",
+    "schedule_ref": "schedule@1#sha256:25ee60e824461ec0bce0630eea9dc77947146e4e1239e9a2d23cb5324bb651aa",
+    "schema_version": "0.1-draft",
+    "surface_version": "0.1-draft"
+  },
+  "mappings": [
+    {
+      "authority_ref": "SV-7-POOL-RECOVERY",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "pool_membership",
+      "mapping_id": "member-PIC-A",
+      "mapping_version": "1",
+      "pool_id": "POOL-SV-AB",
+      "purpose": "participation_prepayment",
+      "source_code": "PIC-A",
+      "source_namespace": "synthetic",
+      "target_ref": "PIC-A"
+    },
+    {
+      "authority_ref": "SV-7-POOL-RECOVERY",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "pool_membership",
+      "mapping_id": "member-PIC-B",
+      "mapping_version": "1",
+      "pool_id": "POOL-SV-AB",
+      "purpose": "participation_prepayment",
+      "source_code": "PIC-B",
+      "source_namespace": "synthetic",
+      "target_ref": "PIC-B"
+    },
+    {
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "asset_alias",
+      "mapping_id": "alias-LEGACY-A",
+      "mapping_version": "RQ07-mappings-v1",
+      "source_code": "LEGACY-A",
+      "source_namespace": "synthetic-screen",
+      "target_ref": "PIC-A"
+    },
+    {
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "asset_alias",
+      "mapping_id": "alias-LEGACY-B",
+      "mapping_version": "RQ07-mappings-v1",
+      "source_code": "LEGACY-B",
+      "source_namespace": "synthetic-screen",
+      "target_ref": "PIC-B"
+    },
+    {
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "territory",
+      "mapping_id": "territory-USA",
+      "mapping_version": "RQ07-mappings-v1",
+      "source_code": "USA",
+      "source_namespace": "synthetic-screen",
+      "target_ref": "US"
+    },
+    {
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "cost_category",
+      "mapping_id": "category-COST-A:1",
+      "mapping_version": "RQ07-mappings-v1",
+      "source_code": "6110",
+      "source_namespace": "synthetic-screen",
+      "target_ref": "third_party_marketing"
+    },
+    {
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "cost_category",
+      "mapping_id": "category-COST-B:1",
+      "mapping_version": "RQ07-mappings-v1",
+      "source_code": "6210",
+      "source_namespace": "synthetic-screen",
+      "target_ref": "actual_distribution"
+    },
+    {
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "cost_category",
+      "mapping_id": "category-COST-X:1",
+      "mapping_version": "RQ07-mappings-v1",
+      "source_code": "6900",
+      "source_namespace": "synthetic-screen",
+      "target_ref": "unsubstantiated_overhead"
+    }
+  ],
+  "opening_aliases": [
+    {
+      "alias": "sv/participant-prepayment/main-pool",
+      "state_key": "DEAL-SYN-SV/PART/participation-prepayment/POOL-SV-AB/USD"
+    }
+  ],
+  "parameters": {
+    "cost_date_basis": "posting_date",
+    "cost_decisions": [
+      {
+        "branch": "unfunded",
+        "decision_id": "SV-8-COST-SCHEDULE",
+        "eligible": true,
+        "fact_id": "cost/COST-A:1",
+        "reason": "Approved outside marketing expense in the synthetic Net Profits branch; no in-house surcharge."
+      },
+      {
+        "branch": "funded",
+        "decision_id": "SV-8-COST-SCHEDULE",
+        "eligible": true,
+        "fact_id": "cost/COST-B:1",
+        "reason": "Approved actual distribution expense in the synthetic Adjusted Gross Receipts branch; paid date absent and not used."
+      },
+      {
+        "branch": "funded",
+        "decision_id": "SV-8-COST-SCHEDULE",
+        "eligible": false,
+        "fact_id": "cost/COST-X:1",
+        "reason": "This synthetic line lacks support as actual distribution cost; the fixture specifically disallows this line."
+      }
+    ],
+    "funding_snapshot": {
+      "as_of": "2026-01-01",
+      "complete": true,
+      "covered_assets": [
+        "PIC-A",
+        "PIC-B"
+      ],
+      "covered_parties": [
+        "PART",
+        "DIST"
+      ],
+      "evidence_ref": "fixture-observation@1"
+    },
+    "policy": {
+      "agreement_id": "DEAL-SYN-SV",
+      "participant_id": "PART",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "POOL-SV-AB"
+    }
+  },
+  "parties": [
+    {
+      "name": "Synthetic participant",
+      "party_id": "PART"
+    },
+    {
+      "name": "Synthetic distributor",
+      "party_id": "DIST"
+    },
+    {
+      "name": "Synthetic license buyer",
+      "party_id": "BUYER-1"
+    }
+  ],
+  "profile": "sv-rq07-posted-v1",
+  "references": [
+    {
+      "description": "Explicit Gregorian half-open period",
+      "kind": "calendar",
+      "reference_id": "calendar-quarter@1"
+    },
+    {
+      "description": "Explicit synthetic opening snapshot; no historical ledger claim",
+      "kind": "source",
+      "reference_id": "synthetic-approved-opening"
+    },
+    {
+      "description": "Selected public provision; synthetic inputs and unapproved wider policies",
+      "kind": "source",
+      "reference_id": "public-development-contract"
+    },
+    {
+      "description": "Explicit synthetic recorded time 2026-04-03T00:00:00Z; applications have date precision and are available when posting_date < UTC cutoff date",
+      "kind": "synthetic_observation_policy",
+      "reference_id": "fixture-observation@1"
+    },
+    {
+      "description": "synthetic approved prior-close control; historical ledger not reconstructed",
+      "kind": "source",
+      "reference_id": "SYN-CLOSE-2025Q4"
+    }
+  ],
+  "roles": [
+    {
+      "agreement_id": "DEAL-SYN-SV",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "party_id": "PART",
+      "role": "participant",
+      "role_id": "participant-role"
+    },
+    {
+      "agreement_id": "DEAL-SYN-SV",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "party_id": "DIST",
+      "role": "distributor",
+      "role_id": "distributor-role"
+    }
+  ],
+  "source_batches": [
+    {
+      "adapter_version": "1.0.0",
+      "batch_id": "raw_acquisition_funding",
+      "control_totals": [
+        {
+          "absolute_total": "150000",
+          "amount_kind": "raw_acquisition_funding",
+          "currency": "USD",
+          "signed_total": "150000"
+        }
+      ],
+      "format": "csv",
+      "ingested_at": "2026-11-20T00:00:00Z",
+      "row_count": 3,
+      "sha256": "ed4ecc44984fcb954630f50e359b1c6ecad10d5115961d1460c1751aed8a3deb",
+      "snapshot_locator": "raw_acquisition_funding.csv",
+      "source_system": "synthetic-screen",
+      "version": "1"
+    },
+    {
+      "adapter_version": "1.0.0",
+      "batch_id": "raw_bank_receipts",
+      "control_totals": [
+        {
+          "absolute_total": "160000",
+          "amount_kind": "raw_bank_receipts",
+          "currency": "USD",
+          "signed_total": "160000"
+        }
+      ],
+      "format": "csv",
+      "ingested_at": "2026-11-20T00:00:00Z",
+      "row_count": 1,
+      "sha256": "d6ef50afb7f2f16e4cfedc5d21af370da63b3e4b89e65343b102595f80c34457",
+      "snapshot_locator": "raw_bank_receipts.csv",
+      "source_system": "synthetic-screen",
+      "version": "1"
+    },
+    {
+      "adapter_version": "1.0.0",
+      "batch_id": "raw_cash_applications",
+      "control_totals": [
+        {
+          "absolute_total": "160000",
+          "amount_kind": "raw_cash_applications",
+          "currency": "USD",
+          "signed_total": "160000"
+        }
+      ],
+      "format": "csv",
+      "ingested_at": "2026-11-20T00:00:00Z",
+      "row_count": 2,
+      "sha256": "e0165cbe8f01594313ab655c067dfc8060c778811f35b52ae2e91f04253a3950",
+      "snapshot_locator": "raw_cash_applications.csv",
+      "source_system": "synthetic-screen",
+      "version": "1"
+    },
+    {
+      "adapter_version": "1.0.0",
+      "batch_id": "raw_cost_lines",
+      "control_totals": [
+        {
+          "absolute_total": "17500",
+          "amount_kind": "raw_cost_lines",
+          "currency": "USD",
+          "signed_total": "17500"
+        }
+      ],
+      "format": "csv",
+      "ingested_at": "2026-11-20T00:00:00Z",
+      "row_count": 3,
+      "sha256": "866b99113b1071df1b4785f20e94f03f0500bec2b9e97bcb7ddb5b1892667de3",
+      "snapshot_locator": "raw_cost_lines.csv",
+      "source_system": "synthetic-screen",
+      "version": "1"
+    },
+    {
+      "adapter_version": "1.0.0",
+      "batch_id": "raw_invoice_lines",
+      "control_totals": [
+        {
+          "absolute_total": "210000",
+          "amount_kind": "raw_invoice_lines",
+          "currency": "USD",
+          "signed_total": "210000"
+        }
+      ],
+      "format": "csv",
+      "ingested_at": "2026-11-20T00:00:00Z",
+      "row_count": 2,
+      "sha256": "cab1d020d3467eb955c88291a1cbe2aa0f0a67973a8a41842cd0381c380c7cbb",
+      "snapshot_locator": "raw_invoice_lines.csv",
+      "source_system": "synthetic-screen",
+      "version": "1"
+    }
+  ],
+  "state_cells": [
+    {
+      "agreement_id": "DEAL-SYN-SV",
+      "balance_kind": "participation_prepayment",
+      "boundary": "2026-01-01",
+      "participant_id": "PART",
+      "policy_lineage": [
+        "APR-RQ07-01"
+      ],
+      "pool_id": "POOL-SV-AB",
+      "provenance_ref": "SYN-CLOSE-2025Q4",
+      "quantity": "15000",
+      "scenario_id": "SPL-RQ07-SV-BUNDLE-01",
+      "scope": {
+        "agreement_id": "DEAL-SYN-SV",
+        "pool_id": "POOL-SV-AB"
+      },
+      "state_key": "DEAL-SYN-SV/PART/participation-prepayment/POOL-SV-AB/USD",
+      "unit": "USD"
+    }
+  ]
+}

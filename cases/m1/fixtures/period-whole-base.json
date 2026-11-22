@@ -1,0 +1,71 @@
+{
+  "schema_version": "m1-neutral/1",
+  "case_id": "m1-period-whole-base",
+  "scope": {
+    "contract_id": "m1-agreement",
+    "participant_id": "m1-participant",
+    "pool_id": "m1-pool",
+    "asset_id": "m1-asset",
+    "currency": "USD"
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-02-01"
+  },
+  "cutoff": "2026-02-02T00:00:00Z",
+  "facts": [
+    {
+      "id": "basis-1",
+      "effective_date": "2026-01-15",
+      "observed_at": "2026-01-16T00:00:00Z",
+      "evidence_id": "evidence-1",
+      "amount": "150"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence-1",
+      "observed_at": "2026-01-16T00:00:00Z"
+    }
+  ],
+  "policy": {
+    "method": "period_whole_base",
+    "tiers": [
+      {
+        "id": "lower",
+        "lower": "0",
+        "upper": "100",
+        "rate": "1/10",
+        "sequence": 1
+      },
+      {
+        "id": "upper",
+        "lower": "100",
+        "upper": null,
+        "rate": "1/5",
+        "sequence": 2
+      }
+    ],
+    "cap": "100",
+    "floor": "100",
+    "reset_period_cap": false,
+    "rounding": "exact_no_rounding",
+    "negative_basis": "reject",
+    "threshold_equality": "lower_inclusive"
+  },
+  "opening_state": {
+    "scope": {
+      "contract_id": "m1-agreement",
+      "participant_id": "m1-participant",
+      "pool_id": "m1-pool",
+      "asset_id": "m1-asset",
+      "currency": "USD"
+    },
+    "method": "period_whole_base",
+    "balance": "0",
+    "period": {
+      "start": "2026-01-01",
+      "end": "2026-02-01"
+    }
+  }
+}

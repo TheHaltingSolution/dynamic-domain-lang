@@ -1,0 +1,80 @@
+{
+  "decisions": [
+    {
+      "decision_id": "CEDAR-PRIORITY",
+      "evidence_ref": "cedar-synthetic-policy-selection",
+      "policy_id": "cedar:priority-policy",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "agreement": "cedar-distribution",
+    "asset": "cedar-film",
+    "cash": {
+      "currency": "USD",
+      "value": "100"
+    },
+    "participant_a": "oak-participant",
+    "participant_b": "pine-participant",
+    "pool": "willow-screen-trust",
+    "source_date": "2026-05-01",
+    "territory": "CA"
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2026-07-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "cedar:priority-rates",
+        "locator": "cases/modules/priority-rates/descriptor.json",
+        "revision": "1",
+        "sha256": "ffff7caaed2482bc136e90c5751077cc06502e954749e3b2c2a70ee6582c49b0"
+      }
+    ],
+    "period": {
+      "end": "2026-07-01",
+      "start": "2026-04-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "cedar-priority-CA",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "CEDAR-SYNTHETIC"
+  },
+  "module_ref": {
+    "id": "cedar:priority-rates",
+    "locator": "cases/modules/priority-rates/descriptor.json",
+    "revision": "1",
+    "sha256": "ffff7caaed2482bc136e90c5751077cc06502e954749e3b2c2a70ee6582c49b0"
+  },
+  "parameters": {
+    "canada_rate": "0.4",
+    "competing_canada": false,
+    "effective": {
+      "end": "2026-07-01",
+      "start": "2026-04-01"
+    },
+    "ordinary_rate": "0.2",
+    "share_a": "0.5",
+    "share_b": "0.5"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "cedar-distribution",
+    "asset_ids": [
+      "cedar-film"
+    ],
+    "participant_ids": [
+      "oak-participant",
+      "pine-participant"
+    ],
+    "pool_id": "willow-screen-trust",
+    "purpose": "synthetic-priority-entitlement"
+  },
+  "state_cells": []
+}

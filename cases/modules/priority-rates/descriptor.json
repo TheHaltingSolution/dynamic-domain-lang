@@ -1,0 +1,418 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.priority/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.agreement",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.pool",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.asset",
+      "target": "scope.asset_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.participant_a",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.participant_b",
+      "target": "scope.participant_ids",
+      "value": ""
+    }
+  ],
+  "id": "cedar:priority-rates",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [
+          "agreement"
+        ],
+        "domain": {},
+        "name": "agreement",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Agreement"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "pool",
+          "purpose"
+        ],
+        "domain": {},
+        "name": "pool",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Pool"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "asset"
+        ],
+        "domain": {},
+        "name": "asset",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Asset"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "participant"
+        ],
+        "domain": {},
+        "name": "participant_a",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Participant"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "participant"
+        ],
+        "domain": {},
+        "name": "participant_b",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Participant"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [
+          "period"
+        ],
+        "domain": {},
+        "name": "source_date",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Date"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "territory",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [
+          "currency",
+          "agreement",
+          "asset"
+        ],
+        "domain": {
+          "minimum": "0"
+        },
+        "name": "cash",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [
+          "period"
+        ],
+        "domain": {},
+        "name": "effective",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Period"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "maximum": "1",
+          "methodology": false,
+          "minimum": "0"
+        },
+        "name": "ordinary_rate",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "maximum": "1",
+          "methodology": false,
+          "minimum": "0"
+        },
+        "name": "canada_rate",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "maximum": "1",
+          "methodology": false,
+          "minimum": "0"
+        },
+        "name": "share_a",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "maximum": "1",
+          "methodology": false,
+          "minimum": "0"
+        },
+        "name": "share_b",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            false,
+            true
+          ],
+          "methodology": true
+        },
+        "name": "competing_canada",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "asset",
+          "currency"
+        ],
+        "domain": {},
+        "name": "statements",
+        "role": "result",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "ParticipantStatement"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [
+          "currency"
+        ],
+        "domain": {},
+        "name": "rate_detail",
+        "role": "detail",
+        "type": {
+          "args": [],
+          "name": "RateDetail"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "reconciliation",
+        "role": "reconciliation",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      }
+    ],
+    "schemas": [
+      {
+        "fields": {
+          "agreement_id": {
+            "args": [
+              {
+                "args": [],
+                "name": "Agreement"
+              }
+            ],
+            "name": "Id"
+          },
+          "asset_id": {
+            "args": [
+              {
+                "args": [],
+                "name": "Asset"
+              }
+            ],
+            "name": "Id"
+          },
+          "earned": {
+            "args": [
+              {
+                "args": [],
+                "name": "USD"
+              }
+            ],
+            "name": "Money"
+          },
+          "participant_id": {
+            "args": [
+              {
+                "args": [],
+                "name": "Participant"
+              }
+            ],
+            "name": "Id"
+          },
+          "pool_id": {
+            "args": [
+              {
+                "args": [],
+                "name": "Pool"
+              }
+            ],
+            "name": "Id"
+          }
+        },
+        "name": "ParticipantStatement"
+      },
+      {
+        "fields": {
+          "rate": {
+            "args": [],
+            "name": "Ratio"
+          },
+          "total": {
+            "args": [
+              {
+                "args": [],
+                "name": "USD"
+              }
+            ],
+            "name": "Money"
+          }
+        },
+        "name": "RateDetail"
+      }
+    ]
+  },
+  "policy": {
+    "decision_ids": [
+      "CEDAR-PRIORITY"
+    ],
+    "discriminating_cases": [
+      "US20",
+      "CA40",
+      "FR0",
+      "tie",
+      "no-rule",
+      "effective-end",
+      "two-participants"
+    ],
+    "evidence_class": "synthetic",
+    "id": "cedar:priority-policy",
+    "readable": {
+      "locator": "cases/modules/priority-rates/policy.md",
+      "sha256": "1336ee05320b61227d7c9bc8075646277cb93b7a012d5830bf9a0c59b5f59147"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/modules/priority-rates/priority-rates.spl",
+    "sha256": "d05481c4c6204354d0c56151ac3b23ae3eeeec3c21f0dc6d9db048c97bc2817c"
+  },
+  "state": []
+}

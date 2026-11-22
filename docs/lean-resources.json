@@ -1,0 +1,7 @@
+{
+  "resources": [
+    { "directory": "reference-manual", "repository": "https://github.com/leanprover/reference-manual.git", "revision": "54e83e8e886c960ae86deb160e52c8f234290364", "website": "https://lean-lang.org/doc/reference/4.35.0/" },
+    { "directory": "functional-programming", "repository": "https://github.com/leanprover/fp-lean.git", "revision": "13db7a0a90f3fb9b7ef36ef0bd341b670967a49a", "website": "https://lean-lang.org/functional_programming_in_lean/" },
+    { "directory": "theorem-proving", "repository": "https://github.com/leanprover/theorem_proving_in_lean4.git", "revision": "2ef2a3e43cb53a141bd4ef54948ff37de6feb133", "website": "https://lean-lang.org/theorem_proving_in_lean4/" }
+  ]
+}

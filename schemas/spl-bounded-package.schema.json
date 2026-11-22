@@ -1,0 +1,1883 @@
+{
+  "$id": "urn:spl:bounded-package:0.1.0-dev",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "observation_policy_ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_fixture": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapter_id",
+        "version",
+        "observation_policy_ref",
+        "source_fixture",
+        "source_digest"
+      ],
+      "type": "object"
+    },
+    "agreements": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "agreement_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "asset_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "calendar_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "document_refs": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "effective": {
+            "additionalProperties": false,
+            "properties": {
+              "end": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "start": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ],
+            "type": "object"
+          },
+          "interpretation_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "role_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "version": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "agreement_id",
+          "version",
+          "document_refs",
+          "interpretation_ref",
+          "effective",
+          "asset_ids",
+          "role_ids",
+          "calendar_ref"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "allocations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "allocation_group_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "allocation_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "authority_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "effective": {
+            "additionalProperties": false,
+            "properties": {
+              "end": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "start": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ],
+            "type": "object"
+          },
+          "method": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "method_version": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "policy_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "scenario_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_fact_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "target_scope": {
+            "additionalProperties": false,
+            "properties": {
+              "agreement_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "asset_ids": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "participant_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "pool_id": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "agreement_id"
+            ],
+            "type": "object"
+          },
+          "weight": {
+            "oneOf": [
+              {
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                "type": "string"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "denominator": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "numerator": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "numerator",
+                  "denominator"
+                ],
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "required": [
+          "allocation_id",
+          "allocation_group_id",
+          "source_fact_id",
+          "target_scope",
+          "method",
+          "method_version",
+          "authority_ref",
+          "policy_ref",
+          "scenario_id",
+          "effective",
+          "weight"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "assets": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "picture",
+              "bundle"
+            ]
+          }
+        },
+        "required": [
+          "asset_id",
+          "kind"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "evidence_events": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "agreement_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "amount": {
+            "additionalProperties": false,
+            "properties": {
+              "currency": {
+                "enum": [
+                  "USD"
+                ]
+              },
+              "value": {
+                "oneOf": [
+                  {
+                    "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "denominator": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "numerator": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "numerator",
+                      "denominator"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "value",
+              "currency"
+            ],
+            "type": "object"
+          },
+          "approval_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "asset_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "batch_ref": {
+            "additionalProperties": false,
+            "properties": {
+              "batch_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "source_system": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "version": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_system",
+              "batch_id",
+              "version"
+            ],
+            "type": "object"
+          },
+          "effective_date": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "event_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "funding",
+              "hurdle_attestation",
+              "gate_history",
+              "crossed_net_worksheet"
+            ]
+          },
+          "member_ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "observed_at": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "party_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "period": {
+            "additionalProperties": false,
+            "properties": {
+              "end": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "start": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ],
+            "type": "object"
+          },
+          "pool_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "satisfied": {
+            "type": "boolean"
+          },
+          "source_row": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "subject_ref": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id",
+          "kind",
+          "subject_ref",
+          "effective_date",
+          "observed_at",
+          "evidence_ref",
+          "approval_ref"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "financial_facts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "additionalProperties": false,
+            "properties": {
+              "currency": {
+                "enum": [
+                  "USD"
+                ]
+              },
+              "value": {
+                "oneOf": [
+                  {
+                    "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                    "type": "string"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "denominator": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "numerator": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "numerator",
+                      "denominator"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "value",
+              "currency"
+            ],
+            "type": "object"
+          },
+          "asset_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "batch_ref": {
+            "additionalProperties": false,
+            "properties": {
+              "batch_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "source_system": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "version": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_system",
+              "batch_id",
+              "version"
+            ],
+            "type": "object"
+          },
+          "category": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "channel": {
+            "enum": [
+              "home_video",
+              "other"
+            ]
+          },
+          "counterparty_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "dates": {
+            "additionalProperties": false,
+            "properties": {
+              "cash_received_date": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "incurred_date": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "invoice_date": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "license_date": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "paid_date": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "posting_date": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [],
+            "type": "object"
+          },
+          "event_kind": {
+            "enum": [
+              "cash_receipt",
+              "invoice",
+              "incurred_cost"
+            ]
+          },
+          "external_event_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "fact_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parent_fact_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_row": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "temporal_basis": {
+            "additionalProperties": false,
+            "properties": {
+              "date": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "cash_received_date",
+                  "posting_date",
+                  "incurred_date",
+                  "invoice_date"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "date"
+            ],
+            "type": "object"
+          },
+          "territory": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "fact_id",
+          "batch_ref",
+          "source_row",
+          "event_kind",
+          "amount",
+          "temporal_basis",
+          "asset_id",
+          "dates"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "incorporated_policies": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "document": {
+            "additionalProperties": false,
+            "properties": {
+              "locator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "locator",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "policy_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "profile": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "registry": {
+            "additionalProperties": false,
+            "properties": {
+              "entry_sha256": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "locator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "locator",
+              "sha256",
+              "entry_sha256"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "policy_id",
+          "profile",
+          "document",
+          "registry"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "interpretations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "decisions": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "adopted_policy": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "allocation_terms": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "asset_id": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "weight": {
+                        "oneOf": [
+                          {
+                            "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                            "type": "string"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "denominator": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "numerator": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "numerator",
+                              "denominator"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "asset_id",
+                      "weight"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "alternatives": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "clause_ref": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "cost_terms": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "branch": {
+                        "enum": [
+                          "funded",
+                          "unfunded",
+                          "lg"
+                        ]
+                      },
+                      "eligible": {
+                        "type": "boolean"
+                      },
+                      "fact_id": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "fact_id",
+                      "eligible",
+                      "branch"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "decision_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "discriminating_case_ref": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "document_ref": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "effective": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "end": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "start": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "start",
+                    "end"
+                  ],
+                  "type": "object"
+                },
+                "evidence_label": {
+                  "enum": [
+                    "research_assumption",
+                    "explicit_clause"
+                  ]
+                },
+                "question": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "review_status": {
+                  "enum": [
+                    "proposed",
+                    "reviewed",
+                    "approved"
+                  ]
+                },
+                "scope": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "agreement_id": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "asset_ids": {
+                      "items": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "participant_id": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "pool_id": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "agreement_id"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "decision_id",
+                "clause_ref",
+                "document_ref",
+                "question",
+                "evidence_label",
+                "adopted_policy",
+                "alternatives",
+                "scope",
+                "effective",
+                "review_status",
+                "discriminating_case_ref"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "interpretation_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "version": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "interpretation_id",
+          "version",
+          "decisions"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "manifest": {
+      "additionalProperties": false,
+      "properties": {
+        "batch_refs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "calendar_ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "compiler_build": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "core_version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "cutoff": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "input_mode": {
+          "enum": [
+            "full_snapshot"
+          ]
+        },
+        "interpretation_ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "mapping_refs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mode": {
+          "enum": [
+            "final",
+            "preview"
+          ]
+        },
+        "opening_state_ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "output_currency": {
+          "enum": [
+            "USD"
+          ]
+        },
+        "parameter_ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "period": {
+          "additionalProperties": false,
+          "properties": {
+            "end": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "start": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "start",
+            "end"
+          ],
+          "type": "object"
+        },
+        "policy_refs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reference_refs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resource_limits": {
+          "additionalProperties": false,
+          "properties": {
+            "lean_timeout_seconds": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "max_facts": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "parser_depth": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "source_scalars": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "source_tokens": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "source_scalars",
+            "source_tokens",
+            "parser_depth",
+            "lean_timeout_seconds",
+            "max_facts"
+          ],
+          "type": "object"
+        },
+        "run_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "runtime_build": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "scenario_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schedule_ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "surface_version": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "schema_version",
+        "surface_version",
+        "core_version",
+        "schedule_ref",
+        "interpretation_ref",
+        "parameter_ref",
+        "opening_state_ref",
+        "calendar_ref",
+        "compiler_build",
+        "runtime_build",
+        "cutoff",
+        "scenario_id",
+        "mapping_refs",
+        "batch_refs",
+        "reference_refs",
+        "policy_refs",
+        "period",
+        "output_currency",
+        "mode",
+        "input_mode",
+        "resource_limits"
+      ],
+      "type": "object"
+    },
+    "mappings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "authority_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "effective": {
+            "additionalProperties": false,
+            "properties": {
+              "end": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "start": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ],
+            "type": "object"
+          },
+          "kind": {
+            "enum": [
+              "asset_alias",
+              "territory",
+              "cost_category",
+              "pool_membership"
+            ]
+          },
+          "mapping_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "mapping_version": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "pool_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "purpose": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_code": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_namespace": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "target_ref": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "mapping_version",
+          "mapping_id",
+          "kind",
+          "source_namespace",
+          "source_code",
+          "target_ref",
+          "effective"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "opening_aliases": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "alias": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "state_key": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "alias",
+          "state_key"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "parameters": {
+      "additionalProperties": false,
+      "properties": {
+        "cost_date_basis": {
+          "enum": [
+            "incurred_date",
+            "posting_date"
+          ]
+        },
+        "cost_decisions": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "branch": {
+                "enum": [
+                  "funded",
+                  "unfunded",
+                  "lg"
+                ]
+              },
+              "decision_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "eligible": {
+                "type": "boolean"
+              },
+              "fact_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "fact_id",
+              "decision_id",
+              "eligible",
+              "branch",
+              "reason"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "funding_snapshot": {
+          "additionalProperties": false,
+          "properties": {
+            "as_of": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "complete": {
+              "type": "boolean"
+            },
+            "covered_assets": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "covered_parties": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "evidence_ref": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "complete",
+            "as_of",
+            "covered_assets",
+            "covered_parties",
+            "evidence_ref"
+          ],
+          "type": "object"
+        },
+        "payment_holdback_addition": {
+          "additionalProperties": false,
+          "properties": {
+            "currency": {
+              "enum": [
+                "USD"
+              ]
+            },
+            "value": {
+              "oneOf": [
+                {
+                  "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "denominator": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "numerator": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "payment_holdback_release": {
+          "additionalProperties": false,
+          "properties": {
+            "currency": {
+              "enum": [
+                "USD"
+              ]
+            },
+            "value": {
+              "oneOf": [
+                {
+                  "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "denominator": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "numerator": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "policy": {
+          "additionalProperties": false,
+          "properties": {
+            "agreement_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "asset_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "gross_rate": {
+              "oneOf": [
+                {
+                  "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "denominator": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "numerator": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "net_rate": {
+              "oneOf": [
+                {
+                  "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "denominator": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "numerator": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "participant_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "period": {
+              "additionalProperties": false,
+              "properties": {
+                "end": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "start": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "start",
+                "end"
+              ],
+              "type": "object"
+            },
+            "pool_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "video_proxy": {
+              "oneOf": [
+                {
+                  "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "denominator": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "numerator": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "agreement_id",
+            "participant_id",
+            "pool_id",
+            "period"
+          ],
+          "type": "object"
+        },
+        "producer_fee_offset": {
+          "additionalProperties": false,
+          "properties": {
+            "currency": {
+              "enum": [
+                "USD"
+              ]
+            },
+            "value": {
+              "oneOf": [
+                {
+                  "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "denominator": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "numerator": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "policy",
+        "cost_date_basis",
+        "cost_decisions"
+      ],
+      "type": "object"
+    },
+    "parties": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "party_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "party_id",
+          "name"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "profile": {
+      "enum": [
+        "sv-incurred-v1",
+        "sv-rq07-posted-v1",
+        "lg-cleared-v1"
+      ]
+    },
+    "references": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "calendar",
+              "source",
+              "synthetic_observation_policy"
+            ]
+          },
+          "reference_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "reference_id",
+          "kind",
+          "description"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "roles": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "agreement_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "effective": {
+            "additionalProperties": false,
+            "properties": {
+              "end": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "start": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ],
+            "type": "object"
+          },
+          "party_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "distributor",
+              "participant",
+              "funder"
+            ]
+          },
+          "role_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "role_id",
+          "party_id",
+          "agreement_id",
+          "role",
+          "effective"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "source_batches": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "adapter_version": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "batch_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "control_totals": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "absolute_total": {
+                  "oneOf": [
+                    {
+                      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                      "type": "string"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "denominator": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "numerator": {
+                          "minLength": 1,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "numerator",
+                        "denominator"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                },
+                "amount_kind": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "currency": {
+                  "enum": [
+                    "USD"
+                  ]
+                },
+                "signed_total": {
+                  "oneOf": [
+                    {
+                      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                      "type": "string"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "denominator": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "numerator": {
+                          "minLength": 1,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "numerator",
+                        "denominator"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "amount_kind",
+                "currency",
+                "signed_total",
+                "absolute_total"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "format": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ingested_at": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "row_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "sha256": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "snapshot_locator": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_system": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "version": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_system",
+          "batch_id",
+          "version",
+          "snapshot_locator",
+          "sha256",
+          "format",
+          "adapter_version",
+          "ingested_at",
+          "row_count",
+          "control_totals"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "state_cells": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "agreement_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "balance_kind": {
+            "enum": [
+              "participation_prepayment",
+              "cumulative_gross",
+              "cumulative_cost",
+              "synthetic_payment_holdback"
+            ]
+          },
+          "boundary": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "participant_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "policy_lineage": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "pool_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "prior_result_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "provenance_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "quantity": {
+            "oneOf": [
+              {
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+                "type": "string"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "denominator": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "numerator": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "numerator",
+                  "denominator"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "scenario_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "scope": {
+            "additionalProperties": false,
+            "properties": {
+              "agreement_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "asset_ids": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "participant_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "pool_id": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "agreement_id"
+            ],
+            "type": "object"
+          },
+          "state_key": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "unit": {
+            "enum": [
+              "USD"
+            ]
+          }
+        },
+        "required": [
+          "state_key",
+          "balance_kind",
+          "agreement_id",
+          "scope",
+          "boundary",
+          "unit",
+          "quantity",
+          "provenance_ref",
+          "policy_lineage",
+          "participant_id",
+          "pool_id",
+          "scenario_id"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "profile",
+    "manifest",
+    "assets",
+    "parties",
+    "roles",
+    "agreements",
+    "interpretations",
+    "incorporated_policies",
+    "mappings",
+    "source_batches",
+    "financial_facts",
+    "allocations",
+    "evidence_events",
+    "state_cells",
+    "opening_aliases",
+    "references",
+    "parameters",
+    "adapter"
+  ],
+  "title": "SPL bounded synthetic run closure (not the entire draft schema)",
+  "type": "object"
+}

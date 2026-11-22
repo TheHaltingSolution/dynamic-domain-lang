@@ -1,0 +1,461 @@
+# SPL compiler: reusable kernel and canonical methods
+
+Reusable-kernel, calendar-extension and M1a iteration, 21 November 2026. The prior
+`spl-implementation/0.3.0-dev` and frozen E0 `0.4.0-dev` baselines are retained
+under `baselines/`; published E1 uses profile `0.4.1-dev`. Its primary record is
+also archived byte-for-byte as
+[`baselines/implementation-0.4.1-dev.json`](baselines/implementation-0.4.1-dev.json).
+M1a is implemented and published as profile `0.4.2-dev`, with verification in
+the [current baseline](implementation-baseline.json).
+The language/core/schema labels remain the unfrozen `0.1-draft` labels. Content
+hashes, rather than those labels alone, identify a runnable snapshot.
+
+K1-K3 now execute: registered priority selection, tuple-keyed maps, grouping,
+strict inner/left joins, structural input records, explicit Options, finite
+ordered folds and isolated first-order imported functions. New generic
+[`spl-module/1` registration](module-interface-v1.md) validates exact transitive
+source/policy/interface pins, parameter domains, evidence, work/pool/state scope,
+single writers and final outputs. Legacy profiles remain their compatibility
+paths; no migration equivalence is claimed.
+
+The added financial methods have neutral source fixtures and separately authored
+financial oracles with no compiler imports:
+
+| Method | Source and readable policy | Selected synthetic checkpoints |
+| --- | --- | --- |
+| Guild platform allocation | [Angel source](../../cases/r1/angel-guild.spl), [policy](../../cases/r1/angel-policy.md) | Pool 500; 170/1,000 minutes gives 85, changed full denominator gives 42.50 |
+| Ordered prospective fee | [MQP source](../../cases/r1/mqp-ordered.spl), [policy](../../cases/r1/mqp-policy.md) | Agreement-date fees 40/adjusted receipts 260; actual-date sensitivity 50/250; before RPPA allocation |
+| Fees, deductions and competing claims | [Waterfall source](../../cases/waterfall/waterfall.spl), [policy](../../cases/waterfall/policy.md) | 120 funds: priority 100/20 versus pro rata 60/60; serialized 32/8 carry followed by residual 17.50 each |
+| Authorized affected-period revision | [Restatement source](../../cases/revision/restatement.spl), [policy](../../cases/revision/policy.md) | Unchanged cash 500; replacement application 450; entitlement 100 to 90; actual paid 80; outstanding as-of 10 |
+| Reserve deadline derivation | [Calendar-month source](../../cases/extensibility/calendar-months-demand.spl), [policy](../../cases/extensibility/policy.md) | January 31 plus one month with `clamp_day` gives February 28; release 0 before and 20 on the inclusive deadline |
+| M1a ordinary royalties | [Canonical root](../../cases/m1/ordinary.spl), [readable policy](../../cases/m1/policy.md), [neutral fixtures](../../cases/m1/fixtures/period-marginal.json) | Basis 150 earns marginal 20 versus whole-base 30; cumulative 80 + 70 earns 12 and closes basis 150; cap 100 with consumption 70 allows 30 and closes 100; separate floor gives 100; tiers 20 then explicit cap 15 |
+
+These are selected synthetic reconstructions, not certified historical accounts
+or professional contract approvals. The revision executes a bounded authorized
+route using the original opening and explicit references; it is not a general
+dependent-period replay engine. The original standalone correction remains a
+supplied-entitlement reconciliation. Advance and reserve mechanisms now also have
+generic canonical registrations beside their original direct-binding fixtures.
+
+M1a imports four reusable pure libraries:
+[period marginal/whole-base tiers](../../cases/m1/tiers.spl),
+[cumulative marginal tiers](../../cases/m1/cumulative-tiers.spl),
+[caps](../../cases/m1/cap.spl) and
+[nonrecoupable guarantee](../../cases/m1/guarantee.spl).
+The [registered root and fixture guide](../../cases/m1/README.md) selects seven
+methods: period marginal, period whole-base, cumulative marginal, period cap,
+cumulative cap, separate period floor, and period marginal tiers followed by an
+explicit cap. These remain core `.spl` modules with a separately pinned readable
+economic policy; no new natural-English tier syntax or compiler/backend case
+branch was added. The mechanical adapter transports facts rather than computing
+finances. The independent [neutral-fact oracle](../../oracles/ordinary_royalties.py)
+has no compiler imports.
+
+M1-01 makes the facts relation an explicitly selected period input view:
+supplied facts outside the half-open period block rather than being silently
+filtered from a raw ledger. Facts and evidence must be observed strictly before
+the cutoff; duplicate identities within the run and negative basis facts fail.
+This is not a general consumed-fact registry or an idempotent settlement service.
+Neutral fixtures must declare schema `m1-neutral/1`; tier sequence values must be
+actual nonnegative integers, with strings, booleans and floats rejected. Declared tier
+tables use explicit unique nonnegative sequences, contiguous bands starting at
+zero, positive finite widths and a final unbounded band. Rates are exact ratios
+in `[0,1]`. Supplied nonempty tables are validated even for cap/floor methods;
+those methods may supply an empty table. Thresholds are lower-inclusive, so at
+basis 100 the marginal result is 10 and the whole-base result is 20. Whole-base
+is period-only; there is no implicit cumulative retroactive escalation.
+
+The structured meter retains method, exact USD balance and period, with canonical
+agreement/participant/pool/asset/purpose/boundary and successor lineage. Its
+recorded period must be the run period or end no later than the run start;
+overlapping or future meter periods fail. Method/scope mismatch fails. Cumulative
+basis and cap consumption carry through actual serialized closing cells at an
+adjacent successor boundary. Skipping a period requires an explicitly authorized
+boundary roll-forward; direct closing-cell reuse does not invent one.
+Period-cap continuation within its recorded period retains consumption; a new
+period requires explicit reset. Cumulative cap cannot reset. Other period methods
+carry zero, and the floor creates no recoupable advance balance. Guarantee/cap/
+advance precedence and broader crossing or retroactive variants remain separate
+policy work.
+
+Run the seven M1a canonical cases with current registrations:
+
+```powershell
+python scripts/m1_demo.py --reuse-registration --output C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/m1-royalties
+```
+
+All seven current-source review cases pass native IR/generated/reference and
+independent financial checkpoints. Generic CLI `module-bind`/`module-run` also
+passes the marginal template's entitlement 20. A complete 16-group module
+comparison run passed in 484.552 seconds. Subsequent static review corrected
+neutral schema-version admission and string-sequence coercion, and aligned
+descriptor witness IDs with the actual seven fixture IDs. Sixteen independent
+oracle checks now pass. The final 31-check grouped run passes in 3.642 seconds
+(oracle 16, read-time fixture-byte/hash driver regression 1, transport 13 and
+existing oracle-import guard 1). The complete 17-group default comparison run
+of `python -m unittest Tests.test_m1_modules -v` passes in 481.020 seconds,
+including the adapter boundary regression. Together these cover 47 new distinct
+tests; the import guard is an existing check. Discovery now finds 310 tests:
+263 frozen E1 checks plus 47 new checks. All 310 are verified across the clean
+frozen 263-check run and the new checks, not one combined 310-test run.
+The current `lake build` also passed all 84 targets.
+
+Run the E1 review demonstration from the repository root:
+
+```powershell
+python scripts/r1_demo.py --legacy --refresh-snapshots --derived-calendar --output C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/r1-calendar-e1
+```
+
+This compiles and executes the schedules, calculates statements and closing state,
+checks independent financial checkpoints and writes a review bundle. The executed
+E1 bundle contains 15 registered runs, six legacy original/readable runs and three
+direct accounting-mechanism runs. Existing build-bound packages are deliberately regenerated by the fixture
+builders; execution never repins a stale issued package. Registered execution:
+
+```powershell
+python -m spl_compiler module-run cases/r1/angel-canonical-package.json --registry . --output .lake/angel-review
+```
+
+Each review retains typed IR, emitted Lean, original source/policies and module
+closure, exact financial outputs/state, native trace and parameter/function-source
+review information. New module semantic identity excludes invocation `run_id`
+while retaining scenario and economic dependencies. Strict atomic finalization
+and preview rules also apply to structured state.
+
+The compiler now accepts original source and the controlled
+[readable authoring language](readable-language.md). Read the primary examples:
+[SV](../../cases/sv/sv01-readable.spl),
+[RQ-07](../../cases/sv/rq07-readable.spl), and
+[LG](../../cases/lg/lg01-readable.spl). Financial rules come first, with explicit
+technical bindings in a footer. The user confirmed this readability direction;
+further language iteration and accountant review remain open. See the
+[phased plan](development-plan.md) and [question log](implementation-questions.md).
+
+The supplied language-design and rights-management answers are now incorporated
+for the named synthetic cases; see the [answer record](research-answers-2026-11-20.md).
+Readable schedules explicitly incorporate versioned economic policy documents.
+Canonical execution pins those documents and their registry entries and checks
+the entire ordered expanded core against the registered signatures, including
+assertions, output wiring and closing ports. This bounded structural comparison
+does not prove policy meaning or recognize arbitrary equivalent rewrites.
+`policy-review.json` presents financial statements alongside their supporting
+footer expressions, both source locations, policy pins and actual required
+parameter values for review.
+
+The original schedules remain regression inputs:
+
+| Case | Schedule | Independently expected result |
+| --- | --- | --- |
+| SV-01, incurred-date synthetic costs | [sv01.spl](../../cases/sv/sv01.spl) | Earned 33,000; recovered 15,000; payable **18,000**; closing prepayment 0 |
+| RQ-07, bank-value cash / GL-posted costs | [rq07.spl](../../cases/sv/rq07.spl) | Same amounts; missing incurred dates remain absent |
+| LG-01, already cleared work with separate hurdle evidence | [lg01.spl](../../cases/lg/lg01.spl) | Full gate receipts 300; proxy base 210; gross 30; net/payable **35** |
+
+These are calculated, unissued synthetic reconstructions. They establish no
+actual payment, historical replay, full agreement coverage or accountant approval.
+
+## Reproduce
+
+Original E1 verification: `lake build` (84 targets), both smokes, 15 native suites and
+the real trace-quota check pass. All 263 distinct Python checks are verified
+across a full run and targeted rerun: the full run had 262 passes and one
+snapshot-invariance failure caused by policy-registry byte changes during
+testing; after restoring the verified bytes, all 22 affected pipeline/policy
+checks pass. This is not a single clean 263-check full run. The 15 registered,
+six legacy and three direct-mechanism reviews pass financial checkpoints;
+the Angel CLI bind/run independently exercises registration and returns 85/415.
+See the [iteration log](iteration-log.md) and
+[baseline](implementation-baseline.json) for failure history, timings and logs.
+The fresh isolated frozen-E1 replay now passes all 263 tests in 1100.923 seconds,
+plus its 84-target build, both smokes and 15 native suites. All 287 frozen files
+remain unchanged, with no derived-fixture changes or new files outside `.lake`;
+compiler/runtime/module identities match exactly. The old freeze is untouched.
+The first, longer destination failed with 61 failures and two errors after a
+281-character path on a workstation with `LongPathsEnabled=0`. The successful
+short retry is recorded at
+`C:/Projects/Film_TV_participation_dynamic_DSL/e1v-949554/verification.json`.
+This new clean record preserves the original full-run/rerun and path-failure
+history rather than replacing it.
+
+Use the pinned Lean setup in the repository [README](../../README.md). Python
+3.12 or newer is also used for the canonical adapter/wrapper and independent
+reference evaluator; there are no third-party Python dependencies. On this
+workstation it was installed outside Git at
+`C:/Projects/Film_TV_participation_dynamic_DSL/environment/python/python.exe`.
+Select that executable or another Python 3.12 installation in the commands below.
+The embedded local distribution's `python312._pth` includes this repository;
+ordinary Python installations need no path change when run from the repo root.
+
+```powershell
+lake build
+lake exe smoke
+lake exe spl_smoke
+python scripts/spl_check.py
+lake env lean --run Tests/SPLParser.lean
+lake env lean --run Tests/SPLCheck.lean
+lake env lean --run Tests/SPLBindings.lean
+lake env lean --run Tests/SPLInstant.lean
+lake env lean --run Tests/SPLCore.lean
+lake env lean --run Tests/SPLEmit.lean
+lake env lean --run Tests/SPLReadable.lean
+lake env lean --run Tests/SPLIR.lean
+lake env lean --run Tests/SPLValidateIR.lean
+lake env lean --run Tests/SPLTrace.lean
+lake env lean --run Tests/SPLPriority.lean
+lake env lean --run Tests/SPLCollections.lean
+lake env lean --run Tests/SPLFold.lean
+lake env lean --run Tests/SPLCalendar.lean
+lake env lean --run Tests/SPLTraceScaling.lean --quota
+```
+
+The compiler itself runs independently of Python:
+
+```powershell
+lake exe spl check cases/sv/sv01.spl
+lake exe spl compile cases/sv/sv01.spl .lake/spl/demo/Settlement.lean
+# Bindings are already typed case views, distinct from the canonical package.
+lake env lean --run .lake/spl/demo/Settlement.lean cases/sv/bindings.json
+# Small emitted demo modules are also built into native executables by Lake:
+lake exe spl_sv cases/sv/bindings.json
+lake exe spl_lg cases/lg/bindings.json
+lake exe spl_rq07 cases/rq07/bindings.json
+# Readable source, typed IR and independent native interpretation:
+lake exe spl check cases/sv/sv01-readable.spl
+lake exe spl ir cases/sv/sv01-readable.spl .lake/spl/sv-ir.json
+lake exe spl interpret cases/sv/sv01-readable.spl cases/sv/readable/bindings.json
+lake exe spl_sv_readable cases/sv/readable/bindings.json
+lake exe spl_lg_readable cases/lg/readable/bindings.json
+lake exe spl_rq07_readable cases/rq07/readable/bindings.json
+```
+
+For a complete canonical receipt-to-result run, the Python wrapper invokes the
+native compiler and executes the emitted Lean. Its default `compare` mode
+requires agreement with the separate Python evaluator before finalization:
+
+```powershell
+python -m spl_compiler fixture sv .lake/spl/sv-package.json
+python -m spl_compiler run cases/sv/sv01.spl .lake/spl/sv-package.json --output .lake/spl/sv-demo
+python -m spl_compiler fixture lg .lake/spl/lg-package.json
+python -m spl_compiler run cases/lg/lg01.spl .lake/spl/lg-package.json --output .lake/spl/lg-demo
+python -m spl_compiler adapt-rq07 cases/rq07/source .lake/spl/rq07-package.json --observed-at 2026-04-03T00:00:00Z --ingested-at 2026-11-20T00:00:00Z
+python -m spl_compiler run cases/sv/rq07.spl .lake/spl/rq07-package.json --output .lake/spl/rq07-demo
+```
+
+`--observed-at` explicitly selects an invented observation policy. It is never
+derived from a funding effective date. Application posting dates retain date
+precision and must precede the UTC cutoff date. `--ingested-at` is audit metadata.
+
+The output directory contains the canonical package, pinned manifest within it,
+typed bindings, type-annotated IR, emitted Lean, native result, native IR result,
+statement, detail, native trace DAG and separate reference trace,
+diagnostics, reconciliation, closing state and combined result envelope. Read
+the envelope status before consuming any output port. A failed invocation writes
+empty statement/closing ports; preview has no consumable closing state.
+`python -m spl_compiler run --backend reference` is an explicitly labelled
+development/reference run and does not test native execution.
+
+`scripts/spl_demo.py` recreates six original/readable review bundles, three
+separate synthetic accounting mechanisms and checked-in small
+snapshots. Large/full outputs default to the external project artifacts folder;
+small emitted demo modules are tracked in `Demos/` and built by Lake;
+pass `--output` to select another location. Refreshing writes scoped
+`legacy-review.json` metadata under that output; it never replaces the broader
+implementation baseline. It records implementation, schedule, specification and
+source fingerprints. Changing the implementation
+invalidates old build-bound packages: recreate them deliberately with `fixture`
+or `adapt-rq07`, rather than silently repinning input at execution.
+The profile 0.3 external bundle remains `artifacts/spl/research-reconciliation`.
+The E0 kernel bundle is `artifacts/spl/r1-kernel`; the E1 bundle is
+`artifacts/spl/r1-calendar-e1`. Current fingerprints and
+verification records are in the [implementation baseline](implementation-baseline.json)
+and [iteration log](iteration-log.md); earlier check counts describe their dated
+snapshots.
+
+## Stage boundaries
+
+| Stage | Implementation and trust boundary |
+| --- | --- |
+| Native surface syntax | `SPL/Syntax.lean`, `Parser.lean`: spans, exact lexemes, closed grammar and resource diagnostics |
+| Native checking | `SPL/Check.lean`: names, acyclic dependencies, units, case-view schemas, currency, field/port/scope structure |
+| Whole-program core | `SPL/IR.lean`, `Elaborate.lean`: explicit structural types, source spans, IDs, citations, collection binders and ports; independently serialized as `spl-ir/0.1` |
+| Defensive IR validation | `SPL/ValidateIR.lean`: independently checks annotations, signatures, scope, cycles, schemas, IDs and ports before public emission/interpretation. This is type-annotated IR, not intrinsically typed dependent syntax or a proof |
+| Native generation | `SPL/Emit.lean` traverses validated IR directly; schedule-specific namespace, pure parameterized `settle`, standalone convenience alias `GeneratedSPL.settle` |
+| Native interpretation/audit | `SPL/Interpret.lean`, `Trace.lean`: separate IR semantics and dependency DAG. Emitted execution never calls the interpreter |
+| Exact target | `SPL/Runtime.lean`, `Core.lean`, `Fold.lean`, `Instant.lean`, `Calendar.lean`: Lean `Rat`, exact normalized RFC3339 instants, checked demanded division, pure finite collections, folds, lazy branch/selection and explicit calendar-month primitives |
+| Typed binding I/O | `SPL/Bindings.lean`: strict JSON and schema-aware decoding; arbitrary JSON financial numbers rejected |
+| Canonical boundary | `spl_compiler/codecs.py`, `schema.py`, `adapter.py`, `policies.py`, `run.py`: source normalization, authority, scope, incorporated-policy pins and whole-core signature checks, atomic run/result orchestration |
+| Separate reference | Python original/readable parsers and checker/evaluator, plus hand-authored expectations; compare business values/state/error codes across all three paths |
+
+Per the user's implementation direction, complete compiler verification is
+deferred until after the demo. Keep the boundaries suitable for later formalization.
+The already completed `SPL.Core.lower_correct` and numeric-helper lemmas cover
+only the typed scalar core and value/error preservation for its lowering.
+Generated arithmetic uses these helpers, but that does **not** prove the parser,
+checker, source-to-core elaboration, emitted text, collections, quantization,
+trace, codecs, wrapper, supplied facts or contract interpretation correct.
+No `sorry` or project-defined axiom is used. Compiler traversals and codecs still
+use `partial` definitions; replacing them with verified terminating passes is
+part of future verification. Generated financial definitions and their numeric
+core use total executable definitions. The existing toy theorem is separate.
+
+## Supported subset and decisions
+
+- The complete published SV and LG schedules, plus a separately typed
+  `SVPostingCost` profile with `recognition_date` and `recognition_policy_ref`.
+- Readable definitions, exact percentages, multiword aliases, matched conditional
+  methods, explicit iteration/participant registrations, closing clauses and
+  visible report columns. `Account for each calendar quarter` requires the actual
+  Gregorian quarter boundaries through `is_calendar_quarter : Period -> Bool`.
+- Exact USD money and ratios, records/lists/options, finite map/filter/sum,
+  comprehensions, stable sorting, checked option extraction, min/max,
+  half-open dates, unique selection, lazy conditionals/Boolean connectives,
+  and the five explicit quantization modes.
+- `Instant` is distinct from `Date` and financial numbers. Explicit RFC3339
+  offsets normalize to exact rational UTC seconds, preserving decimal subseconds;
+  output uses canonical UTC timestamps. Strict cutoff comparison rejects equality.
+  Date-only/naive timestamps, unknown offsets and leap seconds are unsupported.
+- `add_calendar_months(Date, Nat, Text) -> Date` requires explicit `clamp_day`
+  or `reject_invalid_day`, declared capability `spl.calendar-months/1`, and years
+  0001–9999. It derives from the original date; repeated clamping can differ from
+  a single combined addition. See the [executed extension record](extensibility-experiment.md)
+  for the frozen E0 attempt, failure boundaries and compatibility scope.
+- Assertions execute in lexical contract order. Definitions support forward
+  references and are demanded through the selected expression path. A failed
+  earlier assertion blocks unrelated later definitions. Static schema checks
+  still precede calculation, including for otherwise inactive inputs.
+- A closing port reads the opening binding and must exist exactly once.
+  State aliases bind kind, agreement, participant, pool, currency, boundary,
+  scenario and, for LG, the declared work. Prepayment remains pool-level.
+- Native opaque IDs are restricted to nonempty ASCII in this milestone.
+  The canonical Python boundary also requires NFC text. Unicode display/source
+  strings remain supported; full Unicode opaque-ID normalization is deferred.
+- `Nat` subtraction and integer division are explicitly rejected until their
+  checked behavior/direction is implemented. Unsupported types, functions,
+  currencies, versions and economic extensions fail rather than defaulting.
+- Parser limits are 1,000,000 Unicode scalars, 200,000 tokens and 128 nesting
+  levels. Canonical manifests pin those limits, 100,000 combined facts/events
+  and a 180-second subprocess limit. Exceeding limits produces no final state.
+- Run semantic identity includes the normalized logical dependency closure,
+  excluded facts, authority, scope, state and build identities. Invocation ID,
+  physical paths, CSV row locations, raw-byte fingerprints and ingestion time
+  are separate physical/audit identities. Logical set arrays are canonicalized.
+  Reordered source facts with unchanged IDs preserve results and reference trace.
+
+General Map/group/join/fold and priority support are implemented as described
+above. FX, quantity/unit algebra, general historical/dependent-period replay,
+loss policy, broader dynamic gate methods, sourced basis-stage reserves and
+additional vendor adapters remain C1 work. Separate
+[synthetic accounting cases](../../cases/mechanisms/README.md) now exercise
+RR-01 actual funded participant advances with separate issue/evidence observation
+timestamps, RR-02 reserve vintages, supplied revised entitlement and actual-payment
+applications. June 30 funding observed July 2 enters Q2 with a July 3 cutoff;
+funding actually disbursed July 1 enters Q3. Selected advances join opening
+pool availability before nonnegative pooled earnings are recovered. The reserve
+fixture separately retains V1 (12 - 7 - 5 = 0) and V2 (0 + 20 = 20), with matching
+evidence and bounds for each vintage; aggregate availability cannot cover another
+vintage's deficit. The generic registered mechanisms extend canonical delivery
+without choosing wider historical contract policies. The original correction
+case accepts revised entitlement as supplied; the separately registered bounded
+restatement executes the selected replacement facts. The published optional
+LG payment holdback is supported only as its explicitly synthetic mechanism;
+it is not the agreement's video-return reserve. Baseline LG keeps it zero.
+Standalone modules have `GeneratedSPL` aliases and root `main`. Use
+`spl compile-library SOURCE OUTPUT` to omit those globals and import differently
+named schedules together through injectively encoded namespaces. Revisions with
+the same schedule name still need distinct identities or separate compilation units.
+
+## Data and audit limits
+
+[spl-bounded-package.schema.json](../../schemas/spl-bounded-package.schema.json)
+is the physical schema for the three profiles. `validate_package` additionally
+checks references, periods, scope, authority, exact arithmetic encodings,
+state purposes, source controls and conditional evidence. It is a strict bounded
+implementation of the draft, not a freeze of every record in the broader data
+contract. Unsupported fields are rejected.
+
+RQ-07 adapter 1.0.0 is pinned to the delivered scenario bytes and verifies all
+five raw batch hashes/counts. A changed source scenario needs a new explicit
+adapter/source profile. The adapter constructs canonical parent cash and
+allocation records; wrapper projection creates title-level views while preserving
+allocation/source-row lineage. Parent and children never both enter receipts.
+Approved weights and expense dispositions have typed authority terms; merely
+conserving cash cannot authorize a different split or deduction.
+
+The review package includes recalculated separate controls for invoices,
+deposits/applications, GL and funding. It retains absent cost dates. Independent
+discriminators produce 25,500 for billed cash, 17,200 for the unsupported B cost
+and 15,800 for a substituted equal bundle allocation; the supplied methodology
+produces 18,000. Application-posting cash selection yields negative bases and
+blocks this pilot rather than inventing an alternative payable.
+
+Default canonical runs now supply a native IR interpreter trace DAG, labelled
+`trace_origin: native_ir_interpreter`, after comparison with emitted execution
+and Python reference values/state/error codes. Nodes carry structural types,
+citations, fact IDs, exact operands/results, decisions, explicit zero outcomes
+and branch non-evaluation. Invalid graphs and identity collisions block
+finalization. Dependency order uses stable ready-node keys. IDs combine source
+digest, node identity, span, rule and economic instance; source edits can renumber
+snapshot-local IDs. Reference traces remain separate audit artifacts.
+
+No trace-correctness theorem or graph-equivalence claim is made. Native IR
+interpretation separately implements arithmetic, rounding and control flow,
+while sharing defensive casts, equality and ordering with the target runtime.
+The next engineering work expands the selected methods and their validation
+coverage under explicit policies; the accepted readability direction remains
+the authoring target.
+
+## Measured performance boundary
+
+The E0 benchmark used typed SV receipt inputs and checked the independent payable
+formula; it is a narrow synthetic workload, not the mixed RR-03 workload. Thirty
+warm native-process samples at 1,000 receipts gave median 0.042521 seconds and
+empirical p95 0.044477 seconds. The separate full native-IR audit took 10.487664
+seconds and wrote 459,333,400 bytes for 23,180 nodes and 31,216 edges. A prior
+comparable integration audit measured approximately 1.56 GB child peak memory;
+that memory observation is not a percentile from the final cohort.
+
+Trace indexing preserved exact prior-case JSON while improving audit traversal,
+but audit serialization and memory remain a scaling concern. Ordered-fold
+identity checking and sorting also currently use quadratic algorithms; the
+receipt probe does not measure large event histories. A 100,000-row guard
+is a rejection boundary, not evidence of useful capacity at that size. Million-row
+capacity, distributed calculation, a production service target, cold-start p95
+and the full RR-03 workload remain unmeasured. Results are retained externally
+under `artifacts/spl/r1-benchmarks-e0-30warm`.
+
+One concrete audit cost is visible in `SPL/Interpret.lean`: each collection
+instance records the full source collection as an operand, and the trace JSON
+serializes operand values at every node. Value interning or references could
+reduce repetition, but that requires a versioned audit-format change with
+reconstruction and lineage checks; the current release preserves existing JSON.
+
+The continuation adds an experimental post-generation archive transport in
+[`scripts/spl_trace_transport.py`](../../scripts/spl_trace_transport.py), separate
+from canonical/compiler defaults. Its 13 checks pass, and 31 actual traces
+round-trip exactly. Shrinkage is workload-dependent: one small priority-rates
+trace grows from 47,096 to 48,598 bytes. A real 100-receipt native trace with
+2,480 nodes reduces serialized bytes from 7,604,969 to 2,853,622 with exact
+reconstruction. The [measurement driver](../../scripts/measure_trace_transport.py)
+pins schedule, bindings and native executable hashes and assumes a prior
+successful `lake build spl`; fingerprint equality alone does not establish
+source/binary correspondence. This prototype operates after the original native trace
+has been generated; it does not reduce native generation memory. It establishes
+no 1,000- or 10,000-record scalability result, and does not replace the frozen
+logical trace representation. Larger matching-workload byte, memory and timing
+measurements remain required before transport integration or capacity claims.
+
+## Remaining implementation phases
+
+| Phase | Next deliverable and acceptance boundary |
+| --- | --- |
+| Broader C1 methods | M1a's selected tier/cap/floor methods now execute. Next are M1b typed quantities and monetary-per-unit inputs, then the scoped USD/EUR FX foundation, declared gate/loss alternatives, dependent-period replay, fiscal/business calendars and remaining tier/cap/threshold variants. Each needs explicit policies and canonical input/output witnesses; M1a does not complete C04/C05. |
+| Systematic validation | Extend independent neutral-fact oracles, boundary/error cases, pairwise and selected higher-order feature combinations, metamorphic checks and mutation testing. Measure emitted-program branch coverage before claiming systematic coverage; current finite regressions do not exercise every feature combination or every compiled line. |
+| Capacity and audit | Reduce trace materialization/serialization costs, define the required audit envelope, and measure representative RR-03 mixes, skew, larger cohorts and memory. Establish a useful single-process capacity before designing distributed execution. |
+| Independent evaluation and later proof | Preserve disclosed-development versus held-out custody boundaries and obtain actual reader/accountant review. After the demo stabilizes, state source/target semantics and assumptions and prove selected compiler passes without widening the toy/scalar claims. |
+
+Integrate and run independent financial checks at every phase. Research is
+needed for unsupported economic interpretations and sourced baselines; it need
+not block generic implementation or explicitly selected synthetic methods.
+
+Reader review, accountant review of the actual mapped package, historical data,
+held-out custody/evaluation and schema freeze remain open. The implementation
+does not change those research statuses or contact reviewers.

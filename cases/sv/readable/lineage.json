@@ -1,0 +1,42 @@
+[
+  {
+    "fact_ids": [
+      "receipt-a"
+    ],
+    "source_rows": [
+      "receipt-a"
+    ],
+    "view_id": "receipt-a"
+  },
+  {
+    "fact_ids": [
+      "receipt-b"
+    ],
+    "source_rows": [
+      "receipt-b"
+    ],
+    "view_id": "receipt-b"
+  },
+  {
+    "date_selector": "incurred_date",
+    "fact_ids": [
+      "cost-a"
+    ],
+    "policy_ref": "SV-8-COST-SCHEDULE",
+    "source_rows": [
+      "cost-a"
+    ],
+    "view_id": "cost-a"
+  },
+  {
+    "date_selector": "incurred_date",
+    "fact_ids": [
+      "cost-b"
+    ],
+    "policy_ref": "SV-8-COST-SCHEDULE",
+    "source_rows": [
+      "cost-b"
+    ],
+    "view_id": "cost-b"
+  }
+]

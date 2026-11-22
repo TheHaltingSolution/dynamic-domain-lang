@@ -1,0 +1,174 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "m1:cap",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "capped",
+        "name": "apply",
+        "parameters": [
+          {
+            "name": "entitlement",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "ceiling",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "consumed",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          }
+        ],
+        "result": {
+          "args": [],
+          "fields": [
+            [
+              "allowed",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "ending",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "entitlement",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "ceiling",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "consumed",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "CAP_SELECTED"
+    ],
+    "discriminating_cases": [
+      "m1-period-cap",
+      "m1-cumulative-cap",
+      "m1-tiers-then-cap"
+    ],
+    "evidence_class": "synthetic",
+    "id": "spl:policy:m1:cap",
+    "readable": {
+      "locator": "cases/m1/policy.md",
+      "sha256": "af148d44144c6f89af457e486541ff8c6536698f646e4eecf464736f28276df6"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/m1/cap.spl",
+    "sha256": "5ca7fec94239e75e22978e841a28ee99167f4cb31bde48af8a6eae98f5a4b160"
+  },
+  "state": []
+}

@@ -1,0 +1,124 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "m1:guarantee",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "guaranteed",
+        "name": "period",
+        "parameters": [
+          {
+            "name": "earned",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "floor",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          }
+        ],
+        "result": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "earned",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "floor",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "GUARANTEE_SELECTED"
+    ],
+    "discriminating_cases": [
+      "m1-period-floor"
+    ],
+    "evidence_class": "synthetic",
+    "id": "spl:policy:m1:guarantee",
+    "readable": {
+      "locator": "cases/m1/policy.md",
+      "sha256": "af148d44144c6f89af457e486541ff8c6536698f646e4eecf464736f28276df6"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/m1/guarantee.spl",
+    "sha256": "3c3fd1e66a442679f01fb7e85bdf669e862d10d4b072651c2ce389ff12ac79f5"
+  },
+  "state": []
+}

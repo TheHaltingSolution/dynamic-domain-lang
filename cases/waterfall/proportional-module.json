@@ -1,0 +1,131 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "waterfall:proportional",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "allocated",
+        "name": "proportional",
+        "parameters": [
+          {
+            "name": "amount",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "weight",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          },
+          {
+            "name": "total_weight",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          }
+        ],
+        "result": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "amount",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "weight",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "total_weight",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "WF_PROPORTIONAL_SELECTED"
+    ],
+    "discriminating_cases": [
+      "funds120-priority-vs-pro-rata",
+      "roundlake-like-period1-period2"
+    ],
+    "evidence_class": "synthetic",
+    "id": "spl:policy:waterfall:proportional",
+    "readable": {
+      "locator": "cases/waterfall/policy.md",
+      "sha256": "c545da1200b067ac25423389b092578b5303bced444aecb70bd14b8033c9e89f"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/waterfall/proportional.spl",
+    "sha256": "c210c11328700083e1776aa21c2eb2f4d5ba2a9ce0b4850375a8729c06c27efd"
+  },
+  "state": []
+}

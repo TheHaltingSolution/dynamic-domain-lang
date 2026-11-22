@@ -1,0 +1,9 @@
+// Pure reusable first-order function, linked by exact module descriptor.
+schedule WeightedAllocation language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input amount: Money<USD>;
+  input numerator: Ratio;
+  input denominator: Ratio;
+  require amount >= USD 0 and numerator >= 0 else "ALLOCATION_NEGATIVE_INPUT";
+  require denominator > 0 and numerator <= denominator else "ALLOCATION_WEIGHT_DOMAIN";
+  define allocated = amount * (numerator / denominator);
+}

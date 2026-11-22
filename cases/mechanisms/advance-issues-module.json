@@ -1,0 +1,994 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [
+        "agreement_id"
+      ],
+      "kind": "equals",
+      "path": "inputs.scope",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "pool_id"
+      ],
+      "kind": "equals",
+      "path": "inputs.scope",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "participant_id"
+      ],
+      "kind": "member_of",
+      "path": "inputs.scope",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [
+        "period"
+      ],
+      "kind": "equals",
+      "path": "inputs.scope",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "scope.purpose",
+      "target": "",
+      "value": "participation_prepayment"
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "parameters.authority",
+      "target": "decisions.*.decision_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.observation_cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    },
+    {
+      "fields": [
+        "event_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.issues",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "issue_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.issues",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "disbursement_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.issues",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.evidence",
+      "target": "",
+      "value": ""
+    }
+  ],
+  "id": "synthetic:advance-issues",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "issues",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "event_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Event"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "issue_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AdvanceIssue"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "disbursement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Disbursement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "agreement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Agreement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "participant_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Participant"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "pool_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Pool"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "source_title_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "balance_purpose",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "funded_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "approved",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "authority_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Decision"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AdvanceEvidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "evidence",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "evidence_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AdvanceEvidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "issue_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AdvanceIssue"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "disbursement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Disbursement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "agreement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Agreement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "participant_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Participant"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "pool_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Pool"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "source_title_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "balance_purpose",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "funded_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "approved",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "authority_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Decision"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "eligible",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "earned",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "observation_cutoff",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "synthetic-prospective"
+          ]
+        },
+        "name": "authority",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Decision"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "participation_prepayment"
+          ],
+          "methodology": true
+        },
+        "name": "balance_purpose",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "USD"
+          ]
+        },
+        "name": "currency",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "prepayment",
+        "role": "opening",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "advance_issue_audit",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "addition",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "disbursement_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Disbursement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "event_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Event"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "evidence_available",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "evidence_observations",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Instant"
+                      }
+                    ],
+                    "name": "List"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AdvanceEvidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "funded_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "funded_in_period",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "included",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "issue_available",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "issue_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AdvanceIssue"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "issue_observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "source_title_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [
+          "agreement",
+          "participant",
+          "pool",
+          "purpose",
+          "period",
+          "currency"
+        ],
+        "domain": {},
+        "name": "advances",
+        "role": "result",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "additions",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "available",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "balance_purpose",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "closing_balance",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "currency",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "observation_cutoff",
+              {
+                "args": [],
+                "name": "Instant"
+              }
+            ],
+            [
+              "opening_balance",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "payable",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "recovered",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "RR-01-FUNDED-AS-OF-POOLED",
+      "synthetic-prospective"
+    ],
+    "discriminating_cases": [
+      "advance-5000-carry",
+      "advance-following-quarter",
+      "funded-date-boundary",
+      "observation-cutoff",
+      "wrong-scope-purpose-evidence"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:advance-issues-policy",
+    "readable": {
+      "locator": "cases/mechanisms/advance-issues-policy.md",
+      "sha256": "3d311caef24c0955c2feacbd55fcfd0f38eff7f563f4df1f69ee71ff598f9719"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/mechanisms/advance-issues.spl",
+    "sha256": "b07e5790b347636f4e90c1df25ef544b3ea34fde3529d69f007cbec18b784620"
+  },
+  "state": [
+    {
+      "closing": "prepayment",
+      "history_required": false,
+      "key_fields": [
+        "agreement_id",
+        "participant_id",
+        "pool_id",
+        "purpose"
+      ],
+      "movement_kinds": [
+        "net_change"
+      ],
+      "opening": "prepayment",
+      "purpose": "participation_prepayment",
+      "unit": "USD"
+    }
+  ]
+}

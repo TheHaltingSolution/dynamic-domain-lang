@@ -1,0 +1,199 @@
+{
+  "decisions": [
+    {
+      "decision_id": "WEIGHTED_ALLOCATION_SELECTED",
+      "evidence_ref": "project-owned-selected-synthetic-fixture",
+      "policy_id": "spl:policy:r1:weighted-allocation",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "ANGEL_GUILD_SELECTED",
+      "evidence_ref": "project-owned-selected-synthetic-fixture",
+      "policy_id": "spl:policy:r1:angel-guild",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "ANGEL_GUILD_SELECTED",
+        "evidence_id": "synthetic-authorized-cash",
+        "evidence_ref": "synthetic-authorized-cash",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2025-07-01T00:00:00Z"
+      },
+      {
+        "approval_ref": "ANGEL_GUILD_SELECTED",
+        "evidence_id": "synthetic-eligible-cost",
+        "evidence_ref": "synthetic-eligible-cost",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2025-07-01T00:00:00Z"
+      },
+      {
+        "approval_ref": "ANGEL_GUILD_SELECTED",
+        "evidence_id": "synthetic-complete-minutes",
+        "evidence_ref": "synthetic-complete-minutes",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2025-07-01T00:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "beneficiaries": [
+      {
+        "asset_id": "king-of-kings",
+        "participant_id": "recipient-king-of-kings"
+      },
+      {
+        "asset_id": "other-titles",
+        "participant_id": "recipient-other-titles"
+      }
+    ],
+    "cash_records": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "1500"
+        },
+        "channel": "guild",
+        "contract_id": "angel-010-mofac-synthetic",
+        "currency": "USD",
+        "effective_date": "2025-06-30",
+        "evidence_id": "synthetic-authorized-cash",
+        "id": "guild-cash",
+        "pool_id": "guild-platform-pool"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "999"
+        },
+        "channel": "ordinary_distribution",
+        "contract_id": "angel-010-mofac-synthetic",
+        "currency": "USD",
+        "effective_date": "2025-06-30",
+        "evidence_id": "synthetic-authorized-cash",
+        "id": "ordinary-cash",
+        "pool_id": "guild-platform-pool"
+      }
+    ],
+    "costs": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "125"
+        },
+        "channel": "guild",
+        "contract_id": "angel-010-mofac-synthetic",
+        "currency": "USD",
+        "effective_date": "2025-06-30",
+        "eligible": true,
+        "evidence_id": "synthetic-eligible-cost",
+        "id": "guild-cost",
+        "pool_id": "guild-platform-pool"
+      }
+    ],
+    "focal_title": "king-of-kings",
+    "opening_carry": {
+      "currency": "USD",
+      "value": "0"
+    },
+    "platform": "synthetic-platform",
+    "population_complete": true,
+    "population_evidence": "synthetic-complete-minutes",
+    "population_platform": "synthetic-platform",
+    "scope": {
+      "agreement_id": "angel-010-mofac-synthetic",
+      "participant_id": "recipient-king-of-kings",
+      "period": {
+        "end": "2025-07-01",
+        "start": "2025-04-01"
+      },
+      "pool_id": "guild-platform-pool"
+    },
+    "usage": [
+      {
+        "evidence_id": "synthetic-complete-minutes",
+        "id": "focal-minutes",
+        "minutes": "170",
+        "period": {
+          "end": "2025-07-01",
+          "start": "2025-04-01"
+        },
+        "platform_id": "synthetic-platform",
+        "qualified": true,
+        "title_id": "king-of-kings"
+      },
+      {
+        "evidence_id": "synthetic-complete-minutes",
+        "id": "other-minutes",
+        "minutes": "830",
+        "period": {
+          "end": "2025-07-01",
+          "start": "2025-04-01"
+        },
+        "platform_id": "synthetic-platform",
+        "qualified": true,
+        "title_id": "other-titles"
+      }
+    ]
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2025-07-02T00:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "r1:weighted-allocation",
+        "locator": "cases/r1/weighted-allocation-module.json",
+        "revision": "1",
+        "sha256": "a8550f4d4bbf347f96e54bbca1ffbe6dc6ebe15436b45c933146804319edf5a7"
+      },
+      {
+        "id": "r1:angel-guild",
+        "locator": "cases/r1/angel-guild-module.json",
+        "revision": "1",
+        "sha256": "bff550766737c0822afe387f4d3786f51b70efc17597698c03a92c13b7bb05a3"
+      }
+    ],
+    "period": {
+      "end": "2025-07-01",
+      "start": "2025-04-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "angel-guild-rr03-selected-run",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "angel-guild-rr03-selected"
+  },
+  "module_ref": {
+    "id": "r1:angel-guild",
+    "locator": "cases/r1/angel-guild-module.json",
+    "revision": "1",
+    "sha256": "bff550766737c0822afe387f4d3786f51b70efc17597698c03a92c13b7bb05a3"
+  },
+  "parameters": {
+    "cutoff": "2025-07-02T00:00:00Z",
+    "filmmaker_share": "0.5",
+    "marketing_rate": "0.25"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "angel-010-mofac-synthetic",
+    "asset_ids": [
+      "king-of-kings",
+      "other-titles"
+    ],
+    "participant_ids": [
+      "recipient-king-of-kings",
+      "recipient-other-titles"
+    ],
+    "pool_id": "guild-platform-pool",
+    "purpose": "selected_synthetic_calculation"
+  },
+  "state_cells": []
+}

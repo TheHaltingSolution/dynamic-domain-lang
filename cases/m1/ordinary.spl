@@ -1,0 +1,47 @@
+// Selected methods compose pure library functions, without financial adapter code.
+schedule OrdinaryRoyalties language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input project: Id<Asset>;
+  input cutoff: Instant;
+  input method: Text;
+  input cap: Money<USD>;
+  input floor: Money<USD>;
+  input reset_period_cap: Bool;
+  input brackets: List<{id: Id<Rule>, sequence: Nat, lower: Money<USD>, upper: Option<Money<USD>>, rate: Ratio}>;
+  input evidence: List<{evidence_id: Id<Evidence>, observed_at: Instant, approval_ref: Id<Decision>, evidence_ref: Id<Evidence>, kind: Text}>;
+  input facts: List<{id: Id<Event>, effective_date: Date, observed_at: Instant, evidence_id: Id<Evidence>, amount: Money<USD>, fact_scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}}>;
+  opening meter: {method: Text, balance: Money<USD>, period: Period} from "m1/selected-method-meter";
+  require method == "period_marginal" or method == "period_whole_base" or method == "cumulative_marginal" or method == "period_cap" or method == "cumulative_cap" or method == "period_floor" or method == "tiers_then_cap" else "M1_METHOD_REQUIRED";
+  require meter.method == method else "M1_METER_METHOD";
+  require meter.balance >= USD 0 else "M1_NEGATIVE_METER";
+  require (meter.period.start == scope.period.start and meter.period.end == scope.period.end) or meter.period.end <= scope.period.start else "M1_METER_PERIOD";
+  require not reset_period_cap or method == "period_cap" else "M1_RESET_METHOD";
+  require method != "period_cap" or (if reset_period_cap then meter.period.end <= scope.period.start else meter.period.start == scope.period.start and meter.period.end == scope.period.end) else "M1_PERIOD_CAP_RESET_REQUIRED";
+  require method == "cumulative_marginal" or method == "cumulative_cap" or method == "period_cap" or meter.balance == USD 0 else "M1_PERIOD_METHOD_METER";
+  // Supplied tables remain declared terms even when this method does not use tiers.
+  require not (method == "period_cap" or method == "cumulative_cap" or method == "period_floor") or sum(brackets, row => 1) == 0 or marginal_tiers(USD 0, brackets) == USD 0 else "M1_BRACKET_VALIDATION";
+  define evidence_index = make_map(evidence, row => row.evidence_id, row => row);
+  define checked = for each entry in entries(make_map(facts, row => row.id, row => row)) {
+    define row = entry.value;
+    require row.fact_scope.contract_id == scope.agreement_id and row.fact_scope.participant_id == scope.participant_id and row.fact_scope.pool_id == scope.pool_id and row.fact_scope.asset_id == project and row.fact_scope.currency == "USD" else "M1_FACT_SCOPE";
+    require in_period(row.effective_date, scope.period) else "M1_FACT_PERIOD";
+    require row.observed_at < cutoff else "M1_FACT_AFTER_CUTOFF";
+    define support = require_some(lookup(evidence_index, row.evidence_id), "M1_FACT_EVIDENCE_REQUIRED");
+    require support.observed_at < cutoff else "M1_EVIDENCE_AFTER_CUTOFF";
+    require row.amount >= USD 0 else "M1_NEGATIVE_BASIS";
+    yield row;
+  };
+  define basis = sum(checked, row => row.amount);
+  define cumulative_result = if method == "cumulative_marginal" then cumulative_tiers(meter.balance, basis, brackets) else {earned: USD 0, ending: USD 0};
+  define uncapped = if method == "period_marginal" or method == "tiers_then_cap" then marginal_tiers(basis, brackets) else
+    if method == "period_whole_base" then whole_tiers(basis, brackets) else
+    if method == "cumulative_marginal" then cumulative_result.earned else basis;
+  define consumed = if method == "cumulative_cap" or (method == "period_cap" and not reset_period_cap) then meter.balance else USD 0;
+  define cap_result = if method == "period_cap" or method == "cumulative_cap" or method == "tiers_then_cap" then apply_cap(uncapped, cap, consumed) else {allowed: uncapped, ending: USD 0};
+  define entitlement = if method == "period_floor" then period_guarantee(uncapped, floor) else cap_result.allowed;
+  define closing_balance = if method == "cumulative_marginal" then cumulative_result.ending else
+    if method == "period_cap" or method == "cumulative_cap" then cap_result.ending else USD 0;
+  closing meter = {method: method, balance: closing_balance, period: scope.period};
+  emit "comparison" = {basis: basis, uncapped: uncapped, entitlement: entitlement, closing_balance: closing_balance};
+  emit "settlements" = [{agreement_id: scope.agreement_id, participant_id: scope.participant_id, pool_id: scope.pool_id, asset_id: project, period: scope.period, entitlement: entitlement}];
+}
