@@ -1,0 +1,251 @@
+{
+  "package_version": "1.0.0",
+  "fixture_id": "SPL-RQ07-SV-BUNDLE-01",
+  "evidence_class": "synthetic_reconstruction",
+  "approval": {
+    "id": "APR-RQ07-01",
+    "scope": "scenario_only",
+    "status": "approved_in_scenario",
+    "date": "2026-01-01",
+    "independent_reviewer_status": "pending"
+  },
+  "deal": {
+    "id": "DEAL-SYN-SV",
+    "version": "2026Q1-fixture-v1",
+    "distributor_id": "DIST",
+    "participant_id": "PART",
+    "buyer_id": "BUYER-1",
+    "currency": "USD",
+    "asset_ids": [
+      "PIC-A",
+      "PIC-B"
+    ],
+    "public_basis": "Skouras Films, Inc.–Ventura Distribution, Inc. 2005 agreement, §§5(a)(iii), 5(b), 5(c), 7(a), 8(a)–(b), 9(a)",
+    "effective": {
+      "start": "2026-01-01",
+      "end": "2026-04-01"
+    }
+  },
+  "run": {
+    "id": "RUN-RQ07-01",
+    "period_id": "2026Q1",
+    "statement_date": "2026-04-15",
+    "intake": "Select cash in the half-open period by bank value date. Use applications posted through the prior day relative to the UTC date cutoff. Select costs by GL posting date and explicit eligibility approval. Invoice, license, settlement and reporting dates remain separate.",
+    "rounding": "Exact rational intermediate arithmetic with no non-integral cent results in this fixture. Alternate rounding conventions are outside the scenario.",
+    "prior_actual_participant_payment_status": "no current-period payments supplied; expected payable is unissued",
+    "period": {
+      "start": "2026-01-01",
+      "end": "2026-04-01"
+    },
+    "cutoff": "2026-04-04T00:00:00Z"
+  },
+  "reference_data": {
+    "assets": [
+      {
+        "id": "PIC-A",
+        "title": "Synthetic Picture A"
+      },
+      {
+        "id": "PIC-B",
+        "title": "Synthetic Picture B"
+      }
+    ],
+    "parties": [
+      {
+        "id": "DIST",
+        "role": "distributor"
+      },
+      {
+        "id": "PART",
+        "role": "participant"
+      },
+      {
+        "id": "BUYER-1",
+        "role": "licensee"
+      }
+    ],
+    "territory_codes": {
+      "USA": "US"
+    },
+    "invoice_asset_aliases": {
+      "LEGACY-A": "PIC-A",
+      "LEGACY-B": "PIC-B"
+    },
+    "bundle_id": "BUNDLE-77",
+    "bundle_source_code": "PACKAGE-77",
+    "allocation": {
+      "id": "ALLOC-77-v1",
+      "source_key": "INV-AB:1",
+      "approval_id": "APR-RQ07-01",
+      "shares": [
+        {
+          "asset_id": "PIC-A",
+          "numerator": 2,
+          "denominator": 5
+        },
+        {
+          "asset_id": "PIC-B",
+          "numerator": 3,
+          "denominator": 5
+        }
+      ]
+    },
+    "mapping_version": "RQ07-mappings-v1"
+  },
+  "policy": {
+    "receipt_basis": "Cash received and applied to in-scope invoice lines, including partial receipts. Allocate the applied bundle cash by approved weights before picture aggregation. Do not count the parent invoice, deposit or application again as a title receipt.",
+    "cost_mappings": [
+      {
+        "source_key": "COST-A:1",
+        "gl_code": "6110",
+        "kind": "third_party_marketing",
+        "asset_id": "PIC-A",
+        "eligibility": "deduct",
+        "reason": "Approved outside marketing expense in the synthetic Net Profits branch; no in-house surcharge."
+      },
+      {
+        "source_key": "COST-B:1",
+        "gl_code": "6210",
+        "kind": "actual_distribution",
+        "asset_id": "PIC-B",
+        "eligibility": "deduct",
+        "reason": "Approved actual distribution expense in the synthetic Adjusted Gross Receipts branch; paid date absent and not used."
+      },
+      {
+        "source_key": "COST-X:1",
+        "gl_code": "6900",
+        "kind": "unsubstantiated_overhead",
+        "asset_id": "PIC-B",
+        "eligibility": "exclude",
+        "reason": "This synthetic line lacks support as actual distribution cost; the fixture specifically disallows this line."
+      }
+    ],
+    "economic_rules": [
+      {
+        "id": "SV-NP",
+        "source_clause": "§8(a)(i)",
+        "asset_id": "PIC-A",
+        "base_name": "Net Profits",
+        "distribution_fee": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "participant_share": {
+          "numerator": 1,
+          "denominator": 5
+        },
+        "other_deductions": "Approved PIC-A expense rows",
+        "trigger": "Complete opening funding snapshot shows zero PART contribution to PIC-A."
+      },
+      {
+        "id": "SV-AGR",
+        "source_clause": "§8(b)(i)",
+        "asset_id": "PIC-B",
+        "base_name": "Adjusted Gross Receipts",
+        "distribution_fee": {
+          "numerator": 3,
+          "denominator": 40
+        },
+        "participant_share": "Approved PART acquisition funding divided by total PART and DIST acquisition funding for PIC-B",
+        "other_deductions": "Approved PIC-B expense rows",
+        "trigger": "Complete opening funding snapshot shows positive PART contribution to PIC-B."
+      },
+      {
+        "id": "SV-POOL",
+        "source_clause": "§7(a), §8 introductory paragraph",
+        "asset_ids": [
+          "PIC-A",
+          "PIC-B"
+        ],
+        "method": "Apply the lesser of nonnegative current earned participation and remaining opening PARTICIPATION_PREPAYMENT. Report offset at pool scope.",
+        "balance_id": "SV-PARTICIPATION-PREPAYMENT"
+      }
+    ],
+    "funding_snapshot": {
+      "complete_as_of": "2026-01-01",
+      "population": "Approved acquisition funding by DIST and PART for both pictures before period start.",
+      "absent_part_funding_for_pic_a": "Legitimate zero because the fixture explicitly declares this funding snapshot complete.",
+      "non_duplication": "Funding is used only to select the branch and determine the share in this fixture. There is no separately approved acquisition-cost deduction event for these funding entries."
+    },
+    "opening_state": {
+      "id": "OPEN-RQ07-01",
+      "state_key": "DEAL-SYN-SV/PART/participation-prepayment/POOL-SV-AB/USD",
+      "balance_kind": "participation_prepayment",
+      "agreement_id": "DEAL-SYN-SV",
+      "scope": {
+        "agreement_id": "DEAL-SYN-SV",
+        "pool_id": "POOL-SV-AB"
+      },
+      "boundary": "2026-01-01",
+      "unit": "USD",
+      "quantity": "15000",
+      "provenance_ref": "SYN-CLOSE-2025Q4",
+      "policy_lineage": [
+        "APR-RQ07-01"
+      ],
+      "participant_id": "PART",
+      "pool_id": "POOL-SV-AB",
+      "scope_asset_ids": [
+        "PIC-A",
+        "PIC-B"
+      ],
+      "support_controls_usd": {
+        "prior_advances": "30000",
+        "prior_recovery": "15000"
+      },
+      "support_status": "synthetic approved prior-close control; historical ledger not reconstructed"
+    },
+    "excluded_mechanisms": [
+      "new advances",
+      "payment instruments",
+      "reserves",
+      "FX",
+      "negative earnings",
+      "corrections",
+      "opening unpaid participation",
+      "pass fees"
+    ]
+  },
+  "source_batches": [
+    {
+      "source_system": "synthetic-screen",
+      "batch_id": "raw_acquisition_funding",
+      "version": "1",
+      "snapshot_locator": "raw_acquisition_funding.csv",
+      "sha256": "ed4ecc44984fcb954630f50e359b1c6ecad10d5115961d1460c1751aed8a3deb",
+      "row_count": 3
+    },
+    {
+      "source_system": "synthetic-screen",
+      "batch_id": "raw_bank_receipts",
+      "version": "1",
+      "snapshot_locator": "raw_bank_receipts.csv",
+      "sha256": "d6ef50afb7f2f16e4cfedc5d21af370da63b3e4b89e65343b102595f80c34457",
+      "row_count": 1
+    },
+    {
+      "source_system": "synthetic-screen",
+      "batch_id": "raw_cash_applications",
+      "version": "1",
+      "snapshot_locator": "raw_cash_applications.csv",
+      "sha256": "e0165cbe8f01594313ab655c067dfc8060c778811f35b52ae2e91f04253a3950",
+      "row_count": 2
+    },
+    {
+      "source_system": "synthetic-screen",
+      "batch_id": "raw_cost_lines",
+      "version": "1",
+      "snapshot_locator": "raw_cost_lines.csv",
+      "sha256": "866b99113b1071df1b4785f20e94f03f0500bec2b9e97bcb7ddb5b1892667de3",
+      "row_count": 3
+    },
+    {
+      "source_system": "synthetic-screen",
+      "batch_id": "raw_invoice_lines",
+      "version": "1",
+      "snapshot_locator": "raw_invoice_lines.csv",
+      "sha256": "cab1d020d3467eb955c88291a1cbe2aa0f0a67973a8a41842cd0381c380c7cbb",
+      "row_count": 2
+    }
+  ]
+}

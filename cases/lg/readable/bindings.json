@@ -1,0 +1,83 @@
+{
+  "inputs": {
+    "actual_costs": [],
+    "crossed_net_subtotal": {
+      "currency": "USD",
+      "value": "175"
+    },
+    "outside_hurdle": {
+      "agreement_id": "lg",
+      "attained": true,
+      "effective_date": "2025-12-31"
+    },
+    "payment_holdback_addition": {
+      "currency": "USD",
+      "value": "0"
+    },
+    "payment_holdback_release": {
+      "currency": "USD",
+      "value": "0"
+    },
+    "policy": {
+      "agreement_id": "lg",
+      "asset_id": "work-D",
+      "gross_rate": "0.20",
+      "net_rate": "0.20",
+      "participant_id": "seller-group",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "crossed-group",
+      "video_proxy": "0.25"
+    },
+    "producer_fee_offset": {
+      "currency": "USD",
+      "value": "12"
+    },
+    "receipts": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "180"
+        },
+        "asset_id": "work-D",
+        "cash_received_date": "2026-02-01",
+        "fact_id": "lg-other",
+        "is_home_video": false
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "120"
+        },
+        "asset_id": "work-D",
+        "cash_received_date": "2026-03-01",
+        "fact_id": "lg-video",
+        "is_home_video": true
+      }
+    ],
+    "work_gate_history": {
+      "asset_id": "work-D",
+      "cleared_throughout": true,
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      }
+    }
+  },
+  "openings": {
+    "gate_cost": {
+      "currency": "USD",
+      "value": "100"
+    },
+    "gate_gross": {
+      "currency": "USD",
+      "value": "100"
+    },
+    "payment_holdback": {
+      "currency": "USD",
+      "value": "0"
+    }
+  }
+}

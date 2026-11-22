@@ -1,0 +1,82 @@
+// RR-02: return-reserve ledger only; no receipt/earnings/payment stage chosen.
+// Complete supplied records; settlement stages add, apply actual returns, release unused.
+// These stages establish per-vintage availability, not chronological cap compliance.
+schedule SyntheticReserveVintage language "spl/0.1-draft"
+  core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input purpose: Text;
+  input observation_cutoff: Instant;
+  input authority: Id<Decision>;
+  input movements: List<ReserveMovement>;
+  input evidence: List<ReserveEvidence>;
+  opening reserve_vintages: List<ReserveVintage> from "synthetic/reserve/vintages";
+  require purpose == "return_reserve" else "RES_WRONG_PURPOSE";
+  define vintages = for each vintage in reserve_vintages {
+    require vintage.agreement_id == scope.agreement_id and
+      vintage.participant_id == scope.participant_id and vintage.pool_id == scope.pool_id
+      else "RES_WRONG_SCOPE";
+    require vintage.purpose == purpose else "RES_WRONG_PURPOSE";
+    require vintage.currency == "USD" else "RES_WRONG_CURRENCY";
+    require vintage.balance >= USD 0 else "RES_NEGATIVE_OPENING";
+    yield vintage;
+  };
+  define validated = for each movement in movements {
+    require movement.agreement_id == scope.agreement_id and
+      movement.participant_id == scope.participant_id and movement.pool_id == scope.pool_id
+      else "RES_WRONG_SCOPE";
+    require movement.purpose == purpose else "RES_WRONG_PURPOSE";
+    require movement.currency == "USD" else "RES_WRONG_CURRENCY";
+    require sum(filter(vintages, v => v.vintage_id == movement.vintage_id), v => 1) == 1
+      else "RES_WRONG_VINTAGE";
+    require movement.amount >= USD 0 else "RES_NEGATIVE_MOVEMENT";
+    require in_period(movement.effective_date, scope.period) else "RES_OUTSIDE_PERIOD";
+    require movement.observed_at < observation_cutoff else "RES_MOVEMENT_NOT_AVAILABLE";
+    require movement.kind == "addition" or movement.kind == "application" or movement.kind == "release"
+      else "RES_UNKNOWN_MOVEMENT_KIND";
+    require sum(filter(movements, m => m.evidence_ref == movement.evidence_ref), m => 1) == 1
+      else "RES_EVIDENCE_ALREADY_APPLIED";
+    define matching_evidence = filter(evidence, e => e.evidence_id == movement.evidence_ref);
+    require sum(matching_evidence, e => 1) == 1 else "RES_EVIDENCE_REQUIRED";
+    define checked_evidence = for each item in matching_evidence {
+      require item.agreement_id == movement.agreement_id and
+        item.participant_id == movement.participant_id and item.pool_id == movement.pool_id
+        else "RES_EVIDENCE_WRONG_SCOPE";
+      require item.purpose == purpose else "RES_EVIDENCE_WRONG_PURPOSE";
+      require item.currency == movement.currency else "RES_EVIDENCE_WRONG_CURRENCY";
+      require item.vintage_id == movement.vintage_id else "RES_EVIDENCE_WRONG_VINTAGE";
+      require item.amount == movement.amount and item.effective_date == movement.effective_date
+        else "RES_EVIDENCE_MISMATCH";
+      require item.approved and item.authority_ref == authority else "RES_AUTHORITY_REQUIRED";
+      require item.observed_at < observation_cutoff else "RES_EVIDENCE_NOT_AVAILABLE";
+      require (movement.kind == "addition" and item.kind == "authorized_addition") or
+        (movement.kind == "application" and item.kind == "actual_return") or
+        (movement.kind == "release" and item.kind == "authorized_release")
+        else "RES_EVIDENCE_WRONG_KIND";
+      yield item;
+    };
+    require sum(checked_evidence, e => 1) == 1 else "RES_EVIDENCE_REQUIRED";
+    yield movement;
+  };
+  define per_vintage = for each vintage in vintages {
+    define own_movements = filter(validated, m => m.vintage_id == vintage.vintage_id);
+    define additions = sum(filter(own_movements, m => m.kind == "addition"), m => m.amount);
+    define applications = sum(filter(own_movements, m => m.kind == "application"), m => m.amount);
+    define releases = sum(filter(own_movements, m => m.kind == "release"), m => m.amount);
+    require applications <= vintage.balance + additions else "RES_MOVEMENT_EXCEEDS_AVAILABLE";
+    require releases <= vintage.balance + additions - applications else "RES_MOVEMENT_EXCEEDS_AVAILABLE";
+    define next_balance = vintage.balance + additions - applications - releases citing "SYNTHETIC-RES-VINTAGE";
+    yield { agreement_id: vintage.agreement_id, participant_id: vintage.participant_id,
+      pool_id: vintage.pool_id, period: scope.period, purpose: vintage.purpose, currency: vintage.currency,
+      vintage_id: vintage.vintage_id, opening_balance: vintage.balance,
+      additions: additions, applications: applications, releases: releases, closing_balance: next_balance };
+  };
+  closing reserve_vintages = map(per_vintage, v => { agreement_id: v.agreement_id,
+    participant_id: v.participant_id, pool_id: v.pool_id, purpose: v.purpose, currency: v.currency,
+    vintage_id: v.vintage_id, balance: v.closing_balance });
+  emit "reserve_vintage_ledger" = per_vintage;
+  emit "reserve_ledger" = { agreement_id: scope.agreement_id, participant_id: scope.participant_id,
+    pool_id: scope.pool_id, period: scope.period, purpose: purpose, currency: "USD",
+    opening_balance: sum(per_vintage, v => v.opening_balance),
+    additions: sum(per_vintage, v => v.additions), applications: sum(per_vintage, v => v.applications),
+    releases: sum(per_vintage, v => v.releases), closing_balance: sum(per_vintage, v => v.closing_balance) };
+}

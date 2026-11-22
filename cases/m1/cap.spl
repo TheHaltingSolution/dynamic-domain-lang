@@ -1,0 +1,8 @@
+schedule Cap language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input entitlement: Money<USD>;
+  input ceiling: Money<USD>;
+  input consumed: Money<USD>;
+  require entitlement >= USD 0 and ceiling >= USD 0 and consumed >= USD 0 and consumed <= ceiling else "M1_CAP_DOMAIN";
+  define allowed = min(entitlement, ceiling - consumed);
+  define capped = {allowed: allowed, ending: consumed + allowed};
+}

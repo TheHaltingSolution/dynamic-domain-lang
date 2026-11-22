@@ -1,0 +1,9 @@
+schedule CumulativeTiers language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input prior_basis: Money<USD>;
+  input current_basis: Money<USD>;
+  input brackets: List<{id: Id<Rule>, sequence: Nat, lower: Money<USD>, upper: Option<Money<USD>>, rate: Ratio}>;
+  require prior_basis >= USD 0 and current_basis >= USD 0 else "M1_NEGATIVE_BASIS";
+  define closing_basis = prior_basis + current_basis;
+  define current_earnings = tier_marginal(closing_basis, brackets) - tier_marginal(prior_basis, brackets);
+  define cumulative = {earned: current_earnings, ending: closing_basis};
+}

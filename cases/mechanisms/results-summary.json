@@ -1,0 +1,166 @@
+[
+  {
+    "binding_digest": "b6c3268df6b008afa2a59232da940f8c3a650bd075327b9ebf2281885dd25686",
+    "case": "advance-issues",
+    "closing": {
+      "prepayment": "5000"
+    },
+    "emissions": {
+      "advance_issue_audit": [
+        {
+          "addition": "15000",
+          "disbursement_id": "disbursement-1",
+          "event_id": "issue-1",
+          "evidence_available": true,
+          "evidence_observations": [
+            "2026-07-02T10:00:00Z"
+          ],
+          "evidence_ref": "evidence-1",
+          "funded_date": "2026-06-30",
+          "funded_in_period": true,
+          "included": true,
+          "issue_available": true,
+          "issue_id": "advance-1",
+          "issue_observed_at": "2026-07-02T09:00:00Z",
+          "source_title_id": "title-a"
+        }
+      ],
+      "advances": {
+        "additions": "15000",
+        "agreement_id": "synthetic-deal",
+        "available": "15000",
+        "balance_purpose": "participation_prepayment",
+        "closing_balance": "5000",
+        "currency": "USD",
+        "earned": "10000",
+        "observation_cutoff": "2026-07-03T00:00:00Z",
+        "opening_balance": "0",
+        "participant_id": "participant",
+        "payable": "0",
+        "period": {
+          "end": "2026-07-01",
+          "start": "2026-04-01"
+        },
+        "pool_id": "pool",
+        "recovered": "10000"
+      }
+    },
+    "expected_checkpoint": {
+      "closing_balance": "5000"
+    },
+    "scenario_class": "synthetic_mechanism",
+    "source_sha256": "b07e5790b347636f4e90c1df25ef544b3ea34fde3529d69f007cbec18b784620"
+  },
+  {
+    "binding_digest": "cf6abdffa6914ca3419035ee3d9d245885994d8c37ecd776b3ff6debc96696ab",
+    "case": "reserve-vintage",
+    "closing": {
+      "reserve_vintages": [
+        {
+          "agreement_id": "synthetic-deal",
+          "balance": "0",
+          "currency": "USD",
+          "participant_id": "participant",
+          "pool_id": "pool",
+          "purpose": "return_reserve",
+          "vintage_id": "vintage-1"
+        },
+        {
+          "agreement_id": "synthetic-deal",
+          "balance": "20",
+          "currency": "USD",
+          "participant_id": "participant",
+          "pool_id": "pool",
+          "purpose": "return_reserve",
+          "vintage_id": "vintage-2"
+        }
+      ]
+    },
+    "emissions": {
+      "reserve_ledger": {
+        "additions": "20",
+        "agreement_id": "synthetic-deal",
+        "applications": "7",
+        "closing_balance": "20",
+        "currency": "USD",
+        "opening_balance": "12",
+        "participant_id": "participant",
+        "period": {
+          "end": "2026-07-01",
+          "start": "2026-04-01"
+        },
+        "pool_id": "pool",
+        "purpose": "return_reserve",
+        "releases": "5"
+      },
+      "reserve_vintage_ledger": [
+        {
+          "additions": "0",
+          "agreement_id": "synthetic-deal",
+          "applications": "7",
+          "closing_balance": "0",
+          "currency": "USD",
+          "opening_balance": "12",
+          "participant_id": "participant",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "purpose": "return_reserve",
+          "releases": "5",
+          "vintage_id": "vintage-1"
+        },
+        {
+          "additions": "20",
+          "agreement_id": "synthetic-deal",
+          "applications": "0",
+          "closing_balance": "20",
+          "currency": "USD",
+          "opening_balance": "0",
+          "participant_id": "participant",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "purpose": "return_reserve",
+          "releases": "0",
+          "vintage_id": "vintage-2"
+        }
+      ]
+    },
+    "expected_checkpoint": {
+      "closing_balance": "20"
+    },
+    "scenario_class": "synthetic_mechanism",
+    "source_sha256": "0e77f982aa3e699c6142912de6859642a23cd4f864101f4c084bedb3da79a87f"
+  },
+  {
+    "binding_digest": "8ac44636f8621dbb65de9cd3daaf85676bfc8bb221279c15724e589a2c7373b9",
+    "case": "correction-payments",
+    "closing": {},
+    "emissions": {
+      "obligation_reconciliation": {
+        "actual_paid": "80",
+        "agreement_id": "synthetic-deal",
+        "correction_delta": "-10",
+        "obligation": "obligation-1",
+        "original_issued": "100",
+        "participant_id": "participant",
+        "period": {
+          "end": "2026-07-01",
+          "start": "2026-04-01"
+        },
+        "pool_id": "pool",
+        "remaining_obligation": "10",
+        "revised_entitlement": "90"
+      }
+    },
+    "expected_checkpoint": {
+      "remaining_obligation": "10"
+    },
+    "scenario_class": "synthetic_mechanism",
+    "source_sha256": "c990eb2770cbab83d10040a8c5a1411869ff3a7a2239b371d81bed1cc71acb75"
+  }
+]

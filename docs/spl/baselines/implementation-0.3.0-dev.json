@@ -1,0 +1,757 @@
+{
+  "cases": [
+    {
+      "artifact_subdirectory": "sv",
+      "case": "sv",
+      "independent_expected": {
+        "earned": "33000",
+        "payable": "18000",
+        "recouped": "15000"
+      },
+      "result_digest": "9457688006b588bbbb7cbb12cb5ada304ed994d788bb9077416d5b30792b0f01",
+      "semantic_run_digest": "e5d1d4d95063bc944f36ad4dc734e22a7c4a6f8ee397c0e2b22ea56466b3885c",
+      "statement": {
+        "agreement_id": "sv",
+        "currency": "USD",
+        "earned": "33000",
+        "participant_id": "skouras",
+        "payable": "18000",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "pool_id": "pool-1",
+        "recouped": "15000",
+        "run_id": "SV-01-run",
+        "scenario_id": "SV-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "lg",
+      "case": "lg",
+      "independent_expected": {
+        "earned": "35",
+        "payable": "35"
+      },
+      "result_digest": "d4fecbcebb0ad6868e902bb987689fd33f18304615681b10260e7f0e6a7fb396",
+      "semantic_run_digest": "cd42bde7b06739d97a2c519d25463783d2494b23e5c106c9b09f20450b7fe528",
+      "statement": {
+        "agreement_id": "lg",
+        "asset_id": "work-D",
+        "currency": "USD",
+        "earned": "35",
+        "net_pool_id": "crossed-group",
+        "participant_id": "seller-group",
+        "payable": "35",
+        "payment_holdback_addition": "0",
+        "payment_holdback_release": "0",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "run_id": "LG-01-run",
+        "scenario_id": "LG-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "rq07",
+      "case": "rq07",
+      "independent_expected": {
+        "earned": "33000",
+        "payable": "18000",
+        "recouped": "15000"
+      },
+      "result_digest": "4cdf02c6a62fd3fec649c5e4de4d4895e612b47f9515c7f55298f6302ef44c79",
+      "semantic_run_digest": "85642021c34c5a95f96cd5cc37ed50a77aaf66e63a1b8413aee0d7e67875ac42",
+      "statement": {
+        "agreement_id": "DEAL-SYN-SV",
+        "currency": "USD",
+        "earned": "33000",
+        "participant_id": "PART",
+        "payable": "18000",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "pool_id": "POOL-SV-AB",
+        "recouped": "15000",
+        "run_id": "RUN-RQ07-01",
+        "scenario_id": "SPL-RQ07-SV-BUNDLE-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "sv-readable",
+      "case": "sv-readable",
+      "independent_expected": {
+        "earned": "33000",
+        "payable": "18000",
+        "recouped": "15000"
+      },
+      "result_digest": "a939676937d52b888803a408445ca659b6d8368a43490da7ec4eff9ec7929345",
+      "semantic_run_digest": "c9711f357ef74e1745fd6aea937ac281f192a6f5df5cb3b7df2b07dcdfa8a782",
+      "statement": {
+        "agreement_id": "sv",
+        "currency": "USD",
+        "earned": "33000",
+        "participant_id": "skouras",
+        "payable": "18000",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "pool_id": "pool-1",
+        "recouped": "15000",
+        "run_id": "SV-01-run",
+        "scenario_id": "SV-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "lg-readable",
+      "case": "lg-readable",
+      "independent_expected": {
+        "earned": "35",
+        "payable": "35"
+      },
+      "result_digest": "fb2c450ee0ecd2b6aedbad932dc54eaf7abbc6414bfc80ae9b03e0ebf874394f",
+      "semantic_run_digest": "8cb6b2e02ceb5cbff858236ce2202305b09b4d642626f61509753c2f0299af94",
+      "statement": {
+        "agreement_id": "lg",
+        "asset_id": "work-D",
+        "currency": "USD",
+        "earned": "35",
+        "net_pool_id": "crossed-group",
+        "participant_id": "seller-group",
+        "payable": "35",
+        "payment_holdback_addition": "0",
+        "payment_holdback_release": "0",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "run_id": "LG-01-run",
+        "scenario_id": "LG-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "rq07-readable",
+      "case": "rq07-readable",
+      "independent_expected": {
+        "earned": "33000",
+        "payable": "18000",
+        "recouped": "15000"
+      },
+      "result_digest": "9bfed61124ca1f8749448cc7cecb7bcfcbbe1703fbfc1a0632e4e3faf51728c0",
+      "semantic_run_digest": "afaa165d95b708307c76ab696d7c27f821158e3d00118f9716ab9eb002d6525f",
+      "statement": {
+        "agreement_id": "DEAL-SYN-SV",
+        "currency": "USD",
+        "earned": "33000",
+        "participant_id": "PART",
+        "payable": "18000",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "pool_id": "POOL-SV-AB",
+        "recouped": "15000",
+        "run_id": "RUN-RQ07-01",
+        "scenario_id": "SPL-RQ07-SV-BUNDLE-01"
+      }
+    }
+  ],
+  "checks": {
+    "date": "2026-11-20",
+    "demo_regeneration": "six canonical cases and three separate mechanisms passed three-way execution comparisons",
+    "lake_build": "passed after refreshed Demos",
+    "native_demo_payables": {
+      "spl_lg": "35",
+      "spl_lg_readable": "35",
+      "spl_rq07": "18000",
+      "spl_rq07_readable": "18000",
+      "spl_sv": "18000",
+      "spl_sv_readable": "18000"
+    },
+    "native_suite_status": "passed",
+    "native_suites": [
+      "SPLParser",
+      "SPLCheck",
+      "SPLBindings",
+      "SPLInstant",
+      "SPLCore",
+      "SPLEmit",
+      "SPLReadable",
+      "SPLIR",
+      "SPLValidateIR",
+      "SPLTrace"
+    ],
+    "python_command": "python -m unittest discover -s Tests -v",
+    "python_log_encoding": "UTF-16LE with BOM (PowerShell redirection)",
+    "python_log_sha256": "d56be98a70aafe73340964503026f6971566571b90f5ed85e3f0f66ad4ea719a",
+    "python_status": "passed",
+    "python_tests": 132,
+    "smoke": "passed",
+    "spl_smoke": "passed",
+    "toolchain": "leanprover/lean4:v4.35.0",
+    "whole_compiler_proof": "deferred by user; no new proof claim"
+  },
+  "compiler_wrapper_reference_build": "25ac04f9f72296108cba1eb04aae9cd97c534bbcc09a21e38806440fac3a3924",
+  "date": "2026-11-20",
+  "implementation_profile": "spl-implementation/0.3.0-dev",
+  "ir_format": "spl-ir/0.1",
+  "mechanisms": [
+    {
+      "binding_digest": "b6c3268df6b008afa2a59232da940f8c3a650bd075327b9ebf2281885dd25686",
+      "case": "advance-issues",
+      "closing": {
+        "prepayment": "5000"
+      },
+      "emissions": {
+        "advance_issue_audit": [
+          {
+            "addition": "15000",
+            "disbursement_id": "disbursement-1",
+            "event_id": "issue-1",
+            "evidence_available": true,
+            "evidence_observations": [
+              "2026-07-02T10:00:00Z"
+            ],
+            "evidence_ref": "evidence-1",
+            "funded_date": "2026-06-30",
+            "funded_in_period": true,
+            "included": true,
+            "issue_available": true,
+            "issue_id": "advance-1",
+            "issue_observed_at": "2026-07-02T09:00:00Z",
+            "source_title_id": "title-a"
+          }
+        ],
+        "advances": {
+          "additions": "15000",
+          "agreement_id": "synthetic-deal",
+          "available": "15000",
+          "balance_purpose": "participation_prepayment",
+          "closing_balance": "5000",
+          "currency": "USD",
+          "earned": "10000",
+          "observation_cutoff": "2026-07-03T00:00:00Z",
+          "opening_balance": "0",
+          "participant_id": "participant",
+          "payable": "0",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "recovered": "10000"
+        }
+      },
+      "expected_checkpoint": {
+        "closing_balance": "5000"
+      },
+      "scenario_class": "synthetic_mechanism",
+      "source_sha256": "b07e5790b347636f4e90c1df25ef544b3ea34fde3529d69f007cbec18b784620"
+    },
+    {
+      "binding_digest": "cf6abdffa6914ca3419035ee3d9d245885994d8c37ecd776b3ff6debc96696ab",
+      "case": "reserve-vintage",
+      "closing": {
+        "reserve_vintages": [
+          {
+            "agreement_id": "synthetic-deal",
+            "balance": "0",
+            "currency": "USD",
+            "participant_id": "participant",
+            "pool_id": "pool",
+            "purpose": "return_reserve",
+            "vintage_id": "vintage-1"
+          },
+          {
+            "agreement_id": "synthetic-deal",
+            "balance": "20",
+            "currency": "USD",
+            "participant_id": "participant",
+            "pool_id": "pool",
+            "purpose": "return_reserve",
+            "vintage_id": "vintage-2"
+          }
+        ]
+      },
+      "emissions": {
+        "reserve_ledger": {
+          "additions": "20",
+          "agreement_id": "synthetic-deal",
+          "applications": "7",
+          "closing_balance": "20",
+          "currency": "USD",
+          "opening_balance": "12",
+          "participant_id": "participant",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "purpose": "return_reserve",
+          "releases": "5"
+        },
+        "reserve_vintage_ledger": [
+          {
+            "additions": "0",
+            "agreement_id": "synthetic-deal",
+            "applications": "7",
+            "closing_balance": "0",
+            "currency": "USD",
+            "opening_balance": "12",
+            "participant_id": "participant",
+            "period": {
+              "end": "2026-07-01",
+              "start": "2026-04-01"
+            },
+            "pool_id": "pool",
+            "purpose": "return_reserve",
+            "releases": "5",
+            "vintage_id": "vintage-1"
+          },
+          {
+            "additions": "20",
+            "agreement_id": "synthetic-deal",
+            "applications": "0",
+            "closing_balance": "20",
+            "currency": "USD",
+            "opening_balance": "0",
+            "participant_id": "participant",
+            "period": {
+              "end": "2026-07-01",
+              "start": "2026-04-01"
+            },
+            "pool_id": "pool",
+            "purpose": "return_reserve",
+            "releases": "0",
+            "vintage_id": "vintage-2"
+          }
+        ]
+      },
+      "expected_checkpoint": {
+        "closing_balance": "20"
+      },
+      "scenario_class": "synthetic_mechanism",
+      "source_sha256": "0e77f982aa3e699c6142912de6859642a23cd4f864101f4c084bedb3da79a87f"
+    },
+    {
+      "binding_digest": "8ac44636f8621dbb65de9cd3daaf85676bfc8bb221279c15724e589a2c7373b9",
+      "case": "correction-payments",
+      "closing": {},
+      "emissions": {
+        "obligation_reconciliation": {
+          "actual_paid": "80",
+          "agreement_id": "synthetic-deal",
+          "correction_delta": "-10",
+          "obligation": "obligation-1",
+          "original_issued": "100",
+          "participant_id": "participant",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "remaining_obligation": "10",
+          "revised_entitlement": "90"
+        }
+      },
+      "expected_checkpoint": {
+        "remaining_obligation": "10"
+      },
+      "scenario_class": "synthetic_mechanism",
+      "source_sha256": "c990eb2770cbab83d10040a8c5a1411869ff3a7a2239b371d81bed1cc71acb75"
+    }
+  ],
+  "pinned_files": {
+    "Demos/LG.lean": "1e3cb365582e8e884f8d37d66117697b3aef7a122f6c565eb3e5c6ac6f86b93c",
+    "Demos/LGReadable.lean": "85701098e38a67d5f57848d21828acdeae28f2f74e6bda77526f32591578500f",
+    "Demos/RQ07.lean": "14b08fa1ebf710689173e59b23a95f9a6c3819d252898248e40bc02838c84b5d",
+    "Demos/RQ07Readable.lean": "6127af1134fd6743bef3c857fac4790ede941aa338db79f56fb44874cf07e0e9",
+    "Demos/SV.lean": "feaefa25cd2f6b2c3317eea2feb9f1206294a3acfbdc4c809e8d7b76001c4975",
+    "Demos/SVReadable.lean": "917be76600acf0353390372f5502551a8ba186bb3765a14a2c76aafe3e301bd8",
+    "cases/lg/bindings.json": "a00dc6c10167e52ad356fd969daa17f854bb18f7f109e304388a1e405ecb5c8b",
+    "cases/lg/canonical-package.json": "80af73faf84bae23425cf3312a2a226738fba52d81c6a0705558a2437d62efd5",
+    "cases/lg/closing-state.json": "bf915676c4e9aa4e0e8a31ce3802f745c84383df793764007e1bd211d4fa4cf6",
+    "cases/lg/lg01-readable.spl": "d7f654b16fbee7f72326579d5378648144a77394d1322f57f49a865bf4b9faf9",
+    "cases/lg/lg01.spl": "17afb659a15322817da812d52e1a8d4f2bb1d18330df3aa0ae531b4b0839daa4",
+    "cases/lg/lineage.json": "1e7bf35aafbf7518f63ea3b1178bd880bada29eac08bd691d8a7dadcbc35e1c4",
+    "cases/lg/readable/bindings.json": "a00dc6c10167e52ad356fd969daa17f854bb18f7f109e304388a1e405ecb5c8b",
+    "cases/lg/readable/canonical-package.json": "58b6abf44a6caa7e0c76f3fe52b0d387d0f37c032824769ad87681c1011df494",
+    "cases/lg/readable/closing-state.json": "7602baf2881060e2a67e956fdcdd2bb21714f174ca4cd284bb5105f95dc1fd1a",
+    "cases/lg/readable/lineage.json": "1e7bf35aafbf7518f63ea3b1178bd880bada29eac08bd691d8a7dadcbc35e1c4",
+    "cases/lg/readable/statement.json": "d8022f7bfb75e48eb641568cf23afff4464ee9e22ca72a294a557a1ace41743a",
+    "cases/lg/statement.json": "d8022f7bfb75e48eb641568cf23afff4464ee9e22ca72a294a557a1ace41743a",
+    "cases/mechanisms/advance-issues-bindings.json": "9eebf359545c0471b7055d641639cae90dddcadcde4610afa5a64962670419b2",
+    "cases/mechanisms/advance-issues.spl": "b07e5790b347636f4e90c1df25ef544b3ea34fde3529d69f007cbec18b784620",
+    "cases/mechanisms/correction-payments-bindings.json": "2c784c4995812a80d6e3da6501f2df6a75832e7ac2aa745b3ffed37def43a02c",
+    "cases/mechanisms/correction-payments.spl": "c990eb2770cbab83d10040a8c5a1411869ff3a7a2239b371d81bed1cc71acb75",
+    "cases/mechanisms/reserve-vintage-bindings.json": "b8e495c98cc12fe3ae7c53aa152d8f83521aa40f62237fe6df828f3279ca47cc",
+    "cases/mechanisms/reserve-vintage.spl": "0e77f982aa3e699c6142912de6859642a23cd4f864101f4c084bedb3da79a87f",
+    "cases/mechanisms/results-summary.json": "9d468aa20c412ccb6d0388b2d6d2ab86d9cddc5bf0b887edfa6049bebf9e74cc",
+    "cases/rq07/bindings.json": "fc99bd0f35e1d55f540356e4105e5a007e00ab666ec52111234a04a5310f9bbb",
+    "cases/rq07/canonical-package.json": "7f59264ddf3881d2a575495a2f929746babc2a2e0b1d97523cf8de001120454b",
+    "cases/rq07/closing-state.json": "77b932773d568d0631e234e41909fca91ec9c89c7a8420ebfa7d66a8f7bbca48",
+    "cases/rq07/control-comparison.json": "80c5afa29cacd4f1d0be870338b4c974bf7d063274216f104577c4599ca25959",
+    "cases/rq07/lineage.json": "38586b887f6084eb64454e789952e1e600ef95bc8757edb8ec27827cc2f22d6d",
+    "cases/rq07/readable/bindings.json": "fc99bd0f35e1d55f540356e4105e5a007e00ab666ec52111234a04a5310f9bbb",
+    "cases/rq07/readable/canonical-package.json": "8da535f657e6eb74f4cb5cbb25e5891cd0c64edb3f6fe5d2f4105655a8a8c902",
+    "cases/rq07/readable/closing-state.json": "567c72bfdc844ea7d1b9f5c794a473f0afcda2a45f66ad42d3c5e45c146b1eb5",
+    "cases/rq07/readable/lineage.json": "38586b887f6084eb64454e789952e1e600ef95bc8757edb8ec27827cc2f22d6d",
+    "cases/rq07/readable/statement.json": "df06b1767b6ae90fbb93c62fe43406f4bbe5b34d7b081cf3e2489274e22e132a",
+    "cases/rq07/source/raw_acquisition_funding.csv": "ed4ecc44984fcb954630f50e359b1c6ecad10d5115961d1460c1751aed8a3deb",
+    "cases/rq07/source/raw_bank_receipts.csv": "d6ef50afb7f2f16e4cfedc5d21af370da63b3e4b89e65343b102595f80c34457",
+    "cases/rq07/source/raw_cash_applications.csv": "e0165cbe8f01594313ab655c067dfc8060c778811f35b52ae2e91f04253a3950",
+    "cases/rq07/source/raw_cost_lines.csv": "866b99113b1071df1b4785f20e94f03f0500bec2b9e97bcb7ddb5b1892667de3",
+    "cases/rq07/source/raw_invoice_lines.csv": "cab1d020d3467eb955c88291a1cbe2aa0f0a67973a8a41842cd0381c380c7cbb",
+    "cases/rq07/source/scenario.json": "28470ae6aff0ad1e3916cdc4bf5d140d86eda794a3c5080d8ab76317de717455",
+    "cases/rq07/statement.json": "df06b1767b6ae90fbb93c62fe43406f4bbe5b34d7b081cf3e2489274e22e132a",
+    "cases/sv/bindings.json": "4a9f4313b039e636aaf7367f7d43343b285c11e8b44f9f4f192a7a9ef038a03e",
+    "cases/sv/canonical-package.json": "d37faf1a2d17bf0f454ad9c90557feb671d32e9d680a857fae742f3f8dc273a3",
+    "cases/sv/closing-state.json": "c85585f5702ef5c2049a23c904bf6a5e1006425eafd4594eaf0ecef31aead73f",
+    "cases/sv/lineage.json": "8fefc124decd173d1e4ea7262012168bb1de3265b5755b064e160fdd2bdb1f24",
+    "cases/sv/readable/bindings.json": "4a9f4313b039e636aaf7367f7d43343b285c11e8b44f9f4f192a7a9ef038a03e",
+    "cases/sv/readable/canonical-package.json": "77e8f44af77e451d9af5b45f51e304f3ef046c70f0b759f2a909ed134afab79b",
+    "cases/sv/readable/closing-state.json": "64b017b1c420373c7eda1e561272ded2b49bbfc357545cec9c60584b8d1bc21e",
+    "cases/sv/readable/lineage.json": "8fefc124decd173d1e4ea7262012168bb1de3265b5755b064e160fdd2bdb1f24",
+    "cases/sv/readable/statement.json": "7cf8ba397fd09919f0aa6af0598f6a3afb76bc5c787931c862868b1c25f44dce",
+    "cases/sv/rq07-readable.spl": "eb7c6d9713f20e073ce0521a7d27cb1e770d0f4ef3b3fec1f613848f1aa1a57a",
+    "cases/sv/rq07.spl": "25ee60e824461ec0bce0630eea9dc77947146e4e1239e9a2d23cb5324bb651aa",
+    "cases/sv/statement.json": "7cf8ba397fd09919f0aa6af0598f6a3afb76bc5c787931c862868b1c25f44dce",
+    "cases/sv/sv01-readable.spl": "b1071eb9128c45b55826ab9c0e9535f63ddc0f16a58297b662bee7de33695c29",
+    "cases/sv/sv01.spl": "0ecd2b31d1be9e8e3764cacc8e1135422fb32786bae8f8a3a1833db9615d6cec",
+    "docs/spl/README.md": "1bbeccb13e437f1773e8cdf2087034c8b92af6d313deabd4806d9663c364cc0f",
+    "docs/spl/compiler-handoff.md": "35e1b411c2d5ae023a9eba5a35da12a5870b049767a1acb3cfb2702e4752c478",
+    "docs/spl/core-and-compilation.md": "d35b3aec883ebdcad50fb1cc36a02ee3e73ddc51d095d9680b4ceb4ca26a4faa",
+    "docs/spl/data-and-run-contract.md": "5f7fc2c44d3b50a44bde2b3f235cf26b947b4f2bdb93eee6a2114ce4eb59b5f3",
+    "docs/spl/development-plan.md": "04ecd6cd8494bca832ec2f8feb4ed1f5601b75e05861809c60a0a56976e3ae5b",
+    "docs/spl/implementation-answers.md": "ef466648fcc5e8e83b9af3bacbb52777f0f3e88b4140953313b57fdf63d28680",
+    "docs/spl/implementation-questions.md": "a96a47ec6ade829bbac07c8268a155dda4ab9fa0e62d25a31dbf6048f8115e70",
+    "docs/spl/implementation.md": "d32c3dfabafe9664b39e86023a38dfd87b6e6872e34e16db9b5a4b3a6ae6b441",
+    "docs/spl/iteration-log.md": "8888e9730795beb32060da419c4307dc7a0325f90ba977bf8b9438776f5c060f",
+    "docs/spl/language-reference.md": "c4a98a987f2c90e67e5e39575742cde482f37e1ef5d34cd767fc63a7ac08ab15",
+    "docs/spl/policies/lg-cleared.md": "c13d63e8496981bb635a339a4578a1e0d49bbf85da5cc60623b01e572758b0a7",
+    "docs/spl/policies/manifest.json": "e440900fe4d74341b8c8a6f925ee012220d1a4b2e360c460a510575a88e79648",
+    "docs/spl/policies/rq07-posted.md": "4a19b9ec065fb1e6e4bafa605f0a9392ac7c14790c9e27cc4d47712de3c4cac9",
+    "docs/spl/policies/sv-incurred.md": "fb3e2f04fefb08bb51d17e3367354443f7d312c9daf99a8f6acf8c07b780aee8",
+    "docs/spl/readable-language.md": "26e1dbc2c205a9419dd525947556e028660f93b6595c40de1d0a065ee4edbbbe",
+    "docs/spl/requirements-and-validation.md": "2ca63db9b7297186c6549a8cad1cdecd03d5e132aad135d03397d51f26d03b2b",
+    "docs/spl/research-answers-2026-11-20.md": "da8096cad86f3cf40457f5e48bde36dc503944c4c4a99f69c03399f1bd4550b3",
+    "docs/spl/research-followups.md": "960a874aaf1173ca5deddfe6af50faab382869da51950c0f15895396e718781c",
+    "docs/spl/research-questions.md": "2500131126542fee03549d0e38073cdf3b260499a98b90c56d89f8bbf4698a79",
+    "lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+    "schemas/spl-bounded-package.schema.json": "ae4a5dc08e6f9c089d86627e9a2879c037303252396e3c0c1a10ec3876b7abac",
+    "scripts/spl_demo.py": "1e5ec90d4f1ab4677d002abc45b5a8e87cacce9c64ba49f25f575a1e84d6e5c2"
+  },
+  "readable_surface": "spl-readable/0.1-dev",
+  "remaining_work": [
+    "reader/accountant review of revised incorporated policies",
+    "full authorized CORR-01 restatement",
+    "contractual video reserve stage/caps",
+    "dynamic gate timing and negative earnings policies",
+    "schema freeze",
+    "held-out custody/evaluation",
+    "full verification after demo"
+  ],
+  "research_response_index_sha256": "cd0080ca24251870cb95b165ba5076f5f38348f68ceae9b9703ad4fd218f0f0e",
+  "review_delta": {
+    "changes": [
+      {
+        "after": "85701098e38a67d5f57848d21828acdeae28f2f74e6bda77526f32591578500f",
+        "before": "430be49415a30fb608fb8601bafbe8a5d0215fd0b0600b9318398d539d3ba110",
+        "path": "Demos/LGReadable.lean"
+      },
+      {
+        "after": "6127af1134fd6743bef3c857fac4790ede941aa338db79f56fb44874cf07e0e9",
+        "before": "e5b8192ccd7edccf324c7da8be4241e890ed507fbe8b93bcca5fd089e011fccd",
+        "path": "Demos/RQ07Readable.lean"
+      },
+      {
+        "after": "917be76600acf0353390372f5502551a8ba186bb3765a14a2c76aafe3e301bd8",
+        "before": "8b1e0632c2c8434698da615f1667bd30022fbdee365210b9eedf9cf309c71091",
+        "path": "Demos/SVReadable.lean"
+      },
+      {
+        "after": "a00dc6c10167e52ad356fd969daa17f854bb18f7f109e304388a1e405ecb5c8b",
+        "path": "cases/lg/bindings.json"
+      },
+      {
+        "after": "80af73faf84bae23425cf3312a2a226738fba52d81c6a0705558a2437d62efd5",
+        "path": "cases/lg/canonical-package.json"
+      },
+      {
+        "after": "bf915676c4e9aa4e0e8a31ce3802f745c84383df793764007e1bd211d4fa4cf6",
+        "path": "cases/lg/closing-state.json"
+      },
+      {
+        "after": "d7f654b16fbee7f72326579d5378648144a77394d1322f57f49a865bf4b9faf9",
+        "before": "cbdf6e2793ca59ed738f62e808399df79ab760c4e359df736ae7ce21571c1ad7",
+        "path": "cases/lg/lg01-readable.spl"
+      },
+      {
+        "after": "1e7bf35aafbf7518f63ea3b1178bd880bada29eac08bd691d8a7dadcbc35e1c4",
+        "path": "cases/lg/lineage.json"
+      },
+      {
+        "after": "a00dc6c10167e52ad356fd969daa17f854bb18f7f109e304388a1e405ecb5c8b",
+        "path": "cases/lg/readable/bindings.json"
+      },
+      {
+        "after": "58b6abf44a6caa7e0c76f3fe52b0d387d0f37c032824769ad87681c1011df494",
+        "path": "cases/lg/readable/canonical-package.json"
+      },
+      {
+        "after": "7602baf2881060e2a67e956fdcdd2bb21714f174ca4cd284bb5105f95dc1fd1a",
+        "path": "cases/lg/readable/closing-state.json"
+      },
+      {
+        "after": "1e7bf35aafbf7518f63ea3b1178bd880bada29eac08bd691d8a7dadcbc35e1c4",
+        "path": "cases/lg/readable/lineage.json"
+      },
+      {
+        "after": "d8022f7bfb75e48eb641568cf23afff4464ee9e22ca72a294a557a1ace41743a",
+        "path": "cases/lg/readable/statement.json"
+      },
+      {
+        "after": "d8022f7bfb75e48eb641568cf23afff4464ee9e22ca72a294a557a1ace41743a",
+        "path": "cases/lg/statement.json"
+      },
+      {
+        "after": "9eebf359545c0471b7055d641639cae90dddcadcde4610afa5a64962670419b2",
+        "path": "cases/mechanisms/advance-issues-bindings.json"
+      },
+      {
+        "after": "b07e5790b347636f4e90c1df25ef544b3ea34fde3529d69f007cbec18b784620",
+        "before": "8a882ccc9a340d7cf6e01016e71bcf2a50997b2ff4c0745b28af8f8ada62ab19",
+        "path": "cases/mechanisms/advance-issues.spl"
+      },
+      {
+        "after": "2c784c4995812a80d6e3da6501f2df6a75832e7ac2aa745b3ffed37def43a02c",
+        "path": "cases/mechanisms/correction-payments-bindings.json"
+      },
+      {
+        "after": "b8e495c98cc12fe3ae7c53aa152d8f83521aa40f62237fe6df828f3279ca47cc",
+        "path": "cases/mechanisms/reserve-vintage-bindings.json"
+      },
+      {
+        "after": "0e77f982aa3e699c6142912de6859642a23cd4f864101f4c084bedb3da79a87f",
+        "before": "f931a36b1eb41c4f88162bbf4ec9740b026230f58ec1b28636599983d458ef31",
+        "path": "cases/mechanisms/reserve-vintage.spl"
+      },
+      {
+        "after": "9d468aa20c412ccb6d0388b2d6d2ab86d9cddc5bf0b887edfa6049bebf9e74cc",
+        "path": "cases/mechanisms/results-summary.json"
+      },
+      {
+        "after": "fc99bd0f35e1d55f540356e4105e5a007e00ab666ec52111234a04a5310f9bbb",
+        "path": "cases/rq07/bindings.json"
+      },
+      {
+        "after": "7f59264ddf3881d2a575495a2f929746babc2a2e0b1d97523cf8de001120454b",
+        "path": "cases/rq07/canonical-package.json"
+      },
+      {
+        "after": "77b932773d568d0631e234e41909fca91ec9c89c7a8420ebfa7d66a8f7bbca48",
+        "path": "cases/rq07/closing-state.json"
+      },
+      {
+        "after": "80c5afa29cacd4f1d0be870338b4c974bf7d063274216f104577c4599ca25959",
+        "path": "cases/rq07/control-comparison.json"
+      },
+      {
+        "after": "38586b887f6084eb64454e789952e1e600ef95bc8757edb8ec27827cc2f22d6d",
+        "path": "cases/rq07/lineage.json"
+      },
+      {
+        "after": "fc99bd0f35e1d55f540356e4105e5a007e00ab666ec52111234a04a5310f9bbb",
+        "path": "cases/rq07/readable/bindings.json"
+      },
+      {
+        "after": "8da535f657e6eb74f4cb5cbb25e5891cd0c64edb3f6fe5d2f4105655a8a8c902",
+        "path": "cases/rq07/readable/canonical-package.json"
+      },
+      {
+        "after": "567c72bfdc844ea7d1b9f5c794a473f0afcda2a45f66ad42d3c5e45c146b1eb5",
+        "path": "cases/rq07/readable/closing-state.json"
+      },
+      {
+        "after": "38586b887f6084eb64454e789952e1e600ef95bc8757edb8ec27827cc2f22d6d",
+        "path": "cases/rq07/readable/lineage.json"
+      },
+      {
+        "after": "df06b1767b6ae90fbb93c62fe43406f4bbe5b34d7b081cf3e2489274e22e132a",
+        "path": "cases/rq07/readable/statement.json"
+      },
+      {
+        "after": "ed4ecc44984fcb954630f50e359b1c6ecad10d5115961d1460c1751aed8a3deb",
+        "path": "cases/rq07/source/raw_acquisition_funding.csv"
+      },
+      {
+        "after": "d6ef50afb7f2f16e4cfedc5d21af370da63b3e4b89e65343b102595f80c34457",
+        "path": "cases/rq07/source/raw_bank_receipts.csv"
+      },
+      {
+        "after": "e0165cbe8f01594313ab655c067dfc8060c778811f35b52ae2e91f04253a3950",
+        "path": "cases/rq07/source/raw_cash_applications.csv"
+      },
+      {
+        "after": "866b99113b1071df1b4785f20e94f03f0500bec2b9e97bcb7ddb5b1892667de3",
+        "path": "cases/rq07/source/raw_cost_lines.csv"
+      },
+      {
+        "after": "cab1d020d3467eb955c88291a1cbe2aa0f0a67973a8a41842cd0381c380c7cbb",
+        "path": "cases/rq07/source/raw_invoice_lines.csv"
+      },
+      {
+        "after": "28470ae6aff0ad1e3916cdc4bf5d140d86eda794a3c5080d8ab76317de717455",
+        "path": "cases/rq07/source/scenario.json"
+      },
+      {
+        "after": "df06b1767b6ae90fbb93c62fe43406f4bbe5b34d7b081cf3e2489274e22e132a",
+        "path": "cases/rq07/statement.json"
+      },
+      {
+        "after": "4a9f4313b039e636aaf7367f7d43343b285c11e8b44f9f4f192a7a9ef038a03e",
+        "path": "cases/sv/bindings.json"
+      },
+      {
+        "after": "d37faf1a2d17bf0f454ad9c90557feb671d32e9d680a857fae742f3f8dc273a3",
+        "path": "cases/sv/canonical-package.json"
+      },
+      {
+        "after": "c85585f5702ef5c2049a23c904bf6a5e1006425eafd4594eaf0ecef31aead73f",
+        "path": "cases/sv/closing-state.json"
+      },
+      {
+        "after": "8fefc124decd173d1e4ea7262012168bb1de3265b5755b064e160fdd2bdb1f24",
+        "path": "cases/sv/lineage.json"
+      },
+      {
+        "after": "4a9f4313b039e636aaf7367f7d43343b285c11e8b44f9f4f192a7a9ef038a03e",
+        "path": "cases/sv/readable/bindings.json"
+      },
+      {
+        "after": "77e8f44af77e451d9af5b45f51e304f3ef046c70f0b759f2a909ed134afab79b",
+        "path": "cases/sv/readable/canonical-package.json"
+      },
+      {
+        "after": "64b017b1c420373c7eda1e561272ded2b49bbfc357545cec9c60584b8d1bc21e",
+        "path": "cases/sv/readable/closing-state.json"
+      },
+      {
+        "after": "8fefc124decd173d1e4ea7262012168bb1de3265b5755b064e160fdd2bdb1f24",
+        "path": "cases/sv/readable/lineage.json"
+      },
+      {
+        "after": "7cf8ba397fd09919f0aa6af0598f6a3afb76bc5c787931c862868b1c25f44dce",
+        "path": "cases/sv/readable/statement.json"
+      },
+      {
+        "after": "eb7c6d9713f20e073ce0521a7d27cb1e770d0f4ef3b3fec1f613848f1aa1a57a",
+        "before": "afd63bb21939ccc4d423d4d923d905319299e21da0c7785e20c4f1043bd56cfd",
+        "path": "cases/sv/rq07-readable.spl"
+      },
+      {
+        "after": "7cf8ba397fd09919f0aa6af0598f6a3afb76bc5c787931c862868b1c25f44dce",
+        "path": "cases/sv/statement.json"
+      },
+      {
+        "after": "b1071eb9128c45b55826ab9c0e9535f63ddc0f16a58297b662bee7de33695c29",
+        "before": "272705dc4396a758258fc75a85e8dffd01204783b816857181c835438c96cf23",
+        "path": "cases/sv/sv01-readable.spl"
+      },
+      {
+        "after": "1bbeccb13e437f1773e8cdf2087034c8b92af6d313deabd4806d9663c364cc0f",
+        "before": "3cfca2eff9ec5cc002638210d84e7bcd08463d536768b1b3c1151cfa283a8644",
+        "path": "docs/spl/README.md"
+      },
+      {
+        "after": "04ecd6cd8494bca832ec2f8feb4ed1f5601b75e05861809c60a0a56976e3ae5b",
+        "before": "590e2bd5ee9fb2213296d3d4e15f1f2fd36195ec52ef153cdedba13344722504",
+        "path": "docs/spl/development-plan.md"
+      },
+      {
+        "after": "ef466648fcc5e8e83b9af3bacbb52777f0f3e88b4140953313b57fdf63d28680",
+        "path": "docs/spl/implementation-answers.md"
+      },
+      {
+        "after": "a96a47ec6ade829bbac07c8268a155dda4ab9fa0e62d25a31dbf6048f8115e70",
+        "before": "dedfa144fe87daeff16d895eb0b1d914352058337be42623c1dc7fee262824ce",
+        "path": "docs/spl/implementation-questions.md"
+      },
+      {
+        "after": "d32c3dfabafe9664b39e86023a38dfd87b6e6872e34e16db9b5a4b3a6ae6b441",
+        "before": "bf77bb10a8bc08da02ff409036e71c8e0ef2c92d01f0abd309c76f0d64fba264",
+        "path": "docs/spl/implementation.md"
+      },
+      {
+        "after": "8888e9730795beb32060da419c4307dc7a0325f90ba977bf8b9438776f5c060f",
+        "before": "1147ca0bb66bc21b52a0b3bf77dba499b0499715ae46ab1527fac6964b9b034b",
+        "path": "docs/spl/iteration-log.md"
+      },
+      {
+        "after": "c13d63e8496981bb635a339a4578a1e0d49bbf85da5cc60623b01e572758b0a7",
+        "path": "docs/spl/policies/lg-cleared.md"
+      },
+      {
+        "after": "e440900fe4d74341b8c8a6f925ee012220d1a4b2e360c460a510575a88e79648",
+        "path": "docs/spl/policies/manifest.json"
+      },
+      {
+        "after": "4a19b9ec065fb1e6e4bafa605f0a9392ac7c14790c9e27cc4d47712de3c4cac9",
+        "path": "docs/spl/policies/rq07-posted.md"
+      },
+      {
+        "after": "fb3e2f04fefb08bb51d17e3367354443f7d312c9daf99a8f6acf8c07b780aee8",
+        "path": "docs/spl/policies/sv-incurred.md"
+      },
+      {
+        "after": "26e1dbc2c205a9419dd525947556e028660f93b6595c40de1d0a065ee4edbbbe",
+        "before": "13c34d68baee3957eb112d4f43700d1782505458dff191cc912f85f5c8bcfb4e",
+        "path": "docs/spl/readable-language.md"
+      },
+      {
+        "after": "2ca63db9b7297186c6549a8cad1cdecd03d5e132aad135d03397d51f26d03b2b",
+        "before": "9ce2eb30bf739314fdb5313ab6843f5a45dccc4fb774c4780c627be2aac094ad",
+        "path": "docs/spl/requirements-and-validation.md"
+      },
+      {
+        "after": "da8096cad86f3cf40457f5e48bde36dc503944c4c4a99f69c03399f1bd4550b3",
+        "path": "docs/spl/research-answers-2026-11-20.md"
+      },
+      {
+        "after": "960a874aaf1173ca5deddfe6af50faab382869da51950c0f15895396e718781c",
+        "before": "ef4ec23849e6630767ee41e68c864e0b7f867c450a29bb048672b18531e69d98",
+        "path": "docs/spl/research-followups.md"
+      },
+      {
+        "after": "ae4a5dc08e6f9c089d86627e9a2879c037303252396e3c0c1a10ec3876b7abac",
+        "before": "5a90374d2af880e32c70f40cfb14d4528c8eb8d2af081d376578a8416a522f4b",
+        "path": "schemas/spl-bounded-package.schema.json"
+      },
+      {
+        "after": "1e5ec90d4f1ab4677d002abc45b5a8e87cacce9c64ba49f25f575a1e84d6e5c2",
+        "path": "scripts/spl_demo.py"
+      }
+    ],
+    "economic_changes": [
+      "Readable schedules explicitly incorporate versioned economic policies; complete bound core signatures are checked.",
+      "SV incurred-date and RQ-07 posted-date recognition remain distinct and have a cross-period discriminator.",
+      "SV-03 mechanism uses actual funding and separate issue/evidence observation timestamps before cutoff.",
+      "RES-01 mechanism now preserves V1 and V2 independently; aggregate availability cannot cover a vintage deficit.",
+      "Correction remains supplied revised entitlement less actual payment; no full historical restatement is added."
+    ],
+    "predecessor_sha256": "979f6e08069954e60bd44980685c3a67089a458e3dd8ba10dc90becd00d2fc4d"
+  },
+  "runtime_build": "7df3d05c322f83915ba38b1f47a5fd47c6a54177cb7d01a4e4e0214d0e81f405",
+  "scope": "Readable and original SV/RQ-07/LG, whole-program typed IR, native audit; separately labelled advance/correction/reserve mechanism cases",
+  "source_scenario_sha256": "28470ae6aff0ad1e3916cdc4bf5d140d86eda794a3c5080d8ab76317de717455",
+  "supersedes": {
+    "locator": "docs/spl/baselines/implementation-0.2.0-dev.json",
+    "sha256": "979f6e08069954e60bd44980685c3a67089a458e3dd8ba10dc90becd00d2fc4d"
+  },
+  "toolchain": "leanprover/lean4:v4.35.0",
+  "trace_format": "spl-trace-dag/0.1",
+  "trace_origin": "native_ir_interpreter, compared with emitted execution and independent Python reference"
+}

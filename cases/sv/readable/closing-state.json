@@ -1,0 +1,27 @@
+[
+  {
+    "agreement_id": "sv",
+    "balance_kind": "participation_prepayment",
+    "boundary": "2026-04-01",
+    "movement": {
+      "closing": "0",
+      "net_change": "-15000",
+      "opening": "15000"
+    },
+    "participant_id": "skouras",
+    "policy_lineage": [
+      "SV-7-POOL-RECOVERY"
+    ],
+    "pool_id": "pool-1",
+    "prior_result_ref": "result@sha256:05619e4d2d6f8b59287d5d60a505c69d1ad188811e5eba743f27ce157799c1af",
+    "provenance_ref": "synthetic-approved-opening",
+    "quantity": "0",
+    "scenario_id": "SV-01",
+    "scope": {
+      "agreement_id": "sv",
+      "pool_id": "pool-1"
+    },
+    "state_key": "sv/skouras/participation_prepayment/pool-1/main/USD",
+    "unit": "USD"
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "agreement_id": "lg",
+    "asset_id": "work-D",
+    "currency": "USD",
+    "earned": "35",
+    "net_pool_id": "crossed-group",
+    "participant_id": "seller-group",
+    "payable": "35",
+    "payment_holdback_addition": "0",
+    "payment_holdback_release": "0",
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "run_id": "LG-01-run",
+    "scenario_id": "LG-01"
+  }
+]

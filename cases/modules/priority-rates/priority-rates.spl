@@ -1,0 +1,30 @@
+schedule CedarPriority language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input agreement: Id<Agreement>;
+  input pool: Id<Pool>;
+  input asset: Id<Asset>;
+  input participant_a: Id<Participant>;
+  input participant_b: Id<Participant>;
+  input source_date: Date;
+  input territory: Text;
+  input cash: Money<USD>;
+  input effective: Period;
+  input ordinary_rate: Ratio;
+  input canada_rate: Ratio;
+  input share_a: Ratio;
+  input share_b: Ratio;
+  input competing_canada: Bool;
+  require share_a + share_b == 1.0 else "PARTICIPANT_SHARES";
+  define rate = choose priority {
+    rule "ordinary-US" priority 0 when territory == "US" and in_period(source_date, effective) => ordinary_rate;
+    rule "canada" priority 40 when territory == "CA" and in_period(source_date, effective) => canada_rate;
+    rule "france-zero" priority 20 when territory == "FR" and in_period(source_date, effective) => 0.0;
+    rule "competing-canada" priority 40 when competing_canada and territory == "CA" and in_period(source_date, effective) => canada_rate;
+  };
+  define entitlement = cash * rate;
+  emit "statements" = [
+    { agreement_id: agreement, participant_id: participant_a, pool_id: pool, asset_id: asset, earned: entitlement * share_a },
+    { agreement_id: agreement, participant_id: participant_b, pool_id: pool, asset_id: asset, earned: entitlement * share_b }
+  ];
+  emit "rate_detail" = { rate: rate, total: entitlement };
+  emit "reconciliation" = entitlement * share_a + entitlement * share_b == entitlement;
+}

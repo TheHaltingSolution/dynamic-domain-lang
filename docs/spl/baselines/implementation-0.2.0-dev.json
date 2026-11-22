@@ -1,0 +1,307 @@
+{
+  "cases": [
+    {
+      "artifact_subdirectory": "sv",
+      "case": "sv",
+      "independent_expected": {
+        "earned": "33000",
+        "payable": "18000",
+        "recouped": "15000"
+      },
+      "result_digest": "0eeb16408c6bea55bc5acba65d1b7d4b442d3b266b188b18a7aeb8093c87100d",
+      "semantic_run_digest": "39b1397f8235cbfc97ca6ec4d825de5be8f11d73f9c781c677979511653bcf09",
+      "statement": {
+        "agreement_id": "sv",
+        "currency": "USD",
+        "earned": "33000",
+        "participant_id": "skouras",
+        "payable": "18000",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "pool_id": "pool-1",
+        "recouped": "15000",
+        "run_id": "SV-01-run",
+        "scenario_id": "SV-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "lg",
+      "case": "lg",
+      "independent_expected": {
+        "earned": "35",
+        "payable": "35"
+      },
+      "result_digest": "cde4136c2becc7323c4e7e1d323620aa454620eb55aa9491ea8e0fdff80b9afe",
+      "semantic_run_digest": "a4a5fb3ebda55737c16d9fbf6cf917980e9e10652be289e3d3124e2618ba7c29",
+      "statement": {
+        "agreement_id": "lg",
+        "asset_id": "work-D",
+        "currency": "USD",
+        "earned": "35",
+        "net_pool_id": "crossed-group",
+        "participant_id": "seller-group",
+        "payable": "35",
+        "payment_holdback_addition": "0",
+        "payment_holdback_release": "0",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "run_id": "LG-01-run",
+        "scenario_id": "LG-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "rq07",
+      "case": "rq07",
+      "independent_expected": {
+        "earned": "33000",
+        "payable": "18000",
+        "recouped": "15000"
+      },
+      "result_digest": "107707cd284b54769312fb43f84e504fc22c0ce53f2bd1a29b08499a563d8c9e",
+      "semantic_run_digest": "241ce56e96500fbdcd0741abee3cef80026320ba692cd5dfc2540999c2ce753f",
+      "statement": {
+        "agreement_id": "DEAL-SYN-SV",
+        "currency": "USD",
+        "earned": "33000",
+        "participant_id": "PART",
+        "payable": "18000",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "pool_id": "POOL-SV-AB",
+        "recouped": "15000",
+        "run_id": "RUN-RQ07-01",
+        "scenario_id": "SPL-RQ07-SV-BUNDLE-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "sv-readable",
+      "case": "sv-readable",
+      "independent_expected": {
+        "earned": "33000",
+        "payable": "18000",
+        "recouped": "15000"
+      },
+      "result_digest": "36503a2ac59ad23294868ba9860141823b522c4c58710d40a12cc1c6f65dfd10",
+      "semantic_run_digest": "9475dfcc8d8474bdf9795f58ea0f41fd25a2991c0bc856f21376c4e0833695a7",
+      "statement": {
+        "agreement_id": "sv",
+        "currency": "USD",
+        "earned": "33000",
+        "participant_id": "skouras",
+        "payable": "18000",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "pool_id": "pool-1",
+        "recouped": "15000",
+        "run_id": "SV-01-run",
+        "scenario_id": "SV-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "lg-readable",
+      "case": "lg-readable",
+      "independent_expected": {
+        "earned": "35",
+        "payable": "35"
+      },
+      "result_digest": "7b1f098c89bb887965cc367fcadc468bfaade5f809204ebb6a3fce7416219354",
+      "semantic_run_digest": "a873e5b677491e02c34145595c84398d7b08b9dcc52c1ec7a58cc669c9bb9da1",
+      "statement": {
+        "agreement_id": "lg",
+        "asset_id": "work-D",
+        "currency": "USD",
+        "earned": "35",
+        "net_pool_id": "crossed-group",
+        "participant_id": "seller-group",
+        "payable": "35",
+        "payment_holdback_addition": "0",
+        "payment_holdback_release": "0",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "run_id": "LG-01-run",
+        "scenario_id": "LG-01"
+      }
+    },
+    {
+      "artifact_subdirectory": "rq07-readable",
+      "case": "rq07-readable",
+      "independent_expected": {
+        "earned": "33000",
+        "payable": "18000",
+        "recouped": "15000"
+      },
+      "result_digest": "27c8c5ccda0272b71c117b0de017a904d2d3ade0172f9a9b0b3e60938baad0b3",
+      "semantic_run_digest": "7f51e41e2975a12091e96acf498b65916d350da309570452569fca1a47fb4489",
+      "statement": {
+        "agreement_id": "DEAL-SYN-SV",
+        "currency": "USD",
+        "earned": "33000",
+        "participant_id": "PART",
+        "payable": "18000",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "pool_id": "POOL-SV-AB",
+        "recouped": "15000",
+        "run_id": "RUN-RQ07-01",
+        "scenario_id": "SPL-RQ07-SV-BUNDLE-01"
+      }
+    }
+  ],
+  "checks": {
+    "lake_build": "passed",
+    "native_suites": "passed",
+    "python_regression_count": 97,
+    "python_regressions": "passed",
+    "smoke": "passed",
+    "spl_smoke": "passed"
+  },
+  "compiler_wrapper_reference_build": "804d5870b6cdcdf2d1fe7bd72d9d65bd0328e4140151bdcf26420b6d7981fe9d",
+  "date": "2026-11-20",
+  "implementation_profile": "spl-implementation/0.2.0-dev",
+  "ir_format": "spl-ir/0.1",
+  "mechanisms": [
+    {
+      "case": "advance-issues",
+      "closing": {
+        "prepayment": "5000"
+      },
+      "emissions": {
+        "advances": {
+          "additions": "15000",
+          "agreement_id": "synthetic-deal",
+          "available": "15000",
+          "closing_balance": "5000",
+          "earned": "10000",
+          "opening_balance": "0",
+          "participant_id": "participant",
+          "payable": "0",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "recovered": "10000"
+        }
+      },
+      "expected_checkpoint": {
+        "closing_balance": "5000"
+      },
+      "scenario_class": "synthetic_mechanism",
+      "source_sha256": "8a882ccc9a340d7cf6e01016e71bcf2a50997b2ff4c0745b28af8f8ada62ab19"
+    },
+    {
+      "case": "reserve-vintage",
+      "closing": {
+        "reserve": "20"
+      },
+      "emissions": {
+        "reserve_ledger": {
+          "additions": "20",
+          "agreement_id": "synthetic-deal",
+          "applications": "7",
+          "closing_balance": "20",
+          "opening_balance": "12",
+          "participant_id": "participant",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "releases": "5",
+          "vintage": "vintage-1"
+        }
+      },
+      "expected_checkpoint": {
+        "closing_balance": "20"
+      },
+      "scenario_class": "synthetic_mechanism",
+      "source_sha256": "f931a36b1eb41c4f88162bbf4ec9740b026230f58ec1b28636599983d458ef31"
+    },
+    {
+      "case": "correction-payments",
+      "closing": {},
+      "emissions": {
+        "obligation_reconciliation": {
+          "actual_paid": "80",
+          "agreement_id": "synthetic-deal",
+          "correction_delta": "-10",
+          "obligation": "obligation-1",
+          "original_issued": "100",
+          "participant_id": "participant",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "pool_id": "pool",
+          "remaining_obligation": "10",
+          "revised_entitlement": "90"
+        }
+      },
+      "expected_checkpoint": {
+        "remaining_obligation": "10"
+      },
+      "scenario_class": "synthetic_mechanism",
+      "source_sha256": "c990eb2770cbab83d10040a8c5a1411869ff3a7a2239b371d81bed1cc71acb75"
+    }
+  ],
+  "pinned_files": {
+    "Demos/LG.lean": "1e3cb365582e8e884f8d37d66117697b3aef7a122f6c565eb3e5c6ac6f86b93c",
+    "Demos/LGReadable.lean": "430be49415a30fb608fb8601bafbe8a5d0215fd0b0600b9318398d539d3ba110",
+    "Demos/RQ07.lean": "14b08fa1ebf710689173e59b23a95f9a6c3819d252898248e40bc02838c84b5d",
+    "Demos/RQ07Readable.lean": "e5b8192ccd7edccf324c7da8be4241e890ed507fbe8b93bcca5fd089e011fccd",
+    "Demos/SV.lean": "feaefa25cd2f6b2c3317eea2feb9f1206294a3acfbdc4c809e8d7b76001c4975",
+    "Demos/SVReadable.lean": "8b1e0632c2c8434698da615f1667bd30022fbdee365210b9eedf9cf309c71091",
+    "cases/lg/lg01-readable.spl": "cbdf6e2793ca59ed738f62e808399df79ab760c4e359df736ae7ce21571c1ad7",
+    "cases/lg/lg01.spl": "17afb659a15322817da812d52e1a8d4f2bb1d18330df3aa0ae531b4b0839daa4",
+    "cases/mechanisms/advance-issues.spl": "8a882ccc9a340d7cf6e01016e71bcf2a50997b2ff4c0745b28af8f8ada62ab19",
+    "cases/mechanisms/correction-payments.spl": "c990eb2770cbab83d10040a8c5a1411869ff3a7a2239b371d81bed1cc71acb75",
+    "cases/mechanisms/reserve-vintage.spl": "f931a36b1eb41c4f88162bbf4ec9740b026230f58ec1b28636599983d458ef31",
+    "cases/sv/rq07-readable.spl": "afd63bb21939ccc4d423d4d923d905319299e21da0c7785e20c4f1043bd56cfd",
+    "cases/sv/rq07.spl": "25ee60e824461ec0bce0630eea9dc77947146e4e1239e9a2d23cb5324bb651aa",
+    "cases/sv/sv01-readable.spl": "272705dc4396a758258fc75a85e8dffd01204783b816857181c835438c96cf23",
+    "cases/sv/sv01.spl": "0ecd2b31d1be9e8e3764cacc8e1135422fb32786bae8f8a3a1833db9615d6cec",
+    "docs/spl/README.md": "3cfca2eff9ec5cc002638210d84e7bcd08463d536768b1b3c1151cfa283a8644",
+    "docs/spl/compiler-handoff.md": "35e1b411c2d5ae023a9eba5a35da12a5870b049767a1acb3cfb2702e4752c478",
+    "docs/spl/core-and-compilation.md": "d35b3aec883ebdcad50fb1cc36a02ee3e73ddc51d095d9680b4ceb4ca26a4faa",
+    "docs/spl/data-and-run-contract.md": "5f7fc2c44d3b50a44bde2b3f235cf26b947b4f2bdb93eee6a2114ce4eb59b5f3",
+    "docs/spl/development-plan.md": "590e2bd5ee9fb2213296d3d4e15f1f2fd36195ec52ef153cdedba13344722504",
+    "docs/spl/implementation-questions.md": "dedfa144fe87daeff16d895eb0b1d914352058337be42623c1dc7fee262824ce",
+    "docs/spl/implementation.md": "bf77bb10a8bc08da02ff409036e71c8e0ef2c92d01f0abd309c76f0d64fba264",
+    "docs/spl/iteration-log.md": "1147ca0bb66bc21b52a0b3bf77dba499b0499715ae46ab1527fac6964b9b034b",
+    "docs/spl/language-reference.md": "c4a98a987f2c90e67e5e39575742cde482f37e1ef5d34cd767fc63a7ac08ab15",
+    "docs/spl/readable-language.md": "13c34d68baee3957eb112d4f43700d1782505458dff191cc912f85f5c8bcfb4e",
+    "docs/spl/requirements-and-validation.md": "9ce2eb30bf739314fdb5313ab6843f5a45dccc4fb774c4780c627be2aac094ad",
+    "docs/spl/research-followups.md": "ef4ec23849e6630767ee41e68c864e0b7f867c450a29bb048672b18531e69d98",
+    "docs/spl/research-questions.md": "2500131126542fee03549d0e38073cdf3b260499a98b90c56d89f8bbf4698a79",
+    "lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+    "schemas/spl-bounded-package.schema.json": "5a90374d2af880e32c70f40cfb14d4528c8eb8d2af081d376578a8416a522f4b"
+  },
+  "readable_surface": "spl-readable/0.1-dev",
+  "remaining_gates": [
+    "user readability iteration",
+    "reader/accountant review",
+    "broader policy authority",
+    "schema freeze",
+    "held-out custody/evaluation",
+    "full verification after demo"
+  ],
+  "research_response_index_sha256": "cd0080ca24251870cb95b165ba5076f5f38348f68ceae9b9703ad4fd218f0f0e",
+  "runtime_build": "5ce4d60645fd7aa21fc6f0355907997aa5911f35b2d45972bcb0601b2b581b43",
+  "scope": "Readable and original SV/RQ-07/LG, whole-program typed IR, native audit; separately labelled advance/correction/reserve mechanism cases",
+  "source_scenario_sha256": "28470ae6aff0ad1e3916cdc4bf5d140d86eda794a3c5080d8ab76317de717455",
+  "toolchain": "leanprover/lean4:v4.35.0",
+  "trace_format": "spl-trace-dag/0.1",
+  "trace_origin": "native_ir_interpreter, compared with emitted execution and independent Python reference"
+}

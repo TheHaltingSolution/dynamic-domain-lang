@@ -1,0 +1,20 @@
+[
+  {
+    "fact_ids": [
+      "lg-other"
+    ],
+    "source_rows": [
+      "lg-other"
+    ],
+    "view_id": "lg-other"
+  },
+  {
+    "fact_ids": [
+      "lg-video"
+    ],
+    "source_rows": [
+      "lg-video"
+    ],
+    "view_id": "lg-video"
+  }
+]

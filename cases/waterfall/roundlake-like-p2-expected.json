@@ -1,0 +1,67 @@
+{
+  "control": {
+    "gross": "100",
+    "fee": "25",
+    "deductions": "0",
+    "available_funds": "75",
+    "opening_claims": "40",
+    "recovered": "40",
+    "closing_claims": "0",
+    "residual": "35",
+    "allocated_residual": "35"
+  },
+  "claim_movements": [
+    {
+      "id": "capital-claim-A",
+      "participant_id": "capital-A",
+      "opening_balance": "32",
+      "available_before": "75",
+      "recovered": "32",
+      "closing_balance": "0",
+      "available_after": "43"
+    },
+    {
+      "id": "capital-claim-B",
+      "participant_id": "capital-B",
+      "opening_balance": "8",
+      "available_before": "43",
+      "recovered": "8",
+      "closing_balance": "0",
+      "available_after": "35"
+    }
+  ],
+  "residual_lines": [
+    {
+      "participant_id": "capital-A",
+      "recovered": "32",
+      "residual": "35/2",
+      "payable": "99/2"
+    },
+    {
+      "participant_id": "capital-B",
+      "recovered": "8",
+      "residual": "35/2",
+      "payable": "51/2"
+    }
+  ],
+  "claim_ledger": [
+    {
+      "id": "capital-claim-A",
+      "participant_id": "capital-A",
+      "kind": "capital",
+      "priority": 1,
+      "sequence": 1,
+      "principal": "80",
+      "balance": "0"
+    },
+    {
+      "id": "capital-claim-B",
+      "participant_id": "capital-B",
+      "kind": "capital",
+      "priority": 2,
+      "sequence": 1,
+      "principal": "20",
+      "balance": "0"
+    }
+  ]
+}

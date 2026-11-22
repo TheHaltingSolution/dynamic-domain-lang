@@ -1,0 +1,125 @@
+{
+    "case_id":  "corr01-authorized-q4-restatement",
+    "period":  {
+                   "start":  "2026-10-01",
+                   "end":  "2027-01-01"
+               },
+    "cutoff":  "2027-02-05T12:00:00Z",
+    "scope":  {
+                  "agreement_id":  "corr-agreement",
+                  "participant_id":  "corr-participant",
+                  "pool_id":  "corr-pool",
+                  "asset_id":  "corr-picture"
+              },
+    "policy":  {
+                   "route":  "restatement_only",
+                   "rounding":  "exact_no_rounding",
+                   "overpayment":  "block",
+                   "rate":  "1/5"
+               },
+    "original":  {
+                     "run_id":  "q4-original-run",
+                     "obligation_id":  "q4-original-obligation",
+                     "opening_snapshot_id":  "q4-original-opening",
+                     "opening_boundary":  "2026-10-01",
+                     "opening_prepaid":  "0",
+                     "issued":  "100",
+                     "application_id":  "application-v1",
+                     "evidence_id":  "ev-original",
+                     "observed_at":  "2027-01-03T10:00:00Z",
+                     "agreement_id":  "corr-agreement",
+                     "participant_id":  "corr-participant",
+                     "pool_id":  "corr-pool",
+                     "asset_id":  "corr-picture"
+                 },
+    "bank":  {
+                 "id":  "bank-receipt-01",
+                 "amount":  "500",
+                 "effective_date":  "2026-12-15",
+                 "observed_at":  "2026-12-16T10:00:00Z",
+                 "evidence_id":  "ev-bank"
+             },
+    "application":  {
+                        "id":  "application-v1",
+                        "bank_id":  "bank-receipt-01",
+                        "invoice_id":  "INV-01",
+                        "amount":  "500",
+                        "effective_date":  "2026-12-15",
+                        "observed_at":  "2026-12-16T11:00:00Z",
+                        "evidence_id":  "ev-application"
+                    },
+    "authorization":  {
+                          "correction_id":  "correction-01",
+                          "replacement_id":  "application-v2",
+                          "original_run_id":  "q4-original-run",
+                          "original_opening_id":  "q4-original-opening",
+                          "authorized":  true,
+                          "route":  "restatement_only",
+                          "approved_at":  "2027-02-03T10:00:00Z",
+                          "observed_at":  "2027-02-04T10:00:00.0000000001Z",
+                          "evidence_id":  "ev-authorization",
+                          "agreement_id":  "corr-agreement",
+                          "participant_id":  "corr-participant",
+                          "pool_id":  "corr-pool",
+                          "asset_id":  "corr-picture"
+                      },
+    "corrections":  [
+                        {
+                            "id":  "correction-01",
+                            "replacement_id":  "application-v2",
+                            "replaces_id":  "application-v1",
+                            "original_run_id":  "q4-original-run",
+                            "bank_id":  "bank-receipt-01",
+                            "invoice_id":  "INV-01",
+                            "amount":  "450",
+                            "reallocated_amount":  "50",
+                            "other_scope_id":  "other-reconciled-scope",
+                            "effective_date":  "2026-12-15",
+                            "observed_at":  "2027-02-04T11:00:00.0000000001Z",
+                            "evidence_id":  "ev-replacement"
+                        }
+                    ],
+    "payment":  {
+                    "id":  "actual-disbursement-01",
+                    "obligation_id":  "q4-original-obligation",
+                    "original_run_id":  "q4-original-run",
+                    "amount":  "80",
+                    "disbursed_at":  "2027-01-15T10:00:00Z",
+                    "observed_at":  "2027-01-16T10:00:00Z",
+                    "evidence_id":  "ev-payment",
+                    "agreement_id":  "corr-agreement",
+                    "participant_id":  "corr-participant",
+                    "pool_id":  "corr-pool",
+                    "asset_id":  "corr-picture"
+                },
+    "opening_entitlement":  "0",
+    "recognized":  [
+
+                   ],
+    "evidence":  [
+                     {
+                         "id":  "ev-original",
+                         "observed_at":  "2027-01-03T10:00:00Z"
+                     },
+                     {
+                         "id":  "ev-bank",
+                         "observed_at":  "2026-12-16T10:00:00Z"
+                     },
+                     {
+                         "id":  "ev-application",
+                         "observed_at":  "2026-12-16T11:00:00Z"
+                     },
+                     {
+                         "id":  "ev-authorization",
+                         "observed_at":  "2027-02-04T10:00:00.0000000001Z"
+                     },
+                     {
+                         "id":  "ev-replacement",
+                         "observed_at":  "2027-02-04T11:00:00.0000000001Z"
+                     },
+                     {
+                         "id":  "ev-payment",
+                         "observed_at":  "2027-01-16T10:00:00Z"
+                     }
+                 ]
+}

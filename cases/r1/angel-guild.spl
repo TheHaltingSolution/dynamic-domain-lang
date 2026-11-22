@@ -1,0 +1,86 @@
+// Selected synthetic RR-03 Guild method. Full platform usage is supplied.
+// Monetary amounts stay USD; qualified minutes are a declared exact metric.
+schedule AngelGuild language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input cutoff: Instant;
+  input platform: Id<Platform>;
+  input focal_title: Id<Asset>;
+  input population_complete: Bool;
+  input population_platform: Id<Platform>;
+  input population_evidence: Id<Evidence>;
+  input opening_carry: Money<USD>;
+  input marketing_rate: Ratio;
+  input filmmaker_share: Ratio;
+  input evidence: List<{evidence_id: Id<Evidence>, observed_at: Instant, approval_ref: Id<Decision>, evidence_ref: Id<Evidence>, kind: Text}>;
+  input cash_records: List<{id: Id<Event>, contract_id: Id<Agreement>, pool_id: Id<Pool>, currency: Text, effective_date: Date, channel: Text, amount: Money<USD>, evidence_id: Id<Evidence>}>;
+  input costs: List<{id: Id<Event>, contract_id: Id<Agreement>, pool_id: Id<Pool>, currency: Text, effective_date: Date, channel: Text, eligible: Bool, amount: Money<USD>, evidence_id: Id<Evidence>}>;
+  input usage: List<{id: Id<Event>, platform_id: Id<Platform>, period: Period, title_id: Id<Asset>, qualified: Bool, minutes: Ratio, evidence_id: Id<Evidence>}>;
+  input beneficiaries: List<{asset_id: Id<Asset>, participant_id: Id<Participant>}>;
+
+  require population_complete else "ANGEL_INCOMPLETE_PLATFORM_POPULATION";
+  require population_platform == platform else "ANGEL_POPULATION_PLATFORM";
+  require opening_carry == USD 0 else "ANGEL_OPENING_CARRY_OUTSIDE_METHOD";
+  require marketing_rate >= 0 and marketing_rate <= 1 and filmmaker_share >= 0 and filmmaker_share <= 1 else "ANGEL_RATE_DOMAIN";
+  define checked_evidence = for each item in evidence {
+    require item.observed_at < cutoff else "ANGEL_EVIDENCE_AFTER_CUTOFF";
+    yield item;
+  };
+  define evidence_index = make_map(checked_evidence, item => item.evidence_id, item => true);
+  require require_some(lookup(evidence_index, population_evidence), "ANGEL_POPULATION_EVIDENCE_REQUIRED") else "ANGEL_POPULATION_EVIDENCE_REQUIRED";
+  define unique_cash = entries(make_map(cash_records, row => row.id, row => row));
+  define checked_cash = for each entry in unique_cash {
+    define row = entry.value;
+    require row.amount >= USD 0 else "ANGEL_NEGATIVE_CASH";
+    require row.channel == "guild" or row.channel == "ordinary_distribution" else "ANGEL_UNKNOWN_CHANNEL";
+    require require_some(lookup(evidence_index, row.evidence_id), "ANGEL_CASH_EVIDENCE_REQUIRED") else "ANGEL_CASH_EVIDENCE_REQUIRED";
+    yield row;
+  };
+  define selected_cash = filter(checked_cash, row => row.contract_id == scope.agreement_id and row.pool_id == scope.pool_id and row.currency == "USD" and in_period(row.effective_date, scope.period) and row.channel == "guild");
+  define gross_guild = sum(selected_cash, row => row.amount);
+  define unique_costs = entries(make_map(costs, row => row.id, row => row));
+  define checked_costs = for each entry in unique_costs {
+    define row = entry.value;
+    require row.contract_id == scope.agreement_id and row.pool_id == scope.pool_id and row.currency == "USD" and row.channel == "guild" else "ANGEL_COST_SCOPE";
+    require in_period(row.effective_date, scope.period) else "ANGEL_COST_OUTSIDE_PERIOD";
+    require row.eligible else "ANGEL_COST_ELIGIBILITY";
+    require row.amount >= USD 0 else "ANGEL_NEGATIVE_COST";
+    require require_some(lookup(evidence_index, row.evidence_id), "ANGEL_COST_EVIDENCE_REQUIRED") else "ANGEL_COST_EVIDENCE_REQUIRED";
+    yield row;
+  };
+  define marketing = gross_guild * marketing_rate;
+  define other_costs = sum(checked_costs, row => row.amount);
+  define net_guild = gross_guild - marketing - other_costs;
+  require net_guild >= USD 0 else "ANGEL_NEGATIVE_NET";
+  define filmmaker_pool = net_guild * filmmaker_share;
+  define unique_usage = entries(make_map(usage, row => row.id, row => row));
+  define checked_usage = for each entry in unique_usage {
+    define row = entry.value;
+    require row.platform_id == platform else "ANGEL_USAGE_PLATFORM";
+    require row.period.start == scope.period.start and row.period.end == scope.period.end else "ANGEL_USAGE_PERIOD";
+    require row.qualified and row.minutes >= 0 else "ANGEL_USAGE_QUALIFICATION";
+    require require_some(lookup(evidence_index, row.evidence_id), "ANGEL_USAGE_EVIDENCE_REQUIRED") else "ANGEL_USAGE_EVIDENCE_REQUIRED";
+    yield row;
+  };
+  define usage_groups = group_by(checked_usage, row => row.title_id);
+  define qualified_minutes = sum(checked_usage, row => row.minutes);
+  require qualified_minutes > 0 else "ANGEL_ZERO_PLATFORM_MINUTES";
+  define recipient_index = make_map(beneficiaries, row => row.asset_id, row => row.participant_id);
+  define title_allocations = for each group in entries(usage_groups) {
+    define title_minutes = sum(group.value, row => row.minutes);
+    define title_amount = allocate_weighted(filmmaker_pool, title_minutes, qualified_minutes);
+    yield { asset_id: group.key, participant_id: require_some(lookup(recipient_index, group.key), "ANGEL_RECIPIENT_REQUIRED"), minutes: title_minutes, amount: title_amount };
+  };
+  define allocation_index = make_map(title_allocations, row => row.asset_id, row => row.amount);
+  define focal_title_amount = require_some(lookup(allocation_index, focal_title), "ANGEL_FOCAL_TITLE_ABSENT");
+  define allocated = sum(title_allocations, row => row.amount);
+  require allocated == filmmaker_pool else "ANGEL_ALLOCATION_RECONCILIATION";
+  emit "titles" = title_allocations;
+  emit "comparison" = { gross_guild: gross_guild, marketing: marketing, other_costs: other_costs,
+    net_guild: net_guild, angel_share: net_guild - filmmaker_pool, filmmaker_pool: filmmaker_pool,
+    qualified_minutes: qualified_minutes, focal_title_amount: focal_title_amount,
+    other_titles_amount: filmmaker_pool - focal_title_amount, allocation_residual: filmmaker_pool - allocated };
+  emit "settlements" = for each title in title_allocations {
+    yield { agreement_id: scope.agreement_id, participant_id: title.participant_id, pool_id: scope.pool_id,
+      period: scope.period, asset_id: title.asset_id, earned: title.amount, payable: title.amount };
+  };
+}

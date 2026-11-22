@@ -1,0 +1,102 @@
+{
+  "decisions": [
+    {
+      "decision_id": "SYNTHETIC-CORR-RESTATEMENT",
+      "evidence_ref": "existing-synthetic-fixture-and-selected-policy",
+      "policy_id": "synthetic:correction-payments-policy",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "synthetic-restatement",
+      "evidence_ref": "existing-synthetic-fixture-and-selected-policy",
+      "policy_id": "synthetic:correction-payments-policy",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "correction_approved": true,
+    "correction_authority": "synthetic-restatement",
+    "obligation": "obligation-1",
+    "original_issued": {
+      "currency": "USD",
+      "value": "100"
+    },
+    "payments": [
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "80"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-restatement",
+        "event_id": "payment-1",
+        "obligation_id": "obligation-1",
+        "paid_date": "2026-03-01",
+        "participant_id": "participant",
+        "pool_id": "pool"
+      }
+    ],
+    "revised_entitlement": {
+      "currency": "USD",
+      "value": "90"
+    },
+    "scope": {
+      "agreement_id": "synthetic-deal",
+      "participant_id": "participant",
+      "period": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "pool_id": "pool"
+    }
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2026-07-04T00:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "synthetic:correction-payments",
+        "locator": "cases/mechanisms/correction-payments-module.json",
+        "revision": "1",
+        "sha256": "d008f789138d09823ab5d74146dcabff9e01d92e95805e0f292465dd4c0ef445"
+      }
+    ],
+    "period": {
+      "end": "2026-07-01",
+      "start": "2026-04-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "correction-payments-canonical",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "correction-payments-synthetic"
+  },
+  "module_ref": {
+    "id": "synthetic:correction-payments",
+    "locator": "cases/mechanisms/correction-payments-module.json",
+    "revision": "1",
+    "sha256": "d008f789138d09823ab5d74146dcabff9e01d92e95805e0f292465dd4c0ef445"
+  },
+  "parameters": {
+    "payment_cutoff": "2026-07-04",
+    "required_authority": "synthetic-restatement"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "synthetic-deal",
+    "asset_ids": [],
+    "participant_ids": [
+      "participant"
+    ],
+    "pool_id": "pool",
+    "purpose": "obligation_reconciliation"
+  },
+  "state_cells": []
+}

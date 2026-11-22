@@ -1,0 +1,83 @@
+Participation Schedule for Skouras Films and Ventura
+
+Incorporate policy "sv-incurred@1".
+Account for each calendar quarter.
+Require Available Advance Balance >= USD 0 or fail "NEGATIVE_OPENING_ADVANCE".
+For each Picture distributed by Ventura:
+  Require Valid Funding Share or fail "INVALID_FUNDING_SHARE".
+  Cash Receipts are the amounts Ventura received under the Acquisition Agreement for that Picture during the quarter citing "SV-8-CASH".
+  If Skouras contributed no Acquisition Funds:
+    Distribution Fee is 25% of Cash Receipts citing "SV-8-FEE".
+    Allowed Deductions are the deductions allowed by the Net Profits Schedule citing "SV-8-COST-SCHEDULE".
+    Net Profits are Cash Receipts less Distribution Fee less Allowed Deductions citing "SV-8-BASIS".
+    Skouras Participation Share is 20% citing "SV-8-SHARE".
+    Skouras Earned Participation is Skouras Participation Share of Net Profits.
+  Otherwise:
+    Distribution Fee is 7.5% of Cash Receipts citing "SV-8-FEE".
+    Allowed Deductions are the deductions allowed by the Adjusted Gross Receipts Schedule citing "SV-8-COST-SCHEDULE".
+    Adjusted Gross Receipts are Cash Receipts less Distribution Fee less Allowed Deductions citing "SV-8-BASIS".
+    Skouras Participation Share is Skouras Proportionate Funding Share citing "SV-8-SHARE".
+    Skouras Earned Participation is Skouras Participation Share of Adjusted Gross Receipts.
+  Require Skouras Earned Participation >= USD 0 or fail "SV_NEGATIVE_EARNINGS_OUTSIDE_PILOT".
+  Report by Picture: Picture Identifier, Cash Receipts, Distribution Fee, Allowed Deductions, Participation Basis, Skouras Participation Share, Skouras Earned Participation.
+For settlement with Skouras:
+  Quarter Earned Participation is the total Earned Participation across Pictures.
+  Recouped Advances are the lesser of Quarter Earned Participation and Available Advance Balance citing "SV-7-POOL-RECOVERY".
+  Participation Payable is Quarter Earned Participation less Recouped Advances.
+  Closing Available Advance Balance is Available Advance Balance less Recouped Advances.
+  Require Quarter Earned Participation == Recouped Advances plus Participation Payable or fail "SV_SETTLEMENT_RECONCILIATION".
+  Report "titles": Picture Results.
+  Report "pool": Agreement, Participant, Advance Pool, Quarter, Quarter Earned Participation, Recouped Advances, Participation Payable.
+
+// Explicit technical bindings and bounded synthetic policy; no inferred dates,
+// eligibility, acquisition-funding evidence, opening state or payment evidence.
+Bindings:
+  Schedule SkourasVenturaPilot.
+  Settle "Skouras" with policy.participant_id.
+  Using language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft".
+  input pictures: List<SVPicture>;
+  input receipts: List<SVReceipt>;
+  input eligible_costs: List<SVCost>;
+  input policy: SVPolicy;
+  opening prepayment: Money<USD> from "sv/participant-prepayment/main-pool";
+  Iterate "Picture distributed by Ventura" as picture in pictures into title_results.
+  Bind "calendar quarter" to policy.period.
+  Bind "Available Advance Balance" to prepayment.
+  Bind "Valid Funding Share" to picture.funding_share >= 0 and picture.funding_share <= 1.
+  Bind "Cash Receipts" to cash.
+  Bind "the amounts Ventura received under the Acquisition Agreement for that Picture during the quarter" to sum(filter(receipts, r => r.asset_id == picture.asset_id and in_period(r.cash_received_date, accounting_period)), r => r.amount).
+  Bind "Skouras contributed no Acquisition Funds" to not picture.contribution_present.
+  Bind "Distribution Fee" to fee.
+  Bind "Allowed Deductions" to allowed_cost.
+  Bind "the deductions allowed by the Net Profits Schedule" to sum(filter(eligible_costs, c => c.asset_id == picture.asset_id and in_period(c.incurred_date, accounting_period)), c => c.amount).
+  Bind "the deductions allowed by the Adjusted Gross Receipts Schedule" to sum(filter(eligible_costs, c => c.asset_id == picture.asset_id and in_period(c.incurred_date, accounting_period)), c => c.amount).
+  Bind "Net Profits" to basis.
+  Bind "Adjusted Gross Receipts" to basis.
+  Bind "Participation Basis" to basis.
+  Bind "Skouras Participation Share" to share.
+  Bind "Skouras Proportionate Funding Share" to picture.funding_share.
+  Bind "Skouras Earned Participation" to earned.
+  Bind "Picture Identifier" to picture.asset_id.
+  Bind "Quarter Earned Participation" to earned_total.
+  Bind "the total Earned Participation across Pictures" to sum(title_results, t => t.earned).
+  Bind "Recouped Advances" to recouped.
+  Bind "Participation Payable" to payable.
+  Bind "Picture Results" to title_results.
+  Bind "Agreement" to policy.agreement_id.
+  Bind "Participant" to settlement_participant.
+  Bind "Advance Pool" to policy.pool_id.
+  Bind "Quarter" to accounting_period.
+  Field "Picture Identifier" as asset_id.
+  Field "Cash Receipts" as cash.
+  Field "Distribution Fee" as fee.
+  Field "Allowed Deductions" as allowed_cost.
+  Field "Participation Basis" as basis.
+  Field "Skouras Participation Share" as share.
+  Field "Skouras Earned Participation" as earned.
+  Field "Agreement" as agreement_id.
+  Field "Participant" as participant_id.
+  Field "Advance Pool" as pool_id.
+  Field "Quarter" as period.
+  Field "Quarter Earned Participation" as earned.
+  Field "Recouped Advances" as recouped.
+  Field "Participation Payable" as payable.

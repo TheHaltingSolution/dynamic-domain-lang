@@ -1,0 +1,131 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "r1:weighted-allocation",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "allocated",
+        "name": "allocate",
+        "parameters": [
+          {
+            "name": "amount",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "numerator",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          },
+          {
+            "name": "denominator",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          }
+        ],
+        "result": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "amount",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "numerator",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "denominator",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "WEIGHTED_ALLOCATION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "weighted-allocation-rr03-selected"
+    ],
+    "evidence_class": "synthetic",
+    "id": "spl:policy:r1:weighted-allocation",
+    "readable": {
+      "locator": "cases/r1/angel-policy.md",
+      "sha256": "713a6b39c373e447336847b42616a13586824112c6f32a9f7cfe1d63c6e775ca"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/r1/weighted-allocation.spl",
+    "sha256": "433d4b5c993a392351d5b74fb6bd49e1c2f081db28a96602751cc8979cc42d74"
+  },
+  "state": []
+}

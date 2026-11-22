@@ -1,0 +1,71 @@
+// RR-01: adopted bounded synthetic participation-prepayment policy.
+// Actual funded date selects the period. Both observation timestamps must be
+// strictly before the pinned cutoff; unavailable rows remain visible in audit.
+// Add selected issues to opening pool, then apply nonnegative pooled earnings.
+// No FIFO, intra-quarter earnings ordering, other offsets, reversals or true-ups.
+schedule SyntheticAdvanceIssues language "spl/0.1-draft"
+  core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input issues: List<AdvanceIssue>;
+  input evidence: List<AdvanceEvidence>;
+  input earned: Money<USD>;
+  input observation_cutoff: Instant;
+  input authority: Id<Decision>;
+  input balance_purpose: Text;
+  input currency: Text;
+  opening prepayment: Money<USD> from "synthetic/advances/pool";
+  require is_calendar_quarter(scope.period) else "ADV_CALENDAR_QUARTER_REQUIRED";
+  require balance_purpose == "participation_prepayment" and currency == "USD"
+    else "ADV_BALANCE_POLICY_REQUIRED";
+  require prepayment >= USD 0 and earned >= USD 0 else "ADV_NEGATIVE_POLICY_REQUIRED";
+  define issue_rows = for each issue in issues {
+    require issue.agreement_id == scope.agreement_id and
+      issue.participant_id == scope.participant_id and issue.pool_id == scope.pool_id
+      else "ADV_ISSUE_WRONG_SCOPE";
+    require issue.currency == currency and issue.balance_purpose == balance_purpose
+      else "ADV_ISSUE_WRONG_BALANCE";
+    require issue.amount >= USD 0 else "ADV_NEGATIVE_ISSUE";
+    define funded_in_period = in_period(issue.funded_date, scope.period);
+    define issue_available = issue.observed_at < observation_cutoff;
+    define candidate = funded_in_period and issue_available;
+    define matching_evidence = filter(evidence, support => support.evidence_id == issue.evidence_ref);
+    require not candidate or sum(matching_evidence, support => 1) == 1
+      else "ADV_FUNDING_EVIDENCE_REQUIRED";
+    define support_checks = for each support in matching_evidence {
+      define support_available = support.observed_at < observation_cutoff;
+      require not (candidate and support_available) or
+        (support.issue_id == issue.issue_id and support.disbursement_id == issue.disbursement_id and
+         support.agreement_id == issue.agreement_id and support.participant_id == issue.participant_id and
+         support.pool_id == issue.pool_id and support.source_title_id == issue.source_title_id and
+         support.currency == issue.currency and support.balance_purpose == issue.balance_purpose and
+         support.amount == issue.amount and support.funded_date == issue.funded_date)
+        else "ADV_EVIDENCE_MISMATCH";
+      require not (candidate and support_available) or (support.eligible and support.approved and
+        support.authority_ref == authority) else "ADV_ELIGIBLE_EVIDENCE_REQUIRED";
+      yield if support_available then 1 else 0;
+    };
+    define evidence_available = sum(support_checks, availability => availability) == 1;
+    define included = candidate and evidence_available;
+    require not included or (issue.approved and issue.authority_ref == authority)
+      else "ADV_ISSUE_AUTHORITY_REQUIRED";
+    yield { event_id: issue.event_id, issue_id: issue.issue_id,
+      disbursement_id: issue.disbursement_id, source_title_id: issue.source_title_id,
+      evidence_ref: issue.evidence_ref, funded_date: issue.funded_date,
+      issue_observed_at: issue.observed_at, funded_in_period: funded_in_period,
+      evidence_observations: map(matching_evidence, proof => proof.observed_at),
+      issue_available: issue_available, evidence_available: evidence_available,
+      included: included, addition: if included then issue.amount else USD 0 };
+  };
+  define additions = sum(issue_rows, row => row.addition) citing "RR-01-FUNDED-AS-OF-POOLED";
+  define available = prepayment + additions;
+  define recovered = min(available, earned);
+  define payable = earned - recovered;
+  closing prepayment = available - recovered;
+  require earned == recovered + payable else "ADV_SETTLEMENT_RECONCILIATION";
+  emit "advance_issue_audit" = issue_rows;
+  emit "advances" = { agreement_id: scope.agreement_id, participant_id: scope.participant_id,
+    pool_id: scope.pool_id, period: scope.period, currency: currency, balance_purpose: balance_purpose,
+    observation_cutoff: observation_cutoff, opening_balance: prepayment, additions: additions,
+    available: available, earned: earned, recovered: recovered, payable: payable,
+    closing_balance: available - recovered };
+}

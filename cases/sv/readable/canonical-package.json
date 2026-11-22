@@ -1,0 +1,543 @@
+{
+  "adapter": {
+    "adapter_id": "authored-fixture",
+    "observation_policy_ref": "fixture-observation@1",
+    "source_digest": "5bdcad1503d07ece9c678f781f08b678f275f5604c616b0fa5cd9d5d3bbdf83a",
+    "source_fixture": "SV-01",
+    "version": "1"
+  },
+  "agreements": [
+    {
+      "agreement_id": "sv",
+      "asset_ids": [
+        "picture-a",
+        "picture-b"
+      ],
+      "calendar_ref": "calendar-quarter@1",
+      "document_refs": [
+        "public-development-contract"
+      ],
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "interpretation_ref": "synthetic-interpretation@1",
+      "role_ids": [
+        "participant-role",
+        "distributor-role"
+      ],
+      "version": "synthetic-v1"
+    }
+  ],
+  "allocations": [],
+  "assets": [
+    {
+      "asset_id": "picture-a",
+      "kind": "picture"
+    },
+    {
+      "asset_id": "picture-b",
+      "kind": "picture"
+    }
+  ],
+  "evidence_events": [
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "50000"
+      },
+      "approval_ref": "SV-8-SHARE",
+      "asset_id": "picture-a",
+      "effective_date": "2026-01-01",
+      "event_id": "fund-a",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "funding",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "party_id": "distributor",
+      "subject_ref": "picture-a"
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "40000"
+      },
+      "approval_ref": "SV-8-SHARE",
+      "asset_id": "picture-b",
+      "effective_date": "2026-01-01",
+      "event_id": "fund-b-part",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "funding",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "party_id": "skouras",
+      "subject_ref": "picture-b"
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "60000"
+      },
+      "approval_ref": "SV-8-SHARE",
+      "asset_id": "picture-b",
+      "effective_date": "2026-01-01",
+      "event_id": "fund-b-dist",
+      "evidence_ref": "fixture-observation@1",
+      "kind": "funding",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "party_id": "distributor",
+      "subject_ref": "picture-b"
+    }
+  ],
+  "financial_facts": [
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "100000"
+      },
+      "asset_id": "picture-a",
+      "batch_ref": {
+        "batch_id": "authored",
+        "source_system": "synthetic",
+        "version": "1"
+      },
+      "dates": {
+        "cash_received_date": "2026-01-01"
+      },
+      "event_kind": "cash_receipt",
+      "fact_id": "receipt-a",
+      "source_row": "receipt-a",
+      "temporal_basis": {
+        "date": "2026-01-01",
+        "kind": "cash_received_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "60000"
+      },
+      "asset_id": "picture-b",
+      "batch_ref": {
+        "batch_id": "authored",
+        "source_system": "synthetic",
+        "version": "1"
+      },
+      "dates": {
+        "cash_received_date": "2026-01-01"
+      },
+      "event_kind": "cash_receipt",
+      "fact_id": "receipt-b",
+      "source_row": "receipt-b",
+      "temporal_basis": {
+        "date": "2026-01-01",
+        "kind": "cash_received_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "10000"
+      },
+      "asset_id": "picture-a",
+      "batch_ref": {
+        "batch_id": "authored",
+        "source_system": "synthetic",
+        "version": "1"
+      },
+      "dates": {
+        "incurred_date": "2026-01-01"
+      },
+      "event_kind": "incurred_cost",
+      "fact_id": "cost-a",
+      "source_row": "cost-a",
+      "temporal_basis": {
+        "date": "2026-01-01",
+        "kind": "incurred_date"
+      }
+    },
+    {
+      "amount": {
+        "currency": "USD",
+        "value": "5500"
+      },
+      "asset_id": "picture-b",
+      "batch_ref": {
+        "batch_id": "authored",
+        "source_system": "synthetic",
+        "version": "1"
+      },
+      "dates": {
+        "incurred_date": "2026-01-01"
+      },
+      "event_kind": "incurred_cost",
+      "fact_id": "cost-b",
+      "source_row": "cost-b",
+      "temporal_basis": {
+        "date": "2026-01-01",
+        "kind": "incurred_date"
+      }
+    }
+  ],
+  "incorporated_policies": [
+    {
+      "document": {
+        "locator": "docs/spl/policies/sv-incurred.md",
+        "sha256": "fb3e2f04fefb08bb51d17e3367354443f7d312c9daf99a8f6acf8c07b780aee8"
+      },
+      "policy_id": "sv-incurred@1",
+      "profile": "sv-incurred-v1",
+      "registry": {
+        "entry_sha256": "db5adab69bd5e83a9729a4fb737cafd84799a095301f3c5a20b3db167b331307",
+        "locator": "docs/spl/policies/manifest.json",
+        "sha256": "e440900fe4d74341b8c8a6f925ee012220d1a4b2e360c460a510575a88e79648"
+      }
+    }
+  ],
+  "interpretations": [
+    {
+      "decisions": [
+        {
+          "adopted_policy": "Bounded synthetic SV-01: SV-8-CASH",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-CASH",
+          "discriminating_case_ref": "SV-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-CASH",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "sv",
+            "pool_id": "pool-1"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SV-01: SV-8-COST-SCHEDULE",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-COST-SCHEDULE",
+          "discriminating_case_ref": "SV-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-COST-SCHEDULE",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "sv",
+            "pool_id": "pool-1"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SV-01: SV-8-FEE",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-FEE",
+          "discriminating_case_ref": "SV-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-FEE",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "sv",
+            "pool_id": "pool-1"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SV-01: SV-8-BASIS",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-BASIS",
+          "discriminating_case_ref": "SV-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-BASIS",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "sv",
+            "pool_id": "pool-1"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SV-01: SV-8-SHARE",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-8-SHARE",
+          "discriminating_case_ref": "SV-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-8-SHARE",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "sv",
+            "pool_id": "pool-1"
+          }
+        },
+        {
+          "adopted_policy": "Bounded synthetic SV-01: SV-7-POOL-RECOVERY",
+          "alternatives": [
+            "Broader coverage requires separate policy"
+          ],
+          "clause_ref": "synthetic-selected-provision",
+          "decision_id": "SV-7-POOL-RECOVERY",
+          "discriminating_case_ref": "SV-01",
+          "document_ref": "public-development-contract",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "evidence_label": "research_assumption",
+          "question": "SV-7-POOL-RECOVERY",
+          "review_status": "proposed",
+          "scope": {
+            "agreement_id": "sv",
+            "pool_id": "pool-1"
+          }
+        }
+      ],
+      "interpretation_id": "synthetic-interpretation",
+      "version": "1"
+    }
+  ],
+  "manifest": {
+    "batch_refs": [
+      "batch@1#sha256:21f99ab6161c2fd62e0fef9a7bcef7a13fcb50d6bade92fa48a28a8a4d2be760"
+    ],
+    "calendar_ref": "calendar@1#sha256:bd3b583d5e7977fe4cbb7a051b838665da81d85120411307e82e2524d296019a",
+    "compiler_build": "5b5c19fe9c38208f5b2ce11b3e79e8c8191db57f9edff65d192a3866050cef2a",
+    "core_version": "0.1-draft",
+    "cutoff": "2026-12-31T00:00:00Z",
+    "input_mode": "full_snapshot",
+    "interpretation_ref": "interpretation@1#sha256:3cbff7be8e5aea54eb893c4bc9d7a9b685442f3f787bc94be8c5e5d35458f3e3",
+    "mapping_refs": [
+      "mapping@1#sha256:9bbd2b2ff282061c4409836336734f5f94193a513338d70d1249b4c2da9891f4",
+      "mapping@1#sha256:b2f805e5b49a17e25a03007ee681fd3560cf3f4f2be4d05e9b04d25e1bb4959c"
+    ],
+    "mode": "final",
+    "opening_state_ref": "opening@1#sha256:495b7f611f6d21021434625cb6eab2dab2fec578715d0a01e2f9fcf8e43de321",
+    "output_currency": "USD",
+    "parameter_ref": "parameters@1#sha256:440d41fd8bd2fa591b442ffcd476a680aec728fe290affabaaa50410cbd7598b",
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "policy_refs": [
+      "policy@1#sha256:aa2cd944d0a32f05b97ac1771c5a420710c61d9aff7f2d7dc84b9728252ee029"
+    ],
+    "reference_refs": [
+      "reference@1#sha256:263a4be0b4bdcecaca47ffbfba5bd15fb515b7342663ca44bdb355ef4bc9568a",
+      "reference@1#sha256:d07fbc55c8a6950a014c7b793cc79922132ff72f1c438d14b5c9916525c9200c",
+      "reference@1#sha256:b24c74cc2e3717e7655e620c776cc6c3c05e06c973cc690e5e13a3a66d160e41",
+      "reference@1#sha256:63801b7f06d8915d6efd1b7212d35febdca77b2fdeb844b479f92779a3fa3aeb"
+    ],
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_facts": 100000,
+      "parser_depth": 128,
+      "source_scalars": 1000000,
+      "source_tokens": 200000
+    },
+    "run_id": "SV-01-run",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "SV-01",
+    "schedule_ref": "schedule@1#sha256:b1071eb9128c45b55826ab9c0e9535f63ddc0f16a58297b662bee7de33695c29",
+    "schema_version": "0.1-draft",
+    "surface_version": "0.1-draft"
+  },
+  "mappings": [
+    {
+      "authority_ref": "SV-7-POOL-RECOVERY",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "pool_membership",
+      "mapping_id": "member-picture-a",
+      "mapping_version": "1",
+      "pool_id": "pool-1",
+      "purpose": "participation_prepayment",
+      "source_code": "picture-a",
+      "source_namespace": "synthetic",
+      "target_ref": "picture-a"
+    },
+    {
+      "authority_ref": "SV-7-POOL-RECOVERY",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "kind": "pool_membership",
+      "mapping_id": "member-picture-b",
+      "mapping_version": "1",
+      "pool_id": "pool-1",
+      "purpose": "participation_prepayment",
+      "source_code": "picture-b",
+      "source_namespace": "synthetic",
+      "target_ref": "picture-b"
+    }
+  ],
+  "opening_aliases": [
+    {
+      "alias": "sv/participant-prepayment/main-pool",
+      "state_key": "sv/skouras/participation_prepayment/pool-1/main/USD"
+    }
+  ],
+  "parameters": {
+    "cost_date_basis": "incurred_date",
+    "cost_decisions": [
+      {
+        "branch": "unfunded",
+        "decision_id": "SV-8-COST-SCHEDULE",
+        "eligible": true,
+        "fact_id": "cost-a",
+        "reason": "Synthetic approved A cost"
+      },
+      {
+        "branch": "funded",
+        "decision_id": "SV-8-COST-SCHEDULE",
+        "eligible": true,
+        "fact_id": "cost-b",
+        "reason": "Synthetic approved B cost"
+      }
+    ],
+    "funding_snapshot": {
+      "as_of": "2026-01-01",
+      "complete": true,
+      "covered_assets": [
+        "picture-a",
+        "picture-b"
+      ],
+      "covered_parties": [
+        "skouras",
+        "distributor"
+      ],
+      "evidence_ref": "fixture-observation@1"
+    },
+    "policy": {
+      "agreement_id": "sv",
+      "participant_id": "skouras",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "pool-1"
+    }
+  },
+  "parties": [
+    {
+      "name": "Synthetic participant",
+      "party_id": "skouras"
+    },
+    {
+      "name": "Synthetic distributor",
+      "party_id": "distributor"
+    }
+  ],
+  "profile": "sv-incurred-v1",
+  "references": [
+    {
+      "description": "Explicit Gregorian half-open period",
+      "kind": "calendar",
+      "reference_id": "calendar-quarter@1"
+    },
+    {
+      "description": "Explicit synthetic opening snapshot; no historical ledger claim",
+      "kind": "source",
+      "reference_id": "synthetic-approved-opening"
+    },
+    {
+      "description": "Selected public provision; synthetic inputs and unapproved wider policies",
+      "kind": "source",
+      "reference_id": "public-development-contract"
+    },
+    {
+      "description": "Synthetic supplied observation instants; not historical capture dates",
+      "kind": "synthetic_observation_policy",
+      "reference_id": "fixture-observation@1"
+    }
+  ],
+  "roles": [
+    {
+      "agreement_id": "sv",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "party_id": "skouras",
+      "role": "participant",
+      "role_id": "participant-role"
+    },
+    {
+      "agreement_id": "sv",
+      "effective": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "party_id": "distributor",
+      "role": "distributor",
+      "role_id": "distributor-role"
+    }
+  ],
+  "source_batches": [
+    {
+      "adapter_version": "1",
+      "batch_id": "authored",
+      "control_totals": [],
+      "format": "json",
+      "ingested_at": "2026-04-03T00:00:00Z",
+      "row_count": 4,
+      "sha256": "0ec5511a506fbdcc4b955a4e4d473cfabb50a83180c11f3de42daa83d273b038",
+      "snapshot_locator": "authored-fixture",
+      "source_system": "synthetic",
+      "version": "1"
+    }
+  ],
+  "state_cells": [
+    {
+      "agreement_id": "sv",
+      "balance_kind": "participation_prepayment",
+      "boundary": "2026-01-01",
+      "participant_id": "skouras",
+      "policy_lineage": [
+        "SV-7-POOL-RECOVERY"
+      ],
+      "pool_id": "pool-1",
+      "provenance_ref": "synthetic-approved-opening",
+      "quantity": "15000",
+      "scenario_id": "SV-01",
+      "scope": {
+        "agreement_id": "sv",
+        "pool_id": "pool-1"
+      },
+      "state_key": "sv/skouras/participation_prepayment/pool-1/main/USD",
+      "unit": "USD"
+    }
+  ]
+}

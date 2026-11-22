@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:spl:module-descriptor:1",
+  "title": "SPL exact registered calculation and policy interface",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "revision", "compatibility", "source", "imports", "interface", "policy", "constraints", "state"],
+  "properties": {
+    "schema_version": {"const": "spl-module-descriptor/1"},
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.-]*:[A-Za-z][A-Za-z0-9_.-]*$"},
+    "revision": {"type": "string", "minLength": 1},
+    "compatibility": {
+      "type": "object", "additionalProperties": false,
+      "required": ["surface", "core", "ir", "package", "toolchain", "codecs", "capabilities"],
+      "properties": {
+        "surface": {"const": "spl/0.1-draft"}, "core": {"const": "spl-core/0.1-draft"},
+        "ir": {"const": "spl-ir/0.1"}, "package": {"const": "spl-module/1"},
+        "toolchain": {"const": "leanprover/lean4:v4.35.0"},
+        "codecs": {"type": "array", "items": {"enum": ["spl-exact/1", "spl-instant/1"]}, "uniqueItems": true},
+        "capabilities": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      }
+    },
+    "source": {"$ref": "#/$defs/file"},
+    "imports": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false, "required": ["module_ref", "alias", "symbols"],
+      "properties": {"module_ref": {"$ref": "#/$defs/module_ref"}, "alias": {"$ref": "#/$defs/name"},
+        "symbols": {"type": "array", "items": {"type": "object", "additionalProperties": false,
+          "required": ["export", "local"], "properties": {"export": {"$ref": "#/$defs/name"}, "local": {"$ref": "#/$defs/name"}}}}
+      }
+    }},
+    "interface": {
+      "type": "object", "additionalProperties": false, "required": ["ports", "schemas", "dictionaries", "exports"],
+      "properties": {
+        "ports": {"type": "array", "items": {"$ref": "#/$defs/port"}},
+        "schemas": {"type": "array", "items": {"type": "object", "additionalProperties": false,
+          "required": ["name", "fields"], "properties": {"name": {"$ref": "#/$defs/name"},
+            "fields": {"type": "object", "additionalProperties": {"$ref": "#/$defs/type"}}}}},
+        "dictionaries": {"type": "object", "additionalProperties": {"type": "array", "minItems": 1,
+          "uniqueItems": true, "items": {"type": "string", "minLength": 1}}},
+        "exports": {"type": "array", "items": {
+          "type": "object", "additionalProperties": false, "required": ["name", "parameters", "result", "definition"],
+          "properties": {"name": {"$ref": "#/$defs/name"}, "definition": {"$ref": "#/$defs/name"},
+            "result": {"$ref": "#/$defs/type"}, "parameters": {"type": "array", "items": {
+              "type": "object", "additionalProperties": false, "required": ["name", "type"],
+              "properties": {"name": {"$ref": "#/$defs/name"}, "type": {"$ref": "#/$defs/type"}}}}}
+        }}
+      }
+    },
+    "policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "revision", "readable", "decision_ids", "evidence_class", "review_status", "discriminating_cases"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "revision": {"type": "string", "minLength": 1},
+        "readable": {"$ref": "#/$defs/file"},
+        "decision_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "evidence_class": {"enum": ["synthetic", "sourced_reconstruction", "supplied_contract"]},
+        "review_status": {"enum": ["proposed", "reviewed", "approved"]},
+        "discriminating_cases": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "constraints": {"type": "array", "items": {"$ref": "#/$defs/constraint"}},
+    "state": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["opening", "closing", "purpose", "unit", "key_fields", "movement_kinds", "history_required"],
+      "properties": {
+        "opening": {"$ref": "#/$defs/name"}, "closing": {"$ref": "#/$defs/name"},
+        "purpose": {"type": "string", "minLength": 1}, "unit": {"type": "string", "minLength": 1},
+        "key_fields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["agreement_id", "participant_id", "pool_id", "purpose", "vintage_id", "asset_id"]}},
+        "movement_kinds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "history_required": {"type": "boolean"}
+      }
+    }}
+  },
+  "$defs": {
+    "name": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"},
+    "file": {"type": "object", "additionalProperties": false, "required": ["locator", "sha256"],
+      "properties": {"locator": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "module_ref": {"type": "object", "additionalProperties": false, "required": ["id", "revision", "locator", "sha256"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "revision": {"type": "string", "minLength": 1},
+        "locator": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "type": {"type": "object", "additionalProperties": false, "required": ["name", "args"],
+      "properties": {"name": {"$ref": "#/$defs/name"}, "args": {"type": "array", "items": {"$ref": "#/$defs/type"}},
+        "fields": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2,
+          "prefixItems": [{"$ref": "#/$defs/name"}, {"$ref": "#/$defs/type"}], "items": false}}}},
+    "port": {"type": "object", "additionalProperties": false, "required": ["name", "role", "type", "dimensions", "domain"],
+      "properties": {"name": {"$ref": "#/$defs/name"},
+        "role": {"enum": ["input", "parameter", "evidence", "opening", "result", "detail", "reconciliation"]},
+        "type": {"$ref": "#/$defs/type"},
+        "dimensions": {"type": "array", "uniqueItems": true, "items": {"enum": ["agreement", "participant", "asset", "pool", "purpose", "period", "currency"]}},
+        "domain": {"type": "object", "additionalProperties": false, "properties": {
+          "minimum": {}, "maximum": {}, "choices": {"type": "array", "minItems": 1, "uniqueItems": true},
+          "min_items": {"type": "integer", "minimum": 0}, "max_items": {"type": "integer", "minimum": 0},
+          "methodology": {"type": "boolean"}}}
+      }},
+    "constraint": {"type": "object", "additionalProperties": false, "required": ["kind", "path", "fields", "target", "value"],
+      "properties": {
+        "kind": {"enum": ["unique", "references", "member_of", "equals", "conservation", "evidence"]},
+        "path": {"type": "string", "minLength": 1}, "fields": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "target": {"type": "string"}, "value": {}
+      }}
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "allocated_title_receipts": {
+    "actual": "160000",
+    "expected": "160000",
+    "matches": true
+  },
+  "applications": {
+    "actual": "160000",
+    "expected": "160000",
+    "matches": true
+  },
+  "bank_cash": {
+    "actual": "160000",
+    "expected": "160000",
+    "matches": true
+  },
+  "billed": {
+    "actual": "210000",
+    "expected": "210000",
+    "matches": true
+  },
+  "closing_prepayment": {
+    "actual": "0",
+    "expected": "0",
+    "matches": true
+  },
+  "earned": {
+    "actual": "33000",
+    "expected": "33000",
+    "matches": true
+  },
+  "eligible_cost": {
+    "actual": "15500",
+    "expected": "15500",
+    "matches": true
+  },
+  "excluded_cost": {
+    "actual": "2000",
+    "expected": "2000",
+    "matches": true
+  },
+  "payable": {
+    "actual": "18000",
+    "expected": "18000",
+    "matches": true
+  },
+  "raw_gl_cost": {
+    "actual": "17500",
+    "expected": "17500",
+    "matches": true
+  },
+  "recouped": {
+    "actual": "15000",
+    "expected": "15000",
+    "matches": true
+  },
+  "separate_funding": {
+    "actual": "150000",
+    "expected": "150000",
+    "matches": true
+  },
+  "uncollected": {
+    "actual": "50000",
+    "expected": "50000",
+    "matches": true
+  }
+}

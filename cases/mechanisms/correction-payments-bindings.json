@@ -1,0 +1,43 @@
+{
+  "inputs": {
+    "correction_approved": true,
+    "correction_authority": "synthetic-restatement",
+    "obligation": "obligation-1",
+    "original_issued": {
+      "currency": "USD",
+      "value": "100"
+    },
+    "payment_cutoff": "2026-07-04",
+    "payments": [
+      {
+        "agreement_id": "synthetic-deal",
+        "amount": {
+          "currency": "USD",
+          "value": "80"
+        },
+        "approved": true,
+        "authority_ref": "synthetic-restatement",
+        "event_id": "payment-1",
+        "obligation_id": "obligation-1",
+        "paid_date": "2026-03-01",
+        "participant_id": "participant",
+        "pool_id": "pool"
+      }
+    ],
+    "required_authority": "synthetic-restatement",
+    "revised_entitlement": {
+      "currency": "USD",
+      "value": "90"
+    },
+    "scope": {
+      "agreement_id": "synthetic-deal",
+      "participant_id": "participant",
+      "period": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "pool_id": "pool"
+    }
+  },
+  "openings": {}
+}

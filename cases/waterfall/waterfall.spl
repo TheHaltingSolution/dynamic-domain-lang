@@ -1,0 +1,91 @@
+// Selected synthetic C03/C07 composition, not an approved historical settlement.
+schedule CapitalWaterfall language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input participant_group: Id<Participant>;
+  input project: Id<Asset>;
+  input purpose: Text;
+  input currency: Text;
+  input cutoff: Instant;
+  input recovery_method: Text;
+  input fee_rate: Ratio;
+  input beneficiaries: List<{participant_id: Id<Participant>, residual_weight: Ratio}>;
+  input evidence: List<{evidence_id: Id<Evidence>, observed_at: Instant, approval_ref: Id<Decision>, evidence_ref: Id<Evidence>, kind: Text}>;
+  input cash_records: List<{id: Id<Event>, agreement_id: Id<Agreement>, pool_id: Id<Pool>, asset_id: Id<Asset>, participant_group: Id<Participant>, purpose: Text, currency: Text, effective_date: Date, amount: Money<USD>, evidence_id: Id<Evidence>}>;
+  input costs: List<{id: Id<Event>, agreement_id: Id<Agreement>, pool_id: Id<Pool>, asset_id: Id<Asset>, participant_group: Id<Participant>, purpose: Text, currency: Text, effective_date: Date, amount: Money<USD>, eligible: Bool, evidence_id: Id<Evidence>}>;
+  opening claim_ledger: List<{id: Id<Event>, participant_id: Id<Participant>, kind: Text, priority: Nat, sequence: Nat, principal: Money<USD>, balance: Money<USD>}> from "waterfall/group-capital-claims";
+
+  require scope.participant_id == participant_group else "WF_GROUP_OWNER";
+  require purpose == "capital_recovery" and currency == "USD" else "WF_SCOPE_PURPOSE_CURRENCY";
+  require recovery_method == "priority" or recovery_method == "pro_rata" else "WF_METHOD_REQUIRED";
+  require fee_rate >= 0 and fee_rate <= 1 else "WF_FEE_RATE";
+  define checked_evidence = for each row in evidence {
+    require row.observed_at < cutoff else "WF_EVIDENCE_AFTER_CUTOFF";
+    yield row;
+  };
+  define evidence_index = make_map(checked_evidence, row => row.evidence_id, row => true);
+  define recipient_index = make_map(beneficiaries, row => row.participant_id, row => row);
+  define recipients = for each row in entries(recipient_index) {
+    require row.value.participant_id != participant_group else "WF_GROUP_NOT_BENEFICIARY";
+    require row.value.residual_weight >= 0 else "WF_NEGATIVE_WEIGHT";
+    yield row.value;
+  };
+  define total_weight = sum(recipients, row => row.residual_weight);
+  require total_weight > 0 else "WF_ZERO_DENOMINATOR";
+  define checked_cash = for each row in entries(make_map(cash_records, item => item.id, item => item)) {
+    define item = row.value;
+    require item.agreement_id == scope.agreement_id and item.pool_id == scope.pool_id and item.asset_id == project and item.participant_group == participant_group and item.purpose == purpose and item.currency == currency else "WF_CASH_SCOPE";
+    require in_period(item.effective_date, scope.period) else "WF_CASH_PERIOD";
+    require item.amount >= USD 0 else "WF_NEGATIVE_CASH";
+    require require_some(lookup(evidence_index, item.evidence_id), "WF_EVIDENCE_REQUIRED") else "WF_EVIDENCE_REQUIRED";
+    yield item;
+  };
+  define checked_costs = for each row in entries(make_map(costs, item => item.id, item => item)) {
+    define item = row.value;
+    require item.agreement_id == scope.agreement_id and item.pool_id == scope.pool_id and item.asset_id == project and item.participant_group == participant_group and item.purpose == purpose and item.currency == currency else "WF_COST_SCOPE";
+    require in_period(item.effective_date, scope.period) else "WF_COST_PERIOD";
+    require item.eligible and item.amount >= USD 0 else "WF_COST_ELIGIBILITY";
+    require require_some(lookup(evidence_index, item.evidence_id), "WF_EVIDENCE_REQUIRED") else "WF_EVIDENCE_REQUIRED";
+    yield item;
+  };
+  define gross = sum(checked_cash, row => row.amount);
+  define fee = gross * fee_rate;
+  define deductions = sum(checked_costs, row => row.amount);
+  define funds = gross - fee - deductions;
+  require funds >= USD 0 else "WF_DEDUCTIONS_EXCEED_CASH";
+  define claims = for each row in entries(make_map(claim_ledger, item => item.id, item => item)) {
+    define item = row.value;
+    require item.kind == "capital" else "WF_CLAIM_KIND";
+    require item.balance >= USD 0 and item.principal >= item.balance else "WF_CLAIM_OVERAPPLICATION";
+    define recipient = require_some(lookup(recipient_index, item.participant_id), "WF_CLAIM_BENEFICIARY");
+    yield item;
+  };
+  define total_claims = sum(claims, row => row.balance);
+  define recovery_pool = min(funds, total_claims);
+  define initial: {available: Money<USD>, ledger: List<{id: Id<Event>, participant_id: Id<Participant>, kind: Text, priority: Nat, sequence: Nat, principal: Money<USD>, balance: Money<USD>}>, movements: List<{id: Id<Event>, participant_id: Id<Participant>, opening_balance: Money<USD>, available_before: Money<USD>, recovered: Money<USD>, closing_balance: Money<USD>, available_after: Money<USD>}>} = {available: funds, ledger: [], movements: []};
+  define recovery = ordered_fold claims from initial by item => tuple(item.priority, item.sequence) identified by item => item.id ties "reject" with state, claim {
+    define recovered = if recovery_method == "priority" then min(state.available, claim.balance) else
+      if total_claims == USD 0 then USD 0 else proportional(recovery_pool, claim.balance / USD 1, total_claims / USD 1);
+    require recovered >= USD 0 and recovered <= claim.balance and recovered <= state.available else "WF_CLAIM_OVERAPPLICATION";
+    define closing_balance = claim.balance - recovered;
+    define available = state.available - recovered;
+    yield {available: available,
+      ledger: append(state.ledger, {id: claim.id, participant_id: claim.participant_id, kind: claim.kind, priority: claim.priority, sequence: claim.sequence, principal: claim.principal, balance: closing_balance}),
+      movements: append(state.movements, {id: claim.id, participant_id: claim.participant_id, opening_balance: claim.balance, available_before: state.available, recovered: recovered, closing_balance: closing_balance, available_after: available})};
+  };
+  define residual_lines = for each recipient in recipients {
+    define recovered = sum(filter(recovery.movements, row => row.participant_id == recipient.participant_id), row => row.recovered);
+    define residual = proportional(recovery.available, recipient.residual_weight, total_weight);
+    yield {participant_id: recipient.participant_id, recovered: recovered, residual: residual, payable: recovered + residual};
+  };
+  define recovered_total = sum(recovery.movements, row => row.recovered);
+  define residual_total = sum(residual_lines, row => row.residual);
+  require recovered_total == recovery_pool and residual_total == recovery.available else "WF_RECONCILIATION";
+  require gross == fee + deductions + recovered_total + residual_total else "WF_CASH_RECONCILIATION";
+  closing claim_ledger = recovery.ledger;
+  emit "claim_movements" = recovery.movements;
+  emit "residual_lines" = residual_lines;
+  emit "control" = {gross: gross, fee: fee, deductions: deductions, available_funds: funds, opening_claims: total_claims, recovered: recovered_total, closing_claims: sum(recovery.ledger, row => row.balance), residual: recovery.available, allocated_residual: residual_total};
+  emit "settlements" = for each row in residual_lines {
+    yield {agreement_id: scope.agreement_id, participant_id: row.participant_id, pool_id: scope.pool_id, asset_id: project, period: scope.period, capital_recovery: row.recovered, residual: row.residual, payable: row.payable};
+  };
+}

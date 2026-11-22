@@ -1,0 +1,49 @@
+name: Lean
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Elan
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://elan.lean-lang.org/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - run: lake build
+      - run: lake exe smoke
+      - run: lake exe participation
+      - run: lake exe spl_smoke
+      - run: lake exe spl_sv cases/sv/bindings.json
+      - run: lake exe spl_lg cases/lg/bindings.json
+      - run: lake exe spl_rq07 cases/rq07/bindings.json
+      - run: lake exe spl_sv_readable cases/sv/readable/bindings.json
+      - run: lake exe spl_lg_readable cases/lg/readable/bindings.json
+      - run: lake exe spl_rq07_readable cases/rq07/readable/bindings.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s Tests -v
+      - run: lake env lean --run Tests/SPLParser.lean
+      - run: lake env lean --run Tests/SPLCheck.lean
+      - run: lake env lean --run Tests/SPLBindings.lean
+      - run: lake env lean --run Tests/SPLInstant.lean
+      - run: lake env lean --run Tests/SPLCore.lean
+      - run: lake env lean --run Tests/SPLEmit.lean
+      - run: lake env lean --run Tests/SPLReadable.lean
+      - run: lake env lean --run Tests/SPLIR.lean
+      - run: lake env lean --run Tests/SPLValidateIR.lean
+      - run: lake env lean --run Tests/SPLCalendar.lean
+      - run: lake env lean --run Tests/SPLTrace.lean
+      - run: lake env lean --run Tests/SPLPriority.lean
+      - run: lake env lean --run Tests/SPLCollections.lean
+      - run: lake env lean --run Tests/SPLFold.lean
+      - run: lake env lean --run Tests/SPLTraceScaling.lean --quota

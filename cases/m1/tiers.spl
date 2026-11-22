@@ -1,0 +1,20 @@
+// Reusable exact nonnegative tier functions; all brackets are validated.
+schedule Tiers language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input basis: Money<USD>;
+  input brackets: List<{id: Id<Rule>, sequence: Nat, lower: Money<USD>, upper: Option<Money<USD>>, rate: Ratio}>;
+  require basis >= USD 0 else "M1_NEGATIVE_BASIS";
+  define unique_brackets = entries(make_map(brackets, row => row.id, row => row));
+  define initial: {next: Money<USD>, ended: Bool, marginal: Money<USD>, whole: Money<USD>} = {next: USD 0, ended: false, marginal: USD 0, whole: USD 0};
+  define calculation = ordered_fold map(unique_brackets, row => row.value) from initial by row => row.sequence identified by row => row.id ties "reject" with state, row {
+    require not state.ended and row.lower == state.next else "M1_BRACKET_CONTIGUITY";
+    require row.rate >= 0 and row.rate <= 1 else "M1_BRACKET_RATE";
+    require not is_some(row.upper) or require_some(row.upper, "M1_UPPER_REQUIRED") > row.lower else "M1_BRACKET_RANGE";
+    define endpoint = get_or(row.upper, basis);
+    define width = max(USD 0, min(basis, endpoint) - row.lower);
+    define selected = basis >= row.lower and (not is_some(row.upper) or basis < endpoint);
+    yield {next: endpoint, ended: not is_some(row.upper), marginal: state.marginal + width * row.rate, whole: if selected then basis * row.rate else state.whole};
+  };
+  require calculation.ended else "M1_UNBOUNDED_FINAL_BRACKET_REQUIRED";
+  define marginal = calculation.marginal;
+  define whole_base = calculation.whole;
+}

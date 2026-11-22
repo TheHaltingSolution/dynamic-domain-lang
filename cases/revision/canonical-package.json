@@ -1,0 +1,245 @@
+{
+  "decisions": [
+    {
+      "decision_id": "RESTATEMENT_SELECTED",
+      "evidence_ref": "selected-synthetic-CORR-01-policy",
+      "policy_id": "spl:policy:r1:restatement",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "RESTATEMENT_SELECTED",
+        "evidence_id": "ev-original",
+        "evidence_ref": "ev-original",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2027-01-03T10:00:00Z"
+      },
+      {
+        "approval_ref": "RESTATEMENT_SELECTED",
+        "evidence_id": "ev-bank",
+        "evidence_ref": "ev-bank",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-12-16T10:00:00Z"
+      },
+      {
+        "approval_ref": "RESTATEMENT_SELECTED",
+        "evidence_id": "ev-application",
+        "evidence_ref": "ev-application",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-12-16T11:00:00Z"
+      },
+      {
+        "approval_ref": "RESTATEMENT_SELECTED",
+        "evidence_id": "ev-authorization",
+        "evidence_ref": "ev-authorization",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2027-02-04T10:00:00.0000000001Z"
+      },
+      {
+        "approval_ref": "RESTATEMENT_SELECTED",
+        "evidence_id": "ev-replacement",
+        "evidence_ref": "ev-replacement",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2027-02-04T11:00:00.0000000001Z"
+      },
+      {
+        "approval_ref": "RESTATEMENT_SELECTED",
+        "evidence_id": "ev-payment",
+        "evidence_ref": "ev-payment",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2027-01-16T10:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "application": {
+      "amount": {
+        "currency": "USD",
+        "value": "500"
+      },
+      "bank_id": "bank-receipt-01",
+      "effective_date": "2026-12-15",
+      "evidence_id": "ev-application",
+      "id": "application-v1",
+      "invoice_id": "INV-01",
+      "observed_at": "2026-12-16T11:00:00Z"
+    },
+    "authorization": {
+      "agreement_id": "corr-agreement",
+      "approved_at": "2027-02-03T10:00:00Z",
+      "asset_id": "corr-picture",
+      "authorized": true,
+      "correction_id": "correction-01",
+      "evidence_id": "ev-authorization",
+      "observed_at": "2027-02-04T10:00:00.0000000001Z",
+      "original_opening_id": "q4-original-opening",
+      "original_run_id": "q4-original-run",
+      "participant_id": "corr-participant",
+      "pool_id": "corr-pool",
+      "replacement_id": "application-v2",
+      "route": "restatement_only"
+    },
+    "bank": {
+      "amount": {
+        "currency": "USD",
+        "value": "500"
+      },
+      "effective_date": "2026-12-15",
+      "evidence_id": "ev-bank",
+      "id": "bank-receipt-01",
+      "observed_at": "2026-12-16T10:00:00Z"
+    },
+    "corrections": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "450"
+        },
+        "bank_id": "bank-receipt-01",
+        "effective_date": "2026-12-15",
+        "evidence_id": "ev-replacement",
+        "id": "correction-01",
+        "invoice_id": "INV-01",
+        "observed_at": "2027-02-04T11:00:00.0000000001Z",
+        "original_run_id": "q4-original-run",
+        "other_scope_id": "other-reconciled-scope",
+        "reallocated_amount": {
+          "currency": "USD",
+          "value": "50"
+        },
+        "replacement_id": "application-v2",
+        "replaces_id": "application-v1"
+      }
+    ],
+    "original": {
+      "agreement_id": "corr-agreement",
+      "application_id": "application-v1",
+      "asset_id": "corr-picture",
+      "evidence_id": "ev-original",
+      "issued": {
+        "currency": "USD",
+        "value": "100"
+      },
+      "obligation_id": "q4-original-obligation",
+      "observed_at": "2027-01-03T10:00:00Z",
+      "opening_boundary": "2026-10-01",
+      "opening_prepaid": {
+        "currency": "USD",
+        "value": "0"
+      },
+      "opening_snapshot_id": "q4-original-opening",
+      "participant_id": "corr-participant",
+      "pool_id": "corr-pool",
+      "run_id": "q4-original-run"
+    },
+    "payment": {
+      "agreement_id": "corr-agreement",
+      "amount": {
+        "currency": "USD",
+        "value": "80"
+      },
+      "asset_id": "corr-picture",
+      "disbursed_at": "2027-01-15T10:00:00Z",
+      "evidence_id": "ev-payment",
+      "id": "actual-disbursement-01",
+      "obligation_id": "q4-original-obligation",
+      "observed_at": "2027-01-16T10:00:00Z",
+      "original_run_id": "q4-original-run",
+      "participant_id": "corr-participant",
+      "pool_id": "corr-pool"
+    },
+    "project": "corr-picture",
+    "scope": {
+      "agreement_id": "corr-agreement",
+      "participant_id": "corr-participant",
+      "period": {
+        "end": "2027-01-01",
+        "start": "2026-10-01"
+      },
+      "pool_id": "corr-pool"
+    }
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2027-02-05T12:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "r1:restatement",
+        "locator": "cases/revision/restatement-module.json",
+        "revision": "1",
+        "sha256": "23ff299b2efb6a0283bc13f373b4ae4c4bf8a5bd307321741a730671ae71395e"
+      }
+    ],
+    "period": {
+      "end": "2027-01-01",
+      "start": "2026-10-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "corr01-authorized-q4-restatement-revision-run",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "corr01-authorized-q4-restatement"
+  },
+  "module_ref": {
+    "id": "r1:restatement",
+    "locator": "cases/revision/restatement-module.json",
+    "revision": "1",
+    "sha256": "23ff299b2efb6a0283bc13f373b4ae4c4bf8a5bd307321741a730671ae71395e"
+  },
+  "parameters": {
+    "cutoff": "2027-02-05T12:00:00Z",
+    "rate": "0.2"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "corr-agreement",
+    "asset_ids": [
+      "corr-picture"
+    ],
+    "participant_ids": [
+      "corr-participant"
+    ],
+    "pool_id": "corr-pool",
+    "purpose": "authorized_synthetic_restatement"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-10-01",
+      "opening_port": "entitlement",
+      "provenance_ref": "q4-original-opening",
+      "purpose": "restated_affected_period_entitlement",
+      "quantity": "0",
+      "scenario_id": "corr01-authorized-q4-restatement",
+      "scope": {
+        "agreement_id": "corr-agreement",
+        "asset_id": "corr-picture",
+        "participant_id": "corr-participant",
+        "pool_id": "corr-pool"
+      },
+      "state_key": "{\"agreement_id\":\"corr-agreement\",\"asset_id\":\"corr-picture\",\"participant_id\":\"corr-participant\",\"pool_id\":\"corr-pool\",\"purpose\":\"restated_affected_period_entitlement\"}",
+      "unit": "USD"
+    },
+    {
+      "boundary": "2026-10-01",
+      "opening_port": "recognized",
+      "provenance_ref": "q4-original-opening",
+      "purpose": "restatement_recognition",
+      "quantity": [],
+      "scenario_id": "corr01-authorized-q4-restatement",
+      "scope": {
+        "agreement_id": "corr-agreement",
+        "asset_id": "corr-picture",
+        "participant_id": "corr-participant",
+        "pool_id": "corr-pool"
+      },
+      "state_key": "{\"agreement_id\":\"corr-agreement\",\"asset_id\":\"corr-picture\",\"participant_id\":\"corr-participant\",\"pool_id\":\"corr-pool\",\"purpose\":\"restatement_recognition\"}",
+      "unit": "structured"
+    }
+  ]
+}

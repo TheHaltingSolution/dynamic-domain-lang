@@ -1,0 +1,72 @@
+schedule LionsgateDerivativePilot language "spl/0.1-draft"
+  core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input receipts: List<LGReceipt>;
+  input actual_costs: List<LGCost>;
+  input policy: LGPolicy;
+  input outside_hurdle: LGHurdleAttestation;
+  input work_gate_history: LGGateHistoryAttestation;
+  input crossed_net_subtotal: Money<USD>;
+  input producer_fee_offset: Money<USD>;
+  input payment_holdback_addition: Money<USD>;
+  input payment_holdback_release: Money<USD>;
+  opening gate_gross: Money<USD> from "lg/work-D/true-cash/cumulative-gross";
+  opening gate_cost: Money<USD> from "lg/work-D/true-cash/cumulative-cost";
+  opening payment_holdback: Money<USD> from "synthetic/work-D/payment-holdback";
+  require outside_hurdle.agreement_id == policy.agreement_id
+    else "LG_HURDLE_WRONG_SCOPE";
+  define outside_hurdle_attained = outside_hurdle.attained citing "LG-OUTSIDE-HURDLE";
+  require outside_hurdle_attained else "LG_OUTSIDE_HURDLE_NOT_ATTAINED";
+  require outside_hurdle.effective_date < policy.period.start
+    else "LG_HURDLE_TIMING_POLICY_REQUIRED";
+  require work_gate_history.asset_id == policy.asset_id
+    else "LG_GATE_HISTORY_WRONG_WORK";
+  require work_gate_history.period.start == policy.period.start and
+    work_gate_history.period.end == policy.period.end else "LG_GATE_HISTORY_WRONG_PERIOD";
+  define work_cleared_throughout = work_gate_history.cleared_throughout
+    citing "LG-GATE-HISTORY";
+  require work_cleared_throughout else "LG_GATE_HISTORY_POLICY_REQUIRED";
+  require gate_gross >= gate_cost else "LG_CROSSING_POLICY_REQUIRED";
+  require producer_fee_offset >= USD 0 else "LG_NEGATIVE_FEE_OFFSET";
+  require crossed_net_subtotal >= USD 0 else "LG_NET_LOSS_POLICY_REQUIRED";
+  require payment_holdback >= USD 0 and payment_holdback_addition >= USD 0 and
+    payment_holdback_release >= USD 0 else "SYNTHETIC_INVALID_HOLDBACK_MOVEMENT";
+  define current_receipts = filter(receipts, r => r.asset_id == policy.asset_id and
+    in_period(r.cash_received_date, policy.period));
+  define current_costs = filter(actual_costs, c => c.asset_id == policy.asset_id and
+    in_period(c.incurred_date, policy.period));
+  define cash_measure = sum(current_receipts, r => r.amount) citing "LG-TRUE-CASH";
+  define actual_cost_measure = sum(current_costs, c => c.amount) citing "LG-TRUE-CASH-COST";
+  define next_gate_gross = gate_gross + cash_measure;
+  define next_gate_cost = gate_cost + actual_cost_measure;
+  require next_gate_gross >= next_gate_cost else "LG_RECROSSING_POLICY_REQUIRED";
+  define breakeven_satisfied = next_gate_gross >= next_gate_cost;
+  define payout_base = sum(current_receipts, r =>
+    r.amount * (if r.is_home_video then policy.video_proxy else 1))
+    citing "LG-GROSS-VIDEO-PROXY";
+  define gross_candidate = if breakeven_satisfied
+    then max(USD 0, payout_base * policy.gross_rate - producer_fee_offset)
+    else USD 0 citing "LG-GROSS-BRANCH";
+  define net_candidate = crossed_net_subtotal * policy.net_rate citing "LG-NET-BRANCH";
+  define contingent_earned = max(gross_candidate, net_candidate) citing "LG-GREATER-OF";
+  define selected_label = if gross_candidate == net_candidate then "tie"
+    else (if gross_candidate > net_candidate then "gross" else "net");
+  define before_holdback = contingent_earned + payment_holdback_release;
+  require payment_holdback_release <= payment_holdback
+    else "SYNTHETIC_HOLDBACK_RELEASE_EXCEEDS_OPENING";
+  require payment_holdback_addition <= before_holdback
+    else "SYNTHETIC_HOLDBACK_ADDITION_EXCEEDS_AVAILABLE";
+  define payable = before_holdback - payment_holdback_addition
+    citing "SYNTHETIC-PAYMENT-HOLDBACK";
+  closing gate_gross = next_gate_gross;
+  closing gate_cost = next_gate_cost;
+  closing payment_holdback = payment_holdback + payment_holdback_addition - payment_holdback_release;
+  emit "comparison" = { cash_measure: cash_measure, payout_base: payout_base,
+    gross_candidate: gross_candidate, net_candidate: net_candidate,
+    selected_label: selected_label, earned: contingent_earned,
+    outside_hurdle: outside_hurdle, work_gate_history: work_gate_history };
+  emit "settlement" = { agreement_id: policy.agreement_id,
+    participant_id: policy.participant_id, asset_id: policy.asset_id, net_pool_id: policy.pool_id,
+    period: policy.period, earned: contingent_earned,
+    payment_holdback_addition: payment_holdback_addition,
+    payment_holdback_release: payment_holdback_release, payable: payable };
+}

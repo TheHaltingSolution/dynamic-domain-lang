@@ -1,0 +1,117 @@
+{
+  "case_id": "angel-guild-rr03-selected",
+  "status": "selected_synthetic_method_not_historical_or_vendor_certified",
+  "scope": {
+    "contract_id": "angel-010-mofac-synthetic",
+    "pool_id": "guild-platform-pool",
+    "currency": "USD"
+  },
+  "period": {
+    "start": "2025-04-01",
+    "end": "2025-07-01"
+  },
+  "observed_through": "2025-07-01",
+  "platform_id": "synthetic-platform",
+  "focal_title": "king-of-kings",
+  "policy": {
+    "marketing_rate": "1/4",
+    "filmmaker_share": "1/2",
+    "rounding": "exact_no_rounding",
+    "negative_net": "reject",
+    "zero_minutes": "reject",
+    "metric_unit": "qualified_minutes"
+  },
+  "opening_carry": "0",
+  "usage_population": {
+    "complete": true,
+    "platform_id": "synthetic-platform",
+    "evidence_id": "synthetic-complete-minutes"
+  },
+  "cash_records": [
+    {
+      "id": "guild-cash",
+      "contract_id": "angel-010-mofac-synthetic",
+      "pool_id": "guild-platform-pool",
+      "currency": "USD",
+      "date": "2025-06-30",
+      "channel": "guild",
+      "amount": "1500",
+      "evidence_id": "synthetic-authorized-cash"
+    },
+    {
+      "id": "ordinary-cash",
+      "contract_id": "angel-010-mofac-synthetic",
+      "pool_id": "guild-platform-pool",
+      "currency": "USD",
+      "date": "2025-06-30",
+      "channel": "ordinary_distribution",
+      "amount": "999",
+      "evidence_id": "synthetic-authorized-cash"
+    }
+  ],
+  "costs": [
+    {
+      "id": "guild-cost",
+      "contract_id": "angel-010-mofac-synthetic",
+      "pool_id": "guild-platform-pool",
+      "currency": "USD",
+      "date": "2025-06-30",
+      "channel": "guild",
+      "eligible": true,
+      "amount": "125",
+      "evidence_id": "synthetic-eligible-cost"
+    }
+  ],
+  "usage": [
+    {
+      "id": "focal-minutes",
+      "platform_id": "synthetic-platform",
+      "period": {
+        "start": "2025-04-01",
+        "end": "2025-07-01"
+      },
+      "title_id": "king-of-kings",
+      "qualified": true,
+      "minutes": "170",
+      "evidence_id": "synthetic-complete-minutes"
+    },
+    {
+      "id": "other-minutes",
+      "platform_id": "synthetic-platform",
+      "period": {
+        "start": "2025-04-01",
+        "end": "2025-07-01"
+      },
+      "title_id": "other-titles",
+      "qualified": true,
+      "minutes": "830",
+      "evidence_id": "synthetic-complete-minutes"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "synthetic-authorized-cash",
+      "observed_date": "2025-07-01"
+    },
+    {
+      "id": "synthetic-eligible-cost",
+      "observed_date": "2025-07-01"
+    },
+    {
+      "id": "synthetic-complete-minutes",
+      "observed_date": "2025-07-01"
+    }
+  ],
+  "expected": {
+    "gross_guild": "1500",
+    "marketing": "375",
+    "other_costs": "125",
+    "net_guild": "1000",
+    "angel_share": "500",
+    "filmmaker_pool": "500",
+    "qualified_minutes": "1000",
+    "focal_title_amount": "85",
+    "other_titles_amount": "415",
+    "allocation_residual": "0"
+  }
+}

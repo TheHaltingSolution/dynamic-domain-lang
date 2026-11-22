@@ -1,0 +1,337 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "m1:tiers",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "marginal",
+        "name": "marginal",
+        "parameters": [
+          {
+            "name": "basis",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "brackets",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "fields": [
+                    [
+                      "id",
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "Rule"
+                          }
+                        ],
+                        "name": "Id"
+                      }
+                    ],
+                    [
+                      "sequence",
+                      {
+                        "args": [],
+                        "name": "Nat"
+                      }
+                    ],
+                    [
+                      "lower",
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "USD"
+                          }
+                        ],
+                        "name": "Money"
+                      }
+                    ],
+                    [
+                      "upper",
+                      {
+                        "args": [
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "USD"
+                              }
+                            ],
+                            "name": "Money"
+                          }
+                        ],
+                        "name": "Option"
+                      }
+                    ],
+                    [
+                      "rate",
+                      {
+                        "args": [],
+                        "name": "Ratio"
+                      }
+                    ]
+                  ],
+                  "name": "Record"
+                }
+              ],
+              "name": "List"
+            }
+          }
+        ],
+        "result": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "definition": "whole_base",
+        "name": "whole_base",
+        "parameters": [
+          {
+            "name": "basis",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "brackets",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "fields": [
+                    [
+                      "id",
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "Rule"
+                          }
+                        ],
+                        "name": "Id"
+                      }
+                    ],
+                    [
+                      "sequence",
+                      {
+                        "args": [],
+                        "name": "Nat"
+                      }
+                    ],
+                    [
+                      "lower",
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "USD"
+                          }
+                        ],
+                        "name": "Money"
+                      }
+                    ],
+                    [
+                      "upper",
+                      {
+                        "args": [
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "USD"
+                              }
+                            ],
+                            "name": "Money"
+                          }
+                        ],
+                        "name": "Option"
+                      }
+                    ],
+                    [
+                      "rate",
+                      {
+                        "args": [],
+                        "name": "Ratio"
+                      }
+                    ]
+                  ],
+                  "name": "Record"
+                }
+              ],
+              "name": "List"
+            }
+          }
+        ],
+        "result": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "basis",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "brackets",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Rule"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "sequence",
+                  {
+                    "args": [],
+                    "name": "Nat"
+                  }
+                ],
+                [
+                  "lower",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "upper",
+                  {
+                    "args": [
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "USD"
+                          }
+                        ],
+                        "name": "Money"
+                      }
+                    ],
+                    "name": "Option"
+                  }
+                ],
+                [
+                  "rate",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "TIERS_SELECTED"
+    ],
+    "discriminating_cases": [
+      "m1-period-marginal",
+      "m1-period-whole-base",
+      "m1-cumulative-marginal",
+      "m1-tiers-then-cap"
+    ],
+    "evidence_class": "synthetic",
+    "id": "spl:policy:m1:tiers",
+    "readable": {
+      "locator": "cases/m1/policy.md",
+      "sha256": "af148d44144c6f89af457e486541ff8c6536698f646e4eecf464736f28276df6"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/m1/tiers.spl",
+    "sha256": "ff28deba4af948a872478360b7c13204fc03d57affaaa27b5cf7dafec921d655"
+  },
+  "state": []
+}

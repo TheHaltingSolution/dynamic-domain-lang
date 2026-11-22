@@ -1,0 +1,7 @@
+* text=auto eol=lf
+# Raw synthetic source hashes identify original bytes, including line endings.
+cases/rq07/source/* -text
+# Historical review baselines retain their original bytes and fingerprints.
+docs/spl/baselines/*.json -text
+# Existing readable packages pin the registry's original bytes as well as its policies.
+docs/spl/policies/manifest.json -text

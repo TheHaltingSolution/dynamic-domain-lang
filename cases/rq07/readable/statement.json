@@ -1,0 +1,17 @@
+[
+  {
+    "agreement_id": "DEAL-SYN-SV",
+    "currency": "USD",
+    "earned": "33000",
+    "participant_id": "PART",
+    "payable": "18000",
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "pool_id": "POOL-SV-AB",
+    "recouped": "15000",
+    "run_id": "RUN-RQ07-01",
+    "scenario_id": "SPL-RQ07-SV-BUNDLE-01"
+  }
+]

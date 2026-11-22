@@ -1,0 +1,4 @@
+invoice_ref,line_no,gl_code,asset_code,invoice_date,posted_on,paid_on,amount,ccy
+COST-A,1,6110,LEGACY-A,2026-03-18,2026-03-20,2026-03-26,10000.00,USD
+COST-B,1,6210,LEGACY-B,2026-03-29,2026-03-30,,5500.00,USD
+COST-X,1,6900,LEGACY-B,2026-03-29,2026-03-30,,2000.00,USD

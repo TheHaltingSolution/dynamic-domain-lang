@@ -1,0 +1,176 @@
+{
+  "decisions": [
+    {
+      "decision_id": "WF_PROPORTIONAL_SELECTED",
+      "evidence_ref": "project-selected-synthetic-policy",
+      "policy_id": "spl:policy:waterfall:proportional",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "WF_WATERFALL_SELECTED",
+      "evidence_ref": "project-selected-synthetic-policy",
+      "policy_id": "spl:policy:waterfall:waterfall",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "WF_WATERFALL_SELECTED",
+        "evidence_id": "supplied-synthetic-evidence",
+        "evidence_ref": "supplied-synthetic-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-01-01T00:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "beneficiaries": [
+      {
+        "participant_id": "capital-A",
+        "residual_weight": "1"
+      },
+      {
+        "participant_id": "capital-B",
+        "residual_weight": "1"
+      }
+    ],
+    "cash_records": [
+      {
+        "agreement_id": "selected-synthetic-waterfall",
+        "amount": {
+          "currency": "USD",
+          "value": "120"
+        },
+        "asset_id": "synthetic-film",
+        "currency": "USD",
+        "effective_date": "2026-01-01",
+        "evidence_id": "supplied-synthetic-evidence",
+        "id": "cash-2026-01-01",
+        "participant_group": "capital-beneficiary-group",
+        "pool_id": "capital-pool",
+        "purpose": "capital_recovery"
+      }
+    ],
+    "costs": [],
+    "currency": "USD",
+    "participant_group": "capital-beneficiary-group",
+    "project": "synthetic-film",
+    "purpose": "capital_recovery",
+    "scope": {
+      "agreement_id": "selected-synthetic-waterfall",
+      "participant_id": "capital-beneficiary-group",
+      "period": {
+        "end": "2026-02-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "capital-pool"
+    }
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2026-02-01T00:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "waterfall:proportional",
+        "locator": "cases/waterfall/proportional-module.json",
+        "revision": "1",
+        "sha256": "bbc535fbb36bcfc55325cd9a772c33e859e83209056a94479fc901bb390509a5"
+      },
+      {
+        "id": "waterfall:waterfall",
+        "locator": "cases/waterfall/waterfall-module.json",
+        "revision": "1",
+        "sha256": "4486bc5b58e4f66f1936e4b859ca2fc5fc20af9d7d0d94a49c71d3dfec909572"
+      }
+    ],
+    "period": {
+      "end": "2026-02-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "priority-vs-pro-rata-2026-01-01",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "priority-vs-pro-rata"
+  },
+  "module_ref": {
+    "id": "waterfall:waterfall",
+    "locator": "cases/waterfall/waterfall-module.json",
+    "revision": "1",
+    "sha256": "4486bc5b58e4f66f1936e4b859ca2fc5fc20af9d7d0d94a49c71d3dfec909572"
+  },
+  "parameters": {
+    "cutoff": "2026-02-01T00:00:00Z",
+    "fee_rate": "0",
+    "recovery_method": "priority"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "selected-synthetic-waterfall",
+    "asset_ids": [
+      "synthetic-film"
+    ],
+    "participant_ids": [
+      "capital-beneficiary-group",
+      "capital-A",
+      "capital-B"
+    ],
+    "pool_id": "capital-pool",
+    "purpose": "capital_recovery"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "claim_ledger",
+      "provenance_ref": "selected-synthetic-opening-claims",
+      "purpose": "capital_recovery",
+      "quantity": [
+        {
+          "balance": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "id": "capital-claim-A",
+          "kind": "capital",
+          "participant_id": "capital-A",
+          "principal": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "priority": "1",
+          "sequence": "1"
+        },
+        {
+          "balance": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "id": "capital-claim-B",
+          "kind": "capital",
+          "participant_id": "capital-B",
+          "principal": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "priority": "2",
+          "sequence": "1"
+        }
+      ],
+      "scenario_id": "priority-vs-pro-rata",
+      "scope": {
+        "agreement_id": "selected-synthetic-waterfall",
+        "asset_id": "synthetic-film",
+        "participant_id": "capital-beneficiary-group",
+        "pool_id": "capital-pool"
+      },
+      "state_key": "{\"agreement_id\":\"selected-synthetic-waterfall\",\"asset_id\":\"synthetic-film\",\"participant_id\":\"capital-beneficiary-group\",\"pool_id\":\"capital-pool\",\"purpose\":\"capital_recovery\"}",
+      "unit": "structured"
+    }
+  ]
+}

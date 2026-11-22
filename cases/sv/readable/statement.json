@@ -1,0 +1,17 @@
+[
+  {
+    "agreement_id": "sv",
+    "currency": "USD",
+    "earned": "33000",
+    "participant_id": "skouras",
+    "payable": "18000",
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "pool_id": "pool-1",
+    "recouped": "15000",
+    "run_id": "SV-01-run",
+    "scenario_id": "SV-01"
+  }
+]

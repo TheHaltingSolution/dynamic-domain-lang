@@ -1,0 +1,27 @@
+[
+  {
+    "agreement_id": "DEAL-SYN-SV",
+    "balance_kind": "participation_prepayment",
+    "boundary": "2026-04-01",
+    "movement": {
+      "closing": "0",
+      "net_change": "-15000",
+      "opening": "15000"
+    },
+    "participant_id": "PART",
+    "policy_lineage": [
+      "APR-RQ07-01"
+    ],
+    "pool_id": "POOL-SV-AB",
+    "prior_result_ref": "result@sha256:4b1214afc84486278cb3b349bee0a7229b697c2c79fa622c0b6dd124d9ebbf02",
+    "provenance_ref": "SYN-CLOSE-2025Q4",
+    "quantity": "0",
+    "scenario_id": "SPL-RQ07-SV-BUNDLE-01",
+    "scope": {
+      "agreement_id": "DEAL-SYN-SV",
+      "pool_id": "POOL-SV-AB"
+    },
+    "state_key": "DEAL-SYN-SV/PART/participation-prepayment/POOL-SV-AB/USD",
+    "unit": "USD"
+  }
+]

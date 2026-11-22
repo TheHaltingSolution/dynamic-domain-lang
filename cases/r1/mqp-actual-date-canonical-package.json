@@ -1,0 +1,426 @@
+{
+  "decisions": [
+    {
+      "decision_id": "MQP_ORDERED_SELECTED",
+      "evidence_ref": "project-owned-selected-synthetic-fixture",
+      "policy_id": "spl:policy:r1:mqp-ordered",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "MQP_ORDERED_SELECTED",
+        "evidence_id": "synthetic-event-register",
+        "evidence_ref": "synthetic-event-register",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2008-03-31T00:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "events": [
+      {
+        "agreed_actual_date": {
+          "none": true
+        },
+        "agreed_amount": {
+          "none": true
+        },
+        "amount": {
+          "some": {
+            "currency": "USD",
+            "value": "100"
+          }
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "none": true
+        },
+        "effective_date": "2008-01-10",
+        "evidence_id": "synthetic-event-register",
+        "id": "accrual",
+        "kind": "accrual",
+        "payment_id": {
+          "none": true
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-a",
+        "receipt_class": {
+          "none": true
+        },
+        "sequence": "0"
+      },
+      {
+        "agreed_actual_date": {
+          "none": true
+        },
+        "agreed_amount": {
+          "none": true
+        },
+        "amount": {
+          "some": {
+            "currency": "USD",
+            "value": "100"
+          }
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "none": true
+        },
+        "effective_date": "2008-01-15",
+        "evidence_id": "synthetic-event-register",
+        "id": "receipt-before-payment",
+        "kind": "receipt",
+        "payment_id": {
+          "none": true
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-a",
+        "receipt_class": {
+          "some": "eligible"
+        },
+        "sequence": "0"
+      },
+      {
+        "agreed_actual_date": {
+          "none": true
+        },
+        "agreed_amount": {
+          "none": true
+        },
+        "amount": {
+          "some": {
+            "currency": "USD",
+            "value": "100"
+          }
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "some": true
+        },
+        "effective_date": "2008-01-20",
+        "evidence_id": "synthetic-event-register",
+        "id": "actual-payment",
+        "kind": "actual_payment",
+        "payment_id": {
+          "none": true
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-a",
+        "receipt_class": {
+          "none": true
+        },
+        "sequence": "0"
+      },
+      {
+        "agreed_actual_date": {
+          "none": true
+        },
+        "agreed_amount": {
+          "none": true
+        },
+        "amount": {
+          "none": true
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "none": true
+        },
+        "effective_date": "2008-01-20",
+        "evidence_id": "synthetic-event-register",
+        "id": "dispute",
+        "kind": "dispute",
+        "payment_id": {
+          "some": "actual-payment"
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-a",
+        "receipt_class": {
+          "none": true
+        },
+        "sequence": "1"
+      },
+      {
+        "agreed_actual_date": {
+          "none": true
+        },
+        "agreed_amount": {
+          "none": true
+        },
+        "amount": {
+          "some": {
+            "currency": "USD",
+            "value": "100"
+          }
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "none": true
+        },
+        "effective_date": "2008-01-25",
+        "evidence_id": "synthetic-event-register",
+        "id": "receipt-during-dispute",
+        "kind": "receipt",
+        "payment_id": {
+          "none": true
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-a",
+        "receipt_class": {
+          "some": "eligible"
+        },
+        "sequence": "0"
+      },
+      {
+        "agreed_actual_date": {
+          "some": "2008-01-20"
+        },
+        "agreed_amount": {
+          "some": {
+            "currency": "USD",
+            "value": "100"
+          }
+        },
+        "amount": {
+          "none": true
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "none": true
+        },
+        "effective_date": "2008-02-05",
+        "evidence_id": "synthetic-event-register",
+        "id": "agreement",
+        "kind": "agreement",
+        "payment_id": {
+          "some": "actual-payment"
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-a",
+        "receipt_class": {
+          "none": true
+        },
+        "sequence": "0"
+      },
+      {
+        "agreed_actual_date": {
+          "none": true
+        },
+        "agreed_amount": {
+          "none": true
+        },
+        "amount": {
+          "some": {
+            "currency": "USD",
+            "value": "100"
+          }
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "none": true
+        },
+        "effective_date": "2008-02-10",
+        "evidence_id": "synthetic-event-register",
+        "id": "receipt-after-agreement",
+        "kind": "receipt",
+        "payment_id": {
+          "none": true
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-a",
+        "receipt_class": {
+          "some": "eligible"
+        },
+        "sequence": "0"
+      },
+      {
+        "agreed_actual_date": {
+          "none": true
+        },
+        "agreed_amount": {
+          "none": true
+        },
+        "amount": {
+          "some": {
+            "currency": "USD",
+            "value": "700"
+          }
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "none": true
+        },
+        "effective_date": "2008-02-10",
+        "evidence_id": "synthetic-event-register",
+        "id": "excluded-principal-license",
+        "kind": "receipt",
+        "payment_id": {
+          "none": true
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-a",
+        "receipt_class": {
+          "some": "principal_US_TV_license"
+        },
+        "sequence": "1"
+      },
+      {
+        "agreed_actual_date": {
+          "none": true
+        },
+        "agreed_amount": {
+          "none": true
+        },
+        "amount": {
+          "some": {
+            "currency": "USD",
+            "value": "10000"
+          }
+        },
+        "contract_id": "mqp-lionsgate-synthetic",
+        "currency": "USD",
+        "disputed": {
+          "some": false
+        },
+        "effective_date": "2008-01-01",
+        "evidence_id": "synthetic-event-register",
+        "id": "other-project-payment",
+        "kind": "actual_payment",
+        "payment_id": {
+          "none": true
+        },
+        "pool_id": "uncrossed-project-pool",
+        "project_id": "project-b",
+        "receipt_class": {
+          "none": true
+        },
+        "sequence": "0"
+      }
+    ],
+    "observed_through": "2008-04-01",
+    "project": "project-a",
+    "scope": {
+      "agreement_id": "mqp-lionsgate-synthetic",
+      "participant_id": "mqp-selected-participant",
+      "period": {
+        "end": "2008-04-01",
+        "start": "2008-01-01"
+      },
+      "pool_id": "uncrossed-project-pool"
+    }
+  },
+  "manifest": {
+    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "cutoff": "2008-04-02T00:00:00Z",
+    "mode": "final",
+    "module_closure": [
+      {
+        "id": "r1:mqp-ordered",
+        "locator": "cases/r1/mqp-ordered-module.json",
+        "revision": "1",
+        "sha256": "442ce91da1f781e9ecf7b2436c129aed79e70f0338e14af272370829cdc10ab0"
+      }
+    ],
+    "period": {
+      "end": "2008-04-01",
+      "start": "2008-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "mqp-rr03-selected-run",
+    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "scenario_id": "mqp-rr03-selected"
+  },
+  "module_ref": {
+    "id": "r1:mqp-ordered",
+    "locator": "cases/r1/mqp-ordered-module.json",
+    "revision": "1",
+    "sha256": "442ce91da1f781e9ecf7b2436c129aed79e70f0338e14af272370829cdc10ab0"
+  },
+  "parameters": {
+    "cutoff": "2008-04-02T00:00:00Z",
+    "lower_rate": "0.1",
+    "threshold": {
+      "currency": "USD",
+      "value": "1000"
+    },
+    "threshold_comparison": "at_least",
+    "trigger": "actual_date",
+    "upper_rate": "0.2"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "mqp-lionsgate-synthetic",
+    "asset_ids": [
+      "project-a",
+      "project-b"
+    ],
+    "participant_ids": [
+      "mqp-selected-participant"
+    ],
+    "pool_id": "uncrossed-project-pool",
+    "purpose": "selected_synthetic_calculation"
+  },
+  "state_cells": [
+    {
+      "boundary": "2008-01-01",
+      "opening_port": "actual_paid",
+      "provenance_ref": "synthetic-original-opening-snapshot",
+      "purpose": "mqp_actual_paid",
+      "quantity": "900",
+      "scenario_id": "mqp-rr03-selected",
+      "scope": {
+        "agreement_id": "mqp-lionsgate-synthetic",
+        "asset_id": "project-a",
+        "participant_id": "mqp-selected-participant",
+        "pool_id": "uncrossed-project-pool"
+      },
+      "state_key": "{\"agreement_id\":\"mqp-lionsgate-synthetic\",\"asset_id\":\"project-a\",\"participant_id\":\"mqp-selected-participant\",\"pool_id\":\"uncrossed-project-pool\",\"purpose\":\"mqp_actual_paid\"}",
+      "unit": "USD"
+    },
+    {
+      "boundary": "2008-01-01",
+      "opening_port": "fee_available_paid",
+      "provenance_ref": "synthetic-original-opening-snapshot",
+      "purpose": "mqp_fee_available_paid",
+      "quantity": "900",
+      "scenario_id": "mqp-rr03-selected",
+      "scope": {
+        "agreement_id": "mqp-lionsgate-synthetic",
+        "asset_id": "project-a",
+        "participant_id": "mqp-selected-participant",
+        "pool_id": "uncrossed-project-pool"
+      },
+      "state_key": "{\"agreement_id\":\"mqp-lionsgate-synthetic\",\"asset_id\":\"project-a\",\"participant_id\":\"mqp-selected-participant\",\"pool_id\":\"uncrossed-project-pool\",\"purpose\":\"mqp_fee_available_paid\"}",
+      "unit": "USD"
+    },
+    {
+      "boundary": "2008-01-01",
+      "opening_port": "payment_registry",
+      "provenance_ref": "synthetic-original-opening-snapshot",
+      "purpose": "mqp_payment_registry",
+      "quantity": [],
+      "scenario_id": "mqp-rr03-selected",
+      "scope": {
+        "agreement_id": "mqp-lionsgate-synthetic",
+        "asset_id": "project-a",
+        "participant_id": "mqp-selected-participant",
+        "pool_id": "uncrossed-project-pool"
+      },
+      "state_key": "{\"agreement_id\":\"mqp-lionsgate-synthetic\",\"asset_id\":\"project-a\",\"participant_id\":\"mqp-selected-participant\",\"pool_id\":\"uncrossed-project-pool\",\"purpose\":\"mqp_payment_registry\"}",
+      "unit": "structured"
+    }
+  ]
+}

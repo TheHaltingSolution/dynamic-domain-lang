@@ -1,0 +1,84 @@
+{
+  "inputs": {
+    "eligible_costs": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "10000"
+        },
+        "asset_id": "PIC-A",
+        "eligibility_decision_id": "SV-8-COST-SCHEDULE",
+        "fact_id": "cost/COST-A:1",
+        "recognition_date": "2026-03-20",
+        "recognition_policy_ref": "SV-8-COST-SCHEDULE"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "5500"
+        },
+        "asset_id": "PIC-B",
+        "eligibility_decision_id": "SV-8-COST-SCHEDULE",
+        "fact_id": "cost/COST-B:1",
+        "recognition_date": "2026-03-30",
+        "recognition_policy_ref": "SV-8-COST-SCHEDULE"
+      }
+    ],
+    "pictures": [
+      {
+        "asset_id": "PIC-A",
+        "contribution_present": false,
+        "funding_share": "0"
+      },
+      {
+        "asset_id": "PIC-B",
+        "contribution_present": true,
+        "funding_share": "0.4"
+      }
+    ],
+    "policy": {
+      "agreement_id": "DEAL-SYN-SV",
+      "participant_id": "PART",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "POOL-SV-AB"
+    },
+    "receipts": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "40000"
+        },
+        "asset_id": "PIC-A",
+        "cash_received_date": "2026-03-31",
+        "fact_id": "application/APP-02/PIC-A"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "60000"
+        },
+        "asset_id": "PIC-B",
+        "cash_received_date": "2026-03-31",
+        "fact_id": "application/APP-02/PIC-B"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "60000"
+        },
+        "asset_id": "PIC-A",
+        "cash_received_date": "2026-03-31",
+        "fact_id": "receipt/APP-01"
+      }
+    ]
+  },
+  "openings": {
+    "prepayment": {
+      "currency": "USD",
+      "value": "15000"
+    }
+  }
+}

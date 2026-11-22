@@ -1,0 +1,6 @@
+schedule Guarantee language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input earned: Money<USD>;
+  input floor: Money<USD>;
+  require earned >= USD 0 and floor >= USD 0 else "M1_GUARANTEE_DOMAIN";
+  define guaranteed = max(earned, floor);
+}
