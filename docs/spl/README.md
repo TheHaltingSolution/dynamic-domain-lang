@@ -1,5 +1,22 @@
 # Screen Participation Language design
 
+23 November 2026 execution update: the proposed
+[Quest two-flow half-even method](../../cases/quest/README.md) now runs through
+the existing `0.4.3-dev` kernel and generic canonical registration. Its new
+dated [fixture](quest-two-flow-fixture.md), [SPL source](../../cases/quest/charge.spl)
+and [readable policy](../../cases/quest/policy.md) retain one full principal
+payment and calculate only the additional target-return component. All 34 new
+checks passed in one combined run: 20 independent oracle, nine canonical and
+five direct execution checks (402.120 seconds). The 86-target build and both
+smokes also passed. Baseline additional USD 95.17 and the USD 0.00/USD 0.02
+half-even ties are verified without a solver, date-difference builtin or core
+extension. All nine review scenarios also pass native IR/generated Lean/reference
+comparison and independent exact certificates. The historical
+352-check baseline was not rerun or republished for this method. Policy remains
+proposed `research_assumption`; monthly/combined liability, partial-payment
+rules, Excel operational equivalence and adjacent-domain owner approval remain
+unresolved. Existing proof scopes are unchanged.
+
 Implementation continuation, 22 November 2026: K1-K3, generic registered methods
 and the disclosed calendar-month extension are executable. The
 M1a continuation adds reusable tier/cap/guarantee modules and
@@ -43,6 +60,19 @@ establish contract approval; see the case README for focused verification and
 remaining limits.
 
 Initial design draft 0.1 · 15 November 2026
+
+22 November extension-selection update: read the
+[independent DYN-02 assessment](dyn02-design-answer.md) and its
+[targeted follow-ups](dyn02-research-followups.md). The research recommendation
+has been incorporated; no necessary new core capability is selected. The current
+`0.4.3-dev` source/kernel must be assessed directly rather than inferring a
+gap from the older 21 November conformance snapshot or an absent builtin name.
+
+The subsequent targeted research response is now reconciled into a
+[compact Quest input/output fixture](quest-two-flow-fixture.md): proposed
+ACT/365 mathematical target, half-even charge rounding, one obligation/full
+payment, original date/calendar lineage and separate unresolved monthly
+liability. The prior half-away probe does not establish half-even tie behavior.
 
 Feature-coverage design update · 21 November 2026. Start the next compiler
 iteration with the [LD-02 release decision](release-scope-ld02.md),
@@ -95,6 +125,9 @@ contract interpretation has been approved.
 
 | Document | Purpose |
 | --- | --- |
+| [Quest two-flow fixture](quest-two-flow-fixture.md) and [execution guide](../../cases/quest/README.md) | Proposed synthetic acceptance contract and executed half-even method, original-fact lineage, exact certificates and remaining authority limits |
+| [DYN-02 design answer](dyn02-design-answer.md) | Independent candidate assessment, exact rounding evidence and unchanged-compiler encoding gate |
+| [DYN-02 targeted follow-ups](dyn02-research-followups.md) | Required output/rounding/flow decisions before selecting a necessary extension |
 | [RR-03 response integration](rr03-response-integration.md) | Adopted R1 priorities, Angel/MQP/optional Roundlake cases and unmeasured workload brackets |
 | [Extensibility experiment](extensibility-experiment.md) | Deliberate gaps, baseline freeze, unchanged encoding attempt and smallest extension |
 | [LD-02 next release](release-scope-ld02.md) | Proposed C1 method families, priorities, finite deferred list and acceptance |

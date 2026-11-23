@@ -154,3 +154,56 @@ development corpus here; the independently custodied evaluation is separate.
 Primary ownership: LD-02 is design conformance and language/core decisions;
 RR-03 is domain coverage, evidence, baselines and workloads. Both agents may
 comment on the combined plan, with decisions attributed to the relevant role.
+
+## DYN-02: required contract extension before FX
+
+Prepared 22 November 2026 following the user's stronger requirement. The user
+supplied the research recommendation; the language-design assessment is now
+[dyn02-design-answer.md](dyn02-design-answer.md), with
+[targeted follow-ups](dyn02-research-followups.md). No necessary core capability
+has been selected. Compiler review also replayed four positive and three negative
+Quest cases in both native and emitted execution, preserving the compiler and
+original artifacts. The user has now supplied the targeted research reply,
+reconciled in [the Quest neutral fixture specification](quest-two-flow-fixture.md).
+The original-date/calendar/canonical witness and half-even tie refinement now
+execute under that proposed synthetic policy; see the
+[23 November method guide](../../cases/quest/README.md). All 34 supplemental
+checks and nine review scenarios pass. The original three-candidate survey and
+resolved fixture questions need not be repeated. The monthly
+component/combined liability and project scope remain outside the selected
+fixture's approval boundary.
+The original request below is retained with distinct
+responsibilities. The unchanged implementation baseline is `0.4.3-dev`, commit
+`38f00a2`; native EUR/FX support has not been implemented. Read the current
+[selection gate](extensibility-experiment.md#22-november-2026-stronger-requirement-before-the-fx-milestone).
+
+**Royalties-research agent:** propose two or three actual screen/rights contract
+clauses whose required calculations may need an extension beyond our current
+kernel. Supply the source locator and clause, why the behavior is mandatory,
+original inputs, required outputs/state, policy ambiguities and an independently
+supported worked checkpoint. Distinguish sourced obligations from synthetic
+test numbers. Prioritize realistic contract needs; do not select a feature only
+because a vendor advertises it. The receipt-date FX clause linked in the gate is
+a lead, not a selected candidate or complete worked baseline. Keep independently
+custodied holdout material outside this disclosed development discussion.
+
+**Language-design agent:** for each candidate, attempt a faithful reusable
+encoding using existing arithmetic, records, maps, selection, first-order modules
+and folds. Include currency-tagged records and unit-cancellation/reconstruction
+paths when assessing FX; hiding only a proposed `convert` builtin is insufficient.
+Current same-currency Money/Money division already yields Ratio. If that rule is
+generalized to EUR in the foundation, explicitly assess whether it defeats the
+proposed reserved FX gap. Classify missing behavior versus stronger static
+guarantees, syntax/library work, canonical schema constraints or supplied-evidence
+requirements. A compiler rejection of new type syntax alone is not an encoding
+analysis.
+
+**Joint decision:** return one recommended reserved capability, the smallest
+required extension and a concrete before/after acceptance case, or explain that
+none qualifies yet. Define the original fact/output/trust boundary in advance.
+Reject precomputed answers, external financial preprocessing, currency
+misrepresentation and fixture-specific payout constants as substitutes; accept
+legitimate old-language encodings that meet the agreed requirement. Do not claim
+that no encoding exists without supporting the claim. The earlier calendar
+experiment had a legitimate supplied-date alternative and must retain that
+qualification under the stronger criterion.

@@ -1,0 +1,14 @@
+{
+  "schema_version": "quest-calendar-facts/1",
+  "id": "gregorian-2026",
+  "version": "1",
+  "origin": "2026-01-01",
+  "source_ref": "gregorian-calendar-2026-v1",
+  "facts": [
+    {"date": "2026-01-01", "ordinal": "0"},
+    {"date": "2026-06-30", "ordinal": "180"},
+    {"date": "2026-07-02", "ordinal": "182"},
+    {"date": "2027-01-01", "ordinal": "365"},
+    {"date": "2027-01-02", "ordinal": "366"}
+  ]
+}

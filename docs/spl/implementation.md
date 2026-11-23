@@ -91,6 +91,60 @@ the Python reference before finalization.
 
 ## Kernel and prior financial methods
 
+Post-baseline DYN-02 review accepts the [design recommendation](dyn02-design-answer.md)
+to reserve no core capability yet. The original half-away supplied-day probe
+and its four-positive/three-negative compiler replay remain historical evidence
+under `artifacts/spl/dyn02-compiler-review`; they have not been overwritten.
+
+On 23 November, the [selected half-even fixture](quest-two-flow-fixture.md) was
+implemented as a [registered dated method](../../cases/quest/README.md), using
+the unchanged `0.4.3-dev` compiler/runtime/module kernel. SPL now looks up the
+original obligation due date and actual principal-payment date in pinned,
+evidenced Gregorian facts and derives their difference internally. It imports
+a pure fold-based integer-power library, searches for cent bounds, rounds the
+additional charge by its own cent-index parity and asserts the exact rounding
+and minimum-cent certificates before emitting results. The adapter transports
+facts and validates ordinary calendar normalization; it supplies neither elapsed
+days nor a solved financial answer. `calendar_date` is a mechanical source-field
+rename because the existing surface reserves `date`.
+
+The [financial source](../../cases/quest/charge.spl),
+[readable policy](../../cases/quest/policy.md) and
+[independent neutral-fact oracle](../../oracles/quest.py) produce baseline USD
+95.17 while preserving the actual USD 1,000 principal payment. Full-year ties
+at USD 0.01 and USD 0.03 with a 50% target produce additional 0.00 and 0.02,
+respectively. A non-origin due-date example subtracts ordinals 180 from 182
+and yields two days, rather than treating the payment ordinal as elapsed days.
+Monthly and combined liability remain explicit nonnumeric statuses; there is
+no generated additional payment or closing financial state.
+
+All 34 supplemental Quest test methods pass in one run of 402.120 seconds:
+20 oracle, nine canonical and five direct execution groups. They cover native
+IR/generated/reference comparisons, exact tie/near-tie certificates, 26 direct
+invalid mutations and two incorrect-rounding source mutations. Build (86 jobs)
+and both smokes pass. The prior kernel's 45 source/schema pins, implementation
+identities, baseline record and original half-away source are unchanged.
+The review/test record is external under `artifacts/spl/quest-two-flow/checks`.
+The nine-scenario [demo](../../scripts/quest_demo.py) also passes native IR,
+generated Lean, reference and independent certificate comparison. Run it with
+`python scripts/quest_demo.py --reuse-registration`; outputs are retained under
+the external `artifacts/spl/quest-two-flow/review` folder.
+The historical 352-test baseline was not rerun or republished.
+
+A separate compatibility rerun passes all six original/readable SV/RQ-07/LG
+cases (payables 18,000/18,000/35) and three direct advance/reserve/correction
+mechanisms (closing/remaining controls 5,000/20/10). No old fixture or issued
+package was refreshed for these checks. The final method evidence record is
+`artifacts/spl/quest-two-flow/checks/final-verification.json`.
+
+These are selected synthetic, proposed, unissued outputs. Partial payments,
+the statutory monthly component, combined liability, Excel operational
+equivalence, owner acceptance of the adjacent patent-rights domain and
+professional approval remain outside this fixture. No new core operation,
+whole-contract compliance or compiler preservation theorem is established.
+The existing pre-FX gate stays in force; see the
+[reconciled next steps](development-plan.md#dyn-02-reconciliation-after-the-design-response).
+
 K1-K3 now execute: registered priority selection, tuple-keyed maps, grouping,
 strict inner/left joins, structural input records, explicit Options, finite
 ordered folds and isolated first-order imported functions. New generic
@@ -529,7 +583,7 @@ measurements remain required before transport integration or capacity claims.
 
 | Phase | Next deliverable and acceptance boundary |
 | --- | --- |
-| Broader C1 methods | M1a's selected tier/cap/floor methods and the verified M1b finite quantity/rate slice execute. Next add the scoped USD/EUR FX foundation, declared gate/loss alternatives, dependent-period replay, fiscal/business calendars and remaining tier/cap/threshold variants. Each needs explicit policies and canonical input/output witnesses; these slices do not complete the broader families. |
+| Broader C1 methods | M1a's selected tier/cap/floor methods and the verified M1b finite quantity/rate slice execute. Before adding the USD/EUR FX foundation, retain the [required-extension selection gate](extensibility-experiment.md#22-november-2026-stronger-requirement-before-the-fx-milestone). DYN-02 currently recommends no reservation: the bounded Quest solver also fits the unchanged core. Resolve the targeted original-fact/flow/numerical acceptance requirements before proposing any remaining extension. Declared gate/loss alternatives, dependent-period replay, fiscal/business calendars and remaining tier/cap/threshold variants also remain. Each needs explicit policies and canonical input/output witnesses; these slices do not complete the broader families. |
 | Systematic validation | Extend independent neutral-fact oracles, boundary/error cases, pairwise and selected higher-order feature combinations, metamorphic checks and mutation testing. Measure emitted-program branch coverage before claiming systematic coverage; current finite regressions do not exercise every feature combination or every compiled line. |
 | Capacity and audit | Reduce trace materialization/serialization costs, define the required audit envelope, and measure representative RR-03 mixes, skew, larger cohorts and memory. Establish a useful single-process capacity before designing distributed execution. |
 | Independent evaluation and later proof | Preserve disclosed-development versus held-out custody boundaries and obtain actual reader/accountant review. After the demo stabilizes, state source/target semantics and assumptions and prove selected compiler passes without widening the toy/scalar claims. |

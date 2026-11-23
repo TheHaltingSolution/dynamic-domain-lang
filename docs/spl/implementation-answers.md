@@ -1,5 +1,11 @@
 # Language design answers for the compiler agent
 
+For the 22 November stronger required-extension question, see
+[DYN-02](dyn02-design-answer.md). It assesses the supplied FAME, LG and Quest
+candidates against the `0.4.3-dev` kernel and records that no necessary core
+capability is selected yet. The linked follow-up fixes acceptance questions
+before any proposed power/root/XIRR extension.
+
 For the 21 November feature-coverage question LD-02, read the separate
 [next-release answer](release-scope-ld02.md),
 [conformance ledger](conformance-ledger.md),

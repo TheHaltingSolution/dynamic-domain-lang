@@ -1,0 +1,56 @@
+{
+  "schema_version": "quest-two-flow-neutral/1",
+  "case_id": "QUEST-TWOFLOW-BASELINE",
+  "scope": {
+    "agreement_id": "quest-synthetic",
+    "participant_id": "quest-synthetic-participant",
+    "pool_id": "quest-synthetic-pool",
+    "asset_id": "quest-synthetic-patent-rights",
+    "currency": "USD"
+  },
+  "period": {"start": "2026-01-01", "end": "2026-12-31"},
+  "cutoff": "2026-07-04T00:00:00Z",
+  "clause": {
+    "source_ref": "sec-quest-agreement@sha256:9f1c535acfa79aaab13b860e18cd731936425e2d42ac519942d37451deeda151",
+    "locator": "Schedule II, page 19, late-payment paragraph",
+    "component": "additional_target_return_only"
+  },
+  "terms": {
+    "policy_id": "DYN02-QUEST-TWOFLOW-NEAREST-EVEN",
+    "revision": "1",
+    "annual_target": "0.20",
+    "day_count": "ACT/365",
+    "quantum": "0.01",
+    "rounding": "half_even"
+  },
+  "selected": {"obligation_id": "QO-1", "payment_id": "QP-1", "application_id": "QA-1"},
+  "obligations": [{
+    "id": "QO-1", "amount": "1000", "currency": "USD", "due_date": "2026-01-01",
+    "scope": {"agreement_id": "quest-synthetic", "participant_id": "quest-synthetic-participant", "pool_id": "quest-synthetic-pool", "asset_id": "quest-synthetic-patent-rights", "currency": "USD"},
+    "observed_at": "2026-07-03T00:00:00Z", "evidence_id": "QE-OBLIGATION", "source_ref": "synthetic-quest-obligation-source"
+  }],
+  "payments": [{
+    "id": "QP-1", "economic_event_id": "QPE-1", "amount": "1000", "currency": "USD", "paid_date": "2026-07-02",
+    "scope": {"agreement_id": "quest-synthetic", "participant_id": "quest-synthetic-participant", "pool_id": "quest-synthetic-pool", "asset_id": "quest-synthetic-patent-rights", "currency": "USD"},
+    "observed_at": "2026-07-03T00:00:00Z", "evidence_id": "QE-PAYMENT", "source_ref": "synthetic-quest-payment-source"
+  }],
+  "applications": [{
+    "id": "QA-1", "obligation_id": "QO-1", "payment_id": "QP-1", "amount": "1000", "currency": "USD", "effective_date": "2026-07-02",
+    "scope": {"agreement_id": "quest-synthetic", "participant_id": "quest-synthetic-participant", "pool_id": "quest-synthetic-pool", "asset_id": "quest-synthetic-patent-rights", "currency": "USD"},
+    "observed_at": "2026-07-03T00:00:00Z", "evidence_id": "QE-APPLICATION", "source_ref": "synthetic-quest-application-source"
+  }],
+  "evidence": [
+    {"id": "QE-OBLIGATION", "observed_at": "2026-07-03T00:00:00Z", "source_ref": "synthetic-quest-obligation-source"},
+    {"id": "QE-PAYMENT", "observed_at": "2026-07-03T00:00:00Z", "source_ref": "synthetic-quest-payment-source"},
+    {"id": "QE-APPLICATION", "observed_at": "2026-07-03T00:00:00Z", "source_ref": "synthetic-quest-application-source"},
+    {"id": "QE-DUE-DATE", "observed_at": "2026-07-03T00:00:00Z", "source_ref": "gregorian-calendar-2026-v1"},
+    {"id": "QE-PAID-DATE", "observed_at": "2026-07-03T00:00:00Z", "source_ref": "gregorian-calendar-2026-v1"}
+  ],
+  "calendar": {
+    "id": "gregorian-2026", "version": "1", "origin": "2026-01-01", "source_ref": "gregorian-calendar-2026-v1",
+    "observations": [
+      {"id": "QC-DUE", "date": "2026-01-01", "ordinal": "0", "observed_at": "2026-07-03T00:00:00Z", "evidence_id": "QE-DUE-DATE", "source_ref": "gregorian-calendar-2026-v1"},
+      {"id": "QC-PAID", "date": "2026-07-02", "ordinal": "182", "observed_at": "2026-07-03T00:00:00Z", "evidence_id": "QE-PAID-DATE", "source_ref": "gregorian-calendar-2026-v1"}
+    ]
+  }
+}

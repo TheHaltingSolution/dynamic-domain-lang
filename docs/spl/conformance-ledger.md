@@ -13,6 +13,53 @@ M1 cases. Defensive IR admission includes 15 negative unit/currency cases,
 including otherwise empty collection paths. Historical audit rows below keep their original
 snapshot scope; the execution updates supersede their absence statements.
 
+## DYN-02 supplemental method-fit evidence
+
+The [design assessment](dyn02-design-answer.md) recommends **no reserved core
+capability yet**. The earlier supplied-day Quest probe remains historical
+evidence: four positive cases calculated in native interpretation and emitted
+Lean, and three invalid-input cases blocked in both. That probe used positive
+half-away rounding; its non-tie 95.17 baseline and separate minimum qualifying
+cent 95.18 were valid for its dated scope. Its original artifacts are unchanged.
+
+The [external review record](C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/dyn02-compiler-review/review.json)
+retains that probe. On 23 November 2026, the
+[registered Quest method](../../cases/quest/README.md) implements the selected
+[two-flow fixture](quest-two-flow-fixture.md) with half-even rounding on the
+additional charge. Original obligation/payment/application and evidenced calendar
+dates enter the generic canonical boundary; SPL looks up both date ordinals,
+derives elapsed days, computes the charge and checks exact rational rounding
+certificates. A June 30 ordinal 180 to July 2 ordinal 182 case derives two days,
+using only those two supplied endpoint observations. The adapter transports facts
+and validates Gregorian consistency without computing elapsed days or finance.
+
+The selected baseline gives additional charge USD 95.17 and separately supplied
+actual principal paid USD 1000. The minimum-return alternative remains USD 95.18,
+not the selected result. Half-cent ties give USD 0.00 for principal USD 0.01 at
+50% over 365 days and USD 0.02 for principal USD 0.03. These distinguish half-even
+on the additional charge from half-away and round-terminal-total alternatives.
+Monthly and combined status remain text `not_computed` and
+`unresolved_not_computed`; no additional payment is invented, and no financial
+state slots are introduced. Evidence remains proposed `research_assumption`.
+
+The supplemental unified Quest batch passed 34 checks in 402.120 seconds,
+covering canonical/native/reference execution and the independent oracle. The
+86-target build and both smokes passed. Compiler/schema sources, the 45 kernel
+pins, build identities, the existing `0.4.3-dev` record and old probe remain
+unchanged. This is a new library/registered-method fit, not a core extension,
+new baseline or rerun of the dated 352-check snapshot. The separate nine-scenario
+review also passes native IR/generated Lean/reference comparisons and independent
+exact certificate checks, including both ties and the non-origin due-date case.
+
+The supplied acceptance answers resolve the selected fixture sufficiently for
+implementation; they are not reopened by these checks. Partial/multiple flows,
+monthly/combined liability, professional approval, operational Excel equivalence
+and project-owner acceptance of the adjacent patent-rights domain remain outside
+the accepted calculation scope. The pre-FX gate is unchanged, with no reserved
+capability. Reported FAME FX and complete-period LG method fits also do not
+establish native EUR/FX type support or complete canonical C15 integration.
+Keep their source-level expressibility separate from the family statuses below.
+
 ## Execution update: reusable kernel implementation
 
 The original source audit below describes profile 0.3 before this implementation
@@ -91,7 +138,7 @@ coverage or professional approval is implied.
 | C12 Actual payments and obligations | P | P | [Correction-payment](../../cases/mechanisms/correction-payments.spl) and [revision](../../cases/revision/restatement.spl) distinguish entitlement 90, actual paid 80 and outstanding 10; MQP distinguishes actual-paid and fee-available balances. Canonical minimum-payout/deferment carry and a broader issued/paid obligation lifecycle remain open; no bank execution is implemented. |
 | C13 Corrections and replay | P | P | [Revision checks](../../Tests/test_revision.py) exercise authorized original/replacement references, original opening, conserved 500 cash, revised entitlement 90, delta -10, paid 80, duplicate/replay rejection and outstanding as-of 10. General dependent-period replay, linked reversal alternatives and separately authorized prospective adjustment/application are not completed. |
 | C14 Effective terms and calendars | P | P | Cedar effective intervals, half-open periods, exact as-of cutoffs, readable Gregorian quarters and E1 calendar-month derivation execute. General amended-term chains, fiscal periods, supplied business-day calendar relations and the declared day-proration witness still need methods and integration. |
-| C15 Currency and FX | A | A | Exact USD calculations and currency/scope rejection exist. Typed USD/EUR money and quote units/direction/date selection, conversion, separate contract/payment currencies and explicit FX rounding have no implemented end-to-end witness. USD arithmetic does not count as multi-currency support. |
+| C15 Currency and FX | A | A | Exact USD calculations and currency/scope rejection exist. The [DYN-02 analysis](dyn02-design-answer.md) reports a record-backed receipt-FX method fit, so ordinary conversion arithmetic must not be described as financially inexpressible. Native typed USD/EUR money, quote units/direction, separate contract/payment currencies and the complete canonical conversion/rounding witness remain absent. The reported method fit does not complete those C15 requirements. |
 | C16 Statement adjustments | A | A | No supplied withholding-rate plus minimum-payout/unpaid-balance method and canonical witness is implemented. Existing fees, recovery and synthetic LG payment holdback provide other statement components but do not establish this family's withholding/deferment semantics. |
 | C17 Reusable contracts and reporting | I | I | [Generic module checks](../../Tests/test_modules.py), Cedar and multi-participant waterfall demonstrate typed parameterized imports, new registrations without contract-name dispatch, named statements/detail/state, scenario-isolated dependencies and deterministic semantic identity with retained source/policy lineage. This status covers the finite calculation/interface requirement; it does not claim an enterprise contract repository, payment service or concurrent distributed settlement system. |
 

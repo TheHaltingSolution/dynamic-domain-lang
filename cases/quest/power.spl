@@ -1,0 +1,20 @@
+// Pure exact integer power over the bounded nonnegative integral exponent domain.
+// The fixed bit slots are an algorithm budget, not a financial input or answer.
+schedule QuestIntegerPower language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input base: Ratio;
+  input exponent: Ratio;
+  require exponent >= 0.0 and exponent <= 365.0 else "QUEST_POWER_DOMAIN";
+  require quantize(exponent, 1.0, "floor") == exponent else "QUEST_POWER_INTEGER";
+  define bit_slots = [0,1,2,3,4,5,6,7,8];
+  define powered = fold bit_slots from {remaining:exponent, factor:base, product:1.0} with state,slot {
+    define half = quantize(state.remaining / 2.0, 1.0, "floor");
+    define odd = state.remaining - 2.0 * half;
+    yield if state.remaining == 0.0 then state else {
+      remaining:half,
+      factor:if half == 0.0 then state.factor else state.factor * state.factor,
+      product:if odd == 1.0 then state.product * state.factor else state.product
+    };
+  };
+  require powered.remaining == 0.0 else "QUEST_POWER_BUDGET";
+  define result = powered.product;
+}

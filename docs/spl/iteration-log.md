@@ -1,5 +1,48 @@
 # SPL iteration log
 
+## 23 November 2026: Quest half-even method and canonical fixture verified
+
+The new dated `DYN02-QUEST-TWOFLOW-NEAREST-EVEN@1`
+[method and execution guide](../../cases/quest/README.md) implement the selected
+[two-flow fixture](quest-two-flow-fixture.md) using the unchanged `0.4.3-dev`
+kernel. The [financial source](../../cases/quest/charge.spl), pure
+[integer-power library](../../cases/quest/power.spl) and
+[readable policy](../../cases/quest/policy.md) are registered through the
+existing generic module boundary. Original obligation/payment/application
+records, evidenced calendar facts, clause identity and availability cutoff
+remain visible. The earlier half-away computation probe is preserved unchanged;
+it is separate evidence from this newly selected half-even method.
+
+SPL derives elapsed days from the original due/payment date observations,
+computes the additional target-return amount, selects parity from its own cent
+index and asserts exact rational rounding-cell certificates. The baseline
+keeps actual principal paid at USD 1,000 and calculates additional USD 95.17;
+USD 95.18 is retained separately as the minimum qualifying amount. The full-year
+USD 0.01/50% and USD 0.03/50% ties produce additional USD 0.00 and USD 0.02.
+The independent neutral-fact oracle derives days with Python date arithmetic,
+nominates cents with Decimal logarithms/exponentials and accepts exact Fraction
+certificates. It shares no compiler numeric search and provides no solved
+financial value to the adapter or SPL.
+
+The single combined new-Quest run passed all 34 checks in 402.120 seconds:
+20 independent oracle, nine canonical and five direct checks. The 86-target
+build and both smokes passed, with the `0.4.3-dev` kernel unchanged. The separate
+nine-scenario full comparison review also passes native IR/generated Lean/reference
+execution and independent exact certificates, including both ties and the two-day
+non-origin case. The earlier 352-check full baseline was not rerun or republished.
+The separate compatibility rerun also passes six original/readable cases and
+three accounting mechanisms without refreshing their fixtures or packages.
+
+This is a reusable method/library and canonical fixture, with no new solver,
+power/root/XIRR operation, date-difference builtin or core extension. The
+calendar `date` fact is mapped mechanically to source field `calendar_date`
+because `date` is a reserved keyword; that spelling adds no date semantics.
+Existing toy/scalar proof scopes are unchanged. The policy remains proposed
+`research_assumption`, calculated and unissued. Monthly and combined liability,
+partial/multiple cash-flow rules, Excel operational equivalence, professional
+approval and owner acceptance of the adjacent patent-rights domain remain
+unestablished.
+
 ## 22 November 2026: M1b typed quantities verified locally
 
 Profile `0.4.3-dev` completed local verification on `feature/spl-typed-quantities`;
