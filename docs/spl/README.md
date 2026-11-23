@@ -1,5 +1,9 @@
 # Screen Participation Language design
 
+For session continuity, start with the
+[23 November compiler session handoff](session-handoff.md): current branch,
+completed work, agent roles, setup, evidence and proposed next steps.
+
 23 November 2026 execution update: the proposed
 [Quest two-flow half-even method](../../cases/quest/README.md) now runs through
 the existing `0.4.3-dev` kernel and generic canonical registration. Its new

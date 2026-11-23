@@ -1,5 +1,8 @@
 # dynamic-domain-lang
 
+For a new implementation session, read the
+[compiler session handoff](docs/spl/session-handoff.md) after `AGENTS.md`.
+
 Research infrastructure for dynamic domain-specific languages, starting with
 Screen Participation Language for film and television participation accounting.
 
