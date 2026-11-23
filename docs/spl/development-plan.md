@@ -1,5 +1,32 @@
 # SPL development plan: feature coverage, validation and scale
 
+## 23 November continuation: initial validation campaign completed
+
+The [feature/test matrix](feature-test-matrix.json) and
+[validation command](conformance-validation.md) implement the first bounded
+milestone proposed in the session handoff. Twelve implemented variations map to
+14 exact unittest methods with requirement IDs, inputs, inspected backend stages,
+properties and oracle limits; six gaps remain separate. Eight reproducible
+neutral-fact cases compare reference, native IR and native-emitted Lean against
+independent exact controls. Source/input snapshots, replay, per-backend outcomes
+and three separate compiler/settlement/domain reports are retained externally.
+
+The complete default campaign passed in 468.912938 seconds, with all 14 witness
+methods passing and no changed source bytes during execution. All 19 new harness
+tests passed together in 32.266570 seconds; the build and both smokes passed.
+The [verification index](conformance-validation-result.json) records evidence.
+The old 352/34 verification cohorts and 386 discovery count remain historical;
+there was no new full-cohort regression or baseline replacement. Kernel identities
+remain unchanged.
+
+Next extend generated source templates with successful else/short-circuit and
+priority-selection variants, then distinct invalid source/IR/canonical-package
+cases. The guide specifies the bounded next increment. Systematic mutation
+classification, direct emitted-target decision coverage and workload measurement
+remain later phases. The initial matrix does not close the broader C1 inventory,
+the independent SV/LG-oracle gap or the required-extension selection question.
+Native EUR/FX remains behind the existing selection gate.
+
 M1b typed quantities completed local profile `0.4.3-dev` verification on
 22 November 2026 on `feature/spl-typed-quantities`; `main` remains at merged
 `018dde1` unchanged. The [implementation baseline](implementation-baseline.json)

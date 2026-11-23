@@ -1,5 +1,39 @@
 # SPL iteration log
 
+## 23 November 2026: first bounded conformance campaign verified
+
+Continued the session handoff using three delegated workstreams for the matrix,
+neutral generated controls and trace analysis, with root integration/review.
+The [validation guide](conformance-validation.md) describes the command, exact
+scope and next increment. Twelve bounded variants now map to 14 executable
+witness methods; six gaps remain explicit. The full command passes those
+14 methods plus eight generated cases in 468.912938 seconds, with no source
+changes during execution. The matrix batch itself passed in 439.173 seconds.
+All 19 new harness methods passed together in 32.266570 seconds. The 86-target
+build and both smokes passed. A seed-7 single-case replay passed in 5.423862
+seconds and correctly left matrix witnesses unexecuted.
+
+Retained artifacts include exact source/bindings/expectations, emitted Lean,
+backend outputs, raw witness logs, source snapshots and separate coverage-scope
+reports. Independent review recomputed all eight observation reports and checked
+source hashes. The generated cohort has 349 native observations, 15 decisions,
+eight skipped roots and three failed observations from two expected blocked
+cases; no target coverage percentage is claimed. Reporting fixes prevent skipped
+or missing witnesses from passing and retain replay seeds/structured diagnostics.
+
+The [verification index](conformance-validation-result.json) pins external
+reports under `artifacts/spl/conformance-20261123`, with new-test and replay
+evidence in adjacent directories. Compiler/runtime/module identities, existing
+fixtures and the `0.4.3-dev` baseline remain unchanged. The old 386 discovery
+count is not a new combined full-suite pass. Additional source templates,
+invalid-input generation, systematic mutations, target instrumentation and
+workload measurements remain future work; no required core extension is selected.
+
+Final archive audit: the general source-freeze inventory now includes the new
+`validation/` package, with its existing one-method inventory regression extended
+and passing separately in 0.105209 seconds after the calculation campaign.
+This archive-helper follow-up changes no calculation/compiler/campaign code.
+
 ## 23 November 2026: Quest half-even method and canonical fixture verified
 
 The new dated `DYN02-QUEST-TWOFLOW-NEAREST-EVEN@1`

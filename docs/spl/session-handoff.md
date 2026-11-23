@@ -1,5 +1,16 @@
 # SPL compiler session handoff
 
+**Continuation update, 23 November 2026:** the initial feature/test matrix and
+bounded validation harness described below are now implemented and verified.
+Read the [current validation guide](conformance-validation.md) and
+[verification index](conformance-validation-result.json) before resuming the
+older planning sections. Eight generated cases, 14 mapped test methods and
+19 new harness checks pass; six matrix gaps remain. Next add successful
+else/short-circuit/selection templates and separate invalid-source/IR/package
+generation. The historical handoff below records the earlier `3cc3600` starting
+point; its statements that the harness had not started are superseded by this
+continuation. Kernel baseline, proof limits and the pre-FX gate are unchanged.
+
 23 November 2026. For the next implementation session in
 `C:\TheHaltingSolution\dynamic-domain-lang`.
 

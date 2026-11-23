@@ -1,5 +1,20 @@
 # SPL design conformance ledger
 
+## 23 November continuation: executable validation index
+
+The new [feature/test matrix](feature-test-matrix.json) maps selected ledger IDs
+to exact tests, inputs, stage declarations, assertions and oracle limits.
+The [default campaign](conformance-validation.md) passed eight generated cases
+through reference/native IR/emitted Lean and all 14 mapped unittest methods;
+12 bounded matrix rows receive passing execution credit and six remain gaps.
+Nineteen new harness checks pass in one combined run; build/both smokes pass.
+See the [verification index](conformance-validation-result.json) for exact scope,
+timing, source hashes and artifacts. This is an executable index of selected
+variations, not a replacement for this broader ledger or a closure of whole
+families. Interpreter decisions, uninstrumented target decisions and domain
+witnesses remain separate. The kernel baseline and identities are unchanged;
+no full historical regression rerun is claimed.
+
 M1b profile `0.4.3-dev` completed local verification on 22 November 2026 on
 `feature/spl-typed-quantities`; `main` remains at merged `018dde1` unchanged.
 The [implementation baseline](implementation-baseline.json) is a local record,

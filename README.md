@@ -3,6 +3,12 @@
 For a new implementation session, read the
 [compiler session handoff](docs/spl/session-handoff.md) after `AGENTS.md`.
 
+23 November 2026 continuation: the first
+[bounded conformance campaign](docs/spl/conformance-validation.md) is implemented
+and verified. It maps 12 supported variations and six explicit gaps, runs eight
+generated cases through three backends and executes 14 existing witness methods.
+The 19 new harness checks pass; the kernel baseline remains `0.4.3-dev`.
+
 Research infrastructure for dynamic domain-specific languages, starting with
 Screen Participation Language for film and television participation accounting.
 

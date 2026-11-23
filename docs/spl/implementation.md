@@ -1,5 +1,25 @@
 # SPL compiler: reusable kernel and canonical methods
 
+## Supplemental bounded validation: 23 November 2026
+
+The [conformance command and guide](conformance-validation.md) now connect a
+machine-readable requirement/test matrix to reproducible generated cases,
+independent exact expectations, reference/native-IR/native-emitted results and
+source-qualified native decision observations. The complete default campaign
+passes eight generated cases and 14 existing test methods in 468.912938 seconds,
+crediting 12 bounded matrix rows while retaining six gaps. The 19 new harness
+tests pass together; the 86-target build and both smokes pass.
+
+The [verification index](conformance-validation-result.json) records report
+hashes, replay evidence and external source/input snapshots. Source stability
+checks pass; compiler/runtime/module identities equal the existing `0.4.3-dev`
+record. This adds validation tooling outside the kernel and canonical schemas.
+The baseline is unchanged and the historical full regression cohort was not
+rerun. Generated traces are interpreter observations, with no emitted-target
+decision instrumentation or coverage denominator. Matrix backend labels describe
+inspected test paths rather than per-test instrumentation. The guide records
+unobserved generated paths and the next negative-generation increment.
+
 M1b typed quantities are implemented and verified locally on
 `feature/spl-typed-quantities` as profile `0.4.3-dev`. The branch
 starts at merged commit `018dde1`; `main` is unchanged. The published M1a record

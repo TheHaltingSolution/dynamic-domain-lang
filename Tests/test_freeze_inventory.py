@@ -10,7 +10,10 @@ class FreezeInventoryTests(unittest.TestCase):
         required = {'lean-toolchain', 'lakefile.toml', 'SPL/Runtime.lean', 'SPL/Bindings.lean',
                     'spl_compiler/modules.py', 'spl_compiler/codecs.py',
                     'schemas/spl-module-descriptor.schema.json', 'schemas/spl-module-package.schema.json',
-                    'schemas/spl-bounded-package.schema.json', 'scripts/spl_check.py'}
+                    'schemas/spl-bounded-package.schema.json', 'scripts/spl_check.py',
+                    'scripts/spl_conformance.py', 'docs/spl/feature-test-matrix.json',
+                    'validation/__init__.py', 'validation/generated_cases.py',
+                    'validation/trace_coverage.py'}
         self.assertTrue(required <= inventory, required - inventory)
         self.assertFalse(any(name.startswith(('.lake/', '.git/')) for name in inventory))
 

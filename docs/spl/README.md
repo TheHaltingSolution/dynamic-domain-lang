@@ -1,5 +1,12 @@
 # Screen Participation Language design
 
+The [bounded conformance-validation guide](conformance-validation.md) records
+the completed first validation milestone: an executable feature/test matrix,
+independent seeded boundary controls, retained replay inputs and native IR
+decision observations. All eight generated cases, 14 mapped witness methods and
+19 new harness checks pass. Six matrix gaps remain explicit; this supplemental
+campaign does not replace the historical kernel baseline or full-suite record.
+
 For session continuity, start with the
 [23 November compiler session handoff](session-handoff.md): current branch,
 completed work, agent roles, setup, evidence and proposed next steps.
