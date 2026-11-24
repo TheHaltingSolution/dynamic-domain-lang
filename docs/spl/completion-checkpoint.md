@@ -22,6 +22,20 @@ compiler tool/skill demonstration, after the other current goals. Native FX
 stays out now; read [the decision](ld03-owner-decision.md). The later tool adds
 one deferred item, so the current backlog has73 items.
 
+## Later accepted Disney slice
+
+The first-dollar merchandising trigger-period method now passes39 combined
+oracle/module methods and six completed bundles: actualQ1-Q4 carry, baseline
+and preview, with full independent/ref/nativeIR/native-emitted/Python-emitted
+controls. Q3 catches up210 and newly recognizes472.50; total unpaid527.50 keeps
+old issued arrears55 separate. Q4 recognizes0; preview has no closing state.
+Max actual result55,194,678 bytes leaves11,914,186 under64MiB. Evidence:
+`merchandising-reprice-checks-cf96f81d`,20ea/a516/673, no source drift.
+This closes only the selected bounded C04/trigger-period witness; general C13
+restatement remains open. [Case and scope](../../cases/merchandising-reprice/README.md).
+Current backlog24 complete items; bounded matrix35rows/31witnessed/fourgaps/
+49selectors. No new combined49-selector campaign is claimed.
+
 ## Executed financial slices
 
 These are separate frozen cohorts, rather than test counts to add into a

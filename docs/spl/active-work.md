@@ -147,12 +147,14 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   verified poll. Its isolated old snapshot excludes subsequent publication,
   Python-emitter, Genius and unit changes. Do not restart merely because logs
   are quiet; poll this handle/final verification.
-- Disney cf96f81d: exec78966, current20ea/a516/673 sources frozen. Six actual
+- Disney cf96f81d: COMPLETED PASS, exec78966 ended,20ea/a516/673 sources stable. Six actual
   completed/loader-validated bundles have passed independent and separate
   Python-emitter controls: baseline41,187,283; Q1 10,147,582; Q2 24,742,448;
   Q3 41,925,067; Q4 55,194,678; preview32,985,527 bytes. Q4 catch-up/new
-  recognition0, preview closing_state empty; full39-method cohort is running.
-  These six outputs alone are not final family acceptance.
+  recognition0, preview closing_state empty; full39-method cohort passed811.007496s, zero failures/errors/skips/source drift.
+  Actual six-bundle phase213.527360s, total1024.575564s. Only README evidence
+  changed after the run; code/test/descriptor/template hashes remain identical.
+  This is selected bounded C04/trigger-period acceptance, not generalC13replay.
 - Failed Disney84046c1c retained the180s Python-driver timeout before39 tests.
   After c35f274, separate followup331b80a7 passes11.592059s at the same180s cap.
   Failed9e70aa8b retained a mechanical carry-helper unknown movement field.
@@ -171,7 +173,7 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 ## Delegated ownership and next steps
 
 - `validation_matrix`: finished AO/civil cohorts; completed the atomic C1 variant
-  catalog, now native Disney implementation against immutable oracle/facts.
+  catalog, completed native Disney acceptance; next Genius source after checkpoint.
   Root reviewed78 stable semantic IDs:75 required C1, two supporting, one unselected alternative; nine engineering entries are a separate axis. This is a planning denominator, not passing evidence or72tasks/195rows/testcount.
 - `validation_generated`: Genius basis-reserve oracle frozen32 methods with five
   actual serialized periods, artifact `basis-reserve-oracle-20261123-5ed65f08`.
@@ -208,6 +210,6 @@ are stable at20ea/a516/673. Do not change it during another native freeze.
 
 Remaining work is in the73-item backlog, including separate C10 burden,
 cent allocation, sourced reserves/gates/repricing, replay and schema/transport/
-diagnostics/reporting variants. The backlog records23 complete items; task
+diagnostics/reporting variants. The backlog records24 complete items; task
 counts do not measure language coverage. Whole-compiler proof, professional
 approval and external custody remain separately scoped obligations.

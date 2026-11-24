@@ -2,6 +2,18 @@
 
 ## Active C1 continuation
 
+The selected Disney first-dollar trigger-period policy now passes39 combined
+methods with six actual completed native/reference/Python-emitted bundles.
+Original issues1365/actualpaid1310 remain separate from repriced recognized1837.50;
+catch-up210 plus current262.50 yields new472.50 and unpaid527.50. ActualQ1-Q4
+carry recognizes210 once, Q4new0; preview is partial/no closing state. This
+supersedes the historical C04 absence for the bounded adopted variant, not
+unselected CB policies, amended statements or general C13 replay. Max result
+55,194,678 bytes is an observed four-period witness, not the8-period input limit.
+[Accepted source/evidence](../../cases/merchandising-reprice/README.md).
+The current bounded matrix has35rows/31witnessed/fourgaps/49selectors; four
+inventory checks pass, with no new combined selector campaign.
+
 Later owner sequence: native mixed currency stays out now, reserved for the
 self-modifying compiler tool/skill demonstration after the other current goals.
 The [decision](ld03-owner-decision.md) records this explicitly; the current

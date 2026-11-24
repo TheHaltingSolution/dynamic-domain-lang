@@ -17,9 +17,11 @@ execution evidence or a percentage of language programs.
 The later finite C08 payment-aware offset and C14 supplied civil-day variants
 now have separate37- and27-method passing native/oracle cohorts. Their actual
 capacity and supplied-evidence limits remain in [live work](active-work.md).
-The backlog now records23 complete items; these task counts are not coverage
-percentages. The bounded matrix has34 rows/30 witnessed/four gaps/45 selectors,
-with no new combined matrix campaign claimed. The emitter definition-cache
+The backlog now records24 complete items; these task counts are not coverage
+percentages. The bounded matrix has35 rows/31 witnessed/four gaps/49 selectors,
+with no new combined matrix campaign claimed. Disney39 and six actualQ1-Q4/preview
+bundles now close the selected first-dollar trigger-period lane, while general
+C13dependent-period replay remains open. The emitter definition-cache
 repair is promoted through38 focused methods, a94-job build and both smokes.
 
 [RR04/LD03 responses](rr04-ld03-integration.md) are now received. The missing

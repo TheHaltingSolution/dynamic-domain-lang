@@ -56,7 +56,7 @@ This document records no new combined whole-corpus run.
 | C01 Selection | Required unique, unique with fallback, greatest-priority with fallback; original canonical rule/evidence records | Review finite supplied-slot/source-form limits; do not infer a rule-management service. |
 | C02 Bases/rates | Quantity-based fixed rates and separate participation; existing named percentage cases | Register/map the general gross125/net100 at20% discriminator25/20. Versioned explicit usage conversion remains an engineering obligation. |
 | C03 Deductions | Six source recipes, five monetary formulas under the selected equivalence, original cost identity and cap carry | Preserve eligibility, stage and cap identity controls. Reconcile monetary-equivalent mutants separately from financial kills. |
-| C04 Escalation | Period marginal/whole-base plus five original-history synthetic methods | Disney first-dollar catch-up210 has independent26 controls; native/canonical implementation and completed carry remain pending. Synthetic repricing22 is a different method. |
+| C04 Escalation | Period marginal/whole-base plus five original-history synthetic methods | Disney first-dollar catch-up210 now passes39 combined methods and six completed full-control bundles with actualQ1-Q4/preview; selected trigger-period recognition only. Synthetic repricing22 is a different method. |
 | C05 Guarantees | Period/cumulative cap, nonrecoupable period floor and seven term/funding/order recipes | Review exact policy/meter scopes; an advance face amount is not evidence of funding. |
 | C06 Allocation | Approved direct allocation and complete weighted-pool witnesses | Rounded residual work is active; original-parent conservation, zero denominator/fallback and generic relationship/cardinality mapping require separate closure. |
 | C07 Waterfalls | Priority/pro-rata capital and a selected participant advance mechanism | Map the finite mixed-kind composition still required. AO's two recovery kinds do not establish every capital/advance/fee mixture. |
@@ -124,8 +124,12 @@ The retained records below are under
   validation is a separate adapter boundary. Midnight, submicroseconds and
   23/25-hour cells are covered. State is empty; reader/pool envelope labels are
   nonfinancial execution metadata.
-- `merchandising-reprice-oracle-20261123-ec7a285a/verification.json`:26
-  independent original-fact controls pass. Native source acceptance is pending.
+- `merchandising-reprice-checks-cf96f81d/verification.json`:39 combined methods
+  pass on20ea/a516/673, plus six actual completed/loader-validated bundles.
+  Q1-Q4 carry and preview compare complete independent/source/state controls.
+  ActualQ4 result55,194,678 bytes leaves11,914,186 under64MiB; no general8-period
+  capacity or statement-amendment claim. Carry purity5970c3c9 is separate.
+  Earlier26-oracle evidence remains its original dated record.
 
 These checks supply no professional approval of final accounts. Source economic
 review, proposed synthetic operating policy and final professional bundle
@@ -150,9 +154,10 @@ Root owns those files; this draft makes no edits to them.
 4. The matrix's `authorized-prospective-offsets` row is witnessed for its
    bounded descriptions. Add C13/F29/F30 links if useful to expose that shared
    obligation, while retaining the explicit general-restatement exclusion.
-5. `B-C04-RETRO` now has source/policy selection and independent26 controls;
-   native implementation is ready to start. It is not complete. The existing
-   synthetic C04 methods cannot close this named first-dollar lane.
+5. `B-C04-RETRO` is now complete for the selected bounded trigger-period
+   policy. Its39-method native/oracle acceptance and six actual bundles are
+   distinct from synthetic repricing22. GeneralC13replay is no longer an enabling
+   dependency for this selected route, and remains a separate open obligation.
 6. Keep the C10 burden, Genius basis-reserve, LG split/reopen and native FX
    obligations visible. AO/civil passes do not close those unrelated gaps.
 

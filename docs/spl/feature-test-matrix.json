@@ -1179,7 +1179,7 @@
       ],
       "limitations": [
         "Synthetic cumulative-reprice22 is distinct from the newly specified Disney first-dollar merchandising catch-up.",
-        "Sourced retro economics/proposed recognition workflow and broader dependent-period adjustments remain separate work."
+        "The separately mapped Disney source/trigger-period workflow now has native evidence; general dependent-period adjustments remain separate."
       ]
     },
     {
@@ -1371,6 +1371,104 @@
       "limitations": [
         "Finite supplied evidence, not IANA resolution or a universal timezone engine.",
         "State is empty; generic reader/pool labels are execution metadata with no financial scope or payment inference."
+      ]
+    },
+    {
+      "id": "disney-first-dollar-trigger-catchup",
+      "requirements": [
+        "C04",
+        "C13",
+        "F29",
+        "C12"
+      ],
+      "description": "Selected first-dollar merchandising repricing with current-period catch-up, immutable old issues/actual payments, original as-known views and actual adjacent carry.",
+      "status": "witnessed",
+      "witnesses": [
+        {
+          "test": "Tests.test_merchandising_reprice_modules.MerchandisingRepriceModuleTests.test_native_all_intermediates_original_issues_paid_and_completed_publication",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/merchandising-reprice/merchandising-reprice.spl",
+            "cases/merchandising-reprice/neutral.json",
+            "cases/merchandising-reprice/policy.md"
+          ],
+          "property": "Thresholds77/87/107m; old455/910 repriced525/1050 give210catch-up; current262.50,new472.50,issued1365/paid1310,unpaid527.50 remain separate.",
+          "oracle": "Separately authored oracles/merchandising_reprice.py consumes original dated facts before projection and compares every material intermediate/history/state."
+        },
+        {
+          "test": "Tests.test_merchandising_reprice_modules.MerchandisingRepriceModuleTests.test_native_actual_serialized_q1_q2_q3_q4_carry_recognizes210_once",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/merchandising-reprice/merchandising-reprice.spl",
+            "cases/merchandising-reprice/neutral.json",
+            "cases/merchandising-reprice/policy.md"
+          ],
+          "property": "Actual validated Q1-Q4 closing cells are serialized and consumed with real prior_result_ref; Q4catch-up/new0 prevents recognizing210again.",
+          "oracle": "Separately authored oracles/merchandising_reprice.py consumes original dated facts before projection and compares every material intermediate/history/state."
+        },
+        {
+          "test": "Tests.test_merchandising_reprice_modules.MerchandisingRepriceModuleTests.test_native_pretrigger_preview_is_partial_and_has_no_consumable_state",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/merchandising-reprice/merchandising-reprice.spl",
+            "cases/merchandising-reprice/neutral.json",
+            "cases/merchandising-reprice/policy.md"
+          ],
+          "property": "Pre-trigger partial view produces candidate227.50, retains old finalized recognition and no consumable closing state.",
+          "oracle": "Separately authored oracles/merchandising_reprice.py consumes original dated facts before projection and compares every material intermediate/history/state."
+        },
+        {
+          "test": "Tests.test_merchandising_reprice_modules.MerchandisingRepriceModuleTests.test_native_threshold_equality_exact_fraction_and_original_raw_lexemes",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/merchandising-reprice/merchandising-reprice.spl",
+            "cases/merchandising-reprice/neutral.json",
+            "cases/merchandising-reprice/policy.md"
+          ],
+          "property": "Inclusive thresholds including107m, exact fraction, original lexical records and arbitrary Unicode receipt identity remain distinct from source amount spaces.",
+          "oracle": "Separately authored oracles/merchandising_reprice.py consumes original dated facts before projection and compares every material intermediate/history/state."
+        }
+      ],
+      "limitations": [
+        "Selected bounded trigger-period policy and zero priorCB-credit profile; amended statements/general dependent-period restatement are separate.",
+        "Scope/physical/missing-population failures receive their actual preflight/native stage; native value agreement does not establish emitted-target decision coverage.",
+        "ActualQ4 result55,194,678 bytes leaves11,914,186 below64MiB; no general eight-period capacity."
       ]
     }
   ]

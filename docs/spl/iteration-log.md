@@ -1,5 +1,17 @@
 # SPL iteration log
 
+## 23 November 2026: first-dollar trigger-period source accepted
+
+Disney39 combined oracle/module methods pass811.007496s, plus a213.527360s
+six-bundle baseline/actualQ1-Q4/preview phase, total1024.575564s. All55 watched
+source pins and20ea/a516/673 stay stable. Catch-up210, new472.50, unpaid527.50,
+old issue/payment separation, Q4new0 and preview no closing state compare in all
+selected backends and independent original-fact controls. Max result55,194,678
+bytes leaves11,914,186 under64MiB; input bounds are not publication capacity.
+Only the adopted trigger-period lane closes; generalC13replay/amended statements
+remain separate. Earlier a-g/84046c1c/9e70aa8b failures remain retained.
+Evidence: `merchandising-reprice-checks-cf96f81d` and carry purity5970c3c9.
+
 ## 23 November 2026: secondary emitter cached definitions
 
 Python-generated Lean still used uncached definition closures after native Emit

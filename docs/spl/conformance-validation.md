@@ -1,11 +1,11 @@
 # Bounded conformance validation
 
-Current continuation: the mutable matrix has 34 rows: 30 witnessed variations
-and four explicit gaps, mapped to 45 unittest selectors. These include the
+Current continuation: the mutable matrix has 35 rows: 31 witnessed variations
+and four explicit gaps, mapped to 49 unittest selectors. These include the
 bounded original-rate returns and authorized current-entitlement transfers.
 The counts and hashes below describe the original 12-row/fourteen-selector
 campaign, whose matrix and source bytes remain archived. New methods and layers
-have separate execution records; a new combined 45-selector campaign is not
+have separate execution records; a new combined 49-selector campaign is not
 claimed here.
 
 `--corpus decisions` selects twelve cells over six source templates; `--corpus

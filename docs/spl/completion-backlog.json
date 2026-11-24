@@ -77,9 +77,9 @@
     {
       "id": "C04",
       "name": "Tiers and escalation",
-      "current_native": "P",
-      "current_canonical": "P",
-      "implemented_and_remaining": "Five named crossing/current-period/row-opening/row-ending/cumulative-reprice synthetic methods now execute with independent12/14/11/14/22 controls, full original historical replay, lexical table/event pin and actual serialized adjacent carry. The30-method combined cohort passes under current323f0d/7a2f98/673 identities. Disney first-dollar merchandising catch-up is a newly specified separate sourced-economic/proposed-operating policy, not this cumulative22 witness; its original facts/independent oracle/native integration remain open.",
+      "current_native": "I",
+      "current_canonical": "I",
+      "implemented_and_remaining": "Accepted finite period marginal/whole-base and five original-history escalation methods plus Disney first-dollar trigger-period catch-up.39-method Disney cohort and actualQ1-Q4/preview bundles pass; historical delta210, new472.50/unpaid527.50, Q4new0, oldissues1365/actualpaid1310 remain distinct. Only the selected bounded policy is complete; broaderCB/statement-amendment policies and generalC13replay remain separate.",
       "work_items": [
         "B-C04-CROSSING",
         "B-C04-RETRO"
@@ -393,22 +393,34 @@
         "F29"
       ],
       "work_class": "research",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "research_evidence",
       "acceptance": [
         "Pin affected historical basis/earnings, effective/observation dates, delta versus total and actual paid/dependent periods for the first sourced retroactive policy.",
         "Then register a reusable method and neutral oracle without overwriting issued results."
       ],
-      "depends_on": [
-        "B-C13-REPLAY"
-      ],
+      "depends_on": [],
       "questions": [],
       "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate.",
-      "active_scope": "Disney first-dollar independently controlled oracle26 passed; separate author implementing native/canonical source on stable shared abee/daf/673 core.",
+      "active_scope": "Accepted Disney first-dollar trigger-period method:39 oracle/module methods plus six actual completed bundles and separate carry-purity controls on20ea/a516/673. Source h uses merchandising-original-json/1 physical state; every original record is restored/pinned, typed finance stays inSPL.",
       "evidence": [
         "docs/spl/merchandising-reprice-design.md",
         "Tests/test_merchandising_reprice_oracle.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-oracle-20261123-ec7a285a/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-oracle-20261123-ec7a285a/verification.json",
+        "cases/merchandising-reprice/README.md",
+        "cases/merchandising-reprice/merchandising-reprice.spl",
+        "Tests/test_merchandising_reprice_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-checks-cf96f81d/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-carry-purity-5970c3c9/verification.json"
+      ],
+      "superseded_dependencies": [
+        "B-C13-REPLAY"
+      ],
+      "dependency_revision": "RR04/LD03 and the reviewed atomic catalog select trigger-period recognition with original issues unchanged. This bounded route does not require general dependent-period restatement; B-C13-REPLAY and the separate40 prospective/restatement discriminator remain open. The alternative amended-old-period route is not selected.",
+      "scope_limits": [
+        "Selected source economics/proposed synthetic trigger-period workflow, not historical account approval or amended-statement processing. Pre-first-switch, nonzero priorCB credit and other source-policy variants stay unsupported as stated inpolicy.",
+        "ActualQ4 result55,194,678 bytes leaves11,914,186 below64MiB. Input guards do not establish eight-period/general-history capacity.",
+        "Earlier a-g publication failures,84046c1c Python-emitter timeout and9e70aa8b carry-helper failure remain archived; they are not repinned or credited as passing."
       ]
     },
     {
@@ -1404,14 +1416,22 @@
         "U19"
       ],
       "work_class": "validation",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "supporting_engineering",
       "acceptance": [
         "Mutate fee/base/order/equality/duplicate counting/state transitions and, after gate, quote/unit orientation with exact source/input/policy domains retained.",
         "Classify killed/survived/invalid-or-equivalent/unexecuted with witness/reason; Quest two selected mutations are not general adequacy percentage."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Four original cases/12mutant definitions complete across four backends; strengthened six-case phase running with same sources/mutants/policy. Invalid-source native-consistency hardening/followup remains before acceptance.",
+      "evidence": [
+        "validation/semantic_mutations.py",
+        "scripts/spl_mutation_campaign.py",
+        "Tests/test_semantic_mutations.py",
+        "docs/spl/semantic-mutation-campaign.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/semantic-mutation-initial-20261123-013d80c1/report.json"
+      ]
     },
     {
       "id": "B-VAL-INVENTORY",
@@ -3851,8 +3871,8 @@
   ],
   "progress_as_of": "2026-11-23",
   "status_counts": {
-    "complete": 23,
-    "ready": 26,
+    "complete": 24,
+    "ready": 25,
     "in_progress": 8,
     "dependency_blocked": 2,
     "partial": 2,

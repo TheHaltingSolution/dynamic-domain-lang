@@ -2,6 +2,16 @@
 
 ## Active C1 continuation
 
+The registered first-dollar merchandising method now passes39 combined methods,
+six completed baseline/actualQ1-Q4/preview bundles and a separate carry-purity
+check. All material financial/original-history/state controls match the separate
+oracle, native IR, native-emitted and Python-emitted execution. Q3catch-up210
+is recognized once; Q4new0 and preview closing_state[] are verified. Max actual
+result55,194,678 bytes fits64MiB with11,914,186 margin. Read
+[the case](../../cases/merchandising-reprice/README.md) for the bounded source/
+operating policy, source-profile changes, earlier failures and final20ea/a516/673
+pins. This closes a selected C04/C13recognition witness, not general restatement.
+
 The secondary Python emitter now uses fresh cached definition thunks too.
 Its old closures caused the separate Disney baseline driver to time out at180s.
 The narrow fix passes34 frozen methods/build/both smokes, with actual old/new

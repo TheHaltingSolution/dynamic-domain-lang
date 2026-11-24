@@ -508,7 +508,7 @@
     "AO selected37 plus actual baseline/three-period completed bundles pass. Third result67025493 of67108864 bytes leaves83371 bytes; source input guard is not an eight-period or general publication-capacity guarantee.",
     "Civil selected27 passes with original supplied zone/version UTC day cells, midnight/submicrosecond/23/25-hour controls and no state. No ambient/IANA timezone or legal-calendar inference.",
     "C10 conserved transfer is not the separately required entitlement burden100 unchanged/200-30=170.",
-    "C04 synthetic cumulative repricing22 is not Disney first-dollar catch-up210; the latter has independent26 controls but native acceptance remains pending.",
+    "C04 synthetic cumulative repricing22 is not Disney first-dollar catch-up210; the latter now passes39 methods and six actual native/reference/Python-emitted bundles under its bounded selected policy.",
     "Native EUR/FX is reserved by explicit owner decision for the later self-modifying compiler tool/demo after the other current goals. Faithful old record-backed FX and rational compounding remain legitimate alternatives.",
     "The historical baseline and accepted Quest/full-period interest methods are preserved. No additional interest convention is selected merely to enlarge this denominator.",
     "Raw incremental overlap/replacement intake, bank execution, vendor parity, distributed service, general optimization and whole-compiler proofs are outside the current finite acceptance.",
@@ -792,16 +792,22 @@
       "sources": [
         "cases/merchandising-reprice/policy.md",
         "cases/merchandising-reprice/neutral.json",
-        "docs/spl/merchandising-reprice-design.md"
+        "docs/spl/merchandising-reprice-design.md",
+        "cases/merchandising-reprice/merchandising-reprice.spl",
+        "cases/merchandising-reprice/build_modules.py",
+        "cases/merchandising-reprice/merchandising-reprice-module.json"
       ],
       "controls": [
         "oracles/merchandising_reprice.py",
-        "Tests/test_merchandising_reprice_oracle.py"
+        "Tests/test_merchandising_reprice_oracle.py",
+        "Tests/test_merchandising_reprice_modules.py"
       ],
       "records": [
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-oracle-20261123-ec7a285a/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-oracle-20261123-ec7a285a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-checks-cf96f81d/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-carry-purity-5970c3c9/verification.json"
       ],
-      "basis": "Parent-reported immutable independent 26-method oracle cohort ec7a285a; native implementation not begun at catalog draft."
+      "basis": "Qualified39-method immutable cohort on20ea/a516/673, six completed full-control bundles including actualQ1-Q4 andpreview. Separate helper purity verifies exact actual cells minus output-only movement, unchanged previous results/artifacts and real prior_result_ref."
     }
   },
   "variants": [
@@ -1320,7 +1326,7 @@
       "name": "Disney first-dollar old entitlement repricing",
       "kind": "financial_method",
       "requiredness": "accepted_c1_variant",
-      "status": "pending",
+      "status": "qualified",
       "requirements": [
         "C04"
       ],
@@ -1329,14 +1335,14 @@
         "merchandising"
       ],
       "execution": {
-        "source": "not_executed",
-        "canonical": "not_executed",
-        "native_ir": "not_executed",
-        "native_emitted": "not_executed",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "reported_independent_oracle_only",
-        "boundary_invalid_controls": "reported_oracle_controls_native_pending",
-        "native_audit": "pending",
+        "source": "qualified_bounded39_and_six_completed_bundles",
+        "canonical": "qualified_bounded39_and_six_completed_bundles",
+        "native_ir": "qualified_bounded39_and_six_completed_bundles",
+        "native_emitted": "qualified_bounded39_and_six_completed_bundles",
+        "python_emitted": "qualified_bounded39_and_six_completed_bundles",
+        "independent_controls": "qualified_bounded39_and_six_completed_bundles",
+        "boundary_invalid_controls": "qualified_bounded39_and_six_completed_bundles",
+        "native_audit": "qualified_bounded39_and_six_completed_bundles",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -1344,9 +1350,14 @@
         "policy": "trigger-period recognition proposed synthetic operating policy; amended route alternative",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "Implement native/canonical source against the immutable original dated Q1/Q2/Q3/Q4 facts and independent controls; retain all intermediates, original obligations/payments, exactly-once210 and completed actual carry. No native credit yet.",
+      "remaining_obligation": "No remaining acceptance for this selected bounded trigger-period witness. General dependent-period replay, amended-old-period recognition and unselectedCB/source variants remain separate; professional approval is not recorded.",
       "related_families": [
         "C13"
+      ],
+      "scope_limits": [
+        "ActualQ4 result55,194,678 bytes under64MiB; no general eight-period capacity.",
+        "Physical state merchandising-original-json/1 retains complete original record content and lexemes; adapter slots are transient associations, not evidence authority or economic identity.",
+        "New source/trace differs from earlier failed drafts; normalized complete financial/original-state comparison does not establish trace identity."
       ]
     },
     {
@@ -2808,7 +2819,7 @@
       "name": "Disney trigger-period catch-up recognition alternative",
       "kind": "recognition_variant",
       "requiredness": "accepted_c1_variant",
-      "status": "pending",
+      "status": "qualified",
       "requirements": [
         "C13"
       ],
@@ -2817,14 +2828,14 @@
         "merchandising"
       ],
       "execution": {
-        "source": "not_executed",
-        "canonical": "not_executed",
-        "native_ir": "not_executed",
-        "native_emitted": "not_executed",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "reported_independent_oracle_only",
-        "boundary_invalid_controls": "reported_oracle_controls_native_pending",
-        "native_audit": "pending",
+        "source": "qualified_bounded39_and_six_completed_bundles",
+        "canonical": "qualified_bounded39_and_six_completed_bundles",
+        "native_ir": "qualified_bounded39_and_six_completed_bundles",
+        "native_emitted": "qualified_bounded39_and_six_completed_bundles",
+        "python_emitted": "qualified_bounded39_and_six_completed_bundles",
+        "independent_controls": "qualified_bounded39_and_six_completed_bundles",
+        "boundary_invalid_controls": "qualified_bounded39_and_six_completed_bundles",
+        "native_audit": "qualified_bounded39_and_six_completed_bundles",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -2832,13 +2843,18 @@
         "policy": "trigger-period operating policy synthetic/proposed",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "Implement native/canonical source against the immutable original dated Q1/Q2/Q3/Q4 facts and independent controls; retain all intermediates, original obligations/payments, exactly-once210 and completed actual carry. No native credit yet.",
+      "remaining_obligation": "No remaining acceptance for this selected bounded trigger-period witness. General dependent-period replay, amended-old-period recognition and unselectedCB/source variants remain separate; professional approval is not recorded.",
       "financial_economic_group": "DISNEY-FIRST-DOLLAR",
       "related_variants": [
         "C04.DISNEY_FIRST_DOLLAR",
         "C13.DISNEY_AMENDED_PERIODS"
       ],
-      "alternative_group": "DISNEY-RECOGNIZE-ONCE"
+      "alternative_group": "DISNEY-RECOGNIZE-ONCE",
+      "scope_limits": [
+        "ActualQ4 result55,194,678 bytes under64MiB; no general eight-period capacity.",
+        "Physical state merchandising-original-json/1 retains complete original record content and lexemes; adapter slots are transient associations, not evidence authority or economic identity.",
+        "New source/trace differs from earlier failed drafts; normalized complete financial/original-state comparison does not establish trace identity."
+      ]
     },
     {
       "id": "C13.OFFSET_CLAWBACK_FIRST",
