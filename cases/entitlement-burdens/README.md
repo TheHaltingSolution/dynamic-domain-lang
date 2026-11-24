@@ -279,3 +279,20 @@ This is finite, isolated compact-profile acceptance. Main/default-path promotion
 and the broader integrated-candidate regression are separate. The old v1 Q3
 publication failure and previous draft failures remain preserved under their
 original source pins.
+
+The separate coherent branch `a0e68cc` is additionally qualified by
+`c10-compact-integrated-20261124-a` on compiler/module/runtime
+`441f0e7c` / `04db83ff` / `77a18c19`. All46 methods pass in1423.861 seconds;
+fresh Q1/Q2/Q3, preview and actual old-v1Q2 bridge also pass, with1642.568283
+seconds total. All724 source and102 compiled pins remain unchanged. There
+are729 process reports:724 successful processes and five expected incomplete-
+publication loader rejections, with zero unexpected/resource/timeout/output
+failures. The record retains66 owned-bundle captures. Sampled child peaks are
+91,303,936 bytes for `runtime256` and683,819,008 bytes for `compiler1g180`.
+All five raw logical/wire hashes and the old issued Q2 bytes match the earlier
+records exactly; financial/source/policy/oracle/physical `/5` pins are unchanged.
+This coherent context includes the independently qualified native and Python
+helper emitters, and every required emitted backend actually executes. It is
+separate evidence from the import-only campaign, under shared host load and
+unchanged guards; the timing difference is not a causal speed or SLA claim.
+Main integration remains gated by the separate broader regression.
