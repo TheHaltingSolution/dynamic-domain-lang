@@ -28,7 +28,83 @@ def run_readable(source, binding_path):
     return evaluate(check_schedule(parse_readable(source)), bindings["inputs"], bindings["openings"])
 
 
+def multiple(rules, extra=''):
+    return tiny(rules, '  input first_party: Id<Participant>;\n  input second_party: Id<Participant>;\n'
+                '  Settle "A" with first_party.\n  Settle "B" with second_party.\n'
+                '  Bind "Participant" to settlement_participant.\n' + extra)
+
+
 class ReadableTests(unittest.TestCase):
+    def test_multiple_settlement_fixture_preserves_roles_and_visible_columns(self):
+        source=load('cases/readable-multi/two-participants-readable.spl')
+        bindings=json.loads(load('cases/readable-multi/bindings.json'))
+        result=evaluate(check_schedule(parse_readable(source)),bindings['inputs'],{})
+        core=evaluate(check_schedule(parse(load('cases/readable-multi/two-participants.spl'))),bindings['inputs'],{})
+        self.assertEqual(result.status,'calculated',result.diagnostics)
+        self.assertEqual(result.emissions,core.emissions);self.assertEqual(result.closing,core.closing)
+        self.assertEqual(result.emissions,{'first':{'participant_id':'first-participant','amount':Fraction(12)},'second':{'participant_id':'second-participant','amount':Fraction(7)}})
+        tree=parse_readable(source,'two.spl')
+        parties=[d for d in tree['declarations'] if (d.get('type') or {}).get('name')=='Id' and d['kind']=='define']
+        self.assertEqual([d['span']['line'] for d in parties],[2,5])
+        self.assertEqual(len({d['name'] for d in parties}),2)
+        reports=[d for d in tree['declarations'] if d['kind']=='emit']
+        self.assertEqual([[k for k,_ in d['expr']['fields']] for d in reports],[['participant_id','amount']]*2)
+        self.assertEqual([d['span']['line'] for d in reports],[4,7])
+
+    def test_repeated_unambiguous_settlement_heading_is_allowed(self):
+        source=multiple('For settlement with A:\n  Report "one": Participant.\nFor settlement with A:\n  Report "two": Participant.')
+        result=evaluate(check_schedule(parse_readable(source)),{'first_party':'a','second_party':'b'},{})
+        self.assertEqual(result.emissions,{'one':'a','two':'a'})
+
+    def test_multiple_headings_keep_binding_and_role_type_diagnostics(self):
+        from spl_compiler.model import SPLException
+        rules='For settlement with A:\n  Report "one": Participant.\nFor settlement with B:\n  Report "two": Participant.'
+        with self.assertRaises(ParseError):parse_readable(multiple(rules,'  Settle "A" with second_party.\n'))
+        with self.assertRaises(ParseError) as unknown:parse_readable(multiple(rules.replace('with B:','with Unknown:')))
+        self.assertEqual(unknown.exception.span['line'],4)
+        with self.assertRaises(SPLException) as wrong:check_schedule(parse_readable(multiple(rules).replace('input first_party: Id<Participant>;','input first_party: Id<Pool>;')))
+        self.assertEqual(wrong.exception.code,'TYPE_MISMATCH');self.assertEqual(wrong.exception.span['line'],2)
+
+    def test_generated_role_names_avoid_authored_definitions_and_unknown_references(self):
+        from spl_compiler.model import SPLException
+        source=multiple('For settlement with A:\n  Report "one": Participant.\nFor settlement with B:\n  Report "two": readable_settlement_participant_1.', '  input readable_settlement_participant_0: Id<Participant>;\n')
+        expanded=expand_readable(source).source
+        self.assertIn('define readable_settlement_participant_2 ',expanded)
+        self.assertIn('define readable_settlement_participant_3 ',expanded)
+        with self.assertRaises(SPLException) as raised:check_schedule(parse_readable(source))
+        self.assertEqual(raised.exception.code,'UNRESOLVED_NAME')
+
+    def test_role_rewriting_leaves_strings_record_labels_and_selectors_unchanged(self):
+        source=multiple('For settlement with A:\n  Report "one": {settlement_participant: Participant, selected: holder.settlement_participant, text: "settlement_participant"}.\nFor settlement with B:\n  Report "two": Participant.', '  define holder = {settlement_participant: USD 3};\n')
+        result=evaluate(check_schedule(parse_readable(source)),{'first_party':'a','second_party':'b'},{})
+        self.assertEqual(result.emissions,{'one':{'settlement_participant':'a','selected':Fraction(3),'text':'settlement_participant'},'two':'b'})
+
+    def test_nested_settlement_restores_the_outer_role(self):
+        source=multiple('For settlement with A:\n  Report "before": Participant.\n  For settlement with B:\n    Report "inner": Participant.\n  Report "after": Participant.')
+        result=evaluate(check_schedule(parse_readable(source)),{'first_party':'a','second_party':'b'},{})
+        self.assertEqual(result.emissions,{'before':'a','inner':'b','after':'a'})
+
+    def test_nested_collection_inherits_its_heading_role(self):
+        source=multiple('For settlement with A:\n  For each Item:\n    Report by Row: {party: Participant, value: item}.\n  Report "one": rows.\nFor settlement with B:\n  Report "two": Participant.', '  input items: List<Int>;\n  Iterate "Item" as item in items into rows.\n')
+        result=evaluate(check_schedule(parse_readable(source)),{'first_party':'a','second_party':'b','items':['1','2']},{})
+        self.assertEqual(result.emissions,{'one':[{'party':'a','value':Fraction(1)},{'party':'a','value':Fraction(2)}],'two':'b'})
+
+    def test_multiple_role_outside_heading_and_shadowing_fail_at_authored_lines(self):
+        base='For settlement with A:\n  Report "one": Participant.\nFor settlement with B:\n  Report "two": Participant.'
+        for rules,line in ((base+'\nReport "outside": Participant.',6),(base.replace('Report "one": Participant.','Report "one": {value: map(items, settlement_participant => settlement_participant)}.'),3)):
+            with self.assertRaises(ParseError) as raised:parse_readable(multiple(rules,'  input items: List<Int>;\n'),'authored.spl')
+            self.assertEqual(raised.exception.code,'READABLE_SETTLEMENT_ROLE')
+            self.assertEqual(raised.exception.span['line'],line)
+            self.assertEqual(raised.exception.span['source'],'authored.spl')
+
+    def test_multiple_monetary_names_ports_and_closing_writers_keep_core_diagnostics(self):
+        from spl_compiler.model import SPLException
+        rules='For settlement with A:\n  Amount is USD 1.\n  Report "one": Amount.\nFor settlement with B:\n  Amount is USD 2.\n  Report "two": Amount.'
+        with self.assertRaises(SPLException) as raised:check_schedule(parse_readable(multiple(rules,'  Bind "Amount" to amount.\n')))
+        self.assertEqual(raised.exception.code,'DUPLICATE_NAME')
+        for body in ('Report "same": Participant.','Closing Balance is USD 0.'):
+            source=multiple('For settlement with A:\n  '+body+'\nFor settlement with B:\n  '+body,'  opening balance: Money<USD> from "balance";\n  Bind "Balance" to balance.\n')
+            with self.assertRaises(SPLException):check_schedule(parse_readable(source))
     def test_three_profiles_match_original_calculations(self):
         for case, binding in [('sv/sv01', 'sv'), ('sv/rq07', 'rq07'), ('lg/lg01', 'lg')]:
             with self.subTest(case=case):

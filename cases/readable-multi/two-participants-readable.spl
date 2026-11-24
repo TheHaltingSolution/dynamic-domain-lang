@@ -1,0 +1,21 @@
+Participation Schedule for Two Explicit Participant Reports
+For settlement with First Participant:
+  First Amount is USD 12.
+  Report "first": Participant, First Amount.
+For settlement with Second Participant:
+  Second Amount is USD 7.
+  Report "second": Participant, Second Amount.
+
+Bindings:
+  Schedule TwoParticipants.
+  Using language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft".
+  input first_party: Id<Participant>;
+  input second_party: Id<Participant>;
+  Settle "First Participant" with first_party.
+  Settle "Second Participant" with second_party.
+  Bind "Participant" to settlement_participant.
+  Bind "First Amount" to first_amount.
+  Bind "Second Amount" to second_amount.
+  Field "Participant" as participant_id.
+  Field "First Amount" as amount.
+  Field "Second Amount" as amount.

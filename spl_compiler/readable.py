@@ -54,6 +54,49 @@ def _lines(source: str, name: str) -> list[Line]:
     return result
 
 
+def _settlement_roles(source, roles, origins):
+    """Rewrite only parsed name references, preserving fields and string data."""
+    try:
+        schedule = parse(source)
+    except ParseError as error:
+        span = origins[min(max(error.span.get('line', 1) - 1, 0), len(origins) - 1)]
+        raise ParseError(error.code, error.message, span) from None
+    edits = []
+    marker = 'settlement_participant'
+
+    def fail(node, message):
+        line = node.get('span', {}).get('line', 1) - 1
+        raise ParseError('READABLE_SETTLEMENT_ROLE', message, origins[min(max(line, 0), len(origins)-1)])
+
+    def visit(node):
+        if isinstance(node, list):
+            for value in node: visit(value)
+        elif isinstance(node, dict):
+            kind = node.get('kind')
+            if kind in {'input', 'opening', 'define'} and node.get('name') == marker:
+                fail(node, 'The settlement role marker cannot be declared explicitly with multiple headings')
+            if kind == 'lambda' and node.get('name') == marker:
+                fail(node, 'A local binder cannot shadow the settlement role marker')
+            if kind == 'for' and node.get('name') == marker:
+                fail(node, 'A local binder cannot shadow the settlement role marker')
+            if kind == 'fold' and marker in (node.get('state'), node.get('event')):
+                fail(node, 'A local binder cannot shadow the settlement role marker')
+            if kind == 'fold' and node.get('order') and marker in (node['order']['key_binder'], node['order']['id_binder']):
+                fail(node, 'A local binder cannot shadow the settlement role marker')
+            if kind == 'name' and node.get('name') == marker:
+                span = node['span']; role = roles[span['line']-1]
+                if role is None: fail(node, 'A settlement role requires an enclosing heading with multiple settlements')
+                edits.append((span['start'], span['end'], role))
+            for key, value in node.items():
+                if key not in {'span', '_type'}: visit(value)
+    visit(schedule)
+    parts, cursor = [], 0
+    for start, end, replacement in sorted(edits):
+        parts.extend((source[cursor:start], replacement)); cursor = end
+    parts.append(source[cursor:])
+    return ''.join(parts)
+
+
 def expand_readable(source: str, source_name: str = "<string>") -> Expansion:
     lines = _lines(source, source_name)
     if not lines or not lines[0].text.startswith("Participation Schedule for "):
@@ -188,10 +231,17 @@ def expand_readable(source: str, source_name: str = "<string>") -> Expansion:
         return target, expression(rhs), citation
 
     output = [(f"schedule {schedule} {metadata} {{", lines[0].span), *declarations]
+    role_contexts = [None] * len(output)
+    multiple_settlements = sum(line.text.startswith('For settlement with ') and line.text.endswith(':') for line in rules) > 1
+    # Include authored references, not just declarations, so a formerly unknown
+    # identifier cannot accidentally become a generated role binding.
+    authored_names = set(re.findall(r'[A-Za-z_][A-Za-z_0-9]*', source))
+    active_role, next_role = None, 0
     policies = []
 
     def emit(text, line):
         output.append((text, line.span))
+        role_contexts.append(active_role)
 
     def branch(index, parent):
         values = []
@@ -208,6 +258,7 @@ def expand_readable(source: str, source_name: str = "<string>") -> Expansion:
         return values, index
 
     def block(index, parent=-1, depth=0):
+        nonlocal active_role, next_role
         if depth > 64:
             _error(rules[index], "Readable block nesting exceeds 64", "RESOURCE_LIMIT")
         level = rules[index].indent if index < len(rules) else parent
@@ -245,8 +296,18 @@ def expand_readable(source: str, source_name: str = "<string>") -> Expansion:
                 party = text[20:-1]
                 if party not in settlements:
                     _error(line, "Settlement party requires an explicit Settle binding")
-                emit("define settlement_participant : Id<Participant> = " + settlements[party] + ";", line)
+                role = 'settlement_participant'
+                if multiple_settlements:
+                    while True:
+                        role = 'readable_settlement_participant_' + str(next_role)
+                        next_role += 1
+                        if role not in authored_names: break
+                    authored_names.add(role)
+                emit("define " + role + " : Id<Participant> = " + settlements[party] + ";", line)
+                previous_role = active_role
+                if multiple_settlements: active_role = role
                 next_index = block(index + 1, line.indent, depth + 1)
+                active_role = previous_role
                 if next_index == index + 1:
                     _error(line, "Settlement block must contain statements")
                 index = next_index
@@ -308,7 +369,10 @@ def expand_readable(source: str, source_name: str = "<string>") -> Expansion:
         _error(rules[0], "Top-level rules must start in column one", "READABLE_INDENTATION")
     block(0)
     output.append(("}", lines[-1].span))
-    return Expansion("\n".join(x[0] for x in output), tuple(x[1] for x in output),
+    role_contexts.append(None)
+    expanded = "\n".join(x[0] for x in output)
+    if multiple_settlements: expanded = _settlement_roles(expanded, role_contexts, [x[1] for x in output])
+    return Expansion(expanded, tuple(x[1] for x in output),
                      tuple(policies), dict(aliases), dict(iterations), dict(settlements), support_spans)
 
 

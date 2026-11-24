@@ -1,0 +1,10 @@
+schedule TwoParticipants language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input first_party: Id<Participant>;
+  input second_party: Id<Participant>;
+  define first_participant: Id<Participant> = first_party;
+  define first_amount = USD 12;
+  emit "first" = {participant_id: first_participant, amount: first_amount};
+  define second_participant: Id<Participant> = second_party;
+  define second_amount = USD 7;
+  emit "second" = {participant_id: second_participant, amount: second_amount};
+}

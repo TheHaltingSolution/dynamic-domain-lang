@@ -133,9 +133,35 @@ arbitrary nested control flow. Each matched definition lowers to a lazy `if`
 expression. The same resolved names/order rule makes the merge explicit: in
 SV, `Net Profits`, `Adjusted Gross Receipts`, and the report's `Participation
 Basis` are visibly bound to the same technical `basis`. Collection loops and
-settlement blocks can contain the supported statements. Multiple settlement
-blocks currently collide on the generated `settlement_participant` definition
-and are rejected by the normal duplicate-name check.
+settlement blocks can contain the supported statements.
+
+Multiple settlement headings receive separate generated participant-role
+identifiers. In their bodies the existing `settlement_participant` binding
+marker (normally exposed through `Bind "Participant" to settlement_participant.`)
+refers to that heading's explicitly registered participant. Nested headings
+restore the enclosing role afterward, and collection bodies inherit their
+heading's role. A registered `Settle` label may be used by more than one heading;
+duplicate or ambiguous **bindings** retain their existing diagnostics.
+
+This role hygiene does not introduce monetary variable scopes. Financial
+definitions, report ports and closing writers keep the ordinary core rules,
+including duplicate-name/output/writer rejection. Distinct monetary definitions
+therefore retain explicit distinct technical identifiers in the footer.
+Participant roles retain `Id<Participant>` typing; a pool ID still fails at the
+authored heading. Report columns/ports, record labels/selectors, citations and
+quoted data retain their authored values. Generated names avoid every authored
+identifier, including unresolved references, so a previously unknown name cannot
+be captured by expansion.
+
+With multiple headings, a role-marker reference outside a heading, an explicit
+declaration of that marker or a local binder shadowing it fails with
+`READABLE_SETTLEMENT_ROLE` at the authored statement. Zero- and single-heading
+programs retain their previous expansion, authored spans and core behavior.
+The finite [two-participant fixture](../../cases/readable-multi/two-participants-readable.spl)
+keeps its visible rules first, followed by explicit role and report bindings;
+its [independent core form](../../cases/readable-multi/two-participants.spl)
+reports USD12 and USD7 to the two supplied participant identities. It adds no
+new allocation, payment or financial policy mechanism.
 
 ## Supporting declarations
 

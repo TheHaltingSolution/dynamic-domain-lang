@@ -27,7 +27,62 @@ private def checked (source : String) : IO Unit := do
   | .ok _ => pure ()
   | .error diagnostic => throw (IO.userError s!"Readable checking failed: {repr diagnostic}")
 
+private def multiple (rules : String) (extra : String := "") : String :=
+  tiny rules ("  input first_party: Id<Participant>;\n  input second_party: Id<Participant>;\n" ++
+    "  Settle \"A\" with first_party.\n  Settle \"B\" with second_party.\n" ++
+    "  Bind \"Participant\" to settlement_participant.\n" ++ extra)
+
+private def expectCheckFailure (source code : String) : IO Unit := do
+  let schedule ← parsed source
+  match SPL.Check.check schedule with
+  | .ok _ => throw (IO.userError "Invalid readable source checked successfully")
+  | .error diagnostic => unless diagnostic.code == code do
+      throw (IO.userError s!"Expected {code}, got {repr diagnostic}")
+
 def main : IO Unit := do
+  let multiSource ← IO.FS.readFile "cases/readable-multi/two-participants-readable.spl"
+  checked multiSource
+  let multi ← parsed multiSource
+  let roles := multi.declarations.filterMap fun declaration => match declaration with
+    | .define span name (some (.named "Id" [.named "Participant" []])) _ _ => some (name, span.line)
+    | _ => none
+  unless roles.length == 2 && roles[0]!.1 != roles[1]!.1 && roles.map (·.2) == [2, 5] do
+    throw (IO.userError "Multiple headings lost fresh typed participant roles or heading spans")
+  let columns := multi.declarations.filterMap fun declaration => match declaration with
+    | .emit span _ (.record _ fields) => some (span.line, fields.map (·.1))
+    | _ => none
+  unless columns == [(4, ["participant_id", "amount"]), (7, ["participant_id", "amount"])] do
+    throw (IO.userError "Multiple headings changed visible report columns or authored spans")
+  checked (multiple "For settlement with A:\n  Report \"one\": Participant.\nFor settlement with A:\n  Report \"two\": Participant.")
+  let nested ← parsed (multiple "For settlement with A:\n  Report \"before\": Participant.\n  For settlement with B:\n    Report \"inner\": Participant.\n  Report \"after\": Participant.")
+  let nestedRoles := nested.declarations.filterMap fun declaration => match declaration with
+    | .emit _ _ (.name _ name) => some name
+    | _ => none
+  unless nestedRoles.length == 3 && nestedRoles[0]! == nestedRoles[2]! && nestedRoles[0]! != nestedRoles[1]! do
+    throw (IO.userError "Nested heading did not restore its enclosing participant role")
+  checked (multiple "For settlement with A:\n  For each Item:\n    Report by Row: {party: Participant, value: item}.\n  Report \"one\": rows.\nFor settlement with B:\n  Report \"two\": Participant." "  input items: List<Int>;\n  Iterate \"Item\" as item in items into rows.\n")
+  let collision := multiple "For settlement with A:\n  Report \"one\": Participant.\nFor settlement with B:\n  Report \"two\": readable_settlement_participant_1." "  input readable_settlement_participant_0: Id<Participant>;\n"
+  match SPL.Readable.expand collision with
+  | .error diagnostic => throw (IO.userError s!"Collision expansion failed: {repr diagnostic}")
+  | .ok expansion => unless (expansion.source.splitOn "define readable_settlement_participant_2 ").length == 2 &&
+      (expansion.source.splitOn "define readable_settlement_participant_3 ").length == 2 do
+      throw (IO.userError "Generated names captured an authored definition or unknown reference")
+  expectCheckFailure collision "UNRESOLVED_NAME"
+  let two := "For settlement with A:\n  Report \"one\": Participant.\nFor settlement with B:\n  Report \"two\": Participant."
+  expectFailure (multiple two "  Settle \"A\" with second_party.\n")
+  expectFailure (multiple (two.replace "with B:" "with Unknown:"))
+  expectCheckFailure ((multiple two).replace "input first_party: Id<Participant>;" "input first_party: Id<Pool>;") "TYPE_MISMATCH"
+  expectFailure (multiple (two ++ "\nReport \"outside\": Participant.")) "READABLE_SETTLEMENT_ROLE"
+  expectFailure (multiple (two.replace "Report \"one\": Participant." "Report \"one\": {value: map(items, settlement_participant => settlement_participant)}.") "  input items: List<Int>;\n") "READABLE_SETTLEMENT_ROLE"
+  let literals ← parsed (multiple "For settlement with A:\n  Report \"one\": {settlement_participant: Participant, selected: holder.settlement_participant, text: \"settlement_participant\"}.\nFor settlement with B:\n  Report \"two\": Participant." "  define holder = {settlement_participant: USD 3};\n")
+  let literalFields : List (List (String × Expr)) := literals.declarations.filterMap fun declaration => match declaration with
+    | .emit _ "one" (.record _ fields) => some fields
+    | _ => none
+  match literalFields with
+  | [[("settlement_participant", .name _ _), ("selected", .field _ _ "settlement_participant"), ("text", .text _ "settlement_participant")]] => pure ()
+  | _ => throw (IO.userError "Role rewriting changed a field label, selector or quoted string")
+  expectCheckFailure (multiple "For settlement with A:\n  Amount is USD 1.\nFor settlement with B:\n  Amount is USD 2." "  Bind \"Amount\" to amount.\n") "DUPLICATE_NAME"
+  expectCheckFailure (multiple "For settlement with A:\n  Report \"same\": Participant.\nFor settlement with B:\n  Report \"same\": Participant.") "DUPLICATE_OUTPUT"
   for (path, count) in [
       ("cases/sv/sv01-readable.spl", 18),
       ("cases/sv/rq07-readable.spl", 18),
