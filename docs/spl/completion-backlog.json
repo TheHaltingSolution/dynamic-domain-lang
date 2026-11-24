@@ -888,7 +888,17 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Independent oracle author assigned and finite plan approved: original100/paid80/revised90 plus current30 gives40 outstanding; a genuine cumulative-tier dependent chain recomputes successor10 to8 when original basis200 becomes180. Original issued artifacts/paid history remain separate from restatement and prospective posting. This plan is not execution evidence; source/canonical work follows the independent freeze."
+      "active_scope": "Independent original-fact oracle frozen:35 isolated methods pass with actual serialized successors. Simple originalissued100/paid80/revised90/current30 gives40; genuine cumulative-tier successor10 to8 gives18 afterpaid80. Explicit original issued-unpaid20/30 plus unissued earnings and authorized credit-10/-12 bridge both routes; original artifacts/payment history stay unchanged. No SPL/source/canonical/native publication acceptance yet.",
+      "evidence": [
+        "oracles/dependent_replay.py",
+        "cases/dependent-replay/neutral.json",
+        "cases/dependent-replay/policy.md",
+        "Tests/test_dependent_replay_oracle.py",
+        "docs/spl/dependent-replay-design.md",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\hand-and-carry.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json"
+      ]
     },
     {
       "id": "B-C13-PROSPECTIVE",
@@ -913,14 +923,23 @@
       "evidence": [
         "cases/authorized-offsets/README.md",
         "Tests/test_authorized_offset_modules.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/authorized-offsets-checks-8eac5174/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/authorized-offsets-checks-8eac5174/verification.json",
+        "oracles/dependent_replay.py",
+        "cases/dependent-replay/neutral.json",
+        "cases/dependent-replay/policy.md",
+        "Tests/test_dependent_replay_oracle.py",
+        "docs/spl/dependent-replay-design.md",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\hand-and-carry.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json"
       ],
       "completed_acceptance": [
         "Separately authorized overpayment/priority/cash-first/capacity-limited future-earnings offset and actual serialized carry; immutable original paid history."
       ],
       "remaining_acceptance": [
         "Register the separate prospective adjustment versus restatement discriminator: original100/paid80/revised90 plus following earned30 gives outstanding40, with different period lines and exactly-once dependent-period treatment. General B-C13-REPLAY remains separate."
-      ]
+      ],
+      "active_scope": "Independent original-fact oracle frozen:35 isolated methods pass with actual serialized successors. Simple originalissued100/paid80/revised90/current30 gives40; genuine cumulative-tier successor10 to8 gives18 afterpaid80. Explicit original issued-unpaid20/30 plus unissued earnings and authorized credit-10/-12 bridge both routes; original artifacts/payment history stay unchanged. No SPL/source/canonical/native publication acceptance yet."
     },
     {
       "id": "B-C14-CALENDAR",

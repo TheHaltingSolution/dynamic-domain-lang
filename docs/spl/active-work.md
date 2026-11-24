@@ -383,3 +383,19 @@ approved for separate implementation, preserving full byte/token/manifest
 validation while retaining selected state fields. No compiler success alone
 may substitute for emitted execution, publication and original-fact state-carry
 controls. C10 remains open.
+
+## Frozen independent dependent-period correction controls
+
+The [C13 specification](dependent-replay-design.md) is frozen at
+`dependent-replay-oracle-20261123-a369dd7c`:35 isolated methods pass0.204501s
+with no failures/errors/skips/drift or compiler/case/adapter imports. Its five
+files match archived bytes and Git filtering; research references retain exact
+0b91 requirement snapshots. Root independently recomputed all four full factsets
+and their serialized successors, preserving paid80 and original issued artifacts.
+Simple restatement/prospective attribution both give40 outstanding; true
+dependent tier replay changes successor10 to8 and gives18. The original
+issued-unpaid20/30 plus calculated unissued earnings and authorized-10/-12
+credit bridge is explicit; no adjustment is actually issued or paid. Successors
+recognize no repeat correction. This is independent specification evidence,
+not source/canonical/native acceptance. Main core remainsa0/c287/a7e and
+the separate full1158-method regression is still exactly0b91.

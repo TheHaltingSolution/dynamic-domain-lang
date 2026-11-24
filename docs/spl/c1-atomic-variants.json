@@ -898,6 +898,23 @@
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json"
       ],
       "basis": "Independent original-fact policy/fixture/oracle frozen:22 methods pass, including gross25/net20, per-unit150/separate-share75, asymmetric money/quantity controls, exact fractional and numeric-offset timestamps, zero/empty/invalid/scope/population cases. No new source/canonical/native execution yet; a different source author follows."
+    },
+    "dependent_replay_oracle": {
+      "sources": [
+        "cases/dependent-replay/neutral.json",
+        "cases/dependent-replay/policy.md",
+        "docs/spl/dependent-replay-design.md"
+      ],
+      "controls": [
+        "oracles/dependent_replay.py",
+        "Tests/test_dependent_replay_oracle.py"
+      ],
+      "records": [
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\hand-and-carry.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json"
+      ],
+      "basis": "35 isolated original-fact/state/provenance methods only; no source/native credit. Four factsets retain immutable original issues, actualpaid80 and true dependent tier replay."
     }
   },
   "variants": [
@@ -2861,20 +2878,22 @@
       "name": "Finite dependent-period authorized restatement",
       "kind": "revision_method",
       "requiredness": "accepted_c1_variant",
-      "status": "pending",
+      "status": "in_progress",
       "requirements": [
         "C13"
       ],
       "discriminator": "Revised old90 lesspaid80 plus next earned30 reconciles40 with preserved period/delta detail.",
-      "evidence_groups": [],
+      "evidence_groups": [
+        "dependent_replay_oracle"
+      ],
       "execution": {
         "source": "not_executed",
         "canonical": "not_executed",
         "native_ir": "not_executed",
         "native_emitted": "not_executed",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "pending",
-        "boundary_invalid_controls": "pending",
+        "independent_controls": "35_frozen_original_fact_oracle_methods_and_actual_JSON_carry",
+        "boundary_invalid_controls": "independent_scope_authority_predecessor_dependency_population_alias_temporal_history_controls_no_native_credit",
         "native_audit": "pending",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
@@ -3081,20 +3100,22 @@
       "name": "Current-period prospective adjustment versus old-period restatement",
       "kind": "recognition_variant",
       "requiredness": "accepted_c1_variant",
-      "status": "pending",
+      "status": "in_progress",
       "requirements": [
         "C13"
       ],
       "discriminator": "Original100 / actual paid80 / revised90, plus following earned30 gives outstanding40. A prospective -10 line is recognized in the current period; original-opening restatement revises the old period. Period lines differ despite equal total outstanding.",
-      "evidence_groups": [],
+      "evidence_groups": [
+        "dependent_replay_oracle"
+      ],
       "execution": {
         "source": "not_executed",
         "canonical": "not_executed",
         "native_ir": "not_executed",
         "native_emitted": "not_executed",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "pending",
-        "boundary_invalid_controls": "pending",
+        "independent_controls": "35_frozen_original_fact_oracle_methods_and_actual_JSON_carry",
+        "boundary_invalid_controls": "independent_scope_authority_predecessor_dependency_population_alias_temporal_history_controls_no_native_credit",
         "native_audit": "pending",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
