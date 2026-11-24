@@ -141,6 +141,33 @@ The14,237,800-byte prefix is unconsumable; reader and all4/8 successors did not
 execute. Fixed60s/64MiB/256MiB/1GiB/100k guards remained. Source/core pins stayed
 stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 
+## Current verified process windows
+
+- Main regression e80024d: exec26641,887 methods, still running at the last
+  verified poll. Its isolated old snapshot excludes subsequent publication,
+  Python-emitter, Genius and unit changes. Do not restart merely because logs
+  are quiet; poll this handle/final verification.
+- Disney cf96f81d: exec78966, current20ea/a516/673 sources frozen. Six actual
+  completed/loader-validated bundles have passed independent and separate
+  Python-emitter controls: baseline41,187,283; Q1 10,147,582; Q2 24,742,448;
+  Q3 41,925,067; Q4 55,194,678; preview32,985,527 bytes. Q4 catch-up/new
+  recognition0, preview closing_state empty; full39-method cohort is running.
+  These six outputs alone are not final family acceptance.
+- Failed Disney84046c1c retained the180s Python-driver timeout before39 tests.
+  After c35f274, separate followup331b80a7 passes11.592059s at the same180s cap.
+  Failed9e70aa8b retained a mechanical carry-helper unknown movement field.
+  Corrected actual carry JSON-round-trips the validated cell and removes only
+  output movement. Pure helper followup5970c3c9 verifies all three transitions,
+  unchanged previous results/artifacts and exact actual prior_result_ref.
+- Isolated units: initial clean98-job build/indexed22/both smokes plus11 core
+  methods pass, and consumer b7594415 passes25 methods/nine native comparisons/
+  36 Lean commands in68.728105s without source or artifact drift. Baseline unit
+  pins were a982a108/d63a8fc8/a7e4f8e5, distinct from main. Source remains
+  uncommitted while trace strengthens guards, integrates verified upstream
+  encoder/Python-memo patches, replays actual old state and prepares broad checks.
+  The old abee-produced Download state now replays to100.5 with earned0.375,
+  unchanged495808ae unit identity. No final unit release/cherry-pick credit yet.
+
 ## Delegated ownership and next steps
 
 - `validation_matrix`: finished AO/civil cohorts; completed the atomic C1 variant
@@ -149,8 +176,11 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 - `validation_generated`: Genius basis-reserve oracle frozen32 methods with five
   actual serialized periods, artifact `basis-reserve-oracle-20261123-5ed65f08`.
   Native source remains pending; excess-vintage returns remain an explicit source
-  gap. Now owns isolated unit `modules.py`, descriptor schema, new canonical/state
-  fixtures/tests and interface documentation, coordinating with trace.
+  gap. Its isolated unit consumer files are frozen with passing evidence; trace now
+  integrates the complete unit candidate. The agent now owns NEW main mutation
+  generator/runner/tests/design files for B-VAL-MUTANTS, with finite independent
+  controls and honest killed/survived/invalid/equivalent/unexecuted classifications.
+  It edits no main compiler or financial source files.
 - `validation_trace`: owns the isolated usage-unit compiler/context/IR/runtime/
   codec/emitter implementation. Its baseline archive `usage-units-baseline-20261123-a`
   retains39 files, nine raw v1 IRs, old namespace controls and actual base quantity
