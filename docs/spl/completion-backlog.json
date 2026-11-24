@@ -1469,7 +1469,12 @@
         "Cache complete dependency closures and record actual backend/startup cost; compare-mode wrapper is not isolated native benchmark."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "evidence": [
+        "docs/spl/artifact-publication-design.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/publication-whitespace-20261123-a/verification.json"
+      ],
+      "additional_bounded_evidence": "Compact full result envelopes preserve every parsed value and fixed64MiB budget.20publication methods/build/smokes pass; retained17,832-node trace65,841,102pretty/44,542,781compact bytes. This does not close remaining cold/warm/dependency timing acceptance or establish a completed Disney close."
     },
     {
       "id": "B-PERF-PROFILE",

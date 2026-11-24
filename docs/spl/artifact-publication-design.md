@@ -8,6 +8,25 @@ and precommit missing-population labels. This closes single-process publication
 acceptance; bank execution, distributed/concurrent writers and arbitrary
 power-loss behavior remain outside this contract.
 
+## Compact complete result envelope
+
+The final authoritative result.json and its root compatibility copy now use
+compact sorted JSON with a trailing newline. Every logical value, audit node,
+original string and state field remains present. Individual review files such
+as trace.json and statement.json remain indented. The format/loader accepts both
+old indented and new compact JSON; historical artifacts and pins are untouched.
+The64MiB result limit still measures actual encoded UTF-8 bytes, and the loader
+uses its existing bounded read/hash/strict-JSON checks. It is not an RSS bound.
+
+The retained Disney draft-g trace has17,832 nodes and65,841,102 indented bytes;
+serializing the same complete JSON value compactly takes44,542,781 bytes. This
+measurement alone is not a completed financial publication. The frozen
+`publication-whitespace-20261123-a` cohort passes20 methods in44.747635s, plus
+94-job build/both smokes. It includes an exact byte-budget boundary, Unicode and
+opaque user strings, all prior interruption/tamper controls, actual native
+wrappers and serialized carry. An original indented AO completed bundle loads
+with its old marker unchanged. Source/dependency pins stay stable during the run.
+
 ## Earlier failure prevented
 
 The earlier runners wrote several files into a reusable artifact directory

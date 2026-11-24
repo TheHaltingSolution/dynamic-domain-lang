@@ -25,11 +25,13 @@ civil/Disney-oracle sources are recorded in local
 checkpoint `9f9cf31` (47 files). All seven newly staged file pins matched Git
 blobs and physical bytes; the old baseline remained identical.
 
-The promoted current compiler/reference is
-`abee14432a7a972b94a02795668d9ff8bbf97a5758f5558dc9178a7761e490eb`;
-module `daf14a19e4b00bbb918583d76e73451322de8ecea1f9f1192dd3c404c1a06cde`;
+The current compiler/reference wrapper pin is
+`0660a862dae3049acfa44b5c4aa6fc435ff26372b9b1ca34e709bdc28f24cde5`;
+module `182dc351251ffd59ac75c573886e556511cc63a22445e6349a949ab578efcac9`;
 runtime `673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9`.
-Archived old runs retain their dated identities.
+Native Lean/frontend/Demos remain at the accepted memoizing generation.
+The new wrapper pin includes only compact publication serialization. Archived
+old runs retain their dated identities; AO/civil used abee/daf/673.
 
 ## Isolated full regression
 
@@ -67,6 +69,14 @@ would resolve back to the long path. Preserve both evidence directories.
 ## Accepted subsequent evidence
 
 Paths here are relative to the external SPL artifacts root above.
+
+- `publication-whitespace-20261123-a`:20 methods pass44.747635s plus94-job
+  build/both smokes. Complete result.json is compact; review field files remain
+  indented. All values/trace nodes and64MiB limit remain. Retained g trace size
+  is65,841,102 pretty versus44,542,781 compact bytes, same17,832 nodes. Old AO
+  baseline completed bundle loads with original marker unchanged. No source drift.
+  Native Disney full acceptance is still pending after multiple retained failed
+  source probes; new runs must bind current066/182/673 pins.
 
 - Emitter memoization: `emitter-thunk-checks-20261123-b` passes six methods/
   31 observations, including lazy/failure ordering and fresh per-call locals.
@@ -142,7 +152,7 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   state carry. Initial targeted checker/parser/linker builds pass; full alignment
   and extension acceptance remain pending. Root required generic feature-catalog
   admission instead of spreading a single Hour-name/Boolean switch through code.
-  Shared main core remains unchanged during Disney native work.
+  Shared main wrapper now uses066/182/673; native compiler sources remain unchanged during Disney native work.
 - Root: independent usage conversion controls now pass8 methods from an isolated
   source snapshot, `usage-conversion-oracle-20261123-642e47f0`; this earns no
   compiler/native/codec/state credit. Integrate evidence/backlog, review unit/context compatibility, maintain
@@ -150,16 +160,16 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 
 An isolated short physical worktree `C:/spl-units-9f9` on
 `feature/spl-usage-time-c1` starts from9f9cf31. Unit implementation is now authorized in this isolated checkout only, with
-baseline freeze before owner/context/IR changes and no FX. The shared main core
-stays abee/daf/673 for financial native runs. The final plan is committed in
+baseline freeze before owner/context/IR changes and no FX. The shared main wrapper
+now stays066/182/673 for financial native runs, with native Lean unchanged. The final plan is committed in
 8892329, which also fixes the stale standard-library guard. Embedded Python has a main-repo
 `._pth` entry, so isolated launchers must explicitly insert their checkout path
 before imports and record loaded module paths; cwd alone is insufficient.
 
 The non-FX [unit plan](unit-conversion-extension-plan.md) requires explicit
 owner-local admission, old namespace/IR/state compatibility, generic exact
-relation checks, and an independent baseline before implementation. Shared core
-is stable at abee/daf/673. Do not change it during another native freeze.
+relation checks, and an independent baseline before implementation. Shared main sources
+are stable at066/182/673. Do not change it during another native freeze.
 
 Remaining work is in the73-item backlog, including separate C10 burden,
 cent allocation, sourced reserves/gates/repricing, replay and schema/transport/

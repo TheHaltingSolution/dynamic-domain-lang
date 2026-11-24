@@ -80,6 +80,13 @@ or their source pins. Every changed source needs its own complete native result,
 independent controls and publication verification. Input cardinality guards and
 fast compiled values do not establish a completed audited close.
 
+The later compact-result writer keeps every parsed value and review field,
+without raising the64MiB limit. On retained g trace data, indentation alone
+accounts for21,298,321 bytes:65,841,102 pretty versus44,542,781 compact, with
+17,832 nodes unchanged. See `publication-whitespace-20261123-a`. This does not
+retroactively turn g into a completed run; future native publications need
+actual completion/loader evidence and their new wrapper pins.
+
 For compiler-level emitted definition caching, see
 [the separate experiment](emitter-memoization-experiment.md). It changed generated
 code, whereas the source changes above explicitly alter the authored program.

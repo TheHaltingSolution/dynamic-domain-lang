@@ -34,6 +34,31 @@ class ArtifactPublicationTests(unittest.TestCase):
                 with self.assertRaises(publication.PublicationError):
                     publication.load_completed_result(folder, max_result_bytes=limit)
 
+    def test_compact_result_preserves_values_at_exact_byte_budget(self):
+        result = {**deepcopy(SUCCESS), "trace": [{
+            "operands": [{"literal": "a  b\nc", "ref": "ordinary user data"}],
+            "result": {"value": "1/180", "unit": "UsageMinute"},
+            "scope": {"id": "\u00e9", "empty": [], "absent": None},
+        }]}
+        payload = publication._json_bytes(result, compact=True)
+        self.assertLess(len(payload), len(publication._json_bytes(result)))
+        self.assertEqual(json.loads(payload), result)
+        with tempfile.TemporaryDirectory() as folder:
+            with patch.object(publication, 'MAX_RESULT_BYTES', len(payload)):
+                run = self.publish(folder, result)
+            self.assertEqual((run.work / 'result.json').read_bytes(), payload)
+            self.assertEqual((Path(folder) / 'result.json').read_bytes(), payload)
+            self.assertEqual(publication.load_completed_result(
+                folder, max_result_bytes=len(payload)), result)
+            with self.assertRaises(publication.PublicationError):
+                publication.load_completed_result(folder, max_result_bytes=len(payload) - 1)
+        with tempfile.TemporaryDirectory() as folder:
+            with patch.object(publication, 'MAX_RESULT_BYTES', len(payload) - 1):
+                with self.assertRaises(publication.PublicationError):
+                    self.publish(folder, result)
+            with self.assertRaises(publication.PublicationError):
+                publication.load_completed_result(folder)
+
     def test_interrupted_rerun_never_consumes_stale_success(self):
         for interrupted in ('statement.json', 'closing-state.json', 'result.json', 'completion.json'):
             with self.subTest(file=interrupted), tempfile.TemporaryDirectory() as folder:

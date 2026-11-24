@@ -22,8 +22,10 @@ class PublicationError(RuntimeError):
     pass
 
 
-def _json_bytes(value):
-    return (json.dumps(encode(value), ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + "\n").encode("utf-8")
+def _json_bytes(value, *, compact=False):
+    layout = {"separators": (",", ":")} if compact else {"indent": 2}
+    return (json.dumps(encode(value), ensure_ascii=False, sort_keys=True,
+                       allow_nan=False, **layout) + "\n").encode("utf-8")
 
 
 def _atomic_bytes(path, payload):
@@ -123,7 +125,9 @@ class ArtifactPublication:
                 payload = _json_bytes(result[field])
                 _atomic_bytes(self.work / filename, payload)
                 mirrors[filename] = payload
-            payload = _json_bytes(result)
+            # Budget the complete logical result without indentation overhead.
+            # Separate field mirrors remain readable; no values are omitted.
+            payload = _json_bytes(result, compact=True)
             if len(payload) > MAX_RESULT_BYTES:
                 raise PublicationError("PUBLICATION_RESULT_RESOURCE_LIMIT")
             _atomic_bytes(self.work / "result.json", payload)

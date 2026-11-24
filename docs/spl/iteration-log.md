@@ -1,5 +1,17 @@
 # SPL iteration log
 
+## 23 November 2026: compact complete publication envelopes
+
+The result writer now removes JSON indentation while retaining every value,
+original string, trace node and state field. Field review files remain pretty;
+the64MiB limit and completion/loader semantics stay fixed. One retained17,832-node
+trace shrinks65,841,102 to44,542,781 serialized bytes. This is a serialization
+measurement, not a completed close. The20-method helper/runner cohort passes
+44.747635s, with94-job build and both smokes, zero skips/drift, exact byte-budget
+and historical pretty-bundle loader controls. Native source/runtime/Demos do
+not change; current Python-inclusive wrapper pins are0660a862/182dc351/673bb0fe.
+Evidence: `publication-whitespace-20261123-a`. No historical run is repinned.
+
 ## 23 November 2026: emitted definition reuse and two native integrations
 
 The emitter now uses invocation-local cached thunks for definitions. Retained

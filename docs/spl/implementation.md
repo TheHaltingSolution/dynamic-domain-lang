@@ -2,6 +2,14 @@
 
 ## Active C1 continuation
 
+Complete result envelopes now use compact JSON, preserving all values/nodes and
+the64MiB byte limit; separate review files remain indented. The frozen20-method
+publication cohort,94-job build and both smokes pass. Old indented bundles remain
+readable without repinning. This Python serialization-only change updates the
+current wrapper fingerprints below; native compiler/runtime/Demos bytes remain
+unchanged. Evidence: `publication-whitespace-20261123-a` under external SPL
+artifacts. Older financial/emitter cohorts retain their actual dated pins.
+
 The native emitter now caches local definitions with invocation-local Lean
 thunks, matching interpreter definition reuse. Actual isolated group-building
 calls decrease from 114 to 2 for the retained fixture. Regenerated current demo
@@ -54,9 +62,9 @@ serialized carry; all source and Lean dependency pins remain unchanged. See the
 [publication contract](artifact-publication-design.md).
 
 The current working compiler/reference identity is
-`abee14432a7a972b94a02795668d9ff8bbf97a5758f5558dc9178a7761e490eb`
+`0660a862dae3049acfa44b5c4aa6fc435ff26372b9b1ca34e709bdc28f24cde5`
 and generic-module identity is
-`daf14a19e4b00bbb918583d76e73451322de8ecea1f9f1192dd3c404c1a06cde`.
+`182dc351251ffd59ac75c573886e556511cc63a22445e6349a949ab578efcac9`.
 The native arithmetic/runtime identity remains
 `673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9`.
 The primary `0.4.3-dev` baseline is historical and archived byte-for-byte in
