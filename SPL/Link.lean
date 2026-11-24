@@ -25,7 +25,8 @@ private def array (json : Lean.Json) : LinkResult (List Lean.Json) :=
 
 private partial def typeExpr (json : Lean.Json) : LinkResult TypeExpr := do
   let name ← text (← field json "name")
-  if name == "Record" then
+  -- Structural records carry fields; an opaque Id kind named Record does not.
+  if name == "Record" && (json.getObjVal? "fields").isOk then
     let fields ← array (← field json "fields")
     return .record (← fields.mapM fun item => do
       let pair ← array item

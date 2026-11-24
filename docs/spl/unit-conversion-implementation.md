@@ -157,3 +157,34 @@ and runtime identity `a7e4f8e55815ea72abfb1903b2578a5db95d6f505f582f8a67ded9880a
 It additionally rejects mutable/unvalidated objects passed as explicit contexts;
 it does not change native calculation. Full broad discovery at this stage finds
 931 methods; discovery is not execution credit or a coverage percentage.
+
+## Separate linked opaque-kind correction
+
+A subsequent isolated correction distinguishes structural `Record` types, which
+carry a `fields` member in the linking manifest, from the opaque kind in
+`Id<Record>`, which does not. The unchanged b569 native frontend rejected an
+imported identity function with `INVALID_LINK_MANIFEST: Missing fields` while
+the reference checker accepted it. The correction reads structural fields only
+when that member exists; malformed structural fields and nonmatching/non-atomic
+kinds still reject before evaluation. It changes no source syntax, currency,
+unit meanings, runtime arithmetic or state identity algorithm.
+
+`linked-opaque-kind-20261123-b/verification.json` retains 40 passing methods,
+zero failures/errors/skips/source drift, and passing pinned Lake build/both
+smokes (184.751232 seconds including those checks). The cohort covers four
+new positive variations through reference, native IR, native-emitted and
+Python-emitted execution; five explicit malformed/mismatching signatures;
+existing linking/fold checks; all 25 unit-module methods; and five admission
+methods. Nested structural records still work, and an unused extended owner
+retains its separate signature/admission behavior. Nine actual pre-extension
+v1 IR exports also replay byte-for-byte under the corrected native executable;
+the separate record is `v1-byte-replay/verification.json` in that archive.
+The earlier development record remains FAILED for an incorrect test expectation
+about wrapper versus native diagnostic codes; it is not rewritten as passing.
+
+This correction has compiler/reference identity
+`a0e5b77dd654c936ec8fe5278537ee6b186ab021c1df289d73d290f874d396a4`,
+module identity `c28785f5a121cac4029ccdcde0ae81264b2e1eea02eb1a2f4f92c0fa48651986`
+and unchanged runtime `a7e4f8e55815ea72abfb1903b2578a5db95d6f505f582f8a67ded9880ac119ba`.
+It is a separate candidate based on b569, not part of that ongoing 931-method
+regression or a main-tree integration. Existing proof scope is unchanged.
