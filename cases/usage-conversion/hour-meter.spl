@@ -1,0 +1,9 @@
+schedule Usage language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" uses "spl.usage-time/1" {
+  input original: Quantity<UsageMinute>;
+  input price: Rate<UsageHour,USD>;
+  opening meter: Quantity<UsageHour> from "usage-meter";
+  define converted = convert_quantity(original, "UsageHour", "spl.usage-time/1:minute-hour");
+  emit "quantity" = converted;
+  emit "earned" = converted * price;
+  closing meter = meter + converted;
+}

@@ -1,0 +1,55 @@
+{
+  "decisions": [
+    {
+      "decision_id": "USAGE_CONVERSION_SELECTED",
+      "evidence_ref": "independent-original-measurement-and-quote",
+      "policy_id": "synthetic:usage-conversion",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "original": {
+      "unit": "UsageMinute",
+      "value": "90"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "ninety-original-usage-minutes",
+    "runtime_build": "unbound",
+    "scenario_id": "synthetic-usage-conversion"
+  },
+  "module_ref": {
+    "id": "synthetic:usage-inferred-import",
+    "locator": "cases/usage-conversion/inferred-import-module.json",
+    "revision": "1",
+    "sha256": "007228f4763f38ac150c4ccbe0881868dbe8ee75996319edf5139e9822ddd0d3"
+  },
+  "parameters": {},
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "synthetic-usage-agreement",
+    "asset_ids": [
+      "synthetic-usage-asset"
+    ],
+    "participant_ids": [
+      "synthetic-recipient"
+    ],
+    "pool_id": "synthetic-usage-pool",
+    "purpose": "synthetic-usage-conversion"
+  },
+  "state_cells": []
+}

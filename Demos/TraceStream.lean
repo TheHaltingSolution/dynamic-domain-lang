@@ -113,13 +113,15 @@ private def interpretFile (schedule : Schedule) (bindingPath : String) (profile 
     | .opening _ name type _ => some (name, type) | _ => none
   let source ← timed profile "binding_read" (IO.FS.readFile bindingPath)
   let decoded : Except String (Env × Env) ← timed profile "binding_parse_decode" (observePure fun _ => do
+    let owner ← Dimensions.prepare schedule.features
+    let meanings : Dimensions.Meanings := { features := (program.features ++ program.owners.flatMap Prod.snd).eraseDups }
     let json ← Bindings.parseStrict source
     let fields ← json.getObj? |>.mapError (fun _ => "EXPECTED_BINDING_ENVELOPE")
     let names := fields.toList.map Prod.fst
     unless names.length == 2 && names.contains "inputs" && names.contains "openings" do
       throw "UNKNOWN_OR_MISSING_FIELD"
-    let inputs ← Bindings.decodeBindings inputTypes (← json.getObjVal? "inputs")
-    let openings ← Bindings.decodeBindings openingTypes (← json.getObjVal? "openings")
+    let inputs ← Bindings.decodeBindingsWith owner meanings inputTypes (← json.getObjVal? "inputs")
+    let openings ← Bindings.decodeBindingsWith owner meanings openingTypes (← json.getObjVal? "openings")
     pure (inputs, openings))
   match decoded with
   | .error code => return { result := .error code, trace := {} }

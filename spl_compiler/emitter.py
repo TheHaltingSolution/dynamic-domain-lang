@@ -16,7 +16,7 @@ import shutil
 import subprocess
 import tempfile
 from .model import InstantValue, MapValue, OptionValue, QuantityValue, RateValue
-from .dimensions import typed_zero
+from .dimensions import typed_zero, BASE_MEANINGS, BASE_ADMISSION
 
 
 def _string(value: str) -> str:
@@ -144,8 +144,15 @@ def _ordered_references(expr, bound=frozenset()):
 
 
 class _Emitter:
-    def __init__(self):
+    def __init__(self, context=BASE_MEANINGS):
         self.counter = 0
+        self.context = context
+
+    def runtime(self, name):
+        return "SPL." + name + ("With " + self.context_source() if self.context.features else "")
+
+    def context_source(self):
+        return "({ features := " + _list(_string(x) for x in self.context.features) + " } : SPL.Dimensions.Meanings)"
 
     def fresh(self):
         value = f"_spl_v{self.counter}"
@@ -164,7 +171,7 @@ class _Emitter:
             return _do([], f"SPL.field (← {self.expression(expr['expr'], env)}) {_string(expr['name'])}")
         if kind == "unary":
             dimensional = expr["expr"]["_type"].name in {"Quantity", "Rate"}
-            target = "SPL.Core.numericUnary" if expr["op"] == "-" and not dimensional else f"SPL.unary {_string(expr['op'])}"
+            target = "SPL.Core.numericUnary" if expr["op"] == "-" and not dimensional else self.runtime("unary") + " " + _string(expr['op'])
             return _do([], f"{target} (← {self.expression(expr['expr'], env)})")
         if kind == "binary":
             left = self.expression(expr["left"], env)
@@ -174,7 +181,7 @@ class _Emitter:
                 return f"(SPL.{function} {left} (fun _ => {right}))"
             arithmetic = {"+": "add", "-": "subtract", "*": "multiply", "/": "divide"}.get(expr["op"])
             dimensional = any(expr[key]["_type"].name in {"Quantity", "Rate"} for key in ("left", "right"))
-            target = f"SPL.Core.numericBinary .{arithmetic}" if arithmetic and not dimensional else f"SPL.binary {_string(expr['op'])}"
+            target = f"SPL.Core.numericBinary .{arithmetic}" if arithmetic and not dimensional else self.runtime("binary") + " " + _string(expr['op'])
             return _do([], f"{target} (← {left}) (← {right})")
         if kind == "if":
             return "(SPL.conditional " + self.expression(expr["condition"], env) + (
@@ -253,8 +260,8 @@ class _Emitter:
                 nested = dict(env, **{lam["name"]: f"(pure {variable})"})
                 body = self.expression(lam["body"], nested)
                 if name == "sum" and expr["_type"].name in {"Quantity", "Rate"}:
-                    zero = lean_value(typed_zero(expr["_type"]))
-                    return _do([], f"SPL.sumValuesFrom {zero} (← {self.expression(args[0], env)}) (fun {variable} => {body})")
+                    zero = lean_value(typed_zero(expr["_type"], self.context))
+                    return _do([], f"{self.runtime('sumValuesFrom')} {zero} (← {self.expression(args[0], env)}) (fun {variable} => {body})")
                 return _do([], f"SPL.{function} (← {self.expression(args[0], env)}) (fun {variable} => {body})")
             if name == "tuple":
                 return "(SPL.tupleValues " + _list(self.expression(a,env) for a in args) + ")"
@@ -265,6 +272,10 @@ class _Emitter:
             if name == "get_or":
                 return _do([],f"SPL.getOr (← {self.expression(args[0],env)}) (fun _ => {self.expression(args[1],env)})")
             values = [f"(← {self.expression(arg, env)})" for arg in args]
+            if name == "convert_quantity":
+                owner = expr.get("_admission", BASE_ADMISSION)
+                owner_source = "({ features := " + _list(_string(x) for x in owner.features) + " } : SPL.Dimensions.Admission)"
+                return _do([], "SPL.convertQuantity " + owner_source + " " + self.context_source() + " " + " ".join(values))
             if name in {"append","concat"}:
                 return _do([],"SPL."+{"append":"appendValue","concat":"concatValues"}[name]+" "+" ".join(values))
             if name in {"tuple_get","lookup","entries","is_some"}:
@@ -273,7 +284,7 @@ class _Emitter:
             if name in {"min", "max"}:
                 return _do([], f"SPL.extrema {'true' if name == 'max' else 'false'} " + " ".join(values))
             if name == "abs":
-                return _do([], "SPL.absolute " + " ".join(values))
+                return _do([], self.runtime("absolute") + " " + " ".join(values))
             if name == "in_period":
                 return _do([], "SPL.inPeriod " + " ".join(values))
             if name == "add_calendar_months":
@@ -283,7 +294,7 @@ class _Emitter:
             if name == "is_calendar_quarter":
                 return _do([], "SPL.isCalendarQuarter " + " ".join(values))
             if name == "quantize":
-                return _do([], "SPL.quantize " + " ".join(values))
+                return _do([], self.runtime("quantize") + " " + " ".join(values))
             if name == "require_some":
                 return _do([], "SPL.requireSome " + " ".join(values))
             raise ValueError(f"Unsupported checked target builtin: {name}")
@@ -336,7 +347,7 @@ def emit_module(checked, inputs=None, openings=None) -> str:
     The driver accepts decoded exact values, as does the reference evaluator.
     """
     schedule = checked.schedule
-    emitter, env, lines = _Emitter(), {}, []
+    emitter, env, lines = _Emitter(checked.meanings or BASE_MEANINGS), {}, []
     for decl in schedule["declarations"]:
         if decl["kind"] in {"input", "opening"}:
             variable = emitter.fresh()

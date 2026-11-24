@@ -1,0 +1,81 @@
+{
+  "decisions": [
+    {
+      "decision_id": "USAGE_CONVERSION_SELECTED",
+      "evidence_ref": "independent-original-measurement-and-quote",
+      "policy_id": "synthetic:usage-conversion",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "original": {
+      "unit": "UsageMinute",
+      "value": "90"
+    },
+    "price": {
+      "currency": "USD",
+      "per_unit": "UsageHour",
+      "value": "12"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "ninety-original-usage-minutes",
+    "runtime_build": "unbound",
+    "scenario_id": "synthetic-usage-conversion"
+  },
+  "module_ref": {
+    "id": "synthetic:usage-hour-meter",
+    "locator": "cases/usage-conversion/hour-meter-module.json",
+    "revision": "1",
+    "sha256": "a9d62b97c06064851da2a0fb6712f007627da8610e20a2406653c146bdd6314d"
+  },
+  "parameters": {},
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "synthetic-usage-agreement",
+    "asset_ids": [
+      "synthetic-usage-asset"
+    ],
+    "participant_ids": [
+      "synthetic-recipient"
+    ],
+    "pool_id": "synthetic-usage-pool",
+    "purpose": "synthetic-usage-conversion"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "meter",
+      "provenance_ref": "explicit-synthetic-zero-genesis",
+      "purpose": "synthetic-usage-meter",
+      "quantity": {
+        "unit": "UsageHour",
+        "value": "0"
+      },
+      "scenario_id": "synthetic-usage-conversion",
+      "scope": {
+        "agreement_id": "synthetic-usage-agreement",
+        "asset_id": "synthetic-usage-asset",
+        "participant_id": "synthetic-recipient",
+        "pool_id": "synthetic-usage-pool",
+        "unit": "dimensioned-v2:516a43e2fb461517b3237aa998a1dce0ada37e6e02f580dc8d43d4eedaf9474a"
+      },
+      "state_key": "{\"agreement_id\":\"synthetic-usage-agreement\",\"asset_id\":\"synthetic-usage-asset\",\"participant_id\":\"synthetic-recipient\",\"pool_id\":\"synthetic-usage-pool\",\"purpose\":\"synthetic-usage-meter\",\"unit\":\"dimensioned-v2:516a43e2fb461517b3237aa998a1dce0ada37e6e02f580dc8d43d4eedaf9474a\"}",
+      "unit": "dimensioned-v2:516a43e2fb461517b3237aa998a1dce0ada37e6e02f580dc8d43d4eedaf9474a"
+    }
+  ]
+}

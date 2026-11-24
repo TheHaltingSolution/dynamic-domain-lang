@@ -17,6 +17,7 @@ structure Meta where
   span : Syntax.Span
   ty : Ty
   citation : Option String := none
+  sourceAnnotation : Option Ty := none
   deriving Repr, Inhabited
 
 mutual
@@ -58,6 +59,12 @@ inductive Decl where
   | emit : Meta → String → Expr → Decl
   deriving Repr, Inhabited
 
+structure FunctionSignature where
+  label : String
+  parameters : List (String × Ty)
+  result : Ty
+  deriving Repr, BEq, Inhabited
+
 structure Program where
   name : String
   language : String
@@ -65,6 +72,12 @@ structure Program where
   schema : String
   span : Syntax.Span
   declarations : List Decl
+  format : String := "spl-ir/0.1"
+  features : List String := []
+  owners : List (String × List String) := []
+  unitDefinitions : List (String × String) := []
+  conversions : List (String × String) := []
+  signatures : List FunctionSignature := []
   deriving Repr, Inhabited
 
 def Expr.meta : Expr → Meta
@@ -100,7 +113,8 @@ partial def typeJson : Ty → Lean.Json
 
 def metaJson (m : Meta) : Lean.Json := obj ([("id", Lean.toJson m.id),
   ("span", spanJson m.span), ("type", typeJson m.ty)] ++
-  (m.citation.toList.map fun citation => ("citation", str citation)))
+  (m.citation.toList.map fun citation => ("citation", str citation)) ++
+  (m.sourceAnnotation.toList.map fun annotation => ("source_annotation", typeJson annotation)))
 
 mutual
   partial def exprJson (e : Expr) : Lean.Json :=
@@ -172,10 +186,22 @@ def declJson : Decl → Lean.Json
 
 /-- Fixed object/array order and exact decimal lexemes make serialization reproducible.
 The artifact format is versioned separately from the draft surface language. -/
-def Program.toJson (program : Program) : Lean.Json := obj [("format", str "spl-ir/0.1"),
+def admissionJson (features : List String) (owners : List (String × List String))
+    (definitions conversions : List (String × String)) (signatures : List FunctionSignature := []) : Lean.Json := obj [
+  ("features", arr (features.map str)),
+  ("owners", arr (owners.map fun (label, features) => obj [("label", str label), ("features", arr (features.map str))])),
+  ("unit_definitions", arr (definitions.map fun (id, pin) => obj [("id", str id), ("sha256", str pin)])),
+  ("relations", arr (conversions.map fun (id, pin) => obj [("id", str id), ("sha256", str pin)])),
+  ("signatures", arr (signatures.map fun signature => obj [
+    ("label", str signature.label), ("parameters", arr (signature.parameters.map fun (name, ty) =>
+      obj [("name", str name), ("type", typeJson ty)])), ("result", typeJson signature.result)]))]
+
+def Program.toJson (program : Program) : Lean.Json := obj ([("format", str program.format),
   ("name", str program.name), ("language", str program.language), ("core", str program.core),
   ("schema", str program.schema), ("span", spanJson program.span),
-  ("declarations", arr (program.declarations.map declJson))]
+  ("declarations", arr (program.declarations.map declJson))] ++
+  (if program.format == "spl-ir/0.1" then [] else
+    [("dimension_admission", admissionJson program.features program.owners program.unitDefinitions program.conversions program.signatures)]))
 
 end SPL.IR
 

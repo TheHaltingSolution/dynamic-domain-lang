@@ -1,0 +1,4 @@
+schedule Usage language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" uses "spl.usage-time/1" {
+  input original: Ratio;
+  emit "earned" = legacy_convert(original);
+}

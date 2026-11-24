@@ -61,7 +61,7 @@ class EmitterMemoizationTests(unittest.TestCase):
         self.assertEqual(process.stderr, b"")
         return process.stdout
 
-    def native(self, source, *, extra_objects=(), module=False, count_groups=False):
+    def native(self, source, *, extra_objects=(), module=False, count_groups=False, link_template="spl_sv"):
         """Compile only temporary sources; reuse Lake's exact runtime link closure."""
         c = source.with_suffix(".c")
         args = [self.lean, "-R", self.work, "-c", c]
@@ -91,7 +91,7 @@ class EmitterMemoizationTests(unittest.TestCase):
             return obj
         executable = source.with_suffix(".exe" if os.name == "nt" else "")
         suffix = ".exe" if os.name == "nt" else ""
-        template = ROOT / ".lake/build/bin" / ("spl_sv" + suffix + ".rsp")
+        template = ROOT / ".lake/build/bin" / (link_template + suffix + ".rsp")
         self.assertTrue(template.is_file(), "Build historical spl_sv link closure first")
         arguments = [json.loads(line) for line in template.read_text().splitlines() if line.strip()]
         arguments = [str(obj), *map(str, extra_objects), *arguments[1:]]

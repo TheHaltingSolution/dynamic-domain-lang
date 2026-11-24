@@ -10,7 +10,7 @@ from .codecs import fail
 
 ROOT = Path(__file__).resolve().parent.parent
 LIB = ROOT / ".lake" / "build" / "lib" / "lean"
-MODULES = ["SPL/Instant", "SPL/Calendar", "SPL/Dimensions", "SPL/Runtime", "SPL/Fold", "SPL/Syntax", "SPL/Parser", "SPL/Check", "SPL/Link", "SPL/IR", "SPL/Elaborate", "SPL/ValidateIR",
+MODULES = ["SPL/Instant", "SPL/Calendar", "SPL/Dimensions", "SPL/Runtime", "SPL/Fold", "SPL/Syntax", "SPL/Parser", "SPL/Check", "SPL/Link", "SPL/IR", "SPL/Elaborate", "SPL/IRSource", "SPL/IRArtifact", "SPL/ValidateIR",
            "SPL/Bindings", "SPL/Emit", "SPL/Core", "SPL/Proofs", "SPL/Trace", "SPL/Interpret", "SPL/Readable", "SPL"]
 
 
@@ -57,14 +57,26 @@ def lean(args, timeout=180):
 
 
 def build_native():
-    """Direct checking fallback; normal CI additionally uses lake build/exe smoke."""
+    """Keep Lake's .olean package identities and native objects coherent.
+
+    Direct lean -o into Lake's library directory changes imported C symbol names
+    and breaks a later native link against Lake objects, even for the same source.
+    """
     for module in MODULES:
         source = ROOT / (module + ".lean")
-        target = LIB / (module + ".olean")
         if not source.exists():
             fail("COMPILER_INCOMPLETE", "Missing module " + str(source))
-        target.parent.mkdir(parents=True, exist_ok=True)
-        lean(["-DwarningAsError=true", "-o", target, source])
+    executable, env = lean_environment()
+    lake = Path(executable).with_name("lake.exe" if os.name == "nt" else "lake")
+    process = subprocess.run([str(lake), "build", "SPL"], cwd=ROOT, env=env,
+                             text=True, encoding="utf-8", capture_output=True, timeout=180)
+    if process.returncode:
+        fail("LEAN_FAILED", (process.stdout + process.stderr).strip())
+    # The pinned Lake file also enables warningAsError. Retain the public
+    # helper's explicit warning policy even if a caller adjusts Lake options;
+    # these strict source checks deliberately have no -o/-i/-c output paths.
+    for module in MODULES:
+        lean(["-DwarningAsError=true", ROOT / (module + ".lean")])
 
 
 def compile_schedule(source, output, *, link=None):
@@ -81,4 +93,7 @@ def interpret_schedule(source, bindings, *, link=None):
 
 def export_ir(source, output, *, link=None):
     lean(["--run", ROOT / "SPL/Main.lean", "ir", source, output, *(["--link",link] if link else [])])
+    from .codecs import read_json
+    from .ir_artifacts import validate_ir_artifact
+    validate_ir_artifact(read_json(output))
     return Path(output)

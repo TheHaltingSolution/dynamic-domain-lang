@@ -1,0 +1,108 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.modules/1",
+      "spl.quantities/1",
+      "spl.usage-time/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1",
+      "spl-quantity/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.2",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:usage-inferred-import",
+  "imports": [
+    {
+      "alias": "library",
+      "module_ref": {
+        "id": "synthetic:usage-convert-library",
+        "locator": "cases/usage-conversion/convert-library-module.json",
+        "revision": "1",
+        "sha256": "3aa6bb8cf7ede4afe1e4972a56b6f3beeefadface9b7d7fdbaf0f154fa5d9a13"
+      },
+      "symbols": [
+        {
+          "export": "to_hour",
+          "local": "to_hour"
+        }
+      ]
+    }
+  ],
+  "interface": {
+    "dictionaries": {
+      "spl.units.usage-time/1": [
+        "UsageHour"
+      ],
+      "spl.units/1": [
+        "UsageMinute"
+      ]
+    },
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageMinute"
+            }
+          ],
+          "name": "Quantity"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "quantity",
+        "role": "result",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageHour"
+            }
+          ],
+          "name": "Quantity"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "USAGE_CONVERSION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "ninety-original-usage-minutes",
+      "legacy-base-carry",
+      "new-hour-carry"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:usage-conversion",
+    "readable": {
+      "locator": "cases/usage-conversion/policy.md",
+      "sha256": "2fcd9708270baaed6f75a9fa7dbf3f5d5582f6943b8a16090d18a9fb739799e6"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/usage-conversion/inferred-import.spl",
+    "sha256": "d183b9c9f9dce19181a3480a3b3ee8f4c2c85e43e305ef6999520bc2fb181fc4"
+  },
+  "state": []
+}

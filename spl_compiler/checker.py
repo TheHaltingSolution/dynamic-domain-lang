@@ -5,7 +5,8 @@ from datetime import date
 from typing import Any
 
 from .model import BOOL, DATE, INSTANT, INT, RATIO, TEXT, USD, CheckedSchedule, SPLException, Type
-from .dimensions import validate_currency, validate_unit
+from .dimensions import (validate_currency, validate_unit, admission, DimensionAdmission, BASE_ADMISSION,
+                         meanings, conversion_factor, has_builtin)
 
 
 def ident(kind: str) -> Type:
@@ -110,20 +111,22 @@ def fail(code: str, message: str, node: dict | None = None) -> None:
     raise SPLException(code, message, node.get("span") if node else None)
 
 
-def type_from_ast(value: dict[str, Any]) -> Type:
+def type_from_ast(value: dict[str, Any], context=BASE_ADMISSION) -> Type:
+    if not isinstance(context, DimensionAdmission):
+        fail("INVALID_OWNER_CONTEXT", "Type spelling requires lexical admission")
     name = value["name"]
     args = value.get("args", [])
     if name == "Record":
         fields = value.get("fields", [])
         if len({n for n,_ in fields}) != len(fields):
             fail("DUPLICATE_FIELD", "Duplicate type field")
-        return Type("Record", fields=tuple((n,type_from_ast(t)) for n,t in fields))
+        return Type("Record", fields=tuple((n,type_from_ast(t, context)) for n,t in fields))
     if name == "Tuple":
         if len(args) < 2:
             fail("TYPE_ARITY", "Tuple requires at least two components")
-        return Type("Tuple", tuple(map(type_from_ast,args)))
+        return Type("Tuple", tuple(type_from_ast(arg, context) for arg in args))
     if name == "Map" and len(args) == 2:
-        key, val = map(type_from_ast,args)
+        key, val = (type_from_ast(arg, context) for arg in args)
         if not key_type(key):
             fail("INVALID_MAP_KEY_TYPE", "Map key is not admitted")
         return Type("Map", (key,val))
@@ -144,12 +147,12 @@ def type_from_ast(value: dict[str, Any]) -> Type:
             fail("TYPE_ARITY", f"{name} has invalid dimension argument count")
         if any(arg.get("args") or arg.get("fields") for arg in args):
             fail("UNSUPPORTED_TYPE", "Dimension arguments must be atomic")
-        validate_unit(args[0]["name"])
+        validate_unit(args[0]["name"], context)
         if name == "Rate":
             validate_currency(args[1]["name"])
         return Type(name, tuple(Type(arg["name"]) for arg in args))
     if name in {"List", "Option"} and len(args) == 1:
-        return Type(name, (type_from_ast(args[0]),))
+        return Type(name, (type_from_ast(args[0], context),))
     if name == "Id" and len(args) == 1 and not args[0].get("args"):
         return ident(args[0]["name"])
     fail("UNSUPPORTED_TYPE", f"Unsupported type {name}")
@@ -195,7 +198,7 @@ class Scope:
             visible.add(name)
             self.definitions[name] = declaration
             if declaration["kind"] in {"input", "opening"}:
-                self.types[name] = type_from_ast(declaration["type"])
+                self.types[name] = type_from_ast(declaration["type"], checker.admission)
 
     def has(self, name: str) -> bool:
         return name in self.types or name in self.definitions or bool(self.parent and self.parent.has(name))
@@ -208,7 +211,7 @@ class Scope:
         if name in self.definitions:
             self.active.add(name)
             declaration = self.definitions[name]
-            expected = type_from_ast(declaration["type"]) if declaration.get("type") else None
+            expected = type_from_ast(declaration["type"], self.checker.admission) if declaration.get("type") else None
             typ = self.checker.expr(declaration["expr"], self, expected)
             self.types[name] = typ
             self.active.remove(name)
@@ -254,11 +257,37 @@ class Scope:
 
 
 class Checker:
+    def __init__(self, features=(), owners=(), signatures=()):
+        self.admission = admission(features)
+        self.owners = tuple((label, tuple(features)) for label, features in owners)
+        if len({label for label, _ in self.owners}) != len(self.owners):
+            fail("INVALID_OWNER_CONTEXT", "Duplicate application owner")
+        self.meanings = meanings([self.admission, *(admission(features) for _, features in self.owners)])
+        table = []
+        labels = set()
+        for signature in signatures:
+            label = signature["label"]
+            if label in labels or label not in dict(self.owners):
+                fail("INVALID_FUNCTION_SIGNATURE", "Unknown or duplicate linked signature")
+            labels.add(label)
+            owner = admission(dict(self.owners)[label])
+            parameters = tuple((p["name"], type_from_ast(p["type"], owner)) for p in signature["parameters"])
+            if len({name for name, _ in parameters}) != len(parameters):
+                fail("INVALID_FUNCTION_SIGNATURE", "Duplicate linked parameter")
+            table.append((label, parameters, type_from_ast(signature["result"], owner)))
+        self.signatures = tuple(table)
+
+    def for_owner(self, label):
+        checker = Checker(dict(self.owners).get(label, ()), self.owners)
+        checker.signatures = self.signatures
+        return checker
+
     def expr(self, node: dict, scope: Scope, expected: Type | None = None) -> Type:
         typ = self._expr(node, scope, expected)
         if expected is not None and not compatible(typ, expected):
             fail("TYPE_MISMATCH", f"Expected {expected}, found {typ}", node)
         node["_type"] = typ
+        node["_admission"] = self.admission
         return typ
 
     def _expr(self, node: dict, scope: Scope, expected: Type | None) -> Type:
@@ -425,16 +454,23 @@ class Checker:
             if len(node["parameters"]) != len(node["args"]):
                 fail("FUNCTION_ARITY", "Function argument count differs", node)
             bound = {}
+            callee = self.for_owner(node["function"])
+            if self.meanings.features or self.signatures:
+                signature = next((entry for entry in self.signatures if entry[0] == node["function"]), None)
+                actual_parameters = tuple((p["name"], type_from_ast(p["type"], callee.admission)) for p in node["parameters"])
+                if (signature is None or actual_parameters != signature[1]
+                        or type_from_ast(node["result"], callee.admission) != signature[2]):
+                    fail("INVALID_FUNCTION_SIGNATURE", "Application differs from linked signature", node)
             for parameter, arg in zip(node["parameters"],node["args"]):
-                name, typ = parameter["name"], type_from_ast(parameter["type"])
+                name, typ = parameter["name"], type_from_ast(parameter["type"], callee.admission)
                 if name in bound:
                     fail("DUPLICATE_NAME", "Duplicate function parameter", node)
                 self.expr(arg,scope,typ)
                 bound[name] = typ
-            local = Scope(self,node["declarations"],bound=bound)
+            local = Scope(callee,node["declarations"],bound=bound)
             local.check()
-            result = type_from_ast(node["result"])
-            self.expr(node["body"],local,result)
+            result = type_from_ast(node["result"], callee.admission)
+            callee.expr(node["body"],local,result)
             node["_definition_order"] = local.order
             return result
         if kind == "fold":
@@ -476,6 +512,17 @@ class Checker:
             return Type("List", (self.expr(node["yield"], local, hint),))
         if kind == "call":
             name, args = node["name"], node["args"]
+            if name == "convert_quantity" and has_builtin(self.admission, name):
+                self.arity(node, 3)
+                if any(arg["kind"] != "text" for arg in args[1:]):
+                    fail("CONVERSION_LITERAL_REQUIRED", "Target and relation must be literal Text", node)
+                source = self.expr(args[0], scope)
+                if source.name != "Quantity":
+                    fail("TYPE_MISMATCH", "Conversion requires Quantity", node)
+                conversion_factor(source.args[0].name, args[1]["value"], args[2]["value"], self.admission)
+                self.expr(args[1], scope, TEXT)
+                self.expr(args[2], scope, TEXT)
+                return Type("Quantity", (Type(args[1]["value"]),))
             if name in {"append","concat"}:
                 self.arity(node,2)
                 source = self.expr(args[0],scope,expected)
@@ -639,7 +686,19 @@ def check_schedule(schedule: dict[str, Any]) -> CheckedSchedule:
     aliases = [d["alias"] for d in schedule["declarations"] if d["kind"] == "opening"]
     if len(aliases) != len(set(aliases)):
         fail("DUPLICATE_OPENING_ALIAS", "Opening aliases must be unique", schedule)
-    checker = Checker()
+    checker = Checker(schedule.get("features", ()), schedule.get("dimension_owners", ()), schedule.get("dimension_signatures", ()))
     scope = Scope(checker, schedule["declarations"])
     scope.check()
-    return CheckedSchedule(schedule, scope.types, scope.order)
+    return CheckedSchedule(schedule, scope.types, scope.order, checker.admission, checker.meanings)
+
+
+def type_from_meaning_ast(value, context):
+    """Structural runtime type validation, never permission for source spelling.
+
+    A consumer must separately justify inferred outputs from their checked
+    expression/callee. This helper cannot admit ports or source annotations.
+    """
+    from .dimensions import RuntimeMeanings
+    if not isinstance(context, RuntimeMeanings):
+        fail("INVALID_OWNER_CONTEXT", "Runtime meaning context required")
+    return type_from_ast(value, admission(context.features))

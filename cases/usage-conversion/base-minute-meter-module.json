@@ -1,0 +1,156 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.modules/1",
+      "spl.quantities/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1",
+      "spl-quantity/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:usage-base-minute-meter",
+  "imports": [],
+  "interface": {
+    "dictionaries": {
+      "spl.units/1": [
+        "UsageMinute"
+      ]
+    },
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageMinute"
+            }
+          ],
+          "name": "Quantity"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "price",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageMinute"
+            },
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Rate"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "meter",
+        "role": "opening",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageMinute"
+            }
+          ],
+          "name": "Quantity"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "quantity",
+        "role": "result",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageMinute"
+            }
+          ],
+          "name": "Quantity"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "earned",
+        "role": "result",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "USAGE_CONVERSION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "ninety-original-usage-minutes",
+      "legacy-base-carry",
+      "new-hour-carry"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:usage-conversion",
+    "readable": {
+      "locator": "cases/usage-conversion/policy.md",
+      "sha256": "2fcd9708270baaed6f75a9fa7dbf3f5d5582f6943b8a16090d18a9fb739799e6"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/usage-conversion/base-minute-meter.spl",
+    "sha256": "1820bb1f3e987618bf9014acd8694081d571f14fedc53998ffc947c16f035831"
+  },
+  "state": [
+    {
+      "closing": "meter",
+      "history_required": false,
+      "key_fields": [
+        "agreement_id",
+        "participant_id",
+        "pool_id",
+        "asset_id",
+        "purpose",
+        "unit"
+      ],
+      "movement_kinds": [
+        "transition"
+      ],
+      "opening": "meter",
+      "purpose": "synthetic-usage-meter",
+      "unit": "dimensioned:8cb06a24e5e6f98a7e988b581f4a5689a375396d5c5d72499e2b6c4282cc8619"
+    }
+  ]
+}

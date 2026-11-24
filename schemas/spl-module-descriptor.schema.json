@@ -14,7 +14,7 @@
       "required": ["surface", "core", "ir", "package", "toolchain", "codecs", "capabilities"],
       "properties": {
         "surface": {"const": "spl/0.1-draft"}, "core": {"const": "spl-core/0.1-draft"},
-        "ir": {"const": "spl-ir/0.1"}, "package": {"const": "spl-module/1"},
+        "ir": {"enum": ["spl-ir/0.1", "spl-ir/0.2"]}, "package": {"const": "spl-module/1"},
         "toolchain": {"const": "leanprover/lean4:v4.35.0"},
         "codecs": {"type": "array", "items": {"enum": ["spl-exact/1", "spl-instant/1", "spl-quantity/1"]}, "uniqueItems": true},
         "capabilities": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}

@@ -27,6 +27,9 @@ private structure Frame where
 private structure Context where
   schedule : String
   frames : List Frame
+  owner : Dimensions.Admission := {}
+  meanings : Dimensions.Meanings := {}
+  owners : List (String × List String) := []
   rule : String := "schedule"
   scope : String := "root"
   citation : Option String := none
@@ -80,9 +83,9 @@ private def decimal (text : String) : Eval Value := do
   if d == 0 then throw "INVALID_NUMBER"
   pure (.num (mkRat n d))
 
-private def dimensionalNumeric (op : String) (left right : Value) : Eval Value := do
-  let a ← magnitude left
-  let b ← magnitude right
+private def dimensionalNumeric (meanings : Dimensions.Meanings) (op : String) (left right : Value) : Eval Value := do
+  let a ← magnitudeWith meanings left
+  let b ← magnitudeWith meanings right
   if op == "/" && b == 0 then throw "DIVISION_BY_ZERO"
   if (op == "+" || op == "-") && sameDimension left right then
     return withMagnitude left (if op == "+" then a + b else a - b)
@@ -97,9 +100,9 @@ private def dimensionalNumeric (op : String) (left right : Value) : Eval Value :
   | _, _, _ => throw "TYPE_MISMATCH"
 
 /-- Arithmetic is interpreted directly, independently of target helper lowering. -/
-private def numeric (op : String) (a b : Value) : Eval Value := do
+private def numeric (meanings : Dimensions.Meanings) (op : String) (a b : Value) : Eval Value := do
   if ["+", "-", "*", "/"].contains op && !(sameDimension a (.num 0) && sameDimension b (.num 0)) then
-    return ← dimensionalNumeric op a b
+    return ← dimensionalNumeric meanings op a b
   match op with
   | "+" => pure (.num ((← asNum a) + (← asNum b)))
   | "-" => pure (.num ((← asNum a) - (← asNum b)))
@@ -117,10 +120,10 @@ private def numeric (op : String) (a b : Value) : Eval Value := do
   | ">=" => pure (.flag ((← SPL.compare a b) != .lt))
   | _ => throw "IR_UNKNOWN_OPERATOR"
 
-private def roundValue (value quantum mode : Value) : Eval Value := do
+private def roundValue (meanings : Dimensions.Meanings) (value quantum mode : Value) : Eval Value := do
   unless sameDimension value quantum do throw "TYPE_MISMATCH"
-  let x ← magnitude value
-  let q ← magnitude quantum
+  let x ← magnitudeWith meanings value
+  let q ← magnitudeWith meanings quantum
   let mode ← asText mode
   if q ≤ 0 then throw "INVALID_QUANTUM"
   let scaled := x / q
@@ -138,8 +141,12 @@ private def roundValue (value quantum mode : Value) : Eval Value := do
     | _ => throw "INVALID_ROUNDING_MODE"
   pure (withMagnitude value ((rounded : Rat) * q))
 
-private def builtin (name : String) (values : List Value) : Eval Value := do
+private def builtin (context : Context) (name : String) (values : List Value) : Eval Value := do
   match name, values with
+  | "convert_quantity", [.quantity source number, .text target, .text relation] =>
+    let _ ← magnitudeWith context.meanings (.quantity source number)
+    let factor ← Dimensions.conversionFactor context.owner source target relation
+    pure (.quantity target (number * factor))
   | "tuple", values => pure (.tuple values)
   | "append", [source, item] => SPL.appendValue source item
   | "concat", [left, right] => SPL.concatValues left right
@@ -173,7 +180,7 @@ private def builtin (name : String) (values : List Value) : Eval Value := do
       | _, _ => false
     pure (.flag valid)
   | "abs", [value] =>
-    let n ← magnitude value
+    let n ← magnitudeWith context.meanings value
     pure (withMagnitude value (if n < 0 then -n else n))
   | "min", [a, b] => pure (if (← SPL.compare a b) == .gt then b else a)
   | "max", [a, b] => pure (if (← SPL.compare a b) == .lt then b else a)
@@ -189,7 +196,7 @@ private def builtin (name : String) (values : List Value) : Eval Value := do
     let mode ← asText policy
     unless count >= 0 && count.den == 1 do throw "CALENDAR_INVALID_MONTHS"
     pure (.text (← Calendar.addMonths source count.num.toNat mode))
-  | "quantize", [value, quantum, mode] => roundValue value quantum mode
+  | "quantize", [value, quantum, mode] => roundValue context.meanings value quantum mode
   | "require_some", [.present value, _] => pure value
   | "require_some", [.absent, code] => throw (← asText code)
   | "require_some", _ => throw "TARGET_EXPECTED_OPTION"
@@ -333,7 +340,7 @@ mutual
       pure (← lift (field value.value name), [value], obj [("field", .str name)])
     | .unary _ op body =>
       let value ← evaluate context body
-      let result ← if op == "-" then do pure (withMagnitude value.value (-(← lift (magnitude value.value))))
+      let result ← if op == "-" then do pure (withMagnitude value.value (-(← lift (magnitudeWith context.meanings value.value))))
         else if op == "not" then do pure (.flag (!(← lift (asBool value.value))))
         else throw "IR_UNKNOWN_OPERATOR"
       pure (result, [value], obj [("operator", .str op)])
@@ -351,7 +358,7 @@ mutual
           pure (b.value, [a, b], obj [("operator", .str op)])
       else
         let b ← evaluate context right
-        pure (← attempt context expr [a, b] [("operator", .str op)] (numeric op a.value b.value),
+        pure (← attempt context expr [a, b] [("operator", .str op)] (numeric context.meanings op a.value b.value),
           [a, b], obj [("operator", .str op)])
     | .ite _ condition yes no =>
       let predicate ← evaluate context condition
@@ -379,8 +386,18 @@ mutual
       | _ => throw "TARGET_EXPECTED_OPTION"
     | .call _ name args =>
       let args ← args.mapM (evaluate context)
-      pure (← attempt context expr args [("builtin", .str name)] (builtin name (args.map Observed.value)),
-        args, obj [("builtin", .str name)])
+      let details ← if name == "convert_quantity" then lift do
+          let [.quantity source _, .text target, .text relation] := args.map Observed.value
+            | throw "TYPE_MISMATCH"
+          let factor ← Dimensions.conversionFactor context.owner source target relation
+          let definitions := Dimensions.definitions.filter (fun entry => entry.name == source || entry.name == target)
+          let some entry := Dimensions.relations.find? (·.id == relation) | throw "UNSUPPORTED_CONVERSION"
+          pure [("builtin", .str name), ("relation_id", .str relation), ("relation_pin", .str entry.pin),
+            ("source_unit", .str source), ("target_unit", .str target), ("factor", valueJson (.num factor)),
+            ("unit_definitions", .arr (definitions.map (fun entry => obj [("id", .str entry.id), ("sha256", .str entry.pin)])).toArray)]
+        else pure [("builtin", .str name)]
+      pure (← attempt context expr args details (builtin context name (args.map Observed.value)),
+        args, obj details)
     | .choose mdata arms fallback =>
       let predicates ← arms.mapM fun (predicate, _) => evaluate context predicate
       let flags ← predicates.mapM fun value => lift (asBool value.value)
@@ -497,7 +514,7 @@ mutual
           | .quantity unit => Value.quantity unit 0
           | .rate unit currency => Value.rate unit currency 0
           | _ => .num 0
-        for value in values do total ← lift (numeric "+" total value.value)
+        for value in values do total ← lift (numeric context.meanings "+" total value.value)
         pure (total, source :: values, detail)
       | "sort_by" =>
         let mut sorted := []
@@ -572,7 +589,8 @@ mutual
       let scope := (Lean.Json.arr #[.str context.scope, .str "call", toJson mdata.id, .str label]).compress
       let boundValues := (parameters.zip args).map (fun ((name, _), value) => (name, value))
       let frame : Frame := { scope, values := boundValues, definitions := declarations.filterMap localDefinition }
-      let inner := { context with scope, frames := [frame] }
+      let owner ← lift (Dimensions.prepare ((context.owners.lookup label).getD []))
+      let inner := { context with scope, frames := [frame], owner }
       assertions inner declarations
       let result ← evaluate inner body
       pure (result.value, args ++ [result], obj [("function", .str label)])
@@ -636,7 +654,13 @@ end
 
 private def calculation (program : Program) (inputs openings : Env) : Run Settlement := do
   let mut values := []
-  let base : Context := { schedule := program.name, frames := [] }
+  let owner ← lift (Dimensions.prepare program.features)
+  let base : Context := {
+    schedule := program.name
+    frames := []
+    owner
+    owners := program.owners
+    meanings := { features := (program.features ++ program.owners.flatMap Prod.snd).eraseDups } }
   for declaration in program.declarations do
     match declaration with
     | .input m name | .opening m name _ =>

@@ -1,4 +1,5 @@
-import SPL.IR
+import SPL.IRSource
+import SPL.IRArtifact
 
 /-! Independent defensive validation of the type-annotated IR. `IR.Expr` is not
 an intrinsically typed dependent syntax: its constructors are publicly usable.
@@ -8,7 +9,12 @@ It does not evaluate source arithmetic or establish compiler correctness. -/
 namespace SPL.ValidateIR
 open IR
 
-abbrev Validation := StateT (List Nat) (Except Syntax.Diagnostic)
+structure ValidationContext where
+  owner : Check.Inference := {}
+  meanings : Dimensions.Meanings := {}
+  extended : Bool := false
+
+abbrev Validation := ReaderT ValidationContext (StateT (List Nat) (Except Syntax.Diagnostic))
 
 private def reject (message : String) (span : Syntax.Span := {}) : Validation α :=
   throw { code := "INVALID_IR", message, span }
@@ -35,10 +41,16 @@ private partial def portType : Ty → Syntax.TypeExpr
 annotations. Reparse every complete type, including nested dimensions and the
 exact fields of registered schemas, before trusting it as an inference hint. -/
 private def validateType (ty : Ty) (span : Syntax.Span) : Validation Unit := do
-  let actual ← checked (Check.parseType (portType ty))
+  let config ← read
+  let actual ← checked (Check.parseTypeWith { features := config.meanings.features } (portType ty))
   unless actual == ty do reject "IR type differs from its admitted structural type or registered schema" span
 
 private def note (m : Meta) : Validation Unit := do
+  let config ← read
+  if !config.extended && m.sourceAnnotation.isSome then reject "V1 cannot carry source annotation metadata" m.span
+  if let some annotation := m.sourceAnnotation then
+    let _ ← checked (Check.parseTypeWith config.owner.lexical (portType annotation))
+    pure ()
   if m.span.stop < m.span.start || m.span.line == 0 || m.span.column == 0 then
     reject "Invalid source span" m.span
   validateType m.ty m.span
@@ -105,7 +117,8 @@ private def scopeContext (outer : Check.Context) (declarations : List LocalDecl)
 /-- Rechecking one shallow operator avoids trusting its annotation or recursing
 through unvalidated annotated subtrees inside the existing source checker. -/
 private def inferNode (m : Meta) (context : Check.Context) (source : Syntax.Expr) : Validation Unit := do
-  let actual ← checked (Check.infer context source (some m.ty))
+  let config ← read
+  let actual ← checked (Check.inferWith config.owner context source (some m.ty))
   unless actual == m.ty do reject "Node type annotation differs from inferred type" m.span
 
 private def childName (namePrefix : String) (index : Nat) : String := namePrefix ++ toString index
@@ -216,10 +229,13 @@ mutual
         validateType ty m.span
         unless Check.compatible arg.meta.ty ty do reject "Function argument type mismatch" m.span
         nested ← checked (Check.bind nested name ty m.span)
-      nested ← scopeContext nested declarations
-      for d in declarations do localDecl nested d
-      expression nested body
-      unless Check.compatible body.meta.ty m.ty do reject "Function return type mismatch" m.span
+      let config ← read
+      let callee ← checked (Check.ownerInference config.owner label)
+      withReader (fun config => { config with owner := callee }) do
+        let nested ← scopeContext nested declarations
+        for d in declarations do localDecl nested d
+        expression nested body
+        unless Check.compatible body.meta.ty m.ty do reject "Function return type mismatch" m.span
     | .fold _ source initial state event eventTy order declarations body =>
       validateType eventTy m.span
       expression context initial
@@ -316,6 +332,31 @@ private def program (p : Program) : Validation Unit := do
   unless openings.length == closed.length do reject "Missing closing port" p.span
 
 def validate (p : Program) : Except Syntax.Diagnostic Unit := do
-  pure (← (program p).run []).1
+  let allFeatures := (p.features ++ p.owners.flatMap Prod.snd).eraseDups
+  let extended := p.format == "spl-ir/0.2"
+  let bad (message : String) : Except Syntax.Diagnostic Unit :=
+    .error { code := "INVALID_IR", message }
+  if p.format == "spl-ir/0.1" then
+    unless p.features.isEmpty && p.owners.isEmpty && p.unitDefinitions.isEmpty && p.conversions.isEmpty && p.signatures.isEmpty do
+      bad "V1 program carries extension metadata"
+  else if extended then
+    if allFeatures.isEmpty then bad "V2 program has no extension closure"
+    unless p.unitDefinitions == Dimensions.definitionPins allFeatures &&
+        p.conversions == Dimensions.relationPins allFeatures do bad "Catalog content pins differ"
+    -- Reconstruct annotation/expected-type edges, never treating arbitrary Meta
+    -- types or an inferred flag as source permission.
+    (Check.check (IRSource.schedule p)).mapError (fun d => { d with code := "INVALID_IR" })
+  else bad "Unknown IR artifact version"
+  let owner ← Check.inference {
+    name := p.name
+    language := p.language
+    core := p.core
+    schema := p.schema
+    declarations := []
+    features := p.features
+    owners := p.owners
+    signatures := (IRSource.schedule p).signatures }
+  let config : ValidationContext := { owner, meanings := { features := allFeatures }, extended }
+  pure (← ((program p).run config).run []).1
 
 end SPL.ValidateIR

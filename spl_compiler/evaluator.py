@@ -14,7 +14,8 @@ from typing import Any, Callable
 
 from .model import CheckedSchedule, Diagnostic, MapValue, OptionValue, Outcome, QuantityValue, RateValue, SPLException, Type, encode_value
 from .dimensions import (DIMENSIONAL_VALUES, dimension_key, dimensional_binary, is_zero,
-                         typed_zero, validate_currency, validate_unit, with_number)
+                         typed_zero, validate_currency, validate_unit, with_number,
+                         BASE_ADMISSION, BASE_MEANINGS, conversion_factor)
 from .instant import parse_instant
 from .calendar_months import add_calendar_months
 
@@ -37,7 +38,7 @@ def parse_exact(value: Any) -> Fraction:
     raise SPLException("INVALID_EXACT_NUMBER", "Expected exact decimal string or reduced rational with positive denominator")
 
 
-def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
+def decode_value(value: Any, typ: Type, pointer: str = "input", *, context=BASE_MEANINGS) -> Any:
     def error(code: str, message: str) -> None:
         raise SPLException(code, f"{pointer}: {message}")
 
@@ -53,7 +54,7 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
         return parse_exact(value["value"])
     if typ.name in {"Quantity", "Rate"}:
         unit = typ.args[0].name
-        validate_unit(unit)
+        validate_unit(unit, context)
         if typ.name == "Rate":
             validate_currency(typ.args[1].name)
         invalid = "INVALID_QUANTITY" if typ.name == "Quantity" else "INVALID_RATE"
@@ -63,15 +64,15 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
         tag = value["unit" if typ.name == "Quantity" else "per_unit"]
         if not isinstance(tag, str) or (typ.name == "Rate" and not isinstance(value["currency"], str)):
             error(invalid, "Dimension tags must be strings")
-        validate_unit(tag)
+        validate_unit(tag, context)
         if tag != unit:
             error("UNIT_MISMATCH", f"Expected {unit}")
         if typ.name == "Quantity":
-            return QuantityValue(parse_exact(value["value"]), unit)
+            return QuantityValue(parse_exact(value["value"]), unit, context)
         currency = typ.args[1].name
         if value["currency"] != currency:
             error("CURRENCY_MISMATCH", f"Expected {currency}")
-        return RateValue(parse_exact(value["value"]), unit, currency)
+        return RateValue(parse_exact(value["value"]), unit, currency, context)
     if typ.name in {"Ratio", "Rational", "Int", "Nat"}:
         number = parse_exact(value)
         if typ.name in {"Int", "Nat"} and number.denominator != 1:
@@ -102,7 +103,7 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
     if typ.name == "List":
         if not isinstance(value, list):
             error("INVALID_LIST", "Expected a finite JSON array")
-        decoded = [decode_value(item, typ.args[0], f"{pointer}[{i}]") for i, item in enumerate(value)]
+        decoded = [decode_value(item, typ.args[0], f"{pointer}[{i}]", context=context) for i, item in enumerate(value)]
         if typ.args[0].name in {"AdvanceIssue", "ReserveMovement", "PaymentApplication"}:
             identities = [item["event_id"] for item in decoded]
             if len(set(identities)) != len(identities):
@@ -119,19 +120,19 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
     if typ.name == "Tuple":
         if not isinstance(value,list) or len(value) != len(typ.args):
             error("TUPLE_ARITY","Expected fixed-arity tuple array")
-        return tuple(decode_value(v,t,f"{pointer}[{i}]") for i,(v,t) in enumerate(zip(value,typ.args)))
+        return tuple(decode_value(v,t,f"{pointer}[{i}]",context=context) for i,(v,t) in enumerate(zip(value,typ.args)))
     if typ.name == "Map":
         if not isinstance(value,list) or any(not isinstance(e,dict) or set(e) != {"key","value"} for e in value):
             error("EXPECTED_MAP","Expected key/value entry array")
-        keyed = [(decode_value(e["key"],typ.args[0],f"{pointer}[{i}].key"),e["value"]) for i,e in enumerate(value)]
+        keyed = [(decode_value(e["key"],typ.args[0],f"{pointer}[{i}].key",context=context),e["value"]) for i,e in enumerate(value)]
         if len({k for k,_ in keyed}) != len(keyed):
             error("DUPLICATE_MAP_KEY","Duplicate supplied map key")
-        return MapValue(tuple((k,decode_value(v,typ.args[1],pointer+".value")) for k,v in sorted(keyed,key=lambda p:p[0])))
+        return MapValue(tuple((k,decode_value(v,typ.args[1],pointer+".value",context=context)) for k,v in sorted(keyed,key=lambda p:p[0])))
     if typ.name == "Option":
         if value == {"none": True}:
             return OptionValue(False)
         if isinstance(value, dict) and set(value) == {"some"}:
-            return OptionValue(True,decode_value(value["some"], typ.args[0], pointer + ".some"))
+            return OptionValue(True,decode_value(value["some"], typ.args[0], pointer + ".some",context=context))
         error("INVALID_OPTION", "Expected {none:true} or {some:value}")
     if typ.fields:
         fields = dict(typ.fields)
@@ -142,7 +143,7 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
             error("MISSING_FIELD", f"Missing {', '.join(sorted(missing))}")
         if extra:
             error("UNKNOWN_FIELD", f"Unknown fields {', '.join(sorted(extra))}")
-        result = {name: decode_value(value[name], field_type, pointer + "." + name) for name, field_type in typ.fields}
+        result = {name: decode_value(value[name], field_type, pointer + "." + name,context=context) for name, field_type in typ.fields}
         if typ.name == "Period" and result["start"] >= result["end"]:
             error("INVALID_PERIOD", "Half-open period requires start < end")
         return result
@@ -208,7 +209,8 @@ class Environment:
 
 
 class Evaluator:
-    def __init__(self):
+    def __init__(self, context=BASE_MEANINGS):
+        self.context = context
         self.trace: list[dict[str, Any]] = []
         self.instances: list[str] = []
 
@@ -393,6 +395,16 @@ class Evaluator:
             return results
         if kind == "call":
             name, args = node["name"], node["args"]
+            if name == "convert_quantity":
+                value = self.expr(args[0], env)
+                target, relation = (self.expr(arg, env) for arg in args[1:])
+                if not isinstance(value, QuantityValue):
+                    raise SPLException("TYPE_MISMATCH", "Conversion requires Quantity")
+                factor = conversion_factor(value.unit, target, relation, node.get("_admission", BASE_ADMISSION))
+                result = QuantityValue(value.value * factor, target, self.context)
+                self.observe(node, name, operands=[value, target, relation], result=result,
+                             relation_id=relation, factor=factor)
+                return result
             if name == "get_or":
                 option = self.expr(args[0],env)
                 result = self.expr(args[1],env) if not option.present else option.value
@@ -455,7 +467,7 @@ class Evaluator:
                 elif name == "map":
                     result = mapped
                 elif name == "sum":
-                    result = typed_zero(node["_type"])
+                    result = typed_zero(node["_type"], self.context)
                     for item in mapped:
                         result = dimensional_binary("+", result, item) if isinstance(result, DIMENSIONAL_VALUES) else result + item
                 else:
@@ -547,7 +559,7 @@ class Evaluator:
 
 
 def evaluate(checked: CheckedSchedule, inputs: dict[str, Any], openings: dict[str, Any]) -> Outcome:
-    evaluator = Evaluator()
+    evaluator = Evaluator(checked.meanings or BASE_MEANINGS)
     try:
         # Readable expansion maps every subexpression back to its authored
         # statement span. A preorder AST identity distinguishes nested operators
@@ -581,8 +593,8 @@ def evaluate(checked: CheckedSchedule, inputs: dict[str, Any], openings: dict[st
             normalized_openings[binding] = value
         if normalized_openings.keys() != expected_openings:
             raise SPLException("OPENING_BINDING_MISMATCH", "Missing opening binding")
-        values = {name: decode_value(value, checked.types[name], name) for name, value in inputs.items()}
-        values.update({name: decode_value(value, checked.types[name], name) for name, value in normalized_openings.items()})
+        values = {name: decode_value(value, checked.types[name], name, context=evaluator.context) for name, value in inputs.items()}
+        values.update({name: decode_value(value, checked.types[name], name,context=evaluator.context) for name, value in normalized_openings.items()})
         env = Environment(values)
         evaluator.declarations(declarations, checked.definition_order, env)
         emissions, closing = {}, {}

@@ -453,6 +453,120 @@ def quantize (value quantum mode : Value) : Eval Value := do
     | _ => throw "INVALID_ROUNDING_MODE"
   pure (withMagnitude value ((rounded : Rat) * q))
 
+
+/-- Context-aware execution validates the immutable closure meaning universe. -/
+def magnitudeWith (context : Dimensions.Meanings) (value : Value) : Eval Rat := do
+  let _ ← Dimensions.prepare context.features
+  match value with
+  | .num number => pure number
+  | .quantity unit number =>
+    unless Dimensions.known context unit do throw "UNSUPPORTED_UNIT"
+    pure number
+  | .rate unit currency number =>
+    unless Dimensions.known context unit do throw "UNSUPPORTED_UNIT"
+    unless currency == "USD" do throw "UNSUPPORTED_CURRENCY"
+    pure number
+  | _ => throw "TARGET_EXPECTED_NUMBER"
+
+
+def dimensionalArithmeticWith (context : Dimensions.Meanings) (op : String) (left right : Value) : Eval Value := do
+  let a ← magnitudeWith context left
+  let b ← magnitudeWith context right
+  if op == "/" && b == 0 then throw "DIVISION_BY_ZERO"
+  if (op == "+" || op == "-") && sameDimension left right then
+    return withMagnitude left (if op == "+" then a + b else a - b)
+  match op, left, right with
+  | "*", .quantity u _, .rate v _ _ | "*", .rate v _ _, .quantity u _ =>
+    if u == v then pure (.num (a * b)) else throw "TYPE_MISMATCH"
+  | "*", .num _, .quantity .. | "*", .num _, .rate .. => pure (withMagnitude right (a * b))
+  | "*", .quantity .., .num _ | "*", .rate .., .num _ => pure (withMagnitude left (a * b))
+  | "/", .quantity .., .num _ | "/", .rate .., .num _ => pure (withMagnitude left (a / b))
+  | "/", .quantity .., .quantity .. | "/", .rate .., .rate .. =>
+    if sameDimension left right then pure (.num (a / b)) else throw "TYPE_MISMATCH"
+  | _, _, _ => throw "TYPE_MISMATCH"
+
+def binaryWith (context : Dimensions.Meanings) (op : String) (left right : Value) : Eval Value := do
+  match op with
+  | "+" => match left, right with
+    | .num a, .num b => pure (.num (a + b))
+    | _, _ => dimensionalArithmeticWith context op left right
+  | "-" => match left, right with
+    | .num a, .num b => pure (.num (a - b))
+    | _, _ => dimensionalArithmeticWith context op left right
+  | "*" => match left, right with
+    | .num a, .num b => pure (.num (a * b))
+    | _, _ => dimensionalArithmeticWith context op left right
+  | "/" => match left, right with
+    | .num a, .num b =>
+      if b == 0 then throw "DIVISION_BY_ZERO"
+      pure (.num (a / b))
+    | _, _ => dimensionalArithmeticWith context op left right
+  | "==" => pure (.flag (equal left right))
+  | "!=" => pure (.flag (!equal left right))
+  | "<" => pure (.flag ((← compare left right) == .lt))
+  | "<=" => pure (.flag ((← compare left right) != .gt))
+  | ">" => pure (.flag ((← compare left right) == .gt))
+  | ">=" => pure (.flag ((← compare left right) != .lt))
+  | _ => throw "TARGET_UNKNOWN_BINARY_OPERATOR"
+
+def sumValuesFromWith (context : Dimensions.Meanings) (zero value : Value) (body : Value → Eval Value) : Eval Value := do
+  let mut total := zero
+  for item in ← asList value do
+    total ← binaryWith context "+" total (← body item)
+  pure total
+
+def absoluteWith (context : Dimensions.Meanings) (value : Value) : Eval Value := do
+  let n ← magnitudeWith context value
+  pure (withMagnitude value (if n < 0 then -n else n))
+
+def quantizeWith (context : Dimensions.Meanings) (value quantum mode : Value) : Eval Value := do
+  unless sameDimension value quantum do throw "TYPE_MISMATCH"
+  let x ← magnitudeWith context value
+  let q ← magnitudeWith context quantum
+  let mode ← asText mode
+  if q ≤ 0 then throw "INVALID_QUANTUM"
+  let scaled := x / q
+  let lo := scaled.floor
+  let hi := scaled.ceil
+  let fraction := scaled - (lo : Rat)
+  let rounded ← match mode with
+    | "floor" => pure lo
+    | "ceiling" => pure hi
+    | "toward_zero" => pure (if scaled < 0 then hi else lo)
+    | "half_even" => pure (if fraction < mkRat 1 2 then lo
+        else if fraction > mkRat 1 2 then hi
+        else if lo % 2 == 0 then lo else hi)
+    | "half_away_from_zero" => pure (if fraction < mkRat 1 2 then lo
+        else if fraction > mkRat 1 2 then hi
+        else if scaled < 0 then lo else hi)
+    | _ => throw "INVALID_ROUNDING_MODE"
+  pure (withMagnitude value ((rounded : Rat) * q))
+
+def unaryWith (context : Dimensions.Meanings) (op : String) (value : Value) : Eval Value := do
+  if op == "-" && !sameDimension value (.num 0) then
+    let _ ← magnitudeWith context value
+    pure ()
+  unary op value
+
+def convertQuantity (owner : Dimensions.Admission) (context : Dimensions.Meanings)
+    (value target relation : Value) : Eval Value := do
+  let .quantity source number := value | throw "TYPE_MISMATCH"
+  let target ← asText target
+  let relation ← asText relation
+  let _ ← magnitudeWith context value
+  let factor ← Dimensions.conversionFactor owner source target relation
+  unless Dimensions.known context target do throw "UNSUPPORTED_UNIT"
+  pure (.quantity target (number * factor))
+
+partial def validateValueWith (context : Dimensions.Meanings) (value : Value) : Eval Unit := do
+  match value with
+  | .quantity .. | .rate .. => let _ ← magnitudeWith context value; pure ()
+  | .seq values | .tuple values | .map values => for value in values do validateValueWith context value
+  | .obj fields => for (_, value) in fields do validateValueWith context value
+  | .present value => validateValueWith context value
+  | _ => pure ()
+
+
 structure Settlement where
   emissions : Env
   closing : Env

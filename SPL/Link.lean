@@ -61,9 +61,10 @@ private structure Module where
 private abbrev Target := String × String
 private abbrev Names := List (String × Target)
 
-private def builtins : List String := ["filter", "map", "sum", "sort_by", "min", "max", "instant",
+private def builtins (features : List String := []) : List String := ["filter", "map", "sum", "sort_by", "min", "max", "instant",
   "in_period", "is_calendar_quarter", "add_calendar_months", "quantize", "require_some", "tuple", "tuple_get",
-  "make_map", "lookup", "entries", "group_by", "join", "left_join", "some", "none", "get_or", "is_some", "append", "concat"]
+  "make_map", "lookup", "entries", "group_by", "join", "left_join", "some", "none", "get_or", "is_some", "append", "concat"] ++
+  Dimensions.builtinNames features
 
 private def parseExport (json : Lean.Json) : LinkResult Export := do
   let parameters ← (← array (← field json "parameters")).mapM fun p => do
@@ -88,11 +89,12 @@ private def parseModule (json : Lean.Json) : LinkResult Module := do
   let exports ← (← array (← field (← field descriptor "interface") "exports")).mapM parseExport
   let names := exports.map (·.name)
   if Check.duplicate names then reject "DUPLICATE_EXPORT" "Export names must be unique"
-  if names.any builtins.contains then reject "AMBIGUOUS_EXPORT" "Export collides with published builtin"
+  if names.any (builtins source.features).contains then reject "AMBIGUOUS_EXPORT" "Export collides with published builtin"
   let moduleImports ← array (← field descriptor "imports")
   return { key, id, revision, source, exports, imports := moduleImports }
 
-private def imports (modules : List Module) (specs : List Lean.Json) (own : List String := []) : LinkResult Names := do
+private def imports (modules : List Module) (specs : List Lean.Json) (own : List String := [])
+    (features : List String := []) : LinkResult Names := do
   let mut aliases : List String := []
   let mut names : Names := []
   for spec in specs do
@@ -105,7 +107,7 @@ private def imports (modules : List Module) (specs : List Lean.Json) (own : List
     for symbol in ← array (← field spec "symbols") do
       let name ← text (← field symbol "local")
       let exported ← text (← field symbol "export")
-      if (names.lookup name).isSome || own.contains name || builtins.contains name then
+      if (names.lookup name).isSome || own.contains name || (builtins features).contains name then
         reject "AMBIGUOUS_IMPORT" ("Imported local name collides: " ++ name)
       unless dependency.exports.any (·.name == exported) do reject "UNRESOLVED_EXPORT" "Symbol is not exported"
       names := names ++ [(name, (key, exported))]
@@ -167,7 +169,7 @@ mutual
       | .define _ name .. => name == exported.definition | _ => false)
       | reject "UNRESOLVED_EXPORT" "Export definition is absent"
     let .define s name .. := definition | reject "UNRESOLVED_EXPORT" "Export must name a definition"
-    let names ← imports modules sourceModule.imports (sourceModule.exports.map (·.name))
+    let names ← imports modules sourceModule.imports (sourceModule.exports.map (·.name)) sourceModule.source.features
     for declaration in sourceModule.source.declarations do
       let binding := match declaration with | .input _ name _ | .define _ name .. => some name | _ => none
       if binding.any (fun n => (names.lookup n).isSome) then reject "AMBIGUOUS_IMPORT" "Imported function collides with module binding"
@@ -180,16 +182,32 @@ mutual
       sourceModule.id ++ "@" ++ sourceModule.revision ++ ":" ++ exported.name)
 end
 
+private def ownerContexts (modules : List Module) : List (String × List String) :=
+  modules.flatMap fun sourceModule =>
+    ("@module:" ++ sourceModule.key, sourceModule.source.features) ::
+    sourceModule.exports.map (fun exported =>
+      (sourceModule.id ++ "@" ++ sourceModule.revision ++ ":" ++ exported.name, sourceModule.source.features))
+
+private def linkedSignatures (modules : List Module) : List FunctionSignature :=
+  modules.flatMap fun sourceModule => sourceModule.exports.map fun exported => {
+    label := sourceModule.id ++ "@" ++ sourceModule.revision ++ ":" ++ exported.name
+    parameters := exported.parameters
+    result := exported.result }
+
 def link (schedule : Schedule) (manifest : Lean.Json) : LinkResult Schedule := do
   let modules ← (← array (← field manifest "modules")).mapM parseModule
   if Check.duplicate (modules.map (·.key)) then reject "DUPLICATE_MODULE" "Repeated exact module reference"
+  let owners := ownerContexts modules
+  let extended := !schedule.features.isEmpty || owners.any (fun (_, features) => !features.isEmpty)
+  let signatures := if extended then linkedSignatures modules else []
   for sourceModule in modules do
     acyclic modules sourceModule.key []
     for exported in sourceModule.exports do
       let (parameters, result, declarations, body, label) ← function modules (sourceModule.key, exported.name) []
-      let context ← parameters.mapM fun (name, ty) => do pure (name, ← Check.parseType ty)
-      let _ ← Check.infer context (.apply {} label parameters (parameters.map fun (name, _) => .name {} name) result declarations body)
-  let names ← imports modules (← array (← field manifest "imports"))
+      let settings ← Check.inference { sourceModule.source with owners, signatures }
+      let context ← parameters.mapM fun (name, ty) => do pure (name, ← Check.parseTypeWith settings.lexical ty)
+      let _ ← Check.inferWith settings context (.apply {} label parameters (parameters.map fun (name, _) => .name {} name) result declarations body)
+  let names ← imports modules (← array (← field manifest "imports")) [] schedule.features
   for declaration in schedule.declarations do
     let name := match declaration with | .input _ name _ | .opening _ name _ _ | .define _ name .. => some name | _ => none
     if name.any (fun n => (names.lookup n).isSome) then reject "AMBIGUOUS_IMPORT" "Imported function collides with schedule binding"
@@ -200,6 +218,6 @@ def link (schedule : Schedule) (manifest : Lean.Json) : LinkResult Schedule := d
     | .closing s name body => return .closing s name (← expression modules names [] body)
     | .emit s name body => return .emit s name (← expression modules names [] body)
     | other => pure other
-  return { schedule with declarations }
+  return { schedule with declarations, owners := if extended then owners else [], signatures }
 
 end SPL.Link
