@@ -524,3 +524,17 @@ pins and resource failures. See [indexed-sv-experiment.md](indexed-sv-experiment
 for the failed source-only probe and [emitter-memoization-experiment.md](emitter-memoization-experiment.md)
 for compiler controls. No fresh large probe or new capacity claim is implied
 by generating and building current targets.
+
+The subsequent bounded current-generation indexed probes are recorded at
+`artifacts/spl/rr03-indexed-postmemo-{100,1000,10000}-20261123-a/`. The 100 and
+1,000 cohorts passed with byte-identical earlier indexed audit wires. The
+single 10,000 probe completed both current financial targets with full oracle
+controls (indexed 0.323204 s, original source 0.124243 s) but **failed the
+audited close**: `RESOURCE_LIMIT`, then the unchanged 1 GiB expanded guard,
+21.706706 s audit work, 153,976,832-byte child working-set peak, 14,237,800-byte
+unconsumable prefix. Reader and every dependent four/eight-close successor were
+`not_executed`; no audited state or money was admitted. Total 33.306322 s is a
+failed close, not an SLA result. All guards/pins stayed fixed and the known
+813-method regression host load was recorded. The old pre-memoization indexed
+60-second calculation timeout remains separately preserved; it is not repinned.
+See the indexed and emitter documents for detailed finite evidence and limits.

@@ -1,4 +1,4 @@
-# Live work after checkpoint 7c13ef2
+# Live C1 work after checkpoint 9f9cf31
 
 23 November 2026. This supplements the committed
 [checkpoint](completion-checkpoint.md). The project goal remains active; this is
@@ -19,8 +19,10 @@ non-FX engineering; do not infer approval from a question or elapsed time.
 
 `7c13ef2` contains 189 verified/planning files. At that checkpoint all 49 staged
 file pins matched Git blobs and physical bytes. The historical `0.4.3-dev`
-baseline remains byte-identical to its archive. Current subsequent changes are
-not part of that commit.
+baseline remains byte-identical to its archive. The later accepted emitter/AO/
+civil/Disney-oracle sources are recorded in local
+checkpoint `9f9cf31` (47 files). All seven newly staged file pins matched Git
+blobs and physical bytes; the old baseline remained identical.
 
 The promoted current compiler/reference is
 `abee14432a7a972b94a02795668d9ff8bbf97a5758f5558dc9178a7761e490eb`;
@@ -32,7 +34,11 @@ Archived old runs retain their dated identities.
 
 Exactly `7c13ef2` is archived and extracted to the short physical Windows path
 `C:/spl-7c13`. Fresh 94-job build and both smokes pass. The discovered 813-method
-Python suite is running, with logs/evidence under
+Python suite is running. It has one observed failure: the old R1 dependency
+guard has a stale five-module whitelist and rejects standard-library imports
+such as collections. The current-tree fix uses `sys.stdlib_module_names`; all15
+R1 tests pass (0.087s). No financial golden changed. This old full run retains
+its failure; no overall pass is claimed. Logs and evidence are under
 `C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/checkpoint-regression-7c13ef2-b/`.
 Exec session is 35269. Do not claim completion before observing its final report.
 This is the previous checkpoint, not a full regression of the newer emitter,
@@ -97,24 +103,34 @@ force positions and fresh function/loop scopes. Actual isolated C wrapper counts
 show old114 to new2 group builds on an8-title fixture. Pinned official Lean4.35
 sources document caching. No Runtime/Core/proof/checker/IR change was required.
 
-Post-memo bounded100/1,000/at-most-one10,000 probes are the next measurement.
-Keep time/byte/observation/memory guards and record background813-suite load.
-Previous failures remain failures; new generation labels and fresh pins identify
-new measurements. No production percentile or whole-close SLA is established.
+Post-memo probes are now retained in
+`rr03-indexed-postmemo-{100,1000,10000}-20261123-a`.100/1,000 pass, including
+byte-identical prior indexed audit wires. The single10,000 probe passes complete
+reference/current-original/indexed target financial controls: indexed calculation
+0.323204s versus the previous60s timeout. Required audit still FAILS in21.706706s,
+with RESOURCE_LIMIT empty financial/state header and COMPACT_EXPANDED_BYTE_LIMIT.
+The14,237,800-byte prefix is unconsumable; reader and all4/8 successors did not
+execute. Fixed60s/64MiB/256MiB/1GiB/100k guards remained. Source/core pins stayed
+stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 
 ## Delegated ownership and next steps
 
-- `validation_matrix`: finished AO/civil cohorts; drafting atomic C1 variant
-  catalog, then native Disney implementation against immutable oracle/facts.
-  The atomic denominator is a draft until reviewed, not72tasks/195rows/testcount.
-- `validation_generated`: unit-conversion design refinements only, then independent
+- `validation_matrix`: finished AO/civil cohorts; completed the atomic C1 variant
+  catalog, now native Disney implementation against immutable oracle/facts.
+  Root reviewed78 stable semantic IDs:75 required C1, two supporting, one unselected alternative; nine engineering entries are a separate axis. This is a planning denominator, not passing evidence or72tasks/195rows/testcount.
+- `validation_generated`: finished the unit-conversion design refinements, now independent
   Genius-ESPN basis-reserve oracle. No core or FX implementation authorized by
   the design document. Keep actual physical returns/vintage deadlines, source
   fee limitations and synthetic recognition policies explicit.
-- `validation_trace`: post-memo performance probes. It owns performance harness,
-  indexed experiment and memoization evidence; no further core edits authorized.
+- `validation_trace`: finished post-memo performance probes; assessing isolated usage-unit implementation. It owns performance harness/indexed/memo evidence. Shared core edits remain forbidden during Disney native freezes.
 - Root: integrate evidence/backlog, review unit/context compatibility, maintain
   stable shared core, inspect full regression, create verified checkpoints.
+
+An isolated short physical worktree `C:/spl-units-9f9` on
+`feature/spl-usage-time-c1` starts from9f9cf31. No unit core edits/builds yet;
+its agent is assessing risk before release. Embedded Python has a main-repo
+`._pth` entry, so isolated launchers must explicitly insert their checkout path
+before imports and record loaded module paths; cwd alone is insufficient.
 
 The non-FX [unit plan](unit-conversion-extension-plan.md) requires explicit
 owner-local admission, old namespace/IR/state compatibility, generic exact

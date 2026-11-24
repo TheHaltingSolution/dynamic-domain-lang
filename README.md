@@ -12,6 +12,10 @@ The [active checkpoint](docs/spl/completion-checkpoint.md) records newer financi
 slices, measured audit improvements and verification scopes. Current artifact
 consumption uses the [validated completion contract](docs/spl/artifact-publication-design.md).
 
+The [atomic variant inventory](docs/spl/c1-coverage.md) records the reviewed finite
+semantic scope, separate backend/evidence axes and remaining gaps.
+[Live work](docs/spl/active-work.md) records later checkpoints and active jobs.
+
 For a new implementation session, read the
 [compiler session handoff](docs/spl/session-handoff.md) after `AGENTS.md`.
 

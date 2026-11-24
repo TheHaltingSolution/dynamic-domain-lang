@@ -236,3 +236,57 @@ different alphabets: the native evaluator records references, fields, literals
 and per-row instance nodes which Python does not uniformly emit. Python's
 smaller count is not evidence that a native trace is missing observations,
 and neither count supplies a coverage percentage for emitted calculation.
+
+## Bounded post-memoization probe (current generation)
+
+After checkpoint `9f9cf31`, the fresh
+`rr03-indexed-postmemo-{100,1000,10000}-20261123-a` archives used current
+`spl-native-definition-thunk/1` targets, compiler `abee1443...`, module
+`daf14a19...` and unchanged runtime `673bb0...`. The isolated 813-method
+regression still competed for host CPU. There was one sample per scale, with
+unchanged 60-second/64 MiB wire/256 MiB sampled child working-set/1 GiB expanded
+trace/100,000 native IR observation guards. No retry or increased guard occurred.
+Source, bindings, original neutral facts, source records and batch bytes were
+independently checked identical to their respective pre-memoization indexed
+cohorts. The independent original-fact oracle still precedes projection.
+
+| Originals / titles | Current original-source target | Current indexed target | Native audit | Reader |
+| --- | --- | --- | --- | --- |
+| 100 / 2 | Complete, 0.046478 s | Complete, 0.043282 s | Complete, 0.101264 s | Complete, 0.185038 s |
+| 1,000 / 8 | Complete, 0.046171 s | Complete, 0.042459 s | Complete, 0.893330 s | Complete, 1.302029 s |
+| 10,000 / 40 | Complete, 0.124243 s | Complete, 0.323204 s | Failed, 21.706706 s | `not_executed` |
+
+Both compiled targets passed every title/pool/closing oracle check at all three
+scales. At 10,000 the indexed child used 0.296875 CPU seconds and peaked at
+46,964,736 bytes. Its complete 13,418-byte result agrees on all 40 titles and
+pool earned 159,239.022, recovered 250, payable 158,989.022, closing advance zero.
+Python reference also completed with its separately qualified 11,467
+observations. The current indexed calculation's completion replaces its earlier
+60-second timeout as a new, separately pinned result; it does not relabel the
+earlier failed run. Shared-host single samples support no causal speedup ratio,
+percentile, pure calculation time or SLA claim.
+
+The complete 100/1,000 audit wires are byte-identical to their respective earlier
+indexed wires: node/edge counts remain 1,312/1,721 and 11,527/15,293, expanded
+bytes 3,824,516 and 128,745,489, wire bytes 1,054,599 and 10,390,551. Their SHA-256
+values are respectively
+`73a93ccd8cc21805b6f7af4542169789df962adfc5ad8e5c0eeb65837d2080cb` and
+`95f5db84b9438d9416d36ef926a005bae229341398dbf384074e580376e5715f`.
+This relation compares the same indexed source across compiler generations;
+it supplies no original-source/indexed-source graph identity claim.
+
+The 10,000 audited close still failed. Native interpretation reported a
+`RESOURCE_LIMIT` head with empty financial outputs/state, then compact output
+hit `COMPACT_EXPANDED_BYTE_LIMIT`. The audit child used 21.40625 CPU seconds and
+peaked at 153,976,832 bytes. Its 14,237,800-byte prefix has no completion credit
+(SHA-256 `be39cc662f36c64a60f0ab958b2f5602e80df58006f99864ab5138c36fc9a148`).
+Neither timeout, wire limit nor child working-set limit was breached. Reader
+and all four/eight-close successors remained `not_executed`; audited money and
+closing state stayed empty despite successful separate financial calculation.
+Overall probe time was 33.306322 seconds, an unsuccessful audited close.
+
+`postmemo-verification.json` in the 10,000 archive independently rechecks the
+complete financial target outputs, same original source/input bytes, smaller
+cohort complete wire hashes, missing completion and blocked successor state.
+The indexed source remains experimental; calculation completion alone does not
+satisfy the full audited-close gate or justify adoption.

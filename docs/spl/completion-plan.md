@@ -2,6 +2,11 @@
 
 ## Active implementation update
 
+The [atomic variant catalog](c1-coverage.md) now fixes stable planning identities:
+75 required C1 semantic rows, two supporting rows and one unselected recognition
+alternative, with nine engineering entries tracked separately. This is not
+execution evidence or a percentage of language programs.
+
 The later finite C08 payment-aware offset and C14 supplied civil-day variants
 now have separate37- and27-method passing native/oracle cohorts. Their actual
 capacity and supplied-evidence limits remain in [live work](active-work.md).

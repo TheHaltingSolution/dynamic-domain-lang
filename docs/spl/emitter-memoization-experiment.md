@@ -181,3 +181,26 @@ instance observations. Native `evaluate` records each IR expression and
 observation alphabets. Their counts cannot serve as reciprocal coverage
 denominators or establish emitted-target coverage. The source-only failure and
 resource limits remain recorded in [indexed-sv-experiment.md](indexed-sv-experiment.md).
+
+## Post-promotion bounded completion probe
+
+The separate current-generation
+`rr03-indexed-postmemo-{100,1000,10000}-20261123-a` probes kept every guard and
+all compiler/module/runtime pins above. Both smaller cohorts passed, including
+complete financial controls and byte-identical archived indexed audit wires.
+The single 10,000-record/40-title compiled indexed target completed in 0.323204
+seconds (0.296875 CPU seconds, 46,964,736-byte peak working set), agreeing with
+the independent original-fact oracle on every title/pool/closing result and the
+current original-source target. This is new completion evidence under the
+memoizing compiler. The separately pinned old emitted indexed target's
+60-second timeout remains a failed historical result.
+
+The full audited close **still failed** after 21.706706 seconds of audit work:
+native `RESOURCE_LIMIT` with empty money/state, then
+`COMPACT_EXPANDED_BYTE_LIMIT`; a 14,237,800-byte prefix and no completion record.
+Reader and all dependent four/eight-close successors were `not_executed`.
+No retry or guard increase occurred. The isolated 813-method regression was
+active, so these single observational process times establish no quiet causal
+speedup ratio, pure calculation median, p95 or RR03 SLA. The full exact results,
+source/input byte checks and prefix qualification are in the indexed experiment
+document and external `postmemo-verification.json`.
