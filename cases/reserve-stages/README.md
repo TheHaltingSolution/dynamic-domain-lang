@@ -1,0 +1,67 @@
+# Synthetic reserve stages, caps and supplied release schedules
+
+This separate SPL implementation executes the frozen original synthetic
+[policy](policy.md) and [casepack](neutral.json). It provides two distinct
+purpose/measure ledgers: gross-basis reserve and earned-producer holdback.
+Both carry USD amounts; purpose and measure checks prohibit interchange.
+Generic releases are unconditional under the selected synthetic terms. They
+provide no Genius active-claim clearance, excess-return or after-liquidation
+interpretation and create no payment or bank movement.
+
+[reserve-stages.spl](reserve-stages.spl) derives once-only original receipt
+fees, earnings, original Date/sequence order, cap room/clipping, all vintage
+applications, calendar deadlines, original-actual-addition quotas and releases.
+Receipts precede applications and releases on each Date. Calendar deadlines
+come from `add_calendar_months`, with explicit clamp/reject mode. The original
+fee tuple and four-component release identity remain ordered components.
+Full replay verifies historical results, all state balances, processed rules,
+consumed original identities, cumulative controls and complete original facts.
+
+[source.py](source.py) supplies structural declarations and reproducibly
+assembles that source, without reading original case values or an oracle.
+[build_modules.py](build_modules.py) transports exact USD/Ratio values,
+calendar Dates, normalized UTC instants, complete original JSON and Unicode
+identities through a reversible UTF8-hex representation. Original numeric,
+timestamp and Unicode spellings remain in raw originals/state. The selected
+policy treats `-00:00` as known UTC with explicitly unknown local offset; no
+local calendar follows. Transport computes no financial sum or deadline.
+
+The public `reserve_stages_package` and `run_reserve_stages_package` deep-copy
+caller objects. The runner reconstructs context, every frame, predecessor and
+state from retained originals and checks their complete typed projections
+before generic execution. Preparation failure, cancellation and unsupported
+profile retries invalidate reused publications. The generic
+`run_module_package` API is a **trusted prepared-binding boundary**; it does
+not independently parse this case's original JSON. Direct-source negative
+controls deliberately bypass the public custody guard.
+
+The finite admission profile has at most four frames/four vintages, eight
+ordinary rows per table, 32 evidence rows per frame/registry and one or two
+release rules with strictly increasing 1..24 month offsets. Every unused row
+and evidence record is admitted. Ordinary carry pins the original context;
+the full prefix replays under each original frame's cutoff and static records
+must precede the minimum prefix cutoff. Complete-period previews expose no
+consumable state. Partial-history previews are outside this profile.
+
+The frozen five independent files retain their original author's expectations;
+implementation does not import or invoke the oracle. Module tests run the
+original expectation methods through independent SPL-vs-oracle comparisons,
+then compare every material result and restored closing-state field. They
+separately exercise actual loaded serialized chains, preview, raw/typed
+mismatches, direct prepared-source negatives and stale publication retries.
+Reference-only controls with neutral predecessor summaries replace only the
+opaque reference spelling to satisfy canonical syntax; actual publication
+chains use the returned canonical reference and serialized returned cells.
+
+Generate a new unissued registration/templates explicitly with:
+
+```text
+python -m cases.reserve-stages.build_modules
+python -m unittest Tests.test_reserve_stage_oracle Tests.test_reserve_stage_modules
+```
+
+Use the pinned Lean 4.35.0 setup in the repository README. Compiler runs keep
+1GiB/180s and runtime/reference/reader runs 256MiB/60s, with 64MiB wire/result
+and 1GiB/100000-node logical limits. Failed bounded runs remain failures;
+there is no larger-budget retry or backend fallback. Native and independent
+Python-emitted evidence will be indexed here after their actual completion.
