@@ -27,5 +27,10 @@ generic component executor accepts prepared typed inputs and does not dispatch
 case-specific preparation code. No financial calculation or state value is
 supplied by this dependency profile.
 
-This initial profile and the new component implementation are under validation;
-they are not yet promoted to main or given native acceptance credit.
+The selected C10/native-independent witness passes the finite frozen44-method
+cohort `component-frozen-20261124-a`, including original-fact controls, standalone
+whole-outcome/raw-graph equality and actual completed Q1-to-Q2 state carry.
+Those calculations remain unissued. This is finite implementation evidence under
+the explicit trusted-profile assumption; it does not statically prove profile
+completeness. Main promotion remains separate, and new financial profiles still
+require source-owner review.

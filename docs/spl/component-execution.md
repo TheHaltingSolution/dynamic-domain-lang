@@ -95,8 +95,9 @@ publication controls. Raw logical graphs and ordered source behavior must agree;
 no financial source rewrite, raised guard or fabricated canonical result is
 permitted to obtain acceptance.
 
-Implementation and acceptance are in progress. The coherent C10 qualification
-and the broader integration regression run in separate immutable checkouts.
+The finite frozen implementation is qualified below. Main promotion and the
+broader integration regression remain separate; the latter runs in an immutable
+checkout without this new component code.
 
 ## API example
 
@@ -135,3 +136,38 @@ canonical loader/carry API at that completion file's parent directory. A
 completed calculated state remains calculation state; this API does not issue
 statements or create payment evidence. Resource/plan keys and copies of literal
 records are structural JSON data, including names resembling codec metadata.
+
+## Frozen finite evidence
+
+`component-frozen-20261124-a` qualifies code/profile commit `18ea951` in the
+isolated `C:/spl-components-c80` worktree. All44 methods pass in152.098009
+seconds:19 component methods,8 legacy-publication methods,9 compact-publication
+methods and8 runner methods. There are zero failures, errors or skips. All734
+source pins and102 compiled pins remain unchanged; exact source ZIP, commands,
+build flags, original facts, actual opening cells and four owned publication
+archives are external. Default/indexed Lake builds and both smoke checks pass.
+
+The actual native aggregate compares the coordinated C10 root to its independent
+original-fact oracle, checks complete financial/state equality, and compares its
+whole outcome and raw logical graph hashes with standalone execution. A separate
+root returns its independently controlled20. Actual completed C10 Q1 cells and
+prior references feed Q2, whose complete result/state match the original-fact
+oracle. A paid-basis-unknown C10 failure leaves the independent20 root complete.
+These are completed calculations/state carry, all `issuance_status=unissued`.
+
+All123 bounded-process reports have their expected outcomes:108 successful
+processes and15 explicit hostile-control rejections from the existing compact
+publication suite. The terminal audit records their exact stages/codes, with no
+unexpected failure, timeout, memory or output overflow. Measured child working
+set peaks are88,064,000 bytes for `runtime256` and626,819,072 bytes for the
+separate `compiler1g180` profile. This is not a parent/host memory bound or a
+quiet-host latency result. Prototype tuple-admission/fixture failures and the
+earlier native-development record remain preserved and separately pinned.
+
+This evidence supports the selected finite interface under trusted profile
+completeness and prepared-input assumptions. It proves neither completeness of
+arbitrary authored footprints nor arbitrary contract correctness. Parallel
+workers, uncoordinated connected roots, distributed publication/exclusion,
+large-batch capacity and performance SLAs are outside this acceptance. Main
+integration and source-owner review of additional financial profiles remain
+explicit follow-ups.
