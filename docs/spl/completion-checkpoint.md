@@ -37,11 +37,15 @@ Max actual result55,194,678 bytes leaves11,914,186 under64MiB. Evidence:
 This closes only the selected bounded C04/trigger-period witness; general C13
 restatement remains open. [Case and scope](../../cases/merchandising-reprice/README.md).
 Current backlog26 complete items after bounded semantic mutation and cent
-allocation increments; bounded matrix36rows/32witnessed/fourgaps/53selectors.
-No new combined53-selector campaign is claimed. Cent allocation passes44
+allocation increments; bounded matrix37rows/33witnessed/fourgaps/57selectors.
+No new combined57-selector campaign is claimed. Cent allocation passes44
 methods and15 native comparisons/complete publications with original state
 carry; generic descriptor cardinality remains separate. See the
 [case scope and evidence](../../cases/quantized-allocation/README.md).
+The selected Genius within-vintage reserve now passes46 methods and six actual
+completed bundles, including five native predecessor periods. Net1740 equals
+fee174 plus allocation1566; excess/post-liquidation and broader generic reserve
+variants remain open. See its [scope](../../cases/basis-reserves/README.md).
 
 ## Executed financial slices
 

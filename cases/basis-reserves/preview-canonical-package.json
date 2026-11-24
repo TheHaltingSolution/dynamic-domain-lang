@@ -1,0 +1,503 @@
+{
+  "decisions": [
+    {
+      "decision_id": "BASIS_RESERVES_SELECTED",
+      "evidence_ref": "synthetic-selected-genius-reserve-policy",
+      "policy_id": "RR04-GENIUS-BASIS-RESERVE-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "BASIS_RESERVES_SELECTED",
+        "approved": true,
+        "evidence_ref": "ev:authority:2009",
+        "id": "ev:authority:2009",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2008-12-01T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"ev:authority:2009\",\"kind\":\"approved_successor_and_selected_sales_period_terms\",\"observed_at\":\"2008-12-01T00:00:00Z\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-evidence:authority:2009\"}",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "slot": "0",
+        "source_kind": "approved_successor_and_selected_sales_period_terms",
+        "source_observed_at": "2008-12-01T00:00:00Z",
+        "source_ref": "synthetic-evidence:authority:2009"
+      },
+      {
+        "approval_ref": "BASIS_RESERVES_SELECTED",
+        "approved": true,
+        "evidence_ref": "ev:election:1",
+        "id": "ev:election:1",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2009-01-15T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"ev:election:1\",\"kind\":\"original_reserve_election\",\"observed_at\":\"2009-01-15T12:00:00Z\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-evidence:election:1\"}",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "slot": "1",
+        "source_kind": "original_reserve_election",
+        "source_observed_at": "2009-01-15T12:00:00Z",
+        "source_ref": "synthetic-evidence:election:1"
+      },
+      {
+        "approval_ref": "BASIS_RESERVES_SELECTED",
+        "approved": true,
+        "evidence_ref": "ev:receipt:1",
+        "id": "ev:receipt:1",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2009-01-15T13:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"ev:receipt:1\",\"kind\":\"actual_qualifying_gross_cash_receipt\",\"observed_at\":\"2009-01-15T13:00:00Z\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-evidence:receipt:1\"}",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "slot": "2",
+        "source_kind": "actual_qualifying_gross_cash_receipt",
+        "source_observed_at": "2009-01-15T13:00:00Z",
+        "source_ref": "synthetic-evidence:receipt:1"
+      },
+      {
+        "approval_ref": "BASIS_RESERVES_SELECTED",
+        "approved": true,
+        "evidence_ref": "ev:checkpoint:jan",
+        "id": "ev:checkpoint:jan",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2009-01-16T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"ev:checkpoint:jan\",\"kind\":\"approved_original_checkpoint\",\"observed_at\":\"2009-01-16T12:00:00Z\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-evidence:checkpoint:jan\"}",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "slot": "3",
+        "source_kind": "approved_original_checkpoint",
+        "source_observed_at": "2009-01-16T12:00:00Z",
+        "source_ref": "synthetic-evidence:checkpoint:jan"
+      },
+      {
+        "approval_ref": "BASIS_RESERVES_SELECTED",
+        "approved": true,
+        "evidence_ref": "ev:population:jan",
+        "id": "ev:population:jan",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2009-01-16T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"ev:population:jan\",\"kind\":\"complete_original_reserve_population\",\"observed_at\":\"2009-01-16T12:00:00Z\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-evidence:population:jan\"}",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "slot": "4",
+        "source_kind": "complete_original_reserve_population",
+        "source_observed_at": "2009-01-16T12:00:00Z",
+        "source_ref": "synthetic-evidence:population:jan"
+      },
+      {
+        "approval_ref": "BASIS_RESERVES_SELECTED",
+        "approved": true,
+        "evidence_ref": "ev:clearance:jan",
+        "id": "ev:clearance:jan",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2009-01-16T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"ev:clearance:jan\",\"kind\":\"complete_cleared_recoupment_claims\",\"observed_at\":\"2009-01-16T12:00:00Z\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-evidence:clearance:jan\"}",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "slot": "5",
+        "source_kind": "complete_cleared_recoupment_claims",
+        "source_observed_at": "2009-01-16T12:00:00Z",
+        "source_ref": "synthetic-evidence:clearance:jan"
+      }
+    ]
+  },
+  "inputs": {
+    "authority": {
+      "approved": true,
+      "covered_program": true,
+      "effective": {
+        "end": "2010-01-01",
+        "start": "2009-01-01"
+      },
+      "effective_end_utc": "2010-01-01T00:00:00Z",
+      "effective_start_utc": "2009-01-01T00:00:00Z",
+      "evidence_ref": "ev:authority:2009",
+      "evidence_slot": "0",
+      "fee_rate": "0.1",
+      "fee_substitute": "synthetic_flat_10_percent",
+      "id": "authority:2009",
+      "observed_at": "2008-12-01T00:00:00Z",
+      "original_distributor": "Genius Products Inc.",
+      "raw_original": "{\"approved\":true,\"covered_program\":true,\"effective\":{\"end\":\"2010-01-01\",\"start\":\"2009-01-01\"},\"evidence_ref\":\"ev:authority:2009\",\"fee_rate\":\"1/10\",\"fee_substitute\":\"synthetic_flat_10_percent\",\"id\":\"authority:2009\",\"observed_at\":\"2008-12-01T00:00:00Z\",\"original_distributor\":\"Genius Products Inc.\",\"reserve_rate\":\"1/5\",\"sales_period_id\":\"SalesPeriod3\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_fee_redacted\":true,\"source_ref\":\"synthetic-source:authority:2009\",\"successor_authorized\":true,\"successor_id\":\"synthetic-approved-successor\",\"version\":\"1\"}",
+      "reserve_rate": "0.2",
+      "sales_period_id": "SalesPeriod3",
+      "scope": {
+        "asset_id": "synthetic-covered-approved-program",
+        "contract_id": "synthetic-genius-espn",
+        "currency": "USD",
+        "participant_id": "synthetic-espn",
+        "pool_id": "us-physical-videogram"
+      },
+      "source_fee_rate": "1/10",
+      "source_fee_redacted": true,
+      "source_observed_at": "2008-12-01T00:00:00Z",
+      "source_ref": "synthetic-source:authority:2009",
+      "source_reserve_rate": "1/5",
+      "successor_authorized": true,
+      "successor_id": "synthetic-approved-successor",
+      "version": "1"
+    },
+    "case_id": "genius:jan",
+    "checkpoints": [
+      {
+        "approved": true,
+        "as_of": "2009-01-15",
+        "as_of_next": "2009-01-16",
+        "as_of_utc": "2009-01-15T00:00:00Z",
+        "cutoff": "2009-01-17T00:00:00Z",
+        "evidence_ref": "ev:checkpoint:jan",
+        "evidence_slot": "3",
+        "id": "checkpoint:jan",
+        "observed_at": "2009-01-16T12:00:00Z",
+        "period": {
+          "end": "2009-01-16",
+          "start": "2009-01-01"
+        },
+        "period_end_utc": "2009-01-16T00:00:00Z",
+        "period_start_utc": "2009-01-01T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"as_of\":\"2009-01-15\",\"cutoff\":\"2009-01-17T00:00:00Z\",\"evidence_ref\":\"ev:checkpoint:jan\",\"id\":\"checkpoint:jan\",\"observed_at\":\"2009-01-16T12:00:00Z\",\"period\":{\"end\":\"2009-01-16\",\"start\":\"2009-01-01\"},\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_case_id\":\"genius:jan\",\"source_ref\":\"synthetic-source:checkpoint:jan\"}",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "source_case_id": "genius:jan",
+        "source_cutoff": "2009-01-17T00:00:00Z",
+        "source_observed_at": "2009-01-16T12:00:00Z",
+        "source_ref": "synthetic-source:checkpoint:jan"
+      }
+    ],
+    "clearances": [
+      {
+        "approved": true,
+        "checkpoint_id": "checkpoint:jan",
+        "complete": true,
+        "evidence_ref": "ev:clearance:jan",
+        "evidence_slot": "5",
+        "expense_remaining": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "id": "clearance:jan",
+        "minimum_guarantee_remaining": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "observed_at": "2009-01-16T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"checkpoint_id\":\"checkpoint:jan\",\"complete\":true,\"evidence_ref\":\"ev:clearance:jan\",\"expense_remaining\":\"0\",\"id\":\"clearance:jan\",\"minimum_guarantee_remaining\":\"0\",\"observed_at\":\"2009-01-16T12:00:00Z\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-source:clearance:jan\",\"unresolved_claim_ids\":[]}",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "source_expense_remaining": "0",
+        "source_minimum_guarantee_remaining": "0",
+        "source_observed_at": "2009-01-16T12:00:00Z",
+        "source_ref": "synthetic-source:clearance:jan",
+        "unresolved_claim_ids": []
+      }
+    ],
+    "elections": [
+      {
+        "approved": true,
+        "approved_date": "2009-01-15",
+        "approved_date_utc": "2009-01-15T00:00:00Z",
+        "elected": true,
+        "election_date": "2009-01-15",
+        "election_date_utc": "2009-01-15T00:00:00Z",
+        "evidence_ref": "ev:election:1",
+        "evidence_slot": "1",
+        "id": "election:1",
+        "observed_at": "2009-01-15T12:00:00Z",
+        "purpose": "basis_stage_videogram_returns",
+        "raw_original": "{\"approved\":true,\"approved_date\":\"2009-01-15\",\"elected\":true,\"election_date\":\"2009-01-15\",\"evidence_ref\":\"ev:election:1\",\"id\":\"election:1\",\"observed_at\":\"2009-01-15T12:00:00Z\",\"purpose\":\"basis_stage_videogram_returns\",\"receipt_id\":\"receipt:1\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-source:election:1\",\"vintage_id\":\"V1\"}",
+        "receipt_id": "receipt:1",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "source_observed_at": "2009-01-15T12:00:00Z",
+        "source_ref": "synthetic-source:election:1",
+        "vintage_id": "V1"
+      }
+    ],
+    "fact_scope": {
+      "asset_id": "synthetic-covered-approved-program",
+      "contract_id": "synthetic-genius-espn",
+      "currency": "USD",
+      "participant_id": "synthetic-espn",
+      "pool_id": "us-physical-videogram"
+    },
+    "populations": [
+      {
+        "authority_ids": [],
+        "checkpoint_id": "checkpoint:jan",
+        "complete": true,
+        "election_ids": [
+          "election:1"
+        ],
+        "evidence_ref": "ev:population:jan",
+        "evidence_slot": "4",
+        "id": "population:jan",
+        "observed_at": "2009-01-16T12:00:00Z",
+        "other_adjustment_ids": [],
+        "other_adjustment_total": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "raw_original": "{\"authority_ids\":[],\"checkpoint_id\":\"checkpoint:jan\",\"complete\":true,\"election_ids\":[\"election:1\"],\"evidence_ref\":\"ev:population:jan\",\"id\":\"population:jan\",\"observed_at\":\"2009-01-16T12:00:00Z\",\"other_adjustment_ids\":[],\"other_adjustment_total\":\"0\",\"receipt_ids\":[\"receipt:1\"],\"receipt_total\":\"1000\",\"return_ids\":[],\"return_total\":\"0\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"source_ref\":\"synthetic-source:population:jan\"}",
+        "receipt_ids": [
+          "receipt:1"
+        ],
+        "receipt_total": {
+          "currency": "USD",
+          "value": "1000"
+        },
+        "return_ids": [],
+        "return_total": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "source_observed_at": "2009-01-16T12:00:00Z",
+        "source_other_adjustment_total": "0",
+        "source_receipt_total": "1000",
+        "source_ref": "synthetic-source:population:jan",
+        "source_return_total": "0"
+      }
+    ],
+    "predecessor": {
+      "none": true
+    },
+    "project": "synthetic-covered-approved-program",
+    "receipts": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "1000"
+        },
+        "cash_line_ref": "original-cash-ledger#1",
+        "cash_received_country": "US",
+        "election_id": "election:1",
+        "evidence_ref": "ev:receipt:1",
+        "evidence_slot": "2",
+        "id": "receipt:1",
+        "medium": "physical_videogram",
+        "observed_at": "2009-01-15T13:00:00Z",
+        "raw_original": "{\"amount\":\"1000\",\"cash_line_ref\":\"original-cash-ledger#1\",\"cash_received_country\":\"US\",\"election_id\":\"election:1\",\"evidence_ref\":\"ev:receipt:1\",\"id\":\"receipt:1\",\"medium\":\"physical_videogram\",\"observed_at\":\"2009-01-15T13:00:00Z\",\"receipt_date\":\"2009-01-15\",\"scope\":{\"asset_id\":\"synthetic-covered-approved-program\",\"contract_id\":\"synthetic-genius-espn\",\"currency\":\"USD\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\"},\"sequence\":1,\"source_ref\":\"synthetic-source:receipt:1\",\"territory\":\"US\"}",
+        "receipt_date": "2009-01-15",
+        "receipt_date_utc": "2009-01-15T00:00:00Z",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "sequence": "1",
+        "source_amount": "1000",
+        "source_observed_at": "2009-01-15T13:00:00Z",
+        "source_ref": "synthetic-source:receipt:1",
+        "territory": "US"
+      }
+    ],
+    "research": {
+      "assignment_url": "https://www.sec.gov/Archives/edgar/data/1098016/000101968706002845/genius_10q-093006.htm",
+      "clauses": "1-4;9(c);10-11;20;24(d)",
+      "ld03_sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712",
+      "primary_url": "https://www.sec.gov/Archives/edgar/data/1098016/000119312506200074/dex101.htm",
+      "rr04_sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+    },
+    "return_authorities": [],
+    "returns": [],
+    "run_checkpoint_id": "checkpoint:jan",
+    "scope": {
+      "agreement_id": "synthetic-genius-espn",
+      "participant_id": "synthetic-espn",
+      "period": {
+        "end": "2009-01-16",
+        "start": "2009-01-01"
+      },
+      "pool_id": "us-physical-videogram"
+    },
+    "source_cutoff": "2009-01-17T00:00:00Z",
+    "supplied_opening": {
+      "boundary": "2009-01-01",
+      "detail": {
+        "none": true
+      },
+      "origin": "genesis",
+      "policy": {
+        "date_basis": "supplied_utc_date",
+        "evidence_class": "research_assumption",
+        "excess_returns": "reject_pending_signed_policy",
+        "fee_stage": "after_basis_reserve",
+        "id": "RR04-GENIUS-BASIS-RESERVE-01",
+        "invalid_day": "clamp_day",
+        "liquidation": "full_unused_on_due_date",
+        "method": "elected_basis_reserve_within_vintage_only",
+        "months": "6",
+        "professional_review": "proposed",
+        "revision": "1",
+        "rounding": "exact_no_rounding",
+        "same_day_order": "receipt_election_then_return_then_due_release"
+      },
+      "purpose": "basis_stage_videogram_returns",
+      "scope": {
+        "asset_id": "synthetic-covered-approved-program",
+        "contract_id": "synthetic-genius-espn",
+        "currency": "USD",
+        "participant_id": "synthetic-espn",
+        "pool_id": "us-physical-videogram"
+      },
+      "source_case_id": "genesis",
+      "transport_profile": "basis-reserve-original-json/1"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2009-01-17T00:00:00Z",
+    "mode": "preview",
+    "module_closure": [],
+    "period": {
+      "end": "2009-01-16",
+      "start": "2009-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "genius:jan-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-BASIS-RESERVES"
+  },
+  "module_ref": {
+    "id": "synthetic:basis-reserves",
+    "locator": "cases/basis-reserves/basis-reserves-module.json",
+    "revision": "1",
+    "sha256": "3882c5e3ddd55cc7bf559ee693134e8bc33e7e2f21fe44fdac5bf2d15e687db9"
+  },
+  "parameters": {
+    "cutoff": "2009-01-17T00:00:00Z",
+    "policy": {
+      "date_basis": "supplied_utc_date",
+      "evidence_class": "research_assumption",
+      "excess_returns": "reject_pending_signed_policy",
+      "fee_stage": "after_basis_reserve",
+      "id": "RR04-GENIUS-BASIS-RESERVE-01",
+      "invalid_day": "clamp_day",
+      "liquidation": "full_unused_on_due_date",
+      "method": "elected_basis_reserve_within_vintage_only",
+      "months": "6",
+      "professional_review": "proposed",
+      "revision": "1",
+      "rounding": "exact_no_rounding",
+      "same_day_order": "receipt_election_then_return_then_due_release"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "synthetic-genius-espn",
+    "asset_ids": [
+      "synthetic-covered-approved-program"
+    ],
+    "participant_ids": [
+      "synthetic-espn"
+    ],
+    "pool_id": "us-physical-videogram",
+    "purpose": "basis_stage_videogram_returns"
+  },
+  "state_cells": [
+    {
+      "boundary": "2009-01-01",
+      "opening_port": "history",
+      "provenance_ref": "supplied-original-reserve-history",
+      "purpose": "basis_stage_videogram_returns",
+      "quantity": {
+        "boundary": "2009-01-01",
+        "detail": {
+          "none": true
+        },
+        "origin": "genesis",
+        "policy": {
+          "date_basis": "supplied_utc_date",
+          "evidence_class": "research_assumption",
+          "excess_returns": "reject_pending_signed_policy",
+          "fee_stage": "after_basis_reserve",
+          "id": "RR04-GENIUS-BASIS-RESERVE-01",
+          "invalid_day": "clamp_day",
+          "liquidation": "full_unused_on_due_date",
+          "method": "elected_basis_reserve_within_vintage_only",
+          "months": "6",
+          "professional_review": "proposed",
+          "revision": "1",
+          "rounding": "exact_no_rounding",
+          "same_day_order": "receipt_election_then_return_then_due_release"
+        },
+        "purpose": "basis_stage_videogram_returns",
+        "scope": {
+          "asset_id": "synthetic-covered-approved-program",
+          "contract_id": "synthetic-genius-espn",
+          "currency": "USD",
+          "participant_id": "synthetic-espn",
+          "pool_id": "us-physical-videogram"
+        },
+        "source_case_id": "genesis",
+        "transport_profile": "basis-reserve-original-json/1"
+      },
+      "scenario_id": "SYNTHETIC-BASIS-RESERVES",
+      "scope": {
+        "agreement_id": "synthetic-genius-espn",
+        "asset_id": "synthetic-covered-approved-program",
+        "participant_id": "synthetic-espn",
+        "pool_id": "us-physical-videogram"
+      },
+      "state_key": "{\"agreement_id\":\"synthetic-genius-espn\",\"asset_id\":\"synthetic-covered-approved-program\",\"participant_id\":\"synthetic-espn\",\"pool_id\":\"us-physical-videogram\",\"purpose\":\"basis_stage_videogram_returns\"}",
+      "unit": "structured"
+    }
+  ]
+}

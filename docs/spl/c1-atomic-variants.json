@@ -825,6 +825,22 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/quantized-allocation-checks-20261123-a/verification.json"
       ],
       "basis": "44 methods; 15 actual native comparisons and completed publications; bounded separate 8-recipient/4-parent maxima and adjacent native original-state carry"
+    },
+    "basis_reserves": {
+      "sources": [
+        "cases/basis-reserves/README.md",
+        "cases/basis-reserves/policy.md",
+        "cases/basis-reserves/basis-reserves.spl"
+      ],
+      "controls": [
+        "oracles/basis_reserves.py",
+        "Tests/test_basis_reserve_oracle.py",
+        "Tests/test_basis_reserve_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-checks-6b3d9171/verification.json"
+      ],
+      "basis": "46 methods and six completed native/reference/Python-emitted bundles; actual five-period original-state carry; selected within-vintage only, sourced excess-return NR remains open"
     }
   },
   "variants": [
@@ -2337,21 +2353,23 @@
       "name": "Genius basis reserve before fee",
       "kind": "financial_precedence_policy",
       "requiredness": "accepted_c1_variant",
-      "status": "pending",
+      "status": "partial",
       "requirements": [
         "C09"
       ],
       "discriminator": "20% gross creates200/160; return60 consumesV1 once; release140/160 givesfee14/16 andallocation126/144; totals1740=174+1566.",
-      "evidence_groups": [],
+      "evidence_groups": [
+        "basis_reserves"
+      ],
       "execution": {
-        "source": "not_executed",
-        "canonical": "not_executed",
-        "native_ir": "not_executed",
-        "native_emitted": "not_executed",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "pending",
-        "boundary_invalid_controls": "pending",
-        "native_audit": "pending",
+        "source": "qualified_selected_within_vintage_slice",
+        "canonical": "six_complete_loader_validated_bundles",
+        "native_ir": "executed_selected_finite_cohort",
+        "native_emitted": "executed_selected_finite_cohort",
+        "python_emitted": "executed_separate_selected_mirrors",
+        "independent_controls": "32_oracle_and14_module_methods_original_facts",
+        "boundary_invalid_controls": "selected_zero_empty_calendar_scope_cutoff_alias_slot_population_and_unsupported_variant_controls",
+        "native_audit": "complete_native_ir_traces_retained_no_general_path_coverage",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -2359,7 +2377,7 @@
         "policy": "fee substitution and exact operating choices synthetic",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "Implement original reserve facts, independent controls and native/canonical state; separate sourced20% economics from synthetic10% fee/deadline/lot choices."
+      "remaining_obligation": "Sourced excess-return/post-liquidation signed Net Receipts remains unsupported. Generic reserve cap/payment-stage/term schedule and source fee-band/claim/successor approval obligations stay separate; selected five-checkpoint slice is accepted."
     },
     {
       "id": "C09.PAYMENT_HOLDBACK",

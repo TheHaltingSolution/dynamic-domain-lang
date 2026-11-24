@@ -135,7 +135,7 @@
       "name": "Reserve vintages",
       "current_native": "P",
       "current_canonical": "P",
-      "implemented_and_remaining": "[Registered reserve checks](../../Tests/test_module_mechanisms.py) enforce V1/V2 movement bounds and evidence; [calendar checks](../../Tests/test_calendar_months.py) derive explicit clamp/reject deadlines and inclusive release. Contractual basis-stage reserves, broader term/cap schedules and their stage/order alternatives remain unimplemented. LG payment holdback stays a distinct synthetic policy.",
+      "implemented_and_remaining": "Genius elected20% gross reserve before fee now executes with independent original facts, calendar-derived six-month liquidation and actual five-period native carry;46 methods and six completed bundles pass. Net1740=fee174+allocation1566. This is selected within-vintage partial source support; excess/post-liquidation signed NR reductions and broader payment-stage/cap/term schedule composition remain open.",
       "work_items": [
         "B-C09-STAGES",
         "B-C09-SOURCED"
@@ -540,14 +540,15 @@
         "F30"
       ],
       "work_class": "method",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "c1_required",
       "acceptance": [
         "Register finite capital/advance/approved-correction claim purposes with explicit priority/pro-rata policy.",
         "Retain 120 fund against 100/100 claims giving 100/20 versus 60/60; add a competing fee/correction discriminator, excess, same-date ties and two-period carry."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Independent original-fact oracle authoring approved for explicit fee-first/correction-first/pro-rata mixed capital/advance/fee/authorized-correction claims, exact capacity and actual serialized two-period carry. No source/native acceptance yet."
     },
     {
       "id": "B-C08-SIGNED",
@@ -621,7 +622,7 @@
         "F27"
       ],
       "work_class": "method",
-      "status": "in_progress",
+      "status": "partial",
       "scope": "c1_required",
       "acceptance": [
         "Preserve V1:12-7-5=0 and V2:0+20=20; register named basis-stage reserve versus post-earnings holdback with amount-changing controls.",
@@ -629,7 +630,18 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Genius basis-stage SPL/source adapter and 46-method cohort underway against frozen 32-method original-fact oracle. Excess-vintage/after-liquidation return variants remain explicitly open."
+      "active_scope": "Initial within-vintage source slice accepted; remaining excess-return and generic reserve-stage/cap/schedule obligations stay open.",
+      "evidence": [
+        "cases/basis-reserves/README.md",
+        "cases/basis-reserves/policy.md",
+        "cases/basis-reserves/basis-reserves.spl",
+        "cases/basis-reserves/build_modules.py",
+        "oracles/basis_reserves.py",
+        "Tests/test_basis_reserve_oracle.py",
+        "Tests/test_basis_reserve_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-checks-6b3d9171/verification.json"
+      ],
+      "execution_scope": "Selected Genius within-vintage basis reserve now passes46 oracle/module methods and six actual completed native/reference/Python-emitted bundles, including five actual serialized predecessors and same-complete-checkpoint preview. Net1740=fee174+allocation1566; largest actual result50337661bytes.55 frozen non-README files match; README evidence/NFC-boundary clarification only changed afterward. Excess/post-liquidation signed NR policy, full generic cap/payment-stage/term composition and professional approval remain separate."
     },
     {
       "id": "B-C09-SOURCED",
@@ -639,7 +651,7 @@
         "F27"
       ],
       "work_class": "research",
-      "status": "in_progress",
+      "status": "partial",
       "scope": "research_evidence",
       "acceptance": [
         "Attach original clause/facts and reviewed choice of reserve basis/payment stage, cap, vintage release/expiry and distributor condition.",
@@ -650,13 +662,20 @@
       ],
       "questions": [],
       "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate.",
-      "active_scope": "Independent Genius-ESPN USD within-vintage basis-reserve oracle frozen:32 passing methods and five actual serialized runs. Native source/registration remains pending. Sourced excess-return NR reduction is explicitly unimplemented; this initial slice is partial source support.",
+      "active_scope": "Initial within-vintage source slice accepted; remaining excess-return and generic reserve-stage/cap/schedule obligations stay open.",
       "evidence": [
         "cases/basis-reserves/policy.md",
         "docs/spl/basis-reserve-design.md",
         "Tests/test_basis_reserve_oracle.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserve-oracle-20261123-5ed65f08/verification.json"
-      ]
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserve-oracle-20261123-5ed65f08/verification.json",
+        "cases/basis-reserves/README.md",
+        "cases/basis-reserves/basis-reserves.spl",
+        "cases/basis-reserves/build_modules.py",
+        "oracles/basis_reserves.py",
+        "Tests/test_basis_reserve_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-checks-6b3d9171/verification.json"
+      ],
+      "execution_scope": "Selected Genius within-vintage basis reserve now passes46 oracle/module methods and six actual completed native/reference/Python-emitted bundles, including five actual serialized predecessors and same-complete-checkpoint preview. Net1740=fee174+allocation1566; largest actual result50337661bytes.55 frozen non-README files match; README evidence/NFC-boundary clarification only changed afterward. Excess/post-liquidation signed NR policy, full generic cap/payment-stage/term composition and professional approval remain separate."
     },
     {
       "id": "B-C10-TRANSFER",
@@ -3901,10 +3920,10 @@
   "progress_as_of": "2026-11-23",
   "status_counts": {
     "complete": 26,
-    "ready": 23,
-    "in_progress": 8,
+    "ready": 22,
+    "in_progress": 7,
+    "partial": 4,
     "dependency_blocked": 2,
-    "partial": 2,
     "gated": 1,
     "deferred": 7,
     "question_blocked": 1,

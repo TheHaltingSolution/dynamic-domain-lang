@@ -1566,6 +1566,101 @@
         "44-method cohort has 15 actual native comparisons/publications; no Python-emitted execution or emitted-target decision-coverage credit.",
         "Generic descriptor relationship cardinality remains separate."
       ]
+    },
+    {
+      "id": "genius-basis-reserve",
+      "requirements": [
+        "C09",
+        "F25",
+        "F27"
+      ],
+      "description": "Selected sourced within-vintage reserve before fee, exact original-history replay and calendar-derived liquidation with actual native state carry.",
+      "status": "witnessed",
+      "witnesses": [
+        {
+          "test": "Tests.test_basis_reserve_modules.BasisReserveModuleTests.test_native_actual_five_period_carry_and_full_original_reconciliation",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/basis-reserves/basis-reserves.spl",
+            "cases/basis-reserves/neutral.json",
+            "cases/basis-reserves/policy.md"
+          ],
+          "property": "Five actual serialized predecessor cells preserve full original fact/state history and derive1740 Net Receipts=174 fee+1566 allocation; reserve-before-fee differs from payment holdback.",
+          "oracle": "Separately authored oracles/basis_reserves.py uses original receipt/election/return/authority/population facts, reconstructs all checkpoints and checks full restored original closing state."
+        },
+        {
+          "test": "Tests.test_basis_reserve_modules.BasisReserveModuleTests.test_native_due_date_return_precedes_release_and_exact_remaining_return",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical"
+          ],
+          "inputs": [
+            "cases/basis-reserves/basis-reserves.spl",
+            "cases/basis-reserves/neutral.json",
+            "cases/basis-reserves/policy.md"
+          ],
+          "property": "Selected inclusive six-month deadline applies same-day return before release and prevents borrowing another vintage.",
+          "oracle": "Separately authored oracles/basis_reserves.py uses original receipt/election/return/authority/population facts, reconstructs all checkpoints and checks full restored original closing state."
+        },
+        {
+          "test": "Tests.test_basis_reserve_modules.BasisReserveModuleTests.test_native_complete_checkpoint_preview_has_no_consumable_state",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical"
+          ],
+          "inputs": [
+            "cases/basis-reserves/basis-reserves.spl",
+            "cases/basis-reserves/neutral.json",
+            "cases/basis-reserves/policy.md"
+          ],
+          "property": "Preview calculates the same complete known checkpoint, retains candidate amounts and emits no consumable closing state.",
+          "oracle": "Separately authored oracles/basis_reserves.py uses original receipt/election/return/authority/population facts, reconstructs all checkpoints and checks full restored original closing state."
+        },
+        {
+          "test": "Tests.test_basis_reserve_modules.BasisReserveModuleTests.test_native_evidence_slots_validate_original_refs_after_adapter",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical"
+          ],
+          "inputs": [
+            "cases/basis-reserves/basis-reserves.spl",
+            "cases/basis-reserves/neutral.json",
+            "cases/basis-reserves/policy.md"
+          ],
+          "property": "Direct evidence-slot/original-reference tampering is rejected by native source checks; physical codec and native authority remain distinct.",
+          "oracle": "Separately authored oracles/basis_reserves.py uses original receipt/election/return/authority/population facts, reconstructs all checkpoints and checks full restored original closing state."
+        }
+      ],
+      "limitations": [
+        "Sourced20% basis-stage economics with explicit synthetic10% substitute fee and selected six-month full-unused liquidation; professional approval is separate.",
+        "Excess/post-liquidation signed NR reductions remain explicitly unsupported; no full generic cap/term/payment-stage closure.",
+        "Largest actual result50337661bytes under unchanged64MiB; input bounds do not establish every combination or general capacity.",
+        "Canonical NFC Text boundary remains; no emitted-target branch coverage or source-authenticity proof."
+      ]
     }
   ]
 }

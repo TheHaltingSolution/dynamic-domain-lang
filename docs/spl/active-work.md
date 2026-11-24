@@ -105,9 +105,10 @@ Paths here are relative to the external SPL artifacts root above.
   passes26 independent checks. Q1/Q2 catch-up210, Q3new472.50/total527.50,
   actualpaid1310, dated/as-known history and Q4exactlyonce/preview controls are
   independently specified. Later native acceptance is recorded below.
-- Root inventory consistency: the bounded matrix now has36 rows,32 witnessed
-  variations, four gaps and53 selectors after cent-allocation integration.
-  These are not the full C1 denominator or a new combined53-selector campaign.
+- Root inventory consistency: the bounded matrix now has37 rows,33 witnessed
+  variations, four gaps and57 selectors after cent-allocation and selected
+  Genius integration. These are not the full C1 denominator or a new
+  combined57-selector campaign.
 - Cent allocation: `quantized-allocation-checks-20261123-a` passes44 methods
   in177.268s, with15 actual native comparisons/60 Lean commands and15 complete
   loader-validated publications. Parent-first rounding, weight-derived residuals
@@ -116,6 +117,24 @@ Paths here are relative to the external SPL artifacts root above.
   tested separately. All61 frozen non-README files still match; only README
   evidence was added after the source-stable run. Generic descriptor cardinality
   remains open; no Python-emitted or all-bound-combination credit is claimed.
+- Genius basis reserve: `basis-reserves-checks-6b3d9171` passes46 methods,
+  zero failures/errors/skips/drift; tests871.471678s plus actual six bundles
+  191.034076s, total1062.540950s. Five actual native predecessor cells and the
+  same-complete-checkpoint preview pass independent/ref/nativeIR/native-emitted/
+  separate Python-emitted controls. Net1740=fee174+allocation1566. Largest actual
+  result50,337,661 bytes; preview50,247,260 with no consumable state. All55
+  frozen non-README files match. README evidence and existing NFC-boundary
+  clarification are the only post-run changes. C09 remains partial for excess/
+  post-liquidation signed NR and generic cap/payment-stage/term composition.
+- Compiler-stage protocol controls: retained256MiB compilation profile fails
+  Lean codegen at288,575,488 bytes (`performance-protocol-aot-guard-20261123-a`).
+  A separately selected compiler-only profile `spl-compiler-budget/1g180/1`
+  passes two small complete native compilations, with codegen peak882,565,120/
+  882,290,688 bytes and independent full target values. Evidence:
+  `performance-protocol-aot-compiler1g-20261123-a`. Runtime/audit/publication/
+  expanded-data guards stay unchanged. Cached runtime closure, uncontrolled OS
+  caches and per-child memory excluding descendants are explicit. These are
+  compiler-stage observations, not overall protocol or SLA acceptance.
 
 AO's first37-method run retained two honest64MiB publication failures. Original
 anonymous period records embedded in instance identifiers caused90.8MB results.
@@ -182,7 +201,7 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   The old abee-produced Download state now replays to100.5 with earned0.375,
   unchanged495808ae unit identity. The broad931-method regression is RUNNING
   from physical C:/spl-unit-reg, detached PID24720, evidence
-  usage-unit-broad-20261123-b569/. Builds/indexed/both smokes pass;185 methods
+  usage-unit-broad-20261123-b569/. Builds/indexed/both smokes pass;337 methods
   had completed with zero failures/errors/skips at the latest inspected poll.
   Compiler5269e1bf/module2dd2755b/runtimea7e4f8e5 apply to that exact snapshot.
   Root read-only audit confirms all66 changed files equal Git blobs and all22
@@ -191,16 +210,17 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 
 ## Delegated ownership and next steps
 
-- `validation_matrix`: finished AO/civil cohorts, the atomic C1 variant catalog
-  and native Disney acceptance. Now owns Genius basis-reserve SPL/source
-  adapters/tests, with five actual native serialized periods and a46-method
-  cohort being prepared. Independent32-method oracle remains frozen. Excess
-  vintage/after-liquidation returns remain outside this initial source slice.
+- `validation_matrix`: finished AO/civil cohorts, the atomic C1 variant catalog,
+  native Disney and selected Genius acceptance. Now owns new C10 burden SPL/
+  adapters/descriptors/templates/module tests against the immutable28-method
+  oracle. Its approved plan retains genuine inner account scopes, explicit
+  coordinator metadata, reversible fixed-width Unicode identity transport and
+  full raw original state. No oracle/policy/core edits.
   Root reviewed78 stable semantic IDs:75 required C1, two supporting, one unselected alternative; nine engineering entries are a separate axis. This is a planning denominator, not passing evidence or72tasks/195rows/testcount.
 - `validation_generated`: Genius basis-reserve oracle frozen32 methods with five
   actual serialized periods, artifact `basis-reserve-oracle-20261123-5ed65f08`.
-  Native source remains pending; excess-vintage returns remain an explicit source
-  gap. Its isolated unit consumer files are frozen with passing evidence; trace now
+  Selected native source now passes46 methods; excess-vintage returns remain an
+  explicit source gap. Its isolated unit consumer files are frozen with passing evidence; trace now
   integrates the complete unit candidate. The agent now owns NEW main mutation
   generator/runner/tests/design files for B-VAL-MUTANTS, with finite independent controls. That task is now frozen/accepted: initial4
   and strengthened6 case phases preserve exact sources/policy/mutants, four
@@ -211,19 +231,26 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   archive, with actual serialized cap45 charges30/15/0, original accrued100/170
   and linked-paid60 comparator100/182. Artifact
   `contract-burden-oracle-20261123-562c4619`; all six frozen files match. No
-  compiler/native credit. A different source author takes this after Genius;
-  generated next plans the independent C07 mixed-claim waterfall. No core edits.
+  compiler/native credit. A different source author now implements it;
+  generated authors the independent C07 mixed-claim waterfall under an approved
+  bounded fee-first/correction-first/pro-rata policy. No core edits.
 - `validation_trace`: completed the isolated usage-unit candidate; its broad
   regression remains pending under root review. Now owns C06 cent-allocation
   source/adapters/module tests in main. The44-method cohort is now accepted,
   with the independent24-method oracle unchanged. Next owns bounded performance
   protocol/stage runners and measurements, preserving all fixed guards and known
   failures. Audited-stage state chains remain separate from completed canonical
-  publication. Main core remains20ea/a516/673 during Genius acceptance.
+  publication. A separately versioned synthetic rr03-stage-chain/1 authority
+  horizon permits four adjacent closes without retrospectively extending the
+  original generator's one-quarter agreement. Defaults and old reports remain.
+  Main core stays20ea/a516/673 pending unit integration.
 - Root: independent usage conversion controls now pass8 methods from an isolated
   source snapshot, `usage-conversion-oracle-20261123-642e47f0`; this earns no
   compiler/native/codec/state credit. Integrate evidence/backlog, review unit/context compatibility, maintain
   stable shared core, inspect full regression, create verified checkpoints.
+  A separate C:/spl-kind-b569 checkout investigates the reproduced native
+  Id<Record> imported-signature bug; old b569 native rejects Missing fields
+  while the reference accepts it. Main/unit/broad snapshots remain untouched.
 
 An isolated short physical worktree `C:/spl-units-9f9` on
 `feature/spl-usage-time-c1` starts from9f9cf31. Unit implementation is now authorized in this isolated checkout only, with
