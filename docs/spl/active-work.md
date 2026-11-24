@@ -248,9 +248,16 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   source snapshot, `usage-conversion-oracle-20261123-642e47f0`; this earns no
   compiler/native/codec/state credit. Integrate evidence/backlog, review unit/context compatibility, maintain
   stable shared core, inspect full regression, create verified checkpoints.
-  A separate C:/spl-kind-b569 checkout investigates the reproduced native
+  Separate C:/spl-kind-b569 candidate8e3acd4 fixes the reproduced native
   Id<Record> imported-signature bug; old b569 native rejects Missing fields
-  while the reference accepts it. Main/unit/broad snapshots remain untouched.
+  while the reference accepts it.40 methods pass184.751232s with required
+  build/both smokes, zero failures/errors/skips/source drift. Four new positive
+  variations execute all four backends; five malformed/mismatching signatures
+  reject with explicit native codes. Nine archived old v1 IR exports replay
+  byte-for-byte. Evidence `linked-opaque-kind-20261123-b/`; the earlier development
+  report remains failed for incorrect diagnostic-code test expectations. New
+  compilera0e5b77d/modulec28785f5/runtimea7e4f8e5 apply only to this isolated
+  followup, not b569 or main. Main/unit/broad snapshots remain untouched.
 
 An isolated short physical worktree `C:/spl-units-9f9` on
 `feature/spl-usage-time-c1` starts from9f9cf31. Unit implementation is now authorized in this isolated checkout only, with

@@ -1080,7 +1080,8 @@
         "Admit complete transitive signatures even empty/unused; duplicate fields/alias cycles/unknown codes/incompatible dictionary versions fail in both frontends and defensive IR."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "isolated_linker_followup": "Separate8e3acd4 candidate on b569 fixes native imported Id<Record> confusion with structural Record.40 methods/build/both smokes plus9 archived v1 IR byte replays pass, evidence linked-opaque-kind-20261123-b. Not merged into main; broader named aliases and controlled enums remain open."
     },
     {
       "id": "B-SCHEMA-RELATIONS",
