@@ -1,0 +1,490 @@
+{
+  "schema_version": "entitlement-burdens-neutral/1",
+  "case_id": "burden-q1",
+  "coordinator": {
+    "id": "synthetic-burden-coordinator",
+    "currency": "USD",
+    "purpose": "cross_contract_entitlement_burden"
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-04-01"
+  },
+  "as_of": "2026-03-31",
+  "cutoff": "2026-04-03T00:00:00Z",
+  "policy": {
+    "id": "SYNTHETIC-CONTRACT-BURDENS-01",
+    "revision": "1",
+    "method": "accrued_basis_current_period",
+    "measurement": "original_pre_burden_current_participation",
+    "cap": "cumulative_original_authority",
+    "cap_excess": "consume_no_carry",
+    "shortfall": "atomic_reject_after_cap",
+    "threshold": "basis_at_least_minimum",
+    "request_limit": "one_canonical_authority_source_period_measurement",
+    "order": "unique_authorized_sequence",
+    "rounding": "exact_no_rounding",
+    "observation_date_basis": "UTC",
+    "late_payment_reopening": "unsupported",
+    "evidence_class": "research_assumption"
+  },
+  "research": {
+    "ld03_sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712",
+    "rr04_sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f",
+    "review_locator": "LD03:390-399;B-C10-BURDEN;RR04:no-C10-specific-rule"
+  },
+  "accounts": [
+    {
+      "id": "claimant",
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "original-source:claimant",
+      "evidence_ref": "evidence:claimant",
+      "scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      }
+    },
+    {
+      "id": "burdened",
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "original-source:burdened",
+      "evidence_ref": "evidence:burdened",
+      "scope": {
+        "agreement_id": "agreement-burdened",
+        "participant_id": "participant-burdened",
+        "pool_id": "pool-burdened",
+        "asset_id": "title-burdened",
+        "currency": "USD"
+      }
+    }
+  ],
+  "terms": [
+    {
+      "id": "terms:claimant",
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "original-source:terms:claimant",
+      "evidence_ref": "evidence:terms:claimant",
+      "account_id": "claimant",
+      "scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      },
+      "share": "0.5",
+      "effective": {
+        "start": "2026-01-01",
+        "end": "2026-10-01"
+      },
+      "approved": true,
+      "approved_date": "2026-01-01",
+      "original_ref": "original-participation-contract#claimant"
+    },
+    {
+      "id": "terms:burdened",
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "original-source:terms:burdened",
+      "evidence_ref": "evidence:terms:burdened",
+      "account_id": "burdened",
+      "scope": {
+        "agreement_id": "agreement-burdened",
+        "participant_id": "participant-burdened",
+        "pool_id": "pool-burdened",
+        "asset_id": "title-burdened",
+        "currency": "USD"
+      },
+      "share": "0.5",
+      "effective": {
+        "start": "2026-01-01",
+        "end": "2026-10-01"
+      },
+      "approved": true,
+      "approved_date": "2026-01-01",
+      "original_ref": "original-participation-contract#burdened"
+    }
+  ],
+  "receipts": [
+    {
+      "id": "receipt:claimant:q1",
+      "observed_at": "2026-03-02T00:00:00Z",
+      "source_ref": "original-source:receipt:claimant:q1",
+      "evidence_ref": "evidence:receipt:claimant:q1",
+      "account_id": "claimant",
+      "scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      },
+      "amount": "200",
+      "term_id": "terms:claimant",
+      "effective_date": "2026-03-01",
+      "original_ref": "original-receipt-ledger#claimant-q1",
+      "entitlement_line_ref": "original-participation-ledger#claimant-q1"
+    },
+    {
+      "id": "receipt:burdened:q1",
+      "observed_at": "2026-03-02T00:00:00Z",
+      "source_ref": "original-source:receipt:burdened:q1",
+      "evidence_ref": "evidence:receipt:burdened:q1",
+      "account_id": "burdened",
+      "scope": {
+        "agreement_id": "agreement-burdened",
+        "participant_id": "participant-burdened",
+        "pool_id": "pool-burdened",
+        "asset_id": "title-burdened",
+        "currency": "USD"
+      },
+      "amount": "400",
+      "term_id": "terms:burdened",
+      "effective_date": "2026-03-01",
+      "original_ref": "original-receipt-ledger#burdened-q1",
+      "entitlement_line_ref": "original-participation-ledger#burdened-q1"
+    }
+  ],
+  "authorizations": [
+    {
+      "id": "authority:burden",
+      "observed_at": "2026-01-03T00:00:00Z",
+      "source_ref": "original-source:authority:burden",
+      "evidence_ref": "evidence:authority:burden",
+      "claimant_account": "claimant",
+      "burdened_account": "burdened",
+      "claimant_scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      },
+      "burdened_scope": {
+        "agreement_id": "agreement-burdened",
+        "participant_id": "participant-burdened",
+        "pool_id": "pool-burdened",
+        "asset_id": "title-burdened",
+        "currency": "USD"
+      },
+      "purpose": "cross_contract_entitlement_burden",
+      "basis_kind": "accrued_basis_current_period",
+      "burden_rate": "0.3",
+      "minimum_basis": "0",
+      "cap": "45",
+      "sequence": 1,
+      "effective": {
+        "start": "2026-01-01",
+        "end": "2026-10-01"
+      },
+      "approved": true,
+      "approved_date": "2026-01-01",
+      "recorded_date": "2026-01-02",
+      "original_ref": "original-cross-contract-authority#burden-cap45"
+    }
+  ],
+  "requests": [
+    {
+      "id": "request:q1",
+      "observed_at": "2026-04-02T00:00:00Z",
+      "source_ref": "original-source:request:q1",
+      "evidence_ref": "evidence:request:q1",
+      "authorization_id": "authority:burden",
+      "claimant_account": "claimant",
+      "burdened_account": "burdened",
+      "claimant_scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      },
+      "burdened_scope": {
+        "agreement_id": "agreement-burdened",
+        "participant_id": "participant-burdened",
+        "pool_id": "pool-burdened",
+        "asset_id": "title-burdened",
+        "currency": "USD"
+      },
+      "measurement_id": "original-current-participation-measurement:q1",
+      "basis_receipt_ids": [
+        "receipt:claimant:q1"
+      ],
+      "recognition_date": "2026-03-31",
+      "original_ref": "original-burden-request-ledger#q1"
+    }
+  ],
+  "payments": [
+    {
+      "id": "payment:q1",
+      "observed_at": "2026-03-11T00:00:00Z",
+      "source_ref": "original-source:payment:q1",
+      "evidence_ref": "evidence:payment:q1",
+      "account_id": "claimant",
+      "scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      },
+      "amount": "60",
+      "purpose": "participation_entitlement_settlement",
+      "paid_at": "2026-03-10T12:00:00Z",
+      "original_ref": "original-bank-statement#claimant-q1"
+    }
+  ],
+  "applications": [
+    {
+      "id": "application:q1",
+      "observed_at": "2026-03-12T00:00:00Z",
+      "source_ref": "original-source:application:q1",
+      "evidence_ref": "evidence:application:q1",
+      "account_id": "claimant",
+      "scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      },
+      "payment_id": "payment:q1",
+      "receipt_id": "receipt:claimant:q1",
+      "entitlement_line_ref": "original-participation-ledger#claimant-q1",
+      "amount": "60",
+      "approved": true,
+      "application_date": "2026-03-10"
+    }
+  ],
+  "receipt_populations": [
+    {
+      "id": "receipt-population:claimant:q1",
+      "observed_at": "2026-04-01T00:00:00Z",
+      "source_ref": "original-source:receipt-population:claimant:q1",
+      "evidence_ref": "evidence:receipt-population:claimant:q1",
+      "account_id": "claimant",
+      "scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      },
+      "period": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "complete": true,
+      "receipt_ids": [
+        "receipt:claimant:q1"
+      ],
+      "gross_total": "200"
+    },
+    {
+      "id": "receipt-population:burdened:q1",
+      "observed_at": "2026-04-01T00:00:00Z",
+      "source_ref": "original-source:receipt-population:burdened:q1",
+      "evidence_ref": "evidence:receipt-population:burdened:q1",
+      "account_id": "burdened",
+      "scope": {
+        "agreement_id": "agreement-burdened",
+        "participant_id": "participant-burdened",
+        "pool_id": "pool-burdened",
+        "asset_id": "title-burdened",
+        "currency": "USD"
+      },
+      "period": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "complete": true,
+      "receipt_ids": [
+        "receipt:burdened:q1"
+      ],
+      "gross_total": "400"
+    }
+  ],
+  "payment_populations": [
+    {
+      "id": "payment-population:claimant:q1",
+      "observed_at": "2026-04-01T00:00:00Z",
+      "source_ref": "original-source:payment-population:claimant:q1",
+      "evidence_ref": "evidence:payment-population:claimant:q1",
+      "account_id": "claimant",
+      "scope": {
+        "agreement_id": "agreement-claimant",
+        "participant_id": "participant-claimant",
+        "pool_id": "pool-claimant",
+        "asset_id": "title-claimant",
+        "currency": "USD"
+      },
+      "period": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "complete": true,
+      "payment_ids": [
+        "payment:q1"
+      ],
+      "application_ids": [
+        "application:q1"
+      ],
+      "paid_total": "60"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence:claimant",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant"
+      ],
+      "kind": "account_scope",
+      "approved": true,
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:claimant"
+    },
+    {
+      "id": "evidence:burdened",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "burdened"
+      ],
+      "kind": "account_scope",
+      "approved": true,
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:burdened"
+    },
+    {
+      "id": "evidence:terms:claimant",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant"
+      ],
+      "kind": "participation_terms",
+      "approved": true,
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:terms:claimant"
+    },
+    {
+      "id": "evidence:terms:burdened",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "burdened"
+      ],
+      "kind": "participation_terms",
+      "approved": true,
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:terms:burdened"
+    },
+    {
+      "id": "evidence:receipt:claimant:q1",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant"
+      ],
+      "kind": "original_receipt_basis",
+      "approved": true,
+      "observed_at": "2026-03-02T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:receipt:claimant:q1"
+    },
+    {
+      "id": "evidence:receipt:burdened:q1",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "burdened"
+      ],
+      "kind": "original_receipt_basis",
+      "approved": true,
+      "observed_at": "2026-03-02T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:receipt:burdened:q1"
+    },
+    {
+      "id": "evidence:authority:burden",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant",
+        "burdened"
+      ],
+      "kind": "cross_contract_authority",
+      "approved": true,
+      "observed_at": "2026-01-03T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:authority:burden"
+    },
+    {
+      "id": "evidence:request:q1",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant",
+        "burdened"
+      ],
+      "kind": "original_burden_request",
+      "approved": true,
+      "observed_at": "2026-04-02T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:request:q1"
+    },
+    {
+      "id": "evidence:payment:q1",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant"
+      ],
+      "kind": "actual_participation_payment",
+      "approved": true,
+      "observed_at": "2026-03-11T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:payment:q1"
+    },
+    {
+      "id": "evidence:application:q1",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant"
+      ],
+      "kind": "approved_participation_application",
+      "approved": true,
+      "observed_at": "2026-03-12T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:application:q1"
+    },
+    {
+      "id": "evidence:receipt-population:claimant:q1",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant"
+      ],
+      "kind": "complete_receipt_population",
+      "approved": true,
+      "observed_at": "2026-04-01T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:receipt-population:claimant:q1"
+    },
+    {
+      "id": "evidence:receipt-population:burdened:q1",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "burdened"
+      ],
+      "kind": "complete_receipt_population",
+      "approved": true,
+      "observed_at": "2026-04-01T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:receipt-population:burdened:q1"
+    },
+    {
+      "id": "evidence:payment-population:claimant:q1",
+      "coordinator_id": "synthetic-burden-coordinator",
+      "account_ids": [
+        "claimant"
+      ],
+      "kind": "complete_payment_population",
+      "approved": true,
+      "observed_at": "2026-04-01T00:00:00Z",
+      "source_ref": "synthetic-approved-evidence:payment-population:claimant:q1"
+    }
+  ],
+  "opening_state": {
+    "origin": "genesis",
+    "boundary": "2026-01-01",
+    "source_case_id": "genesis",
+    "history": []
+  }
+}

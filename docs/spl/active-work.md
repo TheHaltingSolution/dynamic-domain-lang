@@ -206,8 +206,13 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   and strengthened6 case phases preserve exact sources/policy/mutants, four
   actual backends and honest class/stage distinctions;17 isolated tests plus
   seven-process native-negative followup pass. The agent now authors independent
-  C10 entitlement-burden controls from original receipts/terms/paid evidence,
-  while a different source author will implement them later. No core edits.
+  C10 entitlement-burden controls from original receipts/terms/paid evidence.
+  Those controls are now frozen:28 methods pass in0.180619s from an isolated
+  archive, with actual serialized cap45 charges30/15/0, original accrued100/170
+  and linked-paid60 comparator100/182. Artifact
+  `contract-burden-oracle-20261123-562c4619`; all six frozen files match. No
+  compiler/native credit. A different source author takes this after Genius;
+  generated next plans the independent C07 mixed-claim waterfall. No core edits.
 - `validation_trace`: completed the isolated usage-unit candidate; its broad
   regression remains pending under root review. Now owns C06 cent-allocation
   source/adapters/module tests in main. The44-method cohort is now accepted,

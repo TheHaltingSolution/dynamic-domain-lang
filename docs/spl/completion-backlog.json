@@ -709,7 +709,15 @@
       "depends_on": [],
       "questions": [],
       "review_resolution": "Missing finite C10 variation identified by LD03 section7, lines390-399. Existing B-C10-TRANSFER remains complete for conserved transfers only.",
-      "active_scope": "Independent original-fact oracle and actual cap-state chain under development; source implementation will be authored separately after oracle freeze."
+      "active_scope": "Independent original-fact oracle frozen: 28 methods pass with actual serialized 30/15/0 cap45 chain and accrued100/170 versus linked paid60 basis100/182. Separate SPL/canonical author assigned after Genius acceptance; no compiler/native evidence yet.",
+      "evidence": [
+        "oracles/contract_burdens.py",
+        "cases/entitlement-burdens/neutral.json",
+        "cases/entitlement-burdens/policy.md",
+        "docs/spl/entitlement-burden-design.md",
+        "Tests/test_contract_burden_oracle.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/contract-burden-oracle-20261123-562c4619/verification.json"
+      ]
     },
     {
       "id": "B-C11-GATES",
