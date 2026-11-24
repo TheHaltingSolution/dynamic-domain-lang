@@ -1,5 +1,10 @@
 # SPL measured performance work
 
+[Native method source guidance](native-method-source-guide.md) records measured
+source-level audit costs and the controls required before adopting an optimization.
+It preserves the readable financial authoring target and the SPL calculation
+boundary.
+
 The initial stage harness measures receipt-only development probes separately
 from the mixed workload proposed by [RR-03](rr03-response-integration.md). It
 does not establish production capacity or the research's proposed service targets.
