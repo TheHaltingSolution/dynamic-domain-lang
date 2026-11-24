@@ -18,7 +18,11 @@ structure GenerationContext where
   owners : List (String × List String) := []
   extended : Bool := false
 
-abbrev Gen := ReaderT GenerationContext (StateT Nat (Except Diagnostic))
+structure GenerationState where
+  counter : Nat := 0
+  helpers : List String := []
+
+abbrev Gen := ReaderT GenerationContext (StateT GenerationState (Except Diagnostic))
 abbrev Names := List (String × String)
 
 def quoted (value : String) : String :=
@@ -44,8 +48,8 @@ private def block (lines : List String) (result : String) : String :=
   "(do\n" ++ String.intercalate "\n" ((lines ++ [result]).map fun s => "  " ++ s.replace "\n" "\n  ") ++ ")"
 
 private def fresh : Gen String := do
-  let counter ← get
-  set (counter + 1)
+  let counter := (← get).counter
+  modify fun state => { state with counter := counter + 1 }
   pure ("_spl_v" ++ toString counter)
 
 private def fail (code message : String) (span : Span := {}) : Gen α :=
@@ -289,8 +293,29 @@ mutual
       let (requiredLines, nextDone) ← emitDefinition reference declarations env functions doneNames (name :: active)
       lines := lines ++ requiredLines
       doneNames := nextDone
+    -- Captures are deferred values, never eager `.get` arguments.  The original
+    -- scope still owns each memoizing definition thunk and its demand points.
+    -- A Unit argument also keeps a closed helper a computation rather than a
+    -- global cached settlement value.
+    let helperName ← fresh
+    let mut parameters : List String := []
+    let mut arguments : List String := []
+    let mut captured : Names := []
+    for reference in (references body).eraseDups do
+      let some source := env.lookup reference
+        | fail "UNKNOWN_NAME" ("Unknown checked capture " ++ reference) m.span
+      let parameter ← fresh
+      parameters := parameters ++ ["(" ++ parameter ++ " : Thunk (SPL.Eval SPL.Value))"]
+      arguments := arguments ++ ["(Thunk.mk (fun _ => " ++ source ++ "))"]
+      captured := (reference, "(" ++ parameter ++ ".get)") :: captured
+    let helperBody ← expression body captured
+    let helper := "@[noinline] private def " ++ helperName ++ " " ++
+      String.intercalate " " parameters ++
+      " (_spl_force : Unit) : SPL.Eval SPL.Value := " ++ helperBody
+    modify fun state => { state with helpers := state.helpers ++ [helper] }
     lines := lines ++ ["let " ++ (functions.lookup name).getD "unreachable" ++
-      " : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => " ++ (← expression body env) ++ ")"]
+      " : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => " ++ helperName ++ " " ++
+      String.intercalate " " arguments ++ " ())"]
     pure (lines, name :: doneNames)
 
   private partial def localToDecl : LocalDecl → Decl
@@ -374,18 +399,19 @@ private def generate (schedule : Program) (standalone : Bool) : Gen String := do
     "def sourceRules : List (String × String) := " ++ rules ++ "\n\n" ++
     (if config.extended then "def _spl_dimension_meanings : SPL.Dimensions.Meanings := { features := " ++
       brackets (config.meanings.features.map quoted) ++ " }\n\n" else "") ++
+    String.intercalate "\n\n" (← get).helpers ++ "\n\n" ++
     "def settle (_inputs _openings : SPL.Env) : SPL.Eval SPL.Settlement := " ++ block lines result ++
     "\n\nend " ++ ns ++ entry)
 
 def emitIR (schedule : Program) : Except Diagnostic String := do
   ValidateIR.validate schedule
-  pure ((← (generate schedule true).run (← generationContext schedule) |>.run 0).1)
+  pure ((← (generate schedule true).run (← generationContext schedule) |>.run {}).1)
 
 /-- Importable module mode has only schedule-specific declarations, with no
 global executable entry or convenience aliases that collide across modules. -/
 def emitLibraryIR (schedule : Program) : Except Diagnostic String := do
   ValidateIR.validate schedule
-  pure ((← (generate schedule false).run (← generationContext schedule) |>.run 0).1)
+  pure ((← (generate schedule false).run (← generationContext schedule) |>.run {}).1)
 
 /-- Compatibility entry: checking and elaboration happen before generation. -/
 def emit (schedule : Syntax.Schedule) : Except Diagnostic String := do

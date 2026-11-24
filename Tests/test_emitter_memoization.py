@@ -19,6 +19,7 @@ from spl_compiler.codecs import loads, write_json
 from spl_compiler.evaluator import evaluate
 from spl_compiler.lean_tools import ROOT, lean_environment
 from spl_compiler.linker import link_schedule
+from spl_compiler.model import SPLException
 from spl_compiler.parser import parse
 from Tests.test_fold import schedule
 from Tests.test_indexed_sv import financial, original_cases, project_original, raw_cases
@@ -170,6 +171,82 @@ class EmitterMemoizationTests(unittest.TestCase):
             define total=fold xs from 0 with s,x { define twice=x+x; define repeated=twice+twice; yield s+repeated; };
             emit "rows"=rows; emit "total"=total;''', {"inputs": {"xs": ["1", "3", "7"]}, "openings": {}},
             {"status": "calculated", "emissions": {"rows": ["4", "12", "28"], "total": "44"}, "closing": {}, "diagnostics": []})
+
+    def test_deferred_captures_preserve_option_choose_and_short_circuit_demand(self):
+        expressions = [
+            'get_or(some(7.0),future)',
+            'choose unique { when true => 7.0; when false => future; }',
+            'if false and future > 0.0 then 1.0 else 7.0',
+            'if true or future > 0.0 then 7.0 else 1.0',
+        ]
+        for index, expression in enumerate(expressions):
+            with self.subTest(expression=expression):
+                self.compare("deferred-capture-" + str(index),
+                             'define selected=' + expression + '; require false else "STOP"; '
+                             'define future=1.0/0.0; emit "result"=selected;',
+                             {"inputs": {}, "openings": {}},
+                             {"status": "blocked", "emissions": {}, "closing": {}, "diagnostics": ["STOP"]})
+
+    def test_nested_disjoint_and_callee_scopes_keep_capture_values_local(self):
+        parameters = [{"name": "n", "type": {"name": "Int", "args": []}}]
+        callee = library("scoped", 'input n:Int; define later=n*3; define result=later+n;', parameters=parameters)
+        manifest = {"modules": [callee], "imports": [importing("scoped", local="compute")]}
+        self.compare("scoped-captures", '''input n:Int;
+            define original=n+n;
+            define rows=for each outer in [2,5] {
+              define later=outer*2;
+              define nested=for each child in [1,3] { define twice=child+child; yield twice+later; };
+              yield nested;
+            };
+            define total=fold [2,5] from n with s,event { define later=event*2; yield s+later; };
+            emit "original"=original; emit "rows"=rows; emit "total"=total;
+            emit "call"=compute(n); emit "other_call"=compute(3);''',
+            {"inputs": {"n": "10"}, "openings": {}},
+            {"status": "calculated", "emissions": {"original": "20", "rows": [["6", "10"], ["12", "16"]],
+             "total": "24", "call": "40", "other_call": "12"}, "closing": {}, "diagnostics": []}, manifest=manifest)
+        # Iterator/input and fold/input name reuse is outside the language's
+        # admitted lexical scopes. Both frontends must reject it before emission.
+        for index, body in enumerate([
+            'input n:Int; define rows=for each n in [1] { yield n; }; emit "x"=rows;',
+            'input n:Int; define total=fold [1] from 0 with s,n { yield s+n; }; emit "x"=total;',
+        ]):
+            with self.subTest(forbidden_scope=index):
+                with self.assertRaises(SPLException) as error:
+                    check_schedule(parse(schedule(body)))
+                self.assertEqual(error.exception.code, "DUPLICATE_NAME")
+                source = self.work / "ForbiddenScope.spl"
+                source.write_text(schedule(body), encoding="utf-8")
+                process = subprocess.run([str(self.frontend), "check", str(source)], cwd=self.work,
+                                         env=self.env, capture_output=True, timeout=90)
+                self.assertEqual(process.returncode, 1)
+                self.assertEqual(process.stderr, b"")
+                self.assertEqual(loads(process.stdout)["diagnostics"][0]["code"], "DUPLICATE_NAME")
+
+    def test_native_library_error_cache_is_fresh_between_independent_inputs(self):
+        source = self.work / "FreshError.spl"
+        source.write_text(schedule('input divisor:Ratio; define quotient=10.0/divisor; '
+                                   'define repeated=quotient+quotient; emit "result"=repeated;'), encoding="utf-8")
+        library_path = self.work / "FreshErrorLibrary.lean"
+        standalone = self.work / "FreshErrorStandalone.lean"
+        self.command([self.frontend, "compile-library", source, library_path])
+        self.command([self.frontend, "compile", source, standalone])
+        main = re.search(r"  (SPL\.Bindings\.runMain .+) args\n", standalone.read_text(encoding="utf-8")).group(1)
+        driver = self.work / "FreshErrorDriver.lean"
+        driver.write_text('import FreshErrorLibrary\ndef main (args : List String) : IO UInt32 := do\n'
+                          '  for path in args do\n    let _ ← ' + main + ' [path]\n  return 0\n', encoding="utf-8")
+        obj = self.native(library_path, module=True)
+        executable = self.native(driver, extra_objects=[obj])
+        values = [{"inputs": {"divisor": divisor}, "openings": {}} for divisor in ("0", "2", "5", "0", "2")]
+        paths = [self.write_binding("fresh-error-" + str(index), value) for index, value in enumerate(values)]
+        outcomes = [loads(line) for line in self.command([executable, *paths]).splitlines()]
+        self.assertEqual(len(outcomes), len(values))
+        checked = check_schedule(parse(source.read_text(encoding="utf-8")))
+        for index, (value, outcome) in enumerate(zip(values, outcomes)):
+            reference = evaluate(checked, value["inputs"], {}).to_dict()
+            self.assertEqual(financial(outcome), financial(reference), index)
+        self.assertEqual([financial(outcome)["diagnostics"] for outcome in outcomes],
+                         [["DIVISION_BY_ZERO"], [], [], ["DIVISION_BY_ZERO"], []])
+        self.assertEqual(outcomes[1]["emissions"], outcomes[4]["emissions"])
 
     def test_imported_pure_function_caches_are_fresh_per_call_and_keep_argument_errors(self):
         parameter = [{"name": "n", "type": {"name": "Int", "args": []}}]
