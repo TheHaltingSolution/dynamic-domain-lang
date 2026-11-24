@@ -249,11 +249,11 @@ def normalize_target(value):
     return value
 
 
-def run_package(package, schedule_path, *, backend="compare", artifact_dir=None):
+def run_package(package, schedule_path, *, backend="compare", artifact_dir=None, audit_profile="array-v1"):
     """Default final path: native Lean compilation/execution AND oracle comparison."""
     if isinstance(package, dict) and package.get("profile") == "spl-module/1":
         from .modules import run_module_package
-        return run_module_package(package, schedule_path, backend=backend, artifact_dir=artifact_dir)
+        return run_module_package(package, schedule_path, backend=backend, artifact_dir=artifact_dir, audit_profile=audit_profile)
     from .checker import check_schedule
     from .evaluator import evaluate
     from .model import SPLException
@@ -265,7 +265,15 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None)
     result = {"status": "blocked", "statements": [], "detail": [], "closing_state": [], "trace": [],
               "diagnostics": [], "reconciliation": {}, "payment_evidence_status": "no_event_supplied",
               "issuance_status": "unissued", "manifest": p.get("manifest", {}) if isinstance(p, dict) else {}}
-    publication = ArtifactPublication(artifact_dir) if artifact_dir else None
+    from .compact_execution import require_profile
+    from .audited_artifacts import AuditedPublication, unavailable_trace
+    if audit_profile not in {"array-v1", "compact-v2"}:
+        raise ValueError("UNSUPPORTED_AUDIT_PROFILE")
+    compact = audit_profile == "compact-v2"
+    publication = (AuditedPublication if compact else ArtifactPublication)(artifact_dir) if artifact_dir else None
+    require_profile(audit_profile, backend, artifact_dir)
+    if compact:
+        result["trace"] = unavailable_trace()
     def publish():
         if publication:
             fields = {"statement.json": "statements", "detail.json": "detail",
@@ -326,63 +334,73 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None)
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes(dependency_path.read_bytes())
         write_json(work / "bindings.json", {"inputs": inputs, "openings": openings})
-        reference = evaluate(checked, inputs, openings)
-        observed = reference.to_dict()
-        reference_trace = observed["trace"]
-        trace_origin = "independent_reference_evaluator"
-        if backend in {"compare", "lean"}:
-            if readable:
-                lean(["--run", ROOT / "SPL/Main.lean", "expand", schedule_path, work / "expanded.spl"])
-            export_ir(schedule_path, work / "typed-ir.json")
-            interpreted = normalize_target(interpret_schedule(schedule_path, work / "bindings.json"))
-            if (interpreted["status"] == "blocked" and interpreted.get("diagnostics") and
-                    interpreted["diagnostics"][0]["code"] == "RESOURCE_LIMIT"):
-                result.update(trace=interpreted.get("trace", []), diagnostics=interpreted["diagnostics"],
-                              trace_origin=interpreted.get("trace_origin", "native_ir_interpreter"),
-                              trace_format=interpreted.get("trace_format", "spl-trace-dag/0.1"),
-                              verification={"backend": backend, "required_audit_completed": False})
-                return publish()
-            generated = compile_schedule(schedule_path, work / "Settlement.lean")
-            native = normalize_target(loads(lean(["--run", generated, work / "bindings.json"])))
-            write_json(work / "lean-result.json", native)
-            write_json(work / "native-ir-result.json", interpreted)
-            for field in ["status", "emissions", "closing"]:
-                if canonical(native[field]) != canonical(interpreted[field]):
-                    fail("NATIVE_IR_DIFFERENTIAL_MISMATCH", field)
-            if native["status"] == "blocked" and [d["code"] for d in native["diagnostics"]] != [d["code"] for d in interpreted["diagnostics"]]:
-                fail("NATIVE_IR_DIFFERENTIAL_MISMATCH", "diagnostics")
+        if compact:
+            from .compact_execution import execute_compact
+            observed, pins, audit_summary = execute_compact(work / "source.spl", work, checked)
+            if pins["source_sha256"] != p["manifest"]["schedule_ref"].split(":")[-1]:
+                fail("AUDIT_SOURCE_CHANGED", "Consumed source differs from reviewed source")
+            trace, _ = publication.attach(work / "audit.native.jsonl", bindings=pins, view={
+                "format": "spl-legacy-qualified-trace/1", "source_sha256": pins["source_sha256"],
+                "scope": {key: p["parameters"]["policy"][key] for key in ["agreement_id", "participant_id", "pool_id", "period"]}})
+            result.update(trace=trace, trace_origin="native_ir_interpreter", trace_format="spl-trace-dag/0.1")
+        else:
+            reference = evaluate(checked, inputs, openings)
+            observed = reference.to_dict()
+            reference_trace = observed["trace"]
+            trace_origin = "independent_reference_evaluator"
             if backend in {"compare", "lean"}:
+                if readable:
+                    lean(["--run", ROOT / "SPL/Main.lean", "expand", schedule_path, work / "expanded.spl"])
+                export_ir(schedule_path, work / "typed-ir.json")
+                interpreted = normalize_target(interpret_schedule(schedule_path, work / "bindings.json"))
+                if (interpreted["status"] == "blocked" and interpreted.get("diagnostics") and
+                        interpreted["diagnostics"][0]["code"] == "RESOURCE_LIMIT"):
+                    result.update(trace=interpreted.get("trace", []), diagnostics=interpreted["diagnostics"],
+                                  trace_origin=interpreted.get("trace_origin", "native_ir_interpreter"),
+                                  trace_format=interpreted.get("trace_format", "spl-trace-dag/0.1"),
+                                  verification={"backend": backend, "required_audit_completed": False})
+                    return publish()
+                generated = compile_schedule(schedule_path, work / "Settlement.lean")
+                native = normalize_target(loads(lean(["--run", generated, work / "bindings.json"])))
+                write_json(work / "lean-result.json", native)
+                write_json(work / "native-ir-result.json", interpreted)
                 for field in ["status", "emissions", "closing"]:
-                    if canonical(native[field]) != canonical(observed[field]):
-                        fail("COMPILER_DIFFERENTIAL_MISMATCH", field)
-                if native["status"] == "blocked" and [d["code"] for d in native["diagnostics"]] != [d["code"] for d in observed["diagnostics"]]:
-                    fail("COMPILER_DIFFERENTIAL_MISMATCH", "diagnostics")
-            observed = {**native, "trace": interpreted["trace"]}
-            trace_origin = interpreted["trace_origin"]
-            result["trace_format"] = interpreted["trace_format"]
-            write_json(work / "reference-trace.json", reference_trace)
-        result["trace"] = observed["trace"]
-        seen = set()
-        for node in result["trace"]:
-            if trace_origin == "native_ir_interpreter":
-                if not all(dependency in seen for dependency in node["dependencies"]):
-                    fail("TRACE_DAG_INVALID", "Trace dependency is absent or out of topological order")
-                seen.add(node["node_id"])
-                node["dependencies"] = [p["manifest"]["schedule_ref"].split(":")[-1] + ":" + d for d in node["dependencies"]]
-                def qualify_references(value):
-                    if isinstance(value, dict):
-                        return {k: (p["manifest"]["schedule_ref"].split(":")[-1] + ":" + v
-                                    if k in {"predicate_node", "skipped_node", "decision_node"} and isinstance(v, str)
-                                    else qualify_references(v)) for k, v in value.items()}
-                    if isinstance(value, list):
-                        return [qualify_references(v) for v in value]
-                    return value
-                if "detail" in node:
-                    node["detail"] = qualify_references(node["detail"])
-            node["node_id"] = p["manifest"]["schedule_ref"].split(":")[-1] + ":" + node["node_id"]
-            node["scope"] = {k: p["parameters"]["policy"][k] for k in ["agreement_id", "participant_id", "pool_id", "period"]}
-        unique(result["trace"], "node_id", "DUPLICATE_TRACE_NODE")
-        result["trace_origin"] = trace_origin
+                    if canonical(native[field]) != canonical(interpreted[field]):
+                        fail("NATIVE_IR_DIFFERENTIAL_MISMATCH", field)
+                if native["status"] == "blocked" and [d["code"] for d in native["diagnostics"]] != [d["code"] for d in interpreted["diagnostics"]]:
+                    fail("NATIVE_IR_DIFFERENTIAL_MISMATCH", "diagnostics")
+                if backend in {"compare", "lean"}:
+                    for field in ["status", "emissions", "closing"]:
+                        if canonical(native[field]) != canonical(observed[field]):
+                            fail("COMPILER_DIFFERENTIAL_MISMATCH", field)
+                    if native["status"] == "blocked" and [d["code"] for d in native["diagnostics"]] != [d["code"] for d in observed["diagnostics"]]:
+                        fail("COMPILER_DIFFERENTIAL_MISMATCH", "diagnostics")
+                observed = {**native, "trace": interpreted["trace"]}
+                trace_origin = interpreted["trace_origin"]
+                result["trace_format"] = interpreted["trace_format"]
+                write_json(work / "reference-trace.json", reference_trace)
+            result["trace"] = observed["trace"]
+            seen = set()
+            for node in result["trace"]:
+                if trace_origin == "native_ir_interpreter":
+                    if not all(dependency in seen for dependency in node["dependencies"]):
+                        fail("TRACE_DAG_INVALID", "Trace dependency is absent or out of topological order")
+                    seen.add(node["node_id"])
+                    node["dependencies"] = [p["manifest"]["schedule_ref"].split(":")[-1] + ":" + d for d in node["dependencies"]]
+                    def qualify_references(value):
+                        if isinstance(value, dict):
+                            return {k: (p["manifest"]["schedule_ref"].split(":")[-1] + ":" + v
+                                        if k in {"predicate_node", "skipped_node", "decision_node"} and isinstance(v, str)
+                                        else qualify_references(v)) for k, v in value.items()}
+                        if isinstance(value, list):
+                            return [qualify_references(v) for v in value]
+                        return value
+                    if "detail" in node:
+                        node["detail"] = qualify_references(node["detail"])
+                node["node_id"] = p["manifest"]["schedule_ref"].split(":")[-1] + ":" + node["node_id"]
+                node["scope"] = {k: p["parameters"]["policy"][k] for k in ["agreement_id", "participant_id", "pool_id", "period"]}
+            unique(result["trace"], "node_id", "DUPLICATE_TRACE_NODE")
+            result["trace_origin"] = trace_origin
         result["diagnostics"] = observed["diagnostics"]
         result["verification"] = {"backend": backend, "reference_agrees": backend in {"compare", "lean"},
                                   "proof_scope": "SPL.Proofs supported expression lowering only; parser/checker/emitter/IO not proved"}

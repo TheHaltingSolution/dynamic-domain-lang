@@ -859,7 +859,7 @@ def _decode_output(value, typ, context=BASE_MEANINGS):
     return decode_value(_input_transport(value, typ), typ, "result", context=context)
 
 
-def run_module_package(package, registry_root, *, backend="compare", artifact_dir=None, blocked_evidence_labels=None):
+def run_module_package(package, registry_root, *, backend="compare", artifact_dir=None, blocked_evidence_labels=None, audit_profile="array-v1"):
     """Execute one registered connected scope with strict atomic finalization."""
     from .evaluator import evaluate
     from .lean_tools import compile_schedule, export_ir, interpret_schedule, lean
@@ -875,7 +875,15 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
     result = {"status": "blocked", "results": {}, "statements": [], "detail": [], "closing_state": [], "trace": [],
               "diagnostics": [], "reconciliation": {}, "policy_review": {}, "manifest": p.get("manifest", {}) if isinstance(p, dict) else {},
               "issuance_status": "unissued", "payment_evidence_status": "not_assessed"}
-    publication = ArtifactPublication(artifact_dir) if artifact_dir else None
+    from .compact_execution import require_profile
+    from .audited_artifacts import AuditedPublication, unavailable_trace
+    if audit_profile not in {"array-v1", "compact-v2"}:
+        raise ValueError("UNSUPPORTED_AUDIT_PROFILE")
+    compact = audit_profile == "compact-v2"
+    publication = (AuditedPublication if compact else ArtifactPublication)(artifact_dir) if artifact_dir else None
+    require_profile(audit_profile, backend, artifact_dir)
+    if compact:
+        result["trace"] = unavailable_trace()
 
     def publish():
         if result["status"] == "blocked" and blocked_evidence_labels:
@@ -919,36 +927,47 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
         if resolved.descriptor["imports"]:
             link = work / "linking-manifest.json"
             write_json(link, linking_manifest(resolved))
+        private_source = None
         for entry in resolved.closure:
             for field, path in [("descriptor", entry["descriptor_path"]), ("source", entry["source_path"]), ("policy", entry["policy_path"])]:
                 destination = work / "closure" / (entry["reference"]["sha256"] + "-" + field + path.suffix)
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 destination.write_bytes(path.read_bytes())
-        observed = evaluate(checked, inputs, openings).to_dict()
-        origin = "independent_reference_evaluator"
-        if backend in {"compare", "lean"}:
-            link_options = {"link": link} if link else {}
-            export_ir(resolved.source_path, work / "typed-ir.json", **link_options)
-            interpreted = normalize_target(interpret_schedule(resolved.source_path, work / "bindings.json", **link_options))
-            if (interpreted["status"] == "blocked" and interpreted.get("diagnostics") and
-                    interpreted["diagnostics"][0]["code"] == "RESOURCE_LIMIT"):
-                result.update(trace=interpreted.get("trace", []), diagnostics=interpreted["diagnostics"],
-                              trace_origin=interpreted.get("trace_origin", "native_ir_interpreter"),
-                              trace_format=interpreted.get("trace_format", "spl-trace-dag/0.1"),
-                              verification={"backend": backend, "required_audit_completed": False})
-                return publish()
-            target = compile_schedule(resolved.source_path, work / "Settlement.lean", **link_options)
-            generated = normalize_target(read_native(lean(["--run", target, work / "bindings.json"])))
-            for candidate in [observed, interpreted]:
-                for field in ["status", "emissions", "closing"]:
-                    if canonical(generated[field]) != canonical(candidate[field]):
-                        fail("MODULE_DIFFERENTIAL_MISMATCH", field)
-                if [d["code"] for d in generated["diagnostics"]] != [d["code"] for d in candidate["diagnostics"]]:
-                    fail("MODULE_DIFFERENTIAL_MISMATCH", "diagnostics")
-            observed = {**generated, "trace": interpreted["trace"]}
-            origin = interpreted["trace_origin"]
-        result["trace"] = observed["trace"]
-        result["trace_origin"] = origin
+                if field == "source" and path == resolved.source_path:
+                    private_source = destination
+        if compact:
+            from .compact_execution import execute_compact
+            observed, pins, audit_summary = execute_compact(private_source, work, checked, link=link)
+            if pins["source_sha256"] != file_digest(resolved.source_path):
+                fail("AUDIT_SOURCE_CHANGED", "Consumed source differs from reviewed source")
+            trace, _ = publication.attach(work / "audit.native.jsonl", bindings=pins)
+            result.update(trace=trace, trace_origin="native_ir_interpreter", trace_format="spl-trace-dag/0.1")
+        else:
+            observed = evaluate(checked, inputs, openings).to_dict()
+            origin = "independent_reference_evaluator"
+            if backend in {"compare", "lean"}:
+                link_options = {"link": link} if link else {}
+                export_ir(resolved.source_path, work / "typed-ir.json", **link_options)
+                interpreted = normalize_target(interpret_schedule(resolved.source_path, work / "bindings.json", **link_options))
+                if (interpreted["status"] == "blocked" and interpreted.get("diagnostics") and
+                        interpreted["diagnostics"][0]["code"] == "RESOURCE_LIMIT"):
+                    result.update(trace=interpreted.get("trace", []), diagnostics=interpreted["diagnostics"],
+                                  trace_origin=interpreted.get("trace_origin", "native_ir_interpreter"),
+                                  trace_format=interpreted.get("trace_format", "spl-trace-dag/0.1"),
+                                  verification={"backend": backend, "required_audit_completed": False})
+                    return publish()
+                target = compile_schedule(resolved.source_path, work / "Settlement.lean", **link_options)
+                generated = normalize_target(read_native(lean(["--run", target, work / "bindings.json"])))
+                for candidate in [observed, interpreted]:
+                    for field in ["status", "emissions", "closing"]:
+                        if canonical(generated[field]) != canonical(candidate[field]):
+                            fail("MODULE_DIFFERENTIAL_MISMATCH", field)
+                    if [d["code"] for d in generated["diagnostics"]] != [d["code"] for d in candidate["diagnostics"]]:
+                        fail("MODULE_DIFFERENTIAL_MISMATCH", "diagnostics")
+                observed = {**generated, "trace": interpreted["trace"]}
+                origin = interpreted["trace_origin"]
+            result["trace"] = observed["trace"]
+            result["trace_origin"] = origin
         if observed["status"] == "blocked":
             result["diagnostics"] = observed["diagnostics"]
             return publish()

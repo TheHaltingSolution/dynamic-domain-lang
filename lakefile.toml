@@ -1,6 +1,6 @@
 name = "dynamic-domain-lang"
 version = "0.1.0"
-defaultTargets = ["Participation", "Generated", "SPL", "participation", "smoke", "spl", "spl_smoke", "spl_trace_stream", "spl_pure_benchmark", "spl_sv", "spl_lg", "spl_rq07", "spl_sv_readable", "spl_lg_readable", "spl_rq07_readable"]
+defaultTargets = ["Participation", "Generated", "SPL", "participation", "smoke", "spl", "spl_smoke", "spl_trace_stream", "spl_audit", "spl_pure_benchmark", "spl_sv", "spl_lg", "spl_rq07", "spl_sv_readable", "spl_lg_readable", "spl_rq07_readable"]
 
 [leanOptions]
 warningAsError = true
@@ -37,6 +37,10 @@ root = "Tests.SPLMain"
 [[lean_exe]]
 name = "spl_trace_stream"
 root = "Demos.TraceStream"
+
+[[lean_exe]]
+name = "spl_audit"
+root = "SPL.AuditMain"
 
 [[lean_exe]]
 name = "spl_pure_benchmark"

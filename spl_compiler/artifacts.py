@@ -92,6 +92,8 @@ def _strict_json(payload):
 
 
 class ArtifactPublication:
+    format = FORMAT
+
     def __init__(self, destination):
         self.root = Path(destination).resolve()
         self.root.mkdir(parents=True, exist_ok=True)
@@ -102,7 +104,7 @@ class ArtifactPublication:
         self.work = Path(tempfile.mkdtemp(prefix="", dir=runs))
         self.invocation_id = self.work.name
         self.closed = False
-        self.running = _json_bytes({"format": FORMAT, "status": "running", "invocation_id": self.invocation_id})
+        self.running = _json_bytes({"format": self.format, "status": "running", "invocation_id": self.invocation_id})
         # This is the sole consumption authority. Invalidate before computation.
         _atomic_bytes(self.root / "completion.json", self.running)
         _atomic_bytes(self.root / "result.json", _json_bytes({
@@ -146,7 +148,7 @@ class ArtifactPublication:
                                     "bytes": path.stat().st_size, "sha256": _file_hash(path)})
                     if path.relative_to(self.work).as_posix() not in mirrors:
                         auxiliary.append(path)
-            manifest = {"format": FORMAT, "status": "completed", "invocation_id": self.invocation_id,
+            manifest = {"format": self.format, "status": "completed", "invocation_id": self.invocation_id,
                         "result_path": (self.work / "result.json").relative_to(self.root).as_posix(), "files": entries}
             manifest_bytes = _json_bytes(manifest)
             if len(entries) > 4096 or len(manifest_bytes) > MAX_MANIFEST_BYTES:
@@ -164,7 +166,7 @@ class ArtifactPublication:
             raise PublicationError("PUBLICATION_FAILED: " + str(error)) from error
 
 
-def load_completed_result(destination, *, max_result_bytes=MAX_RESULT_BYTES):
+def _load_completed_bundle(destination, *, max_result_bytes=MAX_RESULT_BYTES, publication_format=FORMAT):
     """Verify every referenced file and a stable marker before returning JSON.
 
     A completed blocked or preview result remains nonconsumable financial state;
@@ -177,7 +179,7 @@ def load_completed_result(destination, *, max_result_bytes=MAX_RESULT_BYTES):
         marker = _read_bounded(root / "completion.json", MAX_MANIFEST_BYTES)
         manifest = _strict_json(marker)
         if (type(manifest) is not dict or set(manifest) != {"format", "status", "invocation_id", "result_path", "files"}
-                or manifest["format"] != FORMAT or manifest["status"] != "completed"
+                or manifest["format"] != publication_format or manifest["status"] != "completed"
                 or type(manifest["invocation_id"]) is not str or not re.fullmatch(r"[a-z0-9_-]{1,32}", manifest["invocation_id"])
                 or type(manifest["files"]) is not list or not 1 <= len(manifest["files"]) <= 4096):
             raise PublicationError("PUBLICATION_NOT_COMPLETED")
@@ -210,6 +212,11 @@ def load_completed_result(destination, *, max_result_bytes=MAX_RESULT_BYTES):
         result = _strict_json(result_payload)
         if type(result) is not dict or _read_bounded(root / "completion.json", MAX_MANIFEST_BYTES) != marker:
             raise PublicationError("PUBLICATION_INVOCATION_CHANGED")
-        return result
+        return result, manifest, marker
     except (OSError, ValueError, TypeError, RecursionError) as error:
         raise PublicationError("PUBLICATION_INVALID: " + str(error)) from error
+
+
+def load_completed_result(destination, *, max_result_bytes=MAX_RESULT_BYTES):
+    """Load only v1 publications; unsupported completion versions are rejected."""
+    return _load_completed_bundle(destination, max_result_bytes=max_result_bytes)[0]
