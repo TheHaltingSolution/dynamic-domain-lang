@@ -8,6 +8,7 @@ from copy import deepcopy
 from importlib import import_module
 import json
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -16,12 +17,20 @@ import Tests.test_reserve_stage_oracle as original
 from oracles.reserve_stages import ReserveStageOracleError, reserve_stages, exact_json
 from spl_compiler.artifacts import load_completed_result
 from spl_compiler.modules import run_module_package
+from cases.r1 import build_modules as registration
 
 stage=import_module('cases.reserve-stages.build_modules')
 
 class ReserveStageModuleTests(original.ReserveStageOracleTests):
     @classmethod
     def setUpClass(cls):
+        cls.temp=tempfile.TemporaryDirectory(prefix='c09t-',dir='C:/')
+        cls.addClassCleanup(cls.temp.cleanup)
+        root=Path(cls.temp.name); folder=root/'cases/reserve-stages'; folder.mkdir(parents=True)
+        for name in ('reserve-stages.spl','policy.md','neutral.json'):
+            shutil.copyfile(stage.FOLDER/name,folder/name)
+        for owner,key,value in ((stage,'ROOT',root),(stage,'FOLDER',folder),(registration,'ROOT',root)):
+            changed=patch.object(owner,key,value); changed.start(); cls.addClassCleanup(changed.stop)
         cls.reference=stage.register_reserve_stages()
 
     def setUp(self):

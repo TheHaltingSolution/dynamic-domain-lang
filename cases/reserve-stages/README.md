@@ -63,5 +63,30 @@ python -m unittest Tests.test_reserve_stage_oracle Tests.test_reserve_stage_modu
 Use the pinned Lean 4.35.0 setup in the repository README. Compiler runs keep
 1GiB/180s and runtime/reference/reader runs 256MiB/60s, with 64MiB wire/result
 and 1GiB/100000-node logical limits. Failed bounded runs remain failures;
-there is no larger-budget retry or backend fallback. Native and independent
-Python-emitted evidence will be indexed here after their actual completion.
+there is no larger-budget retry or backend fallback.
+
+The retained [verification](C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/reserve-stage-checks-20261124-a/verification.json)
+indexes 50 completed compact-v2 compare publications: the original 16 checkpoints
+and six previews, plus 28 finite cap, quota, calendar, exact arithmetic,
+unknown-offset, Unicode and fourth-frame checkpoints. Every complete financial
+result and restored closing state matches the independent oracle. An independent
+Python-emitted **financial library plus typed transport driver** was separately
+compiled through C generation, object compilation and linking; its complete
+status/emissions/closing/diagnostics match each native result.
+
+Twelve additional native-source rejection controls bypass the case custody
+guard, including V1 application7 then application8 despite V2 balance20,
+post-liquidation application and a fifth frame. A separate public custody
+control blocks before source execution. Compact lifecycle checks invalidate
+reused publications for explicit-null original fractions, cancellation and
+unsupported profile. The final adapter distinguishes a missing optional
+fraction from an explicitly supplied null. The archive honestly retains the
+earlier null-original counterexample and separate harness failures.
+
+The evidence includes complete publications, original facts/oracle results,
+actual serialized successors, source/build/import pins, generated Lean/C/object/
+executable bytes and sampled compiler/runtime/reader process reports. ZIP entries
+use relative paths so long content-addressed closure names remain retainable.
+These are finite correctness controls, with no quiet-host timing/SLA, universal
+admitted-input capacity or compiler-correctness proof claim. Main integration
+and source-specific Genius interpretation remain separate.
