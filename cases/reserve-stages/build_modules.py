@@ -225,7 +225,7 @@ def run_reserve_stages_package(package,registry_root=None,*,backend='compare',ar
     return run_module_package(snapshot,registry_root or ROOT,backend=backend,artifact_dir=artifact_dir,audit_profile=audit_profile)
 
 if __name__=='__main__':
-    (FOLDER/'reserve-stages.spl').write_text(s.generate(),encoding='utf-8')
+    (FOLDER/'reserve-stages.spl').write_text(s.generate(),encoding='utf-8',newline='\n')
     ref=register_reserve_stages()
     pack=loads((FOLDER/'neutral.json').read_text(encoding='utf-8'))
     for name,case in pack['scenarios'].items():

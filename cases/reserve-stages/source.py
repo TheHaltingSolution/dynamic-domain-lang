@@ -179,4 +179,4 @@ def generate():
     source = source.replace('opening_amount history:', 'opening history:').replace('closing_amount history =', 'closing history =')
     return source
 
-if __name__ == '__main__': Path(__file__).with_name('reserve-stages.spl').write_text(generate(),encoding='utf-8')
+if __name__ == '__main__': Path(__file__).with_name('reserve-stages.spl').write_text(generate(),encoding='utf-8',newline='\n')
