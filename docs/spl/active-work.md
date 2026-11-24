@@ -30,9 +30,14 @@ promotion is claimed yet.
   Root prepared a separate `C:/spl-c13h` candidate on c80ac34, retaining financial
   source/descriptor/templates and all five original control files. Only compact
   transport forwarding and actual backend/custody tests differ. The single-case
-  bounded baseline is active, PID37216/exec47554, evidence
-  `dependent-replay-native-helper-baseline-20261123-a`. The full70-method cohort
-  is prepared in `dependent-replay-native-helper-20261123-a`, not yet launched.
+  bounded baseline PASSED in76.214567s, no failures/skips/source or compiled
+  drift, evidence `dependent-replay-native-helper-baseline-20261123-a`.
+  Native and independent Python Cgen peaks were720,474,112B/708,521,984B under
+  the unchanged1GiB cap; all four complete financial outputs agree with the
+  original oracle (outstanding40, paid80). PID37216/exec47554 are ENDED.
+  The full70-method cohort is ACTIVE, PID31004/exec66185, evidence
+  `dependent-replay-native-helper-20261123-a`:35 frozen oracle,18 original
+  reference,16 actual native/Python and one dual-profile custody method.
 - B-NUM-PRECISION's five independent files are frozen at165212e:30 passing
   controls distinguish ratio precision, all five rounding modes, signed ties
   and row-versus-total bridges. No SPL/native credit yet. Source implementation
@@ -56,6 +61,12 @@ preparing remaining generic C09 reserve-stage controls after freezing BNUM30.
 Root handles the combined1301 run and C13 qualification. Trace next prepares
 dependency-component planning; source next prepares precision/rounding SPL.
 Main core stays stable until coherent promotion.
+Read-only review found an additional C11/C13 wrapper lifecycle obligation:
+invalidate a reused destination when preparation is cancelled or profile
+admission fails. Current frozen66/70 runs must finish unchanged. Afterwards,
+qualify a separately dated wrapper-only follow-up (as C10 already does), keeping
+financial sources/descriptor/templates fixed. Do not silently amend the earlier
+records or claim this lifecycle check is included in them.
 Recent details below retain their exact dated scopes. Start with
 [C13 controls](#frozen-independent-dependent-period-correction-controls),
 [compact limits](#isolated-compact-publication-and-current-c10-limits) and
