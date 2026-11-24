@@ -51,6 +51,14 @@ promotion is claimed yet.
   controls distinguish ratio precision, all five rounding modes, signed ties
   and row-versus-total bridges. No SPL/native credit yet. Source implementation
   follows the C11 terminal audit; the original controls stay immutable.
+- C09 generic reserve stages/caps/schedules now have five immutable independent
+  files and37 passing controls, evidence `reserve-stage-oracle-20261124-a`.
+  Six original chains supply16 complete checkpoints/10 actual JSON successors;
+  root freshly rechecked all16 full results, all five archive/source pins and
+  the full original predecessor/conservation bridges. Current producer35/36,
+  cap additions20/21, distinct V1/V2 funds and original-addition tranche3 are
+  material controls. This is oracle-only, not SPL/native or sourced Genius
+  excess/claim-clearance credit. Separate source implementation remains needed.
 - Isolated compact commits2ee01e6/31caf5f complete100/1000 canonical publication;
   receipt0b36534 passes24 methods and recovers the actualoldQ2 cells at37.7MB.
   Root independently verified the receipt/cells and unchanged old marker.
@@ -66,7 +74,11 @@ promotion is claimed yet.
 
 Work ownership: trace completed isolated corrected C10 wrapper/native46 cohort;
 source handles isolated C11 wrapper/native66 cohort on dual helpers; matrix is
-preparing remaining generic C09 reserve-stage controls after freezing BNUM30.
+implementing explicit report/issue metadata in a separate c80-based checkout
+after freezing C09 controls. Both dates are optional supplied presentation/
+intended-issue metadata, independent from recognition/cutoff; no clock defaults
+or actual issuance/payment implication. The approved plan preserves the existing
+module-versus-bounded result-digest distinction and checks semantic/carry identity.
 Root handles the combined1301 run and C13 qualification. Trace next prepares
 dependency-component planning; source next prepares precision/rounding SPL.
 Main core stays stable until coherent promotion.
@@ -86,6 +98,10 @@ are retained; the actual old-v1Q2 marker/result remain unchanged. Freeze is
 released; PID53720/exec9318 and watcherPID55144/exec68224 are ENDED. Trace prepares
 case-only promotion commits on its isolated branch, then component planning.
 Main integration waits for the compatible compiler1301 terminal result.
+Trace is additionally preparing `C:/spl-c10-c80` from c80ac34 plus the exact
+three case-only commits0a78907/79624e3/f5e025e to qualify the full46 and mandatory
+prelude on combined441/04db/77a. Keep the older import-only result/pins unchanged;
+this new coherent cohort is not yet executed acceptance or main integration.
 Read-only review found an additional C11/C13 wrapper lifecycle obligation:
 invalidate a reused destination when preparation is cancelled or profile
 admission fails. Current frozen66/70 runs must finish unchanged. Afterwards,

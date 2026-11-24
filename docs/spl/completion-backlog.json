@@ -674,7 +674,7 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Initial within-vintage source slice accepted; remaining excess-return and generic reserve-stage/cap/schedule obligations stay open.",
+      "active_scope": "Initial within-vintage source slice remains accepted. Five independent generic stage/cap/schedule files now freeze37passing controls and16original checkpoint invocations across6chains/10actual JSON-serialized successors. Root verifies all5archived pins, fresh16full results, exact predecessor state, vintage conservation and35/36stage versus terminal45/45/10 bridges. These are oracle-only controls; separate SPL/source/canonical/native implementation remains required. Source-specific Genius excess/after-liquidation/fee/claim semantics remain separate.",
       "evidence": [
         "cases/basis-reserves/README.md",
         "cases/basis-reserves/policy.md",
@@ -683,7 +683,14 @@
         "oracles/basis_reserves.py",
         "Tests/test_basis_reserve_oracle.py",
         "Tests/test_basis_reserve_modules.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-checks-6b3d9171/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-checks-6b3d9171/verification.json",
+        "oracles/reserve_stages.py",
+        "cases/reserve-stages/neutral.json",
+        "cases/reserve-stages/policy.md",
+        "Tests/test_reserve_stage_oracle.py",
+        "docs/spl/reserve-stage-design.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/reserve-stage-oracle-20261124-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/reserve-stage-oracle-20261124-a/root-review.json"
       ],
       "execution_scope": "Selected Genius within-vintage basis reserve now passes46 oracle/module methods and six actual completed native/reference/Python-emitted bundles, including five actual serialized predecessors and same-complete-checkpoint preview. Net1740=fee174+allocation1566; largest actual result50337661bytes.55 frozen non-README files match; README evidence/NFC-boundary clarification only changed afterward. Excess/post-liquidation signed NR policy, full generic cap/payment-stage/term composition and professional approval remain separate."
     },
