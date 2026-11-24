@@ -56,7 +56,18 @@ class DependentReplayModuleTests(unittest.TestCase):
     @classmethod
     def retain_evidence(cls):
         if EVIDENCE_DIR is not None:
-            shutil.copytree(cls.root, Path(EVIDENCE_DIR))
+            # Relative ZIP entries avoid Windows MAX_PATH at the long external
+            # artifact root while preserving every owned file byte for review.
+            from zipfile import ZipFile, ZIP_STORED
+            target = Path(EVIDENCE_DIR).with_suffix(".zip")
+            entries = {}
+            with ZipFile(target, "x", compression=ZIP_STORED) as archive:
+                for path in sorted(cls.root.rglob("*")):
+                    if path.is_file():
+                        name = path.relative_to(cls.root).as_posix()
+                        entries[name] = {"sha256": file_digest(path), "bytes": path.stat().st_size}
+                        archive.write(path, name)
+            write_json(target.with_suffix(".index.json"), entries)
 
     def next_work(self, kind):
         type(self).transport_sequence += 1
@@ -402,7 +413,16 @@ class DependentReplayModuleTests(unittest.TestCase):
         self.native_reference_control("test_reference_cash_and_correction_population_unknowns_are_not_zero")
 
     def test_native_current_cutoff_scope_and_unused_evidence(self):
-        self.native_reference_control("test_reference_current_cutoff_scope_and_unused_evidence")
+        # Intrinsic Agreement/Pool/Asset mismatches are rejected earlier by the
+        # canonical reference domain; they have their own admission test below.
+        data = fixture(); data["replacements"][0]["observed_at"] = data["cutoff"]
+        original = self.run_fixture
+        with patch.object(self, "run_fixture", side_effect=lambda data, **options: original(data, "compare", **options)):
+            self.blocked(data)
+            data = fixture(); data["evidence"][0]["observed_at"] = data["cutoff"]; self.blocked(data)
+            data = fixture(); extra = deepcopy(data["evidence"][0]); extra.update(id="unused-future", observed_at="2027-01-01T00:00:00Z"); data["evidence"].append(extra); self.blocked(data)
+            data = fixture(); data["authorities"][0]["scope"]["participant_id"] = "other"; self.blocked(data)
+            data = fixture(); data["registry"]["evidence"][-1]["observed_at"] = data["cutoff"]; self.blocked(data)
 
     def test_native_duplicate_relabelled_corrections_and_amount_space_aliases(self):
         self.native_reference_control("test_reference_duplicate_relabelled_corrections_and_amount_space_aliases")
@@ -479,6 +499,18 @@ class DependentReplayModuleTests(unittest.TestCase):
         from spl_compiler.audited_artifacts import AuditedPublication
         package = replay.dependent_replay_package(fixture(), reference=self.reference)
         original = deepcopy(package)
+        def incomplete(destination):
+            marker = read_json(destination / "completion.json")
+            self.assertEqual(marker["status"], "running")
+            with self.assertRaises(PublicationError) as caught:
+                completed_result(destination)
+            if marker["format"] == "spl-artifact-publication/2":
+                # The public bounded loader wraps the child's incomplete-marker
+                # rejection; resource failures have a different cause code.
+                self.assertEqual(str(caught.exception), "AUDIT_INVALID: load")
+                self.assertEqual(getattr(caught.exception.__cause__, "code", None), "AUDIT_STAGE_FAILED")
+            else:
+                self.assertEqual(str(caught.exception), "PUBLICATION_NOT_COMPLETED")
         for profile, backend in (("array-v1", "reference"), ("compact-v2", "compare")):
             destination = self.next_work("lifecycle")
             def fresh():
@@ -500,16 +532,14 @@ class DependentReplayModuleTests(unittest.TestCase):
                         with self.assertRaises(KeyboardInterrupt):
                             replay.run_dependent_replay_package(package, self.root, backend=backend,
                                 artifact_dir=destination, audit_profile=profile)
-                    with self.assertRaisesRegex(PublicationError, "PUBLICATION_NOT_COMPLETED"):
-                        completed_result(destination)
+                    incomplete(destination)
             for requested_profile, requested_backend in (("unsupported", backend), ("compact-v2", "reference")):
                 with self.subTest(profile=profile, requested_profile=requested_profile, requested_backend=requested_backend):
                     fresh()
                     with self.assertRaises(ValueError):
                         replay.run_dependent_replay_package(package, self.root, backend=requested_backend,
                             artifact_dir=destination, audit_profile=requested_profile)
-                    with self.assertRaisesRegex(PublicationError, "PUBLICATION_NOT_COMPLETED"):
-                        completed_result(destination)
+                    incomplete(destination)
             fresh()
             malformed = deepcopy(package)
             malformed["inputs"]["frames"][0]["replacements"][0]["base_amount"]["value"] = "200"
@@ -519,8 +549,51 @@ class DependentReplayModuleTests(unittest.TestCase):
                 with self.assertRaisesRegex(PublicationError, "injected publication failure"):
                     replay.run_dependent_replay_package(malformed, self.root, backend=backend,
                         artifact_dir=destination, audit_profile=profile)
-            with self.assertRaisesRegex(PublicationError, "PUBLICATION_NOT_COMPLETED"):
-                completed_result(destination)
+            incomplete(destination)
             self.assertEqual(malformed, before)
             self.assertEqual(prior_pins, {str(path.relative_to(old_work)): file_digest(path) for path in old_work.rglob("*") if path.is_file()})
             self.assertEqual(package, original)
+
+    def test_canonical_intrinsic_authority_scope_rejects_before_native_execution(self):
+        for field in ("agreement_id", "pool_id", "asset_id"):
+            data = fixture(); data["authorities"][0]["scope"][field] = "other"
+            with self.assertRaises(DependentReplayOracleError): dependent_replay(data)
+            package = replay.dependent_replay_package(data, reference=self.reference)
+            output = self.next_work("admission")
+            result = replay.run_dependent_replay_package(package, self.root, backend="compare",
+                artifact_dir=output, audit_profile="compact-v2")
+            self.assertEqual(completed_result(output), result)
+            self.assertEqual(result["diagnostics"][0]["code"], "MODULE_REFERENCE_SCOPE")
+            self.assertNotIn("trace_origin", result)
+            self.assertEqual(result["trace"]["status"], "unavailable")
+            self.assertFalse(result["results"] or result["closing_state"] or result.get("result_digest"))
+
+    def test_coherent_opening_quantity_boundary_is_tied_to_raw_current_header(self):
+        data = fixture(); package = replay.dependent_replay_package(data, reference=self.reference)
+        for profile, backend in (("array-v1", "reference"), ("compact-v2", "compare")):
+            output = self.next_work("boundary")
+            for field in ("supplied_only", "cell_only", "coherent_both"):
+                mutated = deepcopy(package)
+                if field != "cell_only": mutated["inputs"]["supplied_opening"]["boundary"] = "1900-01-01"
+                if field != "supplied_only": mutated["state_cells"][0]["quantity"]["boundary"] = "1900-01-01"
+                before = deepcopy(mutated)
+                with patch.object(replay, "run_module_package") as executor:
+                    result = replay.run_dependent_replay_package(mutated, self.root, backend=backend,
+                        artifact_dir=output, audit_profile=profile)
+                    executor.assert_not_called()
+                self.assertEqual(completed_result(output), result)
+                self.assertEqual(result["diagnostics"][0]["code"], "REPLAY_PREPARED_PACKAGE_MISMATCH")
+                self.assertFalse(result["results"] or result["closing_state"] or result.get("result_digest"))
+                self.assertEqual(mutated, before)
+
+    def test_native_final_guard_actual_dependent_predecessor_and_preview(self):
+        original = fixture("dependent", "prospective")
+        first = self.run_fixture(original, "compare", output=self.root / "guard-first")
+        self.controls(original, first)
+        data, cells = self.carried(original, first)
+        second = self.run_fixture(data, "compare", cells=cells, output=self.root / "guard-next")
+        actual = self.controls(data, second)
+        self.assertEqual((actual["outstanding"], actual["current_recognized"], actual["actual_original_paid"]), ("18", "0", "80"))
+        preview = self.run_fixture(data, "compare", cells=cells, mode="preview", output=self.root / "guard-preview")
+        self.controls(data, preview, preview=True)
+        self.assertEqual(preview["results"], second["results"])

@@ -319,6 +319,8 @@ def validate_prepared_package(package):
     record(context, {"schema_version", "scope", "policy", "research", "registry"})
     current = original_loads(package["inputs"]["original_frames"][-1]["raw_original"])
     data = {**context, **current, "opening_state": neutral_state(package["inputs"]["supplied_opening"])}
+    if data["opening_state"]["boundary"] != current["period"]["start"]:
+        raise ValueError("REPLAY_PREPARED_PACKAGE_MISMATCH")
     prior = package["inputs"]["predecessor"]
     if "some" in prior:
         summary = prior["some"]
