@@ -275,14 +275,23 @@
         "F01"
       ],
       "work_class": "method",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "c1_required",
       "acceptance": [
         "Gross 125/net 100 at 20% gives 25/20 under separate registered policies; 100 units at 1.50 gives 150 with separately declared 50%share giving 75.",
         "Retain independent material intermediates; wrong basis and double-applied share are discriminating failures, with zero/fractional/period/scope cases."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Independent original-fact policy/fixture/oracle frozen:22 methods pass, including gross25/net20, per-unit150/separate-share75, asymmetric money/quantity controls, exact fractional and numeric-offset timestamps, zero/empty/invalid/scope/population cases. No new source/canonical/native execution yet; a different source author follows.",
+      "evidence": [
+        "oracles/participation_bases.py",
+        "Tests/test_participation_base_oracle.py",
+        "cases/participation-bases/neutral.json",
+        "cases/participation-bases/policy.md",
+        "docs/spl/participation-base-design.md",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json"
+      ]
     },
     {
       "id": "B-C02-CONVERSION",
@@ -870,7 +879,7 @@
         "U05"
       ],
       "work_class": "method",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "c1_required",
       "acceptance": [
         "Extend bounded original-opening restatement through a finite dependent-period chain, retaining original issued artifacts/replacement facts/authority/predecessors.",
@@ -878,7 +887,8 @@
         "Reject broken dependencies, wrong authority/scope, duplicate correction and future evidence atomically."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Independent oracle author assigned and finite plan approved: original100/paid80/revised90 plus current30 gives40 outstanding; a genuine cumulative-tier dependent chain recomputes successor10 to8 when original basis200 becomes180. Original issued artifacts/paid history remain separate from restatement and prospective posting. This plan is not execution evidence; source/canonical work follows the independent freeze."
     },
     {
       "id": "B-C13-PROSPECTIVE",
@@ -3978,9 +3988,9 @@
   "progress_as_of": "2026-11-23",
   "status_counts": {
     "complete": 28,
-    "ready": 20,
+    "in_progress": 8,
+    "ready": 18,
     "partial": 5,
-    "in_progress": 6,
     "dependency_blocked": 2,
     "gated": 1,
     "deferred": 7,

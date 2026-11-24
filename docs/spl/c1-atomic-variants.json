@@ -883,6 +883,21 @@
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\final-audit.json"
       ],
       "basis": "Selected four-kind capital/advance/fee/approved-correction method accepted through composite source-stable cohorts:51 methods on physical/2,49 Date-max follow-up methods on/3, and final LF all-kind actual carry/preview/tamper acceptance. Exact parsed non-span AST equality qualifies the sole CRLF-to-LF source change. No all-final-source51-method rerun, full-bound Cartesian capacity, FX or current nonempty claim-cash settlement support is claimed."
+    },
+    "participation_bases_oracle": {
+      "sources": [
+        "cases/participation-bases/neutral.json",
+        "cases/participation-bases/policy.md",
+        "docs/spl/participation-base-design.md"
+      ],
+      "controls": [
+        "oracles/participation_bases.py",
+        "Tests/test_participation_base_oracle.py"
+      ],
+      "records": [
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json"
+      ],
+      "basis": "Independent original-fact policy/fixture/oracle frozen:22 methods pass, including gross25/net20, per-unit150/separate-share75, asymmetric money/quantity controls, exact fractional and numeric-offset timestamps, zero/empty/invalid/scope/population cases. No new source/canonical/native execution yet; a different source author follows."
     }
   },
   "variants": [
@@ -1027,7 +1042,8 @@
       ],
       "discriminator": "100 Download at USD1.50/Download gives150 with explicit dimensional tags.",
       "evidence_groups": [
-        "quantities"
+        "quantities",
+        "participation_bases_oracle"
       ],
       "execution": {
         "source": "reported_selected_witness",
@@ -1035,7 +1051,7 @@
         "native_ir": "reported_selected_witness",
         "native_emitted": "reported_selected_witness",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "selected_neutral_or_hand_controls",
+        "independent_controls": "22_frozen_original_fact_oracle_methods_no_new_native_credit",
         "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
         "native_audit": "selected_native_ir_observations_only",
         "emitted_target_decisions": "not_established_by_value_agreement"
@@ -1058,14 +1074,16 @@
         "C02"
       ],
       "discriminator": "Gross125 at20% gives25; source gross/net are views of the same activity.",
-      "evidence_groups": [],
+      "evidence_groups": [
+        "participation_bases_oracle"
+      ],
       "execution": {
         "source": "partial",
         "canonical": "partial",
         "native_ir": "partial",
         "native_emitted": "partial",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "partial",
+        "independent_controls": "22_frozen_original_fact_oracle_methods_no_new_native_credit",
         "boundary_invalid_controls": "partial",
         "native_audit": "pending",
         "emitted_target_decisions": "not_established_by_value_agreement"
@@ -1088,14 +1106,16 @@
         "C02"
       ],
       "discriminator": "Selected net100 at20% gives20, without adding gross as another cash fact.",
-      "evidence_groups": [],
+      "evidence_groups": [
+        "participation_bases_oracle"
+      ],
       "execution": {
         "source": "partial",
         "canonical": "partial",
         "native_ir": "partial",
         "native_emitted": "partial",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "partial",
+        "independent_controls": "22_frozen_original_fact_oracle_methods_no_new_native_credit",
         "boundary_invalid_controls": "partial",
         "native_audit": "pending",
         "emitted_target_decisions": "not_established_by_value_agreement"
@@ -1119,7 +1139,8 @@
       ],
       "discriminator": "The150 entitlement with separately supplied50% share gives75; share is not hidden in price.",
       "evidence_groups": [
-        "quantities"
+        "quantities",
+        "participation_bases_oracle"
       ],
       "execution": {
         "source": "reported_selected_witness",
@@ -1127,7 +1148,7 @@
         "native_ir": "reported_selected_witness",
         "native_emitted": "reported_selected_witness",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "selected_neutral_or_hand_controls",
+        "independent_controls": "22_frozen_original_fact_oracle_methods_no_new_native_credit",
         "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
         "native_audit": "selected_native_ir_observations_only",
         "emitted_target_decisions": "not_established_by_value_agreement"

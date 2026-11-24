@@ -326,3 +326,20 @@ remain unchanged; preview exposes no closing state. Main98-job build and both
 smokes pass after this source-only integration. The backlog now has28 complete
 items; the bounded matrix39 rows/35 witnessed/four gaps/64 selectors is an
 inventory, not a combined64-selector campaign or a complete project release.
+
+## New independent basis controls and current regression
+
+Commit0b91bc7 is physically archived at C:/spl-0b91; the fresh isolated full
+regression discovered1158 methods and passed default98-job/indexed builds and
+both smokes before entering tests. Its live process is PID5464/exec98279;
+terminal outcome remains pending. Evidence: main-regression-0b91bc7-20261123-a.
+It excludes later untracked prototypes and the new oracle below.
+
+The [participation-base specification](participation-base-design.md) now has22
+independent original-fact controls, no source/native acceptance. Peer review
+added asymmetric money/quantity controls so equal baseline net100/quantity100
+cannot mask the wrong basis. Exact fractional and numeric-offset observations
+retain their original spellings. Oracle/source authors remain different.
+C13 independent replay controls are also assigned, including a genuinely
+dependent cumulative-tier successor rather than only an isolated replacement.
+The backlog retains28 complete items; these assignments do not close features.

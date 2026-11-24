@@ -1,0 +1,48 @@
+{
+  "case_id": "bases-original-01",
+  "method": "gross_percent",
+  "scope": {"agreement_id": "agreement-bases", "participant_id": "participant-bases", "asset_id": "title-bases", "pool_id": "pool-bases", "currency": "USD"},
+  "period": {"start": "2026-01-01", "end": "2026-02-01"},
+  "cutoff": "2026-02-03T00:00:00Z",
+  "terms": {
+    "id": "original-royalty-terms",
+    "source_ref": "approved-development-policy-01",
+    "scope": {"agreement_id": "agreement-bases", "participant_id": "participant-bases", "asset_id": "title-bases", "pool_id": "pool-bases", "currency": "USD"},
+    "approved": true,
+    "effective": {"start": "2026-01-01", "end": "2027-01-01"},
+    "observed_at": "2025-12-01T00:00:00Z",
+    "percentage": ".20",
+    "unit_rate": "1.50",
+    "unit": "Download",
+    "participation_share": ".50"
+  },
+  "receipts": [{
+    "id": "receipt-1", "original_ref": "receipt-original-1", "source_ref": "receipt-document-1",
+    "scope": {"agreement_id": "agreement-bases", "participant_id": "participant-bases", "asset_id": "title-bases", "pool_id": "pool-bases", "currency": "USD"},
+    "effective_date": "2026-01-10", "observed_at": "2026-01-11T00:00:00Z", "amount": "125"
+  }],
+  "deductions": [{
+    "id": "deduction-1", "original_ref": "deduction-original-1", "source_ref": "deduction-document-1",
+    "scope": {"agreement_id": "agreement-bases", "participant_id": "participant-bases", "asset_id": "title-bases", "pool_id": "pool-bases", "currency": "USD"},
+    "effective_date": "2026-01-10", "observed_at": "2026-01-11T00:00:00Z", "amount": "25"
+  }],
+  "usage": [{
+    "id": "usage-1", "original_ref": "usage-original-1", "source_ref": "usage-document-1",
+    "scope": {"agreement_id": "agreement-bases", "participant_id": "participant-bases", "asset_id": "title-bases", "pool_id": "pool-bases", "currency": "USD"},
+    "effective_date": "2026-01-10", "observed_at": "2026-01-11T00:00:00Z", "amount": "100"
+  }],
+  "populations": [
+    {"id": "receipt-population", "source_ref": "complete-receipts-01",
+     "scope": {"agreement_id": "agreement-bases", "participant_id": "participant-bases", "asset_id": "title-bases", "pool_id": "pool-bases", "currency": "USD"},
+     "kind": "receipts", "period": {"start": "2026-01-01", "end": "2026-02-01"}, "complete": true,
+     "row_ids": ["receipt-1"], "reported_total": "125", "observed_at": "2026-02-02T00:00:00Z"},
+    {"id": "deduction-population", "source_ref": "complete-deductions-01",
+     "scope": {"agreement_id": "agreement-bases", "participant_id": "participant-bases", "asset_id": "title-bases", "pool_id": "pool-bases", "currency": "USD"},
+     "kind": "deductions", "period": {"start": "2026-01-01", "end": "2026-02-01"}, "complete": true,
+     "row_ids": ["deduction-1"], "reported_total": "25", "observed_at": "2026-02-02T00:00:00Z"},
+    {"id": "usage-population", "source_ref": "complete-usage-01",
+     "scope": {"agreement_id": "agreement-bases", "participant_id": "participant-bases", "asset_id": "title-bases", "pool_id": "pool-bases", "currency": "USD"},
+     "kind": "usage", "period": {"start": "2026-01-01", "end": "2026-02-01"}, "complete": true,
+     "row_ids": ["usage-1"], "reported_total": "100", "observed_at": "2026-02-02T00:00:00Z"}
+  ]
+}
