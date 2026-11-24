@@ -772,14 +772,17 @@
       "depends_on": [],
       "questions": [],
       "review_resolution": "Missing finite C10 variation identified by LD03 section7, lines390-399. Existing B-C10-TRANSFER remains complete for conserved transfers only.",
-      "active_scope": "Independent28-method oracle remains frozen. Separate /5 source prototype702907fd preserves original paid/accrued bases; actual v1Q1/Q2 complete publications pass, but Q3 exceeds64MiB reconstruction. Isolated compact candidate31caf removes that reconstruction path, yet fresh C10 qualification exposes old-v1Q2 reader276561920B versus256MiB and freshQ1 emitted Cgen1078091776B versus1GiB cap. Single-thread Cgen also fails unchanged cap at1078087680B. All fail closed; no Q3/preview/full43 or accepted-main feature credit. Distinct bounded streaming carry receipt is approved; general emitted-term compilation diagnosis follows the C13 oracle freeze, with financial sources and guards unchanged.",
+      "active_scope": "Independent28-method oracle and economic SPL remain frozen. Isolated79624e3 now passes corrected full46 in1976.435s plus actual freshQ1/Q2/Q3, same-checkpoint preview and old-v1Q2-to-v2Q3 bridge (2233.703166s total), all four backend controls and complete original state. Root independently bounded-loaded the five prelude publications and reconstructed the original oracle/carry chain. Terminal audit verifies689source/102compiled pins unchanged,721passed processes and5expected incomplete-publication loader rejections,0unexpected resource/time/output failures;65owned captures retained. Earlier v1/Cgen limits and failed43-b remain historical failed records. Current wrapper distinguishes original/prepared custody rejection from13direct-native binding guards. Case-only promotion is prepared in isolation; main lacks compatible compact imports until combined1301 compiler qualification/promotion, so this item remains in_progress pending main integration.",
       "evidence": [
         "oracles/contract_burdens.py",
         "cases/entitlement-burdens/neutral.json",
         "cases/entitlement-burdens/policy.md",
         "docs/spl/entitlement-burden-design.md",
         "Tests/test_contract_burden_oracle.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/contract-burden-oracle-20261123-562c4619/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/contract-burden-oracle-20261123-562c4619/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-compact-qualified-20261123-c/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-compact-qualified-20261123-c/terminal-audit.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-root-original-review-20261124-a/verification.json"
       ]
     },
     {

@@ -64,7 +64,7 @@ promotion is claimed yet.
  799,707,136B. Both execute full original-value controls under fixed guards.
   They are not yet main integration or general capacity claims.
 
-Work ownership: trace handles isolated corrected C10 wrapper/native46 cohort;
+Work ownership: trace completed isolated corrected C10 wrapper/native46 cohort;
 source handles isolated C11 wrapper/native66 cohort on dual helpers; matrix is
 preparing remaining generic C09 reserve-stage controls after freezing BNUM30.
 Root handles the combined1301 run and C13 qualification. Trace next prepares
@@ -76,7 +76,16 @@ the original three-period oracle/carry chain, evidence
 match, claimant100 stays unchanged, charges30/15/0 give target170/185/200,
 preview has no state, and the actual old-v1Q2 bridge equals fresh-v2Q3.
 All689 source pins and five completion markers remain unchanged. This is
-prelude-only evidence; the separate46-method cohort remains active.
+prelude-only root evidence. The separate46-method cohort now PASSED in
+1976.435s (2233.703166s including the mandatory prelude), zero failures/errors/
+skips. `c10-compact-qualified-20261123-c/terminal-audit.json` verifies all689
+source/102 compiled pins unchanged and726 process outcomes:721 successes and
+five explicitly expected PUBLICATION_NOT_COMPLETED loader rejections. No
+unexpected process/resource/time/output failures occurred. All65 owned captures
+are retained; the actual old-v1Q2 marker/result remain unchanged. Freeze is
+released; PID53720/exec9318 and watcherPID55144/exec68224 are ENDED. Trace prepares
+case-only promotion commits on its isolated branch, then component planning.
+Main integration waits for the compatible compiler1301 terminal result.
 Read-only review found an additional C11/C13 wrapper lifecycle obligation:
 invalidate a reused destination when preparation is cancelled or profile
 admission fails. Current frozen66/70 runs must finish unchanged. Afterwards,
