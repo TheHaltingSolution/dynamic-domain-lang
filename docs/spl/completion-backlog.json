@@ -291,14 +291,21 @@
         "T23"
       ],
       "work_class": "interface",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "supporting_engineering",
       "acceptance": [
         "Publish a finite versioned conversion relation, initially UsageMinute to explicitly declared UsageHour at exact 60:1, with original unit/evidence retained.",
         "Extend dictionary/checker/IR/runtime/codecs/descriptors/state identity together only as required; reject incompatible dimension, unknown unit and dictionary-version conflicts."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Isolated compiler worktree C:/spl-units-9f9, feature/spl-usage-time-c1; baseline frozen before context/IR implementation. No native FX permission or extension acceptance yet.",
+      "evidence": [
+        "docs/spl/unit-conversion-extension-plan.md",
+        "cases/usage-conversion/policy.md",
+        "Tests/test_usage_conversion_oracle.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-conversion-oracle-20261123-642e47f0/verification.json"
+      ]
     },
     {
       "id": "B-C03-STAGES",
@@ -385,7 +392,7 @@
         "F29"
       ],
       "work_class": "research",
-      "status": "dependency_blocked",
+      "status": "in_progress",
       "scope": "research_evidence",
       "acceptance": [
         "Pin affected historical basis/earnings, effective/observation dates, delta versus total and actual paid/dependent periods for the first sourced retroactive policy.",
@@ -395,7 +402,13 @@
         "B-C13-REPLAY"
       ],
       "questions": [],
-      "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate."
+      "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate.",
+      "active_scope": "Disney first-dollar independently controlled oracle26 passed; separate author implementing native/canonical source on stable shared abee/daf/673 core.",
+      "evidence": [
+        "docs/spl/merchandising-reprice-design.md",
+        "Tests/test_merchandising_reprice_oracle.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-oracle-20261123-ec7a285a/verification.json"
+      ]
     },
     {
       "id": "B-C05-TERM",
@@ -601,7 +614,7 @@
         "F27"
       ],
       "work_class": "research",
-      "status": "dependency_blocked",
+      "status": "in_progress",
       "scope": "research_evidence",
       "acceptance": [
         "Attach original clause/facts and reviewed choice of reserve basis/payment stage, cap, vintage release/expiry and distributor condition.",
@@ -611,7 +624,8 @@
         "B-C09-STAGES"
       ],
       "questions": [],
-      "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate."
+      "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate.",
+      "active_scope": "Independent Genius-ESPN USD basis-reserve oracle under development from adopted RR04/LD03 decisions and primary source. Initial selected vintage-funded return slice explicitly rejects excess returns; sourced excess-return NR reduction remains unimplemented, not silently complete."
     },
     {
       "id": "B-C10-TRANSFER",
@@ -3790,9 +3804,9 @@
   "progress_as_of": "2026-11-23",
   "status_counts": {
     "complete": 22,
-    "ready": 27,
-    "dependency_blocked": 4,
-    "in_progress": 5,
+    "ready": 26,
+    "in_progress": 8,
+    "dependency_blocked": 2,
     "partial": 2,
     "question_blocked": 2,
     "gated": 1,

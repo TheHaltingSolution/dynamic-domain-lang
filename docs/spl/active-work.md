@@ -33,17 +33,19 @@ Archived old runs retain their dated identities.
 ## Isolated full regression
 
 Exactly `7c13ef2` is archived and extracted to the short physical Windows path
-`C:/spl-7c13`. Fresh 94-job build and both smokes pass. The discovered 813-method
-Python suite is running. It has one observed failure: the old R1 dependency
-guard has a stale five-module whitelist and rejects standard-library imports
-such as collections. The current-tree fix uses `sys.stdlib_module_names`; all15
-R1 tests pass (0.087s). No financial golden changed. This old full run retains
-its failure; no overall pass is claimed. Logs and evidence are under
+`C:/spl-7c13`. Fresh94-job build and both smokes pass. The full813-method
+Python suite has completed:812 pass, one stale R1 standard-library-whitelist
+failure, zero errors/skips,4099.274516 seconds. All original source bytes and
+end compiler/runtime/module identities stayed unchanged. The retained overall
+status is FAILED. The current-tree fix uses `sys.stdlib_module_names`; all15 R1
+methods pass separately (0.087s), without financial golden changes.
+
+Logs and final verification are under
 `C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/checkpoint-regression-7c13ef2-b/`.
-Exec session is 35269. Do not claim completion before observing its final report.
-This is the previous checkpoint, not a full regression of the newer emitter,
-AO, civil-day or Disney work. Snapshot source cannot drift with live edits;
-the run still contributes background CPU load to performance measurements.
+Exec35269 has ended. This is the previous checkpoint, not a full regression of
+the newer emitter/AO/civil/Disney work. The first full run is not retrospectively
+changed to passing; a clean newer-checkpoint regression remains required. Its
+background CPU load was present during the post-memo probes and is now ended.
 
 The earlier `...-a` launcher failed discovery before running tests because of an
 unnecessary `top_level_dir` for namespace Tests. That failure and its passing
@@ -123,12 +125,16 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   the design document. Keep actual physical returns/vintage deadlines, source
   fee limitations and synthetic recognition policies explicit.
 - `validation_trace`: finished post-memo performance probes; assessing isolated usage-unit implementation. It owns performance harness/indexed/memo evidence. Shared core edits remain forbidden during Disney native freezes.
-- Root: integrate evidence/backlog, review unit/context compatibility, maintain
+- Root: independent usage conversion controls now pass8 methods from an isolated
+  source snapshot, `usage-conversion-oracle-20261123-642e47f0`; this earns no
+  compiler/native/codec/state credit. Integrate evidence/backlog, review unit/context compatibility, maintain
   stable shared core, inspect full regression, create verified checkpoints.
 
 An isolated short physical worktree `C:/spl-units-9f9` on
-`feature/spl-usage-time-c1` starts from9f9cf31. No unit core edits/builds yet;
-its agent is assessing risk before release. Embedded Python has a main-repo
+`feature/spl-usage-time-c1` starts from9f9cf31. Unit implementation is now authorized in this isolated checkout only, with
+baseline freeze before owner/context/IR changes and no FX. The shared main core
+stays abee/daf/673 for financial native runs. The final plan is committed in
+8892329, which also fixes the stale standard-library guard. Embedded Python has a main-repo
 `._pth` entry, so isolated launchers must explicitly insert their checkout path
 before imports and record loaded module paths; cwd alone is insufficient.
 

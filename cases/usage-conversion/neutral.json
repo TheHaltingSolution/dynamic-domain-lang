@@ -1,0 +1,20 @@
+{
+  "schema_version": "spl-usage-conversion-neutral/1",
+  "case_id": "ninety-original-usage-minutes",
+  "feature": "spl.usage-time/1",
+  "relation_id": "spl.usage-time/1:minute-hour",
+  "source_quantity": {
+    "measurement_id": "usage-measurement-01",
+    "evidence_ref": "synthetic-original-usage-ledger#line-1",
+    "value": "90",
+    "unit": "UsageMinute"
+  },
+  "target_unit": "UsageHour",
+  "price": {
+    "quote_id": "original-hour-price-01",
+    "evidence_ref": "synthetic-original-price-schedule#line-1",
+    "value": "12",
+    "per_unit": "UsageHour",
+    "currency": "USD"
+  }
+}
