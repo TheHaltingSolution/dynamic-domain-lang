@@ -38,6 +38,15 @@ promotion is claimed yet.
   The full70-method cohort is ACTIVE, PID31004/exec66185, evidence
   `dependent-replay-native-helper-20261123-a`:35 frozen oracle,18 original
   reference,16 actual native/Python and one dual-profile custody method.
+  **It has a known harness failure, not passing acceptance:** root's new
+  `native_reference_control` uses a full method name in the artifact path;
+  actual-successor closure descriptor access exceeds Windows MAX_PATH and
+  returns IO_ERROR before native execution. Leave this run frozen to finish
+  the remaining controls. Afterwards replace that prefix with `next_work`
+  plus a short `control.json` method mapping; rerun all output-bearing native
+  methods (actual successors, prior-history tampering, preview) alongside the
+  separately pending lifecycle follow-up. Preserve the failed70 record and
+  every original financial/descriptor/template/oracle pin.
 - B-NUM-PRECISION's five independent files are frozen at165212e:30 passing
   controls distinguish ratio precision, all five rounding modes, signed ties
   and row-versus-total bridges. No SPL/native credit yet. Source implementation
