@@ -1285,14 +1285,21 @@
         "U12"
       ],
       "work_class": "interface",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "supporting_engineering",
       "acceptance": [
         "Provide selected explicit report/issue date independently from effective financial period/cutoff/invocation clock.",
         "Document identity effect and demonstrate report date does not choose economic recognition date."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Isolated C:/spl-dates candidate commits4b1b638+b14e2bb implement optional supplied presentation/intended-issue Dates in both module and bounded manifests, with no clock default, inferred temporal ordering or financial binding. Frozen51 methods/140 subtests pass202.326076s; follow-up2 methods/12 publications pass21.486264s after clarifying existing compact digest semantics, with runtime/schema bytes unchanged. Root bounded-reloads11 original native publications and verifies financial/logical graph/state/marker equality. Default array-v1 module result digest includes manifest; bounded array-v1 and both compact-v2 semantic publication digests exclude it. All results stay unissued; explicit economic Date ports remain semantic. Candidate is committed and clean; main integration remains pending the compatible compiler milestone.",
+      "evidence": [
+        "C:/spl-dates/docs/spl/run-dates.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/run-dates-frozen-20261124-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/run-dates-digest-followup-20261124-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/run-dates-digest-followup-20261124-a/root-review.json"
+      ]
     },
     {
       "id": "B-RUN-DELTA",
@@ -1321,14 +1328,15 @@
         "C10"
       ],
       "work_class": "performance",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "supporting_engineering",
       "acceptance": [
         "Plan components through shared pools/gates/allocation parents/correction chains and cross-contract dependencies.",
         "Separate independent outcomes while retaining component atomicity and ordered steps; no distributed transaction service claim."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Implementation is isolated in C:/spl-components-c80 using only new owned files. Seventeen Python/reference controls pass; actual native coordinated witness remains pending. Trusted registered footprint completeness is an explicit assumption bound to module/source/policy/closure pins; unknown profiles join conservatively and shared state joins across boundaries. Connected distinct roots require one registered coordinated atomic root; independent components retain separate canonical authorities. Execution revalidates mutable plans and owned input bytes. No multi-root transaction, parallel throughput or large-capacity claim."
     },
     {
       "id": "B-AUDIT-RAW",
@@ -4033,12 +4041,12 @@
       "rationale": "Linked work isolates a remaining variant or acceptance obligation; it does not undo later executed implementations."
     }
   ],
-  "progress_as_of": "2026-11-23",
+  "progress_as_of": "2026-11-24",
   "status_counts": {
     "complete": 29,
-    "ready": 17,
+    "ready": 15,
     "partial": 5,
-    "in_progress": 8,
+    "in_progress": 10,
     "dependency_blocked": 2,
     "gated": 1,
     "deferred": 7,
