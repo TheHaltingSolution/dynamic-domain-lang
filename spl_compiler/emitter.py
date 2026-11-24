@@ -147,6 +147,7 @@ class _Emitter:
     def __init__(self, context=BASE_MEANINGS):
         self.counter = 0
         self.context = context
+        self.helpers = []
 
     def runtime(self, name):
         return "SPL." + name + ("With " + self.context_source() if self.context.features else "")
@@ -323,7 +324,22 @@ class _Emitter:
             # its own cache and the existing declaration demand/failure order.
             for reference in _ordered_references(decl["expr"]):
                 emit_definition(reference)
-            lines.append(f"let {functions[name]} : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => {self.expression(decl['expr'], env)})")
+            # Keep captures deferred, including errors and inactive branches.
+            # Original definition thunks still belong to their call/loop scope.
+            helper = self.fresh()
+            parameters, arguments, captured = [], [], {}
+            for reference in dict.fromkeys(_ordered_references(decl["expr"])):
+                parameter = self.fresh()
+                parameters.append(f"({parameter} : Thunk (SPL.Eval SPL.Value))")
+                arguments.append(f"(Thunk.mk (fun _ => {env[reference]}))")
+                captured[reference] = f"({parameter}.get)"
+            body = self.expression(decl["expr"], captured)
+            # Nested helper declarations were collected while emitting body.
+            # Unit makes even a closed helper a function at the Lean boundary.
+            self.helpers.append(f"@[noinline] private def {helper} {' '.join(parameters)} "
+                                f"(_spl_force : Unit) : SPL.Eval SPL.Value := {body}")
+            lines.append(f"let {functions[name]} : Thunk (SPL.Eval SPL.Value) := "
+                         f"Thunk.mk (fun _ => {helper} {' '.join(arguments)} ())")
             active.remove(name)
             emitted.add(name)
 
@@ -370,6 +386,7 @@ def emit_module(checked, inputs=None, openings=None) -> str:
     module = "import SPL.Fold\nimport SPL.Core\n\nset_option maxRecDepth 4096\nset_option maxHeartbeats 0\n\nnamespace GeneratedSPL\n\n"
     module += f"def scheduleName : String := {_string(schedule['name'])}\n"
     module += f"def sourceRules : List (String × String) := {rules}\n\n"
+    module += "\n\n".join(emitter.helpers) + "\n\n"
     module += "def settle (_inputs _openings : SPL.Env) : SPL.Eval SPL.Settlement := " + _do(lines, result) + "\n\nend GeneratedSPL\n"
     if inputs is not None:
         if openings is None:

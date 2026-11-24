@@ -107,6 +107,60 @@ class PythonEmitterMemoizationTests(unittest.TestCase):
           {'status': 'calculated', 'emissions': {'rows': ['4', '12', '28'], 'total': '44'},
            'closing': {}, 'diagnostics': []})
 
+    def test_deferred_captures_keep_option_choose_and_short_circuit_lazy(self):
+        expressions = [
+            'get_or(some(7.0),future)',
+            'choose unique { when true => 7.0; when false => future; }',
+            'if false and future > 0.0 then 1.0 else 7.0',
+            'if true or future > 0.0 then 7.0 else 1.0',
+        ]
+        for index, expression in enumerate(expressions):
+            with self.subTest(expression=expression):
+                self.compare('deferred-capture-' + str(index),
+                    'define selected=' + expression + '; require false else "STOP"; '
+                    'define future=1.0/0.0; emit "result"=selected;',
+                    {'inputs': {}, 'openings': {}},
+                    {'status': 'blocked', 'emissions': {}, 'closing': {}, 'diagnostics': ['STOP']})
+
+    def test_nested_disjoint_and_callee_scopes_keep_captures_local(self):
+        parameters = [{'name': 'n', 'type': {'name': 'Int', 'args': []}}]
+        callee = library('scoped', 'input n:Int; define later=n*3; define result=later+n;', parameters=parameters)
+        self.compare('scoped-captures', '''input n:Int; define original=n+n;
+            define rows=for each outer in [2,5] {
+              define later=outer*2;
+              define nested=for each child in [1,3] { define twice=child+child; yield twice+later; };
+              yield nested;
+            };
+            define total=fold [2,5] from n with s,event { define later=event*2; yield s+later; };
+            emit "original"=original; emit "rows"=rows; emit "total"=total;
+            emit "call"=compute(n); emit "other_call"=compute(3);''',
+            {'inputs': {'n': '10'}, 'openings': {}},
+            {'status': 'calculated', 'emissions': {'original': '20', 'rows': [['6', '10'], ['12', '16']],
+             'total': '24', 'call': '40', 'other_call': '12'}, 'closing': {}, 'diagnostics': []},
+            {'modules': [callee], 'imports': [importing('scoped', local='compute')]})
+
+    def test_compiled_same_process_errors_are_not_cached_between_inputs(self):
+        checked = self.checked(schedule('input divisor:Ratio; define quotient=10.0/divisor; '
+                                        'define repeated=quotient+quotient; emit "result"=repeated;'))
+        inputs = ['0', '2', '5', '0', '2']
+        calls = '[' + ','.join('[("divisor",' + emitter.lean_value(decode_value(value, checked.types['divisor'])) + ')]'
+                               for value in inputs) + ']'
+        outcomes = {}
+        for origin, module in [('new', emitter), *([('old', self.old)] if self.old else [])]:
+            source = self.tools.work / (origin + '-error-freshness.lean')
+            driver = '\ndef main : IO Unit := do\n  let cases : List SPL.Env := ' + calls
+            driver += '\n  let results := cases.map (fun values => SPL.outcomeJson (GeneratedSPL.settle values []))'
+            driver += '\n  IO.println (Lean.Json.arr results.toArray).compress\n'
+            source.write_text(module.emit_module(checked) + driver, encoding='utf-8')
+            executable = self.tools.native(source)
+            actual = [financial_fixtures.financial(row) for row in loads(self.tools.command([executable]))]
+            expected = [financial_fixtures.financial(evaluate(checked, {'divisor': value}, {}).to_dict()) for value in inputs]
+            self.assertEqual(actual, expected)
+            self.assertEqual([row['diagnostics'] for row in actual], [['DIVISION_BY_ZERO'], [], [], ['DIVISION_BY_ZERO'], []])
+            self.assertEqual(actual[1], actual[4])
+            outcomes[origin + '_compiled_same_process'] = actual
+        self.record('compiled-error-freshness', outcomes)
+
     def test_imported_function_cells_and_strict_arguments(self):
         parameter = [{'name': 'n', 'type': {'name': 'Int', 'args': []}}]
         inner = library('inner', 'input n:Int; define a=n*2; define result=a+a;', parameters=parameter)
