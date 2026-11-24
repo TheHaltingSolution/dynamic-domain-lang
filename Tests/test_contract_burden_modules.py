@@ -13,15 +13,15 @@ from unittest.mock import patch
 
 from cases.r1 import build_modules as registration
 from oracles.contract_burdens import ContractBurdenOracleError, contract_burdens, exact_json
-from spl_compiler.artifacts import load_completed_result
-from spl_compiler.audited_artifacts import load_completed_audited_result
+from spl_compiler.artifacts import ArtifactPublication, PublicationError, load_completed_result
+from spl_compiler.audited_artifacts import AuditedPublication, load_completed_audited_result
 from spl_compiler.codecs import DataError, digest, file_digest, read_json, write_json
 from spl_compiler.emitter import emit_module
 from spl_compiler.evaluator import decode_value, evaluate
 from spl_compiler.lean_tools import ROOT
 from spl_compiler.compact_execution import _compiler_inputs, _stage, _verify_pins, metadata, WORKER
 from spl_compiler.model import encode_value
-from spl_compiler.modules import resolve_module, validate_module_package
+from spl_compiler.modules import resolve_module, run_module_package, validate_module_package
 from spl_compiler.run import carry_state, normalize_target
 from Tests.test_contract_burden_oracle import fixture, paid_method, remove_payments, successor, accounts, add_supported
 
@@ -199,7 +199,11 @@ class ContractBurdenModuleTests(unittest.TestCase):
                 self.assertEqual(replay["closing_state"], result["closing_state"])
                 forged = deepcopy(data)
                 forged["opening_state"]["cap_usage"][0]["consumed"] = "0"
-                self.blocked(forged, "compare")
+                # successor shares neutral predecessor/opening state: this
+                # changes both coherently. Mechanical preparation must not
+                # replace native financial replay of the forged cap usage.
+                blocked = self.blocked(forged, "compare")
+                self.assertEqual(blocked["diagnostics"][0]["code"], "BURDEN_OPENING_RECONCILIATION")
             previous = result
         self.assertEqual(len(burdens.neutral_state(previous["closing_state"][0]["quantity"])["history"]), 3)
 
@@ -306,10 +310,15 @@ class ContractBurdenModuleTests(unittest.TestCase):
                 original.update(id="unused", approved=False)
                 row = burdens._fact(original, "evidence", {"unused": len(frame["evidence"])})
                 raw_tables["evidence"].append({"id": row["id"], "slot": row["slot"], "raw_original": row.pop("raw_original")})
-                frame["evidence"].append(row)
+                # /5 execution fields use the same projection as every builder
+                # row; helper-only source_observed_at is not a native input.
+                projected = {**deepcopy(frame), "evidence": [row]}
+                frame["evidence"].append(burdens._execution_frame(projected)["evidence"][0])
             with self.subTest(kind=kind):
                 output = self.next_work("n")
-                result = burdens.run_entitlement_burden_package(package, self.root, backend="compare", artifact_dir=output, audit_profile="compact-v2")
+                # Deliberately untrusted typed bindings exercise source guards,
+                # separately from the public wrapper's preparation boundary.
+                result = run_module_package(package, self.root, backend="compare", artifact_dir=output, audit_profile="compact-v2")
                 self.assertEqual(completed_result(output), result)
                 self.assertEqual(result["status"], "blocked", result["diagnostics"])
                 self.assertEqual(result.get("trace_origin"), "native_ir_interpreter")
@@ -324,6 +333,118 @@ class ContractBurdenModuleTests(unittest.TestCase):
         actual = normalize_target(self.native_audit_control(binding))
         self.assertEqual(actual["diagnostics"][0]["code"], "BURDEN_EVIDENCE_AUTHORITY")
         self.assertFalse(actual["emissions"] or actual["closing"])
+
+    def test_prepared_boundary_reprojects_every_original_row_table_and_order(self):
+        original = burdens.entitlement_burden_package(fixture(), reference=self.reference)
+        for kind in ["money", "row_order", "raw_table", "raw_frame", "extra_row", "coordinator", "policy", "research", "scope", "manifest"]:
+            package = deepcopy(original)
+            inputs = package["inputs"]
+            if kind == "money":
+                inputs["frames"][0]["receipts"][0]["amount"] = burdens.money(300)
+                inputs["frames"][0]["receipt_populations"][0]["gross_total"] = burdens.money(300)
+            elif kind == "row_order": inputs["frames"][0]["evidence"].reverse()
+            elif kind == "raw_table": inputs["original_frames"][0]["originals"]["evidence"].reverse()
+            elif kind == "raw_frame": inputs["original_frames"][0]["raw_original"] += " "
+            elif kind == "extra_row": inputs["frames"][0]["payments"].append(deepcopy(inputs["frames"][0]["payments"][0]))
+            elif kind == "coordinator": inputs["coordinator"]["id"] = burdens.encode_identity("other")
+            elif kind == "policy": package["parameters"]["policy"]["revision"] = "changed"
+            elif kind == "research": inputs["research"]["review_locator"] = "changed"
+            elif kind == "scope": inputs["scope"]["pool_id"] = "other"
+            else: package["manifest"]["cutoff"] = "2027-01-01T00:00:00Z"
+            before = digest(package)
+            with self.subTest(kind=kind), patch.object(burdens, "run_module_package", side_effect=AssertionError("execution must not start")):
+                result = burdens.run_entitlement_burden_package(package, self.root, backend="reference")
+                self.assertEqual(result["diagnostics"][0]["code"], "BURDEN_PREPARED_PACKAGE_MISMATCH")
+                self.assertFalse(result["results"] or result["closing_state"] or result["trace"])
+                self.assertNotIn("result_digest", result)
+            self.assertEqual(before, digest(package))
+        burdens.validate_prepared_package(original)
+
+    def test_prepared_boundary_checks_actual_opening_history_and_predecessor(self):
+        original = fixture()
+        previous = self.run_fixture(original, output=self.root / "boundary-seed")
+        previous_digest = digest(previous)
+        data, cells = self.carried(original, previous, 2)
+        valid = burdens.entitlement_burden_package(data, reference=self.reference, state_cells=cells)
+        burdens.validate_prepared_package(valid)
+        for kind in ["actual_opening", "history", "predecessor", "predecessor_period", "prior_ref", "state_scope", "extra_cell"]:
+            package = deepcopy(valid)
+            if kind == "actual_opening": package["state_cells"][0]["quantity"]["detail"]["some"]["cap_usage"][0]["consumed"] = burdens.money(0)
+            elif kind == "history": package["inputs"]["original_frames"][0]["raw_original"] += " "
+            elif kind == "predecessor": package["inputs"]["predecessor"]["some"]["closing_state"]["detail"]["some"]["cap_usage"][0]["consumed"] = burdens.money(0)
+            elif kind == "predecessor_period": package["inputs"]["predecessor"]["some"]["period"]["start"] = "2026-01-02"
+            elif kind == "prior_ref": package["state_cells"][0]["prior_result_ref"] = "fabricated"
+            elif kind == "state_scope": package["state_cells"][0]["scope"]["pool_id"] = "other"
+            else: package["state_cells"].append(deepcopy(package["state_cells"][0]))
+            before = digest(package)
+            with self.subTest(kind=kind), patch.object(burdens, "run_module_package", side_effect=AssertionError("execution must not start")):
+                result = burdens.run_entitlement_burden_package(package, self.root, backend="reference")
+                self.assertEqual(result["diagnostics"][0]["code"], "BURDEN_PREPARED_PACKAGE_MISMATCH")
+                self.assertFalse(result["results"] or result["closing_state"])
+            self.assertEqual(before, digest(package))
+        self.assertEqual(digest(previous), previous_digest)
+        self.assertEqual(completed_result(self.locations[previous["result_digest"]]), previous)
+        # The case wrapper and the SPL consistency predicate are independent
+        # boundaries. Bypass preparation explicitly to test the latter too.
+        direct = deepcopy(valid)
+        direct["inputs"]["supplied_opening"]["detail"]["some"]["cap_usage"][0]["consumed"] = burdens.money(0)
+        guarded = burdens.run_entitlement_burden_package(direct, self.root, backend="reference")
+        self.assertEqual(guarded["diagnostics"][0]["code"], "BURDEN_PREPARED_PACKAGE_MISMATCH")
+        output = self.next_work("opening")
+        native = run_module_package(direct, self.root, backend="compare", artifact_dir=output, audit_profile="compact-v2")
+        self.assertEqual(native.get("trace_origin"), "native_ir_interpreter", native["diagnostics"])
+        self.assertEqual(native["diagnostics"][0]["code"], "BURDEN_CANONICAL_OPENING_MISMATCH")
+        self.assertFalse(native["results"] or native["closing_state"])
+        self.assertEqual(completed_result(output), native)
+        checked, inputs, openings = validate_module_package(direct, resolve_module(self.reference, self.root))
+        reference = evaluate(checked, inputs, openings)
+        emitted = normalize_target(self.python_emitter_control(checked, inputs, openings))
+        self.assertEqual([item["code"] for item in reference.diagnostics], ["BURDEN_CANONICAL_OPENING_MISMATCH"])
+        self.assertEqual([item["code"] for item in emitted["diagnostics"]], ["BURDEN_CANONICAL_OPENING_MISMATCH"])
+        self.assertFalse(emitted["emissions"] or emitted["closing"])
+
+    def test_prepared_boundary_atomic_both_formats_stale_failure_and_unchanged_prior(self):
+        original = burdens.entitlement_burden_package(fixture(), reference=self.reference)
+        malformed = deepcopy(original)
+        malformed["inputs"]["frames"][0]["receipts"][0]["amount"] = burdens.money(300)
+        malformed["inputs"]["frames"][0]["receipt_populations"][0]["gross_total"] = burdens.money(300)
+        original_digest = digest(original)
+        for profile, backend in [("array-v1", "reference"), ("compact-v2", "compare")]:
+            output = self.next_work("boundary")
+            previous = burdens.run_entitlement_burden_package(original, self.root, backend=backend, artifact_dir=output, audit_profile=profile)
+            self.assertEqual(previous["status"], "calculated", previous["diagnostics"])
+            old_marker = read_json(output / "completion.json")
+            old_work = output / ".runs" / old_marker["invocation_id"]
+            prior_pins = {str(path.relative_to(old_work)): file_digest(path) for path in old_work.rglob("*") if path.is_file()}
+            before = digest(malformed)
+            result = burdens.run_entitlement_burden_package(malformed, self.root, backend=backend, artifact_dir=output, audit_profile=profile)
+            self.assertEqual(completed_result(output), result)
+            self.assertEqual(result["diagnostics"][0]["code"], "BURDEN_PREPARED_PACKAGE_MISMATCH")
+            self.assertFalse(result["results"] or result["statements"] or result["detail"] or result["closing_state"])
+            self.assertNotIn("result_digest", result)
+            self.assertNotIn("trace_origin", result)
+            if profile == "compact-v2": self.assertEqual(result["trace"]["status"], "unavailable")
+            self.assertNotEqual(read_json(output / "completion.json")["invocation_id"], old_marker["invocation_id"])
+            self.assertEqual(before, digest(malformed))
+            self.assertEqual(prior_pins, {str(path.relative_to(old_work)): file_digest(path) for path in old_work.rglob("*") if path.is_file()})
+            publisher = AuditedPublication if profile == "compact-v2" else ArtifactPublication
+            with patch.object(publisher, "finish", side_effect=PublicationError("injected publication failure")):
+                with self.assertRaises(PublicationError):
+                    burdens.run_entitlement_burden_package(malformed, self.root, backend=backend, artifact_dir=output, audit_profile=profile)
+            with self.assertRaises(PublicationError): completed_result(output)
+            for interrupted in ["deepcopy", "validate_prepared_package"]:
+                fresh = burdens.run_entitlement_burden_package(original, self.root, backend=backend, artifact_dir=output, audit_profile=profile)
+                self.assertEqual(fresh["status"], "calculated", fresh["diagnostics"])
+                with patch.object(burdens, interrupted, side_effect=KeyboardInterrupt):
+                    with self.assertRaises(KeyboardInterrupt):
+                        burdens.run_entitlement_burden_package(original, self.root, backend=backend, artifact_dir=output, audit_profile=profile)
+                with self.assertRaises(PublicationError): completed_result(output)
+            fresh = burdens.run_entitlement_burden_package(original, self.root, backend=backend, artifact_dir=output, audit_profile=profile)
+            self.assertEqual(fresh["status"], "calculated", fresh["diagnostics"])
+            with self.assertRaisesRegex(ValueError, "COMPACT_AUDIT_REQUIRES_NATIVE_PUBLICATION"):
+                burdens.run_entitlement_burden_package(original, self.root, backend="reference", artifact_dir=output, audit_profile="compact-v2")
+            with self.assertRaises(PublicationError): completed_result(output)
+        self.assertEqual(original_digest, digest(original))
 
     def test_native_duplicate_alias_relabelled_charge_and_endpoint_authority(self):
         for kind in ["receipt_id", "receipt_ref", "entitlement_ref", "request", "authority", "scope", "unknown", "self"]:

@@ -386,8 +386,98 @@ def entitlement_burden_package(fixture=None, *, reference=None, state_cells=None
     return bind_module_package(package, ROOT)
 
 
+def validate_prepared_package(package):
+    """Check reversible preparation, without deriving any financial answer.
+
+    Raw JSON is supplied evidence, not authenticated source material. The generic
+    module API accepts deliberately prepared typed inputs and does not call this
+    case-specific boundary check.
+    """
+    from spl_compiler.artifacts import _strict_json
+
+    def same(actual, expected):
+        if _raw(actual) != _raw(expected):
+            raise ValueError("BURDEN_PREPARED_PACKAGE_MISMATCH")
+
+    inputs = package["inputs"]
+    cells = package["state_cells"]
+    if type(cells) is not list or len(cells) != 1:
+        raise ValueError("BURDEN_PREPARED_PACKAGE_MISMATCH")
+    opening = cells[0]["quantity"]
+    same(inputs["supplied_opening"], opening)
+    context = {"coordinator": {**opening["coordinator"], "id": decode_identity(opening["coordinator"]["id"])},
+               "policy": opening["policy"], "research": opening["research"]}
+    neutral = neutral_state(opening)
+    same(opening, _state(neutral, context))  # Includes genesis metadata/detail.
+    same(inputs["coordinator"], opening["coordinator"])
+    same(inputs["research"], context["research"])
+    originals = inputs["original_frames"]
+    if type(originals) is not list or not originals:
+        raise ValueError("BURDEN_PREPARED_PACKAGE_MISMATCH")
+    current = _strict_json(originals[-1]["raw_original"])
+    frames = [_frame(record["facts"]) for record in neutral.get("history", [])]
+    frames.append(_frame(current))
+    same(inputs["frames"], [_execution_frame(frame) for frame in frames])
+    same(originals, [{key: frame[key] for key in ["id", "period", "raw_original", "originals"]} for frame in frames])
+    execution = {"agreement_id": ENVELOPE, "participant_id": OPERATOR, "pool_id": POOL}
+    same(inputs["scope"], {**execution, "period": current["period"]})
+    same(package["scope"], {"agreement_id": ENVELOPE, "participant_ids": [OPERATOR], "pool_id": POOL,
+                           "asset_ids": [], "purpose": PURPOSE})
+    same(package["parameters"], {"policy": context["policy"], "cutoff": current["cutoff"]})
+    same(package["manifest"]["period"], current["period"])
+    same(package["manifest"]["cutoff"], current["cutoff"])
+    for key, expected in {"opening_port": "history", "state_key": canonical({**execution, "purpose": PURPOSE}),
+                          "purpose": PURPOSE, "unit": "structured", "scope": execution,
+                          "boundary": current["period"]["start"]}.items():
+        same(cells[0][key], expected)
+    predecessor = inputs["predecessor"]
+    if _raw(predecessor) != _raw({"none": True}):
+        _record(predecessor, {"some"})
+        prior = predecessor["some"]
+        _record(prior, {"source_case_id", "period", "closing_state"})
+        same(prior["closing_state"], opening)
+        same(prior["source_case_id"], opening["source_case_id"])
+        same(prior["period"], neutral["history"][-1]["facts"]["period"])
+        prior_ref = cells[0].get("prior_result_ref")
+        if type(prior_ref) is not str or not re.fullmatch(r"result@sha256:[0-9a-f]{64}", prior_ref):
+            raise ValueError("BURDEN_PREPARED_PACKAGE_MISMATCH")
+
+
 def run_entitlement_burden_package(package, registry_root=None, *, backend="compare", artifact_dir=None, audit_profile="array-v1"):
-    return run_module_package(package, registry_root or ROOT, backend=backend, artifact_dir=artifact_dir,
+    from spl_compiler.artifacts import ArtifactPublication, PublicationError
+    from spl_compiler.audited_artifacts import AuditedPublication, unavailable_trace
+    from spl_compiler.compact_execution import require_profile
+    try:
+        require_profile(audit_profile, backend, artifact_dir)
+    except BaseException:
+        if artifact_dir is not None:
+            (AuditedPublication if audit_profile == "compact-v2" else ArtifactPublication)(artifact_dir)
+        raise
+    snapshot = None
+    try:
+        snapshot = deepcopy(package)
+        validate_prepared_package(snapshot)
+    except (KeyError, IndexError, TypeError, ValueError, PublicationError):
+        result = {"status": "blocked", "results": {}, "statements": [], "detail": [], "closing_state": [],
+                  "trace": unavailable_trace() if audit_profile == "compact-v2" else [],
+                  "reconciliation": {}, "policy_review": {},
+                  "manifest": snapshot.get("manifest", {}) if type(snapshot) is dict else {},
+                  "issuance_status": "unissued", "payment_evidence_status": "not_assessed",
+                  "diagnostics": [{"code": "BURDEN_PREPARED_PACKAGE_MISMATCH",
+                                   "message": "Prepared inputs do not match their original-record/state transport"}]}
+        if artifact_dir is not None:
+            publication = (AuditedPublication if audit_profile == "compact-v2" else ArtifactPublication)(artifact_dir)
+            return publication.finish(result, {"results.json": "results", "statement.json": "statements",
+                "detail.json": "detail", "trace.json": "trace", "closing-state.json": "closing_state",
+                "reconciliation.json": "reconciliation", "diagnostics.json": "diagnostics", "policy-review.json": "policy_review"})
+        return result
+    except BaseException:
+        # Cancellation during preparation cannot leave an older successful
+        # directory looking like the completed outcome of this invocation.
+        if artifact_dir is not None:
+            (AuditedPublication if audit_profile == "compact-v2" else ArtifactPublication)(artifact_dir)
+        raise
+    return run_module_package(snapshot, registry_root or ROOT, backend=backend, artifact_dir=artifact_dir,
         audit_profile=audit_profile,
         blocked_evidence_labels={"BURDEN_PAID_BASIS_UNKNOWN": {"payment_evidence_status": "no_event_supplied"},
                                  "BURDEN_COMPLETE_PAYMENT_POPULATION_REQUIRED": {"payment_evidence_status": "not_assessed"}})

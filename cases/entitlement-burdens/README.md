@@ -202,6 +202,39 @@ is omitted to obtain completion.
 This is a new transport-qualified adapter/test revision. The economic SPL,
 oracle, policy, original facts and physical`/5` layout remain unchanged. Earlier
 failed campaigns and helper/receipt records retain their original hashes.
-Fresh three-period, preview, old-v1Q2-to-v2Q3 and43-method acceptance remains
-pending the separately qualified runtime-import build; no new C10 completion
-is claimed by this API preparation alone.
+The import-only candidate's `c10-compact-qualified-20261123-b` retained complete
+fresh Q1/Q2/Q3, preview and actual old-v1Q2-to-v2Q3 controls. Its full43-method
+cohort **failed** one negative fixture before native admission: the helper-only
+`source_observed_at` field was appended directly to a `/5` typed evidence row.
+The record remains failed and unchanged. The corrected negative uses the normal
+execution-field projection, preserving `approved=False` and requiring native
+origin plus `BURDEN_EVIDENCE_APPROVAL_CUTOFF`.
+
+## Prepared execution boundary
+
+Call `run_entitlement_burden_package` for original-record transport checks.
+Before execution, the wrapper mechanically projects **all** raw frames and their
+ordered tables again, checks them against the typed frames, and checks supplied
+opening, actual state cell, history and predecessor transport. It derives no
+participation, burden, payment, cap or state financial answer. Original facts
+must still satisfy the independent SPL predicates. The generic `module-run` CLI
+and `run_module_package` API accept already prepared typed inputs; they do not
+perform this case-specific raw/typed correspondence check. Their caller owns
+that preparation boundary. Neither API authenticates supplied original JSON.
+
+`c10-wrapper-boundary-20261123-a` preserves the pre-fix counterexample: changing
+only typed claimant receipt/population amounts200 to300, with original raw bytes
+and actual opening unchanged, produced claimant accrual150 and adjusted target155
+instead of100 and170. The revised wrapper returns only empty blocked metadata
+with `BURDEN_PREPARED_PACKAGE_MISMATCH`. Both explicitly selected publication
+formats invalidate stale completion and publish that blocked outcome atomically;
+an interruption/publication failure leaves no consumable completion. Caller
+packages and previously owned invocation files remain unchanged.
+
+Tests of intentionally corrupted typed bindings use the generic API explicitly
+to retain native source-validation credit; separate wrapper tests require
+preflight rejection and claim no native calculation. The forged-cap discriminator
+retains both boundary rejection and independent generic native/source replay.
+New frozen acceptance of this wrapper/test revision is still pending. The
+economic SPL, oracle, policy, original fixtures and physical `/5` layout remain
+unchanged; neither failed record is repinned as a success.
