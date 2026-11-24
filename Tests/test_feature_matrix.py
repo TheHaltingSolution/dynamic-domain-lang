@@ -76,10 +76,14 @@ class FeatureMatrixTests(unittest.TestCase):
         identifiers = {row["id"] for row in self.matrix["features"]}
         self.assertLessEqual({"k1-priority", "k2-maps-relations", "k3-ordered-folds",
                               "m1a-tiers-caps-floor", "quantity-native",
-                              "readable-sv-lg", "quest-half-even"}, identifiers)
+                              "readable-sv-lg", "quest-half-even", "settlement-withholding-deferment",
+                              "staged-deductions-caps", "fiscal-calendar-amended-terms",
+                              "generated-decisions", "generated-rejection-layers",
+                              "current-entitlement-cross-contract-transfer",
+                              "original-rate-returns-loss-meters"}, identifiers)
         gaps = {requirement for row in self.matrix["features"] if row["status"] == "gap"
                 for requirement in row["requirements"]}
-        self.assertLessEqual({"C08", "C10", "C15", "C16", "U23", "A11"}, gaps)
+        self.assertLessEqual({"C08", "C15", "U23", "A11"}, gaps)
 
 
 if __name__ == "__main__":

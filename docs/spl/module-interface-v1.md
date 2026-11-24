@@ -134,10 +134,24 @@ state. All calculations remain unissued; actual payments are supplied facts.
 Named emitted values are in `result["results"]`. `statements` and `detail`
 flatten one array level from their corresponding port roles. Reconciliation ports
 retain names. Review bundles include `results.json`, the pinned source/policy/
-descriptor closure, typed bindings, native artifacts when requested, diagnostics
-and an envelope written last. This file publication is not a database transaction
-or concurrency guarantee. Profile build pins include both machine-readable schema
+descriptor closure, typed bindings, native artifacts when requested and diagnostics.
+New artifact invocations use a private short `.runs/` directory and an atomic
+`completion.json` marker. Root files remain review mirrors. Consume completed
+artifacts through `spl_compiler.artifacts.load_completed_result`, which validates
+all referenced bytes and a stable marker; an interrupted rerun cannot reuse its
+previous successful completion. Completed blocked/preview objects remain
+inspectable, with final-success checks still required for state carry. See the
+[publication contract](artifact-publication-design.md) for 64 MiB result/8 MiB
+manifest bounds and normal-process guarantees. Historical artifacts without this
+marker remain historical review evidence; they are not silently repinned.
+This is not a database transaction or concurrency guarantee. Profile build pins include both machine-readable schema
 files in addition to the compiler and runtime identities.
+
+An optional `blocked_evidence_labels` runner argument maps actual diagnostic
+codes to unknown evidence labels before publication. Only payment, funding and
+recovery `*_evidence_status` fields with `not_assessed`/`no_event_supplied` values
+are admitted, only on blocked unfinalized results. It cannot assert completeness,
+change a successful result/digest or supply numeric finance or closing state.
 
 `policy_review` and `policy-review.json` retain the actual supplied parameter
 values, their declared domains and methodology flags, and the corresponding

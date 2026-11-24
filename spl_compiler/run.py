@@ -95,8 +95,13 @@ def project(p):
                 if allocation["effective"]["start"] > pp["start"] or allocation["effective"]["end"] < pp["end"]:
                     fail("ALLOCATION_DATE", fid)
                 child = allocation["allocation_id"]
-                receipts.append({"fact_id": child, "asset_id": targets[0], "amount": money(amount(f["amount"]) * exact(allocation["weight"])),
-                                 "cash_received_date": f["dates"]["cash_received_date"]})
+                receipt = {"fact_id": child, "asset_id": targets[0], "amount": money(amount(f["amount"]) * exact(allocation["weight"])),
+                           "cash_received_date": f["dates"]["cash_received_date"]}
+                if p["profile"] == "lg-cleared-v1":
+                    if f.get("channel") not in {"home_video", "other"}:
+                        fail("REQUIRED_CHANNEL_MAPPING", fid)
+                    receipt["is_home_video"] = f["channel"] == "home_video"
+                receipts.append(receipt)
                 lineage.append({"view_id": child, "fact_ids": [fid], "source_rows": [f["source_row"]],
                                 "allocation_id": allocation["allocation_id"], "policy_ref": allocation["authority_ref"], "weight": allocation["weight"]})
         else:
@@ -255,19 +260,20 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None)
     from .parser import parse
     from .readable import is_readable, parse_readable
     from .policies import policy_review
+    from .artifacts import ArtifactPublication
     p = deepcopy(package)
     result = {"status": "blocked", "statements": [], "detail": [], "closing_state": [], "trace": [],
               "diagnostics": [], "reconciliation": {}, "payment_evidence_status": "no_event_supplied",
               "issuance_status": "unissued", "manifest": p.get("manifest", {}) if isinstance(p, dict) else {}}
+    publication = ArtifactPublication(artifact_dir) if artifact_dir else None
     def publish():
-        if artifact_dir:
-            target = Path(artifact_dir)
-            target.mkdir(parents=True, exist_ok=True)
-            for name, field in [("statement", "statements"), ("detail", "detail"), ("trace", "trace"),
-                                ("closing-state", "closing_state"), ("diagnostics", "diagnostics"), ("reconciliation", "reconciliation")]:
-                write_json(target / (name + ".json"), result[field])
-            # Envelope is written last; consumers must check its status/digest.
-            write_json(target / "result.json", result)
+        if publication:
+            fields = {"statement.json": "statements", "detail.json": "detail",
+                "trace.json": "trace", "closing-state.json": "closing_state", "diagnostics.json": "diagnostics",
+                "reconciliation.json": "reconciliation"}
+            if "policy_review" in result:
+                fields["policy-review.json"] = "policy_review"
+            return publication.finish(result, fields)
         return result
     try:
         if backend not in {"compare", "reference", "lean"}:
@@ -301,7 +307,7 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None)
         result["semantic_run_digest"] = semantic
         result["input_dispositions"] = dispositions
         result["source_to_target_lineage"] = lineage
-        work = Path(artifact_dir) if artifact_dir else ROOT / ".lake/spl" / semantic
+        work = publication.work if publication else ROOT / ".lake/spl" / semantic
         work.mkdir(parents=True, exist_ok=True)
         write_json(work / "canonical-package.json", p)
         write_json(work / "policy-review.json", result["policy_review"])
@@ -414,13 +420,14 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None)
                                       "source_controls": [{"batch_id": b["batch_id"], "controls": b["control_totals"]} for b in p["source_batches"]],
                                       "state": [c["movement"] for c in closing], "amount_spaces_are_separate": True})
         result["result_digest"] = digest({k: v for k, v in result.items() if k not in {"manifest", "result_digest"}})
-        write_json(work / "statement.json", result["statements"])
-        write_json(work / "detail.json", result["detail"])
-        write_json(work / "trace.json", result["trace"])
-        write_json(work / "closing-state.json", result["closing_state"])
-        write_json(work / "reconciliation.json", result["reconciliation"])
-        write_json(work / "diagnostics.json", result["diagnostics"])
-        write_json(work / "result.json", result)
+        if not publication:
+            write_json(work / "statement.json", result["statements"])
+            write_json(work / "detail.json", result["detail"])
+            write_json(work / "trace.json", result["trace"])
+            write_json(work / "closing-state.json", result["closing_state"])
+            write_json(work / "reconciliation.json", result["reconciliation"])
+            write_json(work / "diagnostics.json", result["diagnostics"])
+            write_json(work / "result.json", result)
         return publish()
     except DataError as exc:
         result["diagnostics"] = [exc.diagnostic()]
@@ -428,6 +435,8 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None)
         result["diagnostics"] = [d.to_dict() for d in exc.diagnostics]
     except OSError as exc:
         result["diagnostics"] = [{"code": "IO_ERROR", "message": str(exc)}]
+    result.update(status="blocked", statements=[], detail=[], closing_state=[], reconciliation={})
+    result.pop("result_digest", None)
     return publish()
 
 

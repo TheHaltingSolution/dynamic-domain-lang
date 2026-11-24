@@ -1,5 +1,16 @@
 # Screen Participation Language design
 
+The active [finite completion plan](completion-plan.md) and
+[machine-readable backlog](completion-backlog.json) own the current engineering
+sequence. The [research](for-royalties-research-agent.md) and
+[design](for-language-design-agent.md) notes provide paste-ready external review
+requests with exact paths and reading order. Ready work continues while those
+specific answers are pending.
+
+Read the [active checkpoint](completion-checkpoint.md) before historical updates
+below. It indexes newer financial cohorts, finite interaction tests, measured
+trace optimization and the [artifact completion contract](artifact-publication-design.md).
+
 The [bounded conformance-validation guide](conformance-validation.md) records
 the completed first validation milestone: an executable feature/test matrix,
 independent seeded boundary controls, retained replay inputs and native IR

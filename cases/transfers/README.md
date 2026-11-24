@@ -1,0 +1,105 @@
+# Scoped current-entitlement transfers
+
+This synthetic C10 profile redistributes **supplied current-period entitlement
+facts** between explicitly authorized accounts in different agreements. The
+entitlement measure is the input stage; the fixture makes no assumption about
+gross/net computation, withholding order, payment order, issuance or bank
+settlement. Source entitlement 100 and an approved transfer 30 produce source
+70 and target 30. `external_cash_added = 0` is an accounting conservation check.
+
+The independent control is [contract_transfers.py](../../oracles/contract_transfers.py),
+authored separately from this executable schedule. Its
+[design](../../docs/spl/transfers-design.md), [policy](policy.md) and original
+[neutral facts](neutral.json) define this selected profile.
+
+## Coordinator envelope and real scopes
+
+The generic module wrapper supports one outer execution scope. Its legacy
+`agreement_id` field therefore contains `coordinator.id`, with fixed operator
+`coordinator-operator`, pool `coordinator-ledger` and purpose
+`coordination_envelope_only`. These are execution metadata, not a source or
+target financial agreement. The descriptor binds the supplied coordinator ID to
+that envelope.
+
+Every real endpoint retains its own explicit agreement, participant, pool and
+USD currency record. The SPL schedule pins the complete account-scope set in
+ordinary carried history, rejects undeclared endpoints, requires source and
+target agreements to differ, and checks each authorization and transaction
+against both genuine endpoint scopes. Scope evidence must cover the relevant
+account or both endpoints. The coordinator does not supply endpoint authority.
+This is an encoding using existing records and finite lists, not an intrinsic
+cross-contract type guarantee or a transfer service.
+
+## Calculation and history
+
+All declared authorizations, including unused ones, must have explicit approval,
+the exact current period, approved/recorded dates no later than `as_of`, strict
+observation before cutoff, a unique nonnegative sequence and a nonnegative
+maximum. Their complete graph must be acyclic. The schedule selects the
+lexicographically smallest available node at each topological step and applies
+that account's outgoing transactions in authorized sequence. Incoming current
+credits may fund downstream transactions; sequence cannot override graph
+dependencies. One authorization supports at most one current transaction.
+
+Original entitlement amounts alone initialize balances. Prior final balances
+are audit context and never available funds. Each transaction checks the source
+balance before changing either endpoint. Every account reports original,
+received, outgoing and final entitlement, with original scope and source/evidence
+references. Applied lines retain amount, authorization/source references,
+sequence and both before/after balances. Account and global conservation are
+checked before publication. A failure produces no financial results or closing
+state.
+
+History retains category-specific consumed entitlement, authorization and
+transaction IDs plus exact upstream original-line references (`artifact#line`).
+Distinct IDs or source views cannot make a consumed upstream line fresh. The
+last-period audit retains original entitlement facts, applied lines and account
+results. Current raw amount spelling (for example `0.10`) is carried separately
+as text into those original facts; exact tagged money drives all arithmetic.
+Original observation timestamp spellings similarly accompany exact Instant
+values in entitlement facts and applied transfer lines. Neutral export restores
+the original text, while chronological comparisons use the exact Instant. An
+equivalent-offset spelling change in supplied carried audit facts cannot match
+an unchanged actual predecessor snapshot.
+No historical amount string is used as new funds.
+
+The adapter performs structural/exact-number transport and mechanical upstream
+line-reference syntax checks. It supplies no solved balances, topology or
+financial totals, and imports no oracle. Carried runs require the actual generic
+closing state cell and its `prior_result_ref`, matched to the supplied neutral
+predecessor summary. This checks declared predecessor linkage and the supplied
+snapshot; it does not claim cryptographic authentication of external facts.
+
+## Reproduction and limits
+
+With the repository's pinned environment and existing native kernel:
+
+```powershell
+python -m cases.transfers.build_modules
+python -m unittest Tests.test_transfer_oracle Tests.test_transfer_modules -v
+```
+
+The generated canonical template is intentionally unbound. The builder binds
+fresh compiler/runtime/module identities when constructing an executable
+package. `TransferModuleTests` names native `compare` methods separately from
+reference-only methods. Successful compare methods check native IR and
+native-emitted Lean against the reference evaluator, then separately execute
+Lean generated by the Python emitter from the same bindings and compare
+every financial/account/transaction/state intermediate with the independent
+oracle. Negative execution may stop at an earlier wrapper validation; tests
+identify source-native diagnostics where asserted.
+
+The suite covers 70/30, downstream credits, outgoing sequence intermediates,
+exact fractions, serialized fresh-period 20/10 and empty-period zero balances,
+overdraw without fresh funds, consumed upstream aliases, cycles, unapproved or
+unknown endpoints, duplicate identities, scope/evidence/cutoff errors, complete
+account-set pinning and deterministic replay from the same opening state.
+
+Bounds are 1–16 accounts, 64 authorizations, 64 transactions and 256 entitlement
+facts per run. Finite scans, filters and folds preserve arbitrary text identities;
+their repeated membership scans have quadratic costs in several checks. These
+are engineering bounds, not a measured capacity promise. This profile excludes
+currency conversion, cycles, carry-forward of spendable balances, amendments of
+the account registry, inference of upstream entitlement stages, payment/refund
+execution and distributed coordination. Issuance remains unissued and bank
+payment evidence is not assessed by the generic wrapper.

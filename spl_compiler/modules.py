@@ -751,24 +751,40 @@ def _decode_output(value, typ):
     return decode_value(_input_transport(value, typ), typ, "result")
 
 
-def run_module_package(package, registry_root, *, backend="compare", artifact_dir=None):
+def run_module_package(package, registry_root, *, backend="compare", artifact_dir=None, blocked_evidence_labels=None):
     """Execute one registered connected scope with strict atomic finalization."""
     from .evaluator import evaluate
     from .lean_tools import compile_schedule, export_ir, interpret_schedule, lean
     from .run import normalize_target
+    from .artifacts import ArtifactPublication
+    unknown_fields = {"payment_evidence_status", "funding_evidence_status", "recovery_evidence_status"}
+    if blocked_evidence_labels is not None and (type(blocked_evidence_labels) is not dict or
+            any(type(code) is not str or type(labels) is not dict or not labels or
+                any(field not in unknown_fields or type(label) is not str or label not in {"not_assessed", "no_event_supplied"}
+                    for field, label in labels.items()) for code, labels in blocked_evidence_labels.items())):
+        raise ValueError("INVALID_BLOCKED_EVIDENCE_LABELS")
     p = deepcopy(package)
     result = {"status": "blocked", "results": {}, "statements": [], "detail": [], "closing_state": [], "trace": [],
               "diagnostics": [], "reconciliation": {}, "policy_review": {}, "manifest": p.get("manifest", {}) if isinstance(p, dict) else {},
               "issuance_status": "unissued", "payment_evidence_status": "not_assessed"}
+    publication = ArtifactPublication(artifact_dir) if artifact_dir else None
 
     def publish():
-        if artifact_dir:
-            destination = Path(artifact_dir)
-            for filename, field in [("results", "results"), ("statement", "statements"), ("detail", "detail"), ("trace", "trace"),
-                                    ("closing-state", "closing_state"), ("reconciliation", "reconciliation"),
-                                    ("diagnostics", "diagnostics"), ("policy-review", "policy_review")]:
-                write_json(destination / (filename + ".json"), result[field])
-            write_json(destination / "result.json", result)
+        if result["status"] == "blocked" and blocked_evidence_labels:
+            selected = {}
+            for diagnostic in result["diagnostics"]:
+                for field, label in blocked_evidence_labels.get(diagnostic["code"], {}).items():
+                    if field in selected and selected[field] != label:
+                        raise ValueError("AMBIGUOUS_BLOCKED_EVIDENCE_LABELS")
+                    selected[field] = label
+            if selected:
+                if result.get("result_digest") or result["results"] or result["closing_state"]:
+                    raise ValueError("BLOCKED_RESULT_FINALIZED")
+                result.update(selected)
+        if publication:
+            return publication.finish(result, {"results.json": "results", "statement.json": "statements",
+                "detail.json": "detail", "trace.json": "trace", "closing-state.json": "closing_state",
+                "reconciliation.json": "reconciliation", "diagnostics.json": "diagnostics", "policy-review.json": "policy_review"})
         return result
 
     try:
@@ -786,7 +802,7 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
         logical_package["manifest"].pop("run_id")
         semantic = digest({"package": logical_package, "closure": resolved.references})
         result["policy_review"] = _module_policy_review(p, resolved)
-        work = Path(artifact_dir) if artifact_dir else Path(registry_root) / ".lake/module-runs" / semantic
+        work = publication.work if publication else Path(registry_root) / ".lake/module-runs" / semantic
         work.mkdir(parents=True, exist_ok=True)
         write_json(work / "canonical-package.json", p)
         write_json(work / "bindings.json", {"inputs": inputs, "openings": openings})
@@ -890,6 +906,8 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
         result["diagnostics"] = [diagnostic.to_dict() for diagnostic in error.diagnostics]
     except OSError as error:
         result["diagnostics"] = [{"code": "IO_ERROR", "message": str(error)}]
+    result.update(status="blocked", results={}, statements=[], detail=[], closing_state=[], reconciliation={})
+    result.pop("result_digest", None)
     return publish()
 
 

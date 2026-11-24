@@ -1,0 +1,299 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:deduction-stages",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "stages",
+        "name": "calculate",
+        "parameters": [
+          {
+            "name": "gross",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "net",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "deduction",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "share",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          },
+          {
+            "name": "fee_rate",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          },
+          {
+            "name": "variant",
+            "type": {
+              "args": [],
+              "name": "Text"
+            }
+          }
+        ],
+        "result": {
+          "args": [],
+          "fields": [
+            [
+              "after_fee",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "before_post_share",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "cost_stage",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "fee",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "fee_base",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "fee_base_kind",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "participation_basis",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "stage_net",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "gross",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "net",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "deduction",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "share",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "fee_rate",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "variant",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "STAGES_SELECTED"
+    ],
+    "discriminating_cases": [
+      "deduction-six-variants",
+      "deduction-cap-carry",
+      "deduction-no-original-cost-reuse"
+    ],
+    "evidence_class": "synthetic",
+    "id": "SYNTHETIC-STAGED-DEDUCTIONS-01",
+    "readable": {
+      "locator": "cases/deductions/policy.md",
+      "sha256": "2a8d877d620f372cd4f94ea7a4522612fb3c3aeb80ebcc35427092a24473e91b"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/deductions/stages.spl",
+    "sha256": "7a0e831c5fe3ee2e2711b00778665cdb9be3f68db7349659ddd323413d441774"
+  },
+  "state": []
+}

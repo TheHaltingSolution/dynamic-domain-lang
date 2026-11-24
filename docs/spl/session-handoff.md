@@ -1,5 +1,11 @@
 # SPL compiler session handoff
 
+**Active completion:** first read [the current checkpoint](completion-checkpoint.md),
+the [finite plan](completion-plan.md) and [backlog](completion-backlog.json).
+New independent financial slices, generated validation and measured trace
+transport now supersede more of the historical absence statements below.
+The older campaign and handoff retain their dated scope.
+
 **Continuation update, 23 November 2026:** the initial feature/test matrix and
 bounded validation harness described below are now implemented and verified.
 Read the [current validation guide](conformance-validation.md) and

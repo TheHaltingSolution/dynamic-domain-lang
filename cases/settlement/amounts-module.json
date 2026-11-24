@@ -1,0 +1,228 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:settlement-amounts",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "amounts",
+        "name": "calculate",
+        "parameters": [
+          {
+            "name": "new_earned",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "prior_unissued",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          },
+          {
+            "name": "withholding_rate",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          },
+          {
+            "name": "minimum_payout",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "USD"
+                }
+              ],
+              "name": "Money"
+            }
+          }
+        ],
+        "result": {
+          "args": [],
+          "fields": [
+            [
+              "earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "issuance_candidate",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "net_earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "new_due",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "withheld",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "new_earned",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "prior_unissued",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "withholding_rate",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "minimum_payout",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "AMOUNTS_SELECTED"
+    ],
+    "discriminating_cases": [
+      "settlement-baseline",
+      "threshold-equality",
+      "old-issued-below-threshold",
+      "three-period-carry"
+    ],
+    "evidence_class": "synthetic",
+    "id": "SYNTHETIC-SETTLEMENT-01",
+    "readable": {
+      "locator": "cases/settlement/policy.md",
+      "sha256": "f227a2f11b72be8438558f32dafd9fb05923a5895117fb6b25efaccb64138475"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/settlement/amounts.spl",
+    "sha256": "8ec8f7781f8d4111f176e28e441807c424cd03520a63c96d4772d25cce59ce95"
+  },
+  "state": []
+}

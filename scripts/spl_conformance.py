@@ -27,6 +27,8 @@ from spl_compiler.parser import parse
 from spl_compiler.run import identities, normalize_target
 from spl_compiler.modules import module_identities
 from validation.generated_cases import generate_cases
+from validation.decision_cases import generate_decision_cases
+from validation.interaction_cases import generate_interaction_cases, coverage_contract
 from validation.trace_coverage import summarize_trace
 
 MATRIX = ROOT / "docs/spl/feature-test-matrix.json"
@@ -54,9 +56,9 @@ def source_names():
     names = set(git("ls-files", "-z").decode("utf-8").split("\0")) - {""}
     for folder in (ROOT / "validation", ROOT / "Tests"):
         names.update(p.relative_to(ROOT).as_posix() for p in folder.glob("*.py"))
-    for folder in (ROOT / "SPL", ROOT / "spl_compiler", ROOT / "schemas"):
+    for folder in (ROOT / name for name in ("SPL", "spl_compiler", "schemas", "oracles", "cases", "Demos", "scripts", "docs/spl")):
         names.update(p.relative_to(ROOT).as_posix() for p in folder.rglob("*")
-                     if p.is_file() and p.suffix in {".lean", ".py", ".json"})
+                     if p.is_file() and p.suffix in {".lean", ".py", ".json", ".spl", ".md", ".csv"})
     names.update(("scripts/spl_conformance.py", "docs/spl/feature-test-matrix.json"))
     return names
 
@@ -242,6 +244,8 @@ def main(argv=None):
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=20261123)
     parser.add_argument("--count", type=int, default=8)
+    parser.add_argument("--corpus", choices=["boundaries", "decisions", "combined", "interactions"], default="boundaries",
+                        help="amount boundaries, finite decisions, both, or the finite rounding interaction cover")
     parser.add_argument("--generated-only", action="store_true", help="leave matrix witnesses explicitly unexecuted")
     parser.add_argument("--replay-cases", type=Path, help="JSON list of retained generated cases; run with --generated-only")
     args = parser.parse_args(argv)
@@ -250,6 +254,13 @@ def main(argv=None):
         parser.error("Clear backend overrides before a campaign: " + ", ".join(active))
     cases = (loads(args.replay_cases.read_bytes()) if args.replay_cases
              else generate_cases(seed=args.seed, count=args.count))
+    if not args.replay_cases:
+        if args.corpus == "decisions":
+            cases = generate_decision_cases(seed=args.seed)
+        elif args.corpus == "combined":
+            cases += generate_decision_cases(seed=args.seed)
+        elif args.corpus == "interactions":
+            cases = generate_interaction_cases(seed=args.seed)
     if isinstance(cases, dict):
         cases = [cases]
     if not isinstance(cases, list) or not 1 <= len(cases) <= 64:
@@ -260,6 +271,8 @@ def main(argv=None):
     started = time.perf_counter()
     manifest = freeze_sources(args.output)
     dump(args.output / "cases.json", cases)
+    if not args.replay_cases and args.corpus == "interactions":
+        dump(args.output / "interaction-contract.json", coverage_contract())
     metadata = {"format": "spl-conformance-campaign/1", "status": "running",
                 "python": sys.version, "platform": platform.platform(), "argv": sys.argv,
                 "lean_toolchain": (ROOT / "lean-toolchain").read_text().strip(),
@@ -271,6 +284,7 @@ def main(argv=None):
                 "generated_backends": ["reference", "native_ir", "native_emitted"],
                 "source_manifest": "source-manifest.json", "case_seeds": sorted({c["seed"] for c in cases}),
                 "case_count": len(cases), "input_mode": "replay" if args.replay_cases else "generated",
+                "corpus": "retained_cases" if args.replay_cases else args.corpus,
                 "matrix_execution": "not_executed" if args.generated_only else "requested",
                 "source_stability": "Requires a stable checkout before startup; snapshot/end checks are not transactional import isolation.",
                 "scope": "Disclosed bounded development validation; not held-out evaluation or a compiler proof."}
@@ -291,7 +305,8 @@ def main(argv=None):
         "feature_execution": "feature-execution.json",
         "generated_feature_combinations": [{"case": row["id"], "features": row["features"], "status": row["status"]}
                                            for row in generated],
-        "limits": ["No exhaustive or pairwise combination coverage claimed.", "Mutation campaign and workload capacity remain future work."]})
+        "finite_configuration_cover": (coverage_contract() if not args.replay_cases and args.corpus == "interactions" else None),
+        "limits": ["Only an explicitly attached finite configuration contract receives pair/triple coverage credit; no all-program or emitted-target coverage claim.", "Mutation campaign and workload capacity remain separate work."]})
     changed = changed_sources(manifest)
     metadata.update({"status": "passed" if not changed and all(row["status"] == "passed" for row in generated)
                      and witnesses["status"] in {"passed", "not_executed"} else "failed",

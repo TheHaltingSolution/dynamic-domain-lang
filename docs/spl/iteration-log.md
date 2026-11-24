@@ -1,5 +1,43 @@
 # SPL iteration log
 
+## 23 November 2026: C1 slices, atomic publication and bounded performance
+
+The [active checkpoint](completion-checkpoint.md) indexes separate frozen
+cohorts for selection, staged deductions, settlement, fiscal/calendar terms,
+returns, authorized transfers, escalation and seven term-guarantee recipes.
+Independent original-fact controls remain separate from compiler agreement.
+The declared Id profile has 15 executed checks preserving Unicode Text business
+identities. New payment-aware offsets and cent-allocation controls await their
+separate native implementations. No new combined full-suite release is claimed.
+
+The LG controls exposed a missing child-receipt channel; the canonical repair
+preserves original classification and financial expectations. Atomic publication
+passes 19 frozen helper/runner checks, including 24 interruption points and actual
+native state/carry. A clean 94-job build and both smokes pass. The historical
+`0.4.3-dev` baseline remains unchanged; current implementation pins are recorded
+in [implementation.md](implementation.md).
+
+Measured trace profiling and exact old/new JSON/wire controls support a fact-ID
+collector optimization: observed 1,000-record audit 14.483345 -> 9.269901 seconds.
+The separate pure emitted settlement is 4.715209 ms/call at 1,000 records. A new
+10,000-record probe passes compiled financial controls in 0.241125 seconds but
+fails the required audit's observation/logical-byte limits; reader and successor
+closes are not executed, and no audited financial state is consumable. No p95 or
+whole-close SLA follows from these observations.
+
+The current finite matrix has 33 rows, 28 witnessed variations, 5 explicit gaps
+and 41 selectors. Its configuration corpus covers 47 selected cells of a declared
+160-cell rounding domain, 86/86 pairs and all 40 safe mode/stage/sign triples.
+These are explicit bounded denominators, not percentages of all programs or C1.
+
+[RR04/LD03 responses](rr04-ld03-integration.md) resolve several policy questions
+and add the missing C10 burden variation, bringing the current task inventory
+to 72. Task counts remain planning data. The owner is discussing mixed-currency
+contracts as a dynamicity demonstration; native currency work remains gated
+until that research-claim decision is explicit. Source LF normalization and
+regenerated pins have their own retained native follow-ups so Git's clean
+filter cannot silently invalidate descriptors.
+
 ## 23 November 2026: first bounded conformance campaign verified
 
 Continued the session handoff using three delegated workstreams for the matrix,

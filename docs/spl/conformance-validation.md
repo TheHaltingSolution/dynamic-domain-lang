@@ -1,5 +1,27 @@
 # Bounded conformance validation
 
+Current continuation: the mutable matrix has 33 rows: 28 witnessed variations
+and five explicit gaps, mapped to 41 unittest selectors. These include the
+bounded original-rate returns and authorized current-entitlement transfers.
+The counts and hashes below describe the original 12-row/fourteen-selector
+campaign, whose matrix and source bytes remain archived. New methods and layers
+have separate execution records; a new combined 41-selector campaign is not
+claimed here.
+
+`--corpus decisions` selects twelve cells over six source templates; `--corpus
+combined` adds those cells to the original amount boundaries. Successful else,
+Boolean short circuits, priority zero/fallback/tie, demanded failures and actual
+output discard now have three-backend witnesses. The separately retained review
+is `artifacts/spl/decision-corpus-review-20261123/summary.json` under the external
+project root. `scripts/spl_negative_conformance.py --output NEW_DIRECTORY` retains
+four rejected frontend variants, two fabricated native IR mutations plus a valid
+control, and a canonical scope rejection as distinct execution layers. Its latest
+saved record is `artifacts/spl/negative-conformance-20261123-c/summary.json`.
+The [rounding interaction cohort](rounding-interaction-design.md) separately passes
+47 configurations through three backends, with a declared160-cell denominator,
+86/86 configuration pairs and all40 safe mode/stage/sign triples. These finite
+cases do not establish exhaustive grammar or all-program combination coverage.
+
 The [feature/test matrix](feature-test-matrix.json) maps 12 implemented variations
 to 14 existing unittest methods and keeps six explicit gaps. `witnessed` in the
 inventory means that the test's assertions and execution paths were inspected;

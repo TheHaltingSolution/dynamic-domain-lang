@@ -1,0 +1,204 @@
+{
+  "decisions": [
+    {
+      "decision_id": "SELECTION_SELECTED",
+      "evidence_ref": "selected-synthetic-original-rules",
+      "policy_id": "SYNTHETIC-SELECTION-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "agreement_id": "selection-agreement",
+        "approval_ref": "SELECTION_SELECTED",
+        "approved": true,
+        "asset_id": "selection-title",
+        "authority_rule_id": "receipt",
+        "evidence_ref": "authority-receipt",
+        "id": "authority-receipt",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "source_kind": "synthetic-explicit-rule-authority",
+        "source_ref": "synthetic-original-authority-receipt"
+      },
+      {
+        "agreement_id": "selection-agreement",
+        "approval_ref": "SELECTION_SELECTED",
+        "approved": true,
+        "asset_id": "selection-title",
+        "authority_rule_id": "primary",
+        "evidence_ref": "authority-primary",
+        "id": "authority-primary",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "source_kind": "synthetic-explicit-rule-authority",
+        "source_ref": "synthetic-original-authority-primary"
+      },
+      {
+        "agreement_id": "selection-agreement",
+        "approval_ref": "SELECTION_SELECTED",
+        "approved": true,
+        "asset_id": "selection-title",
+        "authority_rule_id": "competing",
+        "evidence_ref": "authority-competing",
+        "id": "authority-competing",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "source_kind": "synthetic-explicit-rule-authority",
+        "source_ref": "synthetic-original-authority-competing"
+      },
+      {
+        "agreement_id": "selection-agreement",
+        "approval_ref": "SELECTION_SELECTED",
+        "approved": true,
+        "asset_id": "selection-title",
+        "authority_rule_id": "unsafe",
+        "evidence_ref": "authority-unsafe",
+        "id": "authority-unsafe",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "source_kind": "synthetic-explicit-rule-authority",
+        "source_ref": "synthetic-original-authority-unsafe"
+      },
+      {
+        "agreement_id": "selection-agreement",
+        "approval_ref": "SELECTION_SELECTED",
+        "approved": true,
+        "asset_id": "selection-title",
+        "authority_rule_id": "fallback",
+        "evidence_ref": "authority-fallback",
+        "id": "authority-fallback",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "source_kind": "synthetic-explicit-rule-authority",
+        "source_ref": "synthetic-original-authority-fallback"
+      }
+    ]
+  },
+  "inputs": {
+    "competing": {
+      "agreement_id": "selection-agreement",
+      "asset_id": "selection-title",
+      "body_divisor": "1",
+      "channel": "digital",
+      "effective": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "enabled": false,
+      "evidence_ref": "authority-competing",
+      "id": "competing",
+      "observed_at": "2026-04-02T00:00:00Z",
+      "predicate_divisor": "1",
+      "rate": "0.2",
+      "source_ref": "synthetic-original-rule-competing"
+    },
+    "primary": {
+      "agreement_id": "selection-agreement",
+      "asset_id": "selection-title",
+      "body_divisor": "1",
+      "channel": "digital",
+      "effective": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "enabled": true,
+      "evidence_ref": "authority-primary",
+      "id": "primary",
+      "observed_at": "2026-04-02T00:00:00Z",
+      "predicate_divisor": "1",
+      "rate": "0.2",
+      "source_ref": "synthetic-original-rule-primary"
+    },
+    "project": "selection-title",
+    "receipt": {
+      "agreement_id": "selection-agreement",
+      "amount": {
+        "currency": "USD",
+        "value": "100"
+      },
+      "asset_id": "selection-title",
+      "channel": "digital",
+      "effective_date": "2026-05-01",
+      "evidence_ref": "authority-receipt",
+      "id": "receipt-1",
+      "observed_at": "2026-05-02T00:00:00Z",
+      "source_ref": "synthetic-original-receipt"
+    },
+    "scope": {
+      "agreement_id": "selection-agreement",
+      "participant_id": "selection-participant",
+      "period": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "pool_id": "selection-pool"
+    },
+    "unsafe": {
+      "agreement_id": "selection-agreement",
+      "asset_id": "selection-title",
+      "body_divisor": "0",
+      "channel": "digital",
+      "effective": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "enabled": false,
+      "evidence_ref": "authority-unsafe",
+      "id": "unsafe",
+      "observed_at": "2026-04-02T00:00:00Z",
+      "predicate_divisor": "1",
+      "rate": "0.2",
+      "source_ref": "synthetic-original-rule-unsafe"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-07-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-07-01",
+      "start": "2026-04-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "selection-baseline-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-SCOPED-SELECTION"
+  },
+  "module_ref": {
+    "id": "synthetic:selection-unique_no_fallback",
+    "locator": "cases/selection/selection-unique_no_fallback-module.json",
+    "revision": "1",
+    "sha256": "2cbf464605a2b2bcad21f3f9cf9b94090b8f23ee8e64615f6303c25a2f281c6c"
+  },
+  "parameters": {
+    "cutoff": "2026-07-03T00:00:00Z",
+    "fallback": {
+      "body_divisor": "1",
+      "evidence_ref": "authority-fallback",
+      "rate": "0.1",
+      "source_ref": "synthetic-explicit-fallback"
+    },
+    "method": "unique_no_fallback",
+    "module_id": "synthetic:selection-unique_no_fallback"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "selection-agreement",
+    "asset_ids": [
+      "selection-title"
+    ],
+    "participant_ids": [
+      "selection-participant"
+    ],
+    "pool_id": "selection-pool",
+    "purpose": "synthetic-scoped-rule-entitlement"
+  },
+  "state_cells": []
+}

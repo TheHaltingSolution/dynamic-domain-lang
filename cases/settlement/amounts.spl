@@ -1,0 +1,21 @@
+// Pure amounts for a selected supplied-rate/threshold policy.
+// The calling schedule validates original facts, authority and payment lineage.
+schedule SettlementAmounts language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input new_earned: Money<USD>;
+  input prior_unissued: Money<USD>;
+  input withholding_rate: Ratio;
+  input minimum_payout: Money<USD>;
+  require new_earned >= USD 0 and prior_unissued >= USD 0 else "SETTLEMENT_NEGATIVE_BASIS";
+  require withholding_rate >= 0.0 and withholding_rate <= 1.0 else "SETTLEMENT_RATE_RANGE";
+  require minimum_payout >= USD 0 else "SETTLEMENT_NEGATIVE_THRESHOLD";
+  require quantize(new_earned, USD 0.01, "half_even") == new_earned and
+    quantize(prior_unissued, USD 0.01, "half_even") == prior_unissued and
+    quantize(minimum_payout, USD 0.01, "half_even") == minimum_payout else "SETTLEMENT_MINOR_UNIT";
+  define withheld = quantize(new_earned * withholding_rate, USD 0.01, "half_even");
+  define net_earned = new_earned - withheld;
+  // Previously net unissued amounts are neither reearned nor rewithheld.
+  define issuance_candidate = prior_unissued + net_earned;
+  define new_due = if issuance_candidate >= minimum_payout then issuance_candidate else USD 0;
+  define amounts = {earned: new_earned, withheld: withheld, net_earned: net_earned,
+    issuance_candidate: issuance_candidate, new_due: new_due};
+}

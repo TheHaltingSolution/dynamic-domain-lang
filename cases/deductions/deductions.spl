@@ -1,0 +1,105 @@
+// Scoped original-cost history and exact cumulative cap; no residual reuse.
+schedule StagedDeductions language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input project: Id<Asset>;
+  input fact_scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text};
+  input case_id: Text;
+  input cutoff: Instant;
+  input policy_id: Text;
+  input policy_revision: Text;
+  input variant: Text;
+  input share: Ratio;
+  input fee_rate: Ratio;
+  input cap: Money<USD>;
+  input eligible_categories: List<Text>;
+  input rounding: Text;
+  input allocation: Text;
+  input evidence_class: Text;
+  input receipts: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, gross_amount: Money<USD>, net_amount: Money<USD>, effective_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text}>;
+  input costs: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, category: Text, sequence: Int, effective_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text}>;
+  input evidence: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, observed_at: Instant, source_kind: Text, approval_ref: Id<Decision>, evidence_ref: Text, kind: Text}>;
+  input supplied_opening: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, purpose: Text, policy_id: Text, policy_revision: Text, variant: Text, cap_limit: Money<USD>, cap_consumed: Money<USD>, cost_history: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, category: Text, sequence: Int, effective_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text, deducted: Money<USD>, disposition: Text, recognized_period: Period}>, boundary: Date, origin: Text, source_case_id: Text};
+  input predecessor: Option<{source_case_id: Text, period: Period, closing_state: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, purpose: Text, policy_id: Text, policy_revision: Text, variant: Text, cap_limit: Money<USD>, cap_consumed: Money<USD>, cost_history: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, category: Text, sequence: Int, effective_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text, deducted: Money<USD>, disposition: Text, recognized_period: Period}>, boundary: Date, origin: Text, source_case_id: Text}}>;
+  opening ledger: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, purpose: Text, policy_id: Text, policy_revision: Text, variant: Text, cap_limit: Money<USD>, cap_consumed: Money<USD>, cost_history: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, category: Text, sequence: Int, effective_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text, deducted: Money<USD>, disposition: Text, recognized_period: Period}>, boundary: Date, origin: Text, source_case_id: Text} from "deductions/cumulative-original-costs";
+  require policy_id == "SYNTHETIC-STAGED-DEDUCTIONS-01" and policy_revision == "1" and rounding == "exact_no_rounding" and allocation == "sequence_priority_no_residual" and evidence_class == "research_assumption" else "DEDUCTION_POLICY";
+  require variant == "pre_basis_gross_fee" or variant == "pre_basis_net_fee" or variant == "pre_share_gross_fee" or variant == "pre_share_net_fee" or variant == "post_share_gross_fee" or variant == "post_share_net_fee" else "DEDUCTION_VARIANT_REQUIRED";
+  require share >= 0.0 and share <= 1.0 and fee_rate >= 0.0 and fee_rate <= 1.0 else "DEDUCTION_RATE_DOMAIN";
+  require cap >= USD 0 else "DEDUCTION_NEGATIVE_MONEY";
+  require case_id != "" else "DEDUCTION_IDENTITY_REQUIRED";
+  require fact_scope.contract_id == scope.agreement_id and fact_scope.participant_id == scope.participant_id and fact_scope.pool_id == scope.pool_id and fact_scope.asset_id == project and fact_scope.currency == "USD" else "DEDUCTION_FACT_SCOPE";
+  define checked_categories = for each category in eligible_categories {
+    require category != "" else "DEDUCTION_IDENTITY_REQUIRED";
+    require sum(filter(eligible_categories, other => other == category), other => 1) == 1 else "DEDUCTION_CATEGORY_LIST";
+    yield category;
+  };
+  require ledger == supplied_opening else "DEDUCTION_OPENING_SNAPSHOT";
+  require ledger.scope == fact_scope and ledger.purpose == "distribution_deduction" else "DEDUCTION_OPENING_SCOPE";
+  require ledger.policy_id == policy_id and ledger.policy_revision == policy_revision and ledger.variant == variant else "DEDUCTION_OPENING_METHOD";
+  require ledger.boundary == scope.period.start else "DEDUCTION_OPENING_BOUNDARY";
+  require ledger.cap_limit == cap and ledger.cap_consumed >= USD 0 and ledger.cap_consumed <= cap else "DEDUCTION_CAP_STATE";
+  require if ledger.origin == "genesis" then ledger.cap_consumed == USD 0 and sum(ledger.cost_history, row => 1) == 0 and ledger.source_case_id == "genesis" and not is_some(predecessor) else ledger.origin == "prior_result" and is_some(predecessor) else "DEDUCTION_GENESIS";
+  require ledger.origin == "genesis" or (require_some(predecessor, "DEDUCTION_PREDECESSOR_REQUIRED").closing_state == ledger and require_some(predecessor, "DEDUCTION_PREDECESSOR_REQUIRED").source_case_id == ledger.source_case_id and ledger.source_case_id != case_id and require_some(predecessor, "DEDUCTION_PREDECESSOR_REQUIRED").period.start < require_some(predecessor, "DEDUCTION_PREDECESSOR_REQUIRED").period.end and require_some(predecessor, "DEDUCTION_PREDECESSOR_REQUIRED").period.end == scope.period.start) else "DEDUCTION_PREDECESSOR_MISMATCH";
+  define checked_evidence = for each support in evidence {
+    require support.id != "" and support.source_kind != "" else "DEDUCTION_IDENTITY_REQUIRED";
+    require sum(filter(evidence, other => other.id == support.id), other => 1) == 1 else "DEDUCTION_DUPLICATE_ID";
+    require support.scope == fact_scope else "DEDUCTION_EVIDENCE_SCOPE";
+    require support.observed_at < cutoff else "DEDUCTION_EVIDENCE_CUTOFF";
+    yield support;
+  };
+  define checked_history = for each row in ledger.cost_history {
+    require row.id != "" and row.source_ref != "" and row.category != "" else "DEDUCTION_IDENTITY_REQUIRED";
+    require sum(filter(ledger.cost_history, other => other.id == row.id), other => 1) == 1 else "DEDUCTION_DUPLICATE_ID";
+    require row.scope == fact_scope else "DEDUCTION_FACT_SCOPE";
+    require row.observed_at < cutoff else "DEDUCTION_FACT_CUTOFF";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "DEDUCTION_FACT_EVIDENCE";
+    require row.recognized_period.start <= row.effective_date and row.effective_date < row.recognized_period.end and row.recognized_period.end <= scope.period.start else "DEDUCTION_HISTORICAL_PERIOD";
+    require row.sequence >= 0 else "DEDUCTION_COST_SEQUENCE";
+    require row.amount >= USD 0 and row.deducted >= USD 0 else "DEDUCTION_NEGATIVE_MONEY";
+    require (row.disposition == "excluded_category" and row.deducted == USD 0) or (row.disposition == "eligible_full" and row.deducted == row.amount) or (row.disposition == "eligible_capped" and row.deducted < row.amount) else "DEDUCTION_HISTORICAL_CONSUMPTION";
+    yield row;
+  };
+  require sum(checked_history, row => row.deducted) == ledger.cap_consumed else "DEDUCTION_CAP_HISTORY_RECONCILIATION";
+  define checked_receipts = for each row in receipts {
+    require row.id != "" and row.source_ref != "" else "DEDUCTION_IDENTITY_REQUIRED";
+    require sum(filter(receipts, other => other.id == row.id), other => 1) == 1 else "DEDUCTION_DUPLICATE_ID";
+    require row.scope == fact_scope else "DEDUCTION_FACT_SCOPE";
+    require row.observed_at < cutoff else "DEDUCTION_FACT_CUTOFF";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "DEDUCTION_FACT_EVIDENCE";
+    require in_period(row.effective_date, scope.period) else "DEDUCTION_FACT_PERIOD";
+    require row.gross_amount >= USD 0 and row.net_amount >= USD 0 else "DEDUCTION_NEGATIVE_MONEY";
+    require row.net_amount <= row.gross_amount else "DEDUCTION_RECEIPT_VIEWS";
+    yield row;
+  };
+  define checked_costs = for each row in costs {
+    require row.id != "" and row.source_ref != "" and row.category != "" else "DEDUCTION_IDENTITY_REQUIRED";
+    require sum(filter(costs, other => other.id == row.id), other => 1) == 1 else "DEDUCTION_DUPLICATE_ID";
+    require sum(filter(checked_history, other => other.id == row.id), other => 1) == 0 else "DEDUCTION_COST_ALREADY_RECOGNIZED";
+    require row.scope == fact_scope else "DEDUCTION_FACT_SCOPE";
+    require row.observed_at < cutoff else "DEDUCTION_FACT_CUTOFF";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "DEDUCTION_FACT_EVIDENCE";
+    require in_period(row.effective_date, scope.period) else "DEDUCTION_FACT_PERIOD";
+    require row.amount >= USD 0 else "DEDUCTION_NEGATIVE_MONEY";
+    require row.sequence >= 0 else "DEDUCTION_COST_SEQUENCE";
+    require sum(filter(costs, other => other.sequence == row.sequence), other => 1) == 1 else "DEDUCTION_SEQUENCE_TIE";
+    yield row;
+  };
+  define empty_history: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, category: Text, sequence: Int, effective_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text, deducted: Money<USD>, disposition: Text, recognized_period: Period}> = [];
+  define admitted = ordered_fold checked_costs from {used: ledger.cap_consumed, lines: empty_history} by key => key.sequence identified by original => original.sequence ties "reject" with state, row {
+    define eligible = sum(filter(checked_categories, category => category == row.category), category => 1) == 1;
+    define deducted = if eligible then min(row.amount, cap - state.used) else USD 0;
+    define line = {id: row.id, scope: row.scope, amount: row.amount, category: row.category, sequence: row.sequence, effective_date: row.effective_date, observed_at: row.observed_at, source_ref: row.source_ref, evidence_ref: row.evidence_ref, deducted: deducted, disposition: if not eligible then "excluded_category" else if deducted == row.amount then "eligible_full" else "eligible_capped", recognized_period: scope.period};
+    yield {used: state.used + deducted, lines: append(state.lines, line)};
+  };
+  define gross = sum(checked_receipts, row => row.gross_amount);
+  define net = sum(checked_receipts, row => row.net_amount);
+  define eligible_costs = sum(filter(checked_costs, row => sum(filter(checked_categories, category => category == row.category), category => 1) == 1), row => row.amount);
+  define excluded_costs = sum(filter(checked_costs, row => sum(filter(checked_categories, category => category == row.category), category => 1) == 0), row => row.amount);
+  define deducted_total = admitted.used - ledger.cap_consumed;
+  define financial = deduction_stages(gross, net, deducted_total, share, fee_rate, variant);
+  define history = sort_by(concat(checked_history, admitted.lines), row => tuple(row.recognized_period.start, row.sequence, row.id));
+  require admitted.used >= ledger.cap_consumed and admitted.used <= cap and sum(history, row => row.deducted) == admitted.used and sum(admitted.lines, row => row.deducted) == deducted_total else "DEDUCTION_RECONCILIATION";
+  closing ledger = {scope: fact_scope, purpose: "distribution_deduction", policy_id: policy_id, policy_revision: policy_revision, variant: variant, cap_limit: cap, cap_consumed: admitted.used, cost_history: history, boundary: scope.period.end, origin: "prior_result", source_case_id: case_id};
+  emit "comparison" = {source_case_id: case_id, period: scope.period, variant: variant, cost_stage: financial.cost_stage, fee_base_kind: financial.fee_base_kind, gross_receipts: gross, net_receipts: net, eligible_costs: eligible_costs, excluded_costs: excluded_costs, admitted_deduction: deducted_total, eligible_unadmitted: eligible_costs - deducted_total, opening_cap_consumed: ledger.cap_consumed, cap_available: cap - ledger.cap_consumed, stage_net: financial.stage_net, fee_base: financial.fee_base, fee: financial.fee, after_fee: financial.after_fee, participation_basis: financial.participation_basis, before_post_share: financial.before_post_share, earned: financial.earned, closing_cap_consumed: admitted.used, closing_cap_available: cap - admitted.used, receipt_ids: sort_by(map(checked_receipts, row => row.id), identity => identity)};
+  emit "cost_lines" = admitted.lines;
+  emit "reconciliation" = sum(history, row => row.deducted) == admitted.used;
+}

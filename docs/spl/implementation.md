@@ -1,5 +1,60 @@
 # SPL compiler: reusable kernel and canonical methods
 
+## Active C1 continuation
+
+The [finite plan](completion-plan.md), [backlog](completion-backlog.json) and
+[checkpoint](completion-checkpoint.md) own the remaining feature, performance
+and validation work. Separate verified registered slices include six staged
+deduction/fee variants and cost history, supplied withholding/threshold/
+obligation carry, finite fiscal/calendar terms, original-rate returns/loss
+meters and authorized current-entitlement cross-contract coordination. Their
+independent original-fact controls precede the SPL implementations. Each case
+README and archived cohort records its exact scope; this is not a complete C1
+release or a new combined full-suite result.
+
+Dedicated SV/LG original-fact controls exposed a real LG projection defect:
+allocated receipts omitted `is_home_video`. The projector now preserves the
+original channel and rejects missing classification before calculation. The
+post-repair 22-method LG cohort passes without changing financial expectations.
+The repair's 137052... identity remains the dated fingerprint for those archives.
+
+Measured trace profiling then identified node-to-JSON conversion as a major
+cost. A HashSet collector replaces repeated fact-ID lists/deduplication while
+retaining the exact final lexical ordering and all other node fields. All 34
+focused methods pass, including 560 full legacy formatter comparisons; complete
+mixed-cohort wire bytes and independent financial controls are identical. The
+observed 1,000-record native audit decreases from 14.483345 to 9.269901 seconds.
+This is neither a production percentile nor a 15-second whole-close claim.
+The trace optimization's separate compiler/module identities and paired evidence
+remain in [the mixed report](mixed-workload-plan.md).
+
+The current Python publication integration uses private short invocation
+directories, atomic completion manifests, bounded file/digest verification and
+precommit blocked evidence labels. Root review mirrors remain compatible;
+consumption uses `spl_compiler.artifacts.load_completed_result`. Seven helper
+checks and a 25-method existing artifact/policy cohort pass. The separately frozen 19-method helper/runner integration cohort passes
+in 44.280571 seconds with 24 interruption stages, real native positives and
+serialized carry; all source and Lean dependency pins remain unchanged. See the
+[publication contract](artifact-publication-design.md).
+
+The current working compiler/reference identity is
+`323f0d844fe11344713523f40d83d3b67d32d1376ce89da823875d72c2a297bc`
+and generic-module identity is
+`7a2f98f64b70cb67e5b95ecdbb0fec85536d1cce3fb9423f1dfd42c9ed1772eb`.
+The native arithmetic/runtime identity remains
+`673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9`.
+The primary `0.4.3-dev` baseline is historical and archived byte-for-byte in
+[its saved record](baselines/implementation-0.4.3-dev.json). Fresh invocation
+binding is deliberate; historical issued artifacts were not repinned.
+
+A full 94-job Lake build and both smoke executables pass after the trace change;
+the publication integration adds Python code without altering Lean source.
+The [pure timer](pure-performance.md) measures the actual emitted 1,000-record
+settlement at a median 4.715209 ms per call across nine warm samples with decoded
+inputs and 64 original opening variants checked against complete independent
+outcomes. Default canonical audit still uses expanded traces; opt-in compact
+transport and its strict reader remain separately measured capabilities.
+
 ## Supplemental bounded validation: 23 November 2026
 
 The [conformance command and guide](conformance-validation.md) now connect a

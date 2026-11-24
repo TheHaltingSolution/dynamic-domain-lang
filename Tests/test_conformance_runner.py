@@ -86,6 +86,18 @@ class CampaignRunnerTests(unittest.TestCase):
                 path.write_bytes(b"line\r\n")
                 self.assertEqual(campaign.changed_sources(manifest), ["source.spl"])
 
+    def test_source_inventory_retains_new_untracked_method_and_oracle(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for name in ["oracles/independent.py", "cases/new/method.spl", "cases/new/neutral.json", "docs/spl/new-method.md"]:
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("source")
+            with patch.object(campaign, "ROOT", root), patch.object(campaign, "git", return_value=b"tracked.spl\0"):
+                inventory = campaign.source_names()
+            self.assertTrue({"tracked.spl", "oracles/independent.py", "cases/new/method.spl",
+                             "cases/new/neutral.json", "docs/spl/new-method.md"} <= inventory)
+
     def test_skipped_or_missing_requested_witness_is_not_a_passing_batch(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory)

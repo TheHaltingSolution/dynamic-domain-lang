@@ -1,0 +1,536 @@
+{
+  "decisions": [
+    {
+      "decision_id": "ESCALATION_SELECTED",
+      "evidence_ref": "synthetic-fixed-table-method",
+      "policy_id": "SYNTHETIC-ESCALATION-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "ESCALATION_SELECTED",
+        "evidence_ref": "bracket-source",
+        "id": "bracket-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2025-09-30T00:00:00Z",
+        "scope": {
+          "asset_id": "escalation-picture",
+          "contract_id": "escalation-synthetic",
+          "currency": "USD",
+          "participant_id": "escalation-participant",
+          "pool_id": "escalation-pool"
+        },
+        "source_kind": "synthetic-bracket-terms",
+        "source_observed_at": "2025-09-30T00:00:00Z"
+      },
+      {
+        "approval_ref": "ESCALATION_SELECTED",
+        "evidence_ref": "historical-source",
+        "id": "historical-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2025-11-16T00:00:00Z",
+        "scope": {
+          "asset_id": "escalation-picture",
+          "contract_id": "escalation-synthetic",
+          "currency": "USD",
+          "participant_id": "escalation-participant",
+          "pool_id": "escalation-pool"
+        },
+        "source_kind": "synthetic-supplied-original-basis",
+        "source_observed_at": "2025-11-16T00:00:00Z"
+      },
+      {
+        "approval_ref": "ESCALATION_SELECTED",
+        "evidence_ref": "current-source",
+        "id": "current-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-03-11T00:00:00Z",
+        "scope": {
+          "asset_id": "escalation-picture",
+          "contract_id": "escalation-synthetic",
+          "currency": "USD",
+          "participant_id": "escalation-participant",
+          "pool_id": "escalation-pool"
+        },
+        "source_kind": "synthetic-current-basis",
+        "source_observed_at": "2026-03-11T00:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "as_of": "2026-04-01",
+    "bracket_table": {
+      "approved_date": "2025-09-29",
+      "brackets": [
+        {
+          "evidence_ref": "bracket-source",
+          "id": "tier-0",
+          "lower": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "rate": "0.1",
+          "sequence": "1",
+          "source_lower": "0",
+          "source_rate": "0.1",
+          "source_ref": "synthetic-tier-first100",
+          "source_upper": "100",
+          "upper": {
+            "some": {
+              "currency": "USD",
+              "value": "100"
+            }
+          }
+        },
+        {
+          "evidence_ref": "bracket-source",
+          "id": "tier-1",
+          "lower": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "rate": "0.2",
+          "sequence": "2",
+          "source_lower": "100",
+          "source_rate": "0.2",
+          "source_ref": "synthetic-tier-after100",
+          "source_upper": "unbounded",
+          "upper": {
+            "none": true
+          }
+        }
+      ],
+      "effective": {
+        "end": "2027-01-01",
+        "start": "2025-10-01"
+      },
+      "evidence_ref": "bracket-source",
+      "id": "synthetic-brackets",
+      "observed_at": "2025-09-30T00:00:00Z",
+      "recorded_date": "2025-09-30",
+      "scope": {
+        "asset_id": "escalation-picture",
+        "contract_id": "escalation-synthetic",
+        "currency": "USD",
+        "participant_id": "escalation-participant",
+        "pool_id": "escalation-pool"
+      },
+      "source_observed_at": "2025-09-30T00:00:00Z",
+      "source_ref": "synthetic-original-bracket-table",
+      "version": "1"
+    },
+    "case_id": "escalation-q1",
+    "events": [
+      {
+        "basis": {
+          "currency": "USD",
+          "value": "30"
+        },
+        "effective_date": "2026-02-10",
+        "evidence_ref": "current-source",
+        "id": "basis-current-30",
+        "observed_at": "2026-03-11T00:00:00Z",
+        "scope": {
+          "asset_id": "escalation-picture",
+          "contract_id": "escalation-synthetic",
+          "currency": "USD",
+          "participant_id": "escalation-participant",
+          "pool_id": "escalation-pool"
+        },
+        "sequence": "1",
+        "source_basis": "30",
+        "source_observed_at": "2026-03-11T00:00:00Z",
+        "source_ref": "synthetic-current-basis30"
+      },
+      {
+        "basis": {
+          "currency": "USD",
+          "value": "40"
+        },
+        "effective_date": "2026-03-10",
+        "evidence_ref": "current-source",
+        "id": "basis-current-40",
+        "observed_at": "2026-03-11T00:00:00Z",
+        "scope": {
+          "asset_id": "escalation-picture",
+          "contract_id": "escalation-synthetic",
+          "currency": "USD",
+          "participant_id": "escalation-participant",
+          "pool_id": "escalation-pool"
+        },
+        "sequence": "2",
+        "source_basis": "40",
+        "source_observed_at": "2026-03-11T00:00:00Z",
+        "source_ref": "synthetic-current-basis40"
+      }
+    ],
+    "fact_scope": {
+      "asset_id": "escalation-picture",
+      "contract_id": "escalation-synthetic",
+      "currency": "USD",
+      "participant_id": "escalation-participant",
+      "pool_id": "escalation-pool"
+    },
+    "opening_utc": "2026-01-01T00:00:00Z",
+    "predecessor": {
+      "none": true
+    },
+    "project": "escalation-picture",
+    "scope": {
+      "agreement_id": "escalation-synthetic",
+      "participant_id": "escalation-participant",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "escalation-pool"
+    },
+    "supplied_opening": {
+      "boundary": "2026-01-01",
+      "bracket_table": {
+        "approved_date": "2025-09-29",
+        "brackets": [
+          {
+            "evidence_ref": "bracket-source",
+            "id": "tier-0",
+            "lower": {
+              "currency": "USD",
+              "value": "0"
+            },
+            "rate": "0.1",
+            "sequence": "1",
+            "source_lower": "0",
+            "source_rate": "0.1",
+            "source_ref": "synthetic-tier-first100",
+            "source_upper": "100",
+            "upper": {
+              "some": {
+                "currency": "USD",
+                "value": "100"
+              }
+            }
+          },
+          {
+            "evidence_ref": "bracket-source",
+            "id": "tier-1",
+            "lower": {
+              "currency": "USD",
+              "value": "100"
+            },
+            "rate": "0.2",
+            "sequence": "2",
+            "source_lower": "100",
+            "source_rate": "0.2",
+            "source_ref": "synthetic-tier-after100",
+            "source_upper": "unbounded",
+            "upper": {
+              "none": true
+            }
+          }
+        ],
+        "effective": {
+          "end": "2027-01-01",
+          "start": "2025-10-01"
+        },
+        "evidence_ref": "bracket-source",
+        "id": "synthetic-brackets",
+        "observed_at": "2025-09-30T00:00:00Z",
+        "recorded_date": "2025-09-30",
+        "scope": {
+          "asset_id": "escalation-picture",
+          "contract_id": "escalation-synthetic",
+          "currency": "USD",
+          "participant_id": "escalation-participant",
+          "pool_id": "escalation-pool"
+        },
+        "source_observed_at": "2025-09-30T00:00:00Z",
+        "source_ref": "synthetic-original-bracket-table",
+        "version": "1"
+      },
+      "cumulative_basis": {
+        "currency": "USD",
+        "value": "80"
+      },
+      "method": "prospective_split",
+      "origin": "supplied_history",
+      "period_history": [
+        {
+          "closing_basis": {
+            "currency": "USD",
+            "value": "80"
+          },
+          "closing_recognized": {
+            "currency": "USD",
+            "value": "8"
+          },
+          "current_result": {
+            "currency": "USD",
+            "value": "8"
+          },
+          "events": [
+            {
+              "basis": {
+                "currency": "USD",
+                "value": "80"
+              },
+              "effective_date": "2025-11-15",
+              "evidence_ref": "historical-source",
+              "id": "basis-original-80",
+              "observed_at": "2025-11-16T00:00:00Z",
+              "scope": {
+                "asset_id": "escalation-picture",
+                "contract_id": "escalation-synthetic",
+                "currency": "USD",
+                "participant_id": "escalation-participant",
+                "pool_id": "escalation-pool"
+              },
+              "sequence": "1",
+              "source_basis": "80",
+              "source_observed_at": "2025-11-16T00:00:00Z",
+              "source_ref": "synthetic-original-basis80"
+            }
+          ],
+          "opening_basis": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "opening_recognized": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "opening_utc": "2025-10-01T00:00:00Z",
+          "period": {
+            "end": "2026-01-01",
+            "start": "2025-10-01"
+          },
+          "source_case_id": "supplied-historical-period-0",
+          "source_numbers": {
+            "none": true
+          }
+        }
+      ],
+      "policy_id": "SYNTHETIC-ESCALATION-01",
+      "policy_revision": "1",
+      "purpose": "cumulative_escalation",
+      "recognized_entitlement": {
+        "currency": "USD",
+        "value": "8"
+      },
+      "scope": {
+        "asset_id": "escalation-picture",
+        "contract_id": "escalation-synthetic",
+        "currency": "USD",
+        "participant_id": "escalation-participant",
+        "pool_id": "escalation-pool"
+      },
+      "source_case_id": "supplied-historical-period-0"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "escalation-q1-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-ESCALATION"
+  },
+  "module_ref": {
+    "id": "synthetic:ordered-escalation",
+    "locator": "cases/escalation/escalation-module.json",
+    "revision": "1",
+    "sha256": "07b35de10c28c2525ff6067ae5498766cf1a555ce0429f453541d338c72a0dc8"
+  },
+  "parameters": {
+    "cutoff": "2026-04-03T00:00:00Z",
+    "policy": {
+      "equality": "lower_inclusive",
+      "evidence_class": "research_assumption",
+      "id": "SYNTHETIC-ESCALATION-01",
+      "method": "prospective_split",
+      "revision": "1",
+      "rounding": "exact_no_rounding",
+      "table_availability": "before_all_period_openings_utc"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "escalation-synthetic",
+    "asset_ids": [
+      "escalation-picture"
+    ],
+    "participant_ids": [
+      "escalation-participant"
+    ],
+    "pool_id": "escalation-pool",
+    "purpose": "cumulative_escalation"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "history",
+      "provenance_ref": "supplied-original-escalation-history",
+      "purpose": "cumulative_escalation",
+      "quantity": {
+        "boundary": "2026-01-01",
+        "bracket_table": {
+          "approved_date": "2025-09-29",
+          "brackets": [
+            {
+              "evidence_ref": "bracket-source",
+              "id": "tier-0",
+              "lower": {
+                "currency": "USD",
+                "value": "0"
+              },
+              "rate": "0.1",
+              "sequence": "1",
+              "source_lower": "0",
+              "source_rate": "0.1",
+              "source_ref": "synthetic-tier-first100",
+              "source_upper": "100",
+              "upper": {
+                "some": {
+                  "currency": "USD",
+                  "value": "100"
+                }
+              }
+            },
+            {
+              "evidence_ref": "bracket-source",
+              "id": "tier-1",
+              "lower": {
+                "currency": "USD",
+                "value": "100"
+              },
+              "rate": "0.2",
+              "sequence": "2",
+              "source_lower": "100",
+              "source_rate": "0.2",
+              "source_ref": "synthetic-tier-after100",
+              "source_upper": "unbounded",
+              "upper": {
+                "none": true
+              }
+            }
+          ],
+          "effective": {
+            "end": "2027-01-01",
+            "start": "2025-10-01"
+          },
+          "evidence_ref": "bracket-source",
+          "id": "synthetic-brackets",
+          "observed_at": "2025-09-30T00:00:00Z",
+          "recorded_date": "2025-09-30",
+          "scope": {
+            "asset_id": "escalation-picture",
+            "contract_id": "escalation-synthetic",
+            "currency": "USD",
+            "participant_id": "escalation-participant",
+            "pool_id": "escalation-pool"
+          },
+          "source_observed_at": "2025-09-30T00:00:00Z",
+          "source_ref": "synthetic-original-bracket-table",
+          "version": "1"
+        },
+        "cumulative_basis": {
+          "currency": "USD",
+          "value": "80"
+        },
+        "method": "prospective_split",
+        "origin": "supplied_history",
+        "period_history": [
+          {
+            "closing_basis": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "closing_recognized": {
+              "currency": "USD",
+              "value": "8"
+            },
+            "current_result": {
+              "currency": "USD",
+              "value": "8"
+            },
+            "events": [
+              {
+                "basis": {
+                  "currency": "USD",
+                  "value": "80"
+                },
+                "effective_date": "2025-11-15",
+                "evidence_ref": "historical-source",
+                "id": "basis-original-80",
+                "observed_at": "2025-11-16T00:00:00Z",
+                "scope": {
+                  "asset_id": "escalation-picture",
+                  "contract_id": "escalation-synthetic",
+                  "currency": "USD",
+                  "participant_id": "escalation-participant",
+                  "pool_id": "escalation-pool"
+                },
+                "sequence": "1",
+                "source_basis": "80",
+                "source_observed_at": "2025-11-16T00:00:00Z",
+                "source_ref": "synthetic-original-basis80"
+              }
+            ],
+            "opening_basis": {
+              "currency": "USD",
+              "value": "0"
+            },
+            "opening_recognized": {
+              "currency": "USD",
+              "value": "0"
+            },
+            "opening_utc": "2025-10-01T00:00:00Z",
+            "period": {
+              "end": "2026-01-01",
+              "start": "2025-10-01"
+            },
+            "source_case_id": "supplied-historical-period-0",
+            "source_numbers": {
+              "none": true
+            }
+          }
+        ],
+        "policy_id": "SYNTHETIC-ESCALATION-01",
+        "policy_revision": "1",
+        "purpose": "cumulative_escalation",
+        "recognized_entitlement": {
+          "currency": "USD",
+          "value": "8"
+        },
+        "scope": {
+          "asset_id": "escalation-picture",
+          "contract_id": "escalation-synthetic",
+          "currency": "USD",
+          "participant_id": "escalation-participant",
+          "pool_id": "escalation-pool"
+        },
+        "source_case_id": "supplied-historical-period-0"
+      },
+      "scenario_id": "SYNTHETIC-ESCALATION",
+      "scope": {
+        "agreement_id": "escalation-synthetic",
+        "asset_id": "escalation-picture",
+        "participant_id": "escalation-participant",
+        "pool_id": "escalation-pool"
+      },
+      "state_key": "{\"agreement_id\":\"escalation-synthetic\",\"asset_id\":\"escalation-picture\",\"participant_id\":\"escalation-participant\",\"pool_id\":\"escalation-pool\",\"purpose\":\"cumulative_escalation\"}",
+      "unit": "structured"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+// Original daily rows drive proration and business rolling. No solved counts enter.
+schedule FiscalCalendarTerms language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input project: Id<Asset>;
+  input fact_scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text};
+  input case_id: Text;
+  input calendar: {id: Text, version: Text, coverage: Period, closed_weekdays: List<Int>, ordinal_epoch: Text, evidence_ref: Text, source_ref: Text};
+  input selected_period_id: Text;
+  input fiscal_periods: List<{id: Text, calendar_id: Text, calendar_version: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, period: Period, evidence_ref: Text, source_ref: Text}>;
+  input days: List<{id: Text, calendar_date: Date, ordinal: Int, weekday: Int, proration_eligible: Bool, holiday_closed: Bool, closed: Bool, calendar_id: Text, calendar_version: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, evidence_ref: Text, source_ref: Text}>;
+  input terms: List<{id: Text, revision: Int, predecessor_id: Text, effective: Period, monthly_amount: Money<USD>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, signed_date: Date, recorded_date: Date, observed_at: Instant, evidence_ref: Text, source_ref: Text}>;
+  input as_of: Date;
+  input deadline: {due_date: Date, roll: Text, source_ref: Text};
+  input policy: {id: Text, revision: Text, proration: Text, term_selection: Text, no_term: Text, rounding: Text, evidence_class: Text};
+  input cutoff: Instant;
+  input evidence: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, observed_at: Instant, source_kind: Text, approval_ref: Id<Decision>, evidence_ref: Text, kind: Text}>;
+  require policy.id == "SYNTHETIC-CALENDAR-TERMS-01" and policy.revision == "1" and policy.proration == "eligible_days_selected_fiscal_period" and policy.term_selection == "greatest_revision_unique" and policy.no_term == "inactive_zero" and policy.rounding == "exact_no_rounding" and policy.evidence_class == "research_assumption" else "CALENDAR_SELECTED_POLICY";
+  require fact_scope.contract_id == scope.agreement_id and fact_scope.participant_id == scope.participant_id and fact_scope.pool_id == scope.pool_id and fact_scope.asset_id == project and fact_scope.currency == "USD" else "CALENDAR_FACT_SCOPE";
+  require case_id != "" and calendar.id != "" and calendar.version != "" and calendar.source_ref != "" and deadline.source_ref != "" else "CALENDAR_IDENTITY_REQUIRED";
+  require calendar.ordinal_epoch == "gregorian_0001_01_01_is_1" else "CALENDAR_ORDINAL_EPOCH";
+  define checked_evidence = for each row in evidence {
+    require row.id != "" and row.source_kind != "" else "CALENDAR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "CALENDAR_EVIDENCE_SCOPE";
+    require row.observed_at < cutoff else "CALENDAR_EVIDENCE_CUTOFF";
+    yield row;
+  };
+  require sum(filter(checked_evidence, row => row.id == calendar.evidence_ref), row => 1) == 1 else "CALENDAR_EVIDENCE_REQUIRED";
+  define checked_fiscal = for each row in fiscal_periods {
+    require row.id != "" and row.source_ref != "" else "CALENDAR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "CALENDAR_FACT_SCOPE";
+    require row.calendar_id == calendar.id and row.calendar_version == calendar.version else "CALENDAR_ID_VERSION";
+    require row.period.start >= calendar.coverage.start and row.period.end <= calendar.coverage.end else "CALENDAR_FISCAL_BOUNDS";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "CALENDAR_EVIDENCE_REQUIRED";
+    yield row;
+  };
+  require sum(filter(checked_fiscal, row => row.id == selected_period_id), row => 1) == 1 else "CALENDAR_SELECTED_FISCAL_PERIOD";
+  define selected_fiscal = fold checked_fiscal from scope.period with selected, row {
+    yield if row.id == selected_period_id then row.period else selected;
+  };
+  require selected_fiscal == scope.period else "CALENDAR_SELECTED_PERIOD_SCOPE";
+  // Gregorian ordinal/weekday truth and complete coverage are checked mechanically
+  // by the adapter. This index independently rejects duplicate source dates.
+  define day_index = make_map(days, row => row.calendar_date, row => row);
+  define checked_days = for each entry in entries(day_index) {
+    define row = entry.value;
+    require row.id != "" and row.source_ref != "" else "CALENDAR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "CALENDAR_FACT_SCOPE";
+    require row.calendar_id == calendar.id and row.calendar_version == calendar.version else "CALENDAR_ID_VERSION";
+    require in_period(row.calendar_date, calendar.coverage) else "CALENDAR_INCOMPLETE_POPULATION";
+    require row.ordinal >= 1 and row.weekday >= 1 and row.weekday <= 7 else "CALENDAR_ORDINAL_WEEKDAY";
+    require row.closed == (row.holiday_closed or sum(filter(calendar.closed_weekdays, weekday => weekday == row.weekday), weekday => 1) > 0) else "CALENDAR_CLOSED_FLAGS";
+    require sum(filter(checked_fiscal, fiscal => in_period(row.calendar_date, fiscal.period)), fiscal => 1) == 1 else "CALENDAR_FISCAL_PARTITION";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "CALENDAR_EVIDENCE_REQUIRED";
+    yield row;
+  };
+  require sum(checked_days, row => 1) <= 400 else "CALENDAR_COVERAGE_LIMIT";
+  define checked_terms = for each row in terms {
+    require row.id != "" and row.source_ref != "" else "CALENDAR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "CALENDAR_TERM_SCOPE";
+    require row.revision >= 1 else "CALENDAR_TERM_REVISION";
+    require row.monthly_amount >= USD 0 else "CALENDAR_EXACT_NONNEGATIVE_MONEY";
+    require row.signed_date <= row.recorded_date else "CALENDAR_SIGNED_RECORDED_ORDER";
+    require row.observed_at < cutoff else "CALENDAR_TERM_CUTOFF";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "CALENDAR_EVIDENCE_REQUIRED";
+    require if row.predecessor_id == "" then row.revision == 1 else sum(filter(terms, previous => previous.id == row.predecessor_id and previous.revision < row.revision and previous.scope == row.scope and previous.recorded_date <= row.recorded_date), previous => 1) == 1 else "CALENDAR_PREDECESSOR";
+    yield row;
+  };
+  define selected_days = filter(checked_days, row => in_period(row.calendar_date, selected_fiscal));
+  // Exact integral Ratio sums allow Money / denominator without a new cast.
+  define denominator = sum(selected_days, row => if row.proration_eligible then 1.0 else 0.0);
+  require denominator > 0.0 else "CALENDAR_ZERO_ELIGIBLE_DAYS";
+  define day_lines = for each row in selected_days {
+    define candidates = filter(checked_terms, term => term.signed_date <= as_of and term.recorded_date <= as_of and in_period(row.calendar_date, term.effective));
+    define highest_revision = fold candidates from 0 with highest, term {
+      yield max(highest, term.revision);
+    };
+    define winners = filter(candidates, term => term.revision == highest_revision);
+    require sum(winners, term => 1) <= 1 else "CALENDAR_AMBIGUOUS_AMENDMENT";
+    define selected_term_id = fold winners from "" with selected, term {
+      yield term.id;
+    };
+    define monthly = sum(winners, term => term.monthly_amount);
+    define contribution = if row.proration_eligible then monthly / denominator else USD 0;
+    yield {day_id: row.id, calendar_date: row.calendar_date, proration_eligible: row.proration_eligible, closed: row.closed, term_id: selected_term_id, selection: if selected_term_id == "" then "inactive_zero" else "selected", amount: contribution, calendar_source_ref: row.source_ref};
+  };
+  define term_lines = for each term in sort_by(filter(checked_terms, candidate => sum(filter(day_lines, line => line.term_id == candidate.id), line => 1) > 0), candidate => candidate.id) {
+    define selected_lines = filter(day_lines, line => line.term_id == term.id);
+    yield {term_id: term.id, revision: term.revision, monthly_amount: term.monthly_amount, eligible_days: sum(selected_lines, line => if line.proration_eligible then 1.0 else 0.0), amount: sum(selected_lines, line => line.amount), predecessor_id: term.predecessor_id, source_ref: term.source_ref, evidence_ref: term.evidence_ref};
+  };
+  require deadline.roll == "following" or deadline.roll == "preceding" else "CALENDAR_ROLL_POLICY";
+  require sum(filter(checked_days, row => row.calendar_date == deadline.due_date), row => 1) == 1 else "CALENDAR_DEADLINE_OUTSIDE_COVERAGE";
+  define business_candidates = filter(checked_days, row => not row.closed and (if deadline.roll == "following" then row.calendar_date >= deadline.due_date else row.calendar_date <= deadline.due_date));
+  define rolled: Option<Date> = fold business_candidates from none() with selected, row {
+    yield some(if is_some(selected) then (if deadline.roll == "following" then (if get_or(selected, row.calendar_date) < row.calendar_date then get_or(selected, row.calendar_date) else row.calendar_date) else (if get_or(selected, row.calendar_date) > row.calendar_date then get_or(selected, row.calendar_date) else row.calendar_date)) else row.calendar_date);
+  };
+  define rolled_date = require_some(rolled, "CALENDAR_BUSINESS_RELATION_UNAVAILABLE");
+  define deadline_id = fold checked_days from "" with selected, row {
+    yield if row.calendar_date == deadline.due_date then row.id else selected;
+  };
+  define rolled_id = fold business_candidates from "" with selected, row {
+    yield if row.calendar_date == rolled_date then row.id else selected;
+  };
+  emit "comparison" = {calendar_id: calendar.id, calendar_version: calendar.version, fiscal_period_id: selected_period_id, period: selected_fiscal, as_of: as_of, eligible_day_count: denominator, active_eligible_day_count: sum(day_lines, line => if line.proration_eligible and line.term_id != "" then 1.0 else 0.0), amount: sum(day_lines, line => line.amount), deadline: deadline.due_date, roll: deadline.roll, rolled_deadline: rolled_date, deadline_day_id: deadline_id, rolled_day_id: rolled_id};
+  emit "day_lines" = day_lines;
+  emit "term_lines" = term_lines;
+  emit "observations" = {case_id: case_id, fact_scope: fact_scope, calendar: calendar, fiscal_periods: checked_fiscal, terms: checked_terms, evidence: checked_evidence, deadline_source_ref: deadline.source_ref};
+  emit "reconciliation" = sum(day_lines, line => line.amount) == sum(term_lines, line => line.amount);
+}

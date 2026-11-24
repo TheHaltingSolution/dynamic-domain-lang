@@ -1,0 +1,142 @@
+// Original magnitudes are nonnegative; signed effects and named loss policy execute here.
+schedule OriginalRateReturns language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input fact_scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text};
+  input asset_ids: List<Id<Asset>>;
+  input case_id: Text;
+  input cutoff: Instant;
+  input policy: {id: Text, revision: Text, method: Text, recognition: Text, measurement: Text, rounding: Text, evidence_class: Text};
+  input current_rates: List<{asset_id: Id<Asset>, rate: Ratio, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, effective: Period, observed_at: Instant, source_ref: Text, evidence_ref: Text}>;
+  input originals: List<{id: Text, asset_id: Id<Asset>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, basis: Money<USD>, rate: Ratio, measurement_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text}>;
+  input sales: List<{id: Text, asset_id: Id<Asset>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, basis: Money<USD>, effective_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text}>;
+  input returns: List<{id: Text, original_id: Text, asset_id: Id<Asset>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, returned_basis: Money<USD>, return_date: Date, recognition_date: Date, observed_at: Instant, source_ref: Text, evidence_ref: Text}>;
+  input evidence: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, observed_at: Instant, source_kind: Text, approval_ref: Id<Decision>, evidence_ref: Text, kind: Text}>;
+  input supplied_opening: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, asset_ids: List<Id<Asset>>, purpose: Text, policy_id: Text, policy_revision: Text, method: Text, boundary: Date, origin: Text, source_case_id: Text, loss_carry: Money<USD>, original_registry: List<{asset_id: Id<Asset>, basis: Money<USD>, evidence_ref: Text, id: Text, measurement_date: Date, observed_at: Instant, origin_kind: Text, rate: Ratio, registered_case_id: Text, returned_basis: Money<USD>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, source_ref: Text}>, recognized_ids: List<Tuple<Text,Text>>};
+  input predecessor: Option<{source_case_id: Text, period: Period, closing_state: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, asset_ids: List<Id<Asset>>, purpose: Text, policy_id: Text, policy_revision: Text, method: Text, boundary: Date, origin: Text, source_case_id: Text, loss_carry: Money<USD>, original_registry: List<{asset_id: Id<Asset>, basis: Money<USD>, evidence_ref: Text, id: Text, measurement_date: Date, observed_at: Instant, origin_kind: Text, rate: Ratio, registered_case_id: Text, returned_basis: Money<USD>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, source_ref: Text}>, recognized_ids: List<Tuple<Text,Text>>}}>;
+  opening ledger: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, asset_ids: List<Id<Asset>>, purpose: Text, policy_id: Text, policy_revision: Text, method: Text, boundary: Date, origin: Text, source_case_id: Text, loss_carry: Money<USD>, original_registry: List<{asset_id: Id<Asset>, basis: Money<USD>, evidence_ref: Text, id: Text, measurement_date: Date, observed_at: Instant, origin_kind: Text, rate: Ratio, registered_case_id: Text, returned_basis: Money<USD>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, currency: Text}, source_ref: Text}>, recognized_ids: List<Tuple<Text,Text>>} from "returns/originals-and-loss";
+  require policy.id == "SYNTHETIC-RETURNS-LOSSES-01" and policy.revision == "1" and policy.recognition == "supplied_current_period" and policy.measurement == "original_basis_original_rate" and policy.rounding == "exact_no_rounding" and policy.evidence_class == "research_assumption" else "RETURNS_SELECTED_POLICY";
+  require policy.method == "signed_pool" or policy.method == "per_title_floor" or policy.method == "pooled_loss_carry" else "RETURNS_METHOD_REQUIRED";
+  require fact_scope.contract_id == scope.agreement_id and fact_scope.participant_id == scope.participant_id and fact_scope.pool_id == scope.pool_id and fact_scope.currency == "USD" else "RETURNS_FACT_SCOPE";
+  require case_id != "" else "RETURNS_IDENTITY_REQUIRED";
+  define assets = map(entries(make_map(asset_ids, asset => asset, asset => asset)), entry => entry.key);
+  require sum(assets, asset => 1) > 0 else "RETURNS_ASSET_UNIVERSE";
+  require ledger == supplied_opening else "RETURNS_OPENING_SNAPSHOT";
+  require ledger.scope == fact_scope and ledger.purpose == "returns_and_loss" and sort_by(ledger.asset_ids, asset => asset) == assets else "RETURNS_OPENING_SCOPE";
+  require ledger.policy_id == policy.id and ledger.policy_revision == policy.revision and ledger.method == policy.method else "RETURNS_OPENING_METHOD";
+  require ledger.boundary == scope.period.start else "RETURNS_OPENING_BOUNDARY";
+  require ledger.loss_carry >= USD 0 else "RETURNS_EXACT_NONNEGATIVE_VALUE";
+  require policy.method == "pooled_loss_carry" or ledger.loss_carry == USD 0 else "RETURNS_LOSS_OUTSIDE_METHOD";
+  define prior_ids = for each token in ledger.recognized_ids {
+    require (tuple_get(token, 0) == "originals" or tuple_get(token, 0) == "sales" or tuple_get(token, 0) == "returns") and tuple_get(token, 1) != "" else "RETURNS_RECOGNIZED_HISTORY";
+    require sum(filter(ledger.recognized_ids, previous => previous == token), previous => 1) == 1 else "RETURNS_RECOGNIZED_HISTORY";
+    yield token;
+  };
+  require ledger.origin == "genesis" or is_some(predecessor) else "RETURNS_PREDECESSOR_REQUIRED";
+  require if ledger.origin == "genesis" then ledger.source_case_id == "genesis" and ledger.loss_carry == USD 0 and sum(ledger.original_registry, row => 1) == 0 and sum(prior_ids, token => 1) == 0 and not is_some(predecessor) else ledger.origin == "prior_result" and is_some(predecessor) else "RETURNS_GENESIS";
+  require ledger.origin == "genesis" or (require_some(predecessor, "RETURNS_PREDECESSOR_REQUIRED").source_case_id == ledger.source_case_id and require_some(predecessor, "RETURNS_PREDECESSOR_REQUIRED").source_case_id != case_id and require_some(predecessor, "RETURNS_PREDECESSOR_REQUIRED").period.end == scope.period.start and require_some(predecessor, "RETURNS_PREDECESSOR_REQUIRED").closing_state == ledger) else "RETURNS_PREDECESSOR_MISMATCH";
+  define checked_evidence = for each row in evidence {
+    require row.id != "" and row.source_kind != "" else "RETURNS_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "RETURNS_EVIDENCE_SCOPE";
+    require row.observed_at < cutoff else "RETURNS_EVIDENCE_CUTOFF";
+    yield row;
+  };
+  define checked_rates = for each row in current_rates {
+    require row.scope == fact_scope and sum(filter(assets, asset => asset == row.asset_id), asset => 1) == 1 else "RETURNS_FACT_SCOPE";
+    require row.source_ref != "" else "RETURNS_IDENTITY_REQUIRED";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "RETURNS_FACT_EVIDENCE";
+    require row.observed_at < cutoff else "RETURNS_FACT_CUTOFF";
+    require row.effective.start <= scope.period.start and row.effective.end >= scope.period.end else "RETURNS_CURRENT_RATE_PERIOD";
+    require row.rate >= 0.0 and row.rate <= 1.0 else "RETURNS_RATE_DOMAIN";
+    yield row;
+  };
+  define rate_index = make_map(checked_rates, row => row.asset_id, row => row);
+  require sum(entries(rate_index), entry => 1) == sum(assets, asset => 1) else "RETURNS_CURRENT_RATE_COVERAGE";
+  define checked_opening = for each row in ledger.original_registry {
+    require row.id != "" and row.source_ref != "" and row.registered_case_id != "" else "RETURNS_IDENTITY_REQUIRED";
+    require row.scope == fact_scope and sum(filter(assets, asset => asset == row.asset_id), asset => 1) == 1 else "RETURNS_FACT_SCOPE";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "RETURNS_FACT_EVIDENCE";
+    require row.observed_at < cutoff else "RETURNS_FACT_CUTOFF";
+    require row.basis >= USD 0 and row.returned_basis >= USD 0 and row.returned_basis <= row.basis else "RETURNS_ORIGINAL_METER";
+    require row.rate >= 0.0 and row.rate <= 1.0 else "RETURNS_RATE_DOMAIN";
+    require row.measurement_date < scope.period.start else "RETURNS_CARRIED_ORIGINAL_DATE";
+    require row.origin_kind == "historical_import" or row.origin_kind == "current_sale" else "RETURNS_ORIGINAL_PROVENANCE";
+    require sum(filter(prior_ids, token => token == tuple(if row.origin_kind == "historical_import" then "originals" else "sales", row.id)), token => 1) == 1 else "RETURNS_ORIGINAL_PROVENANCE";
+    yield row;
+  };
+  require sum(originals, row => if sum(filter(ledger.original_registry, previous => previous.id == row.id), previous => 1) + sum(filter(sales, sale => sale.id == row.id), sale => 1) == 0 then 0 else 1) == 0 and sum(sales, row => if sum(filter(ledger.original_registry, previous => previous.id == row.id), previous => 1) == 0 then 0 else 1) == 0 else "RETURNS_ORIGINAL_ALREADY_REGISTERED";
+  define imported = for each row in originals {
+    require row.id != "" and row.source_ref != "" else "RETURNS_IDENTITY_REQUIRED";
+    require row.scope == fact_scope and sum(filter(assets, asset => asset == row.asset_id), asset => 1) == 1 else "RETURNS_FACT_SCOPE";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "RETURNS_FACT_EVIDENCE";
+    require row.observed_at < cutoff else "RETURNS_FACT_CUTOFF";
+    require row.basis >= USD 0 else "RETURNS_EXACT_NONNEGATIVE_VALUE";
+    require row.rate >= 0.0 and row.rate <= 1.0 else "RETURNS_RATE_DOMAIN";
+    require row.measurement_date < scope.period.start else "RETURNS_HISTORICAL_ORIGINAL_DATE";
+    require sum(filter(prior_ids, token => token == tuple("originals", row.id)), token => 1) == 0 else "RETURNS_ALREADY_RECOGNIZED";
+    yield {id: row.id, asset_id: row.asset_id, scope: row.scope, basis: row.basis, rate: row.rate, measurement_date: row.measurement_date, observed_at: row.observed_at, source_ref: row.source_ref, evidence_ref: row.evidence_ref, returned_basis: USD 0, origin_kind: "historical_import", registered_case_id: case_id};
+  };
+  define registered_sales = for each row in sales {
+    require row.id != "" and row.source_ref != "" else "RETURNS_IDENTITY_REQUIRED";
+    require row.scope == fact_scope and sum(filter(assets, asset => asset == row.asset_id), asset => 1) == 1 else "RETURNS_FACT_SCOPE";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "RETURNS_FACT_EVIDENCE";
+    require row.observed_at < cutoff else "RETURNS_FACT_CUTOFF";
+    require row.basis >= USD 0 else "RETURNS_EXACT_NONNEGATIVE_VALUE";
+    require in_period(row.effective_date, scope.period) else "RETURNS_SALE_PERIOD";
+    require sum(filter(prior_ids, token => token == tuple("sales", row.id)), token => 1) == 0 else "RETURNS_ALREADY_RECOGNIZED";
+    define selected_rate = require_some(lookup(rate_index, row.asset_id), "RETURNS_CURRENT_RATE_COVERAGE").rate;
+    yield {id: row.id, asset_id: row.asset_id, scope: row.scope, basis: row.basis, rate: selected_rate, measurement_date: row.effective_date, observed_at: row.observed_at, source_ref: row.source_ref, evidence_ref: row.evidence_ref, returned_basis: USD 0, origin_kind: "current_sale", registered_case_id: case_id};
+  };
+  define registry = concat(checked_opening, concat(imported, registered_sales));
+  require sum(registry, row => if sum(filter(registry, other => other.id == row.id), other => 1) == 1 then 0 else 1) == 0 else "RETURNS_ORIGINAL_ALREADY_REGISTERED";
+  define sale_lines = for each row in sort_by(registered_sales, row => row.id) {
+    yield {id: row.id, asset_id: row.asset_id, basis: row.basis, current_rate: row.rate, earned: row.basis * row.rate, source_ref: row.source_ref, evidence_ref: row.evidence_ref};
+  };
+  define return_lines: List<{asset_id: Id<Asset>, evidence_ref: Text, id: Text, original_basis: Money<USD>, original_evidence_ref: Text, original_id: Text, original_measurement_date: Date, original_rate: Ratio, original_source_ref: Text, recognition_date: Date, returned_basis: Money<USD>, reversed_earned: Money<USD>, signed_effect: Money<USD>, source_ref: Text}> = fold sort_by(returns, row => row.id) from [] with lines, returned {
+    require returned.id != "" and returned.source_ref != "" else "RETURNS_IDENTITY_REQUIRED";
+    require returned.scope == fact_scope and sum(filter(assets, asset => asset == returned.asset_id), asset => 1) == 1 else "RETURNS_FACT_SCOPE";
+    require sum(filter(checked_evidence, support => support.id == returned.evidence_ref), support => 1) == 1 else "RETURNS_FACT_EVIDENCE";
+    require returned.observed_at < cutoff else "RETURNS_FACT_CUTOFF";
+    require returned.returned_basis >= USD 0 else "RETURNS_EXACT_NONNEGATIVE_VALUE";
+    require in_period(returned.recognition_date, scope.period) else "RETURNS_RECOGNITION_PERIOD";
+    require sum(filter(prior_ids, token => token == tuple("returns", returned.id)), token => 1) == 0 else "RETURNS_ALREADY_RECOGNIZED";
+    define matched = filter(registry, row => row.id == returned.original_id);
+    require sum(matched, row => 1) == 1 else "RETURNS_ORIGINAL_REQUIRED";
+    define additions = for each original in matched {
+      require original.asset_id == returned.asset_id and original.scope == returned.scope else "RETURNS_ORIGINAL_SCOPE";
+      require original.measurement_date <= returned.return_date and returned.return_date <= returned.recognition_date else "RETURNS_DATE_ORDER";
+      require original.observed_at <= returned.observed_at else "RETURNS_OBSERVATION_ORDER";
+      define effect = returned.returned_basis * original.rate;
+      yield {id: returned.id, original_id: original.id, asset_id: returned.asset_id, original_basis: original.basis, original_rate: original.rate, returned_basis: returned.returned_basis, original_measurement_date: original.measurement_date, recognition_date: returned.recognition_date, reversed_earned: effect, signed_effect: -effect, original_source_ref: original.source_ref, original_evidence_ref: original.evidence_ref, source_ref: returned.source_ref, evidence_ref: returned.evidence_ref};
+    };
+    yield concat(lines, additions);
+  };
+  define original_lines = for each original in sort_by(registry, row => row.id) {
+    define current_returned = sum(filter(return_lines, row => row.original_id == original.id), row => row.returned_basis);
+    define cumulative = original.returned_basis + current_returned;
+    require cumulative <= original.basis else "RETURNS_ORIGINAL_OVERRETURN";
+    yield {original_id: original.id, original_basis: original.basis, original_rate: original.rate, opening_returned_basis: original.returned_basis, current_returned_basis: current_returned, closing_returned_basis: cumulative, remaining_basis: original.basis - cumulative, source_ref: original.source_ref, evidence_ref: original.evidence_ref};
+  };
+  define closing_registry = for each original in sort_by(registry, row => row.id) {
+    define cumulative = original.returned_basis + sum(filter(return_lines, row => row.original_id == original.id), row => row.returned_basis);
+    yield {id: original.id, asset_id: original.asset_id, scope: original.scope, basis: original.basis, rate: original.rate, measurement_date: original.measurement_date, observed_at: original.observed_at, source_ref: original.source_ref, evidence_ref: original.evidence_ref, returned_basis: cumulative, origin_kind: original.origin_kind, registered_case_id: original.registered_case_id};
+  };
+  define titles = for each asset in assets {
+    define current_sales = filter(sale_lines, row => row.asset_id == asset);
+    define current_returns = filter(return_lines, row => row.asset_id == asset);
+    define earned = sum(current_sales, row => row.earned);
+    define reversed = sum(current_returns, row => row.reversed_earned);
+    yield {asset_id: asset, current_rate: require_some(lookup(rate_index, asset), "RETURNS_CURRENT_RATE_COVERAGE").rate, current_basis: sum(current_sales, row => row.basis), current_earned: earned, returned_basis: sum(current_returns, row => row.returned_basis), reversed_earned: reversed, signed_earned: earned - reversed, floored_earned: max(earned - reversed, USD 0)};
+  };
+  define signed_current = sum(titles, row => row.signed_earned);
+  define entitlement = if policy.method == "signed_pool" then signed_current else (if policy.method == "per_title_floor" then sum(titles, row => row.floored_earned) else max(signed_current - ledger.loss_carry, USD 0));
+  define closing_loss = if policy.method == "pooled_loss_carry" then max(ledger.loss_carry - signed_current, USD 0) else USD 0;
+  require policy.method != "pooled_loss_carry" or signed_current + closing_loss == entitlement + ledger.loss_carry else "RETURNS_LOSS_RECONCILIATION";
+  define recognized = sort_by(concat(prior_ids, concat(map(imported, row => tuple("originals", row.id)), concat(map(registered_sales, row => tuple("sales", row.id)), map(return_lines, row => tuple("returns", row.id))))), token => token);
+  closing ledger = {scope: fact_scope, asset_ids: assets, purpose: "returns_and_loss", policy_id: policy.id, policy_revision: policy.revision, method: policy.method, boundary: scope.period.end, origin: "prior_result", source_case_id: case_id, loss_carry: closing_loss, original_registry: closing_registry, recognized_ids: recognized};
+  emit "comparison" = {source_case_id: case_id, period: scope.period, method: policy.method, current_earned: sum(titles, row => row.current_earned), reversed_earned: sum(titles, row => row.reversed_earned), pool_signed_earned: signed_current, recognized_entitlement: entitlement, opening_loss: ledger.loss_carry, loss_applied: if policy.method == "pooled_loss_carry" then min(ledger.loss_carry, max(signed_current, USD 0)) else USD 0, new_loss: if policy.method == "pooled_loss_carry" then max(-signed_current, USD 0) else USD 0, closing_loss: closing_loss, status_meaning: "calculated_delta_or_earning_credit; no issuance, bank refund or actual payment inferred"};
+  emit "titles" = titles;
+  emit "sale_lines" = sale_lines;
+  emit "return_lines" = return_lines;
+  emit "original_lines" = original_lines;
+  emit "reconciliation" = policy.method != "pooled_loss_carry" or signed_current + closing_loss == entitlement + ledger.loss_carry;
+}

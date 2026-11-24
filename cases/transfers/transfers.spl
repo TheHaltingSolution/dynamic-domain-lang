@@ -1,0 +1,154 @@
+// Coordinated current-entitlement calculation; real endpoint scopes remain explicit.
+schedule CrossContractCoordinator language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input case_id: Text;
+  input coordinator: {id: Text, currency: Text, purpose: Text};
+  input as_of: Date;
+  input cutoff: Instant;
+  input policy: {id: Text, revision: Text, measure: Text, execution: Text, edge_limit: Text, rounding: Text, evidence_class: Text};
+  input accounts: List<{evidence_ref: Text, id: Text, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, source_ref: Text}>;
+  input entitlements: List<{account_id: Text, amount: Money<USD>, effective_date: Date, evidence_ref: Text, id: Text, observed_at: Instant, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, source_amount: Text, source_observed_at: Text, source_ref: Text, upstream_result_ref: Text}>;
+  input authorizations: List<{approved: Bool, approved_date: Date, effective: Period, evidence_ref: Text, id: Text, maximum_amount: Money<USD>, observed_at: Instant, recorded_date: Date, sequence: Int, source_account: Text, source_ref: Text, source_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, target_account: Text, target_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>;
+  input transfers: List<{amount: Money<USD>, authorization_id: Text, evidence_ref: Text, id: Text, observed_at: Instant, recognition_date: Date, source_account: Text, source_observed_at: Text, source_ref: Text, source_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, target_account: Text, target_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>;
+  input evidence: List<{id: Text, coordinator_id: Text, account_ids: List<Text>, observed_at: Instant, source_kind: Text, approval_ref: Id<Decision>, evidence_ref: Text, kind: Text}>;
+  input supplied_opening: {account_scopes: List<{id: Text, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>, boundary: Date, consumed_authorization_ids: List<Text>, consumed_entitlement_ids: List<Text>, consumed_transfer_ids: List<Text>, consumed_upstream_refs: List<Text>, coordinator_id: Text, last_period: List<{accounts: List<{account_id: Text, evidence_ref: Text, final_entitlement: Money<USD>, original_entitlement: Money<USD>, received_credit: Money<USD>, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, source_ref: Text, transferred_out: Money<USD>}>, applied_transfers: List<{amount: Money<USD>, authorization_id: Text, authorization_source_ref: Text, evidence_ref: Text, id: Text, observed_at: Instant, recognition_date: Date, sequence: Int, source_account: Text, source_after: Money<USD>, source_before: Money<USD>, source_observed_at: Text, source_ref: Text, source_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, target_account: Text, target_after: Money<USD>, target_before: Money<USD>, target_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>, entitlement_facts: List<{account_id: Text, amount: Text, effective_date: Date, evidence_ref: Text, id: Text, observed_at: Instant, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, source_observed_at: Text, source_ref: Text, upstream_result_ref: Text}>, period: Period, source_case_id: Text}>, origin: Text, policy_id: Text, policy_revision: Text, purpose: Text, source_case_id: Text};
+  input predecessor: Option<{source_case_id: Text, period: Period, closing_state: {account_scopes: List<{id: Text, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>, boundary: Date, consumed_authorization_ids: List<Text>, consumed_entitlement_ids: List<Text>, consumed_transfer_ids: List<Text>, consumed_upstream_refs: List<Text>, coordinator_id: Text, last_period: List<{accounts: List<{account_id: Text, evidence_ref: Text, final_entitlement: Money<USD>, original_entitlement: Money<USD>, received_credit: Money<USD>, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, source_ref: Text, transferred_out: Money<USD>}>, applied_transfers: List<{amount: Money<USD>, authorization_id: Text, authorization_source_ref: Text, evidence_ref: Text, id: Text, observed_at: Instant, recognition_date: Date, sequence: Int, source_account: Text, source_after: Money<USD>, source_before: Money<USD>, source_observed_at: Text, source_ref: Text, source_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, target_account: Text, target_after: Money<USD>, target_before: Money<USD>, target_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>, entitlement_facts: List<{account_id: Text, amount: Text, effective_date: Date, evidence_ref: Text, id: Text, observed_at: Instant, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, source_observed_at: Text, source_ref: Text, upstream_result_ref: Text}>, period: Period, source_case_id: Text}>, origin: Text, policy_id: Text, policy_revision: Text, purpose: Text, source_case_id: Text}}>;
+  opening history: {account_scopes: List<{id: Text, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>, boundary: Date, consumed_authorization_ids: List<Text>, consumed_entitlement_ids: List<Text>, consumed_transfer_ids: List<Text>, consumed_upstream_refs: List<Text>, coordinator_id: Text, last_period: List<{accounts: List<{account_id: Text, evidence_ref: Text, final_entitlement: Money<USD>, original_entitlement: Money<USD>, received_credit: Money<USD>, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, source_ref: Text, transferred_out: Money<USD>}>, applied_transfers: List<{amount: Money<USD>, authorization_id: Text, authorization_source_ref: Text, evidence_ref: Text, id: Text, observed_at: Instant, recognition_date: Date, sequence: Int, source_account: Text, source_after: Money<USD>, source_before: Money<USD>, source_observed_at: Text, source_ref: Text, source_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, target_account: Text, target_after: Money<USD>, target_before: Money<USD>, target_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>, entitlement_facts: List<{account_id: Text, amount: Text, effective_date: Date, evidence_ref: Text, id: Text, observed_at: Instant, scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, source_observed_at: Text, source_ref: Text, upstream_result_ref: Text}>, period: Period, source_case_id: Text}>, origin: Text, policy_id: Text, policy_revision: Text, purpose: Text, source_case_id: Text} from "transfers/identity-history";
+  require policy.id == "SYNTHETIC-CONTRACT-TRANSFERS-01" and policy.revision == "1" and policy.measure == "current_period_entitlement" and policy.execution == "topological_then_authorized_sequence" and policy.edge_limit == "one_transaction_per_authorization" and policy.rounding == "exact_no_rounding" and policy.evidence_class == "research_assumption" else "TRANSFER_SELECTED_POLICY";
+  require coordinator.id != "" and case_id != "" else "TRANSFER_IDENTITY_REQUIRED";
+  require coordinator.currency == "USD" and coordinator.purpose == "current_entitlement_transfers" else "TRANSFER_COORDINATOR_PURPOSE";
+  require sum(accounts, row => 1) >= 1 and sum(accounts, row => 1) <= 16 and sum(authorizations, row => 1) <= 64 and sum(transfers, row => 1) <= 64 and sum(entitlements, row => 1) <= 256 else "TRANSFER_RESOURCE_BOUND";
+  define raw_accounts = sort_by(accounts, row => row.id);
+  define checked_evidence = for each row in evidence {
+    require row.id != "" and row.source_kind != "" else "TRANSFER_IDENTITY_REQUIRED";
+    require row.coordinator_id == coordinator.id else "TRANSFER_EVIDENCE_SCOPE";
+    require sum(row.account_ids, id => if sum(filter(raw_accounts, account => account.id == id), account => 1) == 1 and sum(filter(row.account_ids, other => other == id), other => 1) == 1 then 0 else 1) == 0 else "TRANSFER_EVIDENCE_SCOPE";
+    require row.observed_at < cutoff else "TRANSFER_EVIDENCE_CUTOFF";
+    yield row;
+  };
+  define checked_accounts = for each row in raw_accounts {
+    require row.id != "" and row.source_ref != "" and row.scope.agreement_id != "" and row.scope.participant_id != "" and row.scope.pool_id != "" else "TRANSFER_IDENTITY_REQUIRED";
+    require row.scope.currency == "USD" else "TRANSFER_CURRENCY";
+    require sum(filter(raw_accounts, other => other.scope == row.scope), other => 1) == 1 else "TRANSFER_DUPLICATE_ECONOMIC_ACCOUNT";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref and sum(filter(support.account_ids, id => id == row.id), id => 1) == 1), support => 1) == 1 else "TRANSFER_EVIDENCE_REQUIRED";
+    yield row;
+  };
+  define account_scopes = map(checked_accounts, row => {id: row.id, scope: row.scope});
+  require history == supplied_opening else "TRANSFER_OPENING_SNAPSHOT";
+  require history.coordinator_id == coordinator.id and history.purpose == coordinator.purpose and sort_by(history.account_scopes, row => row.id) == account_scopes else "TRANSFER_OPENING_SCOPE";
+  require history.policy_id == policy.id and history.policy_revision == policy.revision else "TRANSFER_OPENING_POLICY";
+  require history.boundary == scope.period.start else "TRANSFER_OPENING_BOUNDARY";
+  define checked_consumed_transfer_ids = for each id in history.consumed_transfer_ids {
+    require id != "" and sum(filter(history.consumed_transfer_ids, other => other == id), other => 1) == 1 else "TRANSFER_CONSUMED_HISTORY";
+    yield id;
+  };
+  define checked_consumed_entitlement_ids = for each id in history.consumed_entitlement_ids {
+    require id != "" and sum(filter(history.consumed_entitlement_ids, other => other == id), other => 1) == 1 else "TRANSFER_CONSUMED_HISTORY";
+    yield id;
+  };
+  define checked_consumed_authorization_ids = for each id in history.consumed_authorization_ids {
+    require id != "" and sum(filter(history.consumed_authorization_ids, other => other == id), other => 1) == 1 else "TRANSFER_CONSUMED_HISTORY";
+    yield id;
+  };
+  define checked_consumed_upstream_refs = for each id in history.consumed_upstream_refs {
+    require id != "" and sum(filter(history.consumed_upstream_refs, other => other == id), other => 1) == 1 else "TRANSFER_CONSUMED_HISTORY";
+    yield id;
+  };
+  require history.origin == "genesis" or is_some(predecessor) else "TRANSFER_PREDECESSOR_REQUIRED";
+  require if history.origin == "genesis" then history.source_case_id == "genesis" and sum(checked_consumed_transfer_ids, id => 1) + sum(checked_consumed_entitlement_ids, id => 1) + sum(checked_consumed_authorization_ids, id => 1) + sum(checked_consumed_upstream_refs, id => 1) + sum(history.last_period, row => 1) == 0 and not is_some(predecessor) else history.origin == "prior_result" else "TRANSFER_GENESIS";
+  require history.origin == "genesis" or (require_some(predecessor, "TRANSFER_PREDECESSOR_REQUIRED").source_case_id == history.source_case_id and history.source_case_id != case_id and require_some(predecessor, "TRANSFER_PREDECESSOR_REQUIRED").period.end == scope.period.start and require_some(predecessor, "TRANSFER_PREDECESSOR_REQUIRED").closing_state == history) else "TRANSFER_PREDECESSOR_MISMATCH";
+  require history.origin == "genesis" or sum(history.last_period, row => 1) == 1 else "TRANSFER_PRIOR_AUDIT";
+  define checked_audit = for each last in history.last_period {
+    require last.source_case_id == history.source_case_id and last.period == require_some(predecessor, "TRANSFER_PREDECESSOR_REQUIRED").period and last.period.end == scope.period.start else "TRANSFER_PRIOR_AUDIT";
+    require sum(last.accounts, row => 1) == sum(checked_accounts, row => 1) else "TRANSFER_PRIOR_AUDIT";
+    require sum(last.accounts, row => if sum(filter(checked_accounts, account => account.id == row.account_id and account.scope == row.scope), account => 1) == 1 and sum(filter(last.accounts, other => other.account_id == row.account_id), other => 1) == 1 and row.original_entitlement >= USD 0 and row.received_credit >= USD 0 and row.transferred_out >= USD 0 and row.final_entitlement >= USD 0 and row.final_entitlement == row.original_entitlement + row.received_credit - row.transferred_out then 0 else 1) == 0 else "TRANSFER_PRIOR_AUDIT";
+    require sum(last.accounts, row => row.original_entitlement) == sum(last.accounts, row => row.final_entitlement) else "TRANSFER_PRIOR_AUDIT";
+    require sum(last.entitlement_facts, row => if sum(filter(checked_consumed_entitlement_ids, id => id == row.id), id => 1) == 1 and sum(filter(checked_consumed_upstream_refs, id => id == row.upstream_result_ref), id => 1) == 1 then 0 else 1) == 0 and sum(last.applied_transfers, row => if sum(filter(checked_consumed_transfer_ids, id => id == row.id), id => 1) == 1 then 0 else 1) == 0 else "TRANSFER_PRIOR_AUDIT";
+    yield last;
+  };
+  // Force validation of prior audit context; its money is never initial funds.
+  require sum(checked_audit, row => 1) == sum(history.last_period, row => 1) else "TRANSFER_PRIOR_AUDIT";
+  define checked_entitlements = for each row in sort_by(entitlements, row => row.id) {
+    require row.id != "" and row.source_ref != "" and row.upstream_result_ref != "" and row.source_amount != "" else "TRANSFER_IDENTITY_REQUIRED";
+    require sum(filter(checked_accounts, account => account.id == row.account_id and account.scope == row.scope), account => 1) == 1 else "TRANSFER_ENTITLEMENT_SCOPE";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref and sum(filter(support.account_ids, id => id == row.account_id), id => 1) == 1), support => 1) == 1 else "TRANSFER_EVIDENCE_REQUIRED";
+    require row.observed_at < cutoff else "TRANSFER_FACT_CUTOFF";
+    require in_period(row.effective_date, scope.period) else "TRANSFER_ENTITLEMENT_PERIOD";
+    require row.amount >= USD 0 else "TRANSFER_EXACT_NONNEGATIVE_VALUE";
+    require sum(filter(checked_consumed_entitlement_ids, id => id == row.id), id => 1) == 0 else "TRANSFER_ENTITLEMENT_ALREADY_CONSUMED";
+    require sum(filter(checked_consumed_upstream_refs, id => id == row.upstream_result_ref), id => 1) == 0 and sum(filter(entitlements, other => other.upstream_result_ref == row.upstream_result_ref), other => 1) == 1 else "TRANSFER_UPSTREAM_ALREADY_CONSUMED";
+    require sum(filter(entitlements, other => other.account_id == row.account_id and other.source_ref == row.source_ref), other => 1) == 1 else "TRANSFER_DUPLICATE_SOURCE_VIEW";
+    yield row;
+  };
+  define checked_authorizations = for each row in authorizations {
+    require row.id != "" and row.source_ref != "" else "TRANSFER_IDENTITY_REQUIRED";
+    require sum(filter(checked_accounts, account => account.id == row.source_account), account => 1) == 1 and sum(filter(checked_accounts, account => account.id == row.target_account), account => 1) == 1 else "TRANSFER_UNKNOWN_ACCOUNT";
+    require row.source_account != row.target_account else "TRANSFER_SELF_EDGE";
+    require sum(filter(checked_accounts, account => account.id == row.source_account and account.scope == row.source_scope), account => 1) == 1 and sum(filter(checked_accounts, account => account.id == row.target_account and account.scope == row.target_scope), account => 1) == 1 else "TRANSFER_ENDPOINT_SCOPE";
+    require row.source_scope.agreement_id != row.target_scope.agreement_id else "TRANSFER_CROSS_AGREEMENT_REQUIRED";
+    require row.observed_at < cutoff else "TRANSFER_FACT_CUTOFF";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref and sum(filter(support.account_ids, id => id == row.source_account), id => 1) == 1 and sum(filter(support.account_ids, id => id == row.target_account), id => 1) == 1), support => 1) == 1 else "TRANSFER_EVIDENCE_REQUIRED";
+    require row.effective == scope.period else "TRANSFER_AUTHORIZATION_PERIOD";
+    require row.approved and row.approved_date <= row.recorded_date and row.recorded_date <= as_of else "TRANSFER_AUTHORIZATION_ASOF";
+    require row.sequence >= 0 and sum(filter(authorizations, other => other.sequence == row.sequence), other => 1) == 1 else "TRANSFER_AUTHORIZED_SEQUENCE";
+    require row.maximum_amount >= USD 0 else "TRANSFER_EXACT_NONNEGATIVE_VALUE";
+    require sum(filter(checked_consumed_authorization_ids, id => id == row.id), id => 1) == 0 else "TRANSFER_AUTHORIZATION_ALREADY_CONSUMED";
+    yield row;
+  };
+  define topology: {order: List<Text>, remaining: List<Text>} = fold checked_accounts from {order: [], remaining: map(checked_accounts, row => row.id)} with step, unused {
+    define choices = filter(step.remaining, id => sum(filter(checked_authorizations, edge => edge.target_account == id and sum(filter(step.remaining, from_id => from_id == edge.source_account), from_id => 1) > 0), edge => 1) == 0);
+    define selected: Option<Text> = fold choices from none() with smallest, candidate {
+      yield some(if is_some(smallest) and get_or(smallest, candidate) < candidate then get_or(smallest, candidate) else candidate);
+    };
+    define chosen = require_some(selected, "TRANSFER_GRAPH_CYCLE");
+    yield {order: append(step.order, chosen), remaining: filter(step.remaining, id => id != chosen)};
+  };
+  define checked_transfers = for each row in transfers {
+    require row.id != "" and row.source_ref != "" else "TRANSFER_IDENTITY_REQUIRED";
+    require sum(filter(checked_consumed_transfer_ids, id => id == row.id), id => 1) == 0 else "TRANSFER_ALREADY_CONSUMED";
+    require sum(filter(checked_authorizations, auth => auth.id == row.authorization_id), auth => 1) == 1 and sum(filter(transfers, other => other.authorization_id == row.authorization_id), other => 1) == 1 else "TRANSFER_AUTHORIZATION_REFERENCE_OR_REUSE";
+    define matched = filter(checked_authorizations, auth => auth.id == row.authorization_id);
+    require sum(matched, auth => if auth.source_account == row.source_account and auth.target_account == row.target_account and auth.source_scope == row.source_scope and auth.target_scope == row.target_scope then 1 else 0) == 1 else "TRANSFER_AUTHORIZATION_ENDPOINTS";
+    require row.observed_at < cutoff else "TRANSFER_FACT_CUTOFF";
+    require sum(matched, auth => if auth.observed_at <= row.observed_at then 1 else 0) == 1 else "TRANSFER_OBSERVATION_ORDER";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref and sum(filter(support.account_ids, id => id == row.source_account), id => 1) == 1 and sum(filter(support.account_ids, id => id == row.target_account), id => 1) == 1), support => 1) == 1 else "TRANSFER_EVIDENCE_REQUIRED";
+    require in_period(row.recognition_date, scope.period) else "TRANSFER_RECOGNITION_PERIOD";
+    require row.amount > USD 0 and row.amount <= sum(matched, auth => auth.maximum_amount) else "TRANSFER_AUTHORIZED_AMOUNT";
+    define auth_source = fold matched from "" with selected, auth { yield auth.source_ref; };
+    yield {id: row.id, authorization_id: row.authorization_id, source_account: row.source_account, target_account: row.target_account, source_scope: row.source_scope, target_scope: row.target_scope, amount: row.amount, recognition_date: row.recognition_date, observed_at: row.observed_at, source_observed_at: row.source_observed_at, source_ref: row.source_ref, evidence_ref: row.evidence_ref, sequence: sum(matched, auth => auth.sequence), authorization_source_ref: auth_source};
+  };
+  define initial_balances = for each account in checked_accounts {
+    define original = sum(filter(checked_entitlements, row => row.account_id == account.id), row => row.amount);
+    yield {account_id: account.id, available: original, original_entitlement: original, received_credit: USD 0, transferred_out: USD 0};
+  };
+  define processed: {balances: List<{account_id: Text, available: Money<USD>, original_entitlement: Money<USD>, received_credit: Money<USD>, transferred_out: Money<USD>}>, lines: List<{amount: Money<USD>, authorization_id: Text, authorization_source_ref: Text, evidence_ref: Text, id: Text, observed_at: Instant, recognition_date: Date, sequence: Int, source_account: Text, source_after: Money<USD>, source_before: Money<USD>, source_observed_at: Text, source_ref: Text, source_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}, target_account: Text, target_after: Money<USD>, target_before: Money<USD>, target_scope: {agreement_id: Text, currency: Text, participant_id: Text, pool_id: Text}}>} = fold topology.order from {balances: initial_balances, lines: []} with step, source_id {
+    define outgoing = sort_by(filter(checked_transfers, row => row.source_account == source_id), row => row.sequence);
+    define next = fold outgoing from step with balances_step, transaction {
+      define before_source = sum(filter(balances_step.balances, row => row.account_id == transaction.source_account), row => row.available);
+      define before_target = sum(filter(balances_step.balances, row => row.account_id == transaction.target_account), row => row.available);
+      require transaction.amount <= before_source else "TRANSFER_SOURCE_OVERDRAW";
+      define next_balances = map(balances_step.balances, row => {account_id: row.account_id, original_entitlement: row.original_entitlement, available: row.available + (if row.account_id == transaction.target_account then transaction.amount else USD 0) - (if row.account_id == transaction.source_account then transaction.amount else USD 0), received_credit: row.received_credit + (if row.account_id == transaction.target_account then transaction.amount else USD 0), transferred_out: row.transferred_out + (if row.account_id == transaction.source_account then transaction.amount else USD 0)});
+      define line = {id: transaction.id, authorization_id: transaction.authorization_id, source_account: transaction.source_account, target_account: transaction.target_account, source_scope: transaction.source_scope, target_scope: transaction.target_scope, amount: transaction.amount, recognition_date: transaction.recognition_date, observed_at: transaction.observed_at, source_observed_at: transaction.source_observed_at, source_ref: transaction.source_ref, evidence_ref: transaction.evidence_ref, sequence: transaction.sequence, source_before: before_source, source_after: before_source - transaction.amount, target_before: before_target, target_after: before_target + transaction.amount, authorization_source_ref: transaction.authorization_source_ref};
+      yield {balances: next_balances, lines: append(balances_step.lines, line)};
+    };
+    yield next;
+  };
+  define account_results = for each account in checked_accounts {
+    define balances = filter(processed.balances, row => row.account_id == account.id);
+    define original = sum(balances, row => row.original_entitlement);
+    define received = sum(balances, row => row.received_credit);
+    define outgoing = sum(balances, row => row.transferred_out);
+    define available = sum(balances, row => row.available);
+    require available >= USD 0 and available == original + received - outgoing else "TRANSFER_ACCOUNT_CONSERVATION";
+    yield {account_id: account.id, scope: account.scope, original_entitlement: original, received_credit: received, transferred_out: outgoing, final_entitlement: available, source_ref: account.source_ref, evidence_ref: account.evidence_ref};
+  };
+  define total_original = sum(account_results, row => row.original_entitlement);
+  define total_final = sum(account_results, row => row.final_entitlement);
+  require total_original == total_final and sum(account_results, row => row.received_credit) == sum(account_results, row => row.transferred_out) else "TRANSFER_GLOBAL_CONSERVATION";
+  define audit_entitlements = map(checked_entitlements, row => {id: row.id, account_id: row.account_id, scope: row.scope, amount: row.source_amount, effective_date: row.effective_date, observed_at: row.observed_at, source_observed_at: row.source_observed_at, source_ref: row.source_ref, upstream_result_ref: row.upstream_result_ref, evidence_ref: row.evidence_ref});
+  closing history = {coordinator_id: coordinator.id, account_scopes: account_scopes, purpose: coordinator.purpose, policy_id: policy.id, policy_revision: policy.revision, boundary: scope.period.end, origin: "prior_result", source_case_id: case_id, consumed_transfer_ids: sort_by(concat(checked_consumed_transfer_ids, map(checked_transfers, row => row.id)), id => id), consumed_entitlement_ids: sort_by(concat(checked_consumed_entitlement_ids, map(checked_entitlements, row => row.id)), id => id), consumed_authorization_ids: sort_by(concat(checked_consumed_authorization_ids, map(checked_authorizations, row => row.id)), id => id), consumed_upstream_refs: sort_by(concat(checked_consumed_upstream_refs, map(checked_entitlements, row => row.upstream_result_ref)), id => id), last_period: [{source_case_id: case_id, period: scope.period, accounts: account_results, entitlement_facts: audit_entitlements, applied_transfers: processed.lines}]};
+  emit "comparison" = {source_case_id: case_id, period: scope.period, coordinator_id: coordinator.id, topological_accounts: topology.order, original_entitlement_total: total_original, final_entitlement_total: total_final, transferred_total: sum(account_results, row => row.transferred_out), external_cash_added: USD 0, status_meaning: "calculated cross-contract entitlement redistribution; no bank or issuance evidence inferred"};
+  emit "account_results" = account_results;
+  emit "applied_transfers" = processed.lines;
+  emit "reconciliation" = total_original == total_final;
+}

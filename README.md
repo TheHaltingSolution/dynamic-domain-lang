@@ -1,5 +1,17 @@
 # dynamic-domain-lang
 
+Active completion work is tracked in the
+[finite completion plan](docs/spl/completion-plan.md) and
+[requirement backlog](docs/spl/completion-backlog.json), covering all 17 agreed
+C1 calculation families plus performance and validation obligations. For the
+external agents, use the paste-ready
+[research](docs/spl/for-royalties-research-agent.md) and
+[design](docs/spl/for-language-design-agent.md) notes.
+
+The [active checkpoint](docs/spl/completion-checkpoint.md) records newer financial
+slices, measured audit improvements and verification scopes. Current artifact
+consumption uses the [validated completion contract](docs/spl/artifact-publication-design.md).
+
 For a new implementation session, read the
 [compiler session handoff](docs/spl/session-handoff.md) after `AGENTS.md`.
 

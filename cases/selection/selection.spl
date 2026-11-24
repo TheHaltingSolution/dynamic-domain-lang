@@ -1,0 +1,54 @@
+schedule ScopedSelection language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input project: Id<Asset>;
+  input receipt: {agreement_id: Id<Agreement>, amount: Money<USD>, asset_id: Id<Asset>, channel: Text, effective_date: Date, evidence_ref: Text, id: Text, observed_at: Instant, source_ref: Text};
+  input cutoff: Instant;
+  input method: Text;
+  input module_id: Text;
+  input primary: {agreement_id: Id<Agreement>, asset_id: Id<Asset>, body_divisor: Ratio, channel: Text, effective: Period, enabled: Bool, evidence_ref: Text, id: Text, observed_at: Instant, predicate_divisor: Ratio, rate: Ratio, source_ref: Text};
+  input competing: {agreement_id: Id<Agreement>, asset_id: Id<Asset>, body_divisor: Ratio, channel: Text, effective: Period, enabled: Bool, evidence_ref: Text, id: Text, observed_at: Instant, predicate_divisor: Ratio, rate: Ratio, source_ref: Text};
+  input unsafe: {agreement_id: Id<Agreement>, asset_id: Id<Asset>, body_divisor: Ratio, channel: Text, effective: Period, enabled: Bool, evidence_ref: Text, id: Text, observed_at: Instant, predicate_divisor: Ratio, rate: Ratio, source_ref: Text};
+  input fallback: {body_divisor: Ratio, evidence_ref: Text, rate: Ratio, source_ref: Text};
+  input evidence: List<{agreement_id: Id<Agreement>, approval_ref: Id<Decision>, approved: Bool, asset_id: Id<Asset>, authority_rule_id: Text, evidence_ref: Text, id: Text, kind: Text, observed_at: Instant, source_kind: Text, source_ref: Text}>;
+  require method == "unique_no_fallback" or method == "unique_explicit_fallback" or method == "priority_explicit_fallback" else "SELECTION_METHOD";
+  require receipt.agreement_id == scope.agreement_id and receipt.asset_id == project else "SELECTION_RECEIPT_SCOPE";
+  require receipt.amount >= USD 0 and receipt.id != "" and receipt.source_ref != "" else "SELECTION_RECEIPT_REQUIRED";
+  require in_period(receipt.effective_date, scope.period) else "SELECTION_RECEIPT_PERIOD";
+  require receipt.observed_at < cutoff else "SELECTION_RECEIPT_CUTOFF";
+  define checked_evidence = for each row in evidence {
+    require row.id != "" and row.source_ref != "" else "SELECTION_EVIDENCE_REQUIRED";
+    require sum(filter(evidence, other => other.id == row.id), other => 1) == 1 else "SELECTION_DUPLICATE_EVIDENCE";
+    require row.agreement_id == scope.agreement_id and row.asset_id == project else "SELECTION_EVIDENCE_SCOPE";
+    require row.observed_at < cutoff else "SELECTION_EVIDENCE_CUTOFF";
+    yield row;
+  };
+  require sum(filter(checked_evidence, row => row.id == receipt.evidence_ref and row.authority_rule_id == "receipt" and row.approved), row => 1) == 1 else "SELECTION_RECEIPT_AUTHORITY";
+  require primary.id == "primary" and competing.id == "competing" and unsafe.id == "unsafe" else "SELECTION_RULE_SLOT";
+  define checked_rules = for each row in [primary, competing, unsafe] {
+    require row.source_ref != "" and row.rate >= 0.0 and row.rate <= 1.0 else "SELECTION_RULE_TERMS";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref and support.authority_rule_id == row.id and support.approved), support => 1) == 1 else "SELECTION_RULE_AUTHORITY";
+    yield row;
+  };
+  require sum(checked_rules, row => 1) == 3 else "SELECTION_COMPLETE_RULES";
+  require fallback.rate >= 0.0 and fallback.rate <= 1.0 and fallback.source_ref != "" else "SELECTION_FALLBACK_TERMS";
+  require sum(filter(checked_evidence, row => row.id == fallback.evidence_ref and row.authority_rule_id == "fallback" and row.approved), row => 1) == 1 else "SELECTION_FALLBACK_AUTHORITY";
+  emit "source_audit" = {receipt_id: receipt.id, receipt_source: receipt.source_ref, module_id: module_id, method: method};
+  define selected = if method == "unique_no_fallback" then choose registered unique {
+    rule "primary" when primary.enabled and primary.agreement_id == receipt.agreement_id and primary.asset_id == receipt.asset_id and primary.channel == receipt.channel and in_period(receipt.effective_date, primary.effective) and primary.observed_at < cutoff and 1.0 / primary.predicate_divisor > 0.0 => {rule_id: "primary", rate: primary.rate, earned: receipt.amount * primary.rate / primary.body_divisor, rule_source: primary.source_ref, rule_evidence: primary.evidence_ref};
+    rule "competing" when competing.enabled and competing.agreement_id == receipt.agreement_id and competing.asset_id == receipt.asset_id and competing.channel == receipt.channel and in_period(receipt.effective_date, competing.effective) and competing.observed_at < cutoff and 1.0 / competing.predicate_divisor > 0.0 => {rule_id: "competing", rate: competing.rate, earned: receipt.amount * competing.rate / competing.body_divisor, rule_source: competing.source_ref, rule_evidence: competing.evidence_ref};
+    rule "unsafe" when unsafe.enabled and unsafe.agreement_id == receipt.agreement_id and unsafe.asset_id == receipt.asset_id and unsafe.channel == receipt.channel and in_period(receipt.effective_date, unsafe.effective) and unsafe.observed_at < cutoff and 1.0 / unsafe.predicate_divisor > 0.0 => {rule_id: "unsafe", rate: unsafe.rate, earned: receipt.amount * unsafe.rate / unsafe.body_divisor, rule_source: unsafe.source_ref, rule_evidence: unsafe.evidence_ref};
+  } else if method == "unique_explicit_fallback" then choose registered unique {
+    rule "primary" when primary.enabled and primary.agreement_id == receipt.agreement_id and primary.asset_id == receipt.asset_id and primary.channel == receipt.channel and in_period(receipt.effective_date, primary.effective) and primary.observed_at < cutoff and 1.0 / primary.predicate_divisor > 0.0 => {rule_id: "primary", rate: primary.rate, earned: receipt.amount * primary.rate / primary.body_divisor, rule_source: primary.source_ref, rule_evidence: primary.evidence_ref};
+    rule "competing" when competing.enabled and competing.agreement_id == receipt.agreement_id and competing.asset_id == receipt.asset_id and competing.channel == receipt.channel and in_period(receipt.effective_date, competing.effective) and competing.observed_at < cutoff and 1.0 / competing.predicate_divisor > 0.0 => {rule_id: "competing", rate: competing.rate, earned: receipt.amount * competing.rate / competing.body_divisor, rule_source: competing.source_ref, rule_evidence: competing.evidence_ref};
+    rule "unsafe" when unsafe.enabled and unsafe.agreement_id == receipt.agreement_id and unsafe.asset_id == receipt.asset_id and unsafe.channel == receipt.channel and in_period(receipt.effective_date, unsafe.effective) and unsafe.observed_at < cutoff and 1.0 / unsafe.predicate_divisor > 0.0 => {rule_id: "unsafe", rate: unsafe.rate, earned: receipt.amount * unsafe.rate / unsafe.body_divisor, rule_source: unsafe.source_ref, rule_evidence: unsafe.evidence_ref};
+    otherwise "fallback" => {rule_id: "fallback", rate: fallback.rate, earned: receipt.amount * fallback.rate / fallback.body_divisor, rule_source: fallback.source_ref, rule_evidence: fallback.evidence_ref};
+  } else choose priority {
+    rule "primary" priority 20 when primary.enabled and primary.agreement_id == receipt.agreement_id and primary.asset_id == receipt.asset_id and primary.channel == receipt.channel and in_period(receipt.effective_date, primary.effective) and primary.observed_at < cutoff and 1.0 / primary.predicate_divisor > 0.0 => {rule_id: "primary", rate: primary.rate, earned: receipt.amount * primary.rate / primary.body_divisor, rule_source: primary.source_ref, rule_evidence: primary.evidence_ref};
+    rule "competing" priority 20 when competing.enabled and competing.agreement_id == receipt.agreement_id and competing.asset_id == receipt.asset_id and competing.channel == receipt.channel and in_period(receipt.effective_date, competing.effective) and competing.observed_at < cutoff and 1.0 / competing.predicate_divisor > 0.0 => {rule_id: "competing", rate: competing.rate, earned: receipt.amount * competing.rate / competing.body_divisor, rule_source: competing.source_ref, rule_evidence: competing.evidence_ref};
+    rule "unsafe" priority -10 when unsafe.enabled and unsafe.agreement_id == receipt.agreement_id and unsafe.asset_id == receipt.asset_id and unsafe.channel == receipt.channel and in_period(receipt.effective_date, unsafe.effective) and unsafe.observed_at < cutoff and 1.0 / unsafe.predicate_divisor > 0.0 => {rule_id: "unsafe", rate: unsafe.rate, earned: receipt.amount * unsafe.rate / unsafe.body_divisor, rule_source: unsafe.source_ref, rule_evidence: unsafe.evidence_ref};
+    otherwise "fallback" => {rule_id: "fallback", rate: fallback.rate, earned: receipt.amount * fallback.rate / fallback.body_divisor, rule_source: fallback.source_ref, rule_evidence: fallback.evidence_ref};
+  };
+  emit "statement" = {agreement_id: scope.agreement_id, participant_id: scope.participant_id, pool_id: scope.pool_id, asset_id: project, earned: selected.earned};
+  emit "selection_detail" = {module_id: module_id, method: method, receipt_id: receipt.id, receipt_source: receipt.source_ref, rule_id: selected.rule_id, rate: selected.rate, earned: selected.earned, rule_source: selected.rule_source, rule_evidence: selected.rule_evidence};
+  emit "reconciliation" = selected.earned >= USD 0;
+}
