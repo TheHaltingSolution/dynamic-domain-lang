@@ -33,12 +33,18 @@ following effects:
 | Financial output and logical trace | Unchanged | Unchanged |
 | Candidate closing quantity, boundary and `prior_result_ref` | Unchanged | Unchanged |
 | Result manifest | Retains supplied dates | Retains supplied dates |
-| `result_digest` | Changes; the existing full-envelope digest includes the manifest | Unchanged; the existing legacy digest excludes the entire manifest |
+| Default `array-v1` `result_digest` | Changes; the existing full-envelope digest includes the manifest | Unchanged; the existing legacy digest excludes the entire manifest |
+| Opt-in `compact-v2` `result_digest` | Unchanged; the existing publication digest excludes the manifest | Unchanged; the same publication digest excludes the manifest |
 | Published result/package bytes and completion file hashes | Change | Change |
 
 The module closing cell's predecessor reference continues to use the semantic
 run digest. It does not switch to the full-envelope result digest. The bounded
-profile's distinct existing digest contract remains intact. Publication still
+profile's distinct existing default digest contract remains intact. The opt-in
+compact publisher already uses a separate semantic result digest for both
+families: it excludes the manifest and physical audit paths/target build bytes
+while retaining logical audit and financial dependencies. This feature preserves
+that rule rather than replacing it with the default module-envelope digest.
+Publication still
 validates the complete referenced file bytes; an unchanged bounded result digest
 does not imply an unchanged manifest or artifact file hash.
 

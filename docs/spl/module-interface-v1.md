@@ -74,12 +74,16 @@ default or ordering relative to each other, period or cutoff is inferred. They
 remain in the manifest, are excluded from semantic identity, and are never
 forwarded to financial ports or used to select recognition. Date-only changes
 under one implementation pin leave financial outputs, trace and candidate
-closing-state lineage unchanged; the module result digest changes because it
-includes the full manifest. These labels do not make a calculation issued or
+closing-state lineage unchanged. Under the default `array-v1` audit profile,
+the module result digest changes because it includes the full manifest. Under
+`compact-v2`, the existing publication digest excludes the manifest for both
+registered modules and bounded profiles; date-only changes leave it unchanged.
+These labels do not make a calculation issued or
 paid. A separately supplied economic Date port retains its selected semantics.
 The bounded canonical profile accepts the same optional metadata; its existing
 result digest excludes the entire manifest, so a date-only change leaves that
-legacy result digest unchanged while the published file hashes change. Adding
+legacy result digest unchanged. Published file hashes change in both audit
+profiles because they still cover the actual manifest and owned files. Adding
 this implementation/schema capability changes build pins; it does not preserve
 the digests of packages bound against an older compiler.
 

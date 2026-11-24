@@ -191,6 +191,7 @@ class RunDateNativeTests(DateFixture, unittest.TestCase):
                 results.append(result); graphs.append(list(iter_audited_trace(output)))
                 OBSERVATIONS.append({"test": self.id(), "family": family, "backend": "compare", "audit_profile": "compact-v2", "bound": deepcopy(bound), "result": deepcopy(result), "output": str(output)})
             self.assertEqual(graphs[0], graphs[1])
+            self.assertEqual(results[0]["result_digest"], results[1]["result_digest"])
             for field in ("semantic_run_digest", "statements", "detail", "closing_state", "reconciliation", "policy_review"):
                 self.assertEqual(results[0][field], results[1][field], field)
 
