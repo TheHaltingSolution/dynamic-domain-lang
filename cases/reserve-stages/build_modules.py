@@ -117,6 +117,7 @@ def terms(value):
     result['approved_utc']=result['approved_date']+'T00:00:00Z'
     for rule in result['release_schedule']:
         record(rule,{'id','offset_months','kind'}|({'fraction'} if 'fraction' in rule else set()))
+        if 'fraction' in rule: q(rule['fraction'])
         rule.setdefault('fraction',None)
     return encode(result,s.TERMS)
 def frame(value,position):

@@ -60,6 +60,20 @@ class ReserveStageModuleTests(original.ReserveStageOracleTests):
             result=stage.run_reserve_stages_package(package,backend='reference')
             self.assertEqual(result['status'],'blocked'); self.assertEqual(result['diagnostics'][0]['code'],'RS_PREPARED_PACKAGE_MISMATCH')
 
+    def test_explicit_null_original_fraction_is_not_omission(self):
+        data=original.view(original.fixture('basis_reserve_stage'))
+        data['terms']['release_schedule'][0]['fraction']=None
+        with self.assertRaises(ReserveStageOracleError): reserve_stages(data)
+        with self.assertRaises(ValueError): stage.reserve_stages_package(data,reference=self.reference)
+        package=stage.reserve_stages_package(original.view(original.fixture('basis_reserve_stage')),reference=self.reference)
+        context=stage.loads(package['inputs']['source_context'])
+        context['terms']['release_schedule'][0]['fraction']=None
+        package['inputs']['source_context']=stage.context_raw(context)
+        result=stage.run_reserve_stages_package(package,backend='reference')
+        self.assertEqual(result['status'],'blocked')
+        self.assertEqual(result['diagnostics'][0]['code'],'RS_PREPARED_PACKAGE_MISMATCH')
+        self.assertFalse(result['results'] or result['closing_state'])
+
     def test_direct_prepared_binding_source_negative_controls(self):
         base=stage.reserve_stages_package(original.view(original.fixture()),reference=self.reference)
         mutations=[lambda p:p['inputs']['terms'].__setitem__('fixed_fee',{'value':'1000','currency':'USD'}),lambda p:p['inputs']['frames'][0]['elections'][0].__setitem__('approved',False),lambda p:p['inputs']['frames'][0]['evidence'][0].__setitem__('approved',False),lambda p:p['inputs']['terms'].__setitem__('reserve_measure','producer_entitlement_USD'),lambda p:p['inputs']['frames'][0]['population'].__setitem__('complete',False)]
