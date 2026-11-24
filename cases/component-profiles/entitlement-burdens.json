@@ -1,0 +1,118 @@
+{
+  "binding": {
+    "module_closure": [
+      {
+        "id": "synthetic:entitlement-burdens",
+        "locator": "cases/entitlement-burdens/entitlement-burdens-module.json",
+        "revision": "1",
+        "sha256": "43f18b7b4692a7f160a1080ad9b662633e680da9fc9b8dd6664ea589e64e0f6e"
+      }
+    ],
+    "module_ref": {
+      "id": "synthetic:entitlement-burdens",
+      "locator": "cases/entitlement-burdens/entitlement-burdens-module.json",
+      "revision": "1",
+      "sha256": "43f18b7b4692a7f160a1080ad9b662633e680da9fc9b8dd6664ea589e64e0f6e"
+    },
+    "policy_sha256": "9a809c4a5b316cf4639ae36208b4e7e8cad38be903bc74ef59fa6f16ccdca5e2",
+    "source_sha256": "e9b76f271fcfe4b5ec6162eebe439bb9b1ab4b9bb9897f0f4021d34d910017c0"
+  },
+  "format": "spl-component-dependencies/1",
+  "selectors": [
+    {
+      "key": [
+        {
+          "from": "row",
+          "path": [
+            "scope"
+          ]
+        }
+      ],
+      "kind": "pool",
+      "namespace": "entitlement-burden-utf8hex-account-scope/1",
+      "rows": [
+        "inputs",
+        "frames",
+        "*",
+        "accounts",
+        "*"
+      ]
+    },
+    {
+      "key": [
+        {
+          "from": "row",
+          "path": [
+            "original_ref"
+          ]
+        }
+      ],
+      "kind": "gate",
+      "namespace": "entitlement-burden-utf8hex-original-authority/1",
+      "rows": [
+        "inputs",
+        "frames",
+        "*",
+        "authorizations",
+        "*"
+      ]
+    },
+    {
+      "key": [
+        {
+          "from": "row",
+          "path": [
+            "original_ref"
+          ]
+        }
+      ],
+      "kind": "allocation_parent",
+      "namespace": "entitlement-burden-utf8hex-original-receipt/1",
+      "rows": [
+        "inputs",
+        "frames",
+        "*",
+        "receipts",
+        "*"
+      ]
+    },
+    {
+      "key": [
+        {
+          "from": "row",
+          "path": [
+            "original_ref"
+          ]
+        }
+      ],
+      "kind": "correction_chain",
+      "namespace": "entitlement-burden-utf8hex-authority-history/1",
+      "rows": [
+        "inputs",
+        "frames",
+        "*",
+        "authorizations",
+        "*"
+      ]
+    },
+    {
+      "key": [
+        {
+          "from": "row",
+          "path": [
+            "scope"
+          ]
+        }
+      ],
+      "kind": "cross_contract",
+      "namespace": "entitlement-burden-utf8hex-account-coordination/1",
+      "rows": [
+        "inputs",
+        "frames",
+        "*",
+        "accounts",
+        "*"
+      ]
+    }
+  ]
+}
