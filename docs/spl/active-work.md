@@ -6,10 +6,19 @@ not a complete release. No push or pull request has been made.
 
 ## Current continuation
 
-Main core remainsa0e5/c287/a7e. Exact0b91bc7 full regression PASSED1158 methods
-with no failures/errors/skips/source or compiled drift,7726.735609s. PID5464 and
-exec98279 are ENDED. Later independent oracles/cases/helpers are separately
-qualified, not retroactively included in that snapshot.
+Main core remains a0e5/c287/a7e. Exact 0b91bc7 full regression PASSED 1158
+methods with no failures/errors/skips/source or compiled drift, 7726.735609s.
+PID5464 and exec98279 are ENDED. Later independent oracles/cases/helpers are
+separately qualified, not retroactively included in that snapshot.
+
+The combined candidate at `C:/spl-c1-integration`, commit `c80ac34`, now includes
+accepted main165212e plus compact publication, bounded old-v1 carry, narrow
+imports and both helper emitters. Its fresh default/indexed builds and both
+smokes pass. The full **1301-method run is active**, PID54884/exec52405, evidence
+`integrated-compiler-c80ac34-20261123-a`. Its source/core is frozen; do not edit
+or restart it on an observation timeout. This does not include the separately
+pending C10/C11/C13 case implementations. No combined terminal result or main
+promotion is claimed yet.
 
 - C02 basis methods are accepted at77fcbb1: current-main43 methods and a separate
   bounded25-case composite preserve complete dimensioned intermediates and all
@@ -18,6 +27,16 @@ qualified, not retroactively included in that snapshot.
 - C13 independent35 controls are committed; separate53-method source/reference
   freeze and12 actual serialized/reference/preview bundles pass. Native
   qualification remains pending; original issued/paid/unissued measures differ.
+  Root prepared a separate `C:/spl-c13h` candidate on c80ac34, retaining financial
+  source/descriptor/templates and all five original control files. Only compact
+  transport forwarding and actual backend/custody tests differ. The single-case
+  bounded baseline is active, PID37216/exec47554, evidence
+  `dependent-replay-native-helper-baseline-20261123-a`. The full70-method cohort
+  is prepared in `dependent-replay-native-helper-20261123-a`, not yet launched.
+- B-NUM-PRECISION's five independent files are frozen at165212e:30 passing
+  controls distinguish ratio precision, all five rounding modes, signed ties
+  and row-versus-total bridges. No SPL/native credit yet. Source implementation
+  follows the C11 terminal audit; the original controls stay immutable.
 - Isolated compact commits2ee01e6/31caf5f complete100/1000 canonical publication;
   receipt0b36534 passes24 methods and recovers the actualoldQ2 cells at37.7MB.
   Root independently verified the receipt/cells and unchanged old marker.
@@ -34,6 +53,8 @@ qualified, not retroactively included in that snapshot.
 Work ownership: trace handles isolated corrected C10 wrapper/native46 cohort;
 source handles isolated C11 wrapper/native66 cohort on dual helpers; matrix is
 preparing remaining generic C09 reserve-stage controls after freezing BNUM30.
+Root handles the combined1301 run and C13 qualification. Trace next prepares
+dependency-component planning; source next prepares precision/rounding SPL.
 Main core stays stable until coherent promotion.
 Recent details below retain their exact dated scopes. Start with
 [C13 controls](#frozen-independent-dependent-period-correction-controls),
