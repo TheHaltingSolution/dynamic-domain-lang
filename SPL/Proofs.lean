@@ -1,3 +1,4 @@
+import Lean
 import SPL.Core
 
 /-!

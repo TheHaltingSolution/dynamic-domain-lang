@@ -1,4 +1,5 @@
-import Lean
+import Lean.Data.Json.Parser
+import Lean.Data.Json.Printer
 import SPL.Runtime
 import SPL.Check
 import Std.Internal.Parsec

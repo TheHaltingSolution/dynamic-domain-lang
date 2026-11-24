@@ -1,4 +1,4 @@
-import Lean
+import Lean.Data.Json.Printer
 import Init.Data.Rat
 import SPL.Instant
 import SPL.Calendar
