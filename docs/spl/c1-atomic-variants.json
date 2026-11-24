@@ -841,6 +841,26 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-checks-6b3d9171/verification.json"
       ],
       "basis": "46 methods and six completed native/reference/Python-emitted bundles; actual five-period original-state carry; selected within-vintage only, sourced excess-return NR remains open"
+    },
+    "usage_conversion": {
+      "sources": [
+        "cases/usage-conversion/README.md",
+        "cases/usage-conversion/policy.md",
+        "docs/spl/unit-conversion-implementation.md",
+        "docs/spl/unit-module-interface.md"
+      ],
+      "controls": [
+        "oracles/usage_conversion.py",
+        "Tests/test_usage_conversion_oracle.py",
+        "Tests/test_usage_units.py",
+        "Tests/test_usage_unit_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-unit-broad-20261123-b569/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-unit-main-integration-20261123-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/linked-opaque-kind-20261123-b/verification.json"
+      ],
+      "basis": "Finite explicit conversion+owner/interface/state guarantees;931 candidate regression and46 main checks; historical replay records retain actual dated implementation pins."
     }
   },
   "variants": [
@@ -946,29 +966,31 @@
       "name": "Versioned explicit Minute/Hour conversion interface",
       "kind": "typed_interface",
       "requiredness": "supporting_engineering",
-      "status": "pending",
+      "status": "qualified",
       "requirements": [
         "C02"
       ],
       "discriminator": "90 Minute becomes1.5 Hour under explicit60:1 relation; original USD12/Hour yields18.",
-      "evidence_groups": [],
+      "evidence_groups": [
+        "usage_conversion"
+      ],
       "execution": {
-        "source": "not_executed",
-        "canonical": "not_executed",
-        "native_ir": "not_executed",
-        "native_emitted": "not_executed",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "pending",
-        "boundary_invalid_controls": "pending",
-        "native_audit": "pending",
+        "source": "qualified_finite_owner_scoped_feature",
+        "canonical": "registered_original_quantity_price_and_actual_old_new_state_cases",
+        "native_ir": "executed_selected_valid_and_hostile_IR_paths",
+        "native_emitted": "executed_selected_finite_cases",
+        "python_emitted": "executed_selected_finite_cases",
+        "independent_controls": "original_measurement_price_scale_controls",
+        "boundary_invalid_controls": "owner_unit_relation_currency_signature_codec_state_namespace_and_version_controls",
+        "native_audit": "selected_complete_native_observations",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
         "source": "unit-conversion-extension-plan.md",
-        "policy": "design_for_review_no_core_implementation_credit",
+        "policy": "reviewed_explicit_non_FX_unit_plan",
         "professional_approval": "not_applicable"
       },
-      "remaining_obligation": "Implement reviewed source/module admission, catalog, defensive IR, codecs/runtime/state and old-source/state replay. Old USD0.20/Minute encoding remains a legitimate alternative."
+      "remaining_obligation": "No remaining implementation obligation for the finite60:1 interface. Additional unit registries/currencies remain separate; existing USD.20/Minute encoding remains legitimate. No final latest-corpus release or whole-compiler proof."
     },
     {
       "id": "C02.FIXED_UNIT_RATE",

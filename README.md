@@ -16,6 +16,12 @@ The [atomic variant inventory](docs/spl/c1-coverage.md) records the reviewed fin
 semantic scope, separate backend/evidence axes and remaining gaps.
 [Live work](docs/spl/active-work.md) records later checkpoints and active jobs.
 
+Explicit [Minute/Hour conversion](docs/spl/unit-conversion-implementation.md)
+is now integrated under owner feature `spl.usage-time/1`; the base dictionary
+remains unchanged. Its frozen candidate passes931 tests, with46 additional main
+integration checks. Native mixed currency remains reserved for the later tool
+demonstration. The `0.4.3-dev` records below are historical baselines.
+
 For a new implementation session, read the
 [compiler session handoff](docs/spl/session-handoff.md) after `AGENTS.md`.
 

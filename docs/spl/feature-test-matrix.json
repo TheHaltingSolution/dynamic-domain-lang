@@ -1661,6 +1661,96 @@
         "Largest actual result50337661bytes under unchanged64MiB; input bounds do not establish every combination or general capacity.",
         "Canonical NFC Text boundary remains; no emitted-target branch coverage or source-authenticity proof."
       ]
+    },
+    {
+      "id": "explicit-owner-scoped-usage-conversion",
+      "requirements": [
+        "C02",
+        "T23"
+      ],
+      "description": "Finite versioned Minute/Hour relation, owner-scoped syntax/interface admission and old/new dimensional state guarantees.",
+      "status": "witnessed",
+      "witnesses": [
+        {
+          "test": "Tests.test_usage_units.UsageNativeTests.test_original_measurement_price_fraction_signed_inverse_controls",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted"
+          ],
+          "inputs": [
+            "cases/usage-conversion/neutral.json",
+            "cases/usage-conversion/policy.md",
+            "cases/usage-conversion/convert-library.spl",
+            "cases/usage-conversion/minute-meter.spl"
+          ],
+          "property": "Exact90Minute?1.5Hour?USD12/Hour=18 and fractional/signed/inverse controls retain original facts.",
+          "oracle": "Independent oracles/usage_conversion.py calculates original scale/quantity/price before transport; hostile admission/state/IR controls are separate engineering evidence."
+        },
+        {
+          "test": "Tests.test_usage_unit_modules.UsageUnitModuleTests.test_native_canonical_conversion_carries_and_inferred_closure",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/usage-conversion/neutral.json",
+            "cases/usage-conversion/policy.md",
+            "cases/usage-conversion/convert-library.spl",
+            "cases/usage-conversion/minute-meter.spl"
+          ],
+          "property": "Actual canonical old/new meters and inferred/unused extended closures preserve source-owner permissions and complete state identity.",
+          "oracle": "Independent oracles/usage_conversion.py calculates original scale/quantity/price before transport; hostile admission/state/IR controls are separate engineering evidence."
+        },
+        {
+          "test": "Tests.test_usage_unit_modules.UsageUnitModuleTests.test_actual_base_minute_carry_to_extended_output_keeps_unit",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/usage-conversion/neutral.json",
+            "cases/usage-conversion/policy.md",
+            "cases/usage-conversion/convert-library.spl",
+            "cases/usage-conversion/minute-meter.spl"
+          ],
+          "property": "Reference canonical base-Minute carry retains original meter while producing explicit derivedHour; this selector itself earns no native credit.",
+          "oracle": "Independent oracles/usage_conversion.py calculates original scale/quantity/price before transport; hostile admission/state/IR controls are separate engineering evidence."
+        },
+        {
+          "test": "Tests.test_usage_units.UsageNativeTests.test_native_typed_ir_owner_signature_grounding_and_json_shape_preflight",
+          "stages": [
+            "checker",
+            "native_ir",
+            "native_emitted"
+          ],
+          "inputs": [
+            "cases/usage-conversion/neutral.json",
+            "cases/usage-conversion/policy.md",
+            "cases/usage-conversion/convert-library.spl",
+            "cases/usage-conversion/minute-meter.spl"
+          ],
+          "property": "Hostile typed IR cannot invent foreignHour permission through inferred metadata or forged apply signatures; malformed programs fail before financial outputs.",
+          "oracle": "Independent oracles/usage_conversion.py calculates original scale/quantity/price before transport; hostile admission/state/IR controls are separate engineering evidence."
+        }
+      ],
+      "limitations": [
+        "Base dictionary remains Download/UsageMinute; new feature is explicit and native currency remains USD-only.",
+        "Registered immutable relation only; no arbitrary catalogs or implicit conversion.",
+        "Historical0.4.3 and v1 source/IR/state replays have separately dated pins;931 candidate and46 main checks are not a full latest-corpus release.",
+        "No emitted-target decision coverage or whole-compiler proof."
+      ]
     }
   ]
 }

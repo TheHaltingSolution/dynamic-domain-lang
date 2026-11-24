@@ -25,13 +25,17 @@ civil/Disney-oracle sources are recorded in local
 checkpoint `9f9cf31` (47 files). All seven newly staged file pins matched Git
 blobs and physical bytes; the old baseline remained identical.
 
-The current compiler/reference wrapper pin is
-`20ea52ba37b7d84b4d5d7ed62c9c38b44a928cf1ffc2287f2bec358bda31c260`;
-module `a5165f5db8a42a7365afc553e6e518913ded0065389c1e0a717dd197cd6d412a`;
-runtime `673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9`.
-Native Lean/frontend/Demos remain at the accepted memoizing generation.
-The new wrapper pin includes compact publication and secondary Python-emitter memoization. Archived
-old runs retain their dated identities; AO/civil used abee/daf/673.
+The current integrated compiler/reference pin is
+`a0e5b77dd654c936ec8fe5278537ee6b186ab021c1df289d73d290f874d396a4`;
+module `c28785f5a121cac4029ccdcde0ae81264b2e1eea02eb1a2f4f92c0fa48651986`;
+runtime `a7e4f8e55815ea72abfb1903b2578a5db95d6f505f582f8a67ded9880ac119ba`.
+Commits2504633+8968535 integrate explicit owner-scoped usage conversion and the
+separate linked Id<Record> correction. Core bytes exactly match qualified8e;
+main build/indexed/both smokes and46 checks pass223.031780s with no drift.
+This is not a new full latest-corpus release. The931-method broad run qualifies
+b569 before the separate linker correction; each record retains its actual pins.
+Earlier financial/performance cohorts used20ea/a516/673 (or abee/daf/673 for AO/
+civil). Their artifacts are not repinned. Source authors now use a0e5/c287/a7e.
 
 ## Isolated full regression
 
@@ -76,7 +80,8 @@ Paths here are relative to the external SPL artifacts root above.
   smokes, zero failures/errors/skips/source drift. Archived old/new Python emitters
   execute direct Lean and disposable C checks; actual group builds114->2, equal
   complete values. Twelve same-process input/opening variants retain fresh cells.
-  No timeout increase. Current20ea/a516/673 pins apply to the next Disney attempt.
+  No timeout increase. That dated run used20ea/a516/673; later Disney acceptance
+  retains those historical pins.
 - `publication-whitespace-20261123-a`:20 methods pass44.747635s plus94-job
   build/both smokes. Complete result.json is compact; review field files remain
   indented. All values/trace nodes and64MiB limit remain. Retained g trace size
@@ -105,10 +110,10 @@ Paths here are relative to the external SPL artifacts root above.
   passes26 independent checks. Q1/Q2 catch-up210, Q3new472.50/total527.50,
   actualpaid1310, dated/as-known history and Q4exactlyonce/preview controls are
   independently specified. Later native acceptance is recorded below.
-- Root inventory consistency: the bounded matrix now has37 rows,33 witnessed
-  variations, four gaps and57 selectors after cent-allocation and selected
+- Root inventory consistency: the bounded matrix now has38 rows,34 witnessed
+  variations, four gaps and61 selectors after cent-allocation and selected
   Genius integration. These are not the full C1 denominator or a new
-  combined57-selector campaign.
+  combined61-selector campaign.
 - Cent allocation: `quantized-allocation-checks-20261123-a` passes44 methods
   in177.268s, with15 actual native comparisons/60 Lean commands and15 complete
   loader-validated publications. Parent-first rounding, weight-derived residuals
@@ -190,23 +195,29 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   Corrected actual carry JSON-round-trips the validated cell and removes only
   output movement. Pure helper followup5970c3c9 verifies all three transitions,
   unchanged previous results/artifacts and exact actual prior_result_ref.
-- Isolated units: initial clean98-job build/indexed22/both smokes plus11 core
-  methods pass, and consumer b7594415 passes25 methods/nine native comparisons/
-  36 Lean commands in68.728105s without source or artifact drift. Baseline unit
-  pins were a982a108/d63a8fc8/a7e4f8e5, distinct from main. Candidate is now
-  committed as b569af7448ad5f54d6386f36fc0519af5cdb6ab3 in its clean worktree.
-  It integrates upstream encoder/Python-memo patches, preserves nine actual
-  historical v1 IR byte exports, and passes99 bounded methods plus final
-  immutable-context guards. Historical runs keep their actual pins.
-  The old abee-produced Download state now replays to100.5 with earned0.375,
-  unchanged495808ae unit identity. The broad931-method regression is RUNNING
-  from physical C:/spl-unit-reg, detached PID24720, evidence
-  usage-unit-broad-20261123-b569/. Builds/indexed/both smokes pass;337 methods
-  had completed with zero failures/errors/skips at the latest inspected poll.
-  Compiler5269e1bf/module2dd2755b/runtimea7e4f8e5 apply to that exact snapshot.
-  Root read-only audit confirms all66 changed files equal Git blobs and all22
-  source/policy pins match (`usage-unit-root-review-20261123-a/`).
-  No final unit release/cherry-pick credit yet.
+- Units: immutable b569 candidate broad regression COMPLETED PASS in physical
+  C:/spl-unit-reg:931 methods,4920.956041test seconds,4949.361436total, no
+  failures/errors/skips/expected failures/unexpected successes;613 source files,
+  native artifacts and183 loaded-module origins remain qualified and unchanged.
+  Default98-job build/indexed22/both smokes pass; snapshot Git remains clean.
+  Evidence usage-unit-broad-20261123-b569/; PID24720 ended. Candidate bytes and22
+  source/policy pins were independently audited before integration.
+  Integrated2504633+8968535 then passes46 main checks223.031780s plus required
+  build/indexed/both smokes, zero failures/errors/skips/source drift; evidence
+  usage-unit-main-integration-20261123-a/. Those checks include existing cent
+  allocation and Genius preview, unit interfaces, both emitters and hostile IR.
+  The old abee-produced Download state replay and nine byte-identical old v1 IRs
+  retain separate dated evidence. Base unit/state identities stay unchanged;
+  new Hour state is explicitly definition-bound. No native FX is added.
+- Full performance protocol: COMPLETED with honest publication failure on old
+  20ea/a516/673,931.727135s;48 focused methods pass with no source/closure drift.
+  33 compiler-only1g180 samples and66 mixed100/1000 observations pass, as do pure
+  30warm batches per size and both four-close audit-stage chains.1000 generic
+  publication first fails64MiB reconstruction;32 later publications not_executed,
+  writer/reload unavailable and no canonical carry/close credit. Evidence
+  performance-protocol-full-20261123-a/; PID33672 ended. Successful-worker empirical
+  p95 about1.191517s/18.545956s is host-load-qualified, not a production SLA.
+  Current-core compact canonical publication is the next isolated task.
 
 ## Delegated ownership and next steps
 
@@ -250,21 +261,22 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   README/module tests; no oracle/policy/core changes. Approved plan uses separate
   registry/period libraries and replay wrapper, thin typed records, stable original
   IDs and lossless raw originals outside hot rows. No native acceptance yet.
-- `validation_trace`: completed the isolated usage-unit candidate; its broad
-  regression remains pending under root review. Now owns C06 cent-allocation
+- `validation_trace`: completed the integrated usage-unit candidate and qualified full performance
+  protocol; the remaining publication failure stays explicit. Now owns C06 cent-allocation
   source/adapters/module tests in main. The44-method cohort is now accepted,
-  with the independent24-method oracle unchanged. Next owns bounded performance
+  with the independent24-method oracle unchanged. Completed bounded performance
   protocol/stage runners and measurements, preserving all fixed guards and known
-  failures. Audited-stage state chains remain separate from completed canonical
+  failures. Now owns isolated generic compact-sidecar canonical publication in
+  C:/spl-sidecar-a0; selected APIs/profile/schema have root approval. Audited-stage state chains remain separate from completed canonical
   publication. A separately versioned synthetic rr03-stage-chain/1 authority
   horizon permits four adjacent closes without retrospectively extending the
   original generator's one-quarter agreement. Defaults and old reports remain.
-  Main core stays20ea/a516/673 pending unit integration.
+  Main core staysa0e5/c287/a7e during source cohorts; no shared edits.
 - Root: independent usage conversion controls now pass8 methods from an isolated
   source snapshot, `usage-conversion-oracle-20261123-642e47f0`; this earns no
   compiler/native/codec/state credit. Integrate evidence/backlog, review unit/context compatibility, maintain
   stable shared core, inspect full regression, create verified checkpoints.
-  Separate C:/spl-kind-b569 candidate8e3acd4 fixes the reproduced native
+  Separate C:/spl-kind-b569 candidate8e3acd4 (now integrated8968535) fixes the reproduced native
   Id<Record> imported-signature bug; old b569 native rejects Missing fields
   while the reference accepts it.40 methods pass184.751232s with required
   build/both smokes, zero failures/errors/skips/source drift. Four new positive
@@ -272,8 +284,9 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   reject with explicit native codes. Nine archived old v1 IR exports replay
   byte-for-byte. Evidence `linked-opaque-kind-20261123-b/`; the earlier development
   report remains failed for incorrect diagnostic-code test expectations. New
-  compilera0e5b77d/modulec28785f5/runtimea7e4f8e5 apply only to this isolated
-  followup, not b569 or main. Main/unit/broad snapshots remain untouched.
+  compilera0e5b77d/modulec28785f5/runtimea7e4f8e5 qualify that separate
+  followup and the identical integrated main core. The historical b569 snapshot
+  and earlier regression artifacts remain untouched.
   Read-only committed-module audit at2b9ed46 also passes97 descriptor/package
   documents and146 source/policy/import/root pins, all raw bytes equal Git.
   Evidence `repository-module-pin-audit-20261123-a/`; no native credit or final
@@ -281,8 +294,8 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 
 An isolated short physical worktree `C:/spl-units-9f9` on
 `feature/spl-usage-time-c1` starts from9f9cf31. Unit implementation is now authorized in this isolated checkout only, with
-baseline freeze before owner/context/IR changes and no FX. The shared main wrapper
-now stays20ea/a516/673 for financial native runs, with native Lean unchanged. The final plan is committed in
+baseline freeze before owner/context/IR changes and no FX. The shared main
+core is nowa0e5/c287/a7e; earlier20ea financial artifacts remain unchanged. The final plan is committed in
 8892329, which also fixes the stale standard-library guard. Embedded Python has a main-repo
 `._pth` entry, so isolated launchers must explicitly insert their checkout path
 before imports and record loaded module paths; cwd alone is insufficient.
@@ -290,10 +303,10 @@ before imports and record loaded module paths; cwd alone is insufficient.
 The non-FX [unit plan](unit-conversion-extension-plan.md) requires explicit
 owner-local admission, old namespace/IR/state compatibility, generic exact
 relation checks, and an independent baseline before implementation. Shared main sources
-are stable at20ea/a516/673. Do not change it during another native freeze.
+are stable ata0e5/c287/a7e. Do not change it during another native freeze.
 
 Remaining work is in the73-item backlog, including separate C10 burden,
 generic allocation cardinality, sourced reserves/gates, replay and schema/transport/
-diagnostics/reporting variants. The backlog records26 complete items; task
+diagnostics/reporting variants. The backlog records27 complete items; task
 counts do not measure language coverage. Whole-compiler proof, professional
 approval and external custody remain separately scoped obligations.

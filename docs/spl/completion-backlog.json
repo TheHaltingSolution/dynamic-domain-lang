@@ -57,7 +57,7 @@
       "name": "Units, bases and rates",
       "current_native": "P",
       "current_canonical": "P",
-      "implemented_and_remaining": "M1b adds finite Download/UsageMinute quantities and USD per-unit rates, tagged containers/outputs/state and the [100 Download → USD 150 → USD 75 canonical witness](../../cases/quantities/README.md), with separate participation. Full-closure dictionary/codec admission and dimensional state identity are enforced. Broader units, conversions, FX and additional financial base/rate methods remain open. Existing SV/LG/Angel percentage methods retain their own policies.",
+      "implemented_and_remaining": "Base Download/UsageMinute quantities and USD per-unit rates remain unchanged; explicit owner-scoped spl.usage-time/1 now adds UsageHour and exact60:1 conversion with registered dictionaries, defensive IR0.2, codecs and definition-bound new state.931-method candidate regression and46 main integration checks pass; old v1 source/IR/state identities are preserved in qualified finite replays. Additional gross/net percentage base registration stays open; native currencies/FX reserved for later tool demonstration.",
       "work_items": [
         "B-C02-BASES",
         "B-C02-CONVERSION"
@@ -292,7 +292,7 @@
         "T23"
       ],
       "work_class": "interface",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "supporting_engineering",
       "acceptance": [
         "Publish a finite versioned conversion relation, initially UsageMinute to explicitly declared UsageHour at exact 60:1, with original unit/evidence retained.",
@@ -300,13 +300,20 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Isolated clean candidate b569af7448ad5f54d6386f36fc0519af5cdb6ab3 in C:/spl-units-9f9; 931-method detached regression in C:/spl-unit-reg underway. 99 bounded methods and final context guards passed. Root raw-byte/pin audit passes 66 changed files and 22 source/policy pins. No main integration, release or native FX credit.",
+      "active_scope": "Integrated2504633+8968535 on main; exacta0e5/c287/a7e core matches qualified isolated link-fix candidate. Native FX remains reserved.",
       "evidence": [
         "docs/spl/unit-conversion-extension-plan.md",
-        "cases/usage-conversion/policy.md",
+        "docs/spl/unit-conversion-implementation.md",
+        "docs/spl/unit-module-interface.md",
+        "cases/usage-conversion/README.md",
         "Tests/test_usage_conversion_oracle.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-conversion-oracle-20261123-642e47f0/verification.json"
-      ]
+        "Tests/test_usage_units.py",
+        "Tests/test_usage_unit_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-unit-broad-20261123-b569/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-unit-main-integration-20261123-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-unit-root-review-20261123-a/candidate-byte-audit.json"
+      ],
+      "execution_scope": "Finite owner-scoped60:1 Minute/Hour conversion, catalog/IR/runtime/codecs/descriptors/state and namespace compatibility accepted. Immutable b569 regression931 methods passes4920.956041test seconds; build/indexed/both smokes and source/artifact/import isolation pass. Separate linked opaque-kind correction40 methods+9 exact old v1 IR replays. Integrated main46 methods pass223.031780s plus required builds/smokes, nofail/error/skip/source drift. Earlier actual abee-produced Download state replay retains its unit identity. No arbitrary-unit registry, native FX, all-program proof or final latest-corpus release claim."
     },
     {
       "id": "B-C03-STAGES",
@@ -1098,7 +1105,7 @@
       ],
       "depends_on": [],
       "questions": [],
-      "isolated_linker_followup": "Separate8e3acd4 candidate on b569 fixes native imported Id<Record> confusion with structural Record.40 methods/build/both smokes plus9 archived v1 IR byte replays pass, evidence linked-opaque-kind-20261123-b. Not merged into main; broader named aliases and controlled enums remain open."
+      "linker_correction": "Integrated8968535 fixes native imported Id<Record> confusion with structural Record;40 isolated methods/build/smokes plus9 archived v1 byte replays and46 main checks pass. Broader aliases/controlled enums remain open."
     },
     {
       "id": "B-SCHEMA-RELATIONS",
@@ -1539,7 +1546,15 @@
         "Research p95 targets 5/15/60 seconds and 100000 batch 10 minutes remain targets until measured; stop/increase based on resource evidence."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "evidence": [
+        "docs/spl/performance-protocol.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-focused-20261123-b/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-small-20261123-b/terminal-verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json"
+      ],
+      "active_scope": "48 focused methods plus full old20ea33compilation/66mixed/pure30batches per size/four-close stage-chain measurements qualified. Native runtime guards unchanged; compiler-only1g180 separately explicit.1000generic publication fails first64MiB reconstruction; no canonical close/SLA/capacity credit. Next explicitly opted-in compact sidecar canonical publication is authorized in isolated C:/spl-sidecar-a0, preserving all guards/defaultv1 behavior."
     },
     {
       "id": "B-PERF-STAGES",
@@ -1558,9 +1573,16 @@
       "questions": [],
       "evidence": [
         "docs/spl/artifact-publication-design.md",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/publication-whitespace-20261123-a/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/publication-whitespace-20261123-a/verification.json",
+        "docs/spl/performance-protocol.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-focused-20261123-b/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-small-20261123-b/terminal-verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json"
       ],
-      "additional_bounded_evidence": "Compact full result envelopes preserve every parsed value and fixed64MiB budget.20publication methods/build/smokes pass; retained17,832-node trace65,841,102pretty/44,542,781compact bytes. This does not close remaining cold/warm/dependency timing acceptance or establish a completed Disney close."
+      "additional_bounded_evidence": "Compact full result envelopes preserve every parsed value and fixed64MiB budget.20publication methods/build/smokes pass; retained17,832-node trace65,841,102pretty/44,542,781compact bytes. This does not close remaining cold/warm/dependency timing acceptance or establish a completed Disney close.",
+      "active_scope": "48 focused methods plus full old20ea33compilation/66mixed/pure30batches per size/four-close stage-chain measurements qualified. Native runtime guards unchanged; compiler-only1g180 separately explicit.1000generic publication fails first64MiB reconstruction; no canonical close/SLA/capacity credit. Next explicitly opted-in compact sidecar canonical publication is authorized in isolated C:/spl-sidecar-a0, preserving all guards/defaultv1 behavior.",
+      "remaining_obligation": "Implement/verify versioned generic compact-audit canonical publication and bounded loader for both real wrappers, complete logical/source/ownership/atomic/failure/state-carry evidence and actual1000close; never replace missing audit with empty trace or count failed reconstruction as completed publication."
     },
     {
       "id": "B-PERF-PROFILE",
@@ -3945,9 +3967,9 @@
   ],
   "progress_as_of": "2026-11-23",
   "status_counts": {
-    "complete": 26,
+    "complete": 27,
     "ready": 20,
-    "in_progress": 8,
+    "in_progress": 7,
     "partial": 5,
     "dependency_blocked": 2,
     "gated": 1,

@@ -188,3 +188,13 @@ module identity `c28785f5a121cac4029ccdcde0ae81264b2e1eea02eb1a2f4f92c0fa4865198
 and unchanged runtime `a7e4f8e55815ea72abfb1903b2578a5db95d6f505f582f8a67ded9880ac119ba`.
 It is a separate candidate based on b569, not part of that ongoing 931-method
 regression or a main-tree integration. Existing proof scope is unchanged.
+
+The subsequent main integration is now committed as2504633+8968535. Its core
+bytes match the corrected candidate above. Required build/indexed/both smokes
+and46 main checks pass (223.031780 seconds for tests,247.207092 total), with
+zero failures/errors/skips/source drift. These include the existing cent-allocation
+case and Genius preview in addition to unit/interfaces/IR/both-emitter checks.
+The b569 broad931-method regression separately passed4920.956041 test seconds
+and4949.361436 total. Neither record is a full latest-corpus release; historical
+source/results retain their dated original identities. Main integration evidence:
+`artifacts/spl/usage-unit-main-integration-20261123-a/verification.json`.

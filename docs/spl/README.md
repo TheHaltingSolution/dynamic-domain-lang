@@ -15,6 +15,12 @@ The [atomic variant inventory](c1-coverage.md) records the reviewed finite
 semantic scope, separate backend/evidence axes and remaining gaps.
 [Live work](active-work.md) records later checkpoints and active jobs.
 
+The explicit [usage-time extension](unit-conversion-implementation.md) is now
+integrated: owner-scoped Minute/Hour conversion, versioned IR and old/new state
+controls.931 frozen-candidate tests and46 main integration checks pass; this is
+not a full latest-corpus release. Native mixed currency remains reserved for the
+later tool demonstration. Historical updates below retain their original scope.
+
 [Native method source guidance](native-method-source-guide.md) collects measured
 audit-cost lessons without changing financial policy or the readable authoring
 target.
