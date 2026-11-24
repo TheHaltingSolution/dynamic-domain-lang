@@ -180,9 +180,12 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   Native source remains pending; excess-vintage returns remain an explicit source
   gap. Its isolated unit consumer files are frozen with passing evidence; trace now
   integrates the complete unit candidate. The agent now owns NEW main mutation
-  generator/runner/tests/design files for B-VAL-MUTANTS, with finite independent
-  controls and honest killed/survived/invalid/equivalent/unexecuted classifications.
-  It edits no main compiler or financial source files.
+  generator/runner/tests/design files for B-VAL-MUTANTS, with finite independent controls. That task is now frozen/accepted: initial4
+  and strengthened6 case phases preserve exact sources/policy/mutants, four
+  actual backends and honest class/stage distinctions;17 isolated tests plus
+  seven-process native-negative followup pass. The agent now authors independent
+  C10 entitlement-burden controls from original receipts/terms/paid evidence,
+  while a different source author will implement them later. No core edits.
 - `validation_trace`: owns the isolated usage-unit compiler/context/IR/runtime/
   codec/emitter implementation. Its baseline archive `usage-units-baseline-20261123-a`
   retains39 files, nine raw v1 IRs, old namespace controls and actual base quantity
@@ -210,6 +213,6 @@ are stable at20ea/a516/673. Do not change it during another native freeze.
 
 Remaining work is in the73-item backlog, including separate C10 burden,
 cent allocation, sourced reserves/gates/repricing, replay and schema/transport/
-diagnostics/reporting variants. The backlog records24 complete items; task
+diagnostics/reporting variants. The backlog records25 complete items; task
 counts do not measure language coverage. Whole-compiler proof, professional
 approval and external custody remain separately scoped obligations.

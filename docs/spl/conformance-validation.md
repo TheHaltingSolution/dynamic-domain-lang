@@ -1,5 +1,10 @@
 # Bounded conformance validation
 
+The later [mutation campaign](semantic-mutation-campaign.md) records separate
+four/six-original-case phases and a hardened frontend followup. Four actual
+backends execute; financial kills, survivors, equivalence and frontend invalids
+are distinct. This does not rerun or expand the historical seeded campaign below.
+
 Current continuation: the mutable matrix has 35 rows: 31 witnessed variations
 and four explicit gaps, mapped to 49 unittest selectors. These include the
 bounded original-rate returns and authorized current-entitlement transfers.

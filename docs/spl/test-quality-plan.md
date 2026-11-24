@@ -11,6 +11,18 @@ a declared finite cover: 47 configurations over a 160-cell domain, covering all
 policy-conditional metamorphic controls preserve the row/aggregate distinction.
 This bounded evidence does not close the other interaction or mutation work.
 
+## Executed mutation increment
+
+The [bounded mutation campaign](semantic-mutation-campaign.md) now executes a
+finite seven-semantic-mutant population across reference/nativeIR/native-emitted/
+Python-emitted paths. Four original cases leave a genuine high-gross survivor;
+two independently checked2000/3000 cases expose it without source/policy/mutant
+changes. Equivalence, invalid source and reserved FX remain separate categories;
+per-case survivors and distinct-mutant summaries are both retained.17 isolated
+harness tests and a new actual native-negative followup harden evidence gates.
+This closes this selected non-FX increment, not all-feature or global mutation
+adequacy. Exact original records, failures and source trees remain preserved.
+
 ## What a completion claim needs
 
 Use the release's finite requirement/variant inventory as the denominator, with

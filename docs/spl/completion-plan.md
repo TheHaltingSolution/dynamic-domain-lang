@@ -17,7 +17,7 @@ execution evidence or a percentage of language programs.
 The later finite C08 payment-aware offset and C14 supplied civil-day variants
 now have separate37- and27-method passing native/oracle cohorts. Their actual
 capacity and supplied-evidence limits remain in [live work](active-work.md).
-The backlog now records24 complete items; these task counts are not coverage
+The backlog now records25 complete items; these task counts are not coverage
 percentages. The bounded matrix has35 rows/31 witnessed/four gaps/49 selectors,
 with no new combined matrix campaign claimed. Disney39 and six actualQ1-Q4/preview
 bundles now close the selected first-dollar trigger-period lane, while general

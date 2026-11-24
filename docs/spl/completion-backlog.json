@@ -1416,7 +1416,7 @@
         "U19"
       ],
       "work_class": "validation",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "supporting_engineering",
       "acceptance": [
         "Mutate fee/base/order/equality/duplicate counting/state transitions and, after gate, quote/unit orientation with exact source/input/policy domains retained.",
@@ -1424,13 +1424,21 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Four original cases/12mutant definitions complete across four backends; strengthened six-case phase running with same sources/mutants/policy. Invalid-source native-consistency hardening/followup remains before acceptance.",
       "evidence": [
         "validation/semantic_mutations.py",
         "scripts/spl_mutation_campaign.py",
         "Tests/test_semantic_mutations.py",
         "docs/spl/semantic-mutation-campaign.md",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/semantic-mutation-initial-20261123-013d80c1/report.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/semantic-mutation-initial-20261123-013d80c1/report.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/semantic-mutation-strengthened-20261123-51a3f0ce/report.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/semantic-mutation-frontend-followup-20261123-3c69bca8/report.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/semantic-mutation-final-evidence-20261123.json"
+      ],
+      "execution_scope": "Finite disclosed seven-semantic-mutant population with exact source/input/policy records and four actual backends. Initial four cases preserve a survivor; six-case strengthened corpus kills it at3000 without changing source/policy/mutants. Two invalid-source and one certified equivalence class are distinct; per-case survivors remain visible. No global/all-language adequacy percentage.",
+      "scope_limits": [
+        "Currency/quote orientation mutations remain explicitly unexecuted under the owner-reserved later tool/demo sequence; this closes current non-FX mutation acceptance only.",
+        "The initial/strengthened campaigns retain their older harness source tree.17 isolated tests and a new seven-process followup verify hardened native static-rejection prerequisites; earlier reports are not rewritten.",
+        "Case-pair counts and distinct-mutant counts are separate. Backend agreement is not independent financial truth; every selected baseline first matches original-fact hand/oracle controls."
       ]
     },
     {
@@ -3871,9 +3879,9 @@
   ],
   "progress_as_of": "2026-11-23",
   "status_counts": {
-    "complete": 24,
+    "complete": 25,
     "ready": 25,
-    "in_progress": 8,
+    "in_progress": 7,
     "dependency_blocked": 2,
     "partial": 2,
     "gated": 1,

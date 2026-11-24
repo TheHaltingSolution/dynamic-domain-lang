@@ -1,5 +1,20 @@
 # SPL iteration log
 
+## 23 November 2026: finite semantic mutation campaign
+
+Initial4 original cases execute36 outcomes per backend (144total),128Lean
+processes/222.016s, with one semantic mutant surviving all cases. Unchanged
+sources/policy/mutants plus independent2000/3000 inputs execute54 outcomes per
+backend (216total),182Lean processes/300.953s; the high-gross fault is exposed
+at3000 (1736 versus1760). Per-case survivors remain; there is no global score.
+The initial48 case pairs classify12killed/16survived/4equivalent/8invalid/8reserved;
+strengthened72 pairs classify21/21/6/12/12. Two invalid sources have actual native
+static diagnostics, never financial kills. A hardened new seven-process followup
+11.859s and17 isolated tests1.547832s distinguish timeout/missing/accepted native
+source from rejection. Source trees and original reports remain immutable.
+Evidence index: `semantic-mutation-final-evidence-20261123.json` in external SPL
+artifacts. Current non-FX mutation increment closes; FX remains owner-reserved.
+
 ## 23 November 2026: first-dollar trigger-period source accepted
 
 Disney39 combined oracle/module methods pass811.007496s, plus a213.527360s
