@@ -91,6 +91,18 @@ Test the reporting harness with deliberately wrong controls, missing backends,
 skips, fixture failures and stale completion artifacts so it cannot turn missing
 evidence into a pass.
 
+## Definition reuse is a separate performance property
+
+The Disney source exposed a secondary-emitter recomputation bug after native
+financial outputs already agreed. An180s Python-emitted driver timeout is a
+retained failure, not grounds to omit that backend. The correction's disposable
+C counters observe114->2 group builds on one fixed fixture; twelve settlements
+with varied inputs/openings test that caches are not shared across calls.
+[The focused report](python-emitter-memoization-experiment.md) separates these
+operation counts from financial controls and wall time. Matching final money
+alone does not establish acceptable dependency reuse. This is a selected
+performance regression witness, not a general mutation adequacy denominator.
+
 ## Decision coverage and performance correctness
 
 Native traces describe observed interpreter decisions and skipped roots. Build

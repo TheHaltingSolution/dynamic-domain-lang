@@ -87,6 +87,12 @@ accounts for21,298,321 bytes:65,841,102 pretty versus44,542,781 compact, with
 retroactively turn g into a completed run; future native publications need
 actual completion/loader evidence and their new wrapper pins.
 
+The separate Python emitter also needed the definition-cache repair. Its Disney
+baseline timed out180s even after native publication succeeded. Actual old/new
+C group calls114->2 and fresh repeated-call controls now pass; read
+[the secondary emitter report](python-emitter-memoization-experiment.md).
+Do not drop a secondary backend when a larger faithful method exposes its cost.
+
 For compiler-level emitted definition caching, see
 [the separate experiment](emitter-memoization-experiment.md). It changed generated
 code, whereas the source changes above explicitly alter the authored program.

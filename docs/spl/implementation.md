@@ -2,6 +2,14 @@
 
 ## Active C1 continuation
 
+The secondary Python emitter now uses fresh cached definition thunks too.
+Its old closures caused the separate Disney baseline driver to time out at180s.
+The narrow fix passes34 frozen methods/build/both smokes, with actual old/new
+C group calls114->2 and preserved values, lazy/error order and per-call state.
+See [the Python emitter report](python-emitter-memoization-experiment.md).
+The new current pins below supersede the compact-publication-only pins; native
+frontend/runtime/Demos bytes are unchanged by this secondary generator patch.
+
 Complete result envelopes now use compact JSON, preserving all values/nodes and
 the64MiB byte limit; separate review files remain indented. The frozen20-method
 publication cohort,94-job build and both smokes pass. Old indented bundles remain
@@ -62,9 +70,9 @@ serialized carry; all source and Lean dependency pins remain unchanged. See the
 [publication contract](artifact-publication-design.md).
 
 The current working compiler/reference identity is
-`0660a862dae3049acfa44b5c4aa6fc435ff26372b9b1ca34e709bdc28f24cde5`
+`20ea52ba37b7d84b4d5d7ed62c9c38b44a928cf1ffc2287f2bec358bda31c260`
 and generic-module identity is
-`182dc351251ffd59ac75c573886e556511cc63a22445e6349a949ab578efcac9`.
+`a5165f5db8a42a7365afc553e6e518913ded0065389c1e0a717dd197cd6d412a`.
 The native arithmetic/runtime identity remains
 `673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9`.
 The primary `0.4.3-dev` baseline is historical and archived byte-for-byte in

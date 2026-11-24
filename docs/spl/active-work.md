@@ -26,11 +26,11 @@ checkpoint `9f9cf31` (47 files). All seven newly staged file pins matched Git
 blobs and physical bytes; the old baseline remained identical.
 
 The current compiler/reference wrapper pin is
-`0660a862dae3049acfa44b5c4aa6fc435ff26372b9b1ca34e709bdc28f24cde5`;
-module `182dc351251ffd59ac75c573886e556511cc63a22445e6349a949ab578efcac9`;
+`20ea52ba37b7d84b4d5d7ed62c9c38b44a928cf1ffc2287f2bec358bda31c260`;
+module `a5165f5db8a42a7365afc553e6e518913ded0065389c1e0a717dd197cd6d412a`;
 runtime `673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9`.
 Native Lean/frontend/Demos remain at the accepted memoizing generation.
-The new wrapper pin includes only compact publication serialization. Archived
+The new wrapper pin includes compact publication and secondary Python-emitter memoization. Archived
 old runs retain their dated identities; AO/civil used abee/daf/673.
 
 ## Isolated full regression
@@ -54,9 +54,9 @@ The fresh regression of exactly `e80024d` is now RUNNING from short physical
 `C:/spl-e800`, evidence `checkpoint-regression-e80024d-a/`, exec session26641.
 Default94-job build, optional indexed target build and both smokes pass.
 Discovery finds887 methods. Loaded repository-module paths are recorded and
-asserted outside the shared main tree. This includes the promoted memoizing
-compiler, accepted AO/civil integration, Disney oracle and usage oracle; it
-excludes unfinished Disney native/Genius/unit-core work. Do not claim its Python
+asserted outside the shared main tree. This includes the promoted native memoizing compiler, accepted AO/civil integration,
+Disney oracle and usage oracle. It excludes later compact publication, secondary
+Python-emitter caching, Genius oracle and unfinished Disney native/unit-core work. Do not claim its Python
 suite passes until the final report is observed. This new run contributes host
 load during ongoing feature/benchmark work.
 
@@ -70,13 +70,18 @@ would resolve back to the long path. Preserve both evidence directories.
 
 Paths here are relative to the external SPL artifacts root above.
 
+- `python-emitter-thunk-20261123-a`:34 methods pass143.525280s, build/both
+  smokes, zero failures/errors/skips/source drift. Archived old/new Python emitters
+  execute direct Lean and disposable C checks; actual group builds114->2, equal
+  complete values. Twelve same-process input/opening variants retain fresh cells.
+  No timeout increase. Current20ea/a516/673 pins apply to the next Disney attempt.
 - `publication-whitespace-20261123-a`:20 methods pass44.747635s plus94-job
   build/both smokes. Complete result.json is compact; review field files remain
   indented. All values/trace nodes and64MiB limit remain. Retained g trace size
   is65,841,102 pretty versus44,542,781 compact bytes, same17,832 nodes. Old AO
   baseline completed bundle loads with original marker unchanged. No source drift.
   Native Disney full acceptance is still pending after multiple retained failed
-  source probes; new runs must bind current066/182/673 pins.
+  source probes; that run used066/182/673 pins, before the secondary emitter fix.
 
 - Emitter memoization: `emitter-thunk-checks-20261123-b` passes six methods/
   31 observations, including lazy/failure ordering and fresh per-call locals.
@@ -152,7 +157,7 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   state carry. Initial targeted checker/parser/linker builds pass; full alignment
   and extension acceptance remain pending. Root required generic feature-catalog
   admission instead of spreading a single Hour-name/Boolean switch through code.
-  Shared main wrapper now uses066/182/673; native compiler sources remain unchanged during Disney native work.
+  Shared main wrapper now uses20ea/a516/673; native compiler sources remain unchanged during Disney native work.
 - Root: independent usage conversion controls now pass8 methods from an isolated
   source snapshot, `usage-conversion-oracle-20261123-642e47f0`; this earns no
   compiler/native/codec/state credit. Integrate evidence/backlog, review unit/context compatibility, maintain
@@ -161,7 +166,7 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 An isolated short physical worktree `C:/spl-units-9f9` on
 `feature/spl-usage-time-c1` starts from9f9cf31. Unit implementation is now authorized in this isolated checkout only, with
 baseline freeze before owner/context/IR changes and no FX. The shared main wrapper
-now stays066/182/673 for financial native runs, with native Lean unchanged. The final plan is committed in
+now stays20ea/a516/673 for financial native runs, with native Lean unchanged. The final plan is committed in
 8892329, which also fixes the stale standard-library guard. Embedded Python has a main-repo
 `._pth` entry, so isolated launchers must explicitly insert their checkout path
 before imports and record loaded module paths; cwd alone is insufficient.
@@ -169,7 +174,7 @@ before imports and record loaded module paths; cwd alone is insufficient.
 The non-FX [unit plan](unit-conversion-extension-plan.md) requires explicit
 owner-local admission, old namespace/IR/state compatibility, generic exact
 relation checks, and an independent baseline before implementation. Shared main sources
-are stable at066/182/673. Do not change it during another native freeze.
+are stable at20ea/a516/673. Do not change it during another native freeze.
 
 Remaining work is in the73-item backlog, including separate C10 burden,
 cent allocation, sourced reserves/gates/repricing, replay and schema/transport/

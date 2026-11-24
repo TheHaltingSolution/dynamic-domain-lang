@@ -1,5 +1,16 @@
 # SPL iteration log
 
+## 23 November 2026: secondary emitter cached definitions
+
+Python-generated Lean still used uncached definition closures after native Emit
+was repaired. Disney acceptance84046c1c retained a180s Python driver timeout and
+never entered its39-method cohort, despite completed agreeing native publication.
+The narrow Python scope fix preserves demand order and fresh per-call cells.
+34 focused/existing methods pass143.525280s with zero errors/skips/drift, plus
+build/both smokes; actual archived-old/new C group calls are114/2 with equal values.
+Current wrapper pins20ea52ba/a5165f5d/673bb0fe, native frontend/Demos unchanged.
+Evidence: `python-emitter-thunk-20261123-a`. Fresh Disney acceptance remains pending.
+
 ## 23 November 2026: compact complete publication envelopes
 
 The result writer now removes JSON indentation while retaining every value,

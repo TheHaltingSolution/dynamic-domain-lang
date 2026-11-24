@@ -296,7 +296,7 @@ class _Emitter:
             if decl["kind"] == "define":
                 function = self.fresh()
                 functions[decl["name"]] = function
-                env[decl["name"]] = f"({function} ())"
+                env[decl["name"]] = f"({function}.get)"
         lines = []
         definitions = {decl["name"]: decl for decl in declarations if decl["kind"] == "define"}
         emitted, active = set(), set()
@@ -308,10 +308,11 @@ class _Emitter:
                 raise ValueError("Unchecked cyclic core cannot be emitted")
             active.add(name)
             decl = definitions[name]
-            # Topologically order pure closures, never their evaluated values.
+            # Hoist fresh memo cells, not evaluated values. Each invocation keeps
+            # its own cache and the existing declaration demand/failure order.
             for reference in _ordered_references(decl["expr"]):
                 emit_definition(reference)
-            lines.append(f"let {functions[name]} : Unit → SPL.Eval SPL.Value := fun _ => {self.expression(decl['expr'], env)}")
+            lines.append(f"let {functions[name]} : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => {self.expression(decl['expr'], env)})")
             active.remove(name)
             emitted.add(name)
 
