@@ -68,6 +68,21 @@ lineage unchanged. Scenario, period, cutoff, mode, inputs, openings, actual term
 and all module/policy/evidence dependencies remain in the semantic closure. The
 full result envelope retains its invocation label and has its own result digest.
 
+Optional `manifest.report_date` and `manifest.issue_date` are explicitly supplied
+`YYYY-MM-DD` Dates for presentation and intended issuance. No invocation-clock
+default or ordering relative to each other, period or cutoff is inferred. They
+remain in the manifest, are excluded from semantic identity, and are never
+forwarded to financial ports or used to select recognition. Date-only changes
+under one implementation pin leave financial outputs, trace and candidate
+closing-state lineage unchanged; the module result digest changes because it
+includes the full manifest. These labels do not make a calculation issued or
+paid. A separately supplied economic Date port retains its selected semantics.
+The bounded canonical profile accepts the same optional metadata; its existing
+result digest excludes the entire manifest, so a date-only change leaves that
+legacy result digest unchanged while the published file hashes change. Adding
+this implementation/schema capability changes build pins; it does not preserve
+the digests of packages bound against an older compiler.
+
 Types use the compiler's type AST. Descriptor-local named structural schemas
 expand to inline `Record` types without adding entries to a global registry.
 Tuples, maps and nested records retain their compiler transport. Explicit

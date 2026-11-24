@@ -60,7 +60,8 @@ MANIFEST = obj({**{x: S for x in ["run_id", "schema_version", "surface_version",
                 "period": PERIOD, "output_currency": enum("USD"), "mode": enum("final", "preview"),
                 "input_mode": enum("full_snapshot"),
                 "resource_limits": obj({"source_scalars": N, "source_tokens": N, "parser_depth": N,
-                                        "lean_timeout_seconds": N, "max_facts": N})})
+                                        "lean_timeout_seconds": N, "max_facts": N})},
+               {"report_date": S, "issue_date": S})
 PARAMETERS = obj({"policy": obj({"agreement_id": S, "participant_id": S, "pool_id": S, "period": PERIOD},
                                 {"asset_id": S, "video_proxy": NUM, "gross_rate": NUM, "net_rate": NUM}),
                   "cost_date_basis": enum("incurred_date", "posting_date"),
@@ -187,6 +188,9 @@ def validate_package(p):
             fail("UNSUPPORTED_VERSION", name + " must be 0.1-draft")
     period(m["period"])
     cutoff = instant(m["cutoff"], "/manifest/cutoff")
+    for field in ("report_date", "issue_date"):
+        if field in m:
+            day(m[field], "/manifest/" + field)
     expected_limits = {"source_scalars": 1000000, "source_tokens": 200000, "parser_depth": 128, "lean_timeout_seconds": 180, "max_facts": 100000}
     if m["resource_limits"] != expected_limits:
         fail("UNSUPPORTED_RESOURCE_PROFILE", "This prototype uses the fixed documented resource limits")

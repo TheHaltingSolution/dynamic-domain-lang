@@ -675,6 +675,9 @@ def validate_module_package(package, resolved):
     descriptor = resolved.descriptor
     period(package["manifest"]["period"])
     instant(package["manifest"]["cutoff"], "/manifest/cutoff")
+    for field in ("report_date", "issue_date"):
+        if field in package["manifest"]:
+            day(package["manifest"][field], "/manifest/" + field)
     decisions = _unique(package["decisions"], "decision_id", "MODULE_DUPLICATE_DECISION")
     required = {}
     for entry in resolved.closure:
@@ -915,7 +918,10 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
                 p["manifest"]["module_closure"] != resolved.references):
             fail("MANIFEST_DIGEST_MISMATCH", "Module closure or implementation has changed")
         logical_package = deepcopy(p)
-        logical_package["manifest"].pop("run_id")
+        # Supplied presentation/intended-issue dates cannot choose financial
+        # recognition or alter candidate-state lineage, like invocation labels.
+        for field in ("run_id", "report_date", "issue_date"):
+            logical_package["manifest"].pop(field, None)
         semantic = digest({"package": logical_package, "closure": resolved.references})
         result["policy_review"] = _module_policy_review(p, resolved)
         work = publication.work if publication else Path(registry_root) / ".lake/module-runs" / semantic
