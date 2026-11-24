@@ -1,5 +1,12 @@
 # SPL compiler session handoff
 
+**Live continuation:** read [active-work.md](active-work.md) first for accepted
+milestones, running processes, current build identities and delegated ownership.
+The earlier e80024d checkpoint now passes all887 methods; later financial and
+compiler candidates have separate acceptance records. The owner now
+[reserves native mixed currency for the later tool demonstration](ld03-owner-decision.md).
+Earlier necessity-gate and implementation-absence statements below are historical.
+
 **Active completion:** first read [the current checkpoint](completion-checkpoint.md),
 the [finite plan](completion-plan.md) and [backlog](completion-backlog.json).
 New independent financial slices, generated validation and measured trace
