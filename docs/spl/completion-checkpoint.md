@@ -1,8 +1,11 @@
 # Active C1 completion checkpoint
 
 **Later live work:** this checkpoint is committed as `7c13ef2`. Read
-[active-work.md](active-work.md) for the isolated full regression and subsequent
-uncommitted source/emitter experiments before using its dated identities.
+[active-work.md](active-work.md) for the isolated full regression, later accepted
+source/emitter work and pending isolated candidates before using
+its dated identities. The e80024d regression now passes all887 methods with
+zero failures/errors/skips/source drift; this is an earlier checkpoint, not
+acceptance of every subsequent change.
 
 23 November 2026. Read this before the older session handoff. The finite
 [backlog](completion-backlog.json) remains authoritative for current item status
@@ -33,8 +36,12 @@ Max actual result55,194,678 bytes leaves11,914,186 under64MiB. Evidence:
 `merchandising-reprice-checks-cf96f81d`,20ea/a516/673, no source drift.
 This closes only the selected bounded C04/trigger-period witness; general C13
 restatement remains open. [Case and scope](../../cases/merchandising-reprice/README.md).
-Current backlog24 complete items; bounded matrix35rows/31witnessed/fourgaps/
-49selectors. No new combined49-selector campaign is claimed.
+Current backlog26 complete items after bounded semantic mutation and cent
+allocation increments; bounded matrix36rows/32witnessed/fourgaps/53selectors.
+No new combined53-selector campaign is claimed. Cent allocation passes44
+methods and15 native comparisons/complete publications with original state
+carry; generic descriptor cardinality remains separate. See the
+[case scope and evidence](../../cases/quantized-allocation/README.md).
 
 ## Executed financial slices
 

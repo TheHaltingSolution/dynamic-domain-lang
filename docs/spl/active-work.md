@@ -50,15 +50,17 @@ the newer emitter/AO/civil/Disney work. The first full run is not retrospectivel
 changed to passing; a clean newer-checkpoint regression remains required. Its
 background CPU load was present during the post-memo probes and is now ended.
 
-The fresh regression of exactly `e80024d` is now RUNNING from short physical
-`C:/spl-e800`, evidence `checkpoint-regression-e80024d-a/`, exec session26641.
-Default94-job build, optional indexed target build and both smokes pass.
-Discovery finds887 methods. Loaded repository-module paths are recorded and
-asserted outside the shared main tree. This includes the promoted native memoizing compiler, accepted AO/civil integration,
-Disney oracle and usage oracle. It excludes later compact publication, secondary
-Python-emitter caching, Genius oracle and unfinished Disney native/unit-core work. Do not claim its Python
-suite passes until the final report is observed. This new run contributes host
-load during ongoing feature/benchmark work.
+The fresh regression of exactly `e80024d` has PASSED from short physical
+`C:/spl-e800`, evidence `checkpoint-regression-e80024d-a/verification.json`.
+Exec session26641 has ended. All887 discovered methods pass in4698.291809s,
+with zero failures/errors/skips, no changed original sources and unchanged
+abee/daf/673 build identities. Default94-job build, optional indexed target
+build and both smokes also pass. Loaded repository-module paths are recorded
+and asserted outside the shared main tree. This includes the promoted native
+memoizing compiler, accepted AO/civil integration, Disney oracle and usage
+oracle. It excludes later compact publication, secondary Python-emitter
+caching, Genius oracle and Disney native/unit-core work. Its concurrent host
+load during later feature/benchmark runs remains part of those dated results.
 
 The earlier `...-a` launcher failed discovery before running tests because of an
 unnecessary `top_level_dir` for namespace Tests. That failure and its passing
@@ -80,8 +82,8 @@ Paths here are relative to the external SPL artifacts root above.
   indented. All values/trace nodes and64MiB limit remain. Retained g trace size
   is65,841,102 pretty versus44,542,781 compact bytes, same17,832 nodes. Old AO
   baseline completed bundle loads with original marker unchanged. No source drift.
-  Native Disney full acceptance is still pending after multiple retained failed
-  source probes; that run used066/182/673 pins, before the secondary emitter fix.
+  That publication-only run used066/182/673 pins, before the secondary emitter
+  fix. Later Disney acceptance is recorded below and in its case README.
 
 - Emitter memoization: `emitter-thunk-checks-20261123-b` passes six methods/
   31 observations, including lazy/failure ordering and fresh per-call locals.
@@ -102,10 +104,18 @@ Paths here are relative to the external SPL artifacts root above.
 - Disney repricing oracle: `merchandising-reprice-oracle-20261123-ec7a285a`
   passes26 independent checks. Q1/Q2 catch-up210, Q3new472.50/total527.50,
   actualpaid1310, dated/as-known history and Q4exactlyonce/preview controls are
-  independently specified. Native source has not passed acceptance yet.
-- Root inventory consistency: four matrix checks pass. Current bounded matrix
-  has34 rows,30 witnessed variations, four gaps and45 selectors. These are not
-  the full C1 denominator or a new combined45-selector campaign.
+  independently specified. Later native acceptance is recorded below.
+- Root inventory consistency: the bounded matrix now has36 rows,32 witnessed
+  variations, four gaps and53 selectors after cent-allocation integration.
+  These are not the full C1 denominator or a new combined53-selector campaign.
+- Cent allocation: `quantized-allocation-checks-20261123-a` passes44 methods
+  in177.268s, with15 actual native comparisons/60 Lean commands and15 complete
+  loader-validated publications. Parent-first rounding, weight-derived residuals
+  and separately authorized supplied cents retain original lineage and actual
+  adjacent state. Largest result24,754,928 bytes;8recipient/4parent maxima were
+  tested separately. All61 frozen non-README files still match; only README
+  evidence was added after the source-stable run. Generic descriptor cardinality
+  remains open; no Python-emitted or all-bound-combination credit is claimed.
 
 AO's first37-method run retained two honest64MiB publication failures. Original
 anonymous period records embedded in instance identifiers caused90.8MB results.
@@ -143,10 +153,10 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 
 ## Current verified process windows
 
-- Main regression e80024d: exec26641,887 methods, still running at the last
-  verified poll. Its isolated old snapshot excludes subsequent publication,
-  Python-emitter, Genius and unit changes. Do not restart merely because logs
-  are quiet; poll this handle/final verification.
+- Main regression e80024d: COMPLETED PASS,887 methods,4698.291809s, zero
+  failures/errors/skips/source drift. Its isolated old snapshot excludes
+  subsequent publication, Python-emitter, Genius and unit changes. Terminal
+  verification and unchanged end identities have been inspected.
 - Disney cf96f81d: COMPLETED PASS, exec78966 ended,20ea/a516/673 sources stable. Six actual
   completed/loader-validated bundles have passed independent and separate
   Python-emitter controls: baseline41,187,283; Q1 10,147,582; Q2 24,742,448;
@@ -164,16 +174,28 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 - Isolated units: initial clean98-job build/indexed22/both smokes plus11 core
   methods pass, and consumer b7594415 passes25 methods/nine native comparisons/
   36 Lean commands in68.728105s without source or artifact drift. Baseline unit
-  pins were a982a108/d63a8fc8/a7e4f8e5, distinct from main. Source remains
-  uncommitted while trace strengthens guards, integrates verified upstream
-  encoder/Python-memo patches, replays actual old state and prepares broad checks.
+  pins were a982a108/d63a8fc8/a7e4f8e5, distinct from main. Candidate is now
+  committed as b569af7448ad5f54d6386f36fc0519af5cdb6ab3 in its clean worktree.
+  It integrates upstream encoder/Python-memo patches, preserves nine actual
+  historical v1 IR byte exports, and passes99 bounded methods plus final
+  immutable-context guards. Historical runs keep their actual pins.
   The old abee-produced Download state now replays to100.5 with earned0.375,
-  unchanged495808ae unit identity. No final unit release/cherry-pick credit yet.
+  unchanged495808ae unit identity. The broad931-method regression is RUNNING
+  from physical C:/spl-unit-reg, detached PID24720, evidence
+  usage-unit-broad-20261123-b569/. Builds/indexed/both smokes pass;185 methods
+  had completed with zero failures/errors/skips at the latest inspected poll.
+  Compiler5269e1bf/module2dd2755b/runtimea7e4f8e5 apply to that exact snapshot.
+  Root read-only audit confirms all66 changed files equal Git blobs and all22
+  source/policy pins match (`usage-unit-root-review-20261123-a/`).
+  No final unit release/cherry-pick credit yet.
 
 ## Delegated ownership and next steps
 
-- `validation_matrix`: finished AO/civil cohorts; completed the atomic C1 variant
-  catalog, completed native Disney acceptance; next Genius source after checkpoint.
+- `validation_matrix`: finished AO/civil cohorts, the atomic C1 variant catalog
+  and native Disney acceptance. Now owns Genius basis-reserve SPL/source
+  adapters/tests, with five actual native serialized periods and a46-method
+  cohort being prepared. Independent32-method oracle remains frozen. Excess
+  vintage/after-liquidation returns remain outside this initial source slice.
   Root reviewed78 stable semantic IDs:75 required C1, two supporting, one unselected alternative; nine engineering entries are a separate axis. This is a planning denominator, not passing evidence or72tasks/195rows/testcount.
 - `validation_generated`: Genius basis-reserve oracle frozen32 methods with five
   actual serialized periods, artifact `basis-reserve-oracle-20261123-5ed65f08`.
@@ -186,13 +208,13 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   seven-process native-negative followup pass. The agent now authors independent
   C10 entitlement-burden controls from original receipts/terms/paid evidence,
   while a different source author will implement them later. No core edits.
-- `validation_trace`: owns the isolated usage-unit compiler/context/IR/runtime/
-  codec/emitter implementation. Its baseline archive `usage-units-baseline-20261123-a`
-  retains39 files, nine raw v1 IRs, old namespace controls and actual base quantity
-  state carry. Initial targeted checker/parser/linker builds pass; full alignment
-  and extension acceptance remain pending. Root required generic feature-catalog
-  admission instead of spreading a single Hour-name/Boolean switch through code.
-  Shared main wrapper now uses20ea/a516/673; native compiler sources remain unchanged during Disney native work.
+- `validation_trace`: completed the isolated usage-unit candidate; its broad
+  regression remains pending under root review. Now owns C06 cent-allocation
+  source/adapters/module tests in main. The44-method cohort is now accepted,
+  with the independent24-method oracle unchanged. Next owns bounded performance
+  protocol/stage runners and measurements, preserving all fixed guards and known
+  failures. Audited-stage state chains remain separate from completed canonical
+  publication. Main core remains20ea/a516/673 during Genius acceptance.
 - Root: independent usage conversion controls now pass8 methods from an isolated
   source snapshot, `usage-conversion-oracle-20261123-642e47f0`; this earns no
   compiler/native/codec/state credit. Integrate evidence/backlog, review unit/context compatibility, maintain
@@ -212,7 +234,7 @@ relation checks, and an independent baseline before implementation. Shared main 
 are stable at20ea/a516/673. Do not change it during another native freeze.
 
 Remaining work is in the73-item backlog, including separate C10 burden,
-cent allocation, sourced reserves/gates/repricing, replay and schema/transport/
-diagnostics/reporting variants. The backlog records25 complete items; task
+generic allocation cardinality, sourced reserves/gates, replay and schema/transport/
+diagnostics/reporting variants. The backlog records26 complete items; task
 counts do not measure language coverage. Whole-compiler proof, professional
 approval and external custody remain separately scoped obligations.

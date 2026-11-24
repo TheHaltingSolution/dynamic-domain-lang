@@ -1470,6 +1470,102 @@
         "Scope/physical/missing-population failures receive their actual preflight/native stage; native value agreement does not establish emitted-target decision coverage.",
         "ActualQ4 result55,194,678 bytes leaves11,914,186 below64MiB; no general eight-period capacity."
       ]
+    },
+    {
+      "id": "quantized-original-parent-allocation",
+      "requirements": [
+        "C06",
+        "F05",
+        "F06",
+        "D23"
+      ],
+      "description": "Bounded original-parent first-rounding, largest-remainder cent allocation and separate supplied-cent authority with complete original state carry.",
+      "status": "witnessed",
+      "witnesses": [
+        {
+          "test": "Tests.test_quantized_allocation_modules.QuantizedAllocationModuleTests.test_native_parent_first_fractional_quota_and_single_cent",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "canonical"
+          ],
+          "inputs": [
+            "cases/quantized-allocation/allocation.spl",
+            "cases/quantized-allocation/quantized-allocation.spl",
+            "cases/quantized-allocation/neutral.json",
+            "cases/quantized-allocation/policy.md"
+          ],
+          "property": "Parent-first half-even rounding retains original quota and residual controls; .01 equal weights yields .01/0, while .015 at 1:2 yields .01/.01.",
+          "oracle": "Separately authored oracles/quantized_allocation.py consumes original parents/weights/authorities before projection and checks material intermediate, output and restored state values."
+        },
+        {
+          "test": "Tests.test_quantized_allocation_modules.QuantizedAllocationModuleTests.test_native_supplied_authority_is_distinct_from_weights",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "canonical"
+          ],
+          "inputs": [
+            "cases/quantized-allocation/allocation.spl",
+            "cases/quantized-allocation/quantized-allocation.spl",
+            "cases/quantized-allocation/neutral.json",
+            "cases/quantized-allocation/policy.md"
+          ],
+          "property": "Separately authorized supplied cents may give 0/.01 while exact weights give .01/0; authority and target conservation remain distinct.",
+          "oracle": "Separately authored oracles/quantized_allocation.py consumes original parents/weights/authorities before projection and checks material intermediate, output and restored state values."
+        },
+        {
+          "test": "Tests.test_quantized_allocation_modules.QuantizedAllocationModuleTests.test_native_actual_adjacent_carry_preserves_original_lexemes_and_sources",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/quantized-allocation/allocation.spl",
+            "cases/quantized-allocation/quantized-allocation.spl",
+            "cases/quantized-allocation/neutral.json",
+            "cases/quantized-allocation/policy.md"
+          ],
+          "property": "Actual serialized predecessor cell carries original decimal/timestamp spellings and source references without consuming one parent twice.",
+          "oracle": "Separately authored oracles/quantized_allocation.py consumes original parents/weights/authorities before projection and checks material intermediate, output and restored state values."
+        },
+        {
+          "test": "Tests.test_quantized_allocation_modules.QuantizedAllocationModuleTests.test_native_business_errors_leave_no_finance_or_state",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "canonical"
+          ],
+          "inputs": [
+            "cases/quantized-allocation/allocation.spl",
+            "cases/quantized-allocation/quantized-allocation.spl",
+            "cases/quantized-allocation/neutral.json",
+            "cases/quantized-allocation/policy.md"
+          ],
+          "property": "Wrong scope, cutoff, authorization or missing/duplicated recipient evidence blocks atomically with no financial output or consumable state.",
+          "oracle": "Separately authored oracles/quantized_allocation.py consumes original parents/weights/authorities before projection and checks material intermediate, output and restored state values."
+        }
+      ],
+      "limitations": [
+        "Proposed synthetic research assumption with explicit case-sensitive ASCII identity order; no general collation or professional approval.",
+        "Finite 8-recipient/4-parent/8-historical-input bounds; native maxima tested separately, actual native adjacent carry and reference eight-history boundary only.",
+        "44-method cohort has 15 actual native comparisons/publications; no Python-emitted execution or emitted-target decision-coverage credit.",
+        "Generic descriptor relationship cardinality remains separate."
+      ]
     }
   ]
 }

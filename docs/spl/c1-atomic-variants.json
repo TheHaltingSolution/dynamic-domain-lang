@@ -808,6 +808,23 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-carry-purity-5970c3c9/verification.json"
       ],
       "basis": "Qualified39-method immutable cohort on20ea/a516/673, six completed full-control bundles including actualQ1-Q4 andpreview. Separate helper purity verifies exact actual cells minus output-only movement, unchanged previous results/artifacts and real prior_result_ref."
+    },
+    "quantized_allocation": {
+      "sources": [
+        "cases/quantized-allocation/README.md",
+        "cases/quantized-allocation/policy.md",
+        "cases/quantized-allocation/allocation.spl",
+        "cases/quantized-allocation/quantized-allocation.spl"
+      ],
+      "controls": [
+        "oracles/quantized_allocation.py",
+        "Tests/test_quantized_allocation_oracle.py",
+        "Tests/test_quantized_allocation_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/quantized-allocation-checks-20261123-a/verification.json"
+      ],
+      "basis": "44 methods; 15 actual native comparisons and completed publications; bounded separate 8-recipient/4-parent maxima and adjacent native original-state carry"
     }
   },
   "variants": [
@@ -1993,21 +2010,23 @@
       "name": "Largest-remainder cent residual assignment",
       "kind": "allocation_method",
       "requiredness": "accepted_c1_variant",
-      "status": "in_progress",
+      "status": "qualified",
       "requirements": [
         "C06"
       ],
       "discriminator": "USD.01 split equally X/Y uses an explicitly authorized stable tie key, not physical order.",
-      "evidence_groups": [],
+      "evidence_groups": [
+        "quantized_allocation"
+      ],
       "execution": {
-        "source": "not_executed",
-        "canonical": "not_executed",
-        "native_ir": "not_executed",
-        "native_emitted": "not_executed",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "pending",
-        "boundary_invalid_controls": "pending",
-        "native_audit": "pending",
+        "source": "executed_selected_bounded_source",
+        "canonical": "15_complete_loader_validated_publications",
+        "native_ir": "15_actual_comparisons",
+        "native_emitted": "15_actual_comparisons",
+        "python_emitted": "not_executed_in_this_cohort",
+        "independent_controls": "24_oracle_and20_module_methods_original_fact_controls",
+        "boundary_invalid_controls": "explicit_zero_empty_scope_cutoff_population_minor_unit_and_reuse_controls",
+        "native_audit": "complete_native_ir_traces_retained_no_general_path_coverage",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -2015,7 +2034,7 @@
         "policy": "explicit_bounded_selection",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "Finish independent residual/rounded share controls, native/canonical integration and original-parent conservation; zero denominator/unmatched policy must be explicit."
+      "remaining_obligation": "Selected bounded residual/supplied-cent methods complete; generic relationship cardinality remains separate. No all-Cartesian native bound, Python-emitted execution or general capacity claim."
     },
     {
       "id": "C07.MIXED_CLAIM_KINDS",
