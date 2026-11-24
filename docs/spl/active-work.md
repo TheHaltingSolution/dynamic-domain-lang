@@ -11,12 +11,13 @@ with no failures/errors/skips/source or compiled drift,7726.735609s. PID5464 and
 exec98279 are ENDED. Later independent oracles/cases/helpers are separately
 qualified, not retroactively included in that snapshot.
 
-- Current C02 specification has25 independent controls; UTC-year bounds and
-  lowercase markers correct the earlier22-method admission gaps. RFC3339
-  negativezero keeps knownUTC while original unknown-local-offset meaning is
-  retained. Separate source/reference freeze41+8 bundles is native-pending.
-- C13 independent35-method controls and original issued/paid/unissued bridges
-  are committed; its separate source author is now implementing replay.
+- C02 basis methods are accepted at77fcbb1: current-main43 methods and a separate
+  bounded25-case composite preserve complete dimensioned intermediates and all
+  four policy zero/empty controls. Public prepared/raw custody has its own
+ 42-method reference/lifecycle freeze; exact limits are in the case README.
+- C13 independent35 controls are committed; separate53-method source/reference
+  freeze and12 actual serialized/reference/preview bundles pass. Native
+  qualification remains pending; original issued/paid/unissued measures differ.
 - Isolated compact commits2ee01e6/31caf5f complete100/1000 canonical publication;
   receipt0b36534 passes24 methods and recovers the actualoldQ2 cells at37.7MB.
   Root independently verified the receipt/cells and unchanged old marker.
@@ -24,14 +25,16 @@ qualified, not retroactively included in that snapshot.
   (2383 to708 modules), keeps every definition body and emitted source unchanged,
   passes105 focused checks/9 old IR exports/actual old Download carry. Exact
   C10 target now compiles/runs under1GiB, but C11 still exceeds that cap.
-- Separate generic helper extraction is under qualification: first C11 target
-  compiles at783,867,904B and runs with full IR/reference value equality. It is
-  not integrated or a native contract-close acceptance. Eight generated Demos
-  must be regenerated from unchanged financial sources and freshness-checked.
+- Native helper173d1f50 passes108 focused checks and regenerated8-Demo freshness;
+  C11 Cgen783,867,904B/C10623,247,360B retain exact financial source/typedIR.
+  Independent Python helperdc484b2e passes111 checks and embedded C11 Cgen
+ 799,707,136B. Both execute full original-value controls under fixed guards.
+  They are not yet main integration or general capacity claims.
 
-Work ownership: trace handles isolated C10 public compact API/native cohort;
-source handles isolated generic emitter memory reduction; matrix handles C13
-source after freezing C02/C11. Main core stays stable until coherent promotion.
+Work ownership: trace handles isolated corrected C10 wrapper/native46 cohort;
+source handles isolated C11 wrapper/native66 cohort on dual helpers; matrix is
+preparing remaining generic C09 reserve-stage controls after freezing BNUM30.
+Main core stays stable until coherent promotion.
 Recent details below retain their exact dated scopes. Start with
 [C13 controls](#frozen-independent-dependent-period-correction-controls),
 [compact limits](#isolated-compact-publication-and-current-c10-limits) and
