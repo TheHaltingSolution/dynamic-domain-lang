@@ -762,7 +762,7 @@
       "depends_on": [],
       "questions": [],
       "review_resolution": "Missing finite C10 variation identified by LD03 section7, lines390-399. Existing B-C10-TRANSFER remains complete for conserved transfers only.",
-      "active_scope": "Independent original-fact oracle frozen: 28 methods pass with actual serialized 30/15/0 cap45 chain and accrued100/170 versus linked paid60 basis100/182. Separate SPL/canonical author assigned after Genius acceptance; no compiler/native evidence yet.",
+      "active_scope": "Independent28-method oracle remains frozen. Separate /5 source prototype702907fd preserves original paid/accrued bases; actual v1Q1/Q2 complete publications pass, but Q3 exceeds64MiB reconstruction. Isolated compact candidate31caf removes that reconstruction path, yet fresh C10 qualification exposes old-v1Q2 reader276561920B versus256MiB and freshQ1 emitted Cgen1078091776B versus1GiB cap. Single-thread Cgen also fails unchanged cap at1078087680B. All fail closed; no Q3/preview/full43 or accepted-main feature credit. Distinct bounded streaming carry receipt is approved; general emitted-term compilation diagnosis follows the C13 oracle freeze, with financial sources and guards unchanged.",
       "evidence": [
         "oracles/contract_burdens.py",
         "cases/entitlement-burdens/neutral.json",
@@ -1574,7 +1574,7 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json"
       ],
-      "active_scope": "48 focused methods plus full old20ea33compilation/66mixed/pure30batches per size/four-close stage-chain measurements qualified. Native runtime guards unchanged; compiler-only1g180 separately explicit.1000generic publication fails first64MiB reconstruction; no canonical close/SLA/capacity credit. Next explicitly opted-in compact sidecar canonical publication is authorized in isolated C:/spl-sidecar-a0, preserving all guards/defaultv1 behavior."
+      "active_scope": "Historical old20ea33compilation/66mixed/pure30batch/four-close protocol remains separately pinned; its v1 1000 publication failed64MiB reconstruction. New isolated compact candidate2ee01e6/31caf5f passes67 focused methods and actual100/1000 canonical writer+bounded-loader gates with unchanged logical graph/guards; root independently validates1000 result/pins. No main integration,33-run canonical latency/SLA or10k credit. C10 old-array reader and emitted-target compiler resource failures remain open; detailed retained evidence is in active-work.md."
     },
     {
       "id": "B-PERF-STAGES",
@@ -1601,7 +1601,7 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json"
       ],
       "additional_bounded_evidence": "Compact full result envelopes preserve every parsed value and fixed64MiB budget.20publication methods/build/smokes pass; retained17,832-node trace65,841,102pretty/44,542,781compact bytes. This does not close remaining cold/warm/dependency timing acceptance or establish a completed Disney close.",
-      "active_scope": "48 focused methods plus full old20ea33compilation/66mixed/pure30batches per size/four-close stage-chain measurements qualified. Native runtime guards unchanged; compiler-only1g180 separately explicit.1000generic publication fails first64MiB reconstruction; no canonical close/SLA/capacity credit. Next explicitly opted-in compact sidecar canonical publication is authorized in isolated C:/spl-sidecar-a0, preserving all guards/defaultv1 behavior.",
+      "active_scope": "Historical old20ea33compilation/66mixed/pure30batch/four-close protocol remains separately pinned; its v1 1000 publication failed64MiB reconstruction. New isolated compact candidate2ee01e6/31caf5f passes67 focused methods and actual100/1000 canonical writer+bounded-loader gates with unchanged logical graph/guards; root independently validates1000 result/pins. No main integration,33-run canonical latency/SLA or10k credit. C10 old-array reader and emitted-target compiler resource failures remain open; detailed retained evidence is in active-work.md.",
       "remaining_obligation": "Implement/verify versioned generic compact-audit canonical publication and bounded loader for both real wrappers, complete logical/source/ownership/atomic/failure/state-carry evidence and actual1000close; never replace missing audit with empty trace or count failed reconstruction as completed publication."
     },
     {

@@ -343,3 +343,43 @@ retain their original spellings. Oracle/source authors remain different.
 C13 independent replay controls are also assigned, including a genuinely
 dependent cumulative-tier successor rather than only an isolated replacement.
 The backlog retains28 complete items; these assignments do not close features.
+
+## Isolated compact publication and current C10 limits
+
+The candidate at `C:/spl-sidecar-a0` has frozen production commit2ee01e6 and
+harness-only follow-up31caf5f. Its67 focused methods pass in147.957607s with
+679 tracked-source and99 compiled-file pins unchanged. Exact frozen100/1000
+canonical gates then pass8.858318s/40.729368s. The1,000-record result is269,498
+bytes, with the unchanged64,480-node native graph,776,599,360 expanded bytes,
+43,503,437 wire bytes and original baseline logical hash. A separate root
+bounded loader verifies all67 dependency pins, the unchanged completion marker,
+exact owned result and financial controls. These are isolated functional
+capacity results under disclosed concurrent load, not main integration,
+33-run latency acceptance, an SLA or larger-capacity qualification.
+
+Evidence under the external SPL artifacts root:
+
+- `compact-publication-focused-20261123-a/verification.json`
+- `compact-canonical-{100,1000}-20261123-b/summary.json`
+- `compact-canonical-root-review-20261123-a/verification.json`
+
+The exact C10 `/5` prototype remains untracked in main and copied without
+economic changes into the isolated lane. Its earlier actual v1Q1/Q2 financial,
+state and publication controls passed, while Q3 reconstruction failed. The new
+lane records two additional resource failures in `compact-c10-20261123-a`:
+loading the actual old v1Q2 state peaks276,561,920B against256MiB, and fresh
+v2Q1 emitted-target C generation peaks1,078,091,776B against1GiB. The latter
+has a complete native audit but returns a blocked empty canonical result;
+Q2/Q3/preview/full43 are not executed or credited. Both failures remain
+retained, and all guards stay fixed. The one separately named single-thread
+Cgen experiment also fails at1,078,087,680B in3.003115s, on the exact204,897B
+emitted source; no target or financial credit follows. Its evidence is
+`compact-c10-compiler1g180-j1-20261123-a/verification.json`. This does not support
+async-overlap as the cause. A new general emitted-term compilation diagnosis is
+assigned after the independent C13 oracle freeze; the basis source task stays
+queued. No source-specific financial simplification or interpreter substitution
+is authorized. A distinctly typed bounded streaming old-state receipt is now
+approved for separate implementation, preserving full byte/token/manifest
+validation while retaining selected state fields. No compiler success alone
+may substitute for emitted execution, publication and original-fact state-carry
+controls. C10 remains open.
