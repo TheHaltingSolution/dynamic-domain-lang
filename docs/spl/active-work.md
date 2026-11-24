@@ -232,8 +232,14 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   and linked-paid60 comparator100/182. Artifact
   `contract-burden-oracle-20261123-562c4619`; all six frozen files match. No
   compiler/native credit. A different source author now implements it;
-  generated authors the independent C07 mixed-claim waterfall under an approved
-  bounded fee-first/correction-first/pro-rata policy. No core edits.
+  generated completed the independent C07 mixed-claim waterfall:22 isolated
+  methods pass0.194076s, actual four-kind120→90 gives25/20/75/0 then0/0/25/65,
+  advance35 and unchanged historical paid80. Artifact
+  `mixed-claim-oracle-20261123-bdab324e`; all six frozen source files match.
+  Original bee37de catalog bytes remain pinned; current whole-catalog changes
+  concern other evidence, and the C07 propositions/backlog acceptance compare
+  unchanged. No source/native credit. Generated now authors independent C11
+  ordered/continuous-gate controls under the approved RR04/LD03 history.
 - `validation_trace`: completed the isolated usage-unit candidate; its broad
   regression remains pending under root review. Now owns C06 cent-allocation
   source/adapters/module tests in main. The44-method cohort is now accepted,
