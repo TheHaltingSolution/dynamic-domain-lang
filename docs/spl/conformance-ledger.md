@@ -2,6 +2,12 @@
 
 ## Active C1 continuation
 
+Later owner sequence: native mixed currency stays out now, reserved for the
+self-modifying compiler tool/skill demonstration after the other current goals.
+The [decision](ld03-owner-decision.md) records this explicitly; the current
+backlog has73 items including the separately deferred tool. This does not change
+native currency execution status or establish financial inexpressibility.
+
 Later executed updates supersede the historical C08/C14 absence statements:
 [authorized offsets](../../cases/authorized-offsets/README.md) pass 37 combined
 methods with actual three-period carry; original paid80 stays80 and recovery

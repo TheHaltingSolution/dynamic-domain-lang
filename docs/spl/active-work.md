@@ -8,12 +8,13 @@ not a complete release. No push or pull request has been made.
 
 RR04/LD03 responses are pinned in [their index](rr04-ld03-integration.md).
 Neither reviewer qualified a contract-required calculation that existing SPL
-cannot faithfully express. The owner asked whether mixed-currency contracts
-could demonstrate dynamicity. The implementation recommendation is yes: show
-reusable admission of currency concepts/checks, with unchanged old-contract
-replay. Do not claim old financial inexpressibility. Explicit approval to replace
-the earlier native-FX necessity prerequisite has not been recorded. Continue
-non-FX engineering; do not infer approval from a question or elapsed time.
+cannot faithfully express. The owner now selects mixed-currency contracts for a later self-modifying
+compiler tool/skill demonstration, and explicitly asks to leave native currency/
+FX support out now. Complete other current feature/performance/testing goals
+first; revisit the tool and currency example when those are verified complete,
+or when the owner starts that phase. Preserve successful existing-language
+methods. See [owner decision](ld03-owner-decision.md) and the later
+[tool plan](self-modifying-compiler-demo-plan.md). No skill or FX work starts now.
 
 ## Stable checkpoint and current core
 
@@ -130,11 +131,18 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
 - `validation_matrix`: finished AO/civil cohorts; completed the atomic C1 variant
   catalog, now native Disney implementation against immutable oracle/facts.
   Root reviewed78 stable semantic IDs:75 required C1, two supporting, one unselected alternative; nine engineering entries are a separate axis. This is a planning denominator, not passing evidence or72tasks/195rows/testcount.
-- `validation_generated`: finished the unit-conversion design refinements, now independent
-  Genius-ESPN basis-reserve oracle. No core or FX implementation authorized by
-  the design document. Keep actual physical returns/vintage deadlines, source
-  fee limitations and synthetic recognition policies explicit.
-- `validation_trace`: finished post-memo performance probes; assessing isolated usage-unit implementation. It owns performance harness/indexed/memo evidence. Shared core edits remain forbidden during Disney native freezes.
+- `validation_generated`: Genius basis-reserve oracle frozen32 methods with five
+  actual serialized periods, artifact `basis-reserve-oracle-20261123-5ed65f08`.
+  Native source remains pending; excess-vintage returns remain an explicit source
+  gap. Now owns isolated unit `modules.py`, descriptor schema, new canonical/state
+  fixtures/tests and interface documentation, coordinating with trace.
+- `validation_trace`: owns the isolated usage-unit compiler/context/IR/runtime/
+  codec/emitter implementation. Its baseline archive `usage-units-baseline-20261123-a`
+  retains39 files, nine raw v1 IRs, old namespace controls and actual base quantity
+  state carry. Initial targeted checker/parser/linker builds pass; full alignment
+  and extension acceptance remain pending. Root required generic feature-catalog
+  admission instead of spreading a single Hour-name/Boolean switch through code.
+  Shared main core remains unchanged during Disney native work.
 - Root: independent usage conversion controls now pass8 methods from an isolated
   source snapshot, `usage-conversion-oracle-20261123-642e47f0`; this earns no
   compiler/native/codec/state credit. Integrate evidence/backlog, review unit/context compatibility, maintain
@@ -153,8 +161,8 @@ owner-local admission, old namespace/IR/state compatibility, generic exact
 relation checks, and an independent baseline before implementation. Shared core
 is stable at abee/daf/673. Do not change it during another native freeze.
 
-Remaining finite work is in the72-item backlog, including separate C10 burden,
+Remaining work is in the73-item backlog, including separate C10 burden,
 cent allocation, sourced reserves/gates/repricing, replay and schema/transport/
-diagnostics/reporting variants. The backlog records22 complete items; task
+diagnostics/reporting variants. The backlog records23 complete items; task
 counts do not measure language coverage. Whole-compiler proof, professional
 approval and external custody remain separately scoped obligations.

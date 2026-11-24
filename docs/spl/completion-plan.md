@@ -2,6 +2,13 @@
 
 ## Active implementation update
 
+The owner now reserves native mixed currency for a later self-modifying compiler
+tool/skill demonstration. Finish other current feature/performance/testing goals
+first; do not implement EUR/FX now. The [recorded decision](ld03-owner-decision.md)
+and [later tool plan](self-modifying-compiler-demo-plan.md) replace the pending
+necessity-only selection question. The backlog now has73 items, including that
+separately deferred tool; the original71/72 snapshots remain historical.
+
 The [atomic variant catalog](c1-coverage.md) now fixes stable planning identities:
 75 required C1 semantic rows, two supporting rows and one unselected recognition
 alternative, with nine engineering entries tracked separately. This is not
@@ -10,7 +17,7 @@ execution evidence or a percentage of language programs.
 The later finite C08 payment-aware offset and C14 supplied civil-day variants
 now have separate37- and27-method passing native/oracle cohorts. Their actual
 capacity and supplied-evidence limits remain in [live work](active-work.md).
-The backlog now records22 complete items; these task counts are not coverage
+The backlog now records23 complete items; these task counts are not coverage
 percentages. The bounded matrix has34 rows/30 witnessed/four gaps/45 selectors,
 with no new combined matrix campaign claimed. The emitter definition-cache
 repair is promoted through38 focused methods, a94-job build and both smokes.
@@ -18,8 +25,7 @@ repair is promoted through38 focused methods, a94-job build and both smokes.
 [RR04/LD03 responses](rr04-ld03-integration.md) are now received. The missing
 C10 burden/subtraction variation increases the current inventory to72 items;
 the original71-item snapshot below remains historical. Declared Id profiles
-retain ASCII while Text financial identities remain distinct. Currency work is
-still gated pending an explicit owner decision on the reviewed claim revision.
+retain ASCII while Text financial identities remain distinct. Currency work remains reserved for the owner-selected later tool/demo phase.
 
 The machine-readable backlog's `status_counts` records current progress across
 the current planning items. Completed slices, partial acceptance and active work are
@@ -121,7 +127,7 @@ do not block the separately named synthetic recipes or generic infrastructure.
 | C12 obligations | Revised 90, evidenced paid 80 and outstanding 10 | Broader calculated/issued/paid lifecycle, minimum threshold and serialized unpaid carry |
 | C13 corrections | Bounded authorized original-opening replacement restatement | Finite dependent-period replay, prospective adjustment and capacity-limited overpayment offsets |
 | C14 terms/calendars | Exact cutoffs, half-open dates, quarters and month derivation | Fiscal/business-calendar data, amendment/as-of selection and explicitly counted day proration |
-| C15 FX | Legitimate record-backed arithmetic fits | Native EUR/FX dimensions and complete canonical directed-quote witness after the required-extension gate |
+| C15 FX | Legitimate record-backed arithmetic fits | Native EUR/FX dimensions and complete canonical directed-quote witness reserved for the later self-modifying tool/demo after other current goals |
 | C16 statements | Existing fee/recovery/holdback components | Supplied withholding 100/10/90, explicit rounding bridge and threshold/deferment order |
 | C17 reuse/reporting | Generic modules, new registrations, statements/state/scenarios | Apply visible-policy, typed-output, lineage and release acceptance discipline to every added variant |
 
@@ -201,22 +207,22 @@ codes rather than adding historical cohorts together.
 
 ## Questions that apply to specific work
 
-Eight items currently need an answer: the exact sourced retroactive repricing
-boundary; sourced nonzero reserve terms; sourced dynamic gate history/crossing;
-the genuinely required extension residual; ASCII versus NFC Unicode opaque IDs;
-the authorized delta-intake overlap contract; actual professional review
-dispositions; and a further selected partial-period/accrual convention. Each
-question is attached to its own JSON item. Existing bounded variants can
-continue, and no resolved Quest fixture questions are reopened.
+RR04/LD03 resolve the selected synthetic/source boundaries for retroactive
+repricing, the nonzero reserve and ordered gate candidate. The declared Id
+profile retains ASCII. Raw incremental intake and extra interest conventions
+remain deferred unless separately selected. Exact historical source sequencing,
+redacted fee bands and other unselected variants remain explicit limitations,
+rather than invented policy. Actual professional final-bundle review remains
+separate from compiler engineering and automated test evidence.
 
-The pre-FX gate remains binding. Research establishes contractual necessity;
-design attempts faithful unchanged-language encodings. Existing FAME conversion,
-complete-period LG compounding and bounded Quest certificates are legitimate
-method fits. A missing builtin name, slower method or stronger native type is
-not proof of financial inexpressibility. Only after identifying a justified
-required residual should the team freeze a usable pre-extension compiler,
-implement the smallest extension and replay compatibility. No candidate is
-currently selected.
+The owner now selects mixed currency as the future self-modifying compiler
+example, and asks to leave native EUR/FX out while other current goals remain.
+The later tool must attempt faithful existing-language methods and identify the
+missing capability honestly before extending the compiler. Existing FAME
+record-backed conversion, complete-period LG compounding and bounded Quest
+certificates remain legitimate methods. No working cancellation rule is removed
+to force a failure. See [the owner sequence](ld03-owner-decision.md) and
+[later tool plan](self-modifying-compiler-demo-plan.md).
 
 The public development target remains three to five sourced cases with at least
 two materially different methods. SV and RQ-07 are one method. Existing Angel,

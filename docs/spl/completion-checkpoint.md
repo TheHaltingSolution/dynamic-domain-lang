@@ -17,8 +17,10 @@ The owner's [paste-ready notes](completion-review-questions.md) now have
 [RR04/LD03 responses](rr04-ld03-integration.md). Source/design decisions are
 recorded separately from executable evidence and professional approval. The
 backlog now has72 items, including the newly identified separate C10 burden.
-The owner is discussing mixed-currency contracts as an extensibility example;
-no explicit currency-gate waiver has yet been recorded.
+The owner now reserves mixed-currency contracts for a later self-modifying
+compiler tool/skill demonstration, after the other current goals. Native FX
+stays out now; read [the decision](ld03-owner-decision.md). The later tool adds
+one deferred item, so the current backlog has73 items.
 
 ## Executed financial slices
 

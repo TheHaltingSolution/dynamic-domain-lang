@@ -1,5 +1,11 @@
 # RR-04 and LD03 completion integration
 
+Current owner update: mixed currency is selected for the later self-modifying
+compiler tool/skill demonstration, and explicitly left out now until other
+current goals are complete. [The owner decision](ld03-owner-decision.md)
+supersedes pending-selection language in the historical review below. No
+financial inexpressibility or native FX execution is inferred.
+
 23 November 2026. These responses were discovered in the external research
 folder while implementation continued. They are source/design review, rather
 than a rerun of the current code or professional accounting approval.
@@ -60,13 +66,14 @@ future case. Do not relabel CAD as USD or infer conversion. Additional corrected
 threshold, CB-credit, cap/active-claim and interest choices are needed only when
 those extra variants are selected.
 
-## Owner and reviewer decisions still open
+## Owner sequence and remaining reviewer evidence
 
 Both reviews find no qualified necessary financial-core residual. Existing
 record-backed FX, rational compounding and bounded Quest routes remain valid.
-The [concrete claim revision](ld03-owner-decision.md) has been put to the owner;
-until an explicit answer, native EUR/FX remains gated. Elapsed time or a reviewer's
-recommendation does not waive the earlier instruction.
+The owner now selects the [later tool/demo sequence](ld03-owner-decision.md):
+leave native EUR/FX out now, complete other current goals, then revisit mixed
+currency with the self-modifying compiler tool/skill. Review recommendations
+alone did not change that sequence; the owner's later message does.
 
 Actual professional review must name the final source/policy/fixture/results
 bundle. Research-checked checkpoints and automated tests do not supply it.

@@ -3,10 +3,10 @@
 23 November 2026. **Design for review; no core implementation is authorized by
 this document.** The bounded target is `B-C02-CONVERSION`: declare UsageHour and
 convert exactly 60 UsageMinute to 1 UsageHour. This is supporting engineering
-under the existing non-FX scope. Native EUR, mixed-currency arithmetic and FX
-remain behind the standing owner gate. A mixed-currency contract may motivate a
-future demonstration; it does not itself authorize that extension or prove
-financial inexpressibility in the current core.
+under the existing non-FX scope. Native EUR and FX remain reserved by the later owner decision for a future
+self-modifying compiler tool/skill demonstration after the other current goals.
+No currency extension is implemented now; read [the owner sequence](ld03-owner-decision.md).
+This non-FX slice does not prove financial inexpressibility in the current core.
 
 The recommended change is one finite, immutable extension catalog; an explicit
 source/module admission context; and one generic exact quantity-conversion call.
@@ -454,5 +454,4 @@ conversion search, arbitrary new unit definitions, broad unit algebra or old-sta
 migration are needed for this bounded implementation. The admission/context and
 relation-application mechanism can be reused by later approved extensions; each
 such extension still needs its own economics, units, policy and compatibility
-evidence. The strong necessary-core claim and currency gate remain unresolved
-owner decisions.
+evidence. The owner-selected later currency/tool sequence remains separate from this non-FX implementation.

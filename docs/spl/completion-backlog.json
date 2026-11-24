@@ -30,7 +30,7 @@
     "No whole-compiler proofs now. Vendor parity, legal/tax policy discovery, bank execution and distributed transaction service are not C1 acceptance requirements.",
     "Ready synthetic alternatives do not establish sourced contractual approval. Question-blocked sourced claims do not stop ready engineering.",
     "The six sample matrix gaps are not the release denominator. All 17 C1 families and 195 historical granular ledger rows receive a disposition here.",
-    "Native EUR/FX remains behind qualification of a genuinely required extension; accept faithful old-language methods and do not remove working rules."
+    "Native EUR/FX is explicitly reserved for the later self-modifying compiler tool demonstration. Continue other current feature/performance/testing goals first; preserve faithful old-language methods. Revisit after those goals are verified complete or the owner starts that later phase."
   ],
   "first_ready_feature": "B-C03-STAGES",
   "parallel_ready": [
@@ -207,7 +207,8 @@
       "implemented_and_remaining": "Exact USD calculations and currency/scope rejection exist. The [DYN-02 analysis](dyn02-design-answer.md) reports a record-backed receipt-FX method fit, so ordinary conversion arithmetic must not be described as financially inexpressible. Native typed USD/EUR money, quote units/direction, separate contract/payment currencies and the complete canonical conversion/rounding witness remain absent. The reported method fit does not complete those C15 requirements.",
       "work_items": [
         "B-EXT-SELECTION",
-        "B-C15-FX"
+        "B-C15-FX",
+        "B-EXT-AUTOMATION"
       ]
     },
     {
@@ -625,7 +626,13 @@
       ],
       "questions": [],
       "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate.",
-      "active_scope": "Independent Genius-ESPN USD basis-reserve oracle under development from adopted RR04/LD03 decisions and primary source. Initial selected vintage-funded return slice explicitly rejects excess returns; sourced excess-return NR reduction remains unimplemented, not silently complete."
+      "active_scope": "Independent Genius-ESPN USD within-vintage basis-reserve oracle frozen:32 passing methods and five actual serialized runs. Native source/registration remains pending. Sourced excess-return NR reduction is explicitly unimplemented; this initial slice is partial source support.",
+      "evidence": [
+        "cases/basis-reserves/policy.md",
+        "docs/spl/basis-reserve-design.md",
+        "Tests/test_basis_reserve_oracle.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserve-oracle-20261123-5ed65f08/verification.json"
+      ]
     },
     {
       "id": "B-C10-TRANSFER",
@@ -894,23 +901,32 @@
     },
     {
       "id": "B-EXT-SELECTION",
-      "title": "Qualify necessary extension before native FX",
+      "title": "Record owner selection of the later extensibility demonstration",
       "requirements": [
         "C15",
         "A14"
       ],
       "work_class": "research",
-      "status": "question_blocked",
+      "status": "complete",
       "scope": "research_gate",
       "acceptance": [
+        "Record the owner decision on the reviewed extensibility claim and sequence; preserve successful existing-language encodings and identify native FX as reserved for the later tool-driven demonstration."
+      ],
+      "depends_on": [],
+      "questions": [],
+      "superseded_acceptance": [
         "Research supplies exact required original facts/outputs/policy; design tries strongest faithful unchanged-SPL encoding with records/ratios/folds/libraries.",
         "Accept successful methods. Reserve only a justified unsatisfied residual, preserve old compiler/source/diagnostics/oracle, then extend and replay compatibility.",
         "Both external reviewers assess final candidate; no deleted cancellation rule, supplied financial answer or missing builtin name manufactures a gap."
       ],
-      "depends_on": [],
-      "questions": [
+      "superseded_question": [
         "What precise contract-required residual remains unsatisfied after faithful existing-language encodings?"
-      ]
+      ],
+      "evidence": [
+        "docs/spl/ld03-owner-decision.md",
+        "docs/spl/self-modifying-compiler-demo-plan.md"
+      ],
+      "execution_scope": "Owner claim/sequence decision only. No contract-required financial inexpressibility, native FX, self-modifying tool implementation or automatic correctness is established."
     },
     {
       "id": "B-C15-FX",
@@ -924,14 +940,16 @@
       "status": "gated",
       "scope": "c1_required",
       "acceptance": [
-        "After selection gate, extend checker/IR/runtime/codecs/descriptors/state/output closure together for at least USD/EUR and directed quote dimensions.",
+        "In the later owner-selected tool/demo phase, extend checker/IR/runtime/codecs/descriptors/state/output closure together for at least USD/EUR and directed quote dimensions.",
         "EUR 100 at USD 1.10/EUR gives USD 110; reject reverse substitution/missing-date/rate/wrong unit/source/currency and undeclared fallback.",
         "Separate source/contract/payment currencies and rounding boundaries; preserve legitimate record-backed old-language fits."
       ],
       "depends_on": [
-        "B-EXT-SELECTION"
+        "B-EXT-SELECTION",
+        "B-EXT-AUTOMATION"
       ],
-      "questions": []
+      "questions": [],
+      "gate_reason": "Owner explicitly reserves native mixed-currency/FX for a later self-modifying compiler tool/skill demonstration; finish the other current goals first. Do not implement it now."
     },
     {
       "id": "B-C16-WITHHOLD",
@@ -1774,6 +1792,31 @@
       "depends_on": [],
       "questions": [],
       "review_resolution": "LD03: not required for selected finite C1/RR04 slices. Complete views/predecessor replay and accepted bounded interest proceed; a separately selected future requirement must define this interface/policy before exposure."
+    },
+    {
+      "id": "B-EXT-AUTOMATION",
+      "title": "Later tool-driven contract encoding and compiler extension demonstration",
+      "requirements": [
+        "C15",
+        "A14"
+      ],
+      "work_class": "research_tooling",
+      "status": "deferred",
+      "scope": "supporting_engineering",
+      "acceptance": [
+        "Implement a tool/skill that attempts faithful real-contract SPL encodings, records actual missing capabilities separately from missing facts/policy, and creates isolated compiler extensions when needed.",
+        "Use the reserved mixed-currency case in that later phase with independent original-fact controls and unchanged old-source/state replay; do not manufacture financial inexpressibility from successful record-backed methods.",
+        "Retain versions, source/evidence/diagnostics, tests, compatibility and measured effort/performance; report the finite verified outcome honestly."
+      ],
+      "depends_on": [
+        "B-EXT-SELECTION"
+      ],
+      "questions": [],
+      "start_condition": "Other current authorized non-FX feature/performance/testing obligations are verified complete, or the owner explicitly starts this later phase. No requirement to finish existing deferred/outside-scope obligations is inferred.",
+      "evidence": [
+        "docs/spl/self-modifying-compiler-demo-plan.md",
+        "docs/spl/ld03-owner-decision.md"
+      ]
     }
   ],
   "ledger_disposition": [
@@ -3803,14 +3846,14 @@
   ],
   "progress_as_of": "2026-11-23",
   "status_counts": {
-    "complete": 22,
+    "complete": 23,
     "ready": 26,
     "in_progress": 8,
     "dependency_blocked": 2,
     "partial": 2,
-    "question_blocked": 2,
     "gated": 1,
-    "deferred": 6,
+    "deferred": 7,
+    "question_blocked": 1,
     "outside_scope": 3
   }
 }
