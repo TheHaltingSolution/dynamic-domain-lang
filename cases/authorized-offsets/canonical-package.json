@@ -1,0 +1,838 @@
+{
+  "decisions": [
+    {
+      "decision_id": "AUTHORIZED_OFFSETS_SELECTED",
+      "evidence_ref": "synthetic-authorized-offset-interpretation",
+      "policy_id": "SYNTHETIC-AUTHORIZED-OFFSETS-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "AUTHORIZED_OFFSETS_SELECTED",
+        "cash_population": {
+          "none": true
+        },
+        "evidence_ref": "original-source",
+        "id": "original-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2025-12-04T00:00:00Z",
+        "payment_population": {
+          "none": true
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_kind": "synthetic-original-measurement-and-issue",
+        "source_observed_at": "2025-12-04T00:00:00Z"
+      },
+      {
+        "approval_ref": "AUTHORIZED_OFFSETS_SELECTED",
+        "cash_population": {
+          "none": true
+        },
+        "evidence_ref": "payment-source",
+        "id": "payment-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2025-12-16T01:00:00Z",
+        "payment_population": {
+          "none": true
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_kind": "actual_original_payment",
+        "source_observed_at": "2025-12-16T01:00:00Z"
+      },
+      {
+        "approval_ref": "AUTHORIZED_OFFSETS_SELECTED",
+        "cash_population": {
+          "none": true
+        },
+        "evidence_ref": "other-source",
+        "id": "other-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2025-12-11T00:00:00Z",
+        "payment_population": {
+          "none": true
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_kind": "synthetic-other-claim",
+        "source_observed_at": "2025-12-11T00:00:00Z"
+      },
+      {
+        "approval_ref": "AUTHORIZED_OFFSETS_SELECTED",
+        "cash_population": {
+          "none": true
+        },
+        "evidence_ref": "complete-original-payments",
+        "id": "complete-original-payments",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "payment_population": {
+          "some": {
+            "application_ids": [
+              "payment-application-1"
+            ],
+            "as_of": "2026-04-03T00:00:00Z",
+            "disbursement_ids": [
+              "bank-payment-1"
+            ],
+            "issued_id": "issue-1",
+            "paid_total": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "payment_ids": [
+              "payment-1"
+            ],
+            "source_as_of": "2026-04-03T00:00:00Z"
+          }
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_kind": "complete_original_payment_population",
+        "source_observed_at": "2026-04-02T00:00:00Z"
+      },
+      {
+        "approval_ref": "AUTHORIZED_OFFSETS_SELECTED",
+        "cash_population": {
+          "none": true
+        },
+        "evidence_ref": "authority-source",
+        "id": "authority-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-02-18T00:00:00Z",
+        "payment_population": {
+          "none": true
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_kind": "synthetic-explicit-revision-and-offset-authority",
+        "source_observed_at": "2026-02-18T00:00:00Z"
+      },
+      {
+        "approval_ref": "AUTHORIZED_OFFSETS_SELECTED",
+        "cash_population": {
+          "none": true
+        },
+        "evidence_ref": "reversal-source",
+        "id": "reversal-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-02-17T00:00:00Z",
+        "payment_population": {
+          "none": true
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_kind": "synthetic-original-linked-reversal",
+        "source_observed_at": "2026-02-17T00:00:00Z"
+      },
+      {
+        "approval_ref": "AUTHORIZED_OFFSETS_SELECTED",
+        "cash_population": {
+          "none": true
+        },
+        "evidence_ref": "earnings-source",
+        "id": "earnings-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-03-02T00:00:00Z",
+        "payment_population": {
+          "none": true
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_kind": "synthetic-future-earned-source",
+        "source_observed_at": "2026-03-02T00:00:00Z"
+      },
+      {
+        "approval_ref": "AUTHORIZED_OFFSETS_SELECTED",
+        "cash_population": {
+          "some": {
+            "application_ids": [],
+            "cash_ids": [],
+            "cash_total": {
+              "currency": "USD",
+              "value": "0"
+            },
+            "period": {
+              "end": "2026-04-01",
+              "start": "2026-01-01"
+            },
+            "receipt_ids": []
+          }
+        },
+        "evidence_ref": "complete-recoveries-q1",
+        "id": "complete-recoveries-q1",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "payment_population": {
+          "none": true
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_kind": "complete_cash_recovery_population",
+        "source_observed_at": "2026-04-02T00:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "as_of": "2026-03-31",
+    "case_id": "authorized-offsets-q1",
+    "cash_recoveries": [],
+    "fact_scope": {
+      "asset_id": "offset-picture",
+      "contract_id": "offset-synthetic",
+      "currency": "USD",
+      "participant_id": "offset-participant",
+      "pool_id": "offset-pool"
+    },
+    "future_earnings": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "30"
+        },
+        "effective_date": "2026-03-01",
+        "evidence_ref": "earnings-source",
+        "id": "future-earned-q1",
+        "observed_at": "2026-03-02T00:00:00Z",
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "sequence": "1",
+        "source_amount": "30",
+        "source_observed_at": "2026-03-02T00:00:00Z",
+        "source_ref": "synthetic-fresh-earned-line",
+        "upstream_ref": "synthetic:future-earnings-q1#line-1"
+      }
+    ],
+    "offset_authorities": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "20"
+        },
+        "approved": true,
+        "approved_date": "2026-02-17",
+        "claim_id": "overpayment-claim-1",
+        "effective": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "eligible_from": "2026-02-18",
+        "evidence_ref": "authority-source",
+        "id": "offset-authority-q1",
+        "kind": "original_overpayment",
+        "observed_at": "2026-02-18T00:00:00Z",
+        "origin_id": "original-1",
+        "priority": "0",
+        "recorded_date": "2026-02-17",
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "sequence": "1",
+        "source_amount": "20",
+        "source_observed_at": "2026-02-18T00:00:00Z",
+        "source_ref": "synthetic-prospective-offset-approval"
+      }
+    ],
+    "opening_utc": "2026-01-01T00:00:00Z",
+    "original_bundle": {
+      "issued": {
+        "amount": {
+          "currency": "USD",
+          "value": "100"
+        },
+        "evidence_ref": "original-source",
+        "id": "issue-1",
+        "issued_date": "2025-12-03",
+        "observed_at": "2025-12-04T00:00:00Z",
+        "original_id": "original-1",
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_amount": "100",
+        "source_observed_at": "2025-12-04T00:00:00Z",
+        "source_ref": "synthetic-original-issued-notice"
+      },
+      "original": {
+        "basis": {
+          "currency": "USD",
+          "value": "200"
+        },
+        "evidence_ref": "original-source",
+        "id": "original-1",
+        "measurement_date": "2025-12-01",
+        "observed_at": "2025-12-02T00:00:00Z",
+        "rate": "0.5",
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_basis": "200",
+        "source_observed_at": "2025-12-02T00:00:00Z",
+        "source_rate": "0.5",
+        "source_ref": "synthetic-original-measurement"
+      },
+      "other_claims": [
+        {
+          "amount": {
+            "currency": "USD",
+            "value": "25"
+          },
+          "evidence_ref": "other-source",
+          "id": "other-claim-source",
+          "measurement_date": "2025-12-10",
+          "observed_at": "2025-12-11T00:00:00Z",
+          "origin_ref": "synthetic:other-recovery-claim#line-1",
+          "scope": {
+            "asset_id": "offset-picture",
+            "contract_id": "offset-synthetic",
+            "currency": "USD",
+            "participant_id": "offset-participant",
+            "pool_id": "offset-pool"
+          },
+          "source_amount": "25",
+          "source_observed_at": "2025-12-11T00:00:00Z",
+          "source_ref": "synthetic-separate-supplied-recovery-claim"
+        }
+      ],
+      "payment_snapshot": {
+        "applications": [
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "evidence_ref": "payment-source",
+            "id": "payment-application-1",
+            "issued_id": "issue-1",
+            "observed_at": "2025-12-16T01:00:00Z",
+            "payment_id": "payment-1",
+            "scope": {
+              "asset_id": "offset-picture",
+              "contract_id": "offset-synthetic",
+              "currency": "USD",
+              "participant_id": "offset-participant",
+              "pool_id": "offset-pool"
+            },
+            "source_amount": "80",
+            "source_observed_at": "2025-12-16T01:00:00Z",
+            "source_ref": "synthetic-original-payment-application"
+          }
+        ],
+        "as_of": "2026-04-03T00:00:00Z",
+        "evidence_ref": "complete-original-payments",
+        "payments": [
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "disbursement_id": "bank-payment-1",
+            "evidence_ref": "payment-source",
+            "id": "payment-1",
+            "issued_id": "issue-1",
+            "observed_at": "2025-12-16T00:00:00Z",
+            "paid_at": "2025-12-15T12:00:00Z",
+            "scope": {
+              "asset_id": "offset-picture",
+              "contract_id": "offset-synthetic",
+              "currency": "USD",
+              "participant_id": "offset-participant",
+              "pool_id": "offset-pool"
+            },
+            "source_amount": "80",
+            "source_observed_at": "2025-12-16T00:00:00Z",
+            "source_paid_at": "2025-12-15T12:00:00Z",
+            "source_ref": "synthetic-actual-original-payment"
+          }
+        ],
+        "source_as_of": "2026-04-03T00:00:00Z"
+      }
+    },
+    "predecessor": {
+      "none": true
+    },
+    "project": "offset-picture",
+    "recovery_applications": [],
+    "reversals": [
+      {
+        "evidence_ref": "reversal-source",
+        "id": "reversal-q1",
+        "observed_at": "2026-02-17T00:00:00Z",
+        "original_id": "original-1",
+        "recognition_date": "2026-02-15",
+        "return_date": "2026-02-15",
+        "returned_basis": {
+          "currency": "USD",
+          "value": "80"
+        },
+        "revision_authority_id": "revision-authority-q1",
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_observed_at": "2026-02-17T00:00:00Z",
+        "source_ref": "synthetic-original-linked-reversal",
+        "source_returned_basis": "80"
+      }
+    ],
+    "revision_authorities": [
+      {
+        "approved": true,
+        "approved_date": "2026-02-16",
+        "effective": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "evidence_ref": "authority-source",
+        "id": "revision-authority-q1",
+        "issued_id": "issue-1",
+        "maximum_returned_basis": {
+          "currency": "USD",
+          "value": "80"
+        },
+        "observed_at": "2026-02-17T00:00:00Z",
+        "original_id": "original-1",
+        "permitted_reversal_ids": [
+          "reversal-q1"
+        ],
+        "recorded_date": "2026-02-16",
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_maximum_returned_basis": "80",
+        "source_observed_at": "2026-02-17T00:00:00Z",
+        "source_ref": "synthetic-approved-original-revision"
+      }
+    ],
+    "scope": {
+      "agreement_id": "offset-synthetic",
+      "participant_id": "offset-participant",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "offset-pool"
+    },
+    "source_cutoff": "2026-04-03T00:00:00Z",
+    "supplied_opening": {
+      "boundary": "2026-01-01",
+      "claims": [],
+      "origin": "genesis",
+      "original_bundle": {
+        "issued": {
+          "amount": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "evidence_ref": "original-source",
+          "id": "issue-1",
+          "issued_date": "2025-12-03",
+          "observed_at": "2025-12-04T00:00:00Z",
+          "original_id": "original-1",
+          "scope": {
+            "asset_id": "offset-picture",
+            "contract_id": "offset-synthetic",
+            "currency": "USD",
+            "participant_id": "offset-participant",
+            "pool_id": "offset-pool"
+          },
+          "source_amount": "100",
+          "source_observed_at": "2025-12-04T00:00:00Z",
+          "source_ref": "synthetic-original-issued-notice"
+        },
+        "original": {
+          "basis": {
+            "currency": "USD",
+            "value": "200"
+          },
+          "evidence_ref": "original-source",
+          "id": "original-1",
+          "measurement_date": "2025-12-01",
+          "observed_at": "2025-12-02T00:00:00Z",
+          "rate": "0.5",
+          "scope": {
+            "asset_id": "offset-picture",
+            "contract_id": "offset-synthetic",
+            "currency": "USD",
+            "participant_id": "offset-participant",
+            "pool_id": "offset-pool"
+          },
+          "source_basis": "200",
+          "source_observed_at": "2025-12-02T00:00:00Z",
+          "source_rate": "0.5",
+          "source_ref": "synthetic-original-measurement"
+        },
+        "other_claims": [
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "25"
+            },
+            "evidence_ref": "other-source",
+            "id": "other-claim-source",
+            "measurement_date": "2025-12-10",
+            "observed_at": "2025-12-11T00:00:00Z",
+            "origin_ref": "synthetic:other-recovery-claim#line-1",
+            "scope": {
+              "asset_id": "offset-picture",
+              "contract_id": "offset-synthetic",
+              "currency": "USD",
+              "participant_id": "offset-participant",
+              "pool_id": "offset-pool"
+            },
+            "source_amount": "25",
+            "source_observed_at": "2025-12-11T00:00:00Z",
+            "source_ref": "synthetic-separate-supplied-recovery-claim"
+          }
+        ],
+        "payment_snapshot": {
+          "applications": [
+            {
+              "amount": {
+                "currency": "USD",
+                "value": "80"
+              },
+              "evidence_ref": "payment-source",
+              "id": "payment-application-1",
+              "issued_id": "issue-1",
+              "observed_at": "2025-12-16T01:00:00Z",
+              "payment_id": "payment-1",
+              "scope": {
+                "asset_id": "offset-picture",
+                "contract_id": "offset-synthetic",
+                "currency": "USD",
+                "participant_id": "offset-participant",
+                "pool_id": "offset-pool"
+              },
+              "source_amount": "80",
+              "source_observed_at": "2025-12-16T01:00:00Z",
+              "source_ref": "synthetic-original-payment-application"
+            }
+          ],
+          "as_of": "2026-04-03T00:00:00Z",
+          "evidence_ref": "complete-original-payments",
+          "payments": [
+            {
+              "amount": {
+                "currency": "USD",
+                "value": "80"
+              },
+              "disbursement_id": "bank-payment-1",
+              "evidence_ref": "payment-source",
+              "id": "payment-1",
+              "issued_id": "issue-1",
+              "observed_at": "2025-12-16T00:00:00Z",
+              "paid_at": "2025-12-15T12:00:00Z",
+              "scope": {
+                "asset_id": "offset-picture",
+                "contract_id": "offset-synthetic",
+                "currency": "USD",
+                "participant_id": "offset-participant",
+                "pool_id": "offset-pool"
+              },
+              "source_amount": "80",
+              "source_observed_at": "2025-12-16T00:00:00Z",
+              "source_paid_at": "2025-12-15T12:00:00Z",
+              "source_ref": "synthetic-actual-original-payment"
+            }
+          ],
+          "source_as_of": "2026-04-03T00:00:00Z"
+        }
+      },
+      "period_history": [],
+      "policy_id": "SYNTHETIC-AUTHORIZED-OFFSETS-01",
+      "policy_revision": "1",
+      "priority_recipe": "clawback_first",
+      "purpose": "authorized_original_recovery",
+      "returned_basis": {
+        "currency": "USD",
+        "value": "0"
+      },
+      "scope": {
+        "asset_id": "offset-picture",
+        "contract_id": "offset-synthetic",
+        "currency": "USD",
+        "participant_id": "offset-participant",
+        "pool_id": "offset-pool"
+      },
+      "source_case_id": "genesis"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "authorized-offsets-q1-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-AUTHORIZED-OFFSETS"
+  },
+  "module_ref": {
+    "id": "synthetic:authorized-offsets",
+    "locator": "cases/authorized-offsets/authorized-offsets-module.json",
+    "revision": "1",
+    "sha256": "fd33ec2fa102013df8f6c35914b87319ab9f4870f9f1c384ea020348f04c0683"
+  },
+  "parameters": {
+    "cutoff": "2026-04-03T00:00:00Z",
+    "policy": {
+      "cash_date_basis": "supplied_utc_date",
+      "earning_order": "date_then_unique_sequence",
+      "evidence_class": "research_assumption",
+      "id": "SYNTHETIC-AUTHORIZED-OFFSETS-01",
+      "priority_recipe": "clawback_first",
+      "recognition": "revise_original_obligation_only",
+      "recovery_order": "cash_then_earning_offsets",
+      "revision": "1",
+      "rounding": "exact_no_rounding",
+      "unapplied_cash": "reject"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "offset-synthetic",
+    "asset_ids": [
+      "offset-picture"
+    ],
+    "participant_ids": [
+      "offset-participant"
+    ],
+    "pool_id": "offset-pool",
+    "purpose": "authorized_original_recovery"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "history",
+      "provenance_ref": "supplied-original-payment-and-recovery-history",
+      "purpose": "authorized_original_recovery",
+      "quantity": {
+        "boundary": "2026-01-01",
+        "claims": [],
+        "origin": "genesis",
+        "original_bundle": {
+          "issued": {
+            "amount": {
+              "currency": "USD",
+              "value": "100"
+            },
+            "evidence_ref": "original-source",
+            "id": "issue-1",
+            "issued_date": "2025-12-03",
+            "observed_at": "2025-12-04T00:00:00Z",
+            "original_id": "original-1",
+            "scope": {
+              "asset_id": "offset-picture",
+              "contract_id": "offset-synthetic",
+              "currency": "USD",
+              "participant_id": "offset-participant",
+              "pool_id": "offset-pool"
+            },
+            "source_amount": "100",
+            "source_observed_at": "2025-12-04T00:00:00Z",
+            "source_ref": "synthetic-original-issued-notice"
+          },
+          "original": {
+            "basis": {
+              "currency": "USD",
+              "value": "200"
+            },
+            "evidence_ref": "original-source",
+            "id": "original-1",
+            "measurement_date": "2025-12-01",
+            "observed_at": "2025-12-02T00:00:00Z",
+            "rate": "0.5",
+            "scope": {
+              "asset_id": "offset-picture",
+              "contract_id": "offset-synthetic",
+              "currency": "USD",
+              "participant_id": "offset-participant",
+              "pool_id": "offset-pool"
+            },
+            "source_basis": "200",
+            "source_observed_at": "2025-12-02T00:00:00Z",
+            "source_rate": "0.5",
+            "source_ref": "synthetic-original-measurement"
+          },
+          "other_claims": [
+            {
+              "amount": {
+                "currency": "USD",
+                "value": "25"
+              },
+              "evidence_ref": "other-source",
+              "id": "other-claim-source",
+              "measurement_date": "2025-12-10",
+              "observed_at": "2025-12-11T00:00:00Z",
+              "origin_ref": "synthetic:other-recovery-claim#line-1",
+              "scope": {
+                "asset_id": "offset-picture",
+                "contract_id": "offset-synthetic",
+                "currency": "USD",
+                "participant_id": "offset-participant",
+                "pool_id": "offset-pool"
+              },
+              "source_amount": "25",
+              "source_observed_at": "2025-12-11T00:00:00Z",
+              "source_ref": "synthetic-separate-supplied-recovery-claim"
+            }
+          ],
+          "payment_snapshot": {
+            "applications": [
+              {
+                "amount": {
+                  "currency": "USD",
+                  "value": "80"
+                },
+                "evidence_ref": "payment-source",
+                "id": "payment-application-1",
+                "issued_id": "issue-1",
+                "observed_at": "2025-12-16T01:00:00Z",
+                "payment_id": "payment-1",
+                "scope": {
+                  "asset_id": "offset-picture",
+                  "contract_id": "offset-synthetic",
+                  "currency": "USD",
+                  "participant_id": "offset-participant",
+                  "pool_id": "offset-pool"
+                },
+                "source_amount": "80",
+                "source_observed_at": "2025-12-16T01:00:00Z",
+                "source_ref": "synthetic-original-payment-application"
+              }
+            ],
+            "as_of": "2026-04-03T00:00:00Z",
+            "evidence_ref": "complete-original-payments",
+            "payments": [
+              {
+                "amount": {
+                  "currency": "USD",
+                  "value": "80"
+                },
+                "disbursement_id": "bank-payment-1",
+                "evidence_ref": "payment-source",
+                "id": "payment-1",
+                "issued_id": "issue-1",
+                "observed_at": "2025-12-16T00:00:00Z",
+                "paid_at": "2025-12-15T12:00:00Z",
+                "scope": {
+                  "asset_id": "offset-picture",
+                  "contract_id": "offset-synthetic",
+                  "currency": "USD",
+                  "participant_id": "offset-participant",
+                  "pool_id": "offset-pool"
+                },
+                "source_amount": "80",
+                "source_observed_at": "2025-12-16T00:00:00Z",
+                "source_paid_at": "2025-12-15T12:00:00Z",
+                "source_ref": "synthetic-actual-original-payment"
+              }
+            ],
+            "source_as_of": "2026-04-03T00:00:00Z"
+          }
+        },
+        "period_history": [],
+        "policy_id": "SYNTHETIC-AUTHORIZED-OFFSETS-01",
+        "policy_revision": "1",
+        "priority_recipe": "clawback_first",
+        "purpose": "authorized_original_recovery",
+        "returned_basis": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "scope": {
+          "asset_id": "offset-picture",
+          "contract_id": "offset-synthetic",
+          "currency": "USD",
+          "participant_id": "offset-participant",
+          "pool_id": "offset-pool"
+        },
+        "source_case_id": "genesis"
+      },
+      "scenario_id": "SYNTHETIC-AUTHORIZED-OFFSETS",
+      "scope": {
+        "agreement_id": "offset-synthetic",
+        "asset_id": "offset-picture",
+        "participant_id": "offset-participant",
+        "pool_id": "offset-pool"
+      },
+      "state_key": "{\"agreement_id\":\"offset-synthetic\",\"asset_id\":\"offset-picture\",\"participant_id\":\"offset-participant\",\"pool_id\":\"offset-pool\",\"purpose\":\"authorized_original_recovery\"}",
+      "unit": "structured"
+    }
+  ]
+}

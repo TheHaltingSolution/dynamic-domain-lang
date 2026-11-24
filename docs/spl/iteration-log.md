@@ -1,5 +1,22 @@
 # SPL iteration log
 
+## 23 November 2026: emitted definition reuse and two native integrations
+
+The emitter now uses invocation-local cached thunks for definitions. Retained
+old/new full financial outcomes agree; actual group builds fall114->2 on the
+selected fixture. Regenerated current targets/libraries pass38 frozen methods,
+with full94-job build and both smokes. The native arithmetic runtime is unchanged;
+new compiler/module pins and archived old targets are in the emitter report.
+
+Authorized payment-aware prospective offsets pass37 combined methods and actual
+three-period publication/carry. The final result is67,025,493 bytes, leaving only
+83,371 below64MiB; broader admitted-history capacity is not established. Supplied
+versioned civil-day cells pass27 combined methods with exact submicroseconds,
+23/25-hour cells and original Instant spelling. These close named finite C08/C14
+variants with their explicit limits. Disney repricing has26 independent oracle
+checks; source implementation is pending. No new combined release regression or
+professional approval is claimed.
+
 ## 23 November 2026: C1 slices, atomic publication and bounded performance
 
 The [active checkpoint](completion-checkpoint.md) indexes separate frozen

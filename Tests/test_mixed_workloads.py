@@ -12,7 +12,7 @@ from unittest.mock import patch
 from oracles.skouras import SkourasOracleError, skouras
 from scripts.spl_mixed_benchmark import (check_prerequisite, check_projection, check_target, target_expected,
                                          equal_wire_files, reference_worker, check_reference_worker, audit_head,
-                                         sequential_dependency_plan)
+                                         sequential_dependency_plan, implementation_spec, dependency_files, TARGET_GENERATION)
 from spl_compiler.checker import check_schedule
 from spl_compiler.codecs import DataError, money, write_json
 from spl_compiler.evaluator import evaluate
@@ -168,13 +168,14 @@ class MixedWorkloadTests(unittest.TestCase):
     def test_scale_admission_requires_completed_matching_100_cohort(self):
         pins, budgets = {"harness": "abc"}, {"child_stdout_bytes": 64 * 1024 * 1024}
         good = {"format": "spl-mixed-performance/1", "status": "passed", "counts": {"raw_original_records": 100},
+                "target_generation": TARGET_GENERATION,
                 "required_audit_completed": True, "seed": 7, "dependency_pins": pins, "budgets": budgets, "transport": "compact-v1",
                 "native_samples": [{"status": "passed", "target": {"status": "passed", "independent_control": "passed"},
                                     "audit": {"status": "passed", "independent_control": "passed"}, "reader": {"status": "passed"}}]}
         check_prerequisite(good, pins, 7, budgets)
         for field, value in [("status", "failed"), ("required_audit_completed", False),
                              ("dependency_pins", {"harness": "changed"}), ("native_samples", []), ("seed", 8), ("transport", "compact-v2"),
-                             ("profile_stages", True)]:
+                             ("profile_stages", True), ("target_generation", "pre-memo-unit-closure"), ("target_generation", None)]:
             changed = deepcopy(good); changed[field] = value
             with self.assertRaisesRegex(ValueError, "MIXED_1000_REQUIRES"):
                 check_prerequisite(changed, pins, 7, budgets)
@@ -193,6 +194,7 @@ class MixedWorkloadTests(unittest.TestCase):
 
     def test_10000_gate_requires_matching_completed_1000_not_100(self):
         good = {"format": "spl-mixed-performance/1", "status": "passed", "counts": {"raw_original_records": 1000},
+                "target_generation": TARGET_GENERATION,
                 "required_audit_completed": True, "seed": 7, "dependency_pins": {}, "budgets": {}, "transport": "compact-v2",
                 "native_samples": [{"status": "passed", "target": {"status": "passed", "independent_control": "passed"},
                                     "audit": {"status": "passed", "independent_control": "passed"}, "reader": {"status": "passed"}}]}
@@ -264,6 +266,48 @@ class MixedWorkloadTests(unittest.TestCase):
             with patch("builtins.print"):
                 self.assertEqual(mixed.main(["--transport", "compact-v2", "--output", "unused-mocked-output"]), 0)
             self.assertEqual(run.call_args.kwargs["transport"], "compact-v2")
+            self.assertEqual(run.call_args.kwargs["implementation"], "legacy")
+
+    def test_implementation_selector_preserves_legacy_default_and_pins_indexed_closure(self):
+        self.assertEqual(implementation_spec(), {"id": "sv-legacy-source/1", "source": "cases/sv/sv01.spl",
+                                               "emission": "Demos/SV.lean", "target": "spl_sv"})
+        selected = implementation_spec("indexed")
+        self.assertEqual(selected["id"], "sv-indexed-experiment/1")
+        self.assertEqual(selected["target"], "spl_sv_indexed")
+        self.assertEqual(set(dependency_files("indexed")) - set(dependency_files()),
+                         {ROOT / "cases/sv/sv01-indexed.spl", ROOT / "Demos/SVIndexed.lean"})
+        for invalid in ("other", "../outside.spl", "Indexed", None, False, {}):
+            with self.assertRaises(ValueError):
+                implementation_spec(invalid)
+        from scripts import spl_mixed_benchmark as mixed
+        with patch.object(mixed, "benchmark", return_value={"status": "passed"}) as run, patch("builtins.print"):
+            self.assertEqual(mixed.main(["--implementation", "indexed", "--host-load-note", "isolated regression active",
+                                        "--output", "unused-mocked-output"]), 0)
+            self.assertEqual(run.call_args.kwargs["implementation"], "indexed")
+            self.assertEqual(run.call_args.kwargs["host_load_note"], "isolated regression active")
+
+    def test_indexed_scale_gate_requires_exact_implementation_and_old_target_control(self):
+        sample = {"status": "passed", "old_target": {"status": "passed", "independent_control": "passed"},
+                  "target": {"status": "passed", "independent_control": "passed"},
+                  "audit": {"status": "passed", "independent_control": "passed"}, "reader": {"status": "passed"}}
+        previous = {"format": "spl-mixed-performance/1", "status": "passed", "counts": {"raw_original_records": 100},
+                    "target_generation": TARGET_GENERATION,
+                    "required_audit_completed": True, "seed": 7, "dependency_pins": {}, "budgets": {}, "transport": "compact-v2",
+                    "implementation": "indexed", "implementation_spec": implementation_spec("indexed"), "native_samples": [sample]}
+        check_prerequisite(previous, {}, 7, {}, "compact-v2", implementation="indexed")
+        changes = [lambda p: p.update(implementation="legacy"),
+                   lambda p: p.update(implementation_spec=implementation_spec("legacy")),
+                   lambda p: p["native_samples"][0].pop("old_target"),
+                   lambda p: p["native_samples"][0].update(old_target=None),
+                   lambda p: p["native_samples"][0]["old_target"].update(status="failed"),
+                   lambda p: p["native_samples"][0]["old_target"].update(independent_control="not_checked")]
+        for mutate in changes:
+            changed = deepcopy(previous)
+            mutate(changed)
+            with self.assertRaises(ValueError):
+                check_prerequisite(changed, {}, 7, {}, "compact-v2", implementation="indexed")
+        with self.assertRaises(ValueError):
+            check_prerequisite(previous, {}, 7, {}, "compact-v2", implementation="legacy")
 
 
 if __name__ == "__main__":

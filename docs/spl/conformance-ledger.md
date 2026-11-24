@@ -2,6 +2,25 @@
 
 ## Active C1 continuation
 
+Later executed updates supersede the historical C08/C14 absence statements:
+[authorized offsets](../../cases/authorized-offsets/README.md) pass 37 combined
+methods with actual three-period carry; original paid80 stays80 and recovery
+needs separate authority. Together with the original-rate returns/loss cohort,
+this closes the named finite C08 variants. It does not close C13 dependent-period
+restatement or imply bank execution. Third-period AO result67,025,493 bytes has
+only83,371 bytes of margin below64MiB; input bounds are not publication capacity.
+[Supplied civil-day evidence](../../cases/civil-dates/README.md) passes27 methods,
+including submicroseconds, midnight and23/25-hour cells. Together with the
+calendar/terms cohort, this closes the named finite C14 variants. No ambient
+or IANA timezone rules are inferred. The bounded matrix now has34 rows,
+30 witnessed variations, four gaps and45 selectors; no combined45-selector
+campaign is claimed. All four inventory consistency checks pass.
+
+The emitted definition-cache repair passes38 frozen promoted-target checks and
+a full94-job build plus both smokes. Actual group-building calls114->2 are
+observed on one retained fixture; larger post-change scale evidence remains
+separate. Read [the emitter report](emitter-memoization-experiment.md).
+
 The [RR04/LD03 integration](rr04-ld03-integration.md) records newly received
 review decisions, the separately missing C10 burden variation and the owner
 claim question. The current backlog has72 work items after that addition;

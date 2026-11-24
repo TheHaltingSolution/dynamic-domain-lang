@@ -1,0 +1,43 @@
+schedule SkourasVenturaIndexedExperiment language "spl/0.1-draft"
+  core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input pictures: List<SVPicture>;
+  input receipts: List<SVReceipt>;
+  input eligible_costs: List<SVCost>;
+  input policy: SVPolicy;
+  opening prepayment: Money<USD> from "sv/participant-prepayment/main-pool";
+  require prepayment >= USD 0 else "NEGATIVE_OPENING_ADVANCE";
+  define picture_count = sum(pictures, picture => 1);
+  define receipts_by_asset = group_by(if picture_count > 0 then receipts else [], row => row.asset_id);
+  define costs_by_asset = group_by(if picture_count > 0 then eligible_costs else [], row => row.asset_id);
+  define title_results = for each picture in pictures {
+    require picture.funding_share >= 0 and picture.funding_share <= 1
+      else "INVALID_FUNDING_SHARE";
+    define receipt_group: List<SVReceipt> = get_or(lookup(receipts_by_asset, picture.asset_id), []);
+    define cost_group: List<SVCost> = get_or(lookup(costs_by_asset, picture.asset_id), []);
+    define cash_rows = filter(receipt_group, r => in_period(r.cash_received_date, policy.period));
+    define cost_rows = filter(cost_group, c => in_period(c.incurred_date, policy.period));
+    define cash = sum(cash_rows, r => r.amount) citing "SV-8-CASH";
+    define allowed_cost = sum(cost_rows, c => c.amount) citing "SV-8-COST-SCHEDULE";
+    define fee_rate = choose unique {
+      when picture.contribution_present => 0.075;
+      otherwise => 0.25;
+    } citing "SV-8-FEE";
+    define fee = cash * fee_rate;
+    define basis = cash - fee - allowed_cost citing "SV-8-BASIS";
+    define share = if picture.contribution_present
+      then picture.funding_share else 0.20 citing "SV-8-SHARE";
+    define earned = basis * share;
+    require earned >= USD 0 else "SV_NEGATIVE_EARNINGS_OUTSIDE_PILOT";
+    yield { asset_id: picture.asset_id, cash: cash, fee: fee,
+      allowed_cost: allowed_cost, basis: basis, share: share, earned: earned };
+  };
+  define earned_total = sum(title_results, t => t.earned);
+  define recouped = min(earned_total, prepayment) citing "SV-7-POOL-RECOVERY";
+  define payable = earned_total - recouped;
+  closing prepayment = prepayment - recouped;
+  require earned_total == recouped + payable else "SV_SETTLEMENT_RECONCILIATION";
+  emit "titles" = title_results;
+  emit "pool" = { agreement_id: policy.agreement_id,
+    participant_id: policy.participant_id, pool_id: policy.pool_id,
+    period: policy.period, earned: earned_total, recouped: recouped, payable: payable };
+}

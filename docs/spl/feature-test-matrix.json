@@ -464,16 +464,61 @@
       ]
     },
     {
-      "id": "gap-signed-return-methods",
+      "id": "authorized-prospective-offsets",
       "requirements": [
         "C08",
-        "F24"
+        "F24",
+        "C13",
+        "F29",
+        "F30"
       ],
-      "description": "Payment-aware authorized signed clawback and future-earnings offset composition remain unintegrated; original-rate earnings reversals and three loss methods have separate witnesses.",
-      "status": "gap",
-      "witnesses": [],
+      "description": "Immutable original paid history, original-rate reversal capacity and separately authorized cash repayment or prospective offset, with actual serialized carry.",
+      "status": "witnessed",
+      "witnesses": [
+        {
+          "test": "Tests.test_authorized_offset_modules.AuthorizedOffsetModuleTests.test_native_original_paid80_is_immutable_and_authority_is_separate",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/authorized-offsets/authorized-offsets.spl",
+            "cases/authorized-offsets/neutral.json",
+            "cases/authorized-offsets/policy.md"
+          ],
+          "property": "Original paid80 remains80; revised entitlement60 exposes20 overpayment but authorizes no recovery by itself.",
+          "oracle": "Separately authored oracles/authorized_offsets.py derives every original, payment, claim and movement."
+        },
+        {
+          "test": "Tests.test_authorized_offset_modules.AuthorizedOffsetModuleTests.test_native_actual_cash_first_and_serialized_three_period_chain",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/authorized-offsets/authorized-offsets.spl",
+            "cases/authorized-offsets/neutral.json",
+            "cases/authorized-offsets/policy.md"
+          ],
+          "property": "Cash-first policy and actual completed predecessor bundles carry claims and earning applications exactly once across three periods.",
+          "oracle": "Independent original-fact oracle and full state/intermediate comparisons."
+        }
+      ],
       "limitations": [
-        "The earnings-only returns witness establishes no actual payment, refund, overpayment recovery or authorized clawback. Those require distinct original evidence and policy."
+        "Bounded selected prospective-offset/cash-repayment methods, not general C13 dependent-period restatement or bank execution.",
+        "Third retained period result67,025,493 bytes is83,371 below64MiB cap; input guards are not a maximum-history capacity result."
       ]
     },
     {
@@ -981,7 +1026,7 @@
         }
       ],
       "limitations": [
-        "Bounded synthetic earnings-only methods; payment-aware authorized clawback/offset remains a separate gap.",
+        "This row covers earnings-only methods. Payment-aware authorized offset evidence is separately mapped in authorized-prospective-offsets.",
         "Negative cases have separately named reference/native selectors; this row does not establish every sign policy or arbitrary composition."
       ]
     },
@@ -1271,6 +1316,61 @@
       "limitations": [
         "Only declared Id types receive ASCII admission; outer Text scope strings and Text economic IDs are not retrofitted.",
         "Binding/wrapper diagnostic precedence differs by actual layer and is not falsely counted as financial execution."
+      ]
+    },
+    {
+      "id": "supplied-zone-civil-days",
+      "requirements": [
+        "C14",
+        "F10"
+      ],
+      "description": "Explicit versioned supplied UTC-to-civil-day cells with original timestamp lexemes and half-open boundaries.",
+      "status": "witnessed",
+      "witnesses": [
+        {
+          "test": "Tests.test_civil_date_modules.CivilDateModuleTests.test_native_original_midnight_short_long_and_two_zone_dates",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/civil-dates/civil-dates.spl",
+            "cases/civil-dates/neutral.json",
+            "cases/civil-dates/policy.md"
+          ],
+          "property": "Supplied zones distinguish midnight dates and23/25-hour cells without ambient timezone selection.",
+          "oracle": "Separately authored oracles/civil_dates.py classifies original event Instants from original supplied relation."
+        },
+        {
+          "test": "Tests.test_civil_date_modules.CivilDateModuleTests.test_native_submicrosecond_and_original_offset_spelling",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state"
+          ],
+          "inputs": [
+            "cases/civil-dates/civil-dates.spl",
+            "cases/civil-dates/neutral.json",
+            "cases/civil-dates/policy.md"
+          ],
+          "property": "Submicrosecond boundaries and original offset spelling survive all compared backend results.",
+          "oracle": "Independent exact Instant and supplied-cell controls."
+        }
+      ],
+      "limitations": [
+        "Finite supplied evidence, not IANA resolution or a universal timezone engine.",
+        "State is empty; generic reader/pool labels are execution metadata with no financial scope or payment inference."
       ]
     }
   ]

@@ -504,3 +504,23 @@ This establishes an observed failed first-close boundary for this disclosed
 supported raw count nor a production distribution, p95, successful 4/8-close
 chain, raw 100,000-object boundary or high-fanout capacity. A next optimization
 or separately named resource profile needs its own review and evidence.
+
+## Current source/target provenance after memoization
+
+The accepted compiler memoization change deliberately regenerated the current
+financial Demos and pure library from unchanged SPL sources, then rebuilt their
+executables. The default mixed selector remains the original SV source; its
+current emitted target now uses `Thunk.mk`/`.get`. `target_generation` records
+`spl-native-definition-thunk/1` and must match before admitting the next scale.
+Old reports with missing/pre-memoization generation labels cannot admit a new
+run even if other metadata is copied.
+
+An opt-in indexed algorithm comparison uses the **current original-source
+target** as its mandatory full independent-control baseline. The historical
+field names `old_target` and `old_native_emission` retain that source-baseline
+role; explicit report metadata distinguishes it from archived pre-memoization
+compiler targets. Historical capacity measurements above retain their original
+pins and resource failures. See [indexed-sv-experiment.md](indexed-sv-experiment.md)
+for the failed source-only probe and [emitter-memoization-experiment.md](emitter-memoization-experiment.md)
+for compiler controls. No fresh large probe or new capacity claim is implied
+by generating and building current targets.

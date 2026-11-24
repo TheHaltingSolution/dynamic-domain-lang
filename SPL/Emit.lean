@@ -228,12 +228,13 @@ mutual
       | .define _ name _ =>
         let functionName ← fresh
         functions := (name, functionName) :: functions
-        env := (name, "(" ++ functionName ++ " ())") :: env
+        env := (name, "(" ++ functionName ++ ".get)") :: env
       | _ => pure ()
     let mut lines := []
     let mut emitted := []
-    -- Only closures are hoisted. Calling a name forces its body inside the
-    -- selected lazy branch; constructing these closures performs no arithmetic.
+    -- Only memoizing thunks are hoisted. First demand forces a body inside its
+    -- selected lazy branch; later demands reuse the same pure Except value.
+    -- Each call/loop scope constructs fresh thunks, never a cross-input cache.
     for declaration in declarations do
       if let .define _ name _ := declaration then
         let (closureLines, doneNames) ← emitDefinition name declarations env functions emitted []
@@ -265,7 +266,7 @@ mutual
       lines := lines ++ requiredLines
       doneNames := nextDone
     lines := lines ++ ["let " ++ (functions.lookup name).getD "unreachable" ++
-      " : Unit → SPL.Eval SPL.Value := fun _ => " ++ (← expression body env)]
+      " : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => " ++ (← expression body env) ++ ")"]
     pure (lines, name :: doneNames)
 
   private partial def localToDecl : LocalDecl → Decl

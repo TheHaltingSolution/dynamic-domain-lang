@@ -122,9 +122,9 @@
     {
       "id": "C08",
       "name": "Returns and loss policies",
-      "current_native": "A",
-      "current_canonical": "A",
-      "implemented_and_remaining": "Exact signed arithmetic exists, but no accepted linked-reversal/original-rate method or signed-pool versus per-title-floor/loss-carry canonical discriminator is implemented. Reserve applications and negative correction deltas are different mechanisms and do not complete this family.",
+      "current_native": "I",
+      "current_canonical": "I",
+      "implemented_and_remaining": "Finite original-rate signed reversal, signed-pool versus per-title floor, serialized loss carry, independently evidenced payments, and separately authorized cash-repayment/prospective-offset variants execute with independent controls. Actual paid history remains immutable; bank execution and general C13 dependent-period restatement remain separate. AO publication capacity is limited by retained 64MiB evidence.",
       "work_items": [
         "B-C08-SIGNED",
         "B-C08-LOSS"
@@ -190,9 +190,9 @@
     {
       "id": "C14",
       "name": "Effective terms and calendars",
-      "current_native": "P",
-      "current_canonical": "P",
-      "implemented_and_remaining": "Cedar effective intervals, half-open periods, exact as-of cutoffs, readable Gregorian quarters and E1 calendar-month derivation execute. General amended-term chains, fiscal periods, supplied business-day calendar relations and the declared day-proration witness still need methods and integration.",
+      "current_native": "I",
+      "current_canonical": "I",
+      "implemented_and_remaining": "Finite amended-term/effective/as-of selection, fiscal and supplied business calendars, declared-day proration, and supplied versioned zone/civil-day cells execute. Original Instant lexemes, submicroseconds and 23/25-hour boundaries are retained. No general timezone database or legal-calendar inference is claimed.",
       "work_items": [
         "B-C14-CALENDAR",
         "B-C14-TERMS",
@@ -521,7 +521,7 @@
         "D18"
       ],
       "work_class": "method",
-      "status": "partial",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Register original/reversal identities, original quantity/rate/measurement, recognition period and independently evidenced payments.",
@@ -533,10 +533,14 @@
       "evidence": [
         "cases/returns/README.md",
         "Tests/test_returns_modules.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/returns-checks-b25e079f/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/returns-checks-b25e079f/verification.json",
+        "cases/authorized-offsets/README.md",
+        "Tests/test_authorized_offset_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/authorized-offsets-checks-8eac5174/verification.json"
       ],
-      "remaining_acceptance": [
-        "Compose the original-rate signed/loss effects with independently evidenced payments and an explicitly authorized clawback/offset policy. No actual payment/refund is inferred by the current earnings-only profile."
+      "scope_limits": [
+        "Selected original-rate reversals, signed/floor/loss methods and separately authorized prospective offset/cash-repayment policy. Actual paid history remains immutable; no bank execution or general dependent-period restatement is inferred.",
+        "The retained three-period AO publication reaches 67,025,493 bytes, only 83,371 below the 64MiB limit. Input guards do not establish publication capacity for every admitted history."
       ]
     },
     {
@@ -548,7 +552,7 @@
         "D29"
       ],
       "work_class": "method",
-      "status": "partial",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Publish distinct selected negative-basis carry, zero-floor and authorized clawback recipes with movement equations.",
@@ -561,10 +565,14 @@
       "evidence": [
         "cases/returns/README.md",
         "Tests/test_returns_modules.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/returns-checks-b25e079f/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/returns-checks-b25e079f/verification.json",
+        "cases/authorized-offsets/README.md",
+        "Tests/test_authorized_offset_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/authorized-offsets-checks-8eac5174/verification.json"
       ],
-      "remaining_acceptance": [
-        "Compose the original-rate signed/loss effects with independently evidenced payments and an explicitly authorized clawback/offset policy. No actual payment/refund is inferred by the current earnings-only profile."
+      "scope_limits": [
+        "Selected original-rate reversals, signed/floor/loss methods and separately authorized prospective offset/cash-repayment policy. Actual paid history remains immutable; no bank execution or general dependent-period restatement is inferred.",
+        "The retained three-period AO publication reaches 67,025,493 bytes, only 83,371 below the 64MiB limit. Input guards do not establish publication capacity for every admitted history."
       ]
     },
     {
@@ -774,7 +782,7 @@
         "F30"
       ],
       "work_class": "method",
-      "status": "dependency_blocked",
+      "status": "partial",
       "scope": "c1_required",
       "acceptance": [
         "Register prospective adjustment separately from restatement; both reconcile 40 outstanding with different period lines.",
@@ -784,7 +792,18 @@
         "B-C12-OBLIGATIONS",
         "B-C13-REPLAY"
       ],
-      "questions": []
+      "questions": [],
+      "evidence": [
+        "cases/authorized-offsets/README.md",
+        "Tests/test_authorized_offset_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/authorized-offsets-checks-8eac5174/verification.json"
+      ],
+      "completed_acceptance": [
+        "Separately authorized overpayment/priority/cash-first/capacity-limited future-earnings offset and actual serialized carry; immutable original paid history."
+      ],
+      "remaining_acceptance": [
+        "Register the separate prospective adjustment versus restatement discriminator: original100/paid80/revised90 plus following earned30 gives outstanding40, with different period lines and exactly-once dependent-period treatment. General B-C13-REPLAY remains separate."
+      ]
     },
     {
       "id": "B-C14-CALENDAR",
@@ -841,14 +860,23 @@
         "F10"
       ],
       "work_class": "interface",
-      "status": "ready",
+      "status": "complete",
       "scope": "supporting_engineering",
       "acceptance": [
         "Use finite versioned supplied zone/civil-date relation retaining original Instant and zone identifier; ambient timezone never selects money.",
         "A midnight-straddling observation distinguishes dates; missing/ambiguous relation fails."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "evidence": [
+        "cases/civil-dates/README.md",
+        "Tests/test_civil_date_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/civil-dates-checks-67ea0b79/verification.json"
+      ],
+      "scope_limits": [
+        "Supplied, explicitly versioned zone/day UTC cells only; no IANA database lookup, ambient timezone, local-clock ambiguity resolver or monetary settlement inference.",
+        "Generic reader/pool envelope labels are nonfinancial metadata; actual domain scope remains contract/asset."
+      ]
     },
     {
       "id": "B-EXT-SELECTION",
@@ -3761,11 +3789,11 @@
   ],
   "progress_as_of": "2026-11-23",
   "status_counts": {
-    "complete": 19,
-    "ready": 28,
-    "dependency_blocked": 5,
+    "complete": 22,
+    "ready": 27,
+    "dependency_blocked": 4,
     "in_progress": 5,
-    "partial": 3,
+    "partial": 2,
     "question_blocked": 2,
     "gated": 1,
     "deferred": 6,

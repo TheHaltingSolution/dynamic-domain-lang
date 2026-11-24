@@ -47,6 +47,10 @@ name = "spl_sv"
 root = "Demos.SV"
 
 [[lean_exe]]
+name = "spl_sv_indexed"
+root = "Demos.SVIndexed"
+
+[[lean_exe]]
 name = "spl_lg"
 root = "Demos.LG"
 

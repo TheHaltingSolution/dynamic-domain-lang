@@ -16,73 +16,73 @@ def settle (_inputs _openings : SPL.Env) : SPL.Eval SPL.Settlement := (do
   let _spl_v2 ← SPL.lookup _inputs "eligible_costs"
   let _spl_v3 ← SPL.lookup _inputs "policy"
   let _spl_v4 ← SPL.lookup _openings "prepayment"
-  let _spl_v5 : Unit → SPL.Eval SPL.Value := fun _ => (do
+  let _spl_v5 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
     SPL.mapValues (← (pure _spl_v0)) (fun _spl_v9 => (do
-      let _spl_v10 : Unit → SPL.Eval SPL.Value := fun _ => (do
+      let _spl_v10 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
         SPL.filterValues (← (pure _spl_v1)) (fun _spl_v19 => (SPL.conjunction (do
           SPL.binary "==" (← (do
             SPL.field (← (pure _spl_v19)) "asset_id")) (← (do
             SPL.field (← (pure _spl_v9)) "asset_id"))) (fun _ => (do
           SPL.inPeriod (← (do
             SPL.field (← (pure _spl_v19)) "cash_received_date")) (← (do
-            SPL.field (← (pure _spl_v3)) "period")))))))
-      let _spl_v11 : Unit → SPL.Eval SPL.Value := fun _ => (do
+            SPL.field (← (pure _spl_v3)) "period"))))))))
+      let _spl_v11 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
         SPL.filterValues (← (pure _spl_v2)) (fun _spl_v20 => (SPL.conjunction (do
           SPL.binary "==" (← (do
             SPL.field (← (pure _spl_v20)) "asset_id")) (← (do
             SPL.field (← (pure _spl_v9)) "asset_id"))) (fun _ => (do
           SPL.inPeriod (← (do
             SPL.field (← (pure _spl_v20)) "recognition_date")) (← (do
-            SPL.field (← (pure _spl_v3)) "period")))))))
-      let _spl_v12 : Unit → SPL.Eval SPL.Value := fun _ => (do
-        SPL.sumValues (← (_spl_v10 ())) (fun _spl_v21 => (do
-          SPL.field (← (pure _spl_v21)) "amount")))
-      let _spl_v13 : Unit → SPL.Eval SPL.Value := fun _ => (do
-        SPL.sumValues (← (_spl_v11 ())) (fun _spl_v22 => (do
-          SPL.field (← (pure _spl_v22)) "amount")))
-      let _spl_v14 : Unit → SPL.Eval SPL.Value := fun _ => (SPL.choose [((do
-        SPL.field (← (pure _spl_v9)) "contribution_present"), (fun _ => (pure (.num (mkRat 75 1000)))))] (some (fun _ => (pure (.num (mkRat 25 100))))))
-      let _spl_v15 : Unit → SPL.Eval SPL.Value := fun _ => (do
-        SPL.Core.numericBinary .multiply (← (_spl_v12 ())) (← (_spl_v14 ())))
-      let _spl_v16 : Unit → SPL.Eval SPL.Value := fun _ => (do
+            SPL.field (← (pure _spl_v3)) "period"))))))))
+      let _spl_v12 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
+        SPL.sumValues (← (_spl_v10.get)) (fun _spl_v21 => (do
+          SPL.field (← (pure _spl_v21)) "amount"))))
+      let _spl_v13 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
+        SPL.sumValues (← (_spl_v11.get)) (fun _spl_v22 => (do
+          SPL.field (← (pure _spl_v22)) "amount"))))
+      let _spl_v14 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (SPL.choose [((do
+        SPL.field (← (pure _spl_v9)) "contribution_present"), (fun _ => (pure (.num (mkRat 75 1000)))))] (some (fun _ => (pure (.num (mkRat 25 100)))))))
+      let _spl_v15 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
+        SPL.Core.numericBinary .multiply (← (_spl_v12.get)) (← (_spl_v14.get))))
+      let _spl_v16 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
         SPL.Core.numericBinary .subtract (← (do
-          SPL.Core.numericBinary .subtract (← (_spl_v12 ())) (← (_spl_v15 ())))) (← (_spl_v13 ())))
-      let _spl_v17 : Unit → SPL.Eval SPL.Value := fun _ => (SPL.conditional (do
+          SPL.Core.numericBinary .subtract (← (_spl_v12.get)) (← (_spl_v15.get)))) (← (_spl_v13.get))))
+      let _spl_v17 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (SPL.conditional (do
         SPL.field (← (pure _spl_v9)) "contribution_present") (fun _ => (do
-        SPL.field (← (pure _spl_v9)) "funding_share")) (fun _ => (pure (.num (mkRat 20 100)))))
-      let _spl_v18 : Unit → SPL.Eval SPL.Value := fun _ => (do
-        SPL.Core.numericBinary .multiply (← (_spl_v16 ())) (← (_spl_v17 ())))
+        SPL.field (← (pure _spl_v9)) "funding_share")) (fun _ => (pure (.num (mkRat 20 100))))))
+      let _spl_v18 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
+        SPL.Core.numericBinary .multiply (← (_spl_v16.get)) (← (_spl_v17.get))))
       SPL.assertValue (← (SPL.conjunction (do
         SPL.binary ">=" (← (do
           SPL.field (← (pure _spl_v9)) "funding_share")) (← (pure (.num (mkRat 0 1))))) (fun _ => (do
         SPL.binary "<=" (← (do
           SPL.field (← (pure _spl_v9)) "funding_share")) (← (pure (.num (mkRat 1 1)))))))) "INVALID_FUNDING_SHARE"
-      let _spl_v23 ← (_spl_v10 ())
-      let _spl_v24 ← (_spl_v11 ())
-      let _spl_v25 ← (_spl_v12 ())
-      let _spl_v26 ← (_spl_v13 ())
-      let _spl_v27 ← (_spl_v14 ())
-      let _spl_v28 ← (_spl_v15 ())
-      let _spl_v29 ← (_spl_v16 ())
-      let _spl_v30 ← (_spl_v17 ())
-      let _spl_v31 ← (_spl_v18 ())
+      let _spl_v23 ← (_spl_v10.get)
+      let _spl_v24 ← (_spl_v11.get)
+      let _spl_v25 ← (_spl_v12.get)
+      let _spl_v26 ← (_spl_v13.get)
+      let _spl_v27 ← (_spl_v14.get)
+      let _spl_v28 ← (_spl_v15.get)
+      let _spl_v29 ← (_spl_v16.get)
+      let _spl_v30 ← (_spl_v17.get)
+      let _spl_v31 ← (_spl_v18.get)
       SPL.assertValue (← (do
         SPL.binary ">=" (← (pure _spl_v31)) (← (pure (.num (mkRat 0 1)))))) "SV_NEGATIVE_EARNINGS_OUTSIDE_PILOT"
       (SPL.recordValues [("asset_id", (do
-        SPL.field (← (pure _spl_v9)) "asset_id")), ("cash", (pure _spl_v25)), ("fee", (pure _spl_v28)), ("allowed_cost", (pure _spl_v26)), ("basis", (pure _spl_v29)), ("share", (pure _spl_v30)), ("earned", (pure _spl_v31))]))))
-  let _spl_v6 : Unit → SPL.Eval SPL.Value := fun _ => (do
-    SPL.sumValues (← (_spl_v5 ())) (fun _spl_v32 => (do
-      SPL.field (← (pure _spl_v32)) "earned")))
-  let _spl_v7 : Unit → SPL.Eval SPL.Value := fun _ => (do
-    SPL.extrema false (← (_spl_v6 ())) (← (pure _spl_v4)))
-  let _spl_v8 : Unit → SPL.Eval SPL.Value := fun _ => (do
-    SPL.Core.numericBinary .subtract (← (_spl_v6 ())) (← (_spl_v7 ())))
+        SPL.field (← (pure _spl_v9)) "asset_id")), ("cash", (pure _spl_v25)), ("fee", (pure _spl_v28)), ("allowed_cost", (pure _spl_v26)), ("basis", (pure _spl_v29)), ("share", (pure _spl_v30)), ("earned", (pure _spl_v31))])))))
+  let _spl_v6 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
+    SPL.sumValues (← (_spl_v5.get)) (fun _spl_v32 => (do
+      SPL.field (← (pure _spl_v32)) "earned"))))
+  let _spl_v7 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
+    SPL.extrema false (← (_spl_v6.get)) (← (pure _spl_v4))))
+  let _spl_v8 : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => (do
+    SPL.Core.numericBinary .subtract (← (_spl_v6.get)) (← (_spl_v7.get))))
   SPL.assertValue (← (do
     SPL.binary ">=" (← (pure _spl_v4)) (← (pure (.num (mkRat 0 1)))))) "NEGATIVE_OPENING_ADVANCE"
-  let _spl_v33 ← (_spl_v5 ())
-  let _spl_v34 ← (_spl_v6 ())
-  let _spl_v35 ← (_spl_v7 ())
-  let _spl_v36 ← (_spl_v8 ())
+  let _spl_v33 ← (_spl_v5.get)
+  let _spl_v34 ← (_spl_v6.get)
+  let _spl_v35 ← (_spl_v7.get)
+  let _spl_v36 ← (_spl_v8.get)
   SPL.assertValue (← (do
     SPL.binary "==" (← (pure _spl_v34)) (← (do
       SPL.Core.numericBinary .add (← (pure _spl_v35)) (← (pure _spl_v36)))))) "SV_SETTLEMENT_RECONCILIATION"

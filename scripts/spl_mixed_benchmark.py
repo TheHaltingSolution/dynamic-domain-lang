@@ -112,16 +112,35 @@ def check_projection(workload, oracle, inputs, openings, lineage, dispositions):
             "parent_scope": "invoice ancestry remains in the validated original graph; projected typed receipts retain original cash IDs/lineage joins"}
 
 
-def dependency_files():
+TARGET_GENERATION = "spl-native-definition-thunk/1"
+
+
+def implementation_spec(implementation="legacy"):
+    if type(implementation) is not str:
+        raise ValueError("MIXED_IMPLEMENTATION_MUST_BE_LEGACY_OR_INDEXED")
+    if implementation == "legacy":
+        return {"id": "sv-legacy-source/1", "source": "cases/sv/sv01.spl", "emission": "Demos/SV.lean", "target": "spl_sv"}
+    if implementation == "indexed":
+        return {"id": "sv-indexed-experiment/1", "source": "cases/sv/sv01-indexed.spl",
+                "emission": "Demos/SVIndexed.lean", "target": "spl_sv_indexed"}
+    raise ValueError("MIXED_IMPLEMENTATION_MUST_BE_LEGACY_OR_INDEXED")
+
+
+def dependency_files(implementation="legacy"):
+    selected = implementation_spec(implementation)
     files = [ROOT / path for path in ["validation/mixed_workloads.py", "scripts/spl_mixed_benchmark.py",
              "scripts/spl_stage_benchmark.py", "scripts/spl_benchmark.py", "scripts/spl_native_trace_transport.py", "scripts/spl_trace_transport.py",
              "oracles/skouras.py", "cases/sv/neutral-oracle.json", "cases/sv/sv01.spl", "Demos/SV.lean", "Demos/TraceStream.lean", "SPL.lean", "lean-toolchain", "lakefile.toml"]]
     files += sorted((ROOT / "SPL").glob("*.lean")) + sorted((ROOT / "spl_compiler").glob("*.py"))
     files += sorted((ROOT / "schemas").glob("*.json"))
+    if implementation == "indexed":
+        files += [ROOT / selected["source"], ROOT / selected["emission"]]
     return sorted(set(files))
 
 
-def check_prerequisite(previous, pins, seed, budgets, transport="compact-v1", profile_stages=False, required_records=100):
+def check_prerequisite(previous, pins, seed, budgets, transport="compact-v1", profile_stages=False, required_records=100,
+                       implementation="legacy"):
+    implementation_spec(implementation)
     if required_records not in {100, 1000}:
         raise ValueError("MIXED_PREREQUISITE_COHORT")
     if (not isinstance(previous, dict) or previous.get("format") != "spl-mixed-performance/1"
@@ -129,11 +148,17 @@ def check_prerequisite(previous, pins, seed, budgets, transport="compact-v1", pr
             or previous.get("required_audit_completed") is not True or previous.get("seed") != seed
             or previous.get("transport") != transport
             or previous.get("profile_stages", False) != profile_stages
+            or previous.get("target_generation") != TARGET_GENERATION
+            or previous.get("implementation", "legacy") != implementation
+            or (implementation == "indexed" and previous.get("implementation_spec") != implementation_spec(implementation))
             or previous.get("dependency_pins") != pins or previous.get("budgets") != budgets
             or not isinstance(previous.get("native_samples"), list) or not previous["native_samples"]
             or any(not isinstance(sample, dict) or sample.get("status") != "passed"
                    or any(sample.get(stage, {}).get("status") != "passed" for stage in ("target", "audit", "reader"))
                    or any(sample.get(stage, {}).get("independent_control") != "passed" for stage in ("target", "audit"))
+                   or (implementation == "indexed" and (not isinstance(sample.get("old_target"), dict)
+                                                        or sample["old_target"].get("status") != "passed"
+                                                        or sample["old_target"].get("independent_control") != "passed"))
                    for sample in previous["native_samples"])):
         raise ValueError(f"MIXED_{1000 if required_records == 100 else 10000}_REQUIRES_SUCCESSFUL_MATCHING_{required_records}_COHORT")
 
@@ -251,7 +276,11 @@ def sequential_dependency_plan(first_complete):
 
 def benchmark(output, records=100, *, seed=20261123, repeats=1, timeout=60,
               max_output_bytes=64 * 1024 * 1024, max_working_set_bytes=256 * 1024 * 1024, prerequisite=None, transport="compact-v1",
-              profile_stages=False, wire_reference=None):
+              profile_stages=False, wire_reference=None, implementation="legacy",
+              host_load_note="Unspecified; host/background CPU activity uncontrolled"):
+    selected = implementation_spec(implementation)
+    if type(host_load_note) is not str or not 1 <= len(host_load_note) <= 1024:
+        raise ValueError("MIXED_HOST_LOAD_NOTE_LENGTH")
     if records not in {100, 1000, 10000} or not 1 <= repeats <= 3 or not 0 < timeout <= 180:
         raise ValueError("Mixed bounds: records100/1000/10000,repeats1..3,timeout1..180")
     if records == 10000 and repeats != 1:
@@ -266,9 +295,11 @@ def benchmark(output, records=100, *, seed=20261123, repeats=1, timeout=60,
         raise ValueError("Mixed profiling flag must be boolean")
     suffix = ".exe" if os.name == "nt" else ""
     binaries = {name: ROOT / ".lake/build/bin" / (name + suffix) for name in ("spl", "spl_sv", "spl_trace_stream")}
+    if implementation == "indexed":
+        binaries["spl_sv_indexed"] = ROOT / ".lake/build/bin" / ("spl_sv_indexed" + suffix)
     if any(not path.is_file() for path in binaries.values()):
         raise ValueError("Build pinned spl,spl_sv,spl_trace_stream before measurement")
-    sources = dependency_files()
+    sources = dependency_files(implementation)
     pins = {path.relative_to(ROOT).as_posix(): file_digest(path) for path in sources}
     pins.update({"binary:" + name: file_digest(path) for name, path in binaries.items()})
     pins["python_executable"] = file_digest(Path(sys.executable))
@@ -279,7 +310,7 @@ def benchmark(output, records=100, *, seed=20261123, repeats=1, timeout=60,
         if prerequisite is None:
             raise ValueError(f"MIXED_{records}_REQUIRES_SUCCESSFUL_MATCHING_{required_records}_COHORT")
         check_prerequisite(json.loads(Path(prerequisite).read_text(encoding="utf-8")), pins, seed, budgets,
-                           transport, profile_stages, required_records)
+                           transport, profile_stages, required_records, implementation)
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=False)
     for path in sources:
@@ -287,10 +318,14 @@ def benchmark(output, records=100, *, seed=20261123, repeats=1, timeout=60,
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(path.read_bytes())
     source = output / "Source.spl"
-    source.write_bytes((ROOT / "cases/sv/sv01.spl").read_bytes())
+    source.write_bytes((ROOT / selected["source"]).read_bytes())
     before = identities()
     _, env = lean_environment()
     report = {"format": "spl-mixed-performance/1", "status": "running", "seed": seed, "transport": transport, "profile_stages": profile_stages,
+              "implementation": implementation, "implementation_spec": selected, "host_load_note": host_load_note,
+              "target_generation": TARGET_GENERATION,
+              "comparison_baseline": {"role": "current_legacy_source_implementation", "source": "cases/sv/sv01.spl",
+                                      "target": "spl_sv", "historical_pre_memo": False},
               "dependency_pins": pins, "budgets": budgets, "kernel_identities": list(before),
               "python": sys.version, "platform": platform.platform(), "logical_cpus": os.cpu_count(),
               "processor": os.environ.get("PROCESSOR_IDENTIFIER", platform.processor()),
@@ -304,7 +339,10 @@ def benchmark(output, records=100, *, seed=20261123, repeats=1, timeout=60,
               "limitations": ["Synthetic original-record development mix, not production distribution or capacity.",
                               "Lineage bracket is invoice financial facts, a separate amount space and actual guard-counted objects.",
                               "Native target includes startup,decode,settlement and result serialization; pure timer absent.",
-                              "Current native emission must equal Demos/SV.lean; executable/source correspondence relies on the prior pinned Lake build.",
+                              "Current native emission must equal the selected Demo; executable/source correspondence relies on the prior pinned Lake build.",
+                              "Legacy means the unchanged original SPL source with the current memoizing emitted target; historical pre-memoization executables are separate dated archives.",
+                              "Indexed runs require the current legacy-source target's complete independent financial controls; old_target/old_native_emission fields identify this source baseline, not a historical compiler. Source graph identity is not claimed.",
+                              "Recorded host load may include concurrent regression; timings are observations, not standalone causal latency/p95/SLA evidence.",
                               "Native compact audit and independent reader are separate timed child processes.",
                               "Canonical binding/validation/projection are measured; default wrapper finalization is not executed.",
                               "Python traced allocation peaks and child peak working sets have different scopes.",
@@ -370,14 +408,35 @@ def benchmark(output, records=100, *, seed=20261123, repeats=1, timeout=60,
             write_json(output / "reference-result.json", reference)
         preparation = run_process([binaries["spl"], "compile", source, output / "Generated.lean"], output / "native-emission", env, timeout, max_output_bytes, max_working_set_bytes)
         report["native_emission"] = preparation
-        if preparation["status"] != "passed" or (output / "Generated.lean").read_bytes() != (ROOT / "Demos/SV.lean").read_bytes():
+        if preparation["status"] != "passed" or (output / "Generated.lean").read_bytes() != (ROOT / selected["emission"]).read_bytes():
             raise ValueError("MIXED_EMITTED_SOURCE_OR_PREBUILT_TARGET_MISMATCH")
+        if implementation == "indexed":
+            baseline_source = output / "LegacySource.spl"
+            baseline_source.write_bytes((ROOT / "cases/sv/sv01.spl").read_bytes())
+            baseline_emission = run_process([binaries["spl"], "compile", baseline_source, output / "LegacyGenerated.lean"],
+                                            output / "old-native-emission", env, timeout, max_output_bytes, max_working_set_bytes)
+            report["old_native_emission"] = baseline_emission
+            if (baseline_emission["status"] != "passed" or
+                    (output / "LegacyGenerated.lean").read_bytes() != (ROOT / "Demos/SV.lean").read_bytes()):
+                raise ValueError("MIXED_OLD_EMITTED_SOURCE_OR_PREBUILT_TARGET_MISMATCH")
         for index in range(repeats):
             sample = {"sample": index + 1, "status": "failed"}
             report["native_samples"].append(sample)
+            if implementation == "indexed":
+                baseline = run_process([binaries["spl_sv"], output / "bindings.json"], output / f"old-target-{index:02d}",
+                                       env, timeout, max_output_bytes, max_working_set_bytes)
+                sample["old_target"] = baseline
+                baseline["independent_control"] = "not_checked"
+                if baseline["status"] == "passed":
+                    try:
+                        check_target(loads((output / f"old-target-{index:02d}" / "stdout.bin").read_bytes()), expected)
+                        baseline["independent_control"] = "passed"
+                    except Exception as error:
+                        baseline.update(status="failed", independent_control="failed",
+                                        error={"type": type(error).__name__, "message": str(error)})
             audit_command = [binaries["spl_trace_stream"], source, output / "bindings.json",
                              "--compact-v2" if transport == "compact-v2" else "--compact"]
-            for phase, command in (("target", [binaries["spl_sv"], output / "bindings.json"]),
+            for phase, command in (("target", [binaries[selected["target"]], output / "bindings.json"]),
                                    ("audit", audit_command + (["--profile-stages"] if profile_stages else []))):
                 if phase == "audit" and profile_stages:
                     sample["audit_unprofiled"] = run_process(audit_command, output / f"audit-unprofiled-{index:02d}",
@@ -431,7 +490,8 @@ def benchmark(output, records=100, *, seed=20261123, repeats=1, timeout=60,
                         measurement["status"] = "failed"
                         measurement["independent_control"] = "failed"
                         measurement["error"] = {"type": type(error).__name__, "message": str(error)}
-            sample["status"] = "passed" if all(sample.get(stage, {}).get("status") == "passed" for stage in ("target", "audit", "reader")) else "failed"
+            required_stages = ("old_target", "target", "audit", "reader") if implementation == "indexed" else ("target", "audit", "reader")
+            sample["status"] = "passed" if all(sample.get(stage, {}).get("status") == "passed" for stage in required_stages) else "failed"
             if "reader" not in sample:
                 sample["reader"] = {"status": "not_executed", "reason": "native audit did not complete within its budgets"}
             write_json(output / f"sample-{index:02d}.json", sample)
@@ -473,13 +533,16 @@ def main(argv=None):
     parser.add_argument("--transport", choices=("compact-v1", "compact-v2"), default="compact-v1")
     parser.add_argument("--profile-stages", action="store_true")
     parser.add_argument("--wire-reference", type=Path)
+    parser.add_argument("--implementation", choices=("legacy", "indexed"), default="legacy")
+    parser.add_argument("--host-load-note", default="Unspecified; host/background CPU activity uncontrolled")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
         report = benchmark(args.output, args.records, seed=args.seed, repeats=args.repeats, timeout=args.timeout,
                            max_output_bytes=args.max_output_bytes, max_working_set_bytes=args.max_working_set_bytes,
                            prerequisite=args.prerequisite, transport=args.transport,
-                           profile_stages=args.profile_stages, wire_reference=args.wire_reference)
+                           profile_stages=args.profile_stages, wire_reference=args.wire_reference,
+                           implementation=args.implementation, host_load_note=args.host_load_note)
     except (ValueError, FileExistsError) as error:
         parser.error(str(error))
     print(f"Mixed benchmark {report['status']}: {args.output / 'summary.json'}")

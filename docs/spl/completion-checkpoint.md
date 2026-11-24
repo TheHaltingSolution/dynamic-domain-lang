@@ -1,5 +1,9 @@
 # Active C1 completion checkpoint
 
+**Later live work:** this checkpoint is committed as `7c13ef2`. Read
+[active-work.md](active-work.md) for the isolated full regression and subsequent
+uncommitted source/emitter experiments before using its dated identities.
+
 23 November 2026. Read this before the older session handoff. The finite
 [backlog](completion-backlog.json) remains authoritative for current item status
 and dependencies. This checkpoint is not a complete C1 release or a combined

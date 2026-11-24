@@ -1,0 +1,67 @@
+// Civil Date comes from the selected original zone/version UTC interval.
+schedule SuppliedCivilDates language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input contract: Id<Agreement>;
+  input project: Id<Asset>;
+  input fact_scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>};
+  input case_id: Text;
+  input cutoff: Instant;
+  input policy: {id: Text, revision: Text, selection: Text, offset_convention: Text, coverage: Text, evidence_class: Text};
+  input zones: List<{evidence_ref: Text, id: Text, local_coverage: Period, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>}, source_ref: Text, version: Text}>;
+  input days: List<{end_offset_minutes: Int, evidence_ref: Text, id: Text, local_date: Date, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>}, source_ref: Text, source_utc_end: Text, source_utc_start: Text, start_offset_minutes: Int, utc_end: Instant, utc_start: Instant, zone_id: Text, zone_version: Text}>;
+  input events: List<{evidence_ref: Text, id: Text, observed_at: Instant, occurred_at: Instant, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>}, source_observed_at: Text, source_occurred_at: Text, source_ref: Text, zone_id: Text, zone_version: Text}>;
+  input evidence: List<{id: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>}, observed_at: Instant, source_kind: Text, approval_ref: Id<Decision>, evidence_ref: Text, kind: Text}>;
+  require fact_scope.contract_id == contract and fact_scope.asset_id == project else "CIVIL_CONTEXT_SCOPE";
+  require case_id != "" else "CIVIL_IDENTITY_REQUIRED";
+  require policy.id == "SYNTHETIC-CIVIL-DATE-01" and policy.revision == "1" and policy.selection == "unique_containing_half_open_utc_cell" and policy.offset_convention == "local_equals_utc_plus_minutes" and policy.coverage == "complete_declared_local_dates" and policy.evidence_class == "research_assumption" else "CIVIL_SELECTED_POLICY";
+  require sum(zones, row => 1) >= 1 and sum(zones, row => 1) <= 4 and sum(events, row => 1) <= 128 else "CIVIL_RESOURCE_BOUND";
+  define checked_evidence = for each row in evidence {
+    require row.id != "" and row.source_kind != "" else "CIVIL_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "CIVIL_EVIDENCE_SCOPE";
+    require row.observed_at < cutoff else "CIVIL_EVIDENCE_CUTOFF";
+    yield row;
+  };
+  define checked_zones = for each row in sort_by(zones, zone => tuple(zone.id, zone.version)) {
+    require row.id != "" and row.version != "" and row.source_ref != "" else "CIVIL_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "CIVIL_ZONE_SCOPE";
+    require sum(filter(zones, other => other.id == row.id and other.version == row.version), other => 1) == 1 else "CIVIL_DUPLICATE_ZONE_VERSION";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "CIVIL_EVIDENCE_REQUIRED";
+    yield row;
+  };
+  define checked_days = for each row in days {
+    require row.id != "" and row.source_ref != "" else "CIVIL_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "CIVIL_DAY_SCOPE";
+    require sum(filter(checked_zones, zone => zone.id == row.zone_id and zone.version == row.zone_version and in_period(row.local_date, zone.local_coverage)), zone => 1) == 1 else "CIVIL_ZONE_VERSION";
+    require sum(filter(days, other => other.id == row.id), other => 1) == 1 else "CIVIL_DUPLICATE_ID";
+    require sum(filter(days, other => other.zone_id == row.zone_id and other.zone_version == row.zone_version and other.local_date == row.local_date), other => 1) == 1 else "CIVIL_DUPLICATE_LOCAL_DATE";
+    require row.utc_start < row.utc_end else "CIVIL_INTERVAL_POSITIVE";
+    require row.start_offset_minutes >= -1439 and row.start_offset_minutes <= 1439 and row.end_offset_minutes >= -1439 and row.end_offset_minutes <= 1439 else "CIVIL_OFFSET_MINUTES";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "CIVIL_EVIDENCE_REQUIRED";
+    yield row;
+  };
+  define classified = for each row in sort_by(events, event => event.id) {
+    require row.id != "" and row.source_ref != "" else "CIVIL_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "CIVIL_EVENT_SCOPE";
+    require sum(filter(checked_zones, zone => zone.id == row.zone_id and zone.version == row.zone_version), zone => 1) == 1 else "CIVIL_ZONE_VERSION";
+    require sum(filter(checked_evidence, support => support.id == row.evidence_ref), support => 1) == 1 else "CIVIL_EVIDENCE_REQUIRED";
+    require row.occurred_at <= row.observed_at else "CIVIL_OCCURRENCE_AFTER_OBSERVATION";
+    require row.observed_at < cutoff else "CIVIL_EVENT_CUTOFF";
+    define matches = filter(checked_days, day => day.zone_id == row.zone_id and day.zone_version == row.zone_version and day.utc_start <= row.occurred_at and row.occurred_at < day.utc_end);
+    require sum(matches, day => 1) > 0 else "CIVIL_EVENT_OUTSIDE_COVERAGE";
+    require sum(matches, day => 1) == 1 else "CIVIL_AMBIGUOUS_DAY";
+    define selected: Option<{end_offset_minutes: Int, evidence_ref: Text, id: Text, local_date: Date, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>}, source_ref: Text, source_utc_end: Text, source_utc_start: Text, start_offset_minutes: Int, utc_end: Instant, utc_start: Instant, zone_id: Text, zone_version: Text}> = fold matches from none() with unused, day { yield some(day); };
+    define cell = require_some(selected, "CIVIL_EVENT_OUTSIDE_COVERAGE");
+    yield {event_id: row.id, zone_id: row.zone_id, zone_version: row.zone_version, occurred_at: row.source_occurred_at, observed_at: row.source_observed_at, local_date: cell.local_date, cell_id: cell.id, utc_start: cell.source_utc_start, utc_end: cell.source_utc_end, start_offset_minutes: cell.start_offset_minutes, end_offset_minutes: cell.end_offset_minutes, event_source_ref: row.source_ref, event_evidence_ref: row.evidence_ref, calendar_source_ref: cell.source_ref, calendar_evidence_ref: cell.evidence_ref};
+  };
+  define coverage = for each zone in checked_zones {
+    define cells = sort_by(filter(checked_days, row => row.zone_id == zone.id and row.zone_version == zone.version), row => row.local_date);
+    require sum(cells, row => 1) >= 1 and sum(cells, row => 1) <= 32 else "CIVIL_RESOURCE_BOUND";
+    define bounds: {first: Option<{end_offset_minutes: Int, evidence_ref: Text, id: Text, local_date: Date, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>}, source_ref: Text, source_utc_end: Text, source_utc_start: Text, start_offset_minutes: Int, utc_end: Instant, utc_start: Instant, zone_id: Text, zone_version: Text}>, last: Option<{end_offset_minutes: Int, evidence_ref: Text, id: Text, local_date: Date, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>}, source_ref: Text, source_utc_end: Text, source_utc_start: Text, start_offset_minutes: Int, utc_end: Instant, utc_start: Instant, zone_id: Text, zone_version: Text}>, ids: List<Text>} = fold cells from {first: none(), last: none(), ids: []} with step, cell {
+      yield {first: if is_some(step.first) then step.first else some(cell), last: some(cell), ids: append(step.ids, cell.id)};
+    };
+    yield {zone_id: zone.id, zone_version: zone.version, local_coverage: zone.local_coverage, utc_start: require_some(bounds.first, "CIVIL_INCOMPLETE_LOCAL_POPULATION").source_utc_start, utc_end: require_some(bounds.last, "CIVIL_INCOMPLETE_LOCAL_POPULATION").source_utc_end, cell_ids: bounds.ids};
+  };
+  emit "comparison" = {status_meaning: "civil Date from supplied versioned day relation; no ambient timezone, wall clock or monetary output"};
+  emit "event_results" = classified;
+  emit "coverage" = coverage;
+  emit "reconciliation" = sum(classified, row => 1) == sum(events, row => 1);
+}

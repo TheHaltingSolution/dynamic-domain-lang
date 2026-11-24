@@ -88,3 +88,22 @@ Three-process observations support neither a production p95 claim nor RR-03
 acceptance. The roughly 14.56 s complete native audit observation remains a
 separate experiment; these measurements do not assign that cost to internal
 audit stages by subtraction.
+
+## Current generated-library promotion
+
+The initial measurements above used the dated pre-memoization emitter and are
+retained unchanged. The later [memoization experiment](emitter-memoization-experiment.md)
+deliberately regenerated the current `Demos/SVBenchmarkLibrary.lean` from the
+same original SV source using native `compile-library`, then rebuilt the pure
+driver. Its previous library, executable and driver state are archived in
+`artifacts/spl/emitter-thunk-promotion-20261123-a/before/`. Current library SHA-256
+is `96f494ecbc4308b8a9570f052161b8df211ec1a068dbf70db6f83cf2a5134cf9`;
+current compiler/reference identity is
+`abee14432a7a972b94a02795668d9ff8bbf97a5758f5558dc9178a7761e490eb`.
+The original SV source and pure driver formulas remain unchanged. The promoted
+focused checks verify fresh library bytes and full independent controls; they
+do not remeasure or relabel the initial medians as current performance.
+All six pure methods passed within the 38-method frozen promoted cohort
+`emitter-thunk-promoted-checks-20261123-a`, with no failures/errors/skips and
+unchanged pins. The current pure executable SHA-256 is
+`bc285fdd62c51959a647778cee6c7e05887bbbad0932a59b131e21d76e15e27a`.

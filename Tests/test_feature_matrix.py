@@ -83,7 +83,7 @@ class FeatureMatrixTests(unittest.TestCase):
                               "original-rate-returns-loss-meters"}, identifiers)
         gaps = {requirement for row in self.matrix["features"] if row["status"] == "gap"
                 for requirement in row["requirements"]}
-        self.assertLessEqual({"C08", "C15", "U23", "A11"}, gaps)
+        self.assertLessEqual({"C10", "C15", "U23", "A11"}, gaps)
 
 
 if __name__ == "__main__":

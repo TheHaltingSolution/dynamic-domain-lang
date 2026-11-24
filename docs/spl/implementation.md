@@ -2,6 +2,22 @@
 
 ## Active C1 continuation
 
+The native emitter now caches local definitions with invocation-local Lean
+thunks, matching interpreter definition reuse. Actual isolated group-building
+calls decrease from 114 to 2 for the retained fixture. Regenerated current demo
+and benchmark targets pass 38 frozen methods, including full original financial
+controls and archived pre-change targets. The complete 94-job build and both
+smokes pass. See [the emitter evidence](emitter-memoization-experiment.md).
+This changes generated target bytes and compiler/module pins; financial source
+bytes and the native arithmetic runtime remain unchanged.
+
+Authorized prospective offsets pass 37 combined methods plus retained actual
+three-period publication/carry. Supplied versioned civil-day relations pass 27
+combined methods. These are separate frozen cohorts, not a combined release
+regression. [Live work](active-work.md) retains publication capacity limits and
+ongoing experiments. Disney merchandising repricing has 26 independent oracle
+checks; its native implementation remains pending.
+
 The [finite plan](completion-plan.md), [backlog](completion-backlog.json) and
 [checkpoint](completion-checkpoint.md) own the remaining feature, performance
 and validation work. Separate verified registered slices include six staged
@@ -38,9 +54,9 @@ serialized carry; all source and Lean dependency pins remain unchanged. See the
 [publication contract](artifact-publication-design.md).
 
 The current working compiler/reference identity is
-`323f0d844fe11344713523f40d83d3b67d32d1376ce89da823875d72c2a297bc`
+`abee14432a7a972b94a02795668d9ff8bbf97a5758f5558dc9178a7761e490eb`
 and generic-module identity is
-`7a2f98f64b70cb67e5b95ecdbb0fec85536d1cce3fb9423f1dfd42c9ed1772eb`.
+`daf14a19e4b00bbb918583d76e73451322de8ecea1f9f1192dd3c404c1a06cde`.
 The native arithmetic/runtime identity remains
 `673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9`.
 The primary `0.4.3-dev` baseline is historical and archived byte-for-byte in

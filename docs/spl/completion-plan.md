@@ -2,6 +2,14 @@
 
 ## Active implementation update
 
+The later finite C08 payment-aware offset and C14 supplied civil-day variants
+now have separate37- and27-method passing native/oracle cohorts. Their actual
+capacity and supplied-evidence limits remain in [live work](active-work.md).
+The backlog now records22 complete items; these task counts are not coverage
+percentages. The bounded matrix has34 rows/30 witnessed/four gaps/45 selectors,
+with no new combined matrix campaign claimed. The emitter definition-cache
+repair is promoted through38 focused methods, a94-job build and both smokes.
+
 [RR04/LD03 responses](rr04-ld03-integration.md) are now received. The missing
 C10 burden/subtraction variation increases the current inventory to72 items;
 the original71-item snapshot below remains historical. Declared Id profiles
