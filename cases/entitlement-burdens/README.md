@@ -235,6 +235,47 @@ Tests of intentionally corrupted typed bindings use the generic API explicitly
 to retain native source-validation credit; separate wrapper tests require
 preflight rejection and claim no native calculation. The forged-cap discriminator
 retains both boundary rejection and independent generic native/source replay.
-New frozen acceptance of this wrapper/test revision is still pending. The
-economic SPL, oracle, policy, original fixtures and physical `/5` layout remain
-unchanged; neither failed record is repinned as a success.
+The economic SPL, oracle, policy, original fixtures and physical `/5` layout
+remain unchanged; neither failed record is repinned as a success.
+
+## Frozen isolated qualification
+
+`c10-compact-qualified-20261123-c` qualifies commit `79624e3` in the isolated
+compact-publication branch. All46 methods pass in1976.435 seconds, with zero
+failures, errors or skips. Fresh Q1/Q2/Q3, same-checkpoint preview and actual
+issued-v1Q2-to-v2Q3 controls also pass; total recorded time is2233.703166 seconds.
+The complete original financial/state objects match the independent oracle and
+historical controls: cap charges30/15/0, target adjusted entitlements170/185/200,
+claimant original accrual100 throughout. Preview produces no consumable state.
+`c10-root-original-review-20261124-a` independently reloads all five publications
+and reconstructs the actual successor chain from original facts and cells.
+
+| Actual v2 close | Result bytes | Logical nodes | Compact wire bytes | Expanded trace bytes |
+| --- | ---: | ---: | ---: | ---: |
+| Q1 | 100,873 | 8,642 | 9,046,568 | 28,362,843 |
+| Q2 | 202,282 | 17,042 | 18,130,994 | 59,079,402 |
+| Q3 | 294,321 | 25,490 | 27,165,840 | 90,502,328 |
+
+The preview result is128,900 bytes and the old-v1Q2 bridge result294,321 bytes;
+both retain the complete Q3 graph. All five raw wire/logical hashes equal the
+successful prelude of the earlier **failed** `-b` campaign. The issued old Q2
+marker and result remain byte-identical. No full legacy trace array is rebuilt
+to obtain new financial/state authority.
+
+All689 source pins and102 compiled pins remain unchanged. The recorded
+compiler/module/runtime identities are `4cf4dafc` / `035433ae` / `77a18c19`;
+full hashes, source ZIP, exact commands and owned publications are external.
+The726 process reports comprise721 successful processes and five expected
+`PUBLICATION_NOT_COMPLETED` loader rejections from lifecycle controls. There
+are no unexpected process/resource/timeout/output failures. The terminal audit
+retains65 owned-bundle captures. Peak sampled child working sets are92,315,648
+bytes for `runtime256` and1,036,001,280 bytes for the separate `compiler1g180`
+profile. These are per-process measurements, excluding parent/descendant and
+overall host memory. The host is shared; timings imply no p95 or SLA guarantee.
+Default/indexed Lake builds and both smoke executables pass. No newer helper
+emitter was merged into this frozen compiler context, and no guard was raised.
+
+This is finite, isolated compact-profile acceptance. Main/default-path promotion
+and the broader integrated-candidate regression are separate. The old v1 Q3
+publication failure and previous draft failures remain preserved under their
+original source pins.
