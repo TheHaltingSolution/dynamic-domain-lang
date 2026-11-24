@@ -1,7 +1,7 @@
 {
   "decisions": [
     {
-      "decision_id": "RESERVE_STAGES_SELECTED",
+      "decision_id": "RESERVE_STAGES_BASIS_SELECTED",
       "evidence_ref": "selected-synthetic-reserve-stage-policy",
       "policy_id": "SYNTHETIC-RESERVE-STAGES-01",
       "policy_revision": "1",
@@ -139,7 +139,7 @@
           },
           "source_ref": "6f726967696e616c2d736f757263653a706f70756c6174696f6e3a62617369735f726573657276655f76696e74616765732d7031"
         },
-        "raw": "{\"receipts\":[{\"id\":\"receipt:V1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"observed_at\":\"2026-01-01T12:00:00Z\",\"source_ref\":\"original-source:receipt:V1\",\"evidence_ref\":\"evidence:receipt:V1\",\"original_ref\":\"original-gross#receipt:V1\",\"event_date\":\"2026-01-01\",\"sequence\":0,\"gross\":\"60\"}],\"evidence\":[{\"id\":\"evidence:receipt:V1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"kind\":\"original_gross_basis\",\"approved\":true,\"observed_at\":\"2026-01-01T12:00:00Z\",\"source_ref\":\"supplied-evidence:receipt:V1\"},{\"id\":\"evidence:election:receipt:V1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"kind\":\"reserve_election\",\"approved\":true,\"observed_at\":\"2026-01-01T12:00:00Z\",\"source_ref\":\"supplied-evidence:election:receipt:V1\"},{\"id\":\"evidence:population:basis_reserve_vintages-p1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"kind\":\"complete_current_population\",\"approved\":true,\"observed_at\":\"2026-04-02T12:00:00Z\",\"source_ref\":\"supplied-evidence:population:basis_reserve_vintages-p1\"}],\"cutoff\":\"2026-04-03T00:00:00Z\",\"as_of\":\"2026-03-31\",\"elections\":[{\"id\":\"election:receipt:V1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"observed_at\":\"2026-01-01T12:00:00Z\",\"source_ref\":\"original-source:election:receipt:V1\",\"evidence_ref\":\"evidence:election:receipt:V1\",\"receipt_id\":\"receipt:V1\",\"vintage_id\":\"V1\",\"elected\":true,\"approved\":true,\"approved_date\":\"2026-01-01\",\"event_date\":\"2026-01-01\"}],\"applications\":[],\"case_id\":\"basis_reserve_vintages-p1\",\"population\":{\"id\":\"population:basis_reserve_vintages-p1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"observed_at\":\"2026-04-02T12:00:00Z\",\"source_ref\":\"original-source:population:basis_reserve_vintages-p1\",\"evidence_ref\":\"evidence:population:basis_reserve_vintages-p1\",\"period\":{\"start\":\"2026-01-01\",\"end\":\"2026-04-01\"},\"complete\":true,\"receipt_ids\":[\"receipt:V1\"],\"election_ids\":[\"election:receipt:V1\"],\"application_ids\":[],\"authority_ids\":[],\"gross_total\":\"60\",\"application_total\":\"0\"},\"period\":{\"start\":\"2026-01-01\",\"end\":\"2026-04-01\"},\"authorities\":[]}",
+        "raw": "{\"evidence\":[{\"id\":\"evidence:receipt:V1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"kind\":\"original_gross_basis\",\"approved\":true,\"observed_at\":\"2026-01-01T12:00:00Z\",\"source_ref\":\"supplied-evidence:receipt:V1\"},{\"id\":\"evidence:election:receipt:V1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"kind\":\"reserve_election\",\"approved\":true,\"observed_at\":\"2026-01-01T12:00:00Z\",\"source_ref\":\"supplied-evidence:election:receipt:V1\"},{\"id\":\"evidence:population:basis_reserve_vintages-p1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"kind\":\"complete_current_population\",\"approved\":true,\"observed_at\":\"2026-04-02T12:00:00Z\",\"source_ref\":\"supplied-evidence:population:basis_reserve_vintages-p1\"}],\"period\":{\"start\":\"2026-01-01\",\"end\":\"2026-04-01\"},\"elections\":[{\"id\":\"election:receipt:V1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"observed_at\":\"2026-01-01T12:00:00Z\",\"source_ref\":\"original-source:election:receipt:V1\",\"evidence_ref\":\"evidence:election:receipt:V1\",\"receipt_id\":\"receipt:V1\",\"vintage_id\":\"V1\",\"elected\":true,\"approved\":true,\"approved_date\":\"2026-01-01\",\"event_date\":\"2026-01-01\"}],\"population\":{\"id\":\"population:basis_reserve_vintages-p1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"observed_at\":\"2026-04-02T12:00:00Z\",\"source_ref\":\"original-source:population:basis_reserve_vintages-p1\",\"evidence_ref\":\"evidence:population:basis_reserve_vintages-p1\",\"period\":{\"start\":\"2026-01-01\",\"end\":\"2026-04-01\"},\"complete\":true,\"receipt_ids\":[\"receipt:V1\"],\"election_ids\":[\"election:receipt:V1\"],\"application_ids\":[],\"authority_ids\":[],\"gross_total\":\"60\",\"application_total\":\"0\"},\"as_of\":\"2026-03-31\",\"cutoff\":\"2026-04-03T00:00:00Z\",\"applications\":[],\"receipts\":[{\"id\":\"receipt:V1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"observed_at\":\"2026-01-01T12:00:00Z\",\"source_ref\":\"original-source:receipt:V1\",\"evidence_ref\":\"evidence:receipt:V1\",\"original_ref\":\"original-gross#receipt:V1\",\"event_date\":\"2026-01-01\",\"sequence\":0,\"gross\":\"60\"}],\"case_id\":\"basis_reserve_vintages-p1\",\"authorities\":[]}",
         "receipts": [
           {
             "event_date": "2026-01-01",
@@ -273,10 +273,10 @@
     "scenario_id": "SYNTHETIC-RESERVE-STAGES"
   },
   "module_ref": {
-    "id": "synthetic:reserve-stages",
-    "locator": "cases/reserve-stages/reserve-stages-module.json",
+    "id": "synthetic:reserve-stages-basis-reserve",
+    "locator": "cases/reserve-stages/reserve-stages-basis-module.json",
     "revision": "1",
-    "sha256": "489d6ddeaeec02770ba6246ac8c2af77fa66374b75b903a2466299d1bd0d3546"
+    "sha256": "4c7daff73a7a69fa270db4e7166fd99e55d7ad7801978a4a7f678f72c2eda2b2"
   },
   "parameters": {
     "cutoff": "2026-04-03T00:00:00Z",
@@ -303,14 +303,14 @@
       "7061727469636970616e74"
     ],
     "pool_id": "726573657276652d706f6f6c",
-    "purpose": "synthetic_reserve_stage_history"
+    "purpose": "synthetic_gross_basis_reserve"
   },
   "state_cells": [
     {
       "boundary": "2026-01-01",
       "opening_port": "history",
       "provenance_ref": "original-synthetic-reserve-history",
-      "purpose": "synthetic_reserve_stage_history",
+      "purpose": "synthetic_gross_basis_reserve",
       "quantity": {
         "boundary": "2026-01-01",
         "context": "{\"policy\":{\"cap\":\"limit_addition_with_unretained_current\",\"evidence_class\":\"research_assumption\",\"fee\":\"fixed_once_per_original_receipt\",\"id\":\"SYNTHETIC-RESERVE-STAGES-01\",\"order\":\"daily_receipts_then_ordered_applications_then_due_tranches\",\"release\":\"unconditional_under_supplied_generic_terms\",\"reserve_measure\":\"gross_basis_USD\",\"revision\":\"1\",\"rounding\":\"exact_no_rounding\",\"stage\":\"basis_reserve\"},\"registry_evidence\":[{\"approved\":true,\"id\":\"evidence:original-fixed-fee-reserve-terms\",\"kind\":\"generic_reserve_terms\",\"observed_at\":\"2025-12-15T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"source_ref\":\"supplied-evidence:original-fixed-fee-reserve-terms\"}],\"schema_version\":\"reserve-stages-neutral/1\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"terms\":{\"approved\":true,\"approved_date\":\"2025-12-15\",\"calendar_mode\":\"clamp_day\",\"effective\":{\"end\":\"2027-01-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:original-fixed-fee-reserve-terms\",\"fixed_fee\":\"10\",\"id\":\"original-fixed-fee-reserve-terms\",\"observed_at\":\"2025-12-15T12:00:00Z\",\"participation_share\":\"0.5\",\"release_schedule\":[{\"id\":\"final-unused\",\"kind\":\"all_remaining\",\"offset_months\":3}],\"reserve_measure\":\"gross_basis_USD\",\"reserve_rate\":\"0.2\",\"retained_cap\":\"32\",\"scope\":{\"agreement_id\":\"synthetic-stage-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"reserve-pool\",\"purpose\":\"synthetic_gross_basis_reserve\"},\"source_ref\":\"original-source:original-fixed-fee-reserve-terms\",\"version\":\"1\"}}",
@@ -328,7 +328,7 @@
         "participant_id": "7061727469636970616e74",
         "pool_id": "726573657276652d706f6f6c"
       },
-      "state_key": "{\"agreement_id\":\"73796e7468657469632d73746167652d61677265656d656e74\",\"asset_id\":\"73796e7468657469632d70696374757265\",\"participant_id\":\"7061727469636970616e74\",\"pool_id\":\"726573657276652d706f6f6c\",\"purpose\":\"synthetic_reserve_stage_history\"}",
+      "state_key": "{\"agreement_id\":\"73796e7468657469632d73746167652d61677265656d656e74\",\"asset_id\":\"73796e7468657469632d70696374757265\",\"participant_id\":\"7061727469636970616e74\",\"pool_id\":\"726573657276652d706f6f6c\",\"purpose\":\"synthetic_gross_basis_reserve\"}",
       "unit": "structured"
     }
   ]

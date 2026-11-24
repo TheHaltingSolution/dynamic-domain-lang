@@ -98,9 +98,30 @@
       "path": "inputs.fact_scope.asset_id",
       "target": "inputs.project",
       "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.policy.stage",
+      "target": "",
+      "value": "producer_holdback"
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "scope.purpose",
+      "target": "",
+      "value": "synthetic_producer_entitlement_holdback"
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.fact_scope.purpose",
+      "target": "",
+      "value": "synthetic_producer_entitlement_holdback"
     }
   ],
-  "id": "synthetic:reserve-stages",
+  "id": "synthetic:reserve-stages-producer-holdback",
   "imports": [],
   "interface": {
     "dictionaries": {},
@@ -7326,7 +7347,7 @@
   },
   "policy": {
     "decision_ids": [
-      "RESERVE_STAGES_SELECTED"
+      "RESERVE_STAGES_HOLDBACK_SELECTED"
     ],
     "discriminating_cases": [
       "35-vs36-once-fee",
@@ -7365,7 +7386,7 @@
         "transition"
       ],
       "opening": "history",
-      "purpose": "synthetic_reserve_stage_history",
+      "purpose": "synthetic_producer_entitlement_holdback",
       "unit": "structured"
     }
   ]

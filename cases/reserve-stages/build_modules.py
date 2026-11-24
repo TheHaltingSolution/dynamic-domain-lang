@@ -20,7 +20,7 @@ s = import_module('cases.reserve-stages.source')
 ROOT = Path(__file__).resolve().parents[2]
 FOLDER = Path(__file__).resolve().parent
 POLICY = 'SYNTHETIC-RESERVE-STAGES-01'
-PURPOSE = 'synthetic_reserve_stage_history'
+PURPOSES = {'basis_reserve':'synthetic_gross_basis_reserve','producer_holdback':'synthetic_producer_entitlement_holdback'}
 TRANSPORT = 'reserve-stages-original-json/1'
 FRAME_KEYS = {'case_id','period','as_of','cutoff','receipts','elections','applications','authorities','population','evidence'}
 CONTEXT_KEYS = {'schema_version','scope','policy','terms','registry_evidence'}
@@ -161,12 +161,18 @@ def neutral_state(value):
     if state_transport(result,context)!=value: raise ValueError('RS_RESTORED_STATE_MISMATCH')
     return result
 
-def register_reserve_stages():
-    reference=_descriptor('reserve-stages','reserve-stages.spl','policy.md',{'policy':'parameter','cutoff':'parameter','comparison':'result','reconciliation':'reconciliation'},folder=FOLDER,capabilities=('spl.calendar-months/1',),state=[{'opening':'history','closing':'history','purpose':PURPOSE,'unit':'structured','key_fields':['agreement_id','participant_id','pool_id','asset_id','purpose'],'movement_kinds':['transition'],'history_required':False}])
-    path=ROOT/reference['locator']; descriptor=read_json(path); descriptor['id']='synthetic:reserve-stages'; descriptor['policy'].update(id=POLICY,discriminating_cases=['35-vs36-once-fee','45-45-10-completed','cap32-vs33','V1-no-V2-borrow','actual-addition-original-quota'])
+def register_reserve_stages(stage=None):
+    if stage is None: return {kind:register_reserve_stages(kind) for kind in PURPOSES}
+    if stage not in PURPOSES: raise ValueError('RS_STAGE_REGISTRATION')
+    purpose=PURPOSES[stage]
+    name='reserve-stages-'+('basis' if stage=='basis_reserve' else 'holdback')
+    reference=_descriptor(name,'reserve-stages.spl','policy.md',{'policy':'parameter','cutoff':'parameter','comparison':'result','reconciliation':'reconciliation'},folder=FOLDER,capabilities=('spl.calendar-months/1',),state=[{'opening':'history','closing':'history','purpose':purpose,'unit':'structured','key_fields':['agreement_id','participant_id','pool_id','asset_id','purpose'],'movement_kinds':['transition'],'history_required':False}])
+    path=ROOT/reference['locator']; descriptor=read_json(path); descriptor['id']='synthetic:reserve-stages-'+stage.replace('_','-'); descriptor['policy'].update(id=POLICY,discriminating_cases=['35-vs36-once-fee','45-45-10-completed','cap32-vs33','V1-no-V2-borrow','actual-addition-original-quota'])
     for field in ('agreement_id','participant_id','pool_id'):
         descriptor['constraints'].append({'kind':'member_of' if field=='participant_id' else 'equals','path':'inputs.fact_scope.'+field,'fields':[],'target':'scope.participant_ids' if field=='participant_id' else 'scope.'+field,'value':''})
     descriptor['constraints'].append({'kind':'equals','path':'inputs.fact_scope.asset_id','fields':[],'target':'inputs.project','value':''})
+    for field,value in (('parameters.policy.stage',stage),('scope.purpose',purpose),('inputs.fact_scope.purpose',purpose)):
+        descriptor['constraints'].append({'kind':'equals','path':field,'fields':[],'target':'','value':value})
     write_json(path,descriptor)
     return {'id':descriptor['id'],'revision':'1',**_pin(path)}
 
@@ -174,12 +180,17 @@ def reserve_stages_package(fixture,*,reference=None,state_cells=None,mode='final
     data=deepcopy(fixture); record(data,CONTEXT_KEYS|FRAME_KEYS|{'opening_state'}|({'prior_result'} if 'prior_result' in data else set()))
     if data['schema_version']!='reserve-stages-neutral/1': raise ValueError('RS_SCHEMA_TRANSPORT')
     context={k:deepcopy(data[k]) for k in CONTEXT_KEYS}; encode(data['scope'],s.SCOPE); encode(data['policy'],s.POLICY)
-    reference=reference or register_reserve_stages()
+    selected=data['policy']['stage']
+    if selected not in PURPOSES: raise ValueError('RS_STAGE_REGISTRATION')
+    purpose=PURPOSES[selected]
+    reference=reference or register_reserve_stages(selected)
+    if selected in reference: reference=reference[selected]
+    if reference.get('id')!='synthetic:reserve-stages-'+selected.replace('_','-') or reference.get('revision')!='1': raise ValueError('RS_DESCRIPTOR_STAGE_MISMATCH')
     opening=state_transport(data['opening_state'],context)
     sources=[h['facts'] for h in data['opening_state']['history']]+[{k:data[k] for k in FRAME_KEYS}]
     work=encode(data['scope'],s.SCOPE); execution={k:work[k] for k in ('agreement_id','participant_id','pool_id','asset_id')}
     inputs={'scope':{k:execution[k] for k in ('agreement_id','participant_id','pool_id')}|{'period':deepcopy(data['period'])},'project':work['asset_id'],'fact_scope':work,'source_context':context_raw(context),'terms':terms(data['terms']),'registry_evidence':encode(data['registry_evidence'],s.lst(s.EVIDENCE)),'frames':[frame(f,i) for i,f in enumerate(sources)],'initial_unknown':unknown({'terms':data['terms'],'registry_evidence':data['registry_evidence']}),'supplied_opening':opening,'predecessor':{'none':True}}
-    cell={'opening_port':'history','state_key':canonical({**execution,'purpose':PURPOSE}),'purpose':PURPOSE,'unit':'structured','scope':execution,'boundary':data['period']['start'],'quantity':deepcopy(opening),'provenance_ref':'original-synthetic-reserve-history','scenario_id':'SYNTHETIC-RESERVE-STAGES'}
+    cell={'opening_port':'history','state_key':canonical({**execution,'purpose':purpose}),'purpose':purpose,'unit':'structured','scope':execution,'boundary':data['period']['start'],'quantity':deepcopy(opening),'provenance_ref':'original-synthetic-reserve-history','scenario_id':'SYNTHETIC-RESERVE-STAGES'}
     if 'prior_result' in data:
         prior=data['prior_result']; record(prior,{'source_case_id','period','result_ref','closing_state'})
         if type(prior['result_ref']) is not str or not re.fullmatch('result@sha256:[0-9a-f]{64}',prior['result_ref']): raise ValueError('RS_CANONICAL_PREDECESSOR_REQUIRED')
@@ -187,7 +198,7 @@ def reserve_stages_package(fixture,*,reference=None,state_cells=None,mode='final
         cell['prior_result_ref']=prior['result_ref']
     cells=deepcopy(state_cells) if state_cells is not None else [cell]
     if cells != [cell]: raise ValueError('RS_CANONICAL_CELL_MISMATCH')
-    package={'profile':'spl-module/1','module_ref':reference,'manifest':{'run_id':'reserve-stages-run','scenario_id':'SYNTHETIC-RESERVE-STAGES','mode':mode,'period':deepcopy(data['period']),'cutoff':data['cutoff'],'compiler_build':'unbound','runtime_build':'unbound','module_closure':[],'resource_limits':{'max_input_rows':100000,'lean_timeout_seconds':180}},'scope':{'agreement_id':work['agreement_id'],'participant_ids':[work['participant_id']],'pool_id':work['pool_id'],'asset_ids':[work['asset_id']],'purpose':PURPOSE},'inputs':inputs,'parameters':{'policy':deepcopy(data['policy']),'cutoff':stamp(data['cutoff'])},'evidence':{},'state_cells':cells,'decisions':[{'decision_id':name,'policy_id':POLICY,'policy_revision':'1','status':'proposed','evidence_ref':'selected-synthetic-reserve-stage-policy'} for entry in resolve_module(reference,ROOT).closure for name in entry['descriptor']['policy']['decision_ids']]}
+    package={'profile':'spl-module/1','module_ref':reference,'manifest':{'run_id':'reserve-stages-run','scenario_id':'SYNTHETIC-RESERVE-STAGES','mode':mode,'period':deepcopy(data['period']),'cutoff':data['cutoff'],'compiler_build':'unbound','runtime_build':'unbound','module_closure':[],'resource_limits':{'max_input_rows':100000,'lean_timeout_seconds':180}},'scope':{'agreement_id':work['agreement_id'],'participant_ids':[work['participant_id']],'pool_id':work['pool_id'],'asset_ids':[work['asset_id']],'purpose':purpose},'inputs':inputs,'parameters':{'policy':deepcopy(data['policy']),'cutoff':stamp(data['cutoff'])},'evidence':{},'state_cells':cells,'decisions':[{'decision_id':name,'policy_id':POLICY,'policy_revision':'1','status':'proposed','evidence_ref':'selected-synthetic-reserve-stage-policy'} for entry in resolve_module(reference,ROOT).closure for name in entry['descriptor']['policy']['decision_ids']]}
     # Manifest cutoff is the runtime's known-UTC transport; the complete raw
     # original spelling remains in frame.raw and source context.
     package['manifest']['cutoff']=stamp(data['cutoff'])

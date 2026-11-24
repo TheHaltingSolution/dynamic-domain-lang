@@ -16,7 +16,7 @@ from unittest.mock import patch
 import Tests.test_reserve_stage_oracle as original
 from oracles.reserve_stages import ReserveStageOracleError, reserve_stages, exact_json
 from spl_compiler.artifacts import load_completed_result
-from spl_compiler.modules import run_module_package
+from spl_compiler.modules import run_module_package, bind_module_package
 from cases.r1 import build_modules as registration
 
 stage=import_module('cases.reserve-stages.build_modules')
@@ -82,6 +82,49 @@ class ReserveStageModuleTests(original.ReserveStageOracleTests):
         self.assertEqual(result['status'],'blocked')
         self.assertEqual(result['diagnostics'][0]['code'],'RS_PREPARED_PACKAGE_MISMATCH')
         self.assertFalse(result['results'] or result['closing_state'])
+
+    def test_canonical_purposes_have_distinct_keys_for_identical_scope(self):
+        packages=[stage.reserve_stages_package(original.view(original.fixture(name+'_stage')),reference=self.reference) for name in ('basis_reserve','producer_holdback')]
+        a,b=packages
+        self.assertEqual(a['state_cells'][0]['scope'],b['state_cells'][0]['scope'])
+        self.assertNotEqual(a['state_cells'][0]['state_key'],b['state_cells'][0]['state_key'])
+        self.assertNotEqual(a['module_ref']['id'],b['module_ref']['id'])
+        for package in packages:
+            self.assertEqual(package['state_cells'][0]['purpose'],package['inputs']['fact_scope']['purpose'])
+            self.assertEqual(package['scope']['purpose'],package['state_cells'][0]['purpose'])
+
+    def test_cross_descriptor_swap_blocks_public_and_generic_boundaries(self):
+        a,b=[stage.reserve_stages_package(original.view(original.fixture(name+'_stage')),reference=self.reference) for name in ('basis_reserve','producer_holdback')]
+        with self.assertRaises(ValueError): stage.reserve_stages_package(original.view(original.fixture('basis_reserve_stage')),reference=b['module_ref'])
+        for first,second in ((a,b),(b,a)):
+            swapped=deepcopy(first);swapped['module_ref']=deepcopy(second['module_ref'])
+            blocked=stage.run_reserve_stages_package(swapped,backend='reference')
+            self.assertEqual(blocked['status'],'blocked');self.assertEqual(blocked['diagnostics'][0]['code'],'RS_PREPARED_PACKAGE_MISMATCH')
+            swapped['decisions']=deepcopy(second['decisions']); swapped=bind_module_package(swapped,stage.ROOT)
+            blocked=run_module_package(swapped,stage.ROOT,backend='reference')
+            self.assertEqual(blocked['status'],'blocked');self.assertEqual(blocked['diagnostics'][0]['code'],'MODULE_STATE_PURPOSE')
+            swapped['state_cells'][0]['purpose']=second['state_cells'][0]['purpose']
+            swapped['state_cells'][0]['state_key']=second['state_cells'][0]['state_key']
+            blocked=run_module_package(swapped,stage.ROOT,backend='reference')
+            self.assertEqual(blocked['status'],'blocked');self.assertEqual(blocked['diagnostics'][0]['code'],'MODULE_SCOPE_MISMATCH')
+            self.assertFalse(blocked['results'] or blocked['closing_state'])
+
+    def test_cross_purpose_actual_cells_cannot_carry(self):
+        cases=[original.fixture(name+'_stage') for name in ('basis_reserve','producer_holdback')]
+        first=[]
+        for case in cases:
+            package=stage.reserve_stages_package(original.view(case),reference=self.reference)
+            first.append(stage.run_reserve_stages_package(package,backend='reference'))
+        for position in (0,1):
+            own=first[position];other=first[1-position]
+            previous={**stage.neutral_result(own['results']['comparison']),'closing_state':stage.neutral_state(own['closing_state'][0]['quantity'])}
+            data=original.view(cases[position],1,previous);data['prior_result']['result_ref']=own['closing_state'][0]['prior_result_ref']
+            cells=json.loads(json.dumps(other['closing_state']))
+            for cell in cells:cell.pop('movement',None)
+            with self.assertRaises(ValueError):stage.reserve_stages_package(data,reference=self.reference,state_cells=cells)
+            package=stage.reserve_stages_package(data,reference=self.reference);package['state_cells']=cells
+            blocked=stage.run_reserve_stages_package(package,backend='reference')
+            self.assertEqual(blocked['status'],'blocked');self.assertFalse(blocked['results'] or blocked['closing_state'])
 
     def test_direct_prepared_binding_source_negative_controls(self):
         base=stage.reserve_stages_package(original.view(original.fixture()),reference=self.reference)
