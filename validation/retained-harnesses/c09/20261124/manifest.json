@@ -1,0 +1,115 @@
+{
+  "format": "spl.retained-harness-source/1",
+  "preserved_on": "2026-11-24",
+  "preservation_base_commit": "2ae49a90162d9578cd02aff79012cd3c0378ddf8",
+  "financial_source_sha256": "4d65893714b4ecc0fd51c453be05b8bf64a5ac880b25f6064e3db852a28a6d56",
+  "external_artifact_root": "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl",
+  "independent_review": "reserve-stage-independent-review-20261124-a",
+  "independent_source_inventory_sha256": "ae21452c2430c610454dc0ad750f94673a41f23934a97784cc96f6a2a3149428",
+  "archive_entry_hashes_independently_recomputed": true,
+  "snapshots_imported_or_executed": false,
+  "outputs_copied": false,
+  "raw_bytes_total": 57460,
+  "campaigns": [
+    {
+      "id": "reserve-stage-checks-20261124-a",
+      "recorded_candidate_commit": "70010af956e55f763d7aca83885649560469f25c",
+      "verification_sha256": "62cb13447293c72f4e332ec1c4ee6f24aa8d6b9f05446f2b69233651e3c24acf",
+      "archive_file": "full-evidence.zip",
+      "archive_sha256_as_recorded": "efa94fcbf60a8f1f43aef92892f281444ed819cbc4414b1a5f04760dea360caa",
+      "archive_full_hash_recomputed_during_preservation": false,
+      "scope": "earlier financial-stage controls; earlier shared namespace"
+    },
+    {
+      "id": "reserve-stage-namespaces-20261124-b",
+      "recorded_candidate_commit": "01ac033ddbb85047ab0a6fa7e98b4c11552ed0c1",
+      "verification_sha256": "7aba25e178d9b3657572d24ce9af45d128d8dc0054e1b6d250bed5ad0eaf951d",
+      "archive_file": "full-evidence.zip",
+      "archive_sha256_as_recorded": "71a791112f24bb48d27a561f333060f270c87f66b4736cbf4768e70766e004ce",
+      "archive_full_hash_recomputed_during_preservation": false,
+      "scope": "final separate basis/holdback canonical namespaces"
+    }
+  ],
+  "files": [
+    {
+      "path": "c9.py",
+      "bytes": 8600,
+      "sha256": "8b9c8e8d67b994715a5d6d8f8dd11b98c41796dcb0fa62b9a3aa61e04c15e7a2",
+      "campaign": "reserve-stage-checks-20261124-a",
+      "archive_entry": "harness/c9.py",
+      "original_ignored_path": ".lake/c9.py"
+    },
+    {
+      "path": "c9archb.py",
+      "bytes": 8348,
+      "sha256": "5d90d77aefce0254d210849c22903c61e04f919db1914cfcd692e19e58393d93",
+      "campaign": "reserve-stage-namespaces-20261124-b",
+      "archive_entry": "harness/c9archb.py",
+      "original_ignored_path": ".lake/c9archb.py"
+    },
+    {
+      "path": "c9archive.py",
+      "bytes": 10692,
+      "sha256": "28c1a760d97daac57b97503e8f5d99c57c9550b6ba954d16d69fd6620a92c862",
+      "campaign": "reserve-stage-checks-20261124-a",
+      "archive_entry": "harness/c9archive.py",
+      "original_ignored_path": ".lake/c9archive.py"
+    },
+    {
+      "path": "c9b.py",
+      "bytes": 8640,
+      "sha256": "54160a7012b4d3792c79eb1254ff85d6a8f318bb86a05ef93f5ee857b0c2c688",
+      "campaign": "reserve-stage-namespaces-20261124-b",
+      "archive_entry": "harness/c9b.py",
+      "original_ignored_path": ".lake/c9b.py"
+    },
+    {
+      "path": "c9life.py",
+      "bytes": 2914,
+      "sha256": "65fa4e37f4cd2b701ac3d1aa31836cb777cad10ce17b63871074635b54531918",
+      "campaign": "reserve-stage-checks-20261124-a",
+      "archive_entry": "harness/c9life.py",
+      "original_ignored_path": ".lake/c9life.py"
+    },
+    {
+      "path": "c9more.py",
+      "bytes": 2489,
+      "sha256": "9fcc411f1341c8921e8cc5a14c3b93ae7451a771d72fa2365202a29dd88a32d0",
+      "campaign": "reserve-stage-checks-20261124-a",
+      "archive_entry": "harness/c9more.py",
+      "original_ignored_path": ".lake/c9more.py"
+    },
+    {
+      "path": "c9ns.py",
+      "bytes": 3408,
+      "sha256": "1f08e5ccd45da2cefbfeb88667207b34e9662a37c2ee3417e14c4b7664eeef55",
+      "campaign": "reserve-stage-namespaces-20261124-b",
+      "archive_entry": "harness/c9ns.py",
+      "original_ignored_path": ".lake/c9ns.py"
+    },
+    {
+      "path": "c9read.py",
+      "bytes": 952,
+      "sha256": "1cbfc3b4ead9e10b795432738ee9b63c21cf2f30be17fbb2508a19eba0f387ee",
+      "campaign": "reserve-stage-checks-20261124-a",
+      "archive_entry": "harness/c9read.py",
+      "original_ignored_path": ".lake/c9read.py"
+    },
+    {
+      "path": "c9v.py",
+      "bytes": 9430,
+      "sha256": "022f5b2ebef3bbc7afcad848e9486eab7d29ba7b679c69532b29a12c69c15b96",
+      "campaign": "reserve-stage-checks-20261124-a",
+      "archive_entry": "harness/c9v.py",
+      "original_ignored_path": ".lake/c9v.py"
+    },
+    {
+      "path": "c9x.py",
+      "bytes": 1987,
+      "sha256": "d41c3b57fe57588cffa69e8bcf8791fd6da83b1755a3a46d5f7b40f9309bfaa3",
+      "campaign": "reserve-stage-checks-20261124-a",
+      "archive_entry": "harness/c9x.py",
+      "original_ignored_path": ".lake/c9x.py"
+    }
+  ]
+}
