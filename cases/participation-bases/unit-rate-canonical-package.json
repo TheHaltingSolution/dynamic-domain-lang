@@ -1,0 +1,280 @@
+{
+  "decisions": [
+    {
+      "decision_id": "PARTICIPATION_BASES_SELECTED",
+      "evidence_ref": "selected-original-participation-policy",
+      "policy_id": "SYNTHETIC-PARTICIPATION-BASES-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "accounting_period": {
+      "end": "2026-02-01",
+      "start": "2026-01-01"
+    },
+    "case_id": "62617365732d6f726967696e616c2d3031",
+    "deductions": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "25"
+        },
+        "effective_date": "2026-01-10",
+        "effective_midnight": "2026-01-10T00:00:00Z",
+        "id": "646564756374696f6e2d31",
+        "observed_at": "2026-01-11T00:00:00Z",
+        "original_ref": "646564756374696f6e2d6f726967696e616c2d31",
+        "scope": {
+          "agreement_id": "61677265656d656e742d6261736573",
+          "asset_id": "7469746c652d6261736573",
+          "currency": "USD",
+          "participant_id": "7061727469636970616e742d6261736573",
+          "pool_id": "706f6f6c2d6261736573"
+        },
+        "source_ref": "646564756374696f6e2d646f63756d656e742d31"
+      }
+    ],
+    "fact_scope": {
+      "agreement_id": "61677265656d656e742d6261736573",
+      "asset_id": "7469746c652d6261736573",
+      "currency": "USD",
+      "participant_id": "7061727469636970616e742d6261736573",
+      "pool_id": "706f6f6c2d6261736573"
+    },
+    "originals": {
+      "case_id": "62617365732d6f726967696e616c2d3031",
+      "cutoff": "2026-02-03T00:00:00Z",
+      "deductions_ids": [
+        "646564756374696f6e2d31"
+      ],
+      "identity_codec": "unicode-utf8-hex/1",
+      "populations_ids": [
+        "726563656970742d706f70756c6174696f6e",
+        "646564756374696f6e2d706f70756c6174696f6e",
+        "75736167652d706f70756c6174696f6e"
+      ],
+      "profile": "participation-bases-original-json/1",
+      "raw_original": "{\"case_id\":\"bases-original-01\",\"cutoff\":\"2026-02-03T00:00:00Z\",\"deductions\":[{\"amount\":\"25\",\"effective_date\":\"2026-01-10\",\"id\":\"deduction-1\",\"observed_at\":\"2026-01-11T00:00:00Z\",\"original_ref\":\"deduction-original-1\",\"scope\":{\"agreement_id\":\"agreement-bases\",\"asset_id\":\"title-bases\",\"currency\":\"USD\",\"participant_id\":\"participant-bases\",\"pool_id\":\"pool-bases\"},\"source_ref\":\"deduction-document-1\"}],\"method\":\"unit_rate\",\"period\":{\"end\":\"2026-02-01\",\"start\":\"2026-01-01\"},\"populations\":[{\"complete\":true,\"id\":\"receipt-population\",\"kind\":\"receipts\",\"observed_at\":\"2026-02-02T00:00:00Z\",\"period\":{\"end\":\"2026-02-01\",\"start\":\"2026-01-01\"},\"reported_total\":\"125\",\"row_ids\":[\"receipt-1\"],\"scope\":{\"agreement_id\":\"agreement-bases\",\"asset_id\":\"title-bases\",\"currency\":\"USD\",\"participant_id\":\"participant-bases\",\"pool_id\":\"pool-bases\"},\"source_ref\":\"complete-receipts-01\"},{\"complete\":true,\"id\":\"deduction-population\",\"kind\":\"deductions\",\"observed_at\":\"2026-02-02T00:00:00Z\",\"period\":{\"end\":\"2026-02-01\",\"start\":\"2026-01-01\"},\"reported_total\":\"25\",\"row_ids\":[\"deduction-1\"],\"scope\":{\"agreement_id\":\"agreement-bases\",\"asset_id\":\"title-bases\",\"currency\":\"USD\",\"participant_id\":\"participant-bases\",\"pool_id\":\"pool-bases\"},\"source_ref\":\"complete-deductions-01\"},{\"complete\":true,\"id\":\"usage-population\",\"kind\":\"usage\",\"observed_at\":\"2026-02-02T00:00:00Z\",\"period\":{\"end\":\"2026-02-01\",\"start\":\"2026-01-01\"},\"reported_total\":\"100\",\"row_ids\":[\"usage-1\"],\"scope\":{\"agreement_id\":\"agreement-bases\",\"asset_id\":\"title-bases\",\"currency\":\"USD\",\"participant_id\":\"participant-bases\",\"pool_id\":\"pool-bases\"},\"source_ref\":\"complete-usage-01\"}],\"receipts\":[{\"amount\":\"125\",\"effective_date\":\"2026-01-10\",\"id\":\"receipt-1\",\"observed_at\":\"2026-01-11T00:00:00Z\",\"original_ref\":\"receipt-original-1\",\"scope\":{\"agreement_id\":\"agreement-bases\",\"asset_id\":\"title-bases\",\"currency\":\"USD\",\"participant_id\":\"participant-bases\",\"pool_id\":\"pool-bases\"},\"source_ref\":\"receipt-document-1\"}],\"scope\":{\"agreement_id\":\"agreement-bases\",\"asset_id\":\"title-bases\",\"currency\":\"USD\",\"participant_id\":\"participant-bases\",\"pool_id\":\"pool-bases\"},\"terms\":{\"approved\":true,\"effective\":{\"end\":\"2027-01-01\",\"start\":\"2026-01-01\"},\"id\":\"original-royalty-terms\",\"observed_at\":\"2025-12-01T00:00:00Z\",\"participation_share\":\".50\",\"percentage\":\".20\",\"scope\":{\"agreement_id\":\"agreement-bases\",\"asset_id\":\"title-bases\",\"currency\":\"USD\",\"participant_id\":\"participant-bases\",\"pool_id\":\"pool-bases\"},\"source_ref\":\"approved-development-policy-01\",\"unit\":\"Download\",\"unit_rate\":\"1.50\"},\"usage\":[{\"amount\":\"100\",\"effective_date\":\"2026-01-10\",\"id\":\"usage-1\",\"observed_at\":\"2026-01-11T00:00:00Z\",\"original_ref\":\"usage-original-1\",\"scope\":{\"agreement_id\":\"agreement-bases\",\"asset_id\":\"title-bases\",\"currency\":\"USD\",\"participant_id\":\"participant-bases\",\"pool_id\":\"pool-bases\"},\"source_ref\":\"usage-document-1\"}]}",
+      "receipts_ids": [
+        "726563656970742d31"
+      ],
+      "terms_id": "6f726967696e616c2d726f79616c74792d7465726d73",
+      "unknown_local_offset_paths": [],
+      "usage_ids": [
+        "75736167652d31"
+      ]
+    },
+    "period_end_utc": "2026-02-01T00:00:00Z",
+    "populations": [
+      {
+        "complete": true,
+        "id": "726563656970742d706f70756c6174696f6e",
+        "kind": "receipts",
+        "money_total": {
+          "some": {
+            "currency": "USD",
+            "value": "125"
+          }
+        },
+        "observed_at": "2026-02-02T00:00:00Z",
+        "period": {
+          "end": "2026-02-01",
+          "start": "2026-01-01"
+        },
+        "quantity_total": {
+          "none": true
+        },
+        "row_ids": [
+          "726563656970742d31"
+        ],
+        "scope": {
+          "agreement_id": "61677265656d656e742d6261736573",
+          "asset_id": "7469746c652d6261736573",
+          "currency": "USD",
+          "participant_id": "7061727469636970616e742d6261736573",
+          "pool_id": "706f6f6c2d6261736573"
+        },
+        "source_ref": "636f6d706c6574652d72656365697074732d3031"
+      },
+      {
+        "complete": true,
+        "id": "646564756374696f6e2d706f70756c6174696f6e",
+        "kind": "deductions",
+        "money_total": {
+          "some": {
+            "currency": "USD",
+            "value": "25"
+          }
+        },
+        "observed_at": "2026-02-02T00:00:00Z",
+        "period": {
+          "end": "2026-02-01",
+          "start": "2026-01-01"
+        },
+        "quantity_total": {
+          "none": true
+        },
+        "row_ids": [
+          "646564756374696f6e2d31"
+        ],
+        "scope": {
+          "agreement_id": "61677265656d656e742d6261736573",
+          "asset_id": "7469746c652d6261736573",
+          "currency": "USD",
+          "participant_id": "7061727469636970616e742d6261736573",
+          "pool_id": "706f6f6c2d6261736573"
+        },
+        "source_ref": "636f6d706c6574652d646564756374696f6e732d3031"
+      },
+      {
+        "complete": true,
+        "id": "75736167652d706f70756c6174696f6e",
+        "kind": "usage",
+        "money_total": {
+          "none": true
+        },
+        "observed_at": "2026-02-02T00:00:00Z",
+        "period": {
+          "end": "2026-02-01",
+          "start": "2026-01-01"
+        },
+        "quantity_total": {
+          "some": {
+            "unit": "Download",
+            "value": "100"
+          }
+        },
+        "row_ids": [
+          "75736167652d31"
+        ],
+        "scope": {
+          "agreement_id": "61677265656d656e742d6261736573",
+          "asset_id": "7469746c652d6261736573",
+          "currency": "USD",
+          "participant_id": "7061727469636970616e742d6261736573",
+          "pool_id": "706f6f6c2d6261736573"
+        },
+        "source_ref": "636f6d706c6574652d75736167652d3031"
+      }
+    ],
+    "project": "7469746c652d6261736573",
+    "receipts": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "125"
+        },
+        "effective_date": "2026-01-10",
+        "effective_midnight": "2026-01-10T00:00:00Z",
+        "id": "726563656970742d31",
+        "observed_at": "2026-01-11T00:00:00Z",
+        "original_ref": "726563656970742d6f726967696e616c2d31",
+        "scope": {
+          "agreement_id": "61677265656d656e742d6261736573",
+          "asset_id": "7469746c652d6261736573",
+          "currency": "USD",
+          "participant_id": "7061727469636970616e742d6261736573",
+          "pool_id": "706f6f6c2d6261736573"
+        },
+        "source_ref": "726563656970742d646f63756d656e742d31"
+      }
+    ],
+    "scope": {
+      "agreement_id": "61677265656d656e742d6261736573",
+      "participant_id": "7061727469636970616e742d6261736573",
+      "period": {
+        "end": "2026-02-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "706f6f6c2d6261736573"
+    },
+    "terms": {
+      "approved": true,
+      "effective": {
+        "end": "2027-01-01",
+        "start": "2026-01-01"
+      },
+      "id": "6f726967696e616c2d726f79616c74792d7465726d73",
+      "observed_at": "2025-12-01T00:00:00Z",
+      "participation_share": "0.5",
+      "percentage": "0.2",
+      "scope": {
+        "agreement_id": "61677265656d656e742d6261736573",
+        "asset_id": "7469746c652d6261736573",
+        "currency": "USD",
+        "participant_id": "7061727469636970616e742d6261736573",
+        "pool_id": "706f6f6c2d6261736573"
+      },
+      "source_ref": "617070726f7665642d646576656c6f706d656e742d706f6c6963792d3031",
+      "unit": "Download",
+      "unit_rate": {
+        "currency": "USD",
+        "per_unit": "Download",
+        "value": "1.5"
+      }
+    },
+    "usage": [
+      {
+        "amount": {
+          "unit": "Download",
+          "value": "100"
+        },
+        "effective_date": "2026-01-10",
+        "effective_midnight": "2026-01-10T00:00:00Z",
+        "id": "75736167652d31",
+        "observed_at": "2026-01-11T00:00:00Z",
+        "original_ref": "75736167652d6f726967696e616c2d31",
+        "scope": {
+          "agreement_id": "61677265656d656e742d6261736573",
+          "asset_id": "7469746c652d6261736573",
+          "currency": "USD",
+          "participant_id": "7061727469636970616e742d6261736573",
+          "pool_id": "706f6f6c2d6261736573"
+        },
+        "source_ref": "75736167652d646f63756d656e742d31"
+      }
+    ]
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-02-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-02-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "participation-base-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-PARTICIPATION-BASES"
+  },
+  "module_ref": {
+    "id": "synthetic:participation-bases",
+    "locator": "cases/participation-bases/participation-bases-module.json",
+    "revision": "1",
+    "sha256": "82c68fa4fdc3e3a53f91d3a4f7d9ad80b6c6388cffabad06acd833043a38211f"
+  },
+  "parameters": {
+    "cutoff": "2026-02-03T00:00:00Z",
+    "method": "unit_rate"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "61677265656d656e742d6261736573",
+    "asset_ids": [
+      "7469746c652d6261736573"
+    ],
+    "participant_ids": [
+      "7061727469636970616e742d6261736573"
+    ],
+    "pool_id": "706f6f6c2d6261736573",
+    "purpose": "stateless_participation_base"
+  },
+  "state_cells": []
+}

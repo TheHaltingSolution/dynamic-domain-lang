@@ -55,9 +55,9 @@
     {
       "id": "C02",
       "name": "Units, bases and rates",
-      "current_native": "P",
-      "current_canonical": "P",
-      "implemented_and_remaining": "Base Download/UsageMinute quantities and USD per-unit rates remain unchanged; explicit owner-scoped spl.usage-time/1 now adds UsageHour and exact60:1 conversion with registered dictionaries, defensive IR0.2, codecs and definition-bound new state.931-method candidate regression and46 main integration checks pass; old v1 source/IR/state identities are preserved in qualified finite replays. Additional gross/net percentage base registration stays open; native currencies/FX reserved for later tool demonstration.",
+      "current_native": "I",
+      "current_canonical": "I",
+      "implemented_and_remaining": "The five selected C02 variants are mapped: fixed USD/unit pricing, separately applied participation, explicit named gross/net percentage bases and owner-scoped exact usage conversion. The new stateless four-method descriptor retains all original basis/rate/share intermediates; main43 and separate bounded25-case composite qualify its finite scope. Earlier usage conversion/IR/state records keep their own pins. Native currency/FX stays reserved for the later tool demonstration; broader schema and operator/decision inventory remain separately tracked.",
       "work_items": [
         "B-C02-BASES",
         "B-C02-CONVERSION"
@@ -275,7 +275,7 @@
         "F01"
       ],
       "work_class": "method",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Gross 125/net 100 at 20% gives 25/20 under separate registered policies; 100 units at 1.50 gives 150 with separately declared 50%share giving 75.",
@@ -283,7 +283,7 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Independent original-fact controls now25 methods after UTC-year-bound/lowercase-marker review; all original22 records remain dated. RFC3339 negativezero retains knownUTC with unknownlocaloffset metadata, not guessed localtime. Separate author froze41 reference/oracle methods and8 complete reference bundles at participation-bases-reference-5d23c27f. Native/emitted/native-publication qualification remains open; genuine Money/Quantity/Ratio/Rate alternatives stay distinct.",
+      "active_scope": "Four registered named selections in one pinned stateless descriptor: gross25/net20, per-unit150/separate-share75, typed option bases/rates. Main43 methods/six actual native cases pass on a0; separate4b bounded25-case composite covers allfour paths/complete publications including everyzero/empty policy. First17-positive campaign retains overallFAILED for native-vs-wrapper scope-test mismatch; fresh2native-negative+6boundary followups pass, no source changes. Publicwrapper raw/typed/cutoff/scope/method correspondence and stale invalidation verified. Explicit finite admission/capacity/backend limits remain in README; no FX/state/bank/proof claim.",
       "evidence": [
         "oracles/participation_bases.py",
         "Tests/test_participation_base_oracle.py",
@@ -292,7 +292,15 @@
         "docs/spl/participation-base-design.md",
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json",
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\timestamp-reviewed-e\\verification.json",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/participation-bases-reference-5d23c27f/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/participation-bases-reference-5d23c27f/verification.json",
+        "cases/participation-bases/README.md",
+        "cases/participation-bases/participation-bases.spl",
+        "cases/participation-bases/build_modules.py",
+        "Tests/test_participation_base_modules.py",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-20261123-a\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-negatives-20261123-b\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-boundaries-20261123-c\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-main-integration-20261123-a\\verification.json"
       ]
     },
     {
@@ -4008,10 +4016,10 @@
   ],
   "progress_as_of": "2026-11-23",
   "status_counts": {
-    "complete": 28,
-    "in_progress": 8,
+    "complete": 29,
     "ready": 18,
     "partial": 5,
+    "in_progress": 7,
     "dependency_blocked": 2,
     "gated": 1,
     "deferred": 7,

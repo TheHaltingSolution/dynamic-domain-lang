@@ -1831,6 +1831,56 @@
         "State/transport limits are explicit finite admission bounds, not simultaneous native capacity guarantees.",
         "Native IR audit observations do not establish emitted-target decision coverage."
       ]
+    },
+    {
+      "id": "named-participation-bases",
+      "requirements": [
+        "C02",
+        "F01"
+      ],
+      "description": "Named gross/net percentage and dimensioned per-unit/separate-participation policies.",
+      "status": "witnessed",
+      "witnesses": [
+        {
+          "test": "Tests.test_participation_base_modules.ParticipationBaseModuleTests.test_native_four_policies_and_asymmetric_dimension_controls",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "audit"
+          ],
+          "inputs": [
+            "cases/participation-bases/neutral.json",
+            "cases/participation-bases/policy.md",
+            "cases/participation-bases/participation-bases.spl"
+          ],
+          "property": "Defaultmain six-case native selector retains all intermediate values25/20/150/75 and asymmetric shared-price controls; extended bounded25-case data cohort is separately retained.",
+          "oracle": "Independent original-fact participation_bases oracle; no implementation import."
+        },
+        {
+          "test": "Tests.test_participation_base_modules.ParticipationBaseModuleTests.test_public_wrapper_rechecks_prepared_originals_and_atomically_replaces_prior_success",
+          "stages": [
+            "checker",
+            "reference",
+            "canonical"
+          ],
+          "inputs": [
+            "cases/participation-bases/neutral.json",
+            "cases/participation-bases/policy.md",
+            "cases/participation-bases/participation-bases.spl"
+          ],
+          "property": "Public mechanical guard rejects prepared/raw/method/cutoff/scope/state mutations and replaces prior success atomically; this is wrapper credit, not native financial execution.",
+          "oracle": "Independent original data; explicit failclosed/unissued lifecycle expectations."
+        }
+      ],
+      "limitations": [
+        "Four registered named selections in one pinned stateless descriptor: gross25/net20, per-unit150/separate-share75, typed option bases/rates. Main43 methods/six actual native cases pass on a0; separate4b bounded25-case composite covers allfour paths/complete publications including everyzero/empty policy. First17-positive campaign retains overallFAILED for native-vs-wrapper scope-test mismatch; fresh2native-negative+6boundary followups pass, no source changes. Publicwrapper raw/typed/cutoff/scope/method correspondence and stale invalidation verified. Explicit finite admission/capacity/backend limits remain in README; no FX/state/bank/proof claim.",
+        "No target decision coverage or global language-program coverage claim."
+      ]
     }
   ]
 }

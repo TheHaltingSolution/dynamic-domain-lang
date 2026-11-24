@@ -6,10 +6,10 @@ not a complete release. No push or pull request has been made.
 
 ## Current continuation
 
-Main continues froma8d3440 with corea0e5/c287/a7e unchanged. The isolated full
-regression remains exactly0b91bc7 (1158 methods, PID5464/exec98279); confirm its
-live handle and terminal report before reporting an outcome. Later independent
-oracles are separately frozen, not retroactively included in that snapshot.
+Main core remainsa0e5/c287/a7e. Exact0b91bc7 full regression PASSED1158 methods
+with no failures/errors/skips/source or compiled drift,7726.735609s. PID5464 and
+exec98279 are ENDED. Later independent oracles/cases/helpers are separately
+qualified, not retroactively included in that snapshot.
 
 - Current C02 specification has25 independent controls; UTC-year bounds and
   lowercase markers correct the earlier22-method admission gaps. RFC3339
@@ -432,3 +432,19 @@ credit bridge is explicit; no adjustment is actually issued or paid. Successors
 recognize no repeat correction. This is independent specification evidence,
 not source/canonical/native acceptance. Main core remainsa0/c287/a7e and
 the separate full1158-method regression is still exactly0b91.
+
+## Accepted named gross/net and per-unit bases
+
+The [four explicit basis selections](../../cases/participation-bases/README.md)
+now pass current-main43 methods/six native cases plus the separately retained
+25-case bounded native/Python-C composite. Source/five original specifications
+are unchanged across those cohorts; only README evidence is added after freeze.
+The first compact campaign remainsFAILED for a wrong native-layer expectation
+on an intrinsic Id<Pool> scope rejection; its17 positive cases and fresh2source-
+negative/6zero-empty followups retain exact layer/snapshot evidence. The public
+case wrapper also enforces raw/prepared correspondence and atomic stale-success
+invalidation. B-C02-BASES is complete for its explicit finite selection; backlog
+now29 complete items, matrix40rows/36witnessed/four gaps/66selectors (no new
+combined66-selector campaign). C02 finite family markedI; global compiler-path
+and target-decision coverage remains separately open. The0b91 full1158 report
+is also terminalPASS, not a full newer-corpus or helper-candidate release.

@@ -17,8 +17,8 @@ execution evidence or a percentage of language programs.
 The later finite C08 payment-aware offset and C14 supplied civil-day variants
 now have separate37- and27-method passing native/oracle cohorts. Their actual
 capacity and supplied-evidence limits remain in [live work](active-work.md).
-The backlog now records28 complete items; these task counts are not coverage
-percentages. The bounded matrix has39 rows/35 witnessed/four gaps/64 selectors,
+The backlog now records29 complete items; these task counts are not coverage
+percentages. The bounded matrix has40 rows/36 witnessed/four gaps/66 selectors,
 with no new combined matrix campaign claimed. Disney39 and six actualQ1-Q4/preview
 bundles now close the selected first-dollar trigger-period lane, while general
 C13dependent-period replay remains open. The emitter definition-cache

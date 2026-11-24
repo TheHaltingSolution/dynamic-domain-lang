@@ -916,6 +916,25 @@
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json"
       ],
       "basis": "35 isolated original-fact/state/provenance methods only; no source/native credit. Four factsets retain immutable original issues, actualpaid80 and true dependent tier replay."
+    },
+    "participation_bases": {
+      "sources": [
+        "cases/participation-bases/README.md",
+        "cases/participation-bases/participation-bases.spl",
+        "cases/participation-bases/build_modules.py"
+      ],
+      "controls": [
+        "oracles/participation_bases.py",
+        "Tests/test_participation_base_oracle.py",
+        "Tests/test_participation_base_modules.py"
+      ],
+      "records": [
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-20261123-a\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-negatives-20261123-b\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-boundaries-20261123-c\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-main-integration-20261123-a\\verification.json"
+      ],
+      "basis": "Four registered named selections in one pinned stateless descriptor: gross25/net20, per-unit150/separate-share75, typed option bases/rates. Main43 methods/six actual native cases pass on a0; separate4b bounded25-case composite covers allfour paths/complete publications including everyzero/empty policy. First17-positive campaign retains overallFAILED for native-vs-wrapper scope-test mismatch; fresh2native-negative+6boundary followups pass, no source changes. Publicwrapper raw/typed/cutoff/scope/method correspondence and stale invalidation verified. Explicit finite admission/capacity/backend limits remain in README; no FX/state/bank/proof claim."
     }
   },
   "variants": [
@@ -1053,7 +1072,7 @@
       "name": "Fixed USD price per admitted unit",
       "kind": "financial_method",
       "requiredness": "accepted_c1_variant",
-      "status": "reported",
+      "status": "qualified",
       "requirements": [
         "C02",
         "F01"
@@ -1061,17 +1080,18 @@
       "discriminator": "100 Download at USD1.50/Download gives150 with explicit dimensional tags.",
       "evidence_groups": [
         "quantities",
-        "participation_bases_oracle"
+        "participation_bases_oracle",
+        "participation_bases"
       ],
       "execution": {
-        "source": "reported_selected_witness",
-        "canonical": "reported_selected_witness",
-        "native_ir": "reported_selected_witness",
-        "native_emitted": "reported_selected_witness",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "25_frozen_original_fact_methods_with_explicit_temporal_domain_and_preserved_source_labels_no_new_native_credit",
-        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
-        "native_audit": "selected_native_ir_observations_only",
+        "source": "executed_bounded_registered_four_method_source",
+        "canonical": "main_default_v1_and_separate_bounded_v2_complete_publications",
+        "native_ir": "six_main_cases_and25_split_bounded_controls",
+        "native_emitted": "actual_native_execution_with_complete_values",
+        "python_emitted": "separate_generator_and_bounded_C_execution_for25_split_controls",
+        "independent_controls": "25_original_fact_oracle_methods_and_complete_outputs",
+        "boundary_invalid_controls": "zero_empty_allmethods_fraction_scope_knowledge_and_preparedwrapper_controls_exact_layer_credit",
+        "native_audit": "complete_lossless_native_traces_no_general_path_coverage",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -1079,7 +1099,7 @@
         "policy": "explicit_bounded_selection",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+      "remaining_obligation": "Selected finite method accepted; no all-bound Cartesian native capacity, state/bank execution, native FX or whole-compiler proof. Separate operator/diagnostic/target-observation obligations remain."
     },
     {
       "id": "C02.GROSS_PERCENT",
@@ -1087,23 +1107,24 @@
       "name": "Flat percentage of named gross basis",
       "kind": "financial_method",
       "requiredness": "accepted_c1_variant",
-      "status": "partial",
+      "status": "qualified",
       "requirements": [
         "C02"
       ],
       "discriminator": "Gross125 at20% gives25; source gross/net are views of the same activity.",
       "evidence_groups": [
-        "participation_bases_oracle"
+        "participation_bases_oracle",
+        "participation_bases"
       ],
       "execution": {
-        "source": "partial",
-        "canonical": "partial",
-        "native_ir": "partial",
-        "native_emitted": "partial",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "25_frozen_original_fact_methods_with_explicit_temporal_domain_and_preserved_source_labels_no_new_native_credit",
-        "boundary_invalid_controls": "partial",
-        "native_audit": "pending",
+        "source": "executed_bounded_registered_four_method_source",
+        "canonical": "main_default_v1_and_separate_bounded_v2_complete_publications",
+        "native_ir": "six_main_cases_and25_split_bounded_controls",
+        "native_emitted": "actual_native_execution_with_complete_values",
+        "python_emitted": "separate_generator_and_bounded_C_execution_for25_split_controls",
+        "independent_controls": "25_original_fact_oracle_methods_and_complete_outputs",
+        "boundary_invalid_controls": "zero_empty_allmethods_fraction_scope_knowledge_and_preparedwrapper_controls_exact_layer_credit",
+        "native_audit": "complete_lossless_native_traces_no_general_path_coverage",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -1111,7 +1132,7 @@
         "policy": "explicit_bounded_selection",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "Register/map the named general gross-versus-net25/20 independent canonical discriminator; existing contract percentage witnesses do not by themselves close it."
+      "remaining_obligation": "Selected finite method accepted; no all-bound Cartesian native capacity, state/bank execution, native FX or whole-compiler proof. Separate operator/diagnostic/target-observation obligations remain."
     },
     {
       "id": "C02.NET_PERCENT",
@@ -1119,23 +1140,24 @@
       "name": "Flat percentage of named selected net basis",
       "kind": "financial_method",
       "requiredness": "accepted_c1_variant",
-      "status": "partial",
+      "status": "qualified",
       "requirements": [
         "C02"
       ],
       "discriminator": "Selected net100 at20% gives20, without adding gross as another cash fact.",
       "evidence_groups": [
-        "participation_bases_oracle"
+        "participation_bases_oracle",
+        "participation_bases"
       ],
       "execution": {
-        "source": "partial",
-        "canonical": "partial",
-        "native_ir": "partial",
-        "native_emitted": "partial",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "25_frozen_original_fact_methods_with_explicit_temporal_domain_and_preserved_source_labels_no_new_native_credit",
-        "boundary_invalid_controls": "partial",
-        "native_audit": "pending",
+        "source": "executed_bounded_registered_four_method_source",
+        "canonical": "main_default_v1_and_separate_bounded_v2_complete_publications",
+        "native_ir": "six_main_cases_and25_split_bounded_controls",
+        "native_emitted": "actual_native_execution_with_complete_values",
+        "python_emitted": "separate_generator_and_bounded_C_execution_for25_split_controls",
+        "independent_controls": "25_original_fact_oracle_methods_and_complete_outputs",
+        "boundary_invalid_controls": "zero_empty_allmethods_fraction_scope_knowledge_and_preparedwrapper_controls_exact_layer_credit",
+        "native_audit": "complete_lossless_native_traces_no_general_path_coverage",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -1143,7 +1165,7 @@
         "policy": "explicit_bounded_selection",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "Same paired named gross/net independent canonical acceptance; retain fee/base eligibility and observation scope."
+      "remaining_obligation": "Selected finite method accepted; no all-bound Cartesian native capacity, state/bank execution, native FX or whole-compiler proof. Separate operator/diagnostic/target-observation obligations remain."
     },
     {
       "id": "C02.SEPARATE_PARTICIPATION",
@@ -1151,24 +1173,25 @@
       "name": "Participation applied separately from per-unit price",
       "kind": "financial_method",
       "requiredness": "accepted_c1_variant",
-      "status": "reported",
+      "status": "qualified",
       "requirements": [
         "C02"
       ],
       "discriminator": "The150 entitlement with separately supplied50% share gives75; share is not hidden in price.",
       "evidence_groups": [
         "quantities",
-        "participation_bases_oracle"
+        "participation_bases_oracle",
+        "participation_bases"
       ],
       "execution": {
-        "source": "reported_selected_witness",
-        "canonical": "reported_selected_witness",
-        "native_ir": "reported_selected_witness",
-        "native_emitted": "reported_selected_witness",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "25_frozen_original_fact_methods_with_explicit_temporal_domain_and_preserved_source_labels_no_new_native_credit",
-        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
-        "native_audit": "selected_native_ir_observations_only",
+        "source": "executed_bounded_registered_four_method_source",
+        "canonical": "main_default_v1_and_separate_bounded_v2_complete_publications",
+        "native_ir": "six_main_cases_and25_split_bounded_controls",
+        "native_emitted": "actual_native_execution_with_complete_values",
+        "python_emitted": "separate_generator_and_bounded_C_execution_for25_split_controls",
+        "independent_controls": "25_original_fact_oracle_methods_and_complete_outputs",
+        "boundary_invalid_controls": "zero_empty_allmethods_fraction_scope_knowledge_and_preparedwrapper_controls_exact_layer_credit",
+        "native_audit": "complete_lossless_native_traces_no_general_path_coverage",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -1176,7 +1199,7 @@
         "policy": "explicit_bounded_selection",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+      "remaining_obligation": "Selected finite method accepted; no all-bound Cartesian native capacity, state/bank execution, native FX or whole-compiler proof. Separate operator/diagnostic/target-observation obligations remain."
     },
     {
       "id": "C03.COST_CAP_IDENTITY",
