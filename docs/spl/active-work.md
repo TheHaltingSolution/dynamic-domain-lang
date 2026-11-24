@@ -61,6 +61,13 @@ preparing remaining generic C09 reserve-stage controls after freezing BNUM30.
 Root handles the combined1301 run and C13 qualification. Trace next prepares
 dependency-component planning; source next prepares precision/rounding SPL.
 Main core stays stable until coherent promotion.
+Root independently bounded-loaded all five C10 prelude publications and rebuilt
+the original three-period oracle/carry chain, evidence
+`c10-root-original-review-20261124-a`. Full original financial/state objects
+match, claimant100 stays unchanged, charges30/15/0 give target170/185/200,
+preview has no state, and the actual old-v1Q2 bridge equals fresh-v2Q3.
+All689 source pins and five completion markers remain unchanged. This is
+prelude-only evidence; the separate46-method cohort remains active.
 Read-only review found an additional C11/C13 wrapper lifecycle obligation:
 invalidate a reused destination when preparation is cancelled or profile
 admission fails. Current frozen66/70 runs must finish unchanged. Afterwards,
