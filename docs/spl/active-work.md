@@ -238,8 +238,18 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   `mixed-claim-oracle-20261123-bdab324e`; all six frozen source files match.
   Original bee37de catalog bytes remain pinned; current whole-catalog changes
   concern other evidence, and the C07 propositions/backlog acceptance compare
-  unchanged. No source/native credit. Generated now authors independent C11
-  ordered/continuous-gate controls under the approved RR04/LD03 history.
+  unchanged. No source/native credit. Generated also froze independent C11
+  ordered/continuous-gate controls:29 isolated methods pass0.167614s, actual
+  Q1→Q2→Q3 gross0/6/2 with cumulative8 and no reearning. Named6/8/7/4/0/11
+  and continuous-dip controls retain source classification, exact event order,
+  supplied aggregate hurdle and net0 boundaries. Artifact
+  `ordered-gate-oracle-20261123-c15611f2`; six frozen source files match, native
+  count0. Separate source implementation remains open. Generated is now idle.
+- `validation_source`: fresh separate author now implements C07 against the
+  immutable22-method oracle. Owns only new C07 SPL/adapter/descriptors/templates/
+  README/module tests; no oracle/policy/core changes. Approved plan uses separate
+  registry/period libraries and replay wrapper, thin typed records, stable original
+  IDs and lossless raw originals outside hot rows. No native acceptance yet.
 - `validation_trace`: completed the isolated usage-unit candidate; its broad
   regression remains pending under root review. Now owns C06 cent-allocation
   source/adapters/module tests in main. The44-method cohort is now accepted,
@@ -264,6 +274,10 @@ stable, background813-suite load is disclosed, and no SLA/percentile is claimed.
   report remains failed for incorrect diagnostic-code test expectations. New
   compilera0e5b77d/modulec28785f5/runtimea7e4f8e5 apply only to this isolated
   followup, not b569 or main. Main/unit/broad snapshots remain untouched.
+  Read-only committed-module audit at2b9ed46 also passes97 descriptor/package
+  documents and146 source/policy/import/root pins, all raw bytes equal Git.
+  Evidence `repository-module-pin-audit-20261123-a/`; no native credit or final
+  release-wide consumed-source qualification follows from this static check.
 
 An isolated short physical worktree `C:/spl-units-9f9` on
 `feature/spl-usage-time-c1` starts from9f9cf31. Unit implementation is now authorized in this isolated checkout only, with

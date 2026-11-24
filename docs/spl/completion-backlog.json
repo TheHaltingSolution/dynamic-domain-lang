@@ -765,7 +765,15 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Independent original-history gate oracle authoring approved: selected split/reopen plus opening/closing/continuous alternatives and latch/full-crossing/order controls, RR04/LD03 exact history and synthetic policy pins. No source/native acceptance."
+      "active_scope": "Independent original-history oracle frozen:29 isolated methods pass,6/8/7/authorized-order4/0/11 discriminators and actual serialized Q1?Q2?Q3 gross0/6/2, cumulative8. Complete earlier history/current-prefix continuity, supplied aggregate/net0 and original classifications remain explicit. Separate SPL/native source acceptance required.",
+      "evidence": [
+        "oracles/ordered_gates.py",
+        "cases/ordered-gates/neutral.json",
+        "cases/ordered-gates/policy.md",
+        "docs/spl/ordered-gate-design.md",
+        "Tests/test_ordered_gate_oracle.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/ordered-gate-oracle-20261123-c15611f2/verification.json"
+      ]
     },
     {
       "id": "B-C11-SOURCED",
@@ -1656,14 +1664,22 @@
         "A13"
       ],
       "work_class": "reproducibility",
-      "status": "ready",
+      "status": "partial",
       "scope": "supporting_engineering",
       "acceptance": [
         "Retain stable-checkout freeze/end-byte checks; bind consumed source bytes or execute isolated immutable snapshot where practical.",
         "Preserve generated failure seed/input/diagnostic/effective backend/toolchain metadata; no registration/rebuild mutation during calculation or silent repinning of historical issued results."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "evidence": [
+        "docs/spl/active-work.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/checkpoint-regression-e80024d-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-root-review-20261123-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/repository-module-pin-audit-20261123-a/verification.json"
+      ],
+      "execution_scope": "Named isolated checkpoints/oracles and source-stable financial cohorts retain actual source/command/backend/toolchain evidence; live freezes and isolated import evidence are distinguished. Read-only committed2b9ed46 module audit passes97 descriptor/package documents and146 source/policy/import/root-reference pins, all raw bytes matching Git. This static audit earns no native execution credit.",
+      "remaining_obligation": "Release-wide consumed-source/invocation qualification and new feature campaigns remain open until the final accepted source/build corpus is frozen and independently replayed; do not infer immutable consumed bytes merely from a before/after live-tree hash."
     },
     {
       "id": "B-RESEARCH-PUBLIC",
@@ -3930,9 +3946,9 @@
   "progress_as_of": "2026-11-23",
   "status_counts": {
     "complete": 26,
-    "ready": 21,
+    "ready": 20,
     "in_progress": 8,
-    "partial": 4,
+    "partial": 5,
     "dependency_blocked": 2,
     "gated": 1,
     "deferred": 7,
