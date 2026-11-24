@@ -18,6 +18,8 @@ from oracles.skouras import skouras, exact_json
 from scripts.spl_mixed_benchmark import target_expected, check_target, check_projection
 from spl_compiler.audited_artifacts import load_completed_audited_result
 from spl_compiler.codecs import canonical, file_digest, write_json
+from spl_compiler.checker import check_schedule
+from spl_compiler.parser import parse
 from spl_compiler.compact_execution import metadata
 from spl_compiler.lean_tools import ROOT as BUILD_ROOT
 from spl_compiler.run import bind_package, identities, project, run_package
@@ -102,7 +104,13 @@ def probe(output, *, records, baseline, prerequisite=None, seed=20261123, host_l
         report["stages"]["oracle_before_projection"] = {"status": "passed"}
         package = bind_package(workload["neutral"]["package"], source)
         projected = project(package)
-        check_projection(workload, oracle, *projected)
+        inputs, aliases, lineage, dispositions = projected
+        checked = check_schedule(parse(source.read_text(encoding="utf-8")))
+        alias_names = {row["alias"]: row["name"] for row in checked.schedule["declarations"] if row["kind"] == "opening"}
+        if set(alias_names) != set(aliases):
+            raise ValueError("COMPACT_OPENING_ALIAS")
+        openings = {alias_names[name]: value for name, value in aliases.items()}
+        check_projection(workload, oracle, inputs, openings, lineage, dispositions)
         write_json(output / "canonical-package.json", package)
         report["stages"]["projection"] = {"status": "passed"}
         result = run_package(package, source, backend="compare", audit_profile="compact-v2",

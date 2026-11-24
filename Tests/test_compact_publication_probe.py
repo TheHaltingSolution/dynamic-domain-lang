@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from scripts.spl_compact_publication_probe import qualify_baseline, BASE_COMPILER, BASE_RUNTIME, probe
 from spl_compiler.codecs import file_digest
@@ -57,3 +58,14 @@ class CompactProbeTests(unittest.TestCase):
             with self.subTest(records=records), self.assertRaises(ValueError):
                 probe(self.root / "forbidden", records=records, baseline=self.root / "summary.json", host_load_note=note)
             self.assertFalse((self.root / "forbidden").exists())
+
+    def test_actual_original_fact_projection_reaches_canonical_boundary(self):
+        # Real generator/oracle/binding/source-opening projection. Only the
+        # following native execution boundary is replaced; no backend credit.
+        from scripts import spl_compact_publication_probe as runner
+        with patch.object(runner, "qualify_baseline", return_value=({}, {})), \
+             patch.object(runner, "run_package", side_effect=RuntimeError("PREPARATION_COMPLETED")):
+            result = probe(self.root / "preparation", records=100, baseline=self.root / "summary.json", host_load_note="preflight only")
+        self.assertEqual(result["stages"]["oracle_before_projection"]["status"], "passed")
+        self.assertEqual(result["stages"]["projection"]["status"], "passed")
+        self.assertEqual(result["error"]["message"], "PREPARATION_COMPLETED")
