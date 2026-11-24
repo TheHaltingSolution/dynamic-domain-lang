@@ -47,6 +47,16 @@ the newer emitter/AO/civil/Disney work. The first full run is not retrospectivel
 changed to passing; a clean newer-checkpoint regression remains required. Its
 background CPU load was present during the post-memo probes and is now ended.
 
+The fresh regression of exactly `e80024d` is now RUNNING from short physical
+`C:/spl-e800`, evidence `checkpoint-regression-e80024d-a/`, exec session26641.
+Default94-job build, optional indexed target build and both smokes pass.
+Discovery finds887 methods. Loaded repository-module paths are recorded and
+asserted outside the shared main tree. This includes the promoted memoizing
+compiler, accepted AO/civil integration, Disney oracle and usage oracle; it
+excludes unfinished Disney native/Genius/unit-core work. Do not claim its Python
+suite passes until the final report is observed. This new run contributes host
+load during ongoing feature/benchmark work.
+
 The earlier `...-a` launcher failed discovery before running tests because of an
 unnecessary `top_level_dir` for namespace Tests. That failure and its passing
 build/smokes remain archived. The corrected launcher uses existing discovery
