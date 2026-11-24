@@ -1,0 +1,91 @@
+// Original expressed units, exact USD bases and supplied numeric policy remain distinct.
+schedule NumericPrecision language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, period: Period};
+  input project: Id<Asset>;
+  input cutoff: Instant;
+  input case_id: Text;
+  input fact_scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text};
+  input selected: {id: Text, revision: Text, evidence_class: Text, ratio_expression_id: Text, ratio_expression_unit: Text, ratio_expressed_decimal_places: Int, ratio_quantum: Ratio, ratio_mode: Text, ratio_point: Text, money_quantum: Money<USD>, money_mode: Text, money_point: Text, bridge: Text, arithmetic: Text};
+  input policy_ref: {id: Text, revision: Text, sha256: Text};
+  input expression: {id: Text, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, original_ref: Text, source_ref: Text, expressed_unit: Text, expressed_value: Ratio};
+  input lines: List<{id: Id<NumericLine>, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, original_ref: Text, source_ref: Text, basis: Money<USD>, ratio_expression_id: Text}>;
+  input population: {id: Text, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, source_ref: Text, complete: Bool, row_ids: List<Id<NumericLine>>, basis_total: Money<USD>};
+  input originals: {profile: Text, identity_codec: Text, case_id: Text, document: Text};
+  input original_policy: {id: Text, revision: Text, sha256: Text, raw_original: Text};
+  input original_expression: {id: Text, raw_original: Text};
+  input original_lines: List<{id: Id<NumericLine>, raw_original: Text}>;
+  input original_population: {id: Text, raw_original: Text};
+  require case_id != "" and fact_scope.currency == "USD" else "PRECISION_SCOPE";
+  require fact_scope.agreement_id == scope.agreement_id and fact_scope.participant_id == scope.participant_id and fact_scope.pool_id == scope.pool_id and fact_scope.asset_id == project else "PRECISION_SCOPE";
+  require originals.profile == "numeric-precision-original-json/1" and originals.identity_codec == "unicode-utf8-hex/1" and originals.case_id == case_id and originals.document != "" else "PRECISION_ORIGINAL_TRANSPORT";
+  require original_policy.id == selected.id and original_policy.revision == selected.revision and original_policy.raw_original != "" and original_policy.sha256 == policy_ref.sha256 and policy_ref.id == selected.id and policy_ref.revision == selected.revision else "PRECISION_POLICY_PIN";
+  require original_expression.id == expression.id and original_expression.raw_original != "" and original_population.id == population.id and original_population.raw_original != "" and map(original_lines, row => row.id) == map(lines, row => row.id) else "PRECISION_ORIGINAL_POPULATION";
+  require sum(original_lines, row => if row.raw_original == "" then 1 else 0) == 0 else "PRECISION_ORIGINAL_POPULATION";
+  require selected.evidence_class == "research_assumption" and selected.arithmetic == "exact_rational_no_implicit_rounding" else "PRECISION_POLICY";
+  require selected.ratio_point == "before_monetary_application" and (selected.money_point == "row" or selected.money_point == "aggregate") and selected.bridge == "selected_total_minus_sum_rounded_detail" else "PRECISION_POINT";
+  require (selected.ratio_mode == "floor" or selected.ratio_mode == "ceiling" or selected.ratio_mode == "toward_zero" or selected.ratio_mode == "half_even" or selected.ratio_mode == "half_away_from_zero") and
+    (selected.money_mode == "floor" or selected.money_mode == "ceiling" or selected.money_mode == "toward_zero" or selected.money_mode == "half_even" or selected.money_mode == "half_away_from_zero") else "PRECISION_MODE";
+  require selected.ratio_expressed_decimal_places >= 0 and selected.ratio_expressed_decimal_places <= 6 and (selected.ratio_expression_unit == "percentage" or selected.ratio_expression_unit == "fraction") else "PRECISION_EXPRESSION_PRECISION";
+  require selected.ratio_quantum > 0.0 and selected.money_quantum > USD 0 else "PRECISION_POSITIVE_QUANTUM";
+  define expressed_quantum = if selected.ratio_expressed_decimal_places == 0 then 1.0
+    else if selected.ratio_expressed_decimal_places == 1 then 0.1
+    else if selected.ratio_expressed_decimal_places == 2 then 0.01
+    else if selected.ratio_expressed_decimal_places == 3 then 0.001
+    else if selected.ratio_expressed_decimal_places == 4 then 0.0001
+    else if selected.ratio_expressed_decimal_places == 5 then 0.00001 else 0.000001;
+  define expected_ratio_quantum = if selected.ratio_expression_unit == "percentage" then expressed_quantum / 100.0 else expressed_quantum;
+  require selected.ratio_quantum == expected_ratio_quantum else "PRECISION_RATIO_QUANTUM_PRECISION";
+  require expression.id == selected.ratio_expression_id and expression.scope == fact_scope and expression.expressed_unit == selected.ratio_expression_unit and expression.original_ref != "" and expression.source_ref != "" else "PRECISION_EXPRESSION_AUTHORITY";
+  require sum(lines, row => 1) <= 8 and sum(population.row_ids, id => 1) <= 8 else "PRECISION_ROW_BOUND";
+  define checked_ids: Option<Id<NumericLine>> = fold sort_by(map(lines, row => row.id), id => id) from none() with previous, id {
+    require (not is_some(previous) or require_some(previous, "PRECISION_ORIGINAL_REUSE") != id) else "PRECISION_ORIGINAL_REUSE";
+    yield some(id);
+  };
+  define checked_refs: Option<Text> = fold sort_by(map(lines, row => row.original_ref), ref => ref) from none() with previous, ref {
+    require ref != "" and (not is_some(previous) or require_some(previous, "PRECISION_ORIGINAL_REUSE") != ref) else "PRECISION_ORIGINAL_REUSE";
+    yield some(ref);
+  };
+  define checked_population_ids: Option<Id<NumericLine>> = fold sort_by(population.row_ids, id => id) from none() with previous, id {
+    require (not is_some(previous) or require_some(previous, "PRECISION_POPULATION_IDS") != id) else "PRECISION_POPULATION_IDS";
+    yield some(id);
+  };
+  define checked_lines = for each row in lines {
+    require row.scope == fact_scope and row.ratio_expression_id == expression.id and row.source_ref != "" else "PRECISION_ROW_AUTHORITY";
+    yield row;
+  };
+  require population.id != "" and population.source_ref != "" and population.scope == fact_scope and population.complete else "PRECISION_COMPLETE_POPULATION";
+  require sort_by(population.row_ids, id => id) == sort_by(map(checked_lines, row => row.id), id => id) else "PRECISION_POPULATION_IDS";
+  define total_basis = sum(checked_lines, row => row.basis);
+  require population.basis_total == total_basis else "PRECISION_POPULATION_TOTAL";
+  define exact_ratio = if expression.expressed_unit == "percentage" then expression.expressed_value / 100.0 else expression.expressed_value;
+  define selected_ratio = round_ratio(exact_ratio, selected.ratio_quantum, selected.ratio_mode);
+  define raw_lines = make_map(original_lines, row => row.id, row => row.raw_original);
+  define details = for each row in checked_lines {
+    define before = row.basis * exact_ratio;
+    define after = row.basis * selected_ratio;
+    define displayed = round_money(after, selected.money_quantum, selected.money_mode);
+    yield {id: row.id, original: require_some(lookup(raw_lines, row.id), "PRECISION_ORIGINAL_POPULATION"), basis: row.basis,
+      exact_original_ratio: exact_ratio, selected_ratio: selected_ratio, exact_before_ratio_rounding: before,
+      exact_after_ratio_rounding: after, ratio_rounding_effect: after - before, displayed_rounded: displayed, money_rounding_delta: displayed - after};
+  };
+  define before_total = sum(details, row => row.exact_before_ratio_rounding);
+  define after_total = sum(details, row => row.exact_after_ratio_rounding);
+  define displayed_total = sum(details, row => row.displayed_rounded);
+  define aggregate = round_money(after_total, selected.money_quantum, selected.money_mode);
+  define statement_total = if selected.money_point == "row" then displayed_total else aggregate;
+  define bridge = statement_total - displayed_total;
+  require displayed_total + bridge == statement_total and before_total + (after_total - before_total) + (statement_total - after_total) == statement_total else "PRECISION_INTERNAL_BRIDGE";
+  emit "comparison" = {case_id: case_id, scope: fact_scope, policy_ref: policy_ref, policy: original_policy.raw_original,
+    ratio_precision: {original: original_expression.raw_original, measure: "Ratio", expressed_exact: expression.expressed_value,
+      expression_unit: expression.expressed_unit, declared_decimal_places: selected.ratio_expressed_decimal_places, exact_ratio: exact_ratio,
+      ratio_quantum: selected.ratio_quantum, mode: selected.ratio_mode, point: selected.ratio_point,
+      rounded_ratio: selected_ratio, ratio_rounding_delta: selected_ratio - exact_ratio},
+    line_details: details, population: original_population.raw_original,
+    statement: {money_measure: "USD", source_row_ids: sort_by(map(checked_lines, row => row.id), id => id), original_basis_total: total_basis,
+      exact_before_ratio_rounding: before_total, exact_after_ratio_rounding: after_total, ratio_rounding_effect_total: after_total - before_total,
+      sum_rounded_detail: displayed_total, aggregate_rounded_control: aggregate, money_quantum: selected.money_quantum, mode: selected.money_mode,
+      selected_point: selected.money_point, selected_total: statement_total, money_rounding_delta: statement_total - after_total,
+      total_adjustment: statement_total - before_total, rounding_bridge: bridge, bridge_equation: "sum_rounded_detail_plus_rounding_bridge_equals_statement_total"},
+    issuance_status: "unissued_calculation", payment_evidence_status: "not_part_of_profile", bank_movement_created: false};
+  emit "reconciliation" = displayed_total + bridge == statement_total and before_total + (after_total - before_total) + (statement_total - after_total) == statement_total;
+}

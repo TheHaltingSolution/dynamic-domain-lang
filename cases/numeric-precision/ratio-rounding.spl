@@ -1,0 +1,13 @@
+// Explicit literal modes over dimensionless Ratio; no money quantum is admitted.
+schedule RatioRounding language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input value: Ratio;
+  input quantum: Ratio;
+  input mode: Text;
+  require quantum > 0.0 else "PRECISION_POSITIVE_QUANTUM";
+  require mode == "floor" or mode == "ceiling" or mode == "toward_zero" or mode == "half_even" or mode == "half_away_from_zero" else "PRECISION_MODE";
+  define rounded = if mode == "floor" then quantize(value, quantum, "floor")
+    else if mode == "ceiling" then quantize(value, quantum, "ceiling")
+    else if mode == "toward_zero" then quantize(value, quantum, "toward_zero")
+    else if mode == "half_even" then quantize(value, quantum, "half_even")
+    else quantize(value, quantum, "half_away_from_zero");
+}

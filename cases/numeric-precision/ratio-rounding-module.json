@@ -1,0 +1,116 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:numeric-ratio-rounding",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "rounded",
+        "name": "round",
+        "parameters": [
+          {
+            "name": "value",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          },
+          {
+            "name": "quantum",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          },
+          {
+            "name": "mode",
+            "type": {
+              "args": [],
+              "name": "Text"
+            }
+          }
+        ],
+        "result": {
+          "args": [],
+          "name": "Ratio"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "value",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "quantum",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "mode",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "RATIO_ROUNDING_SELECTED"
+    ],
+    "discriminating_cases": [
+      "ratio-rounding-rr03-selected"
+    ],
+    "evidence_class": "synthetic",
+    "id": "spl:policy:r1:ratio-rounding",
+    "readable": {
+      "locator": "cases/numeric-precision/policy.md",
+      "sha256": "2f9459ee9acea59428fa76092e94aa307c3077dbc426042ccb62e00194e59b34"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/numeric-precision/ratio-rounding.spl",
+    "sha256": "74ed505c3eac02915eeb4af3ccc19332f082ed3c1be091bae17e9813c6a9aea4"
+  },
+  "state": []
+}
