@@ -861,6 +861,28 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/linked-opaque-kind-20261123-b/verification.json"
       ],
       "basis": "Finite explicit conversion+owner/interface/state guarantees;931 candidate regression and46 main checks; historical replay records retain actual dated implementation pins."
+    },
+    "mixed_claims": {
+      "sources": [
+        "cases/mixed-waterfall/README.md",
+        "cases/mixed-waterfall/policy.md",
+        "cases/mixed-waterfall/mixed-claims.spl",
+        "cases/mixed-waterfall/claim-registry.spl",
+        "cases/mixed-waterfall/claim-period.spl"
+      ],
+      "controls": [
+        "oracles/mixed_claims.py",
+        "Tests/test_mixed_claim_oracle.py",
+        "Tests/test_mixed_claim_modules.py"
+      ],
+      "records": [
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-checks-1715f26d\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-date-max-957cdbb4\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\line-ending-equivalence.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\final-audit.json"
+      ],
+      "basis": "Selected four-kind capital/advance/fee/approved-correction method accepted through composite source-stable cohorts:51 methods on physical/2,49 Date-max follow-up methods on/3, and final LF all-kind actual carry/preview/tamper acceptance. Exact parsed non-span AST equality qualifies the sole CRLF-to-LF source change. No all-final-source51-method rerun, full-bound Cartesian capacity, FX or current nonempty claim-cash settlement support is claimed."
     }
   },
   "variants": [
@@ -2080,21 +2102,23 @@
       "name": "Reusable mixed capital/advance/correction waterfall",
       "kind": "recovery_method",
       "requiredness": "accepted_c1_variant",
-      "status": "partial",
+      "status": "qualified",
       "requirements": [
         "C07"
       ],
       "discriminator": "Claim-purpose, priority/pro-rata, excess and actual successor identities must remain separate.",
-      "evidence_groups": [],
+      "evidence_groups": [
+        "mixed_claims"
+      ],
       "execution": {
-        "source": "partial",
-        "canonical": "partial",
-        "native_ir": "partial",
-        "native_emitted": "partial",
-        "python_emitted": "not_mapped_here",
-        "independent_controls": "partial",
-        "boundary_invalid_controls": "partial",
-        "native_audit": "pending",
+        "source": "executed_selected_bounded_source",
+        "canonical": "actual_completed_loader_validated_bundles",
+        "native_ir": "composite_51_then49_then_final_LF_native_carry_acceptance",
+        "native_emitted": "actual_financial_and_state_controls_in_named_cohorts",
+        "python_emitted": "separate_generator_controls_on_native_comparison_cases",
+        "independent_controls": "22_frozen_original_fact_oracle_methods",
+        "boundary_invalid_controls": "explicit_priority_pro_rata_excess_empty_zero_scope_population_order_unicode_date_max_and_state_controls",
+        "native_audit": "complete_native_ir_traces_retained_no_general_path_coverage",
         "emitted_target_decisions": "not_established_by_value_agreement"
       },
       "review": {
@@ -2102,7 +2126,7 @@
         "policy": "explicit_bounded_selection",
         "professional_approval": "not_recorded"
       },
-      "remaining_obligation": "Implement/map the finite mixed-kind money-changing composition. AO covers two authorized recovery kinds, not every capital/advance/fee combination.",
+      "remaining_obligation": "Selected bounded mixed-kind method accepted with explicit composite evidence. No registry amendments/new claims, nonempty current cash settlements, all-bound Cartesian publication capacity, FX or whole-compiler proof. Broader family witness recensus remains separate.",
       "related_variants": [
         "C13.OFFSET_CLAWBACK_FIRST",
         "C13.OFFSET_OTHER_FIRST"

@@ -113,7 +113,7 @@
       "name": "Recoupment and waterfalls",
       "current_native": "P",
       "current_canonical": "P",
-      "implemented_and_remaining": "[Waterfall checks](../../Tests/test_waterfall.py) execute priority 100/20 versus pro rata 60/60, fees/costs, excess residual and actual serialized two-period capital-claim carry. Pooled participant advances remain a separate registered method. A reusable mixed-claim-kind waterfall and competing offset priorities are not established by those separate cases.",
+      "implemented_and_remaining": "Selected reusable capital/advance/fee/approved-correction waterfall now executes priority and exact pro-rata policies, competing fee/correction priority, excess and actual adjacent native state. Fee-first120 applies25/20/75/0; next90 applies0/0/25/65 and leaves advance35. Historical paid80 remains80. Separate capital and pooled-advance witnesses retain their scope; no unbounded claim registry, amendment, nonempty current cash-settlement or mixed-currency support is inferred.",
       "work_items": [
         "B-C05-ORDER",
         "B-C07-MIXED"
@@ -547,7 +547,7 @@
         "F30"
       ],
       "work_class": "method",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Register finite capital/advance/approved-correction claim purposes with explicit priority/pro-rata policy.",
@@ -555,14 +555,24 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Independent oracle frozen:22 isolated methods pass with exact four-kind controls and actual serialized120?90 carry25/20/75/0 then0/0/25/65, advance35; historical paid80 unchanged. Separate source author still required; no compiler/native evidence.",
+      "active_scope": "Selected four-kind capital/advance/fee/approved-correction method accepted through composite source-stable cohorts:51 methods on physical/2,49 Date-max follow-up methods on/3, and final LF all-kind actual carry/preview/tamper acceptance. Exact parsed non-span AST equality qualifies the sole CRLF-to-LF source change. No all-final-source51-method rerun, full-bound Cartesian capacity, FX or current nonempty claim-cash settlement support is claimed.",
       "evidence": [
         "oracles/mixed_claims.py",
         "cases/mixed-waterfall/neutral.json",
         "cases/mixed-waterfall/policy.md",
         "docs/spl/mixed-waterfall-design.md",
         "Tests/test_mixed_claim_oracle.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/mixed-claim-oracle-20261123-bdab324e/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/mixed-claim-oracle-20261123-bdab324e/verification.json",
+        "cases/mixed-waterfall/README.md",
+        "cases/mixed-waterfall/mixed-claims.spl",
+        "cases/mixed-waterfall/claim-registry.spl",
+        "cases/mixed-waterfall/claim-period.spl",
+        "Tests/test_mixed_claim_modules.py",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-checks-1715f26d\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-date-max-957cdbb4\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\line-ending-equivalence.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\final-audit.json"
       ]
     },
     {
@@ -3967,10 +3977,10 @@
   ],
   "progress_as_of": "2026-11-23",
   "status_counts": {
-    "complete": 27,
+    "complete": 28,
     "ready": 20,
-    "in_progress": 7,
     "partial": 5,
+    "in_progress": 6,
     "dependency_blocked": 2,
     "gated": 1,
     "deferred": 7,

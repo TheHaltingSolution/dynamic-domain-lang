@@ -1751,6 +1751,86 @@
         "Historical0.4.3 and v1 source/IR/state replays have separately dated pins;931 candidate and46 main checks are not a full latest-corpus release.",
         "No emitted-target decision coverage or whole-compiler proof."
       ]
+    },
+    {
+      "id": "mixed-original-claims",
+      "requirements": [
+        "C07",
+        "Q16",
+        "F30"
+      ],
+      "description": "Selected original capital/advance/fee/correction waterfall with competing priorities and exact pro-rata applications.",
+      "status": "witnessed",
+      "witnesses": [
+        {
+          "test": "Tests.test_mixed_claim_modules.MixedClaimModuleTests.test_native_actual_all_kind_two_period_carry",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state",
+            "audit"
+          ],
+          "inputs": [
+            "cases/mixed-waterfall/neutral.json",
+            "cases/mixed-waterfall/policy.md",
+            "cases/mixed-waterfall/mixed-claims.spl"
+          ],
+          "property": "Actual original-state carry120 then90, preview and typed-registry tamper retain paid80 and leave advance35.",
+          "oracle": "Independent oracles/mixed_claims.py starts from original funding, earning basis, fee and correction facts; implementation adapter does not import it."
+        },
+        {
+          "test": "Tests.test_mixed_claim_modules.MixedClaimModuleTests.test_native_fee_correction_priority_and_exact_prorata",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state",
+            "audit"
+          ],
+          "inputs": [
+            "cases/mixed-waterfall/neutral.json",
+            "cases/mixed-waterfall/policy.md",
+            "cases/mixed-waterfall/mixed-claims.spl"
+          ],
+          "property": "Fee-first versus correction-first at capacity30 and exact pro-rata eligible balances, with distinct original sources.",
+          "oracle": "Independent oracles/mixed_claims.py starts from original funding, earning basis, fee and correction facts; implementation adapter does not import it."
+        },
+        {
+          "test": "Tests.test_mixed_claim_modules.MixedClaimModuleTests.test_native_maximum_future_eligibility_and_utc_day_transport",
+          "stages": [
+            "parser",
+            "checker",
+            "reference",
+            "native_ir",
+            "native_emitted",
+            "python_emitted",
+            "canonical",
+            "state",
+            "audit"
+          ],
+          "inputs": [
+            "cases/mixed-waterfall/neutral.json",
+            "cases/mixed-waterfall/policy.md",
+            "cases/mixed-waterfall/mixed-claims.spl"
+          ],
+          "property": "Future eligibility9999-12-31 remains prospective and funding UTC-day transport avoids year10000 construction.",
+          "oracle": "Independent oracles/mixed_claims.py starts from original funding, earning basis, fee and correction facts; implementation adapter does not import it."
+        }
+      ],
+      "limitations": [
+        "Selected four-kind capital/advance/fee/approved-correction method accepted through composite source-stable cohorts:51 methods on physical/2,49 Date-max follow-up methods on/3, and final LF all-kind actual carry/preview/tamper acceptance. Exact parsed non-span AST equality qualifies the sole CRLF-to-LF source change. No all-final-source51-method rerun, full-bound Cartesian capacity, FX or current nonempty claim-cash settlement support is claimed.",
+        "State/transport limits are explicit finite admission bounds, not simultaneous native capacity guarantees.",
+        "Native IR audit observations do not establish emitted-target decision coverage."
+      ]
     }
   ]
 }

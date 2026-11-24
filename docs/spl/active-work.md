@@ -310,3 +310,19 @@ generic allocation cardinality, sourced reserves/gates, replay and schema/transp
 diagnostics/reporting variants. The backlog records27 complete items; task
 counts do not measure language coverage. Whole-compiler proof, professional
 approval and external custody remain separately scoped obligations.
+
+## Accepted mixed-claim waterfall
+
+The selected four-kind method is accepted with composite evidence:51 methods on
+physical profile/2,49 Date-max follow-up methods on/3, and a final LF native
+all-kind actual two-period carry/preview/tamper check (20 successful Lean calls,
+149.884955s). Only the sole CRLF-to-LF source normalization separated the last
+two freezes; parsed non-span ASTs are exactly equal. This is not a claim that
+all51 methods reran on final bytes. The three original evidence directories and
+final transitive-pin/loader audit are linked in the [case README](../../cases/mixed-waterfall/README.md).
+Fee-first120 applies25/20/75/0; next90 applies0/0/25/65, leaving advance35,
+while historical paid80 remains80. Original actual state and predecessor bundles
+remain unchanged; preview exposes no closing state. Main98-job build and both
+smokes pass after this source-only integration. The backlog now has28 complete
+items; the bounded matrix39 rows/35 witnessed/four gaps/64 selectors is an
+inventory, not a combined64-selector campaign or a complete project release.
