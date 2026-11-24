@@ -1916,7 +1916,7 @@
         "F04"
       ],
       "work_class": "method",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "c1_required",
       "acceptance": [
         "Register a numeric policy separating ratio quantum .0001 from USD quantum .01: ratio .12345 gives .1234 at half-even versus .1235 half-away; a monetary quantum is invalid for ratio precision.",
@@ -1924,7 +1924,16 @@
         "Exercise signed ties, all supported modes, zero/invalid quantum, wrong dimension and canonical policy changes with independent controls."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Independent30-method exact original-basis oracle frozen:ratio.12345 precision.0001 differs half_even/half_away, moneyhalfcent row/aggregate bridges andall5 signedmodes. Six fullcontrols independently rechecked; suppliedpolicycontent pin only,no externalrevisionhistory/authenticity claim. Separate SPL/source/canonical/native author stillrequired; no compiler/native credit.",
+      "evidence": [
+        "oracles/numeric_precision.py",
+        "cases/numeric-precision/neutral.json",
+        "cases/numeric-precision/policy.md",
+        "Tests/test_numeric_precision_oracle.py",
+        "docs/spl/numeric-precision-design.md",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\numeric-precision-oracle-20261123-2c005540\\verification.json"
+      ]
     },
     {
       "id": "B-INTEREST-METHOD",
@@ -4017,9 +4026,9 @@
   "progress_as_of": "2026-11-23",
   "status_counts": {
     "complete": 29,
-    "ready": 18,
+    "ready": 17,
     "partial": 5,
-    "in_progress": 7,
+    "in_progress": 8,
     "dependency_blocked": 2,
     "gated": 1,
     "deferred": 7,

@@ -1,0 +1,640 @@
+{
+  "schema_version": "numeric-precision-casepack/1",
+  "evidence_class": "research_assumption",
+  "scenarios": {
+    "ratio_half_even": {
+      "schema_version": "numeric-precision-neutral/1",
+      "case_id": "ratio_half_even",
+      "scope": {
+        "agreement_id": "synthetic-numeric-agreement",
+        "participant_id": "participant",
+        "pool_id": "numeric-pool",
+        "asset_id": "synthetic-picture",
+        "currency": "USD"
+      },
+      "policy": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "1",
+        "evidence_class": "research_assumption",
+        "ratio_expression_id": "original-ratio-expression",
+        "ratio_expression_unit": "percentage",
+        "ratio_expressed_decimal_places": 2,
+        "ratio_quantum": {
+          "dimension": "Ratio",
+          "value": "0.0001"
+        },
+        "ratio_mode": "half_even",
+        "ratio_point": "before_monetary_application",
+        "money_quantum": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.01"
+        },
+        "money_mode": "half_even",
+        "money_point": "aggregate",
+        "bridge": "selected_total_minus_sum_rounded_detail",
+        "arithmetic": "exact_rational_no_implicit_rounding"
+      },
+      "policy_ref": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "1",
+        "sha256": "f22c705aa488d18692ab6b2f6300c14340ba5cfa5d41cdc898b7d9e0f1eb88db"
+      },
+      "ratio_expression": {
+        "id": "original-ratio-expression",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "original_ref": "original-terms#expressed-ratio",
+        "source_ref": "supplied-synthetic-ratio-policy",
+        "expressed_unit": "percentage",
+        "expressed_value": "12.345"
+      },
+      "lines": [
+        {
+          "id": "line-1",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-1",
+          "source_ref": "original-monetary-basis-1",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "10000"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        }
+      ],
+      "population": {
+        "id": "complete-original-basis-population",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "source_ref": "supplied-complete-basis-register",
+        "complete": true,
+        "row_ids": [
+          "line-1"
+        ],
+        "basis_total": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "10000"
+        }
+      }
+    },
+    "ratio_half_away": {
+      "schema_version": "numeric-precision-neutral/1",
+      "case_id": "ratio_half_away",
+      "scope": {
+        "agreement_id": "synthetic-numeric-agreement",
+        "participant_id": "participant",
+        "pool_id": "numeric-pool",
+        "asset_id": "synthetic-picture",
+        "currency": "USD"
+      },
+      "policy": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "2",
+        "evidence_class": "research_assumption",
+        "ratio_expression_id": "original-ratio-expression",
+        "ratio_expression_unit": "percentage",
+        "ratio_expressed_decimal_places": 2,
+        "ratio_quantum": {
+          "dimension": "Ratio",
+          "value": "0.0001"
+        },
+        "ratio_mode": "half_away_from_zero",
+        "ratio_point": "before_monetary_application",
+        "money_quantum": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.01"
+        },
+        "money_mode": "half_even",
+        "money_point": "aggregate",
+        "bridge": "selected_total_minus_sum_rounded_detail",
+        "arithmetic": "exact_rational_no_implicit_rounding"
+      },
+      "policy_ref": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "2",
+        "sha256": "80eb76e0a98e74884eba3f88664750c3bd996a55d37ba28b8310146eda98140f"
+      },
+      "ratio_expression": {
+        "id": "original-ratio-expression",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "original_ref": "original-terms#expressed-ratio",
+        "source_ref": "supplied-synthetic-ratio-policy",
+        "expressed_unit": "percentage",
+        "expressed_value": "12.345"
+      },
+      "lines": [
+        {
+          "id": "line-1",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-1",
+          "source_ref": "original-monetary-basis-1",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "10000"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        }
+      ],
+      "population": {
+        "id": "complete-original-basis-population",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "source_ref": "supplied-complete-basis-register",
+        "complete": true,
+        "row_ids": [
+          "line-1"
+        ],
+        "basis_total": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "10000"
+        }
+      }
+    },
+    "money_half_even_row": {
+      "schema_version": "numeric-precision-neutral/1",
+      "case_id": "money_half_even_row",
+      "scope": {
+        "agreement_id": "synthetic-numeric-agreement",
+        "participant_id": "participant",
+        "pool_id": "numeric-pool",
+        "asset_id": "synthetic-picture",
+        "currency": "USD"
+      },
+      "policy": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "3",
+        "evidence_class": "research_assumption",
+        "ratio_expression_id": "original-ratio-expression",
+        "ratio_expression_unit": "fraction",
+        "ratio_expressed_decimal_places": 4,
+        "ratio_quantum": {
+          "dimension": "Ratio",
+          "value": "0.0001"
+        },
+        "ratio_mode": "half_even",
+        "ratio_point": "before_monetary_application",
+        "money_quantum": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.01"
+        },
+        "money_mode": "half_even",
+        "money_point": "row",
+        "bridge": "selected_total_minus_sum_rounded_detail",
+        "arithmetic": "exact_rational_no_implicit_rounding"
+      },
+      "policy_ref": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "3",
+        "sha256": "54c2a39e491581fb55d53f03372c28a41239333dafbf2d4799608e8cc17983bc"
+      },
+      "ratio_expression": {
+        "id": "original-ratio-expression",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "original_ref": "original-terms#expressed-ratio",
+        "source_ref": "supplied-synthetic-ratio-policy",
+        "expressed_unit": "fraction",
+        "expressed_value": "0.5"
+      },
+      "lines": [
+        {
+          "id": "line-1",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-1",
+          "source_ref": "original-monetary-basis-1",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "0.01"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        },
+        {
+          "id": "line-2",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-2",
+          "source_ref": "original-monetary-basis-2",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "0.01"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        }
+      ],
+      "population": {
+        "id": "complete-original-basis-population",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "source_ref": "supplied-complete-basis-register",
+        "complete": true,
+        "row_ids": [
+          "line-1",
+          "line-2"
+        ],
+        "basis_total": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.02"
+        }
+      }
+    },
+    "money_half_even_aggregate": {
+      "schema_version": "numeric-precision-neutral/1",
+      "case_id": "money_half_even_aggregate",
+      "scope": {
+        "agreement_id": "synthetic-numeric-agreement",
+        "participant_id": "participant",
+        "pool_id": "numeric-pool",
+        "asset_id": "synthetic-picture",
+        "currency": "USD"
+      },
+      "policy": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "4",
+        "evidence_class": "research_assumption",
+        "ratio_expression_id": "original-ratio-expression",
+        "ratio_expression_unit": "fraction",
+        "ratio_expressed_decimal_places": 4,
+        "ratio_quantum": {
+          "dimension": "Ratio",
+          "value": "0.0001"
+        },
+        "ratio_mode": "half_even",
+        "ratio_point": "before_monetary_application",
+        "money_quantum": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.01"
+        },
+        "money_mode": "half_even",
+        "money_point": "aggregate",
+        "bridge": "selected_total_minus_sum_rounded_detail",
+        "arithmetic": "exact_rational_no_implicit_rounding"
+      },
+      "policy_ref": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "4",
+        "sha256": "b5c5a3ead4f2524982cfef99c479eeab9df463138de260ac6e73cbdb9c01b19f"
+      },
+      "ratio_expression": {
+        "id": "original-ratio-expression",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "original_ref": "original-terms#expressed-ratio",
+        "source_ref": "supplied-synthetic-ratio-policy",
+        "expressed_unit": "fraction",
+        "expressed_value": "0.5"
+      },
+      "lines": [
+        {
+          "id": "line-1",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-1",
+          "source_ref": "original-monetary-basis-1",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "0.01"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        },
+        {
+          "id": "line-2",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-2",
+          "source_ref": "original-monetary-basis-2",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "0.01"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        }
+      ],
+      "population": {
+        "id": "complete-original-basis-population",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "source_ref": "supplied-complete-basis-register",
+        "complete": true,
+        "row_ids": [
+          "line-1",
+          "line-2"
+        ],
+        "basis_total": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.02"
+        }
+      }
+    },
+    "money_half_away_row": {
+      "schema_version": "numeric-precision-neutral/1",
+      "case_id": "money_half_away_row",
+      "scope": {
+        "agreement_id": "synthetic-numeric-agreement",
+        "participant_id": "participant",
+        "pool_id": "numeric-pool",
+        "asset_id": "synthetic-picture",
+        "currency": "USD"
+      },
+      "policy": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "5",
+        "evidence_class": "research_assumption",
+        "ratio_expression_id": "original-ratio-expression",
+        "ratio_expression_unit": "fraction",
+        "ratio_expressed_decimal_places": 4,
+        "ratio_quantum": {
+          "dimension": "Ratio",
+          "value": "0.0001"
+        },
+        "ratio_mode": "half_even",
+        "ratio_point": "before_monetary_application",
+        "money_quantum": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.01"
+        },
+        "money_mode": "half_away_from_zero",
+        "money_point": "row",
+        "bridge": "selected_total_minus_sum_rounded_detail",
+        "arithmetic": "exact_rational_no_implicit_rounding"
+      },
+      "policy_ref": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "5",
+        "sha256": "0944e04f2965d5391c6eeff7be54a2a5162a060bab19331ce6a3d7c9095a0b46"
+      },
+      "ratio_expression": {
+        "id": "original-ratio-expression",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "original_ref": "original-terms#expressed-ratio",
+        "source_ref": "supplied-synthetic-ratio-policy",
+        "expressed_unit": "fraction",
+        "expressed_value": "0.5"
+      },
+      "lines": [
+        {
+          "id": "line-1",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-1",
+          "source_ref": "original-monetary-basis-1",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "0.01"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        },
+        {
+          "id": "line-2",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-2",
+          "source_ref": "original-monetary-basis-2",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "0.01"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        }
+      ],
+      "population": {
+        "id": "complete-original-basis-population",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "source_ref": "supplied-complete-basis-register",
+        "complete": true,
+        "row_ids": [
+          "line-1",
+          "line-2"
+        ],
+        "basis_total": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.02"
+        }
+      }
+    },
+    "money_half_away_aggregate": {
+      "schema_version": "numeric-precision-neutral/1",
+      "case_id": "money_half_away_aggregate",
+      "scope": {
+        "agreement_id": "synthetic-numeric-agreement",
+        "participant_id": "participant",
+        "pool_id": "numeric-pool",
+        "asset_id": "synthetic-picture",
+        "currency": "USD"
+      },
+      "policy": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "6",
+        "evidence_class": "research_assumption",
+        "ratio_expression_id": "original-ratio-expression",
+        "ratio_expression_unit": "fraction",
+        "ratio_expressed_decimal_places": 4,
+        "ratio_quantum": {
+          "dimension": "Ratio",
+          "value": "0.0001"
+        },
+        "ratio_mode": "half_even",
+        "ratio_point": "before_monetary_application",
+        "money_quantum": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.01"
+        },
+        "money_mode": "half_away_from_zero",
+        "money_point": "aggregate",
+        "bridge": "selected_total_minus_sum_rounded_detail",
+        "arithmetic": "exact_rational_no_implicit_rounding"
+      },
+      "policy_ref": {
+        "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+        "revision": "6",
+        "sha256": "02a76f60e30cbc5abc59989c2068ce2a09fb7941f6b58f574c0d24c2b5d49943"
+      },
+      "ratio_expression": {
+        "id": "original-ratio-expression",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "original_ref": "original-terms#expressed-ratio",
+        "source_ref": "supplied-synthetic-ratio-policy",
+        "expressed_unit": "fraction",
+        "expressed_value": "0.5"
+      },
+      "lines": [
+        {
+          "id": "line-1",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-1",
+          "source_ref": "original-monetary-basis-1",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "0.01"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        },
+        {
+          "id": "line-2",
+          "scope": {
+            "agreement_id": "synthetic-numeric-agreement",
+            "participant_id": "participant",
+            "pool_id": "numeric-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD"
+          },
+          "original_ref": "original-basis#line-2",
+          "source_ref": "original-monetary-basis-2",
+          "basis": {
+            "dimension": "Money",
+            "currency": "USD",
+            "value": "0.01"
+          },
+          "ratio_expression_id": "original-ratio-expression"
+        }
+      ],
+      "population": {
+        "id": "complete-original-basis-population",
+        "scope": {
+          "agreement_id": "synthetic-numeric-agreement",
+          "participant_id": "participant",
+          "pool_id": "numeric-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD"
+        },
+        "source_ref": "supplied-complete-basis-register",
+        "complete": true,
+        "row_ids": [
+          "line-1",
+          "line-2"
+        ],
+        "basis_total": {
+          "dimension": "Money",
+          "currency": "USD",
+          "value": "0.02"
+        }
+      }
+    }
+  }
+}

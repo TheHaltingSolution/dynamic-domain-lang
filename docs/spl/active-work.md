@@ -451,3 +451,17 @@ now29 complete items, matrix40rows/36witnessed/four gaps/66selectors (no new
 combined66-selector campaign). C02 finite family markedI; global compiler-path
 and target-decision coverage remains separately open. The0b91 full1158 report
 is also terminalPASS, not a full newer-corpus or helper-candidate release.
+
+## Independent numeric-precision controls
+
+The [numeric policy specification](numeric-precision-design.md) now has30
+independent exact-arithmetic methods and six full original-basis controls,
+with no source/native claim. Root matched all five archived source pins and
+recomputed all six controls:ratio precision selects1234/1235 onbasis10000.
+Half-even detail totals0 and aggregate.01 needs bridge+.01; half-away detail
+totals.02 and aggregate.01 needs bridge-.01. All statements are unissued,
+with no assumed paidzero.
+Policyhash checks supplied document correspondence, not external registration
+or versionhistory; repinned same-revision documents are not falsely rejected.
+Evidence:numeric-precision-oracle-20261123-2c005540. The backlog now has29
+complete/8in-progress/17ready items; these are task counts, not coverage.
