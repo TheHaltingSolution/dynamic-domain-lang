@@ -38,10 +38,26 @@ language features. Future native evidence must identify its frozen files,
 effective backends, complete publication loader checks and original controls.
 
 The read-only peer review identified the baseline money/quantity coincidence;
-the asymmetric controls above address it for both unit policies. The final
-oracle cohort has22 methods, with zero failures/errors/skips and unchanged
-frozen sources. Evidence lives outside Git under
+the asymmetric controls above address it for both unit policies. The first
+frozen oracle cohort has22 methods, with zero failures/errors/skips and unchanged
+sources. Its evidence lives outside Git under
 `C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/participation-base-oracle-20261123/frozen-d/verification.json`.
 Earlier development and reviewed snapshots retain their own results, including
 the initial decimal-lexer failure. No SPL implementation is accepted by this
 oracle record.
+
+Source authoring then exposed two temporal admission gaps. The independent
+oracle had not checked normalized UTC year bounds and unnecessarily rejected
+lowercase markers supported by the existing Instant representation. The revised
+25-method cohort corrects those boundaries without changing financial formulas
+or goldens. It also expressly preserves RFC3339's `-00:00` distinction: UTC is
+known and local offset is unknown, rather than an unknown UTC value. The native
+lexical codec's rejection of that spelling does not require narrowing these
+UTC-only economics; reversible transport retains the original label and binds
+the known UTC value. No local-zone inference or compiler change is involved.
+
+Revised immutable evidence is
+`participation-base-oracle-20261123/timestamp-reviewed-e/verification.json` under
+the same external artifacts root. The earlier22-method archive remains dated
+evidence; it is not retrospectively repinned or claimed to cover these new
+boundaries. The neutral original fixture remains unchanged.

@@ -162,6 +162,37 @@ class ParticipationBaseOracleTests(unittest.TestCase):
         for value in ("2026-02-30T00:00:00Z","2026-01-11T24:00:00Z","2026-01-11T00:00:60Z","2026-01-11T00:00:00+24:00"):
             data=fixture();data["receipts"][0]["observed_at"]=value;self.reject(data,"BASE_INSTANT")
 
+    def test_lowercase_timestamp_markers_preserve_known_instants(self):
+        data=fixture();expected=participation_bases(data)
+        data["cutoff"]=data["cutoff"].lower()
+        for holder in [data["terms"],*data["populations"],*data["receipts"],*data["deductions"],*data["usage"]]:
+            holder["observed_at"]=holder["observed_at"].lower()
+        before=deepcopy(data)
+        self.assertEqual(participation_bases(data),expected)
+        self.assertEqual(data,before)
+
+    def test_negative_zero_offset_keeps_known_UTC_and_original_label(self):
+        data=fixture();expected=participation_bases(data)
+        data["cutoff"]=data["cutoff"][:-1]+"-00:00"
+        for holder in [data["terms"],*data["populations"],*data["receipts"],*data["deductions"],*data["usage"]]:
+            holder["observed_at"]=holder["observed_at"][:-1]+"-00:00"
+        before=deepcopy(data)
+        self.assertEqual(participation_bases(data),expected)
+        self.assertEqual(data,before)
+        data["terms"]["observed_at"]="2025-12-01T00:00:00"
+        self.reject(data,"BASE_INSTANT")
+
+    def test_normalized_UTC_must_stay_in_Gregorian_year_domain(self):
+        data=json.loads(json.dumps(fixture()).replace("2025-","0001-").replace("2026-","0001-").replace("2027-","0002-"))
+        data["terms"]["observed_at"]="0001-01-01T00:00:00Z"
+        self.assertEqual(participation_bases(data)["earned"],25)
+        data["terms"]["observed_at"]="0001-01-01T00:00:00+23:59"
+        self.reject(data,"BASE_INSTANT")
+        data=fixture();data["cutoff"]="9999-12-31T23:59:59.999999999Z"
+        self.assertEqual(participation_bases(data)["earned"],25)
+        data["cutoff"]="9999-12-31T23:59:59-00:01"
+        self.reject(data,"BASE_INSTANT")
+
     def test_original_bound_32_and_33(self):
         data=fixture()
         rows=[]

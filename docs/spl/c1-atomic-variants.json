@@ -895,9 +895,10 @@
         "Tests/test_participation_base_oracle.py"
       ],
       "records": [
-        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json"
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\timestamp-reviewed-e\\verification.json"
       ],
-      "basis": "Independent original-fact policy/fixture/oracle frozen:22 methods pass, including gross25/net20, per-unit150/separate-share75, asymmetric money/quantity controls, exact fractional and numeric-offset timestamps, zero/empty/invalid/scope/population cases. No new source/canonical/native execution yet; a different source author follows."
+      "basis": "Independent original-fact controls now25 methods after UTC-year-bound/lowercase-marker review; all original22 records remain dated. RFC3339 negativezero retains knownUTC with unknownlocaloffset metadata, not guessed localtime. Separate author froze41 reference/oracle methods and8 complete reference bundles at participation-bases-reference-5d23c27f. Native/source/backend qualification remains open; genuine Money/Quantity/Ratio/Rate alternatives stay distinct."
     },
     "dependent_replay_oracle": {
       "sources": [
@@ -1068,7 +1069,7 @@
         "native_ir": "reported_selected_witness",
         "native_emitted": "reported_selected_witness",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "22_frozen_original_fact_oracle_methods_no_new_native_credit",
+        "independent_controls": "25_frozen_original_fact_methods_with_explicit_temporal_domain_and_preserved_source_labels_no_new_native_credit",
         "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
         "native_audit": "selected_native_ir_observations_only",
         "emitted_target_decisions": "not_established_by_value_agreement"
@@ -1100,7 +1101,7 @@
         "native_ir": "partial",
         "native_emitted": "partial",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "22_frozen_original_fact_oracle_methods_no_new_native_credit",
+        "independent_controls": "25_frozen_original_fact_methods_with_explicit_temporal_domain_and_preserved_source_labels_no_new_native_credit",
         "boundary_invalid_controls": "partial",
         "native_audit": "pending",
         "emitted_target_decisions": "not_established_by_value_agreement"
@@ -1132,7 +1133,7 @@
         "native_ir": "partial",
         "native_emitted": "partial",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "22_frozen_original_fact_oracle_methods_no_new_native_credit",
+        "independent_controls": "25_frozen_original_fact_methods_with_explicit_temporal_domain_and_preserved_source_labels_no_new_native_credit",
         "boundary_invalid_controls": "partial",
         "native_audit": "pending",
         "emitted_target_decisions": "not_established_by_value_agreement"
@@ -1165,7 +1166,7 @@
         "native_ir": "reported_selected_witness",
         "native_emitted": "reported_selected_witness",
         "python_emitted": "not_mapped_here",
-        "independent_controls": "22_frozen_original_fact_oracle_methods_no_new_native_credit",
+        "independent_controls": "25_frozen_original_fact_methods_with_explicit_temporal_domain_and_preserved_source_labels_no_new_native_credit",
         "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
         "native_audit": "selected_native_ir_observations_only",
         "emitted_target_decisions": "not_established_by_value_agreement"

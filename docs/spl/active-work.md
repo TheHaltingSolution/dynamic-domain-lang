@@ -1,8 +1,41 @@
-# Live C1 work after checkpoint 9f9cf31
+# Live C1 work
 
 23 November 2026. This supplements the committed
 [checkpoint](completion-checkpoint.md). The project goal remains active; this is
 not a complete release. No push or pull request has been made.
+
+## Current continuation
+
+Main continues froma8d3440 with corea0e5/c287/a7e unchanged. The isolated full
+regression remains exactly0b91bc7 (1158 methods, PID5464/exec98279); confirm its
+live handle and terminal report before reporting an outcome. Later independent
+oracles are separately frozen, not retroactively included in that snapshot.
+
+- Current C02 specification has25 independent controls; UTC-year bounds and
+  lowercase markers correct the earlier22-method admission gaps. RFC3339
+  negativezero keeps knownUTC while original unknown-local-offset meaning is
+  retained. Separate source/reference freeze41+8 bundles is native-pending.
+- C13 independent35-method controls and original issued/paid/unissued bridges
+  are committed; its separate source author is now implementing replay.
+- Isolated compact commits2ee01e6/31caf5f complete100/1000 canonical publication;
+  receipt0b36534 passes24 methods and recovers the actualoldQ2 cells at37.7MB.
+  Root independently verified the receipt/cells and unchanged old marker.
+- Import-only4b586441 removes full Lean from the emitted target closure
+  (2383 to708 modules), keeps every definition body and emitted source unchanged,
+  passes105 focused checks/9 old IR exports/actual old Download carry. Exact
+  C10 target now compiles/runs under1GiB, but C11 still exceeds that cap.
+- Separate generic helper extraction is under qualification: first C11 target
+  compiles at783,867,904B and runs with full IR/reference value equality. It is
+  not integrated or a native contract-close acceptance. Eight generated Demos
+  must be regenerated from unchanged financial sources and freshness-checked.
+
+Work ownership: trace handles isolated C10 public compact API/native cohort;
+source handles isolated generic emitter memory reduction; matrix handles C13
+source after freezing C02/C11. Main core stays stable until coherent promotion.
+Recent details below retain their exact dated scopes. Start with
+[C13 controls](#frozen-independent-dependent-period-correction-controls),
+[compact limits](#isolated-compact-publication-and-current-c10-limits) and
+[basis controls](participation-base-design.md). The project remains incomplete.
 
 ## Owner conversation
 

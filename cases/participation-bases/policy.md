@@ -38,6 +38,16 @@ fractions and supplied numeric offsets. No float or microsecond rounding is
 used. Original timestamp strings and Unicode spellings remain intact. Calendar
 period boundaries denote UTC midnight; leap-second spellings require a separate
 time policy and reject here.
+Normalized UTC values must remain in Gregorian years0001 through9999; a local
+date inside that range cannot excuse an offset that crosses its boundary.
+Uppercase and lowercase T/Z marker spellings are accepted. Under
+[RFC3339 sections4.3 and5.6](https://www.rfc-editor.org/rfc/rfc3339.html#section-4.3),
+`-00:00` retains a known UTC value while marking the local offset unknown.
+This UTC-only policy accepts that value and preserves its original label/raw
+source. A mechanical native transport may bind the known UTC value in canonical
+notation; it must retain the unknown-local-offset meaning and may not invent a
+local calendar or zone. An unqualified local timestamp without an offset is
+unknown and rejects.
 
 Each table admits at most32 original rows. Nonnegative fractional measures and
 zero are valid. Costs exceeding gross require a separately selected loss policy

@@ -283,14 +283,16 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Independent original-fact policy/fixture/oracle frozen:22 methods pass, including gross25/net20, per-unit150/separate-share75, asymmetric money/quantity controls, exact fractional and numeric-offset timestamps, zero/empty/invalid/scope/population cases. No new source/canonical/native execution yet; a different source author follows.",
+      "active_scope": "Independent original-fact controls now25 methods after UTC-year-bound/lowercase-marker review; all original22 records remain dated. RFC3339 negativezero retains knownUTC with unknownlocaloffset metadata, not guessed localtime. Separate author froze41 reference/oracle methods and8 complete reference bundles at participation-bases-reference-5d23c27f. Native/emitted/native-publication qualification remains open; genuine Money/Quantity/Ratio/Rate alternatives stay distinct.",
       "evidence": [
         "oracles/participation_bases.py",
         "Tests/test_participation_base_oracle.py",
         "cases/participation-bases/neutral.json",
         "cases/participation-bases/policy.md",
         "docs/spl/participation-base-design.md",
-        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json"
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\timestamp-reviewed-e\\verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/participation-bases-reference-5d23c27f/verification.json"
       ]
     },
     {

@@ -48,7 +48,7 @@ def day(value):
 
 def instant(value):
     require(type(value) is str, "BASE_INSTANT")
-    match = re.fullmatch(r"([0-9]{4}-[0-9]{2}-[0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})", value)
+    match = re.fullmatch(r"([0-9]{4}-[0-9]{2}-[0-9]{2})[Tt]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})", value)
     require(match is not None, "BASE_INSTANT")
     try:
         calendar = day(match[1])
@@ -57,12 +57,19 @@ def instant(value):
     hour, minute, second = (int(match[i]) for i in (2,3,4))
     require(hour < 24 and minute < 60 and second < 60, "BASE_INSTANT")
     offset = 0
-    if match[6] != "Z":
+    if match[6].upper() != "Z":
         oh, om = int(match[6][1:3]), int(match[6][4:6])
         require(oh < 24 and om < 60, "BASE_INSTANT")
         offset = (oh * 3600 + om * 60) * (1 if match[6][0] == "+" else -1)
-    fraction = Fraction(match[5]) if match[5] else Fraction()
-    return Fraction(calendar.toordinal() * 86400 + hour * 3600 + minute * 60 + second - offset) + fraction
+    try:
+        fraction = Fraction(match[5]) if match[5] else Fraction()
+    except ValueError:
+        raise ParticipationBaseError("BASE_INSTANT") from None
+    result = Fraction(calendar.toordinal() * 86400 + hour * 3600 + minute * 60 + second - offset) + fraction
+    require(86400 <= result < (date.max.toordinal() + 1) * 86400, "BASE_INSTANT")
+    # RFC3339 -00:00 preserves a known UTC value with unknown local offset.
+    # This calculation uses UTC only; callers retain the original source label.
+    return result
 
 
 def participation_bases(data):
