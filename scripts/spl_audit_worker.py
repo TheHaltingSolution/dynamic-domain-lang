@@ -13,6 +13,9 @@ def main():
     command, *args = sys.argv[1:]
     if command == "validate" and len(args) == 1:
         result = read_compact(args[0])
+    elif command == "v1-carry" and len(args) == 1:
+        from spl_compiler.v1_carry import _load_v1_inline
+        result = _load_v1_inline(args[0])
     elif command == "load" and len(args) == 1:
         from spl_compiler.audited_artifacts import _load_completed_inline
         result = _load_completed_inline(args[0])
@@ -74,7 +77,10 @@ def main():
                 origins[name] = {"path": str(path), "sha256": sha256(path.read_bytes()).hexdigest()}
     print(json.dumps({"format": "spl-audit-worker-origin/1", "root": str(ROOT),
                       "build_root": str(lean_tools.ROOT), "modules": origins}, sort_keys=True), file=sys.stderr)
-    print(canonical_json(result))
+    if command == "v1-carry":
+        print(json.dumps(result, ensure_ascii=False, sort_keys=True, allow_nan=False, separators=(",", ":")))
+    else:
+        print(canonical_json(result))
 
 
 if __name__ == "__main__":

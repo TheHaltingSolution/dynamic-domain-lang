@@ -101,3 +101,43 @@ probes are not frozen acceptance or a 1,000-record canonical completion claim.
 The old 20ea 33-run protocol remains dated evidence of a reconstruction failure.
 The known 10,000-record graph-generation/expanded-data failures remain separate;
 this work does not retry them or claim publication changes solve their limits.
+
+## Frozen canonical gates
+
+Candidate `2ee01e6` passes the frozen67-method helper/transport/runner cohort
+in147.957607 process seconds, with679 source and99 compiled-artifact pins
+unchanged. Actual native old-array/raw-node/full-wire and optional historical
+canonical-view equality, unit/import/unused-owner contexts, failure/preview,
+state carry, tamper and interruption controls are included. This is finite
+acceptance, not a general compiler or authentication proof.
+
+The first100-record gate stopped before native execution because its new
+qualification harness passed canonical state aliases to an independent control
+expecting lexical opening names. Failed `compact-canonical-100-20261123-a`
+remains retained. Harness/test-only commit `31caf5f` adds the same mechanical
+source-declared alias mapping as the existing benchmark and an original-fact
+projection regression; the production candidate did not change.
+
+Fresh `compact-canonical-{100,1000}-20261123-b` both complete actual opt-in
+canonical publication and bounded validated loading. Their full independent
+title/pool/state/original-lineage controls and exact baseline native wire/logical
+hashes match, with unchanged dependency pins. The1000 result is269,498 bytes;
+its64,480 nodes,43,503,437 wire bytes and776,599,360 logical bytes are retained
+without array reconstruction. Earned15,922.326, payable15,672.326 and actual
+advance250→0 agree with the independent original-fact oracle.
+
+The1000 audit/reader/target/publication children respectively observe
+9.436637/5.341661/0.047558/5.850828 seconds and peak
+101,650,432/73,601,024/33,816,576/87,732,224 bytes. A retained additional
+validated load observes5.601570 seconds/87,748,608 bytes. End-to-end is
+40.729368 seconds, including several complete validations and cached compilation.
+Parent preparation and child scopes differ; no whole-parent256 MiB claim applies.
+Concurrent main regression/source load was disclosed. These are single-sample
+completion/resource observations, not p95, causal speedup or an SLA.
+
+Root independently revalidated the1000 owned JSON, complete graph, financial
+controls and all67 gate dependency pins in
+`compact-canonical-root-review-20261123-a`. The copied frozen C10 `/5` followup
+found separate old-array-reader and emitted-compilation limits; its new
+[v1 carry receipt](v1-carry-receipt.md) solves the bounded extraction only.
+C10's new native three-period/preview/full-cohort acceptance remains open.
