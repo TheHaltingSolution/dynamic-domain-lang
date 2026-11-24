@@ -71,17 +71,18 @@ has separate **d2491d0f/b98f5366/77a18c19** pins. Never repin old evidence to th
   digests and both compact-v2 semantic publication digests exclude it. The first
   root review's overbroad compact-digest assertion is recorded, not suppressed.
 
-### Active case and interface work
+### Further qualified candidates and active work
 
 - **C13 corrections:** five original files and economic source
   `fd9905e1f4ca542afd529fc22568ef48ca5632d5783f047f3bc80f77cf3c912f`
   stay immutable. Earlier 35-oracle/53-reference and 12 serialized bundles pass.
   The bounded native baseline passes all four paths (outstanding40, paid80),
   76.214567 seconds, no drift; native/Python Cgen peaks720,474,112/708,521,984B.
-  Original 70-method campaign at `C:/spl-c13h`, PID31004/exec66185, remains active
-  with known harness failures: Windows method-name paths and an intrinsic
-  Agreement scope rejection wrongly expected to reach native execution. Preserve
-  that run unchanged. The separate `dependent-replay-native-followup-20261124-a`
+  Original 70-method campaign at `C:/spl-c13h` ended **FAILED**: 67 methods pass,
+  three harness failures and one archive cleanup error, no source/compiled drift.
+  Two output paths exceeded Windows limits; an intrinsic Agreement rejection
+  correctly occurred before native execution. PID31004/exec66185 have ended.
+  The separate `dependent-replay-native-followup-20261124-a`
   finished **FAILED**, 23 methods: all 22 non-lifecycle methods passed, including
   eight actual first/successor publications across four scenarios/routes. Five
   lifecycle assertions incorrectly expected the child error text from a public
@@ -91,44 +92,77 @@ has separate **d2491d0f/b98f5366/77a18c19** pins. Never repin old evidence to th
   Root independently confirmed that a coherent forged quantity boundary reaches
   the old preparer but still fails source REPLAY_OPENING_RECONCILIATION; see
   `c13-boundary-probe-20261124-a`.
-  **Final 24-method follow-up is active**, PID54392/exec9351, source `c230204`
-  on `C:/spl-c13f`, evidence `dependent-replay-native-final-20261124-a`. It adds
+  **Final 24-method follow-up passed** in 490.955163 test seconds (498.504635 total),
+  zero failures/errors/skips/source or compiled drift. PID54392/exec9351 ended.
+  Code `c230204` on `C:/spl-c13f`, evidence
+  `dependent-replay-native-final-20261124-a`, adds
   the mechanical boundary tie, correct canonical-versus-native scope credit,
   checks the public loader's wrapped rejection plus running marker/cause code,
   and uses relative ZIP retention. Financial/specification/descriptor/template
-  bytes are unchanged. The initial case commit is `ea71d0b`. Source whitespace
+  bytes are unchanged. The 2,284-entry ZIP is individually SHA-checked; root
+  independently bounded-reloaded all eight prior first/successor publications
+  plus the final dependent first/successor/preview, comparing complete original
+  monetary values, actual references and state. All 120 retained process records
+  pass; child peaks are compiler754,380,800B/runtime97,894,400B. Composite audit
+  and exact nine-file promotion manifest are in that evidence directory.
+  Case-only commits from c80: `ea71d0b`, `c230204`, `f263e04` (README only last).
+  No all-final-source 74-method cohort or main integration is claimed. Whitespace
   on 18 frozen SPL lines is explicitly preserved; other new files pass diff-check.
-  External read-only custody watcher PID29444/exec32455 keeps extended-path
-  copies while the older run is active; its per-file hashes alone do not prove
-  a coherent publication. Original failures remain recorded.
+  External custody watcher PID29444/exec32455 ended with 11,470 per-file copies;
+  those hashes alone are not whole-publication proof. The eleven publications
+  above passed their ordinary bounded loaders. Original failures stay recorded.
 - **C09 stages/caps/schedules:** independent five-file commit `bdcac46` passes
   37 controls and 16 checkpoints across six chains/10 actual JSON successors.
   Root rechecked all full results and archive pins: `reserve-stage-oracle-20261124-a`.
   A separate source author owns `C:/spl-c09s`, branch `feature/c09-reserve-stages`,
-  frozen prerequisites3355168 and implementation575a7e6. All 41 reference methods,
-  16 actual loaded checkpoints and six previews pass. Source SHA4d65893714b4ecc0fd51c453be05b8bf64a5ac880b25f6064e3db852a28a6d56.
+  final clean `01ac033`, immutable prerequisites3355168. Financial source stays
+  SHA4d65893714b4ecc0fd51c453be05b8bf64a5ac880b25f6064e3db852a28a6d56.
   First native and independent Python library/typed-driver baseline pass fixed
   guards; root freshly checks every original financial/state field and bounded
-  loader in `reserve-stage-native-root-review-20261124-a`. Larger native chains,
-  cap/tranche/time discriminators and stage-specific negatives are active under
-  short working `C:/c9n_a`; archive them externally when complete. Synthetic
+  loader in `reserve-stage-native-root-review-20261124-a`. Old phase qualifies
+  50 valid native/Python publications and 12 native-source negatives; its generic
+  history slot, explicit-null transport bug/correction and registration-race
+  failure remain pinned in `reserve-stage-checks-20261124-a`. Root required two
+  static descriptor/state purposes so the financial ledgers have distinct keys.
+  Final phase `reserve-stage-namespaces-20261124-b` passes all 45 reference methods,
+  22 new native/Python publications (16 checkpoints/10 successors/six previews),
+  nine explicitly pre-source namespace/custody blocks and 31 bounded reloads.
+  Both relative-entry archives are CRC/hash verified; exact net promotion is 13
+  new files, excluding the five prerequisites already on main. Final builder
+  SHA94a5de9c4b473a703082621e0ae53f7849278521a96208ec1e24b84ae0ecf3c0.
+  Separate canonical keys and defensive descriptor constraints prevent basis
+  results from being stored in the holdback slot. Root final review remains.
+  Synthetic
   unconditional release never establishes sourced Genius claim clearance.
-- **Dependency components:** trace owns new files only in `C:/spl-components-c80`;
-  17 Python/reference methods pass separately, native witness still pending.
+- **Dependency components:** clean `C:/spl-components-c80`, commits `18ea951`
+  then evidence-only `1a76a38`, adds ten new files. Frozen 44-method cohort passes
+  in 152.098009 seconds with no drift/skips; 734 source/102 compiled pins stay
+  fixed. `component-frozen-20261124-a` retains four reloaded native batch/
+  standalone archives and full original financial/state controls. All 123 process
+  outcomes are expected: 108 successes, 15 hostile-publication rejections, no
+  resource/time/output failures. Actual completed state carry remains unissued.
+  Its added-file fingerprints are f0107fa9/0d26ec8e/77a, separate from c80.
   Trusted registered footprint completeness is an explicit assumption tied to
   module/source/policy/closure pins. Unknown footprints join conservatively;
   shared state joins across period boundaries. Connected distinct roots require
   one coordinated atomic root; the planner cannot manufacture multi-root atomic
   transactions. Independent component outcomes retain their own authorities.
-- **Ratio precision/rounding:** five immutable files at165212e pass 30 controls;
-  no SPL/native credit. Source agent now implements the approved finite plan:
+- **Ratio precision/rounding:** five immutable files at165212e pass 30 controls.
+  Source/reference freeze has 44 passing methods; 21 owned new files and 20
+  transitive locator pins. A complete native/independent embedded Python baseline
+  passes, including reloaded ZIP publication, at compiler365,961,216B peak.
+  The broader 57-method cohort is ACTIVE, PID54864/exec62357, evidence
+  `numeric-precision-full-20261124-a`; no broad terminal acceptance yet.
+  Separate Ratio/Money helpers and a stateless root implement the approved plan:
   separate Ratio/Money helpers and a stateless root derive percent normalization,
   quanta, all five modes, row/aggregate controls and signed bridges in SPL.
   C02 named basis methods remain accepted at77fcbb1
   (main43 plus separate bounded25-case composite); see the case README.
 
-Trace now handles component implementation; source handles numeric precision;
-reserve_source handles C09; root handles the 1,301 regression, C13 and integration
+Trace now plans the measured performance campaign on the next coherent snapshot;
+source handles numeric precision; reserve_source next implements approved readable
+participant-role hygiene in a separate checkout. Root handles the 1,301 regression,
+C09/component reviews and integration
 review. Keep every candidate checkout isolated. Compact publication100/1000,
 bounded v1 receipt24, import-only105, native-helper108 and Python-helper111
 records remain separately pinned below. No production SLA or general capacity
