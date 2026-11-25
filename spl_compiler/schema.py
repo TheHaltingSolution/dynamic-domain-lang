@@ -253,7 +253,10 @@ def validate_package(p):
     members = set(agreement["asset_ids"])
     if len(members) != len(agreement["asset_ids"]):
         fail("DUPLICATE_MEMBER", "Agreement asset members must be unique")
-    if not members <= assets.keys() or not set(agreement["role_ids"]) <= roles.keys():
+    role_ids = set(agreement["role_ids"])
+    if len(role_ids) != len(agreement["role_ids"]):
+        fail("ROLE_SCOPE", "Agreement role relationships must be unique")
+    if not members <= assets.keys() or not role_ids <= roles.keys():
         fail("UNRESOLVED_REFERENCE", "Agreement asset or role missing")
     for r in roles.values():
         if r["party_id"] not in parties or r["agreement_id"] not in agreements:
@@ -289,13 +292,23 @@ def validate_package(p):
             fail("UNRESOLVED_REFERENCE", "Asset alias target missing")
         if mapping["kind"] == "territory" and mapping["target_ref"] != "US":
             fail("UNSUPPORTED_ENUM", "Only the supplied US territory dictionary is supported")
-    for f in facts.values():
-        amount(f["amount"])
-        if amount(f["amount"]) < 0:
+    fact_source_rows = set()
+    rq07_applications = {}
+    for index, f in enumerate(facts.values()):
+        pointer = f"/financial_facts/{index}"
+        value = amount(f["amount"])
+        if value < 0:
             fail("UNSUPPORTED_CORRECTION_POLICY", "Signed facts need a separate correction profile")
         b = f["batch_ref"]
-        if (b["source_system"], b["batch_id"], b["version"]) not in batches:
+        batch_key = (b["source_system"], b["batch_id"], b["version"])
+        if batch_key not in batches:
             fail("UNRESOLVED_REFERENCE", "Financial fact source batch missing")
+        # Source positions identify original rows within a measure. A different
+        # fact ID must not turn the same row into another cash, invoice or cost.
+        source_key = (batch_key, f["event_kind"], f["source_row"])
+        if source_key in fact_source_rows:
+            fail("DUPLICATE_SOURCE_ROW", f["fact_id"], pointer + "/source_row")
+        fact_source_rows.add(source_key)
         if f["asset_id"] not in assets:
             fail("UNMAPPED_ASSET", f["asset_id"])
         for d in f["dates"].values():
@@ -304,16 +317,49 @@ def validate_package(p):
         day(t["date"])
         if f["dates"].get(t["kind"]) != t["date"]:
             fail("TEMPORAL_BASIS_MISMATCH", f["fact_id"])
-        if "parent_fact_id" in f and f["parent_fact_id"] not in facts:
-            fail("UNRESOLVED_REFERENCE", "Missing parent fact")
-        if f.get("parent_fact_id") == f["fact_id"]:
-            fail("CYCLIC_REFERENCE", "Self parent")
-        seen, current = set(), f
-        while "parent_fact_id" in current:
-            if current["fact_id"] in seen:
-                fail("CYCLIC_REFERENCE", "Cyclic financial fact parents")
-            seen.add(current["fact_id"])
+        parent = f.get("parent_fact_id")
+        if parent is not None and parent not in facts:
+            fail("UNRESOLVED_REFERENCE", f"Missing parent fact {parent} for {f['fact_id']}", pointer + "/parent_fact_id")
+        if parent == f["fact_id"]:
+            fail("CYCLIC_REFERENCE", "Self parent", pointer + "/parent_fact_id")
+        if p["profile"] == "sv-rq07-posted-v1" and f["event_kind"] == "cash_receipt":
+            invoice = facts.get(parent)
+            if invoice is None or invoice["event_kind"] != "invoice" or invoice["asset_id"] != f["asset_id"]:
+                fail("INVOICE_APPLICATION_SCOPE", f"Cash application {f['fact_id']} requires an invoice for its source asset",
+                     pointer + "/parent_fact_id")
+            rq07_applications[parent] = rq07_applications.get(parent, 0) + value
+    for invoice_id, applied in rq07_applications.items():
+        invoice = facts[invoice_id]
+        if applied > amount(invoice["amount"]):
+            index = p["financial_facts"].index(invoice)
+            fail("OVERAPPLICATION", f"Applications exceed invoice face for {invoice_id}",
+                 f"/financial_facts/{index}/amount")
+
+    # Walk each ancestry only once. Its cached value records whether the path
+    # including that node already contains a cash contribution.
+    cash_paths = {}
+    for index, f in enumerate(facts.values()):
+        path = {}
+        current = f
+        while current["fact_id"] not in cash_paths:
+            key = current["fact_id"]
+            if key in path:
+                fail("CYCLIC_REFERENCE", "Cyclic financial fact parents", f"/financial_facts/{index}/parent_fact_id")
+            path[key] = current
+            if "parent_fact_id" not in current:
+                break
             current = facts[current["parent_fact_id"]]
+        seen_cash = cash_paths.get(current["fact_id"], False)
+        for key in reversed(path):
+            if path[key]["event_kind"] == "cash_receipt":
+                if seen_cash:
+                    contribution_index = p["financial_facts"].index(path[key])
+                    fail("OVERLAPPING_CASH_VIEWS", f"Cash fact {key} has a cash ancestor",
+                         f"/financial_facts/{contribution_index}/parent_fact_id")
+                seen_cash = True
+            cash_paths[key] = seen_cash
+
+    evidence_source_rows = set()
     for index, e in enumerate(events.values()):
         day(e["effective_date"])
         observed_at = instant(e["observed_at"], f"/evidence_events/{index}/observed_at")
@@ -341,8 +387,13 @@ def validate_package(p):
             fail("UNRESOLVED_REFERENCE", "Evidence party missing")
         if "batch_ref" in e:
             b = e["batch_ref"]
-            if (b["source_system"], b["batch_id"], b["version"]) not in batches or "source_row" not in e:
+            batch_key = (b["source_system"], b["batch_id"], b["version"])
+            if batch_key not in batches or "source_row" not in e:
                 fail("UNRESOLVED_REFERENCE", "Evidence source batch/row missing")
+            source_key = (batch_key, kind, e["source_row"])
+            if source_key in evidence_source_rows:
+                fail("DUPLICATE_SOURCE_ROW", e["event_id"], f"/evidence_events/{index}/source_row")
+            evidence_source_rows.add(source_key)
         if "amount" in e:
             amount(e["amount"])
         if "asset_id" in e and e["asset_id"] not in members:
@@ -381,19 +432,37 @@ def validate_package(p):
         if p["profile"] == "lg-cleared-v1" and cell["scope"].get("asset_ids") != [policy.get("asset_id")]:
             fail("STATE_WORK_SCOPE", "LG state must bind its declared work")
     unique(params["cost_decisions"], "fact_id")
-    for c in params["cost_decisions"]:
-        if c["fact_id"] not in facts or c["decision_id"] not in decisions:
+    for index, c in enumerate(params["cost_decisions"]):
+        fact = facts.get(c["fact_id"])
+        if fact is None or c["decision_id"] not in decisions:
             fail("REQUIRED_COST_POLICY", "Cost decision dependency missing")
+        if fact["event_kind"] != "incurred_cost":
+            fail("REQUIRED_COST_POLICY", f"Cost decision targets non-cost fact {c['fact_id']}",
+                 f"/parameters/cost_decisions/{index}/fact_id")
         terms = decisions[c["decision_id"]].get("cost_terms", [])
         if terms and {k: c[k] for k in ["fact_id", "eligible", "branch"]} not in terms:
             fail("COST_POLICY_MISMATCH", "Selection differs from pinned decision terms")
     groups = {}
-    for allocation in p["allocations"]:
-        if (allocation["source_fact_id"] not in facts or allocation["authority_ref"] not in decisions or
-                allocation["policy_ref"] not in decisions):
-            fail("ALLOCATION_AUTHORITY", "Allocation parent/authority missing")
-        if allocation["scenario_id"] != m["scenario_id"] or allocation["target_scope"].get("asset_ids", []) == []:
-            fail("ALLOCATION_SCOPE", "Allocation scenario/target missing")
+    for index, allocation in enumerate(p["allocations"]):
+        pointer = f"/allocations/{index}"
+        parent = facts.get(allocation["source_fact_id"])
+        if (parent is None or parent["event_kind"] != "cash_receipt" or
+                allocation["authority_ref"] not in decisions or allocation["policy_ref"] not in decisions):
+            fail("ALLOCATION_AUTHORITY", "Allocation requires an original cash parent and resolved authority/policy",
+                 pointer)
+        if allocation["allocation_id"] in facts:
+            fail("ALLOCATION_ID_COLLISION", "Allocated view ID collides with an original fact", pointer + "/allocation_id")
+        target = allocation["target_scope"]
+        targets = target.get("asset_ids", [])
+        if (allocation["scenario_id"] != m["scenario_id"] or len(targets) != 1 or targets[0] not in members or
+                target["agreement_id"] != policy["agreement_id"] or
+                target.get("participant_id", policy["participant_id"]) != policy["participant_id"] or
+                target.get("pool_id", policy["pool_id"]) != policy["pool_id"]):
+            fail("ALLOCATION_SCOPE", "Allocation must name one title in the selected agreement, participant and pool",
+                 pointer + "/target_scope")
+        for ref_key in ("authority_ref", "policy_ref"):
+            if targets[0] not in decisions[allocation[ref_key]]["scope"].get("asset_ids", members):
+                fail("ALLOCATION_SCOPE", f"Allocation title is outside the {ref_key} scope", pointer + "/" + ref_key)
         groups.setdefault(allocation["source_fact_id"], []).append(allocation)
     for source, rows in groups.items():
         if len({x["allocation_group_id"] for x in rows}) != 1:
