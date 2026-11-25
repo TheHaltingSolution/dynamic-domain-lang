@@ -1,5 +1,12 @@
 # Live C1 work
 
+**25 November handoff:** implementation is paused. Read
+[the current handoff](session-handoff-2026-11-25.md) for the owner's narrowed
+finish line and exact saved integration state. The c80 regression below ended
+with all1,301 methods passing; the newer assembled candidate is `C:/spl-next`
+at `d6d04f8`, not yet fully verified or promoted. Dated “active” job statements
+below are historical. Current collaboration inventory contains no child jobs.
+
 23 November 2026. This supplements the committed
 [checkpoint](completion-checkpoint.md). The project goal remains active; this is
 not a complete release. No push or pull request has been made.

@@ -1,8 +1,13 @@
 # Screen Participation Language design
 
-The active [finite completion plan](completion-plan.md) and
-[machine-readable backlog](completion-backlog.json) own the current engineering
-sequence. The [research](for-royalties-research-agent.md) and
+Start with the [25 November session handoff](session-handoff-2026-11-25.md).
+It records the owner's narrowed finish line, saved integration, evidence and
+remaining work. Implementation is paused for handoff. Its scope supersedes the
+older broad completion sequence below.
+
+The earlier [finite completion plan](completion-plan.md) and
+[machine-readable backlog](completion-backlog.json) retain detailed engineering
+history. The [research](for-royalties-research-agent.md) and
 [design](for-language-design-agent.md) notes provide paste-ready external review
 requests with exact paths and reading order. Ready work continues while those
 specific answers are pending.

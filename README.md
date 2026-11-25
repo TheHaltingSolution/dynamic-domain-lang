@@ -1,6 +1,11 @@
 # dynamic-domain-lang
 
-Active completion work is tracked in the
+Start with the [25 November session handoff](docs/spl/session-handoff-2026-11-25.md)
+after `AGENTS.md`. It records the owner's narrowed finish line, saved integration
+checkout, verified evidence and next steps. Implementation is paused for handoff;
+the older broad backlog below is not an instruction to finish every open item.
+
+Earlier completion work is tracked in the
 [finite completion plan](docs/spl/completion-plan.md) and
 [requirement backlog](docs/spl/completion-backlog.json), covering all 17 agreed
 C1 calculation families plus performance and validation obligations. For the

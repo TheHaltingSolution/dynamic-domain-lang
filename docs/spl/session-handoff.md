@@ -1,5 +1,11 @@
 # SPL compiler session handoff
 
+**Latest handoff, 25 November 2026:** read
+[the owner's revised finish line and saved integration](session-handoff-2026-11-25.md)
+first. It supersedes the broad automatic work sequence and dated job-status
+statements below. Implementation is paused for handoff; this older document
+remains mission, design and verification history.
+
 **Live continuation:** read [active-work.md](active-work.md) first for accepted
 milestones, running processes, current build identities and delegated ownership.
 The earlier e80024d checkpoint now passes all887 methods; later financial and
