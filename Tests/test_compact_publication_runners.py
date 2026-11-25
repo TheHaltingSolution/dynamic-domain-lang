@@ -144,34 +144,78 @@ class CompactPublicationRunnerTests(unittest.TestCase):
     def test_native_error_retains_complete_graph_and_discards_state(self):
         source = self.fixture.source
         text = source.read_text(encoding="utf-8")
-        text = text.replace('define earned =', 'define choice=if rate > 0.5 then USD 1 else USD 2; require rate > 0.5 else "SELECTED_FAILURE"; define earned =')
+        text = text.replace(
+            'define earned =',
+            'define choice=if rate > 0.5 then USD 1 else USD 2;\n'
+            'require rate > 0.5 else "SELECTED_FAILURE";\n'
+            'define earned =')
         source.write_text(text, encoding="utf-8")
         self.fixture.repin()
-        folder = self.work / "native-error"
-        result = run_module_package(self.package(), self.fixture.root, artifact_dir=folder, audit_profile="compact-v2")
-        self.assertEqual(result["status"], "blocked", result)
-        self.assertEqual(result["diagnostics"][0]["code"], "SELECTED_FAILURE")
-        self.assertEqual(result["trace"]["status"], "complete")
-        self.assertEqual(result["results"], {})
-        self.assertEqual(result["closing_state"], [])
-        nodes = list(iter_audited_trace(folder))
-        self.assertTrue(any(node["status"] == "failed" for node in nodes))
-        self.assertTrue(any(node["status"] == "not_evaluated" for node in nodes))
-        self.assertEqual(load_completed_audited_result(folder), result)
+        for profile in ("array-v1", "compact-v2"):
+            with self.subTest(profile=profile):
+                folder = self.work / profile
+                result = run_module_package(self.package(), self.fixture.root, artifact_dir=folder, audit_profile=profile)
+                self.assertEqual(result["status"], "blocked", result)
+                diagnostic, = result["diagnostics"]
+                self.assertEqual(diagnostic["code"], "SELECTED_FAILURE")
+                self.assertEqual(diagnostic["message"], "Required case precondition failed")
+                self.assertEqual(diagnostic["span"]["source"], source.name)
+                self.assertEqual(diagnostic["span"]["line"], 2)
+                self.assertEqual(result["results"], {})
+                self.assertEqual(result["closing_state"], [])
+                self.assertNotIn("result_digest", result)
+                if profile == "compact-v2":
+                    self.assertEqual(result["trace"]["status"], "complete")
+                    nodes = list(iter_audited_trace(folder))
+                    self.assertEqual(load_completed_audited_result(folder), result)
+                else:
+                    nodes = result["trace"]
+                    self.assertEqual(load_completed_result(folder), result)
+                self.assertTrue(any(node["status"] == "failed" for node in nodes))
+                self.assertTrue(any(node["status"] == "not_evaluated" for node in nodes))
 
     def test_literals_resembling_number_or_unit_metadata_remain_records(self):
         source = self.fixture.source
         source.write_text('schedule Literal language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" '
-                          '{ input original:{numerator:Text,denominator:Text,unit:Text,meta:Text}; emit "result"=original; }', encoding="utf-8")
-        literal = {"numerator": "original", "denominator": "not-a-number", "unit": "UsageHour", "meta": "owner_context"}
-        typ = {"name": "Record", "args": [], "fields": [[name, fixtures.typ("Text")] for name in sorted(literal)]}
+                          '{ input original:List<{numerator:Text,denominator:Text}>; emit "result"=original; }', encoding="utf-8")
+        literal = [{"numerator": "original", "denominator": "not-a-number"},
+                   {"numerator": "1", "denominator": "2"}]
+        typ = fixtures.typ("List", {"name": "Record", "args": [],
+                                   "fields": [[name, fixtures.typ("Text")] for name in sorted(literal[0])]})
         self.fixture.descriptor["interface"]["ports"] = [fixtures.port("original", "input", typ), fixtures.port("result", "result", typ)]
         self.fixture.descriptor["state"] = []
         self.fixture.package.update(inputs={"original": literal}, parameters={}, state_cells=[])
         self.fixture.repin()
-        result = self.execute(self.package(), "literal")
-        self.assertEqual(result["results"], {"result": literal})
-        self.assertTrue(any(node.get("result") == literal for node in iter_audited_trace(self.work / "literal")))
+        for profile in ("array-v1", "compact-v2"):
+            with self.subTest(profile=profile):
+                result = self.execute(self.package(), profile, profile)
+                self.assertEqual(result["results"], {"result": literal})
+                self.assertEqual(result["statements"], literal)
+        self.assertTrue(any(node.get("result") == literal for node in iter_audited_trace(self.work / "compact-v2")))
+
+    def test_multiple_readable_participant_reports_reload_separately(self):
+        directory = ROOT / "cases/readable-multi"
+        self.fixture.source.write_bytes((directory / "two-participants-readable.spl").read_bytes())
+        participant = fixtures.typ("Id", fixtures.typ("Participant"))
+        row = {"name": "Record", "args": [], "fields": [
+            ["participant_id", participant], ["amount", fixtures.typ("Money", fixtures.typ("USD"))]]}
+        self.fixture.descriptor["interface"]["ports"] = [
+            fixtures.port("first_party", "input", participant),
+            fixtures.port("second_party", "input", participant),
+            fixtures.port("first", "result", row),
+            fixtures.port("second", "result", row)]
+        self.fixture.descriptor["state"] = []
+        inputs = read_json(directory / "bindings.json")["inputs"]
+        self.fixture.package.update(inputs=inputs, parameters={}, state_cells=[])
+        self.fixture.package["scope"]["participant_ids"] = list(inputs.values())
+        self.fixture.repin()
+        expected = {"first": {"participant_id": "first-participant", "amount": "12"},
+                    "second": {"participant_id": "second-participant", "amount": "7"}}
+        result = self.execute(self.package(), "multi")
+        self.assertEqual(result["results"], expected)
+        self.assertEqual(result["statements"], list(expected.values()))
+        self.assertEqual(result["closing_state"], [])
+        self.assertEqual(result["issuance_status"], "unissued")
 
     def test_imported_and_unused_extended_owner_contexts(self):
         adapter = importlib.import_module("cases.usage-conversion.build_modules")

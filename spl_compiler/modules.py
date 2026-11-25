@@ -571,28 +571,28 @@ def dimensioned_state_unit(typ, context=BASE_MEANINGS):
     return "dimensioned:" + digest(normalized(typ))
 
 
-def _scope_value(value, typ, package):
+def _scope_value(value, typ, package, pointer=""):
     """Enforce intrinsic typed scope namespaces at every nested boundary."""
     if typ.name == "Id":
         if not value.isascii():
-            fail("UNSUPPORTED_IDENTIFIER_PROFILE", "Canonical native IDs use the ASCII profile")
+            fail("UNSUPPORTED_IDENTIFIER_PROFILE", "Canonical native IDs use the ASCII profile", pointer)
         kind, scope = typ.args[0].name, package["scope"]
         allowed = {"Agreement": [scope["agreement_id"]], "Pool": [scope["pool_id"]],
                    "Participant": scope["participant_ids"], "Asset": scope["asset_ids"]}.get(kind)
         if allowed is not None and value not in allowed:
-            fail("MODULE_REFERENCE_SCOPE", "Out-of-scope Id<" + kind + ">")
+            fail("MODULE_REFERENCE_SCOPE", "Out-of-scope Id<" + kind + ">", pointer)
     elif typ.name in {"List", "Tuple"}:
         for index, item in enumerate(value):
-            _scope_value(item, typ.args[0] if typ.name == "List" else typ.args[index], package)
+            _scope_value(item, typ.args[0] if typ.name == "List" else typ.args[index], package, f"{pointer}/{index}")
     elif typ.name == "Map":
-        for row in value:
-            _scope_value(row["key"], typ.args[0], package)
-            _scope_value(row["value"], typ.args[1], package)
+        for index, row in enumerate(value):
+            _scope_value(row["key"], typ.args[0], package, f"{pointer}/{index}/key")
+            _scope_value(row["value"], typ.args[1], package, f"{pointer}/{index}/value")
     elif typ.name == "Option" and isinstance(value, dict) and "some" in value:
-        _scope_value(value["some"], typ.args[0], package)
+        _scope_value(value["some"], typ.args[0], package, pointer + "/some")
     elif typ.fields:
         for name, field_type in typ.fields:
-            _scope_value(value[name], field_type, package)
+            _scope_value(value[name], field_type, package, pointer + "/" + name)
 
 
 def linking_manifest(resolved):
@@ -709,7 +709,7 @@ def validate_module_package(package, resolved):
             value = package[group][name]
             value_type = _port_type(port, descriptor, checked.admission)
             decode_value(value, value_type, group + "." + name, context=checked.meanings)
-            _scope_value(value, value_type, package)
+            _scope_value(value, value_type, package, f"/{group}/{name}")
             _domain(value, port, checked.meanings)
             if role == "evidence" and not any(c["kind"] == "evidence" and c["path"] == "evidence." + name
                                               for c in descriptor["constraints"]):
@@ -878,7 +878,7 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
     result = {"status": "blocked", "results": {}, "statements": [], "detail": [], "closing_state": [], "trace": [],
               "diagnostics": [], "reconciliation": {}, "policy_review": {}, "manifest": p.get("manifest", {}) if isinstance(p, dict) else {},
               "issuance_status": "unissued", "payment_evidence_status": "not_assessed"}
-    from .compact_execution import require_profile
+    from .compact_execution import checked_head, require_profile
     from .audited_artifacts import AuditedPublication, unavailable_trace
     if audit_profile not in {"array-v1", "compact-v2"}:
         raise ValueError("UNSUPPORTED_AUDIT_PROFILE")
@@ -954,7 +954,9 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
             if backend in {"compare", "lean"}:
                 link_options = {"link": link} if link else {}
                 export_ir(resolved.source_path, work / "typed-ir.json", **link_options)
-                interpreted = normalize_target(interpret_schedule(resolved.source_path, work / "bindings.json", **link_options))
+                interpreted = checked_head(
+                    interpret_schedule(resolved.source_path, work / "bindings.json", **link_options), checked)
+                interpreted["trace"] = normalize_target(interpreted["trace"])
                 if (interpreted["status"] == "blocked" and interpreted.get("diagnostics") and
                         interpreted["diagnostics"][0]["code"] == "RESOURCE_LIMIT"):
                     result.update(trace=interpreted.get("trace", []), diagnostics=interpreted["diagnostics"],
@@ -963,14 +965,14 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
                                   verification={"backend": backend, "required_audit_completed": False})
                     return publish()
                 target = compile_schedule(resolved.source_path, work / "Settlement.lean", **link_options)
-                generated = normalize_target(read_native(lean(["--run", target, work / "bindings.json"])))
+                generated = checked_head(read_native(lean(["--run", target, work / "bindings.json"])), checked)
                 for candidate in [observed, interpreted]:
                     for field in ["status", "emissions", "closing"]:
                         if canonical(generated[field]) != canonical(candidate[field]):
                             fail("MODULE_DIFFERENTIAL_MISMATCH", field)
                     if [d["code"] for d in generated["diagnostics"]] != [d["code"] for d in candidate["diagnostics"]]:
                         fail("MODULE_DIFFERENTIAL_MISMATCH", "diagnostics")
-                observed = {**generated, "trace": interpreted["trace"]}
+                observed = {**generated, "trace": interpreted["trace"], "diagnostics": observed["diagnostics"]}
                 origin = interpreted["trace_origin"]
             result["trace"] = observed["trace"]
             result["trace_origin"] = origin
@@ -986,9 +988,10 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
         for name, port in output_ports.items():
             value_type = output_types[name]
             _decode_output(observed["emissions"][name], value_type, checked.meanings)
-            _scope_value(observed["emissions"][name], value_type, p)
+            pointer = "/results/" + name.replace("~", "~0").replace("/", "~1")
+            _scope_value(observed["emissions"][name], value_type, p, pointer)
             if port["role"] == "reconciliation" and port["type"]["name"] == "Bool" and not observed["emissions"][name]:
-                fail("MODULE_RECONCILIATION_FAILED", name)
+                fail("MODULE_RECONCILIATION_FAILED", name, pointer)
         _constraints(p, resolved.descriptor, observed["emissions"], owner=checked.admission,
                      meanings=checked.meanings, output_types=output_types)
         slots = resolved.descriptor["state"]

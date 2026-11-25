@@ -48,9 +48,9 @@ def main():
         from spl_compiler.linker import link_schedule
         from spl_compiler.evaluator import evaluate
         from spl_compiler.model import encode_value
-        source, bindings, *rest = args
+        source, bindings, source_name, *rest = args
         text = Path(source).read_text(encoding="utf-8")
-        schedule = parse_readable(text) if is_readable(text) else parse(text)
+        schedule = parse_readable(text, source_name) if is_readable(text) else parse(text, source_name)
         if rest:
             if len(rest) != 2 or rest[0] != "--link":
                 raise ValueError("USAGE")

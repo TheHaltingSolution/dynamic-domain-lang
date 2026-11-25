@@ -240,9 +240,15 @@ def semantic_digest(p, inputs, openings):
 
 
 def normalize_target(value):
+    """Historical untyped audit view; checked finance uses typed decoding."""
     if isinstance(value, dict):
         if set(value) == {"numerator", "denominator"}:
-            return number(exact(value))
+            try:
+                return number(exact(value))
+            except DataError:
+                # These field names can occur in ordinary authored records.
+                # Only a syntactically valid exact number is ambiguous here.
+                pass
         return {k: normalize_target(v) for k, v in value.items()}
     if isinstance(value, list):
         return [normalize_target(x) for x in value]
@@ -265,7 +271,7 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None,
     result = {"status": "blocked", "statements": [], "detail": [], "closing_state": [], "trace": [],
               "diagnostics": [], "reconciliation": {}, "payment_evidence_status": "no_event_supplied",
               "issuance_status": "unissued", "manifest": p.get("manifest", {}) if isinstance(p, dict) else {}}
-    from .compact_execution import require_profile
+    from .compact_execution import checked_head, require_profile
     from .audited_artifacts import AuditedPublication, unavailable_trace
     if audit_profile not in {"array-v1", "compact-v2"}:
         raise ValueError("UNSUPPORTED_AUDIT_PROFILE")
@@ -352,7 +358,8 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None,
                 if readable:
                     lean(["--run", ROOT / "SPL/Main.lean", "expand", schedule_path, work / "expanded.spl"])
                 export_ir(schedule_path, work / "typed-ir.json")
-                interpreted = normalize_target(interpret_schedule(schedule_path, work / "bindings.json"))
+                interpreted = checked_head(interpret_schedule(schedule_path, work / "bindings.json"), checked)
+                interpreted["trace"] = normalize_target(interpreted["trace"])
                 if (interpreted["status"] == "blocked" and interpreted.get("diagnostics") and
                         interpreted["diagnostics"][0]["code"] == "RESOURCE_LIMIT"):
                     result.update(trace=interpreted.get("trace", []), diagnostics=interpreted["diagnostics"],
@@ -361,7 +368,7 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None,
                                   verification={"backend": backend, "required_audit_completed": False})
                     return publish()
                 generated = compile_schedule(schedule_path, work / "Settlement.lean")
-                native = normalize_target(loads(lean(["--run", generated, work / "bindings.json"])))
+                native = checked_head(loads(lean(["--run", generated, work / "bindings.json"])), checked)
                 write_json(work / "lean-result.json", native)
                 write_json(work / "native-ir-result.json", interpreted)
                 for field in ["status", "emissions", "closing"]:
@@ -375,7 +382,9 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None,
                             fail("COMPILER_DIFFERENTIAL_MISMATCH", field)
                     if native["status"] == "blocked" and [d["code"] for d in native["diagnostics"]] != [d["code"] for d in observed["diagnostics"]]:
                         fail("COMPILER_DIFFERENTIAL_MISMATCH", "diagnostics")
-                observed = {**native, "trace": interpreted["trace"]}
+                # The reference adds the authored location and explanation to
+                # the failure codes already agreed by the execution paths.
+                observed = {**native, "trace": interpreted["trace"], "diagnostics": observed["diagnostics"]}
                 trace_origin = interpreted["trace_origin"]
                 result["trace_format"] = interpreted["trace_format"]
                 write_json(work / "reference-trace.json", reference_trace)

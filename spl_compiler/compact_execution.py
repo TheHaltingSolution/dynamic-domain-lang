@@ -183,7 +183,8 @@ def execute_compact(source, work, checked, *, link=None):
     native = checked_head(metadata(native_path), checked)
     if file_digest(target) != target_pin:
         fail("AUDIT_DEPENDENCY_CHANGED", "Executed native target changed")
-    reference_args = [sys.executable, WORKER, "reference", consumed, work / "bindings.json", *link_args]
+    source_name = checked.schedule["span"]["source"]
+    reference_args = [sys.executable, WORKER, "reference", consumed, work / "bindings.json", source_name, *link_args]
     reference = metadata(_stage(reference_args, work / "reference-process"))
     for other in (head, reference):
         for field in ("status", "emissions", "closing"):
@@ -198,4 +199,6 @@ def execute_compact(source, work, checked, *, link=None):
             "target_sha256": file_digest(target), "build_sha256": file_digest(work / "native-build.json")}
     if link:
         pins["link_sha256"] = file_digest(work / "consumed.link.json")
-    return native, pins, summary
+    # The reference adds an explanation and any authored span after all three
+    # paths have agreed the failure codes. The native graph stays unchanged.
+    return {**native, "diagnostics": reference["diagnostics"]}, pins, summary
