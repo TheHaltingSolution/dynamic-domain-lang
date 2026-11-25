@@ -80,7 +80,7 @@ def chain_workload(records, close, opening):
     for row in package["financial_facts"]:
         row["fact_id"] = identity(row["fact_id"])
         row["source_row"] = identity(row["source_row"])
-        row["batch_ref"]["batch_id"] = identity(row["batch_ref"]["batch_id"])
+        row["batch_ref"]["version"] = identity(row["batch_ref"]["version"])
         for field in ("parent_fact_id", "external_event_ref"):
             if field in row:
                 row[field] = identity(row[field])
@@ -103,7 +103,7 @@ def chain_workload(records, close, opening):
             if field in row:
                 row[field] = identity(row[field])
     batch = package["source_batches"][0]
-    batch.update(batch_id=identity(batch["batch_id"]), ingested_at=cutoff,
+    batch.update(version=identity(batch["version"]), ingested_at=cutoff,
                  snapshot_locator="financial-facts.json",
                  sha256=hashlib.sha256(canonical_bytes(package["financial_facts"])).hexdigest())
     package["adapter"].update(source_fixture=scenario,
@@ -213,8 +213,10 @@ def sample(output, records, *, close=None, previous=None):
         report["period"] = neutral["package"]["manifest"]["period"]
         original = output / "neutral-original.json"
         write_json(original, neutral)
-        snapshot = neutral["package"]["source_batches"][0]["snapshot_locator"]
-        (output / snapshot).write_bytes(canonical_bytes(workload["source_records"]["financial_facts"]))
+        batch = neutral["package"]["source_batches"][0]
+        snapshot = output / batch["snapshot_locator"]
+        snapshot.write_bytes(canonical_bytes(workload["source_records"]["financial_facts"]))
+        require(file_digest(snapshot) == batch["sha256"], "Original source-batch bytes differ from declared hash")
         report["original_sha256"] = file_digest(original)
         report["original_bytes"] = original.stat().st_size
         report["funding_sha256"] = hashlib.sha256(
