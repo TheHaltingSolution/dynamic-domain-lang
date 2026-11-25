@@ -71,6 +71,9 @@ Use the pinned Lean 4.35.0 setup in the repository README. Compiler runs keep
 and 1GiB/100000-node logical limits. Failed bounded runs remain failures;
 there is no larger-budget retry or backend fallback.
 
+The [release reproduction guide](../../docs/spl/release-reproduction.md)
+gives the current native namespace runner command for a clean built checkout.
+
 The retained [financial-stage verification](C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/reserve-stage-checks-20261124-a/verification.json)
 indexes 50 completed compact-v2 compare publications at the earlier registration:
 the original 16 checkpoints
