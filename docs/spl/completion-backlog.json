@@ -16,7 +16,9 @@
     "docs/spl/session-handoff-2026-11-25.md",
     "docs/spl/release-reproduction.md",
     "docs/spl/report-audit-coverage.md",
-    "docs/spl/physical-relationships.md"
+    "docs/spl/physical-relationships.md",
+    "docs/spl/release-checkpoint-2026-11-25.md",
+    "docs/spl/release-evidence-2026-11-25.json"
   ],
   "status_meanings": {
     "ready": "An explicitly named synthetic or already specified engineering slice can proceed without outside answers; listed dependencies are required before its final integration.",
@@ -40,20 +42,22 @@
   "current_release_scope": {
     "decision": "docs/spl/session-handoff-2026-11-25.md",
     "assembled_source": "87d140df4aada6c800fcd96932bb2a24c84761fa",
-    "active": {
-      "B-REPRO-FREEZE": "Run the frozen combined regression, pinned builds, smokes and release witnesses, then record a reproducible local checkpoint.",
-      "B-C06-CARDINALITY": "Retain the qualified safeguards and reconciliation for named physical profiles.",
-      "B-C17-REPORTS": "Retain the report and audit checks for the supported profiles, including their actual policy values, reconciliation, state and lineage.",
-      "B-PERF-WORKLOAD": "Repeat complete 100- and 1,000-record canonical workflows with actual four-period carry and independent controls.",
-      "B-PERF-STAGES": "Record inclusive workflow stages, public and consumer-return times and parent and child memory under unchanged guards.",
-      "B-PERF-ENVELOPE": "Publish the measured medium-size envelope, guard proximity, observed failures, admission forecasts and larger unmeasured cases."
-    },
     "deferred": [
       "Discuss the broader strategy for testing feature combinations with the owner later.",
       "Defer general data interfaces and generic relationship declarations, additional sourced cases and their professional-review program, further convenience syntax, native FX and the self-modifying compiler tool.",
       "Defer large-scale batch infrastructure, topology stress campaigns and distributed or parallel execution. Revisit audit optimization only if measured absolute cost warrants it."
     ],
-    "evidence_scope": "Work-item receipts qualify their own dated sources. Combined verification and final capacity receipts are separate release deliverables in progress."
+    "evidence_scope": "Combined verification and the measured envelope qualify the named bounded release. The work-item receipts retain their dated source identities and historical acceptance boundaries.",
+    "checkpoint": "docs/spl/release-checkpoint-2026-11-25.md",
+    "evidence": "docs/spl/release-evidence-2026-11-25.json",
+    "verified": {
+      "B-REPRO-FREEZE": "All 1,558 regression methods passed across 12 isolated, source-pinned worktrees. Pinned default and indexed builds, both smokes and native reserve reproduction passed.",
+      "B-C06-CARDINALITY": "Named physical profiles enforce the selected parent, recipient and allocation rules with independently reconciled original contributions.",
+      "B-C17-REPORTS": "Finite report and audit checks cover typed outputs, policy, decisions, reconciliation, original lineage, and valid state authority.",
+      "B-PERF-WORKLOAD": "All 16 observations passed for the current RR03 profile, including four actual successive closes per size with publicly reloaded predecessor state.",
+      "B-PERF-STAGES": "Recorded public and independent-consumer times, inclusive phase times and parent and child memory under the declared guards.",
+      "B-PERF-ENVELOPE": "Published measured 100- and 1,000-record capacity, guard proximity, observed historical failures, forecasts and unmeasured limits."
+    }
   },
   "first_ready_feature": "B-C03-STAGES",
   "parallel_ready": [
@@ -1695,7 +1699,7 @@
         "U08"
       ],
       "work_class": "performance",
-      "status": "in_progress",
+      "status": "partial",
       "scope": "supporting_engineering",
       "acceptance": [
         "Generate 100/1000/10000 fact-event cohorts with RR 03 mixture/title/fanout/skew/periods and separate raw/guarded/projected/audit counts.",
@@ -1711,10 +1715,12 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json",
         "docs/spl/session-handoff-2026-11-25.md",
-        "docs/spl/release-reproduction.md"
+        "docs/spl/release-reproduction.md",
+        "docs/spl/capacity-envelope.md"
       ],
       "active_scope": "Measure the complete compact-v2 canonical workflow at 100 and 1,000 original RR03 records, with repeated independent consumer reloads and four actual saved-state closes for each size. Record workload dimensions, authority, timing and parent and child memory under the existing guards.",
-      "remaining_obligation": "Final-current measurements are in progress. The historical v1 1,000-record publication exceeded its 64 MiB reconstruction bound. The dated compact-v2 1,000-record pass remains a separate observation. Larger throughput studies are deferred."
+      "remaining_obligation": "Final-current measurements are in progress. The historical v1 1,000-record publication exceeded its 64 MiB reconstruction bound. The dated compact-v2 1,000-record pass remains a separate observation. Larger throughput studies are deferred.",
+      "current_release_disposition": "The 100- and 1,000-record measurement and genuine four-close state chains qualify the current RR03 profile. Larger historical workload targets remain outside the current release."
     },
     {
       "id": "B-PERF-STAGES",
@@ -1723,7 +1729,7 @@
         "A17"
       ],
       "work_class": "performance",
-      "status": "in_progress",
+      "status": "partial",
       "scope": "supporting_engineering",
       "acceptance": [
         "Separate cold/warm compilation, validation/projection/hashing/decoding, direct compiled settlement, reference, native IR audit, ordering/serialization/publication.",
@@ -1741,11 +1747,13 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json",
         "docs/spl/session-handoff-2026-11-25.md",
         "docs/spl/release-reproduction.md",
-        "docs/spl/compact-publication.md"
+        "docs/spl/compact-publication.md",
+        "docs/spl/capacity-envelope.md"
       ],
       "additional_bounded_evidence": "Compact full result envelopes preserve every parsed value and fixed64MiB budget.20publication methods/build/smokes pass; retained17,832-node trace65,841,102pretty/44,542,781compact bytes. This does not close remaining cold/warm/dependency timing acceptance or establish a completed Disney close.",
       "active_scope": "Measure absolute time for the complete current wrapper and independent consumer return. Record inclusive phase observations, compile misses versus cached execution and parent and child memory with source and build pins.",
-      "remaining_obligation": "Final-current measurements are in progress. Guarded compact writer and reader behavior already has dated finite evidence. Audit optimization is conditional on measured absolute time."
+      "remaining_obligation": "Final-current measurements are in progress. Guarded compact writer and reader behavior already has dated finite evidence. Audit optimization is conditional on measured absolute time.",
+      "current_release_disposition": "The current public and consumer workflow has measured inclusive phases and recorded working sets. The older complete exclusive-stage decomposition is outside the current release."
     },
     {
       "id": "B-PERF-PROFILE",
@@ -1808,7 +1816,7 @@
         "U09"
       ],
       "work_class": "performance",
-      "status": "in_progress",
+      "status": "partial",
       "scope": "supporting_engineering",
       "acceptance": [
         "After smaller-case headroom characterize 25 independent 4000 scopes versus shared 80000 plus 20 independent 1000 scopes; 99, 999/100, 000/100, 001 guard boundaries.",
@@ -1824,8 +1832,10 @@
       "remaining_obligation": "Reconcile the final four-close and repeat measurements with the resource guards and record limitations for the research paper.",
       "evidence": [
         "docs/spl/session-handoff-2026-11-25.md",
-        "docs/spl/release-reproduction.md"
-      ]
+        "docs/spl/release-reproduction.md",
+        "docs/spl/capacity-envelope.md"
+      ],
+      "current_release_disposition": "The named medium-size workload has a measured supported envelope. Larger topology and boundary stress campaigns remain deferred."
     },
     {
       "id": "B-REPRO-FREEZE",
@@ -1837,7 +1847,7 @@
         "R16"
       ],
       "work_class": "reproducibility",
-      "status": "in_progress",
+      "status": "partial",
       "scope": "supporting_engineering",
       "acceptance": [
         "Freeze accepted grammar/core/schema/diagnostics/trace/profile/build/source/expected outputs and exclusions while preserving historical 0.4.3/E0/E1 artifacts.",
@@ -1849,8 +1859,10 @@
       "active_scope": "The retained candidates and bounded fixes are assembled at the pinned local release source. The independent frozen combined regression and local release evidence review are in progress.",
       "evidence": [
         "docs/spl/session-handoff-2026-11-25.md",
-        "docs/spl/release-reproduction.md"
-      ]
+        "docs/spl/release-reproduction.md",
+        "docs/spl/release-checkpoint-2026-11-25.md"
+      ],
+      "current_release_disposition": "The verified current checkpoint closes the bounded release obligation. General migration coverage is tracked by the historical acceptance."
     },
     {
       "id": "B-REPRO-BYTES",
@@ -4159,11 +4171,11 @@
   "progress_as_of": "2026-11-25",
   "status_counts": {
     "complete": 37,
-    "ready": 8,
-    "partial": 8,
-    "in_progress": 6,
-    "gated": 1,
+    "partial": 12,
     "deferred": 9,
+    "gated": 1,
+    "ready": 8,
+    "in_progress": 2,
     "question_blocked": 1,
     "outside_scope": 3
   }

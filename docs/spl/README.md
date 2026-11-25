@@ -1,10 +1,12 @@
 # Screen Participation Language design
 
-The [25 November session handoff](session-handoff-2026-11-25.md) defines the
-bounded release scope and records the inherited integration evidence. Use the
+The [bounded research checkpoint](release-checkpoint-2026-11-25.md) records
+the selected release profiles and measured capacity. The
+[25 November session handoff](session-handoff-2026-11-25.md) defines the owner's
+scope and the inherited integration evidence. Use the
 [release reproduction guide](release-reproduction.md) for the frozen regression
-and native reserve checks, and the [capacity methodology](capacity-measurement.md)
-for the RR03 measurement campaign.
+and native reserve checks, and the [capacity envelope](capacity-envelope.md)
+for the RR03 measurement results.
 
 The earlier [finite completion plan](completion-plan.md) and
 [machine-readable backlog](completion-backlog.json) retain detailed engineering

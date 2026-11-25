@@ -1,10 +1,11 @@
 # dynamic-domain-lang
 
-Start with the [25 November session handoff](docs/spl/session-handoff-2026-11-25.md)
-after `AGENTS.md`. It defines the bounded research release scope and records
-the evidence inherited at the start of integration. The
-[release reproduction guide](docs/spl/release-reproduction.md) gives the frozen
-regression and native reserve commands.
+The [bounded research checkpoint](docs/spl/release-checkpoint-2026-11-25.md)
+records the selected SPL profiles and capacity evidence. Start with
+`AGENTS.md` and the [25 November session handoff](docs/spl/session-handoff-2026-11-25.md)
+for the owner's scope and prior evidence. The
+[release reproduction guide](docs/spl/release-reproduction.md) gives the
+frozen regression and native reserve commands.
 
 Earlier completion work is tracked in the
 [finite completion plan](docs/spl/completion-plan.md) and

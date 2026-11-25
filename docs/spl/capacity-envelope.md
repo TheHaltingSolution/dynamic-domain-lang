@@ -42,8 +42,8 @@ The five graph-validation child medians were 5.236 s (execution),
 5.210 s (attachment), 5.858 s (publication), 5.515 s (validated return) and
 5.462 s (consumer reload). Publication and load child clocks include
 integrity checks and file handling. These phase clocks describe inclusive
-work within the public timing boundary. No audit optimization was needed
-for the measured workload.
+work within the public timing boundary. The measured through-consumer time
+fits the owner's stated roughly 41-second tolerance.
 
 | Original records | Neutral input (bytes) | Bound input, canonical encoding (bytes) | Canonical result (bytes) | Compact wire (bytes) | Expanded logical audit (bytes) | Nodes / edges |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
