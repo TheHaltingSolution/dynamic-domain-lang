@@ -50,8 +50,9 @@ four when the target is cached before that size begins.
   385/3,850 distinct originals at the two sizes.
 - The exact original-fact oracle runs before projection. For each close the
   harness checks all title and pool outputs, funding and cost projection,
-  allocation and invoice ancestry, source dispositions and lineage, and
-  reconciliation by amount space. It checks state and payment/issuance
+  allocation and invoice ancestry, source dispositions and lineage, the
+  original funding evidence IDs by picture, and reconciliation by amount
+  space. It checks state and payment/issuance
   status against the independent expectations. The first close recovers
   USD 250 of remaining advance. The following closes recover USD 0. A
   successor takes only the predecessor's successful public reload state with

@@ -194,6 +194,12 @@ def check_outputs(workload, oracle, package, result):
     require(len(aliases) == 1, "Expected one authored opening alias")
     require(lineage == result["source_to_target_lineage"] and dispositions == result["input_dispositions"],
             "Public lineage or dispositions disagree with projected original controls")
+    population_ref = package["parameters"]["funding_snapshot"]["evidence_ref"]
+    require(result["evidence_to_target_lineage"] == [
+        {"target_input": "pictures", "target_key": {"asset_id": title["asset_id"]},
+         "evidence_ids": title["funding_event_ids"], "population_ref": population_ref}
+        for title in oracle["titles"]
+    ], "Public funding evidence lineage differs from original-fact controls")
     return check_projection(workload, oracle, inputs, {"prepayment": next(iter(aliases.values()))},
                             lineage, dispositions)
 
