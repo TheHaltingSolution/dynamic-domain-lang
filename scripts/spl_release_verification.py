@@ -90,7 +90,8 @@ def summarize(out, directories):
                   "Expected one receipt for each shard")
     expected = json.loads((first_dir / "test-selectors.json").read_text(encoding="utf-8"))
     source = (first_dir / "source-before.json").read_bytes()
-    fields = ("commit", "tree", "shards", "identities", "lean_version", "python_sha256", "toolchain")
+    fields = ("commit", "tree", "shards", "identities", "lean_version", "python_sha256",
+              "toolchain", "runner_sha256", "archive_sha256")
     details = []
     for directory, receipt in receipts:
         reject_unless(receipt["status"] == "passed", f"Shard failed: {directory}")

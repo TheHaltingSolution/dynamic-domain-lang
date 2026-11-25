@@ -1,9 +1,10 @@
 # Screen Participation Language design
 
-Start with the [25 November session handoff](session-handoff-2026-11-25.md).
-It records the owner's narrowed finish line, saved integration, evidence and
-remaining work. Implementation is paused for handoff. Its scope supersedes the
-older broad completion sequence below.
+The [25 November session handoff](session-handoff-2026-11-25.md) defines the
+bounded release scope and records the inherited integration evidence. Use the
+[release reproduction guide](release-reproduction.md) for the frozen regression
+and native reserve checks, and the [capacity methodology](capacity-measurement.md)
+for the RR03 measurement campaign.
 
 The earlier [finite completion plan](completion-plan.md) and
 [machine-readable backlog](completion-backlog.json) retain detailed engineering
