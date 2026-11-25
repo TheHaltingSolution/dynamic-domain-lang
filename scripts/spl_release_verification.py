@@ -67,17 +67,50 @@ def module_origins(root, foreign_roots):
     return origins
 
 
-def selectors(suite):
+def test_cases(suite):
     for item in suite:
         if isinstance(item, unittest.TestSuite):
-            yield from selectors(item)
+            yield from test_cases(item)
         else:
-            yield item.id()
+            yield item
 
 
 def reject_unless(condition, message):
     if not condition:
         raise RuntimeError(message)
+
+
+def summarize(out, directories):
+    """Require each selector exactly once across isolated receipts of one commit."""
+    receipts = [(p, json.loads((p / "verification.json").read_text(encoding="utf-8")))
+                for p in directories]
+    first_dir, first = receipts[0]
+    shards = first["shards"]
+    reject_unless(sorted(r["shard_index"] for _, r in receipts) == list(range(shards)),
+                  "Expected one receipt for each shard")
+    expected = json.loads((first_dir / "test-selectors.json").read_text(encoding="utf-8"))
+    source = (first_dir / "source-before.json").read_bytes()
+    fields = ("commit", "tree", "shards", "identities", "lean_version", "python_sha256", "toolchain")
+    details = []
+    for directory, receipt in receipts:
+        reject_unless(receipt["status"] == "passed", f"Shard failed: {directory}")
+        reject_unless(all(receipt[key] == first[key] for key in fields), f"Shard identity mismatch: {directory}")
+        reject_unless((directory / "source-before.json").read_bytes() == source,
+                      f"Shard source mismatch: {directory}")
+        discovered = json.loads((directory / "test-selectors.json").read_text(encoding="utf-8"))
+        selected = json.loads((directory / "shard-selectors.json").read_text(encoding="utf-8"))
+        reject_unless(discovered == expected and selected == expected[receipt["shard_index"]::shards]
+                      and receipt["tests"]["run"] == len(selected), f"Shard selection mismatch: {directory}")
+        details.append({"directory": str(directory.resolve()), "index": receipt["shard_index"],
+                        "tests": receipt["tests"], "test_seconds": receipt["test_seconds"],
+                        "receipt_sha256": sha256(directory / "verification.json")})
+    reject_unless(len({r["checkout"] for _, r in receipts}) == shards,
+                  "Each shard needs its own clean checkout and registry")
+    out.mkdir(parents=True, exist_ok=False)
+    write_json(out / "verification.json", {
+        **{key: first[key] for key in fields}, "status": "passed", "methods": len(expected),
+        "shard_receipts": sorted(details, key=lambda row: row["index"]),
+    })
 
 
 def run(args):
@@ -90,6 +123,7 @@ def run(args):
         "commit": args.commit, "pid": os.getpid(), "started_unix": time.time(),
         "python": sys.executable, "python_sha256": sha256(Path(sys.executable)),
         "runner_sha256": sha256(Path(__file__).resolve()), "commands": [],
+        "shards": args.shards, "shard_index": args.shard_index,
     }
 
     def progress(**fields):
@@ -170,12 +204,15 @@ def run(args):
         progress(stage="discovery")
         loader = unittest.TestLoader()
         suite = loader.discover(str(root / "Tests"), pattern="test_*.py")
-        discovered = list(selectors(suite))
+        cases = list(test_cases(suite))
+        discovered = [case.id() for case in cases]
+        chosen = cases[args.shard_index::args.shards]
         write_json(out / "test-selectors.json", discovered)
+        write_json(out / "shard-selectors.json", [case.id() for case in chosen])
         state["discovered"] = len(discovered)
+        state["selected"] = len(chosen)
         reject_unless(not loader.errors, "\n".join(loader.errors))
-        reject_unless(bool(discovered) and len(set(discovered)) == len(discovered),
-                      "Empty or duplicate test selectors")
+        reject_unless(bool(chosen) and len(set(discovered)) == len(discovered), "Empty or duplicate test selectors")
         write_json(out / "origins-discovery.json", module_origins(root, foreign_roots))
 
         class ProgressResult(unittest.TextTestResult):
@@ -191,7 +228,8 @@ def run(args):
         progress(stage="regression")
         stamp = time.perf_counter()
         with (out / "tests.log").open("w", encoding="utf-8", buffering=1) as log:
-            result = unittest.TextTestRunner(stream=log, verbosity=2, resultclass=ProgressResult).run(suite)
+            runner = unittest.TextTestRunner(stream=log, verbosity=2, resultclass=ProgressResult)
+            result = runner.run(suite if args.shards == 1 else unittest.TestSuite(chosen))
         state["test_seconds"] = time.perf_counter() - stamp
         outcomes = {name: [(test.id(), detail) for test, detail in getattr(result, name)]
                     for name in ("errors", "failures", "skipped", "expectedFailures")}
@@ -214,7 +252,7 @@ def run(args):
         reject_unless(state["identities"] == {"canonical": identities(), "module": module_identities()},
                       "Compiler identities drifted")
         state["status"] = "passed" if (
-            result.testsRun == len(discovered) and result.wasSuccessful() and not any(outcomes.values())
+            result.testsRun == len(chosen) and result.wasSuccessful() and not any(outcomes.values())
         ) else "failed"
         state["stage"] = "complete"
     except BaseException:
@@ -227,8 +265,17 @@ def run(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--checkout", type=Path, required=True)
-    parser.add_argument("--commit", required=True, help="Full Git commit hash")
-    parser.add_argument("--lean-bin", type=Path, required=True)
+    parser.add_argument("--checkout", type=Path)
+    parser.add_argument("--commit", help="Full Git commit hash")
+    parser.add_argument("--lean-bin", type=Path)
     parser.add_argument("--output", type=Path, required=True, help="New external evidence directory")
-    sys.exit(run(parser.parse_args()))
+    parser.add_argument("--shards", type=int, default=1)
+    parser.add_argument("--shard-index", type=int, default=0, help="Zero-based index")
+    parser.add_argument("--summarize", nargs="+", type=Path, metavar="EVIDENCE_DIRECTORY")
+    args = parser.parse_args()
+    if args.summarize:
+        summarize(args.output, args.summarize)
+    else:
+        if not (args.checkout and args.commit and args.lean_bin and 0 <= args.shard_index < args.shards):
+            parser.error("A run needs --checkout, --commit, --lean-bin and a valid shard index")
+        sys.exit(run(args))

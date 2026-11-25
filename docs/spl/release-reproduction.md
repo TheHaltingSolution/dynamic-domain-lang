@@ -32,6 +32,14 @@ failures, errors or skips, and unchanged source and build pins. Use
 outcome. Keep a failed run's evidence and use a fresh worktree and evidence
 directory for any retry.
 
+For parallel verification, use the same commit and runner in distinct clean
+worktrees. Pass a common `--shards N` and a different `--shard-index` from
+zero through `N - 1` to each run. Give every shard a separate output path.
+After they pass, invoke the runner with `--summarize`, the list of shard
+evidence directories and `--output` for the aggregate receipt. Each checkout
+has its own registrations and build. The aggregate checks that each discovered
+test ran exactly once across the shards.
+
 ## Native reserve namespace reproduction
 
 Run this after building the named checkout with the pinned Lake. This runner
