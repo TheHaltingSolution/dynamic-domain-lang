@@ -1,7 +1,7 @@
 {
   "format": "spl-completion-backlog/1",
   "date": "2026-11-23",
-  "scope": "Finite C1 calculation completion plus explicit supporting engineering, research, deferred and external obligations. This is an inventory and proposed sequence, not execution evidence or C1 completion.",
+  "scope": "Historical finite C1 requirements and separate engineering, research and external obligations, with the current bounded local release scope recorded separately.",
   "sources": [
     "docs/spl/release-scope-ld02.md",
     "docs/spl/conformance-ledger.md",
@@ -12,7 +12,11 @@
     "docs/spl/dyn02-design-answer.md",
     "docs/spl/extensibility-experiment.md",
     "docs/spl/conformance-validation.md",
-    "docs/spl/rr04-ld03-integration.md"
+    "docs/spl/rr04-ld03-integration.md",
+    "docs/spl/session-handoff-2026-11-25.md",
+    "docs/spl/release-reproduction.md",
+    "docs/spl/report-audit-coverage.md",
+    "docs/spl/physical-relationships.md"
   ],
   "status_meanings": {
     "ready": "An explicitly named synthetic or already specified engineering slice can proceed without outside answers; listed dependencies are required before its final integration.",
@@ -30,8 +34,27 @@
     "No whole-compiler proofs now. Vendor parity, legal/tax policy discovery, bank execution and distributed transaction service are not C1 acceptance requirements.",
     "Ready synthetic alternatives do not establish sourced contractual approval. Question-blocked sourced claims do not stop ready engineering.",
     "The six sample matrix gaps are not the release denominator. All 17 C1 families and 195 historical granular ledger rows receive a disposition here.",
-    "Native EUR/FX is explicitly reserved for the later self-modifying compiler tool demonstration. Continue other current feature/performance/testing goals first; preserve faithful old-language methods. Revisit after those goals are verified complete or the owner starts that later phase."
+    "Native EUR/FX is explicitly reserved for the later self-modifying compiler tool demonstration. Continue other current feature/performance/testing goals first; preserve faithful old-language methods. Revisit after those goals are verified complete or the owner starts that later phase.",
+    "The owner-selected local release scope governs work now. Earlier queue fields and broader C1 acceptance remain planning history. An item can have a qualified local subset while retaining partial historical acceptance."
   ],
+  "current_release_scope": {
+    "decision": "docs/spl/session-handoff-2026-11-25.md",
+    "assembled_source": "87d140df4aada6c800fcd96932bb2a24c84761fa",
+    "active": {
+      "B-REPRO-FREEZE": "Run the frozen combined regression, pinned builds, smokes and release witnesses, then record a reproducible local checkpoint.",
+      "B-C06-CARDINALITY": "Retain the qualified safeguards and reconciliation for named physical profiles.",
+      "B-C17-REPORTS": "Retain the report and audit checks for the supported profiles, including their actual policy values, reconciliation, state and lineage.",
+      "B-PERF-WORKLOAD": "Repeat complete 100- and 1,000-record canonical workflows with actual four-period carry and independent controls.",
+      "B-PERF-STAGES": "Record inclusive workflow stages, public and consumer-return times and parent and child memory under unchanged guards.",
+      "B-PERF-ENVELOPE": "Publish the measured medium-size envelope, guard proximity, observed failures, admission forecasts and larger unmeasured cases."
+    },
+    "deferred": [
+      "Discuss the broader strategy for testing feature combinations with the owner later.",
+      "Defer general data interfaces and generic relationship declarations, additional sourced cases and their professional-review program, further convenience syntax, native FX and the self-modifying compiler tool.",
+      "Defer large-scale batch infrastructure, topology stress campaigns and distributed or parallel execution. Revisit audit optimization only if measured absolute cost warrants it."
+    ],
+    "evidence_scope": "Work-item receipts qualify their own dated sources. Combined verification and final capacity receipts are separate release deliverables in progress."
+  },
   "first_ready_feature": "B-C03-STAGES",
   "parallel_ready": [
     "B-C16-WITHHOLD",
@@ -102,7 +125,7 @@
       "name": "Allocation and relationships",
       "current_native": "P",
       "current_canonical": "P",
-      "implemented_and_remaining": "Parent-first rounded allocation now executes largest-remainder residual assignment and separately authorized supplied-cent amounts with original parent/weight/authority/recipient lineage. 44 methods and 15 native comparisons/publications pass; actual adjacent native carry preserves raw originals. Generic descriptor relationship cardinality and separate 2x3 multiplicity acceptance remain open; finite source guards do not close that interface.",
+      "implemented_and_remaining": "Parent-first rounded allocation retains original parent, recipient, weight and authority with actual state carry. The bounded physical relationship checks qualify two original cash facts and three recipients each, an explicit zero title, separate invoice face and pre-SPL rejection of invalid relationships. General descriptor-level cardinality remains deferred.",
       "work_items": [
         "B-C06-RESIDUAL",
         "B-C06-CARDINALITY"
@@ -135,7 +158,7 @@
       "name": "Reserve vintages",
       "current_native": "P",
       "current_canonical": "P",
-      "implemented_and_remaining": "Genius elected20% gross reserve before fee now executes with independent original facts, calendar-derived six-month liquidation and actual five-period native carry;46 methods and six completed bundles pass. Net1740=fee174+allocation1566. This is selected within-vintage partial source support; excess/post-liquidation signed NR reductions and broader payment-stage/cap/term schedule composition remain open.",
+      "implemented_and_remaining": "The selected synthetic basis reserve and earned holdback have distinct canonical state namespaces and qualified actual carry. Finite caps, vintages and supplied release schedules retain original actual additions and explicit order. The separate Genius within-vintage basis reserve has actual five-period carry. Additional sourced after-liquidation, excess-return and active-claim interpretation remains deferred.",
       "work_items": [
         "B-C09-STAGES",
         "B-C09-SOURCED"
@@ -146,7 +169,7 @@
       "name": "Cross-contract movement",
       "current_native": "P",
       "current_canonical": "P",
-      "implemented_and_remaining": "The registered current-entitlement transfer profile preserves real endpoint scopes, authorization and transaction identities, conserved 70/30 redistribution, downstream credits, explicit graph/sequence order and consumed upstream references. All 28 independent oracle/module checks pass, including actual serialized fresh-period state and atomic cycles/overdraw. The coordinator envelope is execution metadata; this bounded synthetic DAG method is not a cross-contract type guarantee, bank transfer or distributed service. LD03 identifies a separate required subtraction/burden variation (claimant100 stays100; other200 less30 gives170), now inventoried but not executed; global conservation from transfers does not close it.",
+      "implemented_and_remaining": "The qualified conserved transfer and separate burden methods keep explicit endpoints, transaction authority and distinct conservation equations. The burden claimant keeps 100 while another agreement's entitlement 200 becomes 170, 185 or 200. Dated evidence includes three actual closes and old-v1 to compact-v2 carry. The component planner remains single-worker and explicitly registered.",
       "work_items": [
         "B-C10-TRANSFER",
         "B-C10-BURDEN",
@@ -158,7 +181,7 @@
       "name": "Gates and ordered histories",
       "current_native": "P",
       "current_canonical": "P",
-      "implemented_and_remaining": "LG preserves separate aggregate/work attestations, full/proxy bases and the strictly-before-start precondition. MQP executes identified same-event order and a payment-based rate transition. Full event-time gate crossings/dips, continuous gate reconstruction and crossing-row payout alternatives still require independent methods/evidence.",
+      "implemented_and_remaining": "The finite ordered-history opening, closing and event-time gate policies preserve independently supplied hurdle, work and net predicates, the explicit tie key and full history. Actual Q1, Q2 and Q3 yield 0, 6 and 2, cumulative 8. Additional sourced and professional review is deferred.",
       "work_items": [
         "B-C11-GATES",
         "B-C11-SOURCED"
@@ -180,7 +203,7 @@
       "name": "Corrections and replay",
       "current_native": "P",
       "current_canonical": "P",
-      "implemented_and_remaining": "[Revision checks](../../Tests/test_revision.py) exercise authorized original/replacement references, original opening, conserved 500 cash, revised entitlement 90, delta -10, paid 80, duplicate/replay rejection and outstanding as-of 10. General dependent-period replay, linked reversal alternatives and separately authorized prospective adjustment/application are not completed.",
+      "implemented_and_remaining": "Bounded native authorized restatement and prospective attribution run over original facts with the original issued and paid history retained. The simple outstanding bridge is 40 and the genuine dependent tier replay yields 18. The separately qualified authorized-offset method retains its own payment and state scope.",
       "work_items": [
         "B-C04-RETRO",
         "B-C13-REPLAY",
@@ -227,7 +250,7 @@
       "name": "Reusable contracts and reporting",
       "current_native": "I",
       "current_canonical": "I",
-      "implemented_and_remaining": "[Generic module checks](../../Tests/test_modules.py), Cedar and multi-participant waterfall demonstrate typed parameterized imports, new registrations without contract-name dispatch, named statements/detail/state, scenario-isolated dependencies and deterministic semantic identity with retained source/policy lineage. This status covers the finite calculation/interface requirement; it does not claim an enterprise contract repository, payment service or concurrent distributed settlement system.",
+      "implemented_and_remaining": "Named legacy and registered module profiles retain typed reports, policy and party identity, reconciliation, audit and closing state. The qualified readable two-participant expansion retains distinct output identities. Reports, publication and state consumption have separate scope from external issue and payment. Broader interfaces remain deferred.",
       "work_items": [
         "B-C17-REPORTS",
         "B-SURFACE-MULTI",
@@ -548,14 +571,22 @@
         "D21"
       ],
       "work_class": "interface",
-      "status": "ready",
+      "status": "partial",
       "scope": "c1_required",
       "acceptance": [
         "Descriptors enforce named one-to-one/one-to-many/required-reference relations; duplicate equal contributors and missing recipients cannot silently multiply money.",
         "Show 2 x 3 join occurrence preservation, empty groups and explicit zero-title universe with parent/child no-double-count controls."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Named SV, RQ-07 and LG physical packages validate relationship identity, reference and scope before projection. The SV native comparison reconciles six exact allocations from two original cash facts to original cash and title totals, with an empty title and invoice face excluded from cash. The RQ-07 controls qualify canonical per-invoice scope and overapplication checks, and the core join witness separately preserves six occurrences.",
+      "remaining_obligation": "General descriptor-level relationship declarations and arbitrary schedule join validation are deferred.",
+      "evidence": [
+        "docs/spl/physical-relationships.md",
+        "Tests/test_physical_relationships.py",
+        "Tests/test_collections.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/physical-relationships-c93e122-20261125-a/verification.json"
+      ]
     },
     {
       "id": "B-C07-MIXED",
@@ -666,7 +697,7 @@
         "F27"
       ],
       "work_class": "method",
-      "status": "partial",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Preserve V1:12-7-5=0 and V2:0+20=20; register named basis-stage reserve versus post-earnings holdback with amount-changing controls.",
@@ -674,7 +705,7 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Initial within-vintage source slice remains accepted. Five independent generic stage/cap/schedule files now freeze37passing controls and16original checkpoint invocations across6chains/10actual JSON-serialized successors. Root verifies all5archived pins, fresh16full results, exact predecessor state, vintage conservation and35/36stage versus terminal45/45/10 bridges. These are oracle-only controls; separate SPL/source/canonical/native implementation remains required. Source-specific Genius excess/after-liquidation/fee/claim semantics remain separate.",
+      "active_scope": "The selected synthetic gross-basis reserve and earned-producer holdback, finite caps and supplied release schedules execute with canonical purpose-qualified keys. The USD 100 gross, fee 10 and share one-half control distinguishes addition 20 and balance 35 from addition 9 and balance 36. Releases use original actual capped additions.",
       "evidence": [
         "cases/basis-reserves/README.md",
         "cases/basis-reserves/policy.md",
@@ -690,9 +721,12 @@
         "Tests/test_reserve_stage_oracle.py",
         "docs/spl/reserve-stage-design.md",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/reserve-stage-oracle-20261124-a/verification.json",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/reserve-stage-oracle-20261124-a/root-review.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/reserve-stage-oracle-20261124-a/root-review.json",
+        "cases/reserve-stages/README.md",
+        "Tests/test_reserve_stage_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/reserve-stage-namespaces-20261124-b/verification.json"
       ],
-      "execution_scope": "Selected Genius within-vintage basis reserve now passes46 oracle/module methods and six actual completed native/reference/Python-emitted bundles, including five actual serialized predecessors and same-complete-checkpoint preview. Net1740=fee174+allocation1566; largest actual result50337661bytes.55 frozen non-README files match; README evidence/NFC-boundary clarification only changed afterward. Excess/post-liquidation signed NR policy, full generic cap/payment-stage/term composition and professional approval remain separate."
+      "execution_scope": "The final namespace cohort passes 45 isolated reference methods and retains 22 valid native publications and nine pre-source blocks, all 31 bounded-reloaded. The positive publications include 16 original checkpoints with ten actual successors and six previews. Source-specific Genius excess and post-liquidation semantics remain under the separate sourced item."
     },
     {
       "id": "B-C09-SOURCED",
@@ -712,8 +746,8 @@
         "B-C09-STAGES"
       ],
       "questions": [],
-      "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate.",
-      "active_scope": "Initial within-vintage source slice accepted; remaining excess-return and generic reserve-stage/cap/schedule obligations stay open.",
+      "review_resolution": "RR04/LD03 selected the bounded Genius within-vintage source policy. The distinct synthetic stage/cap/release implementation follows its own supplied terms.",
+      "active_scope": "The sourced Genius within-vintage slice has independent controls and actual carry. Excess-return, after-liquidation and active-claim clearance interpretations remain outside the local release, along with professional approval.",
       "evidence": [
         "cases/basis-reserves/policy.md",
         "docs/spl/basis-reserve-design.md",
@@ -769,7 +803,7 @@
         "D29"
       ],
       "work_class": "method",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Register a separately named subtraction policy: claimant entitlement100 remains100 while different agreement entitlement200 minus authorized burden30 becomes170. Do not implement conserved70/30 redistribution or invent cash movement.",
@@ -779,7 +813,7 @@
       "depends_on": [],
       "questions": [],
       "review_resolution": "Missing finite C10 variation identified by LD03 section7, lines390-399. Existing B-C10-TRANSFER remains complete for conserved transfers only.",
-      "active_scope": "Independent28-method oracle and economic SPL remain frozen. Isolated79624e3 now passes corrected full46 in1976.435s plus actual freshQ1/Q2/Q3, same-checkpoint preview and old-v1Q2-to-v2Q3 bridge (2233.703166s total), all four backend controls and complete original state. Root independently bounded-loaded the five prelude publications and reconstructed the original oracle/carry chain. Terminal audit verifies689source/102compiled pins unchanged,721passed processes and5expected incomplete-publication loader rejections,0unexpected resource/time/output failures;65owned captures retained. Earlier v1/Cgen limits and failed43-b remain historical failed records. Current wrapper distinguishes original/prepared custody rejection from13direct-native binding guards. Case-only promotion is prepared in isolation; main lacks compatible compact imports until combined1301 compiler qualification/promotion, so this item remains in_progress pending main integration.",
+      "active_scope": "The assembled selected subtraction method preserves claimant entitlement 100 and takes another agreement's 200 to 170, 185 or 200 under authorized caps and approvals. Paid basis 60 produces 18 versus 30 under accrued basis 100. The evidence preserves original/typed custody, exact dependency identity and the distinction between calculation and payment.",
       "evidence": [
         "oracles/contract_burdens.py",
         "cases/entitlement-burdens/neutral.json",
@@ -789,8 +823,13 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/contract-burden-oracle-20261123-562c4619/verification.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-compact-qualified-20261123-c/verification.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-compact-qualified-20261123-c/terminal-audit.json",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-root-original-review-20261124-a/verification.json"
-      ]
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-root-original-review-20261124-a/verification.json",
+        "cases/entitlement-burdens/README.md",
+        "Tests/test_contract_burden_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-compact-integrated-20261124-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/c10-compact-integrated-20261124-a/terminal-audit.json"
+      ],
+      "execution_scope": "The integrated compact cohort passes 46 methods and includes actual Q1, Q2 and Q3, preview and an old-v1 Q2 to compact-v2 Q3 carry. The separately qualified transfer method retains its own conservation policy."
     },
     {
       "id": "B-C11-GATES",
@@ -802,7 +841,7 @@
         "Q16"
       ],
       "work_class": "method",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Register separate opening/closing/event-time policies using original ordered receipts/costs and authorized complete tie keys.",
@@ -811,15 +850,20 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Independent original-history oracle frozen:29 isolated methods pass,6/8/7/authorized-order4/0/11 discriminators and actual serialized Q1?Q2?Q3 gross0/6/2, cumulative8. Complete earlier history/current-prefix continuity, supplied aggregate/net0 and original classifications remain explicit. Separate SPL/native source acceptance required.",
+      "active_scope": "The selected original-history method covers opening, closing and event-time eligibility with explicit crossing, dip, reopening, tie order and complete-history inputs. Aggregate hurdle and individual work gates have independent evidence. The retained profiles preserve gating and payout measures separately.",
       "evidence": [
         "oracles/ordered_gates.py",
         "cases/ordered-gates/neutral.json",
         "cases/ordered-gates/policy.md",
         "docs/spl/ordered-gate-design.md",
         "Tests/test_ordered_gate_oracle.py",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/ordered-gate-oracle-20261123-c15611f2/verification.json"
-      ]
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/ordered-gate-oracle-20261123-c15611f2/verification.json",
+        "cases/ordered-gates/README.md",
+        "Tests/test_ordered_gate_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/ordered-gates-followup-20261124-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/ordered-gates-followup-20261124-a/final-audit.json"
+      ],
+      "execution_scope": "Composite qualification retains the financial results and failed earlier attempt. The final follow-up passes 23 affected controls, including repaired source-boundary custody and publication lifecycle. Actual three-period carry yields new gross 0, 6 and 2 and cumulative 8. Preview remains non-consumable."
     },
     {
       "id": "B-C11-SOURCED",
@@ -830,7 +874,7 @@
         "F22"
       ],
       "work_class": "research",
-      "status": "dependency_blocked",
+      "status": "deferred",
       "scope": "research_evidence",
       "acceptance": [
         "Select attested versus reconstructed continuous history, crossing row, same-event order and dip/reopening for one sourced contract.",
@@ -840,7 +884,12 @@
         "B-C11-GATES"
       ],
       "questions": [],
-      "review_resolution": "RR04/LD03 select a bounded proposed policy with source/economic and synthetic-operating distinctions; independent controls and executable integration remain. See docs/spl/rr04-ld03-integration.md. Professional approval remains separate."
+      "review_resolution": "RR04/LD03 supplied a proposed selection for the original-history approach. The dated controlled fixtures qualify their selected policies and supplied completeness assumptions.",
+      "active_scope": "Further sourced interpretation and professional-review coverage are deferred under the owner's local release scope.",
+      "evidence": [
+        "cases/ordered-gates/README.md",
+        "docs/spl/rr04-ld03-integration.md"
+      ]
     },
     {
       "id": "B-C12-OBLIGATIONS",
@@ -899,7 +948,7 @@
         "U05"
       ],
       "work_class": "method",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Extend bounded original-opening restatement through a finite dependent-period chain, retaining original issued artifacts/replacement facts/authority/predecessors.",
@@ -908,7 +957,7 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Independent original-fact oracle frozen:35 isolated methods pass with actual serialized successors. Simple originalissued100/paid80/revised90/current30 gives40; genuine cumulative-tier successor10 to8 gives18 afterpaid80. Explicit original issued-unpaid20/30 plus unissued earnings and authorized credit-10/-12 bridge both routes; original artifacts/payment history stay unchanged. No SPL/source/canonical/native publication acceptance yet.",
+      "active_scope": "The finite simple and dependent-tier restatement profiles preserve original issued artifacts, paid amounts, complete original predecessors and replay authority. The simple bridge yields outstanding 40. Recomputing a genuine dependent tier from 10 to 8 yields outstanding 18, with zero additional adjustment on exactly-once repeat.",
       "evidence": [
         "oracles/dependent_replay.py",
         "cases/dependent-replay/neutral.json",
@@ -917,8 +966,13 @@
         "docs/spl/dependent-replay-design.md",
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\verification.json",
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\hand-and-carry.json",
-        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json"
-      ]
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json",
+        "cases/dependent-replay/README.md",
+        "Tests/test_dependent_replay_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/dependent-replay-native-final-20261124-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/dependent-replay-native-final-20261124-a/final-audit.json"
+      ],
+      "execution_scope": "The final native follow-up passes 24 methods and keeps earlier failed cohorts separate. Independent review bounded-reloads 11 publications and checks full original facts, state and predecessor references. The implementation uses the stated finite replay bounds."
     },
     {
       "id": "B-C13-PROSPECTIVE",
@@ -929,7 +983,7 @@
         "F30"
       ],
       "work_class": "method",
-      "status": "partial",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Register prospective adjustment separately from restatement; both reconcile 40 outstanding with different period lines.",
@@ -951,15 +1005,17 @@
         "docs/spl/dependent-replay-design.md",
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\verification.json",
         "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\hand-and-carry.json",
-        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json"
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json",
+        "cases/dependent-replay/README.md",
+        "Tests/test_dependent_replay_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/dependent-replay-native-final-20261124-a/verification.json"
       ],
       "completed_acceptance": [
-        "Separately authorized overpayment/priority/cash-first/capacity-limited future-earnings offset and actual serialized carry; immutable original paid history."
+        "Separately authorized overpayment/priority/cash-first/capacity-limited future-earnings offset and actual serialized carry; immutable original paid history.",
+        "The finite dependent-replay fixture registers a separate prospective attribution policy and reconciles the simple outstanding 40 to distinct period lines using the original issued and payment records."
       ],
-      "remaining_acceptance": [
-        "Register the separate prospective adjustment versus restatement discriminator: original100/paid80/revised90 plus following earned30 gives outstanding40, with different period lines and exactly-once dependent-period treatment. General B-C13-REPLAY remains separate."
-      ],
-      "active_scope": "Independent original-fact oracle frozen:35 isolated methods pass with actual serialized successors. Simple originalissued100/paid80/revised90/current30 gives40; genuine cumulative-tier successor10 to8 gives18 afterpaid80. Explicit original issued-unpaid20/30 plus unissued earnings and authorized credit-10/-12 bridge both routes; original artifacts/payment history stay unchanged. No SPL/source/canonical/native publication acceptance yet."
+      "active_scope": "The finite prospective and restatement profiles and the separately authorized offset carry have their own distinct acceptance evidence. The two-period prospective and restatement routes preserve issued and paid amounts and expose different attribution lines.",
+      "execution_scope": "The dependent-replay composite and prior authorized-offset case retain separate independent checks of financial results and state. Issuance, payment and general overpayment recovery remain outside the dependent-replay profile."
     },
     {
       "id": "B-C14-CALENDAR",
@@ -1120,7 +1176,7 @@
         "U12"
       ],
       "work_class": "interface",
-      "status": "ready",
+      "status": "partial",
       "scope": "c1_required",
       "acceptance": [
         "Each new method exposes economic meaning in main rules or named incorporated readable policy with actual parameters; footer bindings cannot hide monetary choices.",
@@ -1128,7 +1184,15 @@
         "Retain exact transitive source/policy/interface pins and consumed authored bytes."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "The retained report matrix documents the bounded legacy and registered module views, actual checked output types, policy and party attribution, source and evidence links, contribution and rounding bridges, and closing state. Compact-v2 keeps complete native observations. Preview, failure, incomplete publication, report dates and issuance/payment authority retain their separate contracts.",
+      "remaining_obligation": "Broader generic data/report interface expansion and exhaustive feature-combination qualification are deferred. The final assembled verification is a separate release obligation.",
+      "evidence": [
+        "docs/spl/report-audit-coverage.md",
+        "docs/spl/compact-publication.md",
+        "docs/spl/v1-carry-receipt.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/report-audit-integration-20261125-a/original-review.json"
+      ]
     },
     {
       "id": "B-SURFACE-MULTI",
@@ -1138,14 +1202,20 @@
         "C17"
       ],
       "work_class": "kernel",
-      "status": "ready",
+      "status": "complete",
       "scope": "supporting_engineering",
       "acceptance": [
         "Two participant headings expand hygienically without fixed-name collision and preserve roles/report columns/authored spans.",
         "Original readable/core cases compile unchanged with accepted financial-rules-first layout."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "execution_scope": "The qualified readable expansion binds roles hygienically per heading and retains authored strings, citations, selectors and output names. Retained two-heading positive and negative controls compare backends; the separate no-heading review preserves existing scalar paths.",
+      "evidence": [
+        "docs/spl/session-handoff-2026-11-25.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/readable-multi-checks-20261124-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/readable-zero-heading-20261124-b/verification.json"
+      ]
     },
     {
       "id": "B-SCHEMA-ALIASES",
@@ -1285,7 +1355,7 @@
         "U12"
       ],
       "work_class": "interface",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "supporting_engineering",
       "acceptance": [
         "Provide selected explicit report/issue date independently from effective financial period/cutoff/invocation clock.",
@@ -1293,13 +1363,15 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Isolated C:/spl-dates candidate commits4b1b638+b14e2bb implement optional supplied presentation/intended-issue Dates in both module and bounded manifests, with no clock default, inferred temporal ordering or financial binding. Frozen51 methods/140 subtests pass202.326076s; follow-up2 methods/12 publications pass21.486264s after clarifying existing compact digest semantics, with runtime/schema bytes unchanged. Root bounded-reloads11 original native publications and verifies financial/logical graph/state/marker equality. Default array-v1 module result digest includes manifest; bounded array-v1 and both compact-v2 semantic publication digests exclude it. All results stay unissued; explicit economic Date ports remain semantic. Candidate is committed and clean; main integration remains pending the compatible compiler milestone.",
+      "active_scope": "The integrated explicit report and intended-issue Dates do not bind a clock or change calculation ports, graphs or closing state. Default array-v1 module result digests include manifest metadata. Bounded array-v1 and both compact-v2 semantic result digests exclude presentation dates.",
       "evidence": [
         "C:/spl-dates/docs/spl/run-dates.md",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/run-dates-frozen-20261124-a/verification.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/run-dates-digest-followup-20261124-a/verification.json",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/run-dates-digest-followup-20261124-a/root-review.json"
-      ]
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/run-dates-digest-followup-20261124-a/root-review.json",
+        "docs/spl/run-dates.md"
+      ],
+      "execution_scope": "The frozen 51-method cohort and the two-method digest follow-up qualify the named workflow across both physical and registered module wrappers."
     },
     {
       "id": "B-RUN-DELTA",
@@ -1328,7 +1400,7 @@
         "C10"
       ],
       "work_class": "performance",
-      "status": "in_progress",
+      "status": "partial",
       "scope": "supporting_engineering",
       "acceptance": [
         "Plan components through shared pools/gates/allocation parents/correction chains and cross-contract dependencies.",
@@ -1336,7 +1408,12 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Implementation is isolated in C:/spl-components-c80 using only new owned files. Seventeen Python/reference controls pass; actual native coordinated witness remains pending. Trusted registered footprint completeness is an explicit assumption bound to module/source/policy/closure pins; unknown profiles join conservatively and shared state joins across boundaries. Connected distinct roots require one registered coordinated atomic root; independent components retain separate canonical authorities. Execution revalidates mutable plans and owned input bytes. No multi-root transaction, parallel throughput or large-capacity claim."
+      "active_scope": "The registered single-worker dependency planner qualified 44 methods, including actual C10 carry and standalone/batch financial and state equality. Footprint completeness is a profile assumption. Unrecognized profiles hold the whole batch; connected distinct native roots require a coordinated atomic root.",
+      "remaining_obligation": "Additional supported profile registrations, broader data interfaces and any parallel or large-batch deployment remain deferred.",
+      "evidence": [
+        "docs/spl/component-execution.md",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/component-frozen-20261124-a/verification.json"
+      ]
     },
     {
       "id": "B-AUDIT-RAW",
@@ -1348,14 +1425,20 @@
         "D20"
       ],
       "work_class": "interface",
-      "status": "ready",
+      "status": "partial",
       "scope": "supporting_engineering",
       "acceptance": [
         "Retain unmapped/rejected raw rows/codes/amount-space controls; reproducible WF-01 alias repair retains original rejection evidence.",
         "Distinguish excluded/included-zero/missing-policy/failed; duplicate same-purpose cost balanced elsewhere is still invalid."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Named workflows retain original cash/cost/evidence references, selected/excluded dispositions and included-zero report values, with separate amount-space controls. Physical input identity and selected source custody have independent checks.",
+      "remaining_obligation": "General raw-delivery schema, WF-01 alias repair and broad cross-profile reconciliation remain deferred.",
+      "evidence": [
+        "docs/spl/report-audit-coverage.md",
+        "docs/spl/physical-relationships.md"
+      ]
     },
     {
       "id": "B-AUDIT-ERRORS",
@@ -1365,14 +1448,20 @@
         "U25"
       ],
       "work_class": "interface",
-      "status": "ready",
+      "status": "partial",
       "scope": "supporting_engineering",
       "acceptance": [
         "Frontend/binding/IR/runtime/wrapper failures expose available authored span/clause/field pointer, including emitted division error mapping.",
         "Accumulate independent validation errors in stable order while preserving demanded-calculation error precedence."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Qualified paths distinguish binding, source and result failures, retain available authored spans or field pointers, and compare native failure codes before publishing the corresponding checked messages. The interpreter graph preserves the actual error and skipped nodes.",
+      "remaining_obligation": "General accumulation of independent errors and systematic emitted instrumentation remain separate from the retained release scope.",
+      "evidence": [
+        "docs/spl/report-audit-coverage.md",
+        "docs/spl/compact-publication.md"
+      ]
     },
     {
       "id": "B-AUDIT-PUBLISH",
@@ -1408,14 +1497,15 @@
         "U23"
       ],
       "work_class": "validation",
-      "status": "ready",
+      "status": "deferred",
       "scope": "supporting_engineering",
       "acceptance": [
         "Instrument target execution or validate justified target coverage mechanism with source identities/explicit origin.",
         "Demonstrate actual emitted branch/skip/assertion/discard paths; equal totals or interpreter traces cannot establish target decision coverage."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "Native interpretation supplies current branch and skip observations. General direct emitted-target decision observations remain deferred under the broader testing strategy."
     },
     {
       "id": "B-AUDIT-TRACE-REL",
@@ -1619,9 +1709,12 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-focused-20261123-b/verification.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-small-20261123-b/terminal-verification.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal.json",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json",
+        "docs/spl/session-handoff-2026-11-25.md",
+        "docs/spl/release-reproduction.md"
       ],
-      "active_scope": "Historical old20ea33compilation/66mixed/pure30batch/four-close protocol remains separately pinned; its v1 1000 publication failed64MiB reconstruction. New isolated compact candidate2ee01e6/31caf5f passes67 focused methods and actual100/1000 canonical writer+bounded-loader gates with unchanged logical graph/guards; root independently validates1000 result/pins. No main integration,33-run canonical latency/SLA or10k credit. C10 old-array reader and emitted-target compiler resource failures remain open; detailed retained evidence is in active-work.md."
+      "active_scope": "Measure the complete compact-v2 canonical workflow at 100 and 1,000 original RR03 records, with repeated independent consumer reloads and four actual saved-state closes for each size. Record workload dimensions, authority, timing and parent and child memory under the existing guards.",
+      "remaining_obligation": "Final-current measurements are in progress. The historical v1 1,000-record publication exceeded its 64 MiB reconstruction bound. The dated compact-v2 1,000-record pass remains a separate observation. Larger throughput studies are deferred."
     },
     {
       "id": "B-PERF-STAGES",
@@ -1645,11 +1738,14 @@
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-focused-20261123-b/verification.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-small-20261123-b/terminal-verification.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal.json",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/performance-protocol-full-20261123-a/terminal-audit.json",
+        "docs/spl/session-handoff-2026-11-25.md",
+        "docs/spl/release-reproduction.md",
+        "docs/spl/compact-publication.md"
       ],
       "additional_bounded_evidence": "Compact full result envelopes preserve every parsed value and fixed64MiB budget.20publication methods/build/smokes pass; retained17,832-node trace65,841,102pretty/44,542,781compact bytes. This does not close remaining cold/warm/dependency timing acceptance or establish a completed Disney close.",
-      "active_scope": "Historical old20ea33compilation/66mixed/pure30batch/four-close protocol remains separately pinned; its v1 1000 publication failed64MiB reconstruction. New isolated compact candidate2ee01e6/31caf5f passes67 focused methods and actual100/1000 canonical writer+bounded-loader gates with unchanged logical graph/guards; root independently validates1000 result/pins. No main integration,33-run canonical latency/SLA or10k credit. C10 old-array reader and emitted-target compiler resource failures remain open; detailed retained evidence is in active-work.md.",
-      "remaining_obligation": "Implement/verify versioned generic compact-audit canonical publication and bounded loader for both real wrappers, complete logical/source/ownership/atomic/failure/state-carry evidence and actual1000close; never replace missing audit with empty trace or count failed reconstruction as completed publication."
+      "active_scope": "Measure absolute time for the complete current wrapper and independent consumer return. Record inclusive phase observations, compile misses versus cached execution and parent and child memory with source and build pins.",
+      "remaining_obligation": "Final-current measurements are in progress. Guarded compact writer and reader behavior already has dated finite evidence. Audit optimization is conditional on measured absolute time."
     },
     {
       "id": "B-PERF-PROFILE",
@@ -1712,7 +1808,7 @@
         "U09"
       ],
       "work_class": "performance",
-      "status": "dependency_blocked",
+      "status": "in_progress",
       "scope": "supporting_engineering",
       "acceptance": [
         "After smaller-case headroom characterize 25 independent 4000 scopes versus shared 80000 plus 20 independent 1000 scopes; 99, 999/100, 000/100, 001 guard boundaries.",
@@ -1723,7 +1819,13 @@
         "B-PERF-PROFILE",
         "B-RUN-COMPONENTS"
       ],
-      "questions": []
+      "questions": [],
+      "active_scope": "Publish the selected 100- and 1,000-record capacity envelope. Separate measurements from configured guards, observed failures, admission forecasts and unmeasured topology. The large topology and cardinality campaigns in the historical acceptance are deferred.",
+      "remaining_obligation": "Reconcile the final four-close and repeat measurements with the resource guards and record limitations for the research paper.",
+      "evidence": [
+        "docs/spl/session-handoff-2026-11-25.md",
+        "docs/spl/release-reproduction.md"
+      ]
     },
     {
       "id": "B-REPRO-FREEZE",
@@ -1735,7 +1837,7 @@
         "R16"
       ],
       "work_class": "reproducibility",
-      "status": "ready",
+      "status": "in_progress",
       "scope": "supporting_engineering",
       "acceptance": [
         "Freeze accepted grammar/core/schema/diagnostics/trace/profile/build/source/expected outputs and exclusions while preserving historical 0.4.3/E0/E1 artifacts.",
@@ -1743,7 +1845,12 @@
         "Document old-source/package migration and same-name library revision disambiguation; byte identity is not semantic equivalence."
       ],
       "depends_on": [],
-      "questions": []
+      "questions": [],
+      "active_scope": "The retained candidates and bounded fixes are assembled at the pinned local release source. The independent frozen combined regression and local release evidence review are in progress.",
+      "evidence": [
+        "docs/spl/session-handoff-2026-11-25.md",
+        "docs/spl/release-reproduction.md"
+      ]
     },
     {
       "id": "B-REPRO-BYTES",
@@ -1765,10 +1872,13 @@
         "docs/spl/active-work.md",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/checkpoint-regression-e80024d-a/verification.json",
         "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-root-review-20261123-a/verification.json",
-        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/repository-module-pin-audit-20261123-a/verification.json"
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/repository-module-pin-audit-20261123-a/verification.json",
+        "docs/spl/release-reproduction.md",
+        "docs/spl/session-handoff-2026-11-25.md"
       ],
       "execution_scope": "Named isolated checkpoints/oracles and source-stable financial cohorts retain actual source/command/backend/toolchain evidence; live freezes and isolated import evidence are distinguished. Read-only committed2b9ed46 module audit passes97 descriptor/package documents and146 source/policy/import/root-reference pins, all raw bytes matching Git. This static audit earns no native execution credit.",
-      "remaining_obligation": "Release-wide consumed-source/invocation qualification and new feature campaigns remain open until the final accepted source/build corpus is frozen and independently replayed; do not infer immutable consumed bytes merely from a before/after live-tree hash."
+      "remaining_obligation": "Release-wide consumed-source/invocation qualification and new feature campaigns remain open until the final accepted source/build corpus is frozen and independently replayed; do not infer immutable consumed bytes merely from a before/after live-tree hash.",
+      "active_scope": "The release reproduction guide selects explicit checkout imports and preserves isolated source/build pins, native reserve controls and historical receipts."
     },
     {
       "id": "B-RESEARCH-PUBLIC",
@@ -1934,7 +2044,7 @@
         "F04"
       ],
       "work_class": "method",
-      "status": "in_progress",
+      "status": "complete",
       "scope": "c1_required",
       "acceptance": [
         "Register a numeric policy separating ratio quantum .0001 from USD quantum .01: ratio .12345 gives .1234 at half-even versus .1235 half-away; a monetary quantum is invalid for ratio precision.",
@@ -1943,15 +2053,20 @@
       ],
       "depends_on": [],
       "questions": [],
-      "active_scope": "Independent30-method exact original-basis oracle frozen:ratio.12345 precision.0001 differs half_even/half_away, moneyhalfcent row/aggregate bridges andall5 signedmodes. Six fullcontrols independently rechecked; suppliedpolicycontent pin only,no externalrevisionhistory/authenticity claim. Separate SPL/source/canonical/native author stillrequired; no compiler/native credit.",
+      "active_scope": "The registered exact-rational profile separates ratio precision from money quantum and distinguishes row, aggregate and statement placement. The qualified original wrapper retains policy choices, original-to-typed correspondence, signed ties and exact intermediate bridges.",
       "evidence": [
         "oracles/numeric_precision.py",
         "cases/numeric-precision/neutral.json",
         "cases/numeric-precision/policy.md",
         "Tests/test_numeric_precision_oracle.py",
         "docs/spl/numeric-precision-design.md",
-        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\numeric-precision-oracle-20261123-2c005540\\verification.json"
-      ]
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\numeric-precision-oracle-20261123-2c005540\\verification.json",
+        "cases/numeric-precision/README.md",
+        "Tests/test_numeric_precision_modules.py",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/numeric-precision-full-20261124-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/numeric-precision-full-20261124-a/final-audit.json"
+      ],
+      "execution_scope": "The frozen 57-method native comparison cohort includes 209 qualified public reloads, 128 empty blocked cases and 26 rejected incomplete markers. The separate trusted-prepared-input counterexample retains its unqualified scope."
     },
     {
       "id": "B-INTEREST-METHOD",
@@ -4041,15 +4156,14 @@
       "rationale": "Linked work isolates a remaining variant or acceptance obligation; it does not undo later executed implementations."
     }
   ],
-  "progress_as_of": "2026-11-24",
+  "progress_as_of": "2026-11-25",
   "status_counts": {
-    "complete": 29,
-    "ready": 15,
-    "partial": 5,
-    "in_progress": 10,
-    "dependency_blocked": 2,
+    "complete": 37,
+    "ready": 8,
+    "partial": 8,
+    "in_progress": 6,
     "gated": 1,
-    "deferred": 7,
+    "deferred": 9,
     "question_blocked": 1,
     "outside_scope": 3
   }

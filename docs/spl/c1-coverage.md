@@ -6,6 +6,12 @@ within the [adopted C1 scope](release-scope-ld02.md) and
 [RR04/LD03 decisions](rr04-ld03-integration.md). It does not change that scope or
 announce C1 completion.
 
+25 November update. The sections below preserve the earlier planning review.
+The [current inventory](completion-backlog.json) and [owner finish line](session-handoff-2026-11-25.md)
+record the subsequent bounded relationship, reserve, burden, gate and replay
+qualifications and the active local release checks. The [reproduction
+guide](release-reproduction.md) gives the commands for the assembled source.
+
 The reviewed catalog contains 78 named rows across C01-C17, plus nine separate
 engineering entries. Of the semantic rows, 75 are required C1 variants, two are
 supporting engineering, and one is an explicitly unselected recognition
