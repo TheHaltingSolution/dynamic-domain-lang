@@ -18,6 +18,13 @@ interface](module-interface-v1.md), [numeric precision
 fixture](../../cases/numeric-precision/README.md), [case qualification
 index](session-handoff-2026-11-25.md) and [run metadata](run-dates.md).
 
+Legacy `evidence_to_target_lineage` links exact original event IDs in the owned
+`canonical-package.json` to inputs in `bindings.json`. SV groups funding IDs
+by picture and retains the complete-population reference. A covered picture
+with no funding events has an empty ID list. LG links its three evidence
+inputs to the corresponding hurdle, gate and worksheet events. This keeps
+original evidence navigable alongside the existing receipt and cost lineage.
+
 ## Audit and diagnostics
 
 Both native profiles decode emitted and closing values by their checked

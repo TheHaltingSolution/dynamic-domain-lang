@@ -111,6 +111,7 @@ class AcceptanceTests(unittest.TestCase):
         self.assert_success(second, earned="33000", recouped="15000", payable="18000", closing="0")
         self.assertEqual(first["semantic_run_digest"], second["semantic_run_digest"])
         self.assertEqual(first["trace"], second["trace"])
+        self.assertEqual(first["evidence_to_target_lineage"], second["evidence_to_target_lineage"])
 
     def test_lg01_native_lean_matches_independent_gates_and_candidates(self):
         result = self.execute(lg_package(), LG, backend="compare")
@@ -118,6 +119,9 @@ class AcceptanceTests(unittest.TestCase):
         comparison = result["detail"][0]
         for key, expected in {"cash_measure": "300", "payout_base": "210", "gross_candidate": "30", "net_candidate": "35", "selected_label": "net"}.items():
             self.assertEqual(expected, comparison[key], key)
+        self.assertEqual({row["target_input"]: row["evidence_ids"] for row in result["evidence_to_target_lineage"]},
+                         {"outside_hurdle": ["outside-hurdle"], "work_gate_history": ["work-history"],
+                          "crossed_net_subtotal": ["net-worksheet"]})
         cells = {cell["balance_kind"]: cell["quantity"] for cell in result["closing_state"]}
         self.assertEqual({"cumulative_gross": "400", "cumulative_cost": "100", "synthetic_payment_holdback": "0"}, cells)
 

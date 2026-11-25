@@ -463,7 +463,8 @@ def _constraints(package, descriptor, outputs=None, *, owner=BASE_ADMISSION, mea
             continue
         if not path.startswith("outputs.") and outputs is not None:
             continue
-        rows = _rows(_path(context, path))
+        source = _path(context, path)
+        rows = _rows(source)
         values = [[_path(row, field) for field in fields] if fields else row for row in rows]
         if kind == "unique":
             if len({canonical(value) for value in values}) != len(values):
@@ -472,8 +473,20 @@ def _constraints(package, descriptor, outputs=None, *, owner=BASE_ADMISSION, mea
             allowed = _rows(_path(context, constraint["target"]))
             keys = {canonical(value) for value in allowed}
             selected = [value[0] if fields and len(fields) == 1 else value for value in values]
-            if any(canonical(value) not in keys for value in selected):
-                fail("MODULE_REFERENCE_SCOPE", path)
+            for index, value in enumerate(selected):
+                if canonical(value) not in keys:
+                    parts = path.split(".")
+                    pointer = ""
+                    if "*" not in parts:
+                        if parts[0] == "outputs":
+                            parts[0] = "results"
+                        if isinstance(source, list):
+                            parts.append(str(index))
+                        if len(fields) == 1:
+                            parts.extend(fields[0].split("."))
+                        if "*" not in parts:
+                            pointer = "/" + "/".join(parts)
+                    fail("MODULE_REFERENCE_SCOPE", path, pointer)
         elif kind == "equals":
             expected = _path(context, constraint["target"]) if constraint["target"] else constraint["value"]
             selected = [value[0] if fields and len(fields) == 1 else value for value in values]

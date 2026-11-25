@@ -75,6 +75,9 @@ class CompactPublicationRunnerTests(unittest.TestCase):
         self.assertEqual(result["diagnostics"], [], result)
         self.assertEqual((result["statements"][0]["earned"], result["statements"][0]["payable"]), ("33000", "18000"))
         self.assertEqual(load_completed_audited_result(folder), result)
+        self.assertEqual({row["target_key"]["asset_id"]: row["evidence_ids"]
+                          for row in result["evidence_to_target_lineage"]},
+                         {"picture-a": ["fund-a"], "picture-b": ["fund-b-dist", "fund-b-part"]})
         marker = read_json(folder / "completion.json")
         owned = folder / ".runs" / marker["invocation_id"]
         _, env = lean_environment()

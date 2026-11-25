@@ -212,6 +212,23 @@ def project(p):
     return inputs, openings, lineage, dispositions
 
 
+def _evidence_lineage(package, inputs):
+    """Link validated legacy projections to original evidence in the package."""
+    events = package["evidence_events"]
+    if package["profile"].startswith("sv-"):
+        by_picture = defaultdict(list)
+        for event in events:
+            by_picture[event["asset_id"]].append(event["event_id"])
+        population = package["parameters"]["funding_snapshot"]["evidence_ref"]
+        return [{"target_input": "pictures", "target_key": {"asset_id": picture["asset_id"]},
+                 "evidence_ids": sorted(by_picture[picture["asset_id"]]), "population_ref": population}
+                for picture in inputs["pictures"]]
+    ports = {"hurdle_attestation": "outside_hurdle", "gate_history": "work_gate_history",
+             "crossed_net_worksheet": "crossed_net_subtotal"}
+    by_kind = {event["kind"]: event["event_id"] for event in events}
+    return [{"target_input": port, "evidence_ids": [by_kind[kind]]} for kind, port in ports.items()]
+
+
 def semantic_digest(p, inputs, openings):
     # Logical views are sorted by stable ID. Physical row locations/ingestion/path
     # remain in audit metadata but do not alter the semantic identity.
@@ -321,6 +338,7 @@ def run_package(package, schedule_path, *, backend="compare", artifact_dir=None,
         result["semantic_run_digest"] = semantic
         result["input_dispositions"] = dispositions
         result["source_to_target_lineage"] = lineage
+        result["evidence_to_target_lineage"] = _evidence_lineage(p, inputs)
         work = publication.work if publication else ROOT / ".lake/spl" / semantic
         work.mkdir(parents=True, exist_ok=True)
         write_json(work / "canonical-package.json", p)
