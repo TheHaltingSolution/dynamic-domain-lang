@@ -34,13 +34,15 @@ def lean_environment():
     return str(exe), env
 
 
-def lean(args, timeout=180):
+def lean(args, timeout=180, *, search_paths=()):
     exe, env = lean_environment()
+    if search_paths:
+        env["LEAN_PATH"] = os.pathsep.join([*map(str, search_paths), env["LEAN_PATH"]])
     try:
         proc = subprocess.run([exe, *map(str, args)], cwd=ROOT, env=env,
                               text=True, encoding="utf-8", capture_output=True, timeout=timeout)
     except subprocess.TimeoutExpired:
-        fail("LEAN_RESOURCE_LIMIT", "Lean invocation exceeded declared 180-second limit")
+        fail("LEAN_RESOURCE_LIMIT", f"Lean invocation exceeded declared {timeout:g}-second limit")
     if proc.returncode:
         import json
         try:

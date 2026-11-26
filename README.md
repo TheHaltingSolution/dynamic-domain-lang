@@ -2,10 +2,16 @@
 
 The [bounded research checkpoint](docs/spl/release-checkpoint-2026-11-25.md)
 records the selected SPL profiles and capacity evidence. Start with
-`AGENTS.md` and the [25 November session handoff](docs/spl/session-handoff-2026-11-25.md)
-for the owner's scope and prior evidence. The
+`AGENTS.md` and the [26 November session handoff](docs/spl/session-handoff-2026-11-26.md)
+for the Readable SPL certification phase and its
+[testing strategy](docs/spl/testing-strategy.md). The
 [release reproduction guide](docs/spl/release-reproduction.md) gives the
 frozen regression and native reserve commands.
+
+Invoke `$royalties-participation` in a project conversation to try the
+[royalties authoring skill](.agents/skills/royalties-participation/SKILL.md).
+The [certification pilot](docs/spl/certification-pilot.md) explains the two
+executable Readable SPL schedules, approval workflow, proof scope, and tests.
 
 Earlier completion work is tracked in the
 [finite completion plan](docs/spl/completion-plan.md) and
@@ -61,8 +67,8 @@ release or push. The [historical `0.4.2-dev` record](docs/spl/baselines/implemen
 is preserved.
 See
 [the implementation and demo instructions](docs/spl/implementation.md).
-The initial toy compiler infrastructure remains separate. Complete SPL compiler
-verification is deferred until after the demo.
+The initial toy compiler infrastructure remains separate from the Readable SPL
+certification pilot and the broader compiler verification work.
 
 Start with the executable [readable Skouras schedule](cases/sv/sv01-readable.spl)
 or [readable Lionsgate schedule](cases/lg/lg01-readable.spl). Their financial

@@ -45,6 +45,7 @@ jobs:
       - run: lake env lean --run Tests/SPLCollections.lean
       - run: lake env lean --run Tests/SPLFold.lean
       - run: lake env lean --run Tests/SPLTraceScaling.lean --quota
+      - run: python3 -B -m unittest Tests.test_certification Tests.test_royalties_tool
 
   regression:
     name: Windows regression (${{ matrix.shard }})

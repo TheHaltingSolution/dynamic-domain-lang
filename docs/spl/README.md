@@ -1,5 +1,12 @@
 # Screen Participation Language design
 
+The [26 November session handoff](session-handoff-2026-11-26.md) gives the
+next steps for per-contract certification from Readable SPL. The
+[testing strategy](testing-strategy.md) records which promises should be
+proved and which need participant-facing or deployed-tool tests.
+The [certification pilot](certification-pilot.md) implements the first two
+authored schedules and links the proof obligations to the deployed checks.
+
 The [bounded research checkpoint](release-checkpoint-2026-11-25.md) records
 the selected release profiles and measured capacity. The
 [25 November session handoff](session-handoff-2026-11-25.md) defines the owner's
