@@ -1,0 +1,80 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.modules/1",
+      "spl.usage-time/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1",
+      "spl-quantity/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.2",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:usage-unused-extended",
+  "imports": [
+    {
+      "alias": "library",
+      "module_ref": {
+        "id": "synthetic:usage-usd-library",
+        "locator": "cases/usage-conversion/usd-library-module.json",
+        "revision": "1",
+        "sha256": "951011eb8227ed13850ad73f6d1242aa630a58333d3b66f94073653feb5a0004"
+      },
+      "symbols": []
+    }
+  ],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "earned",
+        "role": "result",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "USAGE_CONVERSION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "ninety-original-usage-minutes",
+      "legacy-base-carry",
+      "new-hour-carry"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:usage-conversion",
+    "readable": {
+      "locator": "cases/usage-conversion/policy.md",
+      "sha256": "2fcd9708270baaed6f75a9fa7dbf3f5d5582f6943b8a16090d18a9fb739799e6"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/usage-conversion/unused-extended.spl",
+    "sha256": "4f3f82b67f514318870167f7d68570ca2839b50f9cf5f71a2df18e985f7bac3c"
+  },
+  "state": []
+}

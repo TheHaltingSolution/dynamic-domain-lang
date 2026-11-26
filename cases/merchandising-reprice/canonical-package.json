@@ -1,0 +1,2392 @@
+{
+  "decisions": [
+    {
+      "decision_id": "MERCHANDISING_REPRICE_SELECTED",
+      "evidence_ref": "synthetic-merchandising-recognition-interpretation",
+      "policy_id": "RR04-MERCHANDISING-CATCHUP-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "terms-1-evidence",
+        "id": "terms-1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2005-12-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"terms-1-evidence\",\"kind\":\"fixed-approved-contract-terms\",\"observed_at\":\"2005-12-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:terms-1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "0",
+        "source_kind": "fixed-approved-contract-terms",
+        "source_observed_at": "2005-12-02T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:terms-1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "cost-basis-evidence",
+        "id": "cost-basis-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2005-12-15T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"cost-basis-evidence\",\"kind\":\"original-production-and-funding-stage\",\"observed_at\":\"2005-12-15T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:cost-basis\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "1",
+        "source_kind": "original-production-and-funding-stage",
+        "source_observed_at": "2005-12-15T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:cost-basis"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "qualification-evidence",
+        "id": "qualification-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2005-12-21T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"qualification-evidence\",\"kind\":\"approved-feature-and-pre-photography-records\",\"observed_at\":\"2005-12-21T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:qualification\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "2",
+        "source_kind": "approved-feature-and-pre-photography-records",
+        "source_observed_at": "2005-12-21T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:qualification"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "cb-switch-evidence",
+        "id": "cb-switch-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-03-22T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"cb-switch-evidence\",\"kind\":\"complete_cb_reclassification_zero_credit\",\"observed_at\":\"2006-03-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:cb-switch\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "3",
+        "source_kind": "complete_cb_reclassification_zero_credit",
+        "source_observed_at": "2006-03-22T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:cb-switch"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "period-q1-evidence",
+        "id": "period-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2005-12-22T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"period-q1-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "4",
+        "source_kind": "declared-calendar-period",
+        "source_observed_at": "2005-12-22T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:period-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "view-q1-evidence",
+        "id": "view-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-04-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"view-q1-evidence\",\"kind\":\"approved-final-recognition-view\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:view-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "5",
+        "source_kind": "approved-final-recognition-view",
+        "source_observed_at": "2006-04-02T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:view-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "license-q1-evidence",
+        "id": "license-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-03-06T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"license-q1-evidence\",\"kind\":\"actual_license_cash_receipt\",\"observed_at\":\"2006-03-06T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:license-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "6",
+        "source_kind": "actual_license_cash_receipt",
+        "source_observed_at": "2006-03-06T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:license-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "box-q1-evidence",
+        "id": "box-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-03-21T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"box-q1-evidence\",\"kind\":\"authoritative_daily_variety_box_office\",\"observed_at\":\"2006-03-21T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:box-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "7",
+        "source_kind": "authoritative_daily_variety_box_office",
+        "source_observed_at": "2006-03-21T12:00:00Z",
+        "source_ref": "synthetic-original-evidence:box-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "no-default-q1-evidence",
+        "id": "no-default-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-04-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"no-default-q1-evidence\",\"kind\":\"approved-current-no-material-default-finding\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:no-default-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "8",
+        "source_kind": "approved-current-no-material-default-finding",
+        "source_observed_at": "2006-04-02T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:no-default-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "period-q2-evidence",
+        "id": "period-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2005-12-22T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"period-q2-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "9",
+        "source_kind": "declared-calendar-period",
+        "source_observed_at": "2005-12-22T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:period-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "view-q2-evidence",
+        "id": "view-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-07-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"view-q2-evidence\",\"kind\":\"approved-final-recognition-view\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:view-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "10",
+        "source_kind": "approved-final-recognition-view",
+        "source_observed_at": "2006-07-02T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:view-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "license-q2-evidence",
+        "id": "license-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-06-06T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"license-q2-evidence\",\"kind\":\"actual_license_cash_receipt\",\"observed_at\":\"2006-06-06T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:license-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "11",
+        "source_kind": "actual_license_cash_receipt",
+        "source_observed_at": "2006-06-06T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:license-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "box-q2-evidence",
+        "id": "box-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-06-21T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"box-q2-evidence\",\"kind\":\"authoritative_daily_variety_box_office\",\"observed_at\":\"2006-06-21T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:box-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "12",
+        "source_kind": "authoritative_daily_variety_box_office",
+        "source_observed_at": "2006-06-21T12:00:00Z",
+        "source_ref": "synthetic-original-evidence:box-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "no-default-q2-evidence",
+        "id": "no-default-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-07-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"no-default-q2-evidence\",\"kind\":\"approved-current-no-material-default-finding\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:no-default-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "13",
+        "source_kind": "approved-current-no-material-default-finding",
+        "source_observed_at": "2006-07-02T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:no-default-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "period-q3-evidence",
+        "id": "period-q3-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2005-12-22T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"period-q3-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q3\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "14",
+        "source_kind": "declared-calendar-period",
+        "source_observed_at": "2005-12-22T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:period-q3"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "view-q3-evidence",
+        "id": "view-q3-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-10-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"view-q3-evidence\",\"kind\":\"approved-final-recognition-view\",\"observed_at\":\"2006-10-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:view-q3\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "15",
+        "source_kind": "approved-final-recognition-view",
+        "source_observed_at": "2006-10-02T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:view-q3"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "license-q3-evidence",
+        "id": "license-q3-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-08-06T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"license-q3-evidence\",\"kind\":\"actual_license_cash_receipt\",\"observed_at\":\"2006-08-06T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:license-q3\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "16",
+        "source_kind": "actual_license_cash_receipt",
+        "source_observed_at": "2006-08-06T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:license-q3"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "box-q3-evidence",
+        "id": "box-q3-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-09-22T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"box-q3-evidence\",\"kind\":\"authoritative_daily_variety_box_office\",\"observed_at\":\"2006-09-22T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:box-q3\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "17",
+        "source_kind": "authoritative_daily_variety_box_office",
+        "source_observed_at": "2006-09-22T12:00:00Z",
+        "source_ref": "synthetic-original-evidence:box-q3"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "no-default-q3-evidence",
+        "id": "no-default-q3-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-10-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"no-default-q3-evidence\",\"kind\":\"approved-current-no-material-default-finding\",\"observed_at\":\"2006-10-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:no-default-q3\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "18",
+        "source_kind": "approved-current-no-material-default-finding",
+        "source_observed_at": "2006-10-02T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:no-default-q3"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "issue-q1-evidence",
+        "id": "issue-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-04-16T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"issue-q1-evidence\",\"kind\":\"original_statement_issue\",\"observed_at\":\"2006-04-16T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:issue-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "19",
+        "source_kind": "original_statement_issue",
+        "source_observed_at": "2006-04-16T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:issue-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "issue-q2-evidence",
+        "id": "issue-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-07-16T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"issue-q2-evidence\",\"kind\":\"original_statement_issue\",\"observed_at\":\"2006-07-16T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:issue-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "20",
+        "source_kind": "original_statement_issue",
+        "source_observed_at": "2006-07-16T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:issue-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "payment-q1-evidence",
+        "id": "payment-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-04-21T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"payment-q1-evidence\",\"kind\":\"actual_participant_disbursement\",\"observed_at\":\"2006-04-21T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:payment-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "21",
+        "source_kind": "actual_participant_disbursement",
+        "source_observed_at": "2006-04-21T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:payment-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "payment-q2-evidence",
+        "id": "payment-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-07-21T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"payment-q2-evidence\",\"kind\":\"actual_participant_disbursement\",\"observed_at\":\"2006-07-21T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:payment-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "22",
+        "source_kind": "actual_participant_disbursement",
+        "source_observed_at": "2006-07-21T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:payment-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "application-q1-evidence",
+        "id": "application-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-04-22T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"application-q1-evidence\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2006-04-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:application-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "23",
+        "source_kind": "actual_payment_application",
+        "source_observed_at": "2006-04-22T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:application-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "application-q2-evidence",
+        "id": "application-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-07-22T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"application-q2-evidence\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2006-07-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:application-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "24",
+        "source_kind": "actual_payment_application",
+        "source_observed_at": "2006-07-22T00:00:00Z",
+        "source_ref": "synthetic-original-evidence:application-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "population-q1-evidence",
+        "id": "population-q1-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-04-02T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"population-q1-evidence\",\"kind\":\"complete_original_known_population\",\"observed_at\":\"2006-04-02T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:population-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "25",
+        "source_kind": "complete_original_known_population",
+        "source_observed_at": "2006-04-02T12:00:00Z",
+        "source_ref": "synthetic-original-evidence:population-q1"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "population-q2-evidence",
+        "id": "population-q2-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-07-02T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"population-q2-evidence\",\"kind\":\"complete_original_known_population\",\"observed_at\":\"2006-07-02T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:population-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "26",
+        "source_kind": "complete_original_known_population",
+        "source_observed_at": "2006-07-02T12:00:00Z",
+        "source_ref": "synthetic-original-evidence:population-q2"
+      },
+      {
+        "approval_ref": "MERCHANDISING_REPRICE_SELECTED",
+        "approved": true,
+        "evidence_ref": "population-q3-evidence",
+        "id": "population-q3-evidence",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2006-10-02T12:00:00Z",
+        "raw_original": "{\"approved\":true,\"id\":\"population-q3-evidence\",\"kind\":\"complete_original_known_population\",\"observed_at\":\"2006-10-02T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:population-q3\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "slot": "27",
+        "source_kind": "complete_original_known_population",
+        "source_observed_at": "2006-10-02T12:00:00Z",
+        "source_ref": "synthetic-original-evidence:population-q3"
+      }
+    ]
+  },
+  "inputs": {
+    "applications": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "400"
+        },
+        "applied_date": "2006-04-21",
+        "applied_date_utc": "2006-04-21T00:00:00Z",
+        "evidence_ref": "application-q1-evidence",
+        "evidence_slot": "23",
+        "id": "application-q1",
+        "issue_id": "issue-q1",
+        "observed_at": "2006-04-22T00:00:00Z",
+        "payment_id": "payment-q1",
+        "raw_original": "{\"amount\":\"400\",\"applied_date\":\"2006-04-21\",\"evidence_ref\":\"application-q1-evidence\",\"id\":\"application-q1\",\"issue_id\":\"issue-q1\",\"observed_at\":\"2006-04-22T00:00:00Z\",\"payment_id\":\"payment-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:application-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "400",
+        "source_observed_at": "2006-04-22T00:00:00Z",
+        "source_ref": "synthetic-original:application-q1"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "910"
+        },
+        "applied_date": "2006-07-21",
+        "applied_date_utc": "2006-07-21T00:00:00Z",
+        "evidence_ref": "application-q2-evidence",
+        "evidence_slot": "24",
+        "id": "application-q2",
+        "issue_id": "issue-q2",
+        "observed_at": "2006-07-22T00:00:00Z",
+        "payment_id": "payment-q2",
+        "raw_original": "{\"amount\":\"910\",\"applied_date\":\"2006-07-21\",\"evidence_ref\":\"application-q2-evidence\",\"id\":\"application-q2\",\"issue_id\":\"issue-q2\",\"observed_at\":\"2006-07-22T00:00:00Z\",\"payment_id\":\"payment-q2\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:application-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "910",
+        "source_observed_at": "2006-07-22T00:00:00Z",
+        "source_ref": "synthetic-original:application-q2"
+      }
+    ],
+    "box_office": [
+      {
+        "effective_date": "2006-03-20",
+        "effective_date_utc": "2006-03-20T00:00:00Z",
+        "evidence_ref": "box-q1-evidence",
+        "evidence_slot": "7",
+        "gross": {
+          "currency": "USD",
+          "value": "77000000"
+        },
+        "id": "box-q1",
+        "metric": "Daily_Variety_US_Canada_theatrical_cumulative",
+        "observed_at": "2006-03-21T12:00:00Z",
+        "raw_original": "{\"effective_date\":\"2006-03-20\",\"evidence_ref\":\"box-q1-evidence\",\"gross\":\"77000000\",\"id\":\"box-q1\",\"metric\":\"Daily_Variety_US_Canada_theatrical_cumulative\",\"observed_at\":\"2006-03-21T12:00:00Z\",\"recorded_date\":\"2006-03-21\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:box-q1\"}",
+        "recorded_date": "2006-03-21",
+        "recorded_date_utc": "2006-03-21T00:00:00Z",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_gross": "77000000",
+        "source_observed_at": "2006-03-21T12:00:00Z",
+        "source_ref": "synthetic-original:box-q1"
+      },
+      {
+        "effective_date": "2006-06-20",
+        "effective_date_utc": "2006-06-20T00:00:00Z",
+        "evidence_ref": "box-q2-evidence",
+        "evidence_slot": "12",
+        "gross": {
+          "currency": "USD",
+          "value": "86000000"
+        },
+        "id": "box-q2",
+        "metric": "Daily_Variety_US_Canada_theatrical_cumulative",
+        "observed_at": "2006-06-21T12:00:00Z",
+        "raw_original": "{\"effective_date\":\"2006-06-20\",\"evidence_ref\":\"box-q2-evidence\",\"gross\":\"86000000\",\"id\":\"box-q2\",\"metric\":\"Daily_Variety_US_Canada_theatrical_cumulative\",\"observed_at\":\"2006-06-21T12:00:00Z\",\"recorded_date\":\"2006-06-21\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:box-q2\"}",
+        "recorded_date": "2006-06-21",
+        "recorded_date_utc": "2006-06-21T00:00:00Z",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_gross": "86000000",
+        "source_observed_at": "2006-06-21T12:00:00Z",
+        "source_ref": "synthetic-original:box-q2"
+      },
+      {
+        "effective_date": "2006-09-20",
+        "effective_date_utc": "2006-09-20T00:00:00Z",
+        "evidence_ref": "box-q3-evidence",
+        "evidence_slot": "17",
+        "gross": {
+          "currency": "USD",
+          "value": "87000000"
+        },
+        "id": "box-q3",
+        "metric": "Daily_Variety_US_Canada_theatrical_cumulative",
+        "observed_at": "2006-09-22T12:00:00Z",
+        "raw_original": "{\"effective_date\":\"2006-09-20\",\"evidence_ref\":\"box-q3-evidence\",\"gross\":\"87000000\",\"id\":\"box-q3\",\"metric\":\"Daily_Variety_US_Canada_theatrical_cumulative\",\"observed_at\":\"2006-09-22T12:00:00Z\",\"recorded_date\":\"2006-09-22\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:box-q3\"}",
+        "recorded_date": "2006-09-22",
+        "recorded_date_utc": "2006-09-22T00:00:00Z",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_gross": "87000000",
+        "source_observed_at": "2006-09-22T12:00:00Z",
+        "source_ref": "synthetic-original:box-q3"
+      }
+    ],
+    "case_id": "merch-q3",
+    "cb_switch": {
+      "approved": true,
+      "complete": true,
+      "credit_line_ids": [],
+      "effective_date": "2006-03-20",
+      "effective_date_utc": "2006-03-20T00:00:00Z",
+      "evidence_ref": "cb-switch-evidence",
+      "evidence_slot": "3",
+      "id": "cb-switch",
+      "included_in_nmi": true,
+      "observed_at": "2006-03-22T00:00:00Z",
+      "prior_credit_total": {
+        "currency": "USD",
+        "value": "0"
+      },
+      "prior_owner_entitlement": {
+        "currency": "USD",
+        "value": "0"
+      },
+      "raw_original": "{\"approved\":true,\"complete\":true,\"credit_line_ids\":[],\"effective_date\":\"2006-03-20\",\"evidence_ref\":\"cb-switch-evidence\",\"id\":\"cb-switch\",\"included_in_nmi\":true,\"observed_at\":\"2006-03-22T00:00:00Z\",\"prior_credit_total\":\"0\",\"prior_owner_entitlement\":\"0\",\"receipt_ids\":[\"license-q1\"],\"removed_from_defined_receipts\":true,\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:cb-switch\"}",
+      "receipt_ids": [
+        "license-q1"
+      ],
+      "removed_from_defined_receipts": true,
+      "scope": {
+        "asset_id": "unique-picture",
+        "contract_id": "synthetic-unique",
+        "currency": "USD",
+        "participant_id": "synthetic-owner",
+        "pool_id": "unique-merchandising"
+      },
+      "source_observed_at": "2006-03-22T00:00:00Z",
+      "source_prior_credit_total": "0",
+      "source_prior_owner_entitlement": "0",
+      "source_ref": "synthetic-original:cb-switch"
+    },
+    "cost_basis": {
+      "evidence_ref": "cost-basis-evidence",
+      "evidence_slot": "1",
+      "funding_charge": {
+        "currency": "USD",
+        "value": "1000000"
+      },
+      "id": "cost-basis",
+      "observed_at": "2005-12-15T00:00:00Z",
+      "production_cost": {
+        "currency": "USD",
+        "value": "40000000"
+      },
+      "raw_original": "{\"evidence_ref\":\"cost-basis-evidence\",\"funding_charge\":\"1000000\",\"id\":\"cost-basis\",\"observed_at\":\"2005-12-15T00:00:00Z\",\"production_cost\":\"40000000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:cost-basis\"}",
+      "scope": {
+        "asset_id": "unique-picture",
+        "contract_id": "synthetic-unique",
+        "currency": "USD",
+        "participant_id": "synthetic-owner",
+        "pool_id": "unique-merchandising"
+      },
+      "source_funding_charge": "1000000",
+      "source_observed_at": "2005-12-15T00:00:00Z",
+      "source_production_cost": "40000000",
+      "source_ref": "synthetic-original:cost-basis"
+    },
+    "fact_scope": {
+      "asset_id": "unique-picture",
+      "contract_id": "synthetic-unique",
+      "currency": "USD",
+      "participant_id": "synthetic-owner",
+      "pool_id": "unique-merchandising"
+    },
+    "issues": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "455"
+        },
+        "evidence_ref": "issue-q1-evidence",
+        "evidence_slot": "19",
+        "id": "issue-q1",
+        "issued_date": "2006-04-15",
+        "issued_date_utc": "2006-04-15T00:00:00Z",
+        "observed_at": "2006-04-16T00:00:00Z",
+        "raw_original": "{\"amount\":\"455\",\"evidence_ref\":\"issue-q1-evidence\",\"id\":\"issue-q1\",\"issued_date\":\"2006-04-15\",\"observed_at\":\"2006-04-16T00:00:00Z\",\"recognition_id\":\"recognition-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:issue-q1\",\"version\":\"1\"}",
+        "recognition_id": "recognition-q1",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "455",
+        "source_observed_at": "2006-04-16T00:00:00Z",
+        "source_ref": "synthetic-original:issue-q1",
+        "version": "1"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "910"
+        },
+        "evidence_ref": "issue-q2-evidence",
+        "evidence_slot": "20",
+        "id": "issue-q2",
+        "issued_date": "2006-07-15",
+        "issued_date_utc": "2006-07-15T00:00:00Z",
+        "observed_at": "2006-07-16T00:00:00Z",
+        "raw_original": "{\"amount\":\"910\",\"evidence_ref\":\"issue-q2-evidence\",\"id\":\"issue-q2\",\"issued_date\":\"2006-07-15\",\"observed_at\":\"2006-07-16T00:00:00Z\",\"recognition_id\":\"recognition-q2\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:issue-q2\",\"version\":\"1\"}",
+        "recognition_id": "recognition-q2",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "910",
+        "source_observed_at": "2006-07-16T00:00:00Z",
+        "source_ref": "synthetic-original:issue-q2",
+        "version": "1"
+      }
+    ],
+    "no_default": [
+      {
+        "approved": true,
+        "evidence_ref": "no-default-q1-evidence",
+        "evidence_slot": "8",
+        "id": "no-default-q1",
+        "not_in_material_default": true,
+        "observed_at": "2006-04-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"evidence_ref\":\"no-default-q1-evidence\",\"id\":\"no-default-q1\",\"not_in_material_default\":true,\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:no-default-q1\",\"view_id\":\"view-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_observed_at": "2006-04-02T00:00:00Z",
+        "source_ref": "synthetic-original:no-default-q1",
+        "view_id": "view-q1"
+      },
+      {
+        "approved": true,
+        "evidence_ref": "no-default-q2-evidence",
+        "evidence_slot": "13",
+        "id": "no-default-q2",
+        "not_in_material_default": true,
+        "observed_at": "2006-07-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"evidence_ref\":\"no-default-q2-evidence\",\"id\":\"no-default-q2\",\"not_in_material_default\":true,\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:no-default-q2\",\"view_id\":\"view-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_observed_at": "2006-07-02T00:00:00Z",
+        "source_ref": "synthetic-original:no-default-q2",
+        "view_id": "view-q2"
+      },
+      {
+        "approved": true,
+        "evidence_ref": "no-default-q3-evidence",
+        "evidence_slot": "18",
+        "id": "no-default-q3",
+        "not_in_material_default": true,
+        "observed_at": "2006-10-02T00:00:00Z",
+        "raw_original": "{\"approved\":true,\"evidence_ref\":\"no-default-q3-evidence\",\"id\":\"no-default-q3\",\"not_in_material_default\":true,\"observed_at\":\"2006-10-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:no-default-q3\",\"view_id\":\"view-q3\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_observed_at": "2006-10-02T00:00:00Z",
+        "source_ref": "synthetic-original:no-default-q3",
+        "view_id": "view-q3"
+      }
+    ],
+    "payments": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "400"
+        },
+        "bank_disbursement_id": "owner-bank-q1",
+        "evidence_ref": "payment-q1-evidence",
+        "evidence_slot": "21",
+        "id": "payment-q1",
+        "observed_at": "2006-04-21T00:00:00Z",
+        "paid_date": "2006-04-20",
+        "paid_date_utc": "2006-04-20T00:00:00Z",
+        "raw_original": "{\"amount\":\"400\",\"bank_disbursement_id\":\"owner-bank-q1\",\"evidence_ref\":\"payment-q1-evidence\",\"id\":\"payment-q1\",\"observed_at\":\"2006-04-21T00:00:00Z\",\"paid_date\":\"2006-04-20\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:payment-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "400",
+        "source_observed_at": "2006-04-21T00:00:00Z",
+        "source_ref": "synthetic-original:payment-q1"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "910"
+        },
+        "bank_disbursement_id": "owner-bank-q2",
+        "evidence_ref": "payment-q2-evidence",
+        "evidence_slot": "22",
+        "id": "payment-q2",
+        "observed_at": "2006-07-21T00:00:00Z",
+        "paid_date": "2006-07-20",
+        "paid_date_utc": "2006-07-20T00:00:00Z",
+        "raw_original": "{\"amount\":\"910\",\"bank_disbursement_id\":\"owner-bank-q2\",\"evidence_ref\":\"payment-q2-evidence\",\"id\":\"payment-q2\",\"observed_at\":\"2006-07-21T00:00:00Z\",\"paid_date\":\"2006-07-20\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:payment-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "910",
+        "source_observed_at": "2006-07-21T00:00:00Z",
+        "source_ref": "synthetic-original:payment-q2"
+      }
+    ],
+    "periods": [
+      {
+        "evidence_ref": "period-q1-evidence",
+        "evidence_slot": "4",
+        "id": "period-q1",
+        "observed_at": "2005-12-22T00:00:00Z",
+        "period": {
+          "end": "2006-04-01",
+          "start": "2006-01-01"
+        },
+        "period_end_utc": "2006-04-01T00:00:00Z",
+        "period_start_utc": "2006-01-01T00:00:00Z",
+        "raw_original": "{\"evidence_ref\":\"period-q1-evidence\",\"id\":\"period-q1\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"period\":{\"end\":\"2006-04-01\",\"start\":\"2006-01-01\"},\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:period-q1\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_observed_at": "2005-12-22T00:00:00Z",
+        "source_ref": "synthetic-original:period-q1"
+      },
+      {
+        "evidence_ref": "period-q2-evidence",
+        "evidence_slot": "9",
+        "id": "period-q2",
+        "observed_at": "2005-12-22T00:00:00Z",
+        "period": {
+          "end": "2006-07-01",
+          "start": "2006-04-01"
+        },
+        "period_end_utc": "2006-07-01T00:00:00Z",
+        "period_start_utc": "2006-04-01T00:00:00Z",
+        "raw_original": "{\"evidence_ref\":\"period-q2-evidence\",\"id\":\"period-q2\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"period\":{\"end\":\"2006-07-01\",\"start\":\"2006-04-01\"},\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:period-q2\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_observed_at": "2005-12-22T00:00:00Z",
+        "source_ref": "synthetic-original:period-q2"
+      },
+      {
+        "evidence_ref": "period-q3-evidence",
+        "evidence_slot": "14",
+        "id": "period-q3",
+        "observed_at": "2005-12-22T00:00:00Z",
+        "period": {
+          "end": "2006-10-01",
+          "start": "2006-07-01"
+        },
+        "period_end_utc": "2006-10-01T00:00:00Z",
+        "period_start_utc": "2006-07-01T00:00:00Z",
+        "raw_original": "{\"evidence_ref\":\"period-q3-evidence\",\"id\":\"period-q3\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"period\":{\"end\":\"2006-10-01\",\"start\":\"2006-07-01\"},\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:period-q3\"}",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_observed_at": "2005-12-22T00:00:00Z",
+        "source_ref": "synthetic-original:period-q3"
+      }
+    ],
+    "populations": [
+      {
+        "adjustment_ids": [],
+        "adjustment_total": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "application_ids": [],
+        "application_total": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "box_office_ids": [
+          "box-q1"
+        ],
+        "complete": true,
+        "disbursement_ids": [],
+        "evidence_ref": "population-q1-evidence",
+        "evidence_slot": "25",
+        "id": "population-q1",
+        "issue_ids": [],
+        "issue_total": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "observed_at": "2006-04-02T12:00:00Z",
+        "payment_ids": [],
+        "payment_total": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "raw_original": "{\"adjustment_ids\":[],\"adjustment_total\":\"0\",\"application_ids\":[],\"application_total\":\"0\",\"box_office_ids\":[\"box-q1\"],\"complete\":true,\"disbursement_ids\":[],\"evidence_ref\":\"population-q1-evidence\",\"id\":\"population-q1\",\"issue_ids\":[],\"issue_total\":\"0\",\"observed_at\":\"2006-04-02T12:00:00Z\",\"payment_ids\":[],\"payment_total\":\"0\",\"receipt_coverage\":{\"end\":\"2006-04-01\",\"start\":\"2006-01-01\"},\"receipt_ids\":[\"license-q1\"],\"receipt_total\":\"10000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:population-q1\",\"view_id\":\"view-q1\"}",
+        "receipt_coverage": {
+          "end": "2006-04-01",
+          "start": "2006-01-01"
+        },
+        "receipt_coverage_end_utc": "2006-04-01T00:00:00Z",
+        "receipt_coverage_start_utc": "2006-01-01T00:00:00Z",
+        "receipt_ids": [
+          "license-q1"
+        ],
+        "receipt_total": {
+          "currency": "USD",
+          "value": "10000"
+        },
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_adjustment_total": "0",
+        "source_application_total": "0",
+        "source_issue_total": "0",
+        "source_observed_at": "2006-04-02T12:00:00Z",
+        "source_payment_total": "0",
+        "source_receipt_total": "10000",
+        "source_ref": "synthetic-original:population-q1",
+        "view_id": "view-q1"
+      },
+      {
+        "adjustment_ids": [],
+        "adjustment_total": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "application_ids": [
+          "application-q1"
+        ],
+        "application_total": {
+          "currency": "USD",
+          "value": "400"
+        },
+        "box_office_ids": [
+          "box-q1",
+          "box-q2"
+        ],
+        "complete": true,
+        "disbursement_ids": [
+          "owner-bank-q1"
+        ],
+        "evidence_ref": "population-q2-evidence",
+        "evidence_slot": "26",
+        "id": "population-q2",
+        "issue_ids": [
+          "issue-q1"
+        ],
+        "issue_total": {
+          "currency": "USD",
+          "value": "455"
+        },
+        "observed_at": "2006-07-02T12:00:00Z",
+        "payment_ids": [
+          "payment-q1"
+        ],
+        "payment_total": {
+          "currency": "USD",
+          "value": "400"
+        },
+        "raw_original": "{\"adjustment_ids\":[],\"adjustment_total\":\"0\",\"application_ids\":[\"application-q1\"],\"application_total\":\"400\",\"box_office_ids\":[\"box-q1\",\"box-q2\"],\"complete\":true,\"disbursement_ids\":[\"owner-bank-q1\"],\"evidence_ref\":\"population-q2-evidence\",\"id\":\"population-q2\",\"issue_ids\":[\"issue-q1\"],\"issue_total\":\"455\",\"observed_at\":\"2006-07-02T12:00:00Z\",\"payment_ids\":[\"payment-q1\"],\"payment_total\":\"400\",\"receipt_coverage\":{\"end\":\"2006-07-01\",\"start\":\"2006-01-01\"},\"receipt_ids\":[\"license-q1\",\"license-q2\"],\"receipt_total\":\"30000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:population-q2\",\"view_id\":\"view-q2\"}",
+        "receipt_coverage": {
+          "end": "2006-07-01",
+          "start": "2006-01-01"
+        },
+        "receipt_coverage_end_utc": "2006-07-01T00:00:00Z",
+        "receipt_coverage_start_utc": "2006-01-01T00:00:00Z",
+        "receipt_ids": [
+          "license-q1",
+          "license-q2"
+        ],
+        "receipt_total": {
+          "currency": "USD",
+          "value": "30000"
+        },
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_adjustment_total": "0",
+        "source_application_total": "400",
+        "source_issue_total": "455",
+        "source_observed_at": "2006-07-02T12:00:00Z",
+        "source_payment_total": "400",
+        "source_receipt_total": "30000",
+        "source_ref": "synthetic-original:population-q2",
+        "view_id": "view-q2"
+      },
+      {
+        "adjustment_ids": [],
+        "adjustment_total": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "application_ids": [
+          "application-q1",
+          "application-q2"
+        ],
+        "application_total": {
+          "currency": "USD",
+          "value": "1310"
+        },
+        "box_office_ids": [
+          "box-q1",
+          "box-q2",
+          "box-q3"
+        ],
+        "complete": true,
+        "disbursement_ids": [
+          "owner-bank-q1",
+          "owner-bank-q2"
+        ],
+        "evidence_ref": "population-q3-evidence",
+        "evidence_slot": "27",
+        "id": "population-q3",
+        "issue_ids": [
+          "issue-q1",
+          "issue-q2"
+        ],
+        "issue_total": {
+          "currency": "USD",
+          "value": "1365"
+        },
+        "observed_at": "2006-10-02T12:00:00Z",
+        "payment_ids": [
+          "payment-q1",
+          "payment-q2"
+        ],
+        "payment_total": {
+          "currency": "USD",
+          "value": "1310"
+        },
+        "raw_original": "{\"adjustment_ids\":[],\"adjustment_total\":\"0\",\"application_ids\":[\"application-q1\",\"application-q2\"],\"application_total\":\"1310\",\"box_office_ids\":[\"box-q1\",\"box-q2\",\"box-q3\"],\"complete\":true,\"disbursement_ids\":[\"owner-bank-q1\",\"owner-bank-q2\"],\"evidence_ref\":\"population-q3-evidence\",\"id\":\"population-q3\",\"issue_ids\":[\"issue-q1\",\"issue-q2\"],\"issue_total\":\"1365\",\"observed_at\":\"2006-10-02T12:00:00Z\",\"payment_ids\":[\"payment-q1\",\"payment-q2\"],\"payment_total\":\"1310\",\"receipt_coverage\":{\"end\":\"2006-10-01\",\"start\":\"2006-01-01\"},\"receipt_ids\":[\"license-q1\",\"license-q2\",\"license-q3\"],\"receipt_total\":\"35000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:population-q3\",\"view_id\":\"view-q3\"}",
+        "receipt_coverage": {
+          "end": "2006-10-01",
+          "start": "2006-01-01"
+        },
+        "receipt_coverage_end_utc": "2006-10-01T00:00:00Z",
+        "receipt_coverage_start_utc": "2006-01-01T00:00:00Z",
+        "receipt_ids": [
+          "license-q1",
+          "license-q2",
+          "license-q3"
+        ],
+        "receipt_total": {
+          "currency": "USD",
+          "value": "35000"
+        },
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_adjustment_total": "0",
+        "source_application_total": "1310",
+        "source_issue_total": "1365",
+        "source_observed_at": "2006-10-02T12:00:00Z",
+        "source_payment_total": "1310",
+        "source_receipt_total": "35000",
+        "source_ref": "synthetic-original:population-q3",
+        "view_id": "view-q3"
+      }
+    ],
+    "predecessor": {
+      "none": true
+    },
+    "project": "unique-picture",
+    "qualifications": {
+      "approved": true,
+      "comics_rank": "200",
+      "evidence_ref": "qualification-evidence",
+      "evidence_slot": "2",
+      "feature_produced": true,
+      "feature_released": true,
+      "graphic_units": "25000",
+      "id": "qualification",
+      "observed_at": "2005-12-21T00:00:00Z",
+      "photography_date": "2005-02-01",
+      "photography_date_utc": "2005-02-01T00:00:00Z",
+      "rank_date": "2005-01-16",
+      "rank_date_utc": "2005-01-16T00:00:00Z",
+      "raw_original": "{\"approved\":true,\"comics_rank\":\"200\",\"evidence_ref\":\"qualification-evidence\",\"feature_produced\":true,\"feature_released\":true,\"graphic_units\":\"25000\",\"id\":\"qualification\",\"observed_at\":\"2005-12-21T00:00:00Z\",\"photography_date\":\"2005-02-01\",\"rank_date\":\"2005-01-16\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:qualification\",\"units_date\":\"2005-01-15\"}",
+      "scope": {
+        "asset_id": "unique-picture",
+        "contract_id": "synthetic-unique",
+        "currency": "USD",
+        "participant_id": "synthetic-owner",
+        "pool_id": "unique-merchandising"
+      },
+      "source_comics_rank": "200",
+      "source_graphic_units": "25000",
+      "source_observed_at": "2005-12-21T00:00:00Z",
+      "source_ref": "synthetic-original:qualification",
+      "units_date": "2005-01-15",
+      "units_date_utc": "2005-01-15T00:00:00Z"
+    },
+    "receipts": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "10000"
+        },
+        "evidence_ref": "license-q1-evidence",
+        "evidence_slot": "6",
+        "id": "license-q1",
+        "lane": "third_party_license",
+        "observed_at": "2006-03-06T00:00:00Z",
+        "period_id": "period-q1",
+        "qualifying": true,
+        "raw_original": "{\"amount\":\"10000\",\"evidence_ref\":\"license-q1-evidence\",\"id\":\"license-q1\",\"lane\":\"third_party_license\",\"observed_at\":\"2006-03-06T00:00:00Z\",\"period_id\":\"period-q1\",\"qualifying\":true,\"receipt_ref\":\"synthetic:license-bank-q1#line-1\",\"received_date\":\"2006-03-05\",\"recognition_date\":\"2006-03-05\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:license-q1\"}",
+        "receipt_ref": "synthetic:license-bank-q1#line-1",
+        "received_date": "2006-03-05",
+        "received_date_utc": "2006-03-05T00:00:00Z",
+        "recognition_date": "2006-03-05",
+        "recognition_date_utc": "2006-03-05T00:00:00Z",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "10000",
+        "source_observed_at": "2006-03-06T00:00:00Z",
+        "source_ref": "synthetic-original:license-q1"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "20000"
+        },
+        "evidence_ref": "license-q2-evidence",
+        "evidence_slot": "11",
+        "id": "license-q2",
+        "lane": "third_party_license",
+        "observed_at": "2006-06-06T00:00:00Z",
+        "period_id": "period-q2",
+        "qualifying": true,
+        "raw_original": "{\"amount\":\"20000\",\"evidence_ref\":\"license-q2-evidence\",\"id\":\"license-q2\",\"lane\":\"third_party_license\",\"observed_at\":\"2006-06-06T00:00:00Z\",\"period_id\":\"period-q2\",\"qualifying\":true,\"receipt_ref\":\"synthetic:license-bank-q2#line-1\",\"received_date\":\"2006-06-05\",\"recognition_date\":\"2006-06-05\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:license-q2\"}",
+        "receipt_ref": "synthetic:license-bank-q2#line-1",
+        "received_date": "2006-06-05",
+        "received_date_utc": "2006-06-05T00:00:00Z",
+        "recognition_date": "2006-06-05",
+        "recognition_date_utc": "2006-06-05T00:00:00Z",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "20000",
+        "source_observed_at": "2006-06-06T00:00:00Z",
+        "source_ref": "synthetic-original:license-q2"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "5000"
+        },
+        "evidence_ref": "license-q3-evidence",
+        "evidence_slot": "16",
+        "id": "license-q3",
+        "lane": "third_party_license",
+        "observed_at": "2006-08-06T00:00:00Z",
+        "period_id": "period-q3",
+        "qualifying": true,
+        "raw_original": "{\"amount\":\"5000\",\"evidence_ref\":\"license-q3-evidence\",\"id\":\"license-q3\",\"lane\":\"third_party_license\",\"observed_at\":\"2006-08-06T00:00:00Z\",\"period_id\":\"period-q3\",\"qualifying\":true,\"receipt_ref\":\"synthetic:license-bank-q3#line-1\",\"received_date\":\"2006-08-05\",\"recognition_date\":\"2006-08-05\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:license-q3\"}",
+        "receipt_ref": "synthetic:license-bank-q3#line-1",
+        "received_date": "2006-08-05",
+        "received_date_utc": "2006-08-05T00:00:00Z",
+        "recognition_date": "2006-08-05",
+        "recognition_date_utc": "2006-08-05T00:00:00Z",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_amount": "5000",
+        "source_observed_at": "2006-08-06T00:00:00Z",
+        "source_ref": "synthetic-original:license-q3"
+      }
+    ],
+    "research": {
+      "clause_locator": "3.2(a)(i)-(v);3.2(c);3.2(d)(i)-(ii)(a);Exhibit CB",
+      "contract_url": "https://www.sec.gov/Archives/edgar/data/1410132/000101376207002025/ex1014.htm",
+      "ld03_sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712",
+      "rr04_sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+    },
+    "run": {
+      "mode": "final",
+      "view_id": "view-q3"
+    },
+    "scope": {
+      "agreement_id": "synthetic-unique",
+      "participant_id": "synthetic-owner",
+      "period": {
+        "end": "2006-10-01",
+        "start": "2006-07-01"
+      },
+      "pool_id": "unique-merchandising"
+    },
+    "source_cutoff": "2006-10-03T00:00:00Z",
+    "supplied_opening": {
+      "boundary": "2006-07-01",
+      "detail": {
+        "some": {
+          "actual_paid": {
+            "currency": "USD",
+            "value": "400"
+          },
+          "cb_switch": "{\"approved\":true,\"complete\":true,\"credit_line_ids\":[],\"effective_date\":\"2006-03-20\",\"evidence_ref\":\"cb-switch-evidence\",\"id\":\"cb-switch\",\"included_in_nmi\":true,\"observed_at\":\"2006-03-22T00:00:00Z\",\"prior_credit_total\":\"0\",\"prior_owner_entitlement\":\"0\",\"receipt_ids\":[\"license-q1\"],\"removed_from_defined_receipts\":true,\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:cb-switch\"}",
+          "cost_basis": "{\"evidence_ref\":\"cost-basis-evidence\",\"funding_charge\":\"1000000\",\"id\":\"cost-basis\",\"observed_at\":\"2005-12-15T00:00:00Z\",\"production_cost\":\"40000000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:cost-basis\"}",
+          "issued_outstanding": {
+            "currency": "USD",
+            "value": "55"
+          },
+          "known_issued": {
+            "currency": "USD",
+            "value": "455"
+          },
+          "last_view_id": "view-q2",
+          "qualifications": "{\"approved\":true,\"comics_rank\":\"200\",\"evidence_ref\":\"qualification-evidence\",\"feature_produced\":true,\"feature_released\":true,\"graphic_units\":\"25000\",\"id\":\"qualification\",\"observed_at\":\"2005-12-21T00:00:00Z\",\"photography_date\":\"2005-02-01\",\"rank_date\":\"2005-01-16\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:qualification\",\"units_date\":\"2005-01-15\"}",
+          "recognition_history": [
+            {
+              "amount": {
+                "currency": "USD",
+                "value": "455"
+              },
+              "attributions": [
+                {
+                  "earned_period_id": "period-q1",
+                  "id": "license-q1",
+                  "kind": "current_earnings",
+                  "license_cash": {
+                    "currency": "USD",
+                    "value": "10000"
+                  },
+                  "license_deduction": {
+                    "currency": "USD",
+                    "value": "3000"
+                  },
+                  "nmi": {
+                    "currency": "USD",
+                    "value": "7000"
+                  },
+                  "previously_recognized": {
+                    "currency": "USD",
+                    "value": "0"
+                  },
+                  "qualifying": true,
+                  "rate": "0.065",
+                  "receipt_id": "license-q1",
+                  "receipt_ref": "synthetic:license-bank-q1#line-1",
+                  "recognition_delta": {
+                    "currency": "USD",
+                    "value": "455"
+                  },
+                  "target_entitlement": {
+                    "currency": "USD",
+                    "value": "455"
+                  }
+                }
+              ],
+              "catchup": {
+                "currency": "USD",
+                "value": "0"
+              },
+              "current_earnings": {
+                "currency": "USD",
+                "value": "455"
+              },
+              "cutoff": "2006-04-03T00:00:00Z",
+              "id": "recognition-q1",
+              "period_id": "period-q1",
+              "source_case_id": "merch-q1",
+              "source_cutoff": "2006-04-03T00:00:00Z",
+              "view_id": "view-q1"
+            },
+            {
+              "amount": {
+                "currency": "USD",
+                "value": "910"
+              },
+              "attributions": [
+                {
+                  "earned_period_id": "period-q1",
+                  "id": "license-q1",
+                  "kind": "historical_catchup",
+                  "license_cash": {
+                    "currency": "USD",
+                    "value": "10000"
+                  },
+                  "license_deduction": {
+                    "currency": "USD",
+                    "value": "3000"
+                  },
+                  "nmi": {
+                    "currency": "USD",
+                    "value": "7000"
+                  },
+                  "previously_recognized": {
+                    "currency": "USD",
+                    "value": "455"
+                  },
+                  "qualifying": true,
+                  "rate": "0.065",
+                  "receipt_id": "license-q1",
+                  "receipt_ref": "synthetic:license-bank-q1#line-1",
+                  "recognition_delta": {
+                    "currency": "USD",
+                    "value": "0"
+                  },
+                  "target_entitlement": {
+                    "currency": "USD",
+                    "value": "455"
+                  }
+                },
+                {
+                  "earned_period_id": "period-q2",
+                  "id": "license-q2",
+                  "kind": "current_earnings",
+                  "license_cash": {
+                    "currency": "USD",
+                    "value": "20000"
+                  },
+                  "license_deduction": {
+                    "currency": "USD",
+                    "value": "6000"
+                  },
+                  "nmi": {
+                    "currency": "USD",
+                    "value": "14000"
+                  },
+                  "previously_recognized": {
+                    "currency": "USD",
+                    "value": "0"
+                  },
+                  "qualifying": true,
+                  "rate": "0.065",
+                  "receipt_id": "license-q2",
+                  "receipt_ref": "synthetic:license-bank-q2#line-1",
+                  "recognition_delta": {
+                    "currency": "USD",
+                    "value": "910"
+                  },
+                  "target_entitlement": {
+                    "currency": "USD",
+                    "value": "910"
+                  }
+                }
+              ],
+              "catchup": {
+                "currency": "USD",
+                "value": "0"
+              },
+              "current_earnings": {
+                "currency": "USD",
+                "value": "910"
+              },
+              "cutoff": "2006-07-03T00:00:00Z",
+              "id": "recognition-q2",
+              "period_id": "period-q2",
+              "source_case_id": "merch-q2",
+              "source_cutoff": "2006-07-03T00:00:00Z",
+              "view_id": "view-q2"
+            }
+          ],
+          "recognized_rows": [
+            {
+              "amount": {
+                "currency": "USD",
+                "value": "455"
+              },
+              "id": "license-q1",
+              "receipt_id": "license-q1"
+            },
+            {
+              "amount": {
+                "currency": "USD",
+                "value": "910"
+              },
+              "id": "license-q2",
+              "receipt_id": "license-q2"
+            }
+          ],
+          "recognized_unissued": {
+            "currency": "USD",
+            "value": "910"
+          },
+          "research": {
+            "clause_locator": "3.2(a)(i)-(v);3.2(c);3.2(d)(i)-(ii)(a);Exhibit CB",
+            "contract_url": "https://www.sec.gov/Archives/edgar/data/1410132/000101376207002025/ex1014.htm",
+            "ld03_sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712",
+            "rr04_sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+          },
+          "sources": {
+            "applications": [
+              {
+                "category": "applications",
+                "id": "application-q1",
+                "record": "{\"amount\":\"400\",\"applied_date\":\"2006-04-21\",\"evidence_ref\":\"application-q1-evidence\",\"id\":\"application-q1\",\"issue_id\":\"issue-q1\",\"observed_at\":\"2006-04-22T00:00:00Z\",\"payment_id\":\"payment-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:application-q1\"}"
+              }
+            ],
+            "box_office": [
+              {
+                "category": "box_office",
+                "id": "box-q1",
+                "record": "{\"effective_date\":\"2006-03-20\",\"evidence_ref\":\"box-q1-evidence\",\"gross\":\"77000000\",\"id\":\"box-q1\",\"metric\":\"Daily_Variety_US_Canada_theatrical_cumulative\",\"observed_at\":\"2006-03-21T12:00:00Z\",\"recorded_date\":\"2006-03-21\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:box-q1\"}"
+              },
+              {
+                "category": "box_office",
+                "id": "box-q2",
+                "record": "{\"effective_date\":\"2006-06-20\",\"evidence_ref\":\"box-q2-evidence\",\"gross\":\"86000000\",\"id\":\"box-q2\",\"metric\":\"Daily_Variety_US_Canada_theatrical_cumulative\",\"observed_at\":\"2006-06-21T12:00:00Z\",\"recorded_date\":\"2006-06-21\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:box-q2\"}"
+              }
+            ],
+            "evidence": [
+              {
+                "category": "evidence",
+                "id": "application-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"application-q1-evidence\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2006-04-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:application-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "box-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"box-q1-evidence\",\"kind\":\"authoritative_daily_variety_box_office\",\"observed_at\":\"2006-03-21T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:box-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "box-q2-evidence",
+                "record": "{\"approved\":true,\"id\":\"box-q2-evidence\",\"kind\":\"authoritative_daily_variety_box_office\",\"observed_at\":\"2006-06-21T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:box-q2\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "cb-switch-evidence",
+                "record": "{\"approved\":true,\"id\":\"cb-switch-evidence\",\"kind\":\"complete_cb_reclassification_zero_credit\",\"observed_at\":\"2006-03-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:cb-switch\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "cost-basis-evidence",
+                "record": "{\"approved\":true,\"id\":\"cost-basis-evidence\",\"kind\":\"original-production-and-funding-stage\",\"observed_at\":\"2005-12-15T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:cost-basis\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "issue-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"issue-q1-evidence\",\"kind\":\"original_statement_issue\",\"observed_at\":\"2006-04-16T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:issue-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "license-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"license-q1-evidence\",\"kind\":\"actual_license_cash_receipt\",\"observed_at\":\"2006-03-06T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:license-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "license-q2-evidence",
+                "record": "{\"approved\":true,\"id\":\"license-q2-evidence\",\"kind\":\"actual_license_cash_receipt\",\"observed_at\":\"2006-06-06T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:license-q2\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "no-default-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"no-default-q1-evidence\",\"kind\":\"approved-current-no-material-default-finding\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:no-default-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "no-default-q2-evidence",
+                "record": "{\"approved\":true,\"id\":\"no-default-q2-evidence\",\"kind\":\"approved-current-no-material-default-finding\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:no-default-q2\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "payment-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"payment-q1-evidence\",\"kind\":\"actual_participant_disbursement\",\"observed_at\":\"2006-04-21T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:payment-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "period-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"period-q1-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "period-q2-evidence",
+                "record": "{\"approved\":true,\"id\":\"period-q2-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q2\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "period-q3-evidence",
+                "record": "{\"approved\":true,\"id\":\"period-q3-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q3\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "population-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"population-q1-evidence\",\"kind\":\"complete_original_known_population\",\"observed_at\":\"2006-04-02T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:population-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "population-q2-evidence",
+                "record": "{\"approved\":true,\"id\":\"population-q2-evidence\",\"kind\":\"complete_original_known_population\",\"observed_at\":\"2006-07-02T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:population-q2\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "qualification-evidence",
+                "record": "{\"approved\":true,\"id\":\"qualification-evidence\",\"kind\":\"approved-feature-and-pre-photography-records\",\"observed_at\":\"2005-12-21T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:qualification\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "terms-1-evidence",
+                "record": "{\"approved\":true,\"id\":\"terms-1-evidence\",\"kind\":\"fixed-approved-contract-terms\",\"observed_at\":\"2005-12-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:terms-1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "view-q1-evidence",
+                "record": "{\"approved\":true,\"id\":\"view-q1-evidence\",\"kind\":\"approved-final-recognition-view\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:view-q1\"}"
+              },
+              {
+                "category": "evidence",
+                "id": "view-q2-evidence",
+                "record": "{\"approved\":true,\"id\":\"view-q2-evidence\",\"kind\":\"approved-final-recognition-view\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:view-q2\"}"
+              }
+            ],
+            "issues": [
+              {
+                "category": "issues",
+                "id": "issue-q1",
+                "record": "{\"amount\":\"455\",\"evidence_ref\":\"issue-q1-evidence\",\"id\":\"issue-q1\",\"issued_date\":\"2006-04-15\",\"observed_at\":\"2006-04-16T00:00:00Z\",\"recognition_id\":\"recognition-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:issue-q1\",\"version\":\"1\"}"
+              }
+            ],
+            "no_default": [
+              {
+                "category": "no_default",
+                "id": "no-default-q1",
+                "record": "{\"approved\":true,\"evidence_ref\":\"no-default-q1-evidence\",\"id\":\"no-default-q1\",\"not_in_material_default\":true,\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:no-default-q1\",\"view_id\":\"view-q1\"}"
+              },
+              {
+                "category": "no_default",
+                "id": "no-default-q2",
+                "record": "{\"approved\":true,\"evidence_ref\":\"no-default-q2-evidence\",\"id\":\"no-default-q2\",\"not_in_material_default\":true,\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:no-default-q2\",\"view_id\":\"view-q2\"}"
+              }
+            ],
+            "payments": [
+              {
+                "category": "payments",
+                "id": "payment-q1",
+                "record": "{\"amount\":\"400\",\"bank_disbursement_id\":\"owner-bank-q1\",\"evidence_ref\":\"payment-q1-evidence\",\"id\":\"payment-q1\",\"observed_at\":\"2006-04-21T00:00:00Z\",\"paid_date\":\"2006-04-20\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:payment-q1\"}"
+              }
+            ],
+            "periods": [
+              {
+                "category": "periods",
+                "id": "period-q1",
+                "record": "{\"evidence_ref\":\"period-q1-evidence\",\"id\":\"period-q1\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"period\":{\"end\":\"2006-04-01\",\"start\":\"2006-01-01\"},\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:period-q1\"}"
+              },
+              {
+                "category": "periods",
+                "id": "period-q2",
+                "record": "{\"evidence_ref\":\"period-q2-evidence\",\"id\":\"period-q2\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"period\":{\"end\":\"2006-07-01\",\"start\":\"2006-04-01\"},\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:period-q2\"}"
+              }
+            ],
+            "populations": [
+              {
+                "category": "populations",
+                "id": "population-q1",
+                "record": "{\"adjustment_ids\":[],\"adjustment_total\":\"0\",\"application_ids\":[],\"application_total\":\"0\",\"box_office_ids\":[\"box-q1\"],\"complete\":true,\"disbursement_ids\":[],\"evidence_ref\":\"population-q1-evidence\",\"id\":\"population-q1\",\"issue_ids\":[],\"issue_total\":\"0\",\"observed_at\":\"2006-04-02T12:00:00Z\",\"payment_ids\":[],\"payment_total\":\"0\",\"receipt_coverage\":{\"end\":\"2006-04-01\",\"start\":\"2006-01-01\"},\"receipt_ids\":[\"license-q1\"],\"receipt_total\":\"10000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:population-q1\",\"view_id\":\"view-q1\"}"
+              },
+              {
+                "category": "populations",
+                "id": "population-q2",
+                "record": "{\"adjustment_ids\":[],\"adjustment_total\":\"0\",\"application_ids\":[\"application-q1\"],\"application_total\":\"400\",\"box_office_ids\":[\"box-q1\",\"box-q2\"],\"complete\":true,\"disbursement_ids\":[\"owner-bank-q1\"],\"evidence_ref\":\"population-q2-evidence\",\"id\":\"population-q2\",\"issue_ids\":[\"issue-q1\"],\"issue_total\":\"455\",\"observed_at\":\"2006-07-02T12:00:00Z\",\"payment_ids\":[\"payment-q1\"],\"payment_total\":\"400\",\"receipt_coverage\":{\"end\":\"2006-07-01\",\"start\":\"2006-01-01\"},\"receipt_ids\":[\"license-q1\",\"license-q2\"],\"receipt_total\":\"30000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:population-q2\",\"view_id\":\"view-q2\"}"
+              }
+            ],
+            "receipts": [
+              {
+                "category": "receipts",
+                "id": "license-q1",
+                "record": "{\"amount\":\"10000\",\"evidence_ref\":\"license-q1-evidence\",\"id\":\"license-q1\",\"lane\":\"third_party_license\",\"observed_at\":\"2006-03-06T00:00:00Z\",\"period_id\":\"period-q1\",\"qualifying\":true,\"receipt_ref\":\"synthetic:license-bank-q1#line-1\",\"received_date\":\"2006-03-05\",\"recognition_date\":\"2006-03-05\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:license-q1\"}"
+              },
+              {
+                "category": "receipts",
+                "id": "license-q2",
+                "record": "{\"amount\":\"20000\",\"evidence_ref\":\"license-q2-evidence\",\"id\":\"license-q2\",\"lane\":\"third_party_license\",\"observed_at\":\"2006-06-06T00:00:00Z\",\"period_id\":\"period-q2\",\"qualifying\":true,\"receipt_ref\":\"synthetic:license-bank-q2#line-1\",\"received_date\":\"2006-06-05\",\"recognition_date\":\"2006-06-05\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:license-q2\"}"
+              }
+            ],
+            "views": [
+              {
+                "category": "views",
+                "id": "view-q1",
+                "record": "{\"approved\":true,\"as_of\":\"2006-03-31\",\"coverage_end\":\"2006-04-01\",\"cutoff\":\"2006-04-03T00:00:00Z\",\"evidence_ref\":\"view-q1-evidence\",\"id\":\"view-q1\",\"mode\":\"final\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"period_id\":\"period-q1\",\"recognition_id\":\"recognition-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_case_id\":\"merch-q1\",\"source_ref\":\"synthetic-original:view-q1\"}"
+              },
+              {
+                "category": "views",
+                "id": "view-q2",
+                "record": "{\"approved\":true,\"as_of\":\"2006-06-30\",\"coverage_end\":\"2006-07-01\",\"cutoff\":\"2006-07-03T00:00:00Z\",\"evidence_ref\":\"view-q2-evidence\",\"id\":\"view-q2\",\"mode\":\"final\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"period_id\":\"period-q2\",\"recognition_id\":\"recognition-q2\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_case_id\":\"merch-q2\",\"source_ref\":\"synthetic-original:view-q2\"}"
+              }
+            ]
+          },
+          "terms": "{\"approved\":true,\"effective\":{\"end\":\"2007-01-01\",\"start\":\"2006-01-01\"},\"evidence_ref\":\"terms-1-evidence\",\"id\":\"terms-1\",\"license_deduction_rate\":\"0.30\",\"multipliers\":[\"1.75\",\"2\",\"2.5\"],\"observed_at\":\"2005-12-02T00:00:00Z\",\"production_charge_rate\":\"0.15\",\"rates\":[\"0.065\",\"0.075\",\"0.0875\"],\"recorded_date\":\"2005-12-01\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:terms-1\",\"version\":\"1\"}"
+        }
+      },
+      "origin": "supplied_history",
+      "policy": {
+        "amounts": "exact_no_rounding",
+        "cash_date_basis": "supplied_utc_date",
+        "credit_profile": "complete_approved_zero_cb_credit",
+        "evidence_class": "research_assumption",
+        "id": "RR04-MERCHANDISING-CATCHUP-01",
+        "method": "trigger_period_catchup",
+        "negative_adjustments": "reject",
+        "professional_review": "proposed",
+        "revision": "1"
+      },
+      "purpose": "first_dollar_merchandising",
+      "scope": {
+        "asset_id": "unique-picture",
+        "contract_id": "synthetic-unique",
+        "currency": "USD",
+        "participant_id": "synthetic-owner",
+        "pool_id": "unique-merchandising"
+      },
+      "source_case_id": "merch-q2",
+      "transport_profile": "merchandising-original-json/1"
+    },
+    "terms": {
+      "approved": true,
+      "effective": {
+        "end": "2007-01-01",
+        "start": "2006-01-01"
+      },
+      "effective_end_utc": "2007-01-01T00:00:00Z",
+      "effective_start_utc": "2006-01-01T00:00:00Z",
+      "evidence_ref": "terms-1-evidence",
+      "evidence_slot": "0",
+      "id": "terms-1",
+      "license_deduction_rate": "0.3",
+      "multipliers": [
+        "1.75",
+        "2",
+        "2.5"
+      ],
+      "observed_at": "2005-12-02T00:00:00Z",
+      "production_charge_rate": "0.15",
+      "rates": [
+        "0.065",
+        "0.075",
+        "0.0875"
+      ],
+      "raw_original": "{\"approved\":true,\"effective\":{\"end\":\"2007-01-01\",\"start\":\"2006-01-01\"},\"evidence_ref\":\"terms-1-evidence\",\"id\":\"terms-1\",\"license_deduction_rate\":\"0.30\",\"multipliers\":[\"1.75\",\"2\",\"2.5\"],\"observed_at\":\"2005-12-02T00:00:00Z\",\"production_charge_rate\":\"0.15\",\"rates\":[\"0.065\",\"0.075\",\"0.0875\"],\"recorded_date\":\"2005-12-01\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:terms-1\",\"version\":\"1\"}",
+      "recorded_date": "2005-12-01",
+      "recorded_date_utc": "2005-12-01T00:00:00Z",
+      "scope": {
+        "asset_id": "unique-picture",
+        "contract_id": "synthetic-unique",
+        "currency": "USD",
+        "participant_id": "synthetic-owner",
+        "pool_id": "unique-merchandising"
+      },
+      "source_license_deduction_rate": "0.30",
+      "source_multipliers": [
+        "1.75",
+        "2",
+        "2.5"
+      ],
+      "source_observed_at": "2005-12-02T00:00:00Z",
+      "source_production_charge_rate": "0.15",
+      "source_rates": [
+        "0.065",
+        "0.075",
+        "0.0875"
+      ],
+      "source_ref": "synthetic-original:terms-1",
+      "version": "1"
+    },
+    "views": [
+      {
+        "approved": true,
+        "as_of": "2006-03-31",
+        "as_of_next": "2006-04-01",
+        "as_of_utc": "2006-03-31T00:00:00Z",
+        "coverage_end": "2006-04-01",
+        "coverage_end_utc": "2006-04-01T00:00:00Z",
+        "cutoff": "2006-04-03T00:00:00Z",
+        "evidence_ref": "view-q1-evidence",
+        "evidence_slot": "5",
+        "id": "view-q1",
+        "mode": "final",
+        "observed_at": "2006-04-02T00:00:00Z",
+        "period_id": "period-q1",
+        "raw_original": "{\"approved\":true,\"as_of\":\"2006-03-31\",\"coverage_end\":\"2006-04-01\",\"cutoff\":\"2006-04-03T00:00:00Z\",\"evidence_ref\":\"view-q1-evidence\",\"id\":\"view-q1\",\"mode\":\"final\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"period_id\":\"period-q1\",\"recognition_id\":\"recognition-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_case_id\":\"merch-q1\",\"source_ref\":\"synthetic-original:view-q1\"}",
+        "recognition_id": "recognition-q1",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_case_id": "merch-q1",
+        "source_cutoff": "2006-04-03T00:00:00Z",
+        "source_observed_at": "2006-04-02T00:00:00Z",
+        "source_ref": "synthetic-original:view-q1"
+      },
+      {
+        "approved": true,
+        "as_of": "2006-06-30",
+        "as_of_next": "2006-07-01",
+        "as_of_utc": "2006-06-30T00:00:00Z",
+        "coverage_end": "2006-07-01",
+        "coverage_end_utc": "2006-07-01T00:00:00Z",
+        "cutoff": "2006-07-03T00:00:00Z",
+        "evidence_ref": "view-q2-evidence",
+        "evidence_slot": "10",
+        "id": "view-q2",
+        "mode": "final",
+        "observed_at": "2006-07-02T00:00:00Z",
+        "period_id": "period-q2",
+        "raw_original": "{\"approved\":true,\"as_of\":\"2006-06-30\",\"coverage_end\":\"2006-07-01\",\"cutoff\":\"2006-07-03T00:00:00Z\",\"evidence_ref\":\"view-q2-evidence\",\"id\":\"view-q2\",\"mode\":\"final\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"period_id\":\"period-q2\",\"recognition_id\":\"recognition-q2\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_case_id\":\"merch-q2\",\"source_ref\":\"synthetic-original:view-q2\"}",
+        "recognition_id": "recognition-q2",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_case_id": "merch-q2",
+        "source_cutoff": "2006-07-03T00:00:00Z",
+        "source_observed_at": "2006-07-02T00:00:00Z",
+        "source_ref": "synthetic-original:view-q2"
+      },
+      {
+        "approved": true,
+        "as_of": "2006-09-30",
+        "as_of_next": "2006-10-01",
+        "as_of_utc": "2006-09-30T00:00:00Z",
+        "coverage_end": "2006-10-01",
+        "coverage_end_utc": "2006-10-01T00:00:00Z",
+        "cutoff": "2006-10-03T00:00:00Z",
+        "evidence_ref": "view-q3-evidence",
+        "evidence_slot": "15",
+        "id": "view-q3",
+        "mode": "final",
+        "observed_at": "2006-10-02T00:00:00Z",
+        "period_id": "period-q3",
+        "raw_original": "{\"approved\":true,\"as_of\":\"2006-09-30\",\"coverage_end\":\"2006-10-01\",\"cutoff\":\"2006-10-03T00:00:00Z\",\"evidence_ref\":\"view-q3-evidence\",\"id\":\"view-q3\",\"mode\":\"final\",\"observed_at\":\"2006-10-02T00:00:00Z\",\"period_id\":\"period-q3\",\"recognition_id\":\"recognition-q3\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_case_id\":\"merch-q3\",\"source_ref\":\"synthetic-original:view-q3\"}",
+        "recognition_id": "recognition-q3",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_case_id": "merch-q3",
+        "source_cutoff": "2006-10-03T00:00:00Z",
+        "source_observed_at": "2006-10-02T00:00:00Z",
+        "source_ref": "synthetic-original:view-q3"
+      }
+    ]
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2006-10-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2006-10-01",
+      "start": "2006-07-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "merch-q3-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-MERCHANDISING-REPRICE"
+  },
+  "module_ref": {
+    "id": "synthetic:merchandising-reprice",
+    "locator": "cases/merchandising-reprice/merchandising-reprice-module.json",
+    "revision": "1",
+    "sha256": "94596f4a6cea24bdbb000e49f58a12b80c3e0d1eb28e737cf1a7c6029260f932"
+  },
+  "parameters": {
+    "cutoff": "2006-10-03T00:00:00Z",
+    "policy": {
+      "amounts": "exact_no_rounding",
+      "cash_date_basis": "supplied_utc_date",
+      "credit_profile": "complete_approved_zero_cb_credit",
+      "evidence_class": "research_assumption",
+      "id": "RR04-MERCHANDISING-CATCHUP-01",
+      "method": "trigger_period_catchup",
+      "negative_adjustments": "reject",
+      "professional_review": "proposed",
+      "revision": "1"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "synthetic-unique",
+    "asset_ids": [
+      "unique-picture"
+    ],
+    "participant_ids": [
+      "synthetic-owner"
+    ],
+    "pool_id": "unique-merchandising",
+    "purpose": "first_dollar_merchandising"
+  },
+  "state_cells": [
+    {
+      "boundary": "2006-07-01",
+      "opening_port": "history",
+      "provenance_ref": "supplied-original-recognition-history",
+      "purpose": "first_dollar_merchandising",
+      "quantity": {
+        "boundary": "2006-07-01",
+        "detail": {
+          "some": {
+            "actual_paid": {
+              "currency": "USD",
+              "value": "400"
+            },
+            "cb_switch": "{\"approved\":true,\"complete\":true,\"credit_line_ids\":[],\"effective_date\":\"2006-03-20\",\"evidence_ref\":\"cb-switch-evidence\",\"id\":\"cb-switch\",\"included_in_nmi\":true,\"observed_at\":\"2006-03-22T00:00:00Z\",\"prior_credit_total\":\"0\",\"prior_owner_entitlement\":\"0\",\"receipt_ids\":[\"license-q1\"],\"removed_from_defined_receipts\":true,\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:cb-switch\"}",
+            "cost_basis": "{\"evidence_ref\":\"cost-basis-evidence\",\"funding_charge\":\"1000000\",\"id\":\"cost-basis\",\"observed_at\":\"2005-12-15T00:00:00Z\",\"production_cost\":\"40000000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:cost-basis\"}",
+            "issued_outstanding": {
+              "currency": "USD",
+              "value": "55"
+            },
+            "known_issued": {
+              "currency": "USD",
+              "value": "455"
+            },
+            "last_view_id": "view-q2",
+            "qualifications": "{\"approved\":true,\"comics_rank\":\"200\",\"evidence_ref\":\"qualification-evidence\",\"feature_produced\":true,\"feature_released\":true,\"graphic_units\":\"25000\",\"id\":\"qualification\",\"observed_at\":\"2005-12-21T00:00:00Z\",\"photography_date\":\"2005-02-01\",\"rank_date\":\"2005-01-16\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:qualification\",\"units_date\":\"2005-01-15\"}",
+            "recognition_history": [
+              {
+                "amount": {
+                  "currency": "USD",
+                  "value": "455"
+                },
+                "attributions": [
+                  {
+                    "earned_period_id": "period-q1",
+                    "id": "license-q1",
+                    "kind": "current_earnings",
+                    "license_cash": {
+                      "currency": "USD",
+                      "value": "10000"
+                    },
+                    "license_deduction": {
+                      "currency": "USD",
+                      "value": "3000"
+                    },
+                    "nmi": {
+                      "currency": "USD",
+                      "value": "7000"
+                    },
+                    "previously_recognized": {
+                      "currency": "USD",
+                      "value": "0"
+                    },
+                    "qualifying": true,
+                    "rate": "0.065",
+                    "receipt_id": "license-q1",
+                    "receipt_ref": "synthetic:license-bank-q1#line-1",
+                    "recognition_delta": {
+                      "currency": "USD",
+                      "value": "455"
+                    },
+                    "target_entitlement": {
+                      "currency": "USD",
+                      "value": "455"
+                    }
+                  }
+                ],
+                "catchup": {
+                  "currency": "USD",
+                  "value": "0"
+                },
+                "current_earnings": {
+                  "currency": "USD",
+                  "value": "455"
+                },
+                "cutoff": "2006-04-03T00:00:00Z",
+                "id": "recognition-q1",
+                "period_id": "period-q1",
+                "source_case_id": "merch-q1",
+                "source_cutoff": "2006-04-03T00:00:00Z",
+                "view_id": "view-q1"
+              },
+              {
+                "amount": {
+                  "currency": "USD",
+                  "value": "910"
+                },
+                "attributions": [
+                  {
+                    "earned_period_id": "period-q1",
+                    "id": "license-q1",
+                    "kind": "historical_catchup",
+                    "license_cash": {
+                      "currency": "USD",
+                      "value": "10000"
+                    },
+                    "license_deduction": {
+                      "currency": "USD",
+                      "value": "3000"
+                    },
+                    "nmi": {
+                      "currency": "USD",
+                      "value": "7000"
+                    },
+                    "previously_recognized": {
+                      "currency": "USD",
+                      "value": "455"
+                    },
+                    "qualifying": true,
+                    "rate": "0.065",
+                    "receipt_id": "license-q1",
+                    "receipt_ref": "synthetic:license-bank-q1#line-1",
+                    "recognition_delta": {
+                      "currency": "USD",
+                      "value": "0"
+                    },
+                    "target_entitlement": {
+                      "currency": "USD",
+                      "value": "455"
+                    }
+                  },
+                  {
+                    "earned_period_id": "period-q2",
+                    "id": "license-q2",
+                    "kind": "current_earnings",
+                    "license_cash": {
+                      "currency": "USD",
+                      "value": "20000"
+                    },
+                    "license_deduction": {
+                      "currency": "USD",
+                      "value": "6000"
+                    },
+                    "nmi": {
+                      "currency": "USD",
+                      "value": "14000"
+                    },
+                    "previously_recognized": {
+                      "currency": "USD",
+                      "value": "0"
+                    },
+                    "qualifying": true,
+                    "rate": "0.065",
+                    "receipt_id": "license-q2",
+                    "receipt_ref": "synthetic:license-bank-q2#line-1",
+                    "recognition_delta": {
+                      "currency": "USD",
+                      "value": "910"
+                    },
+                    "target_entitlement": {
+                      "currency": "USD",
+                      "value": "910"
+                    }
+                  }
+                ],
+                "catchup": {
+                  "currency": "USD",
+                  "value": "0"
+                },
+                "current_earnings": {
+                  "currency": "USD",
+                  "value": "910"
+                },
+                "cutoff": "2006-07-03T00:00:00Z",
+                "id": "recognition-q2",
+                "period_id": "period-q2",
+                "source_case_id": "merch-q2",
+                "source_cutoff": "2006-07-03T00:00:00Z",
+                "view_id": "view-q2"
+              }
+            ],
+            "recognized_rows": [
+              {
+                "amount": {
+                  "currency": "USD",
+                  "value": "455"
+                },
+                "id": "license-q1",
+                "receipt_id": "license-q1"
+              },
+              {
+                "amount": {
+                  "currency": "USD",
+                  "value": "910"
+                },
+                "id": "license-q2",
+                "receipt_id": "license-q2"
+              }
+            ],
+            "recognized_unissued": {
+              "currency": "USD",
+              "value": "910"
+            },
+            "research": {
+              "clause_locator": "3.2(a)(i)-(v);3.2(c);3.2(d)(i)-(ii)(a);Exhibit CB",
+              "contract_url": "https://www.sec.gov/Archives/edgar/data/1410132/000101376207002025/ex1014.htm",
+              "ld03_sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712",
+              "rr04_sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+            },
+            "sources": {
+              "applications": [
+                {
+                  "category": "applications",
+                  "id": "application-q1",
+                  "record": "{\"amount\":\"400\",\"applied_date\":\"2006-04-21\",\"evidence_ref\":\"application-q1-evidence\",\"id\":\"application-q1\",\"issue_id\":\"issue-q1\",\"observed_at\":\"2006-04-22T00:00:00Z\",\"payment_id\":\"payment-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:application-q1\"}"
+                }
+              ],
+              "box_office": [
+                {
+                  "category": "box_office",
+                  "id": "box-q1",
+                  "record": "{\"effective_date\":\"2006-03-20\",\"evidence_ref\":\"box-q1-evidence\",\"gross\":\"77000000\",\"id\":\"box-q1\",\"metric\":\"Daily_Variety_US_Canada_theatrical_cumulative\",\"observed_at\":\"2006-03-21T12:00:00Z\",\"recorded_date\":\"2006-03-21\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:box-q1\"}"
+                },
+                {
+                  "category": "box_office",
+                  "id": "box-q2",
+                  "record": "{\"effective_date\":\"2006-06-20\",\"evidence_ref\":\"box-q2-evidence\",\"gross\":\"86000000\",\"id\":\"box-q2\",\"metric\":\"Daily_Variety_US_Canada_theatrical_cumulative\",\"observed_at\":\"2006-06-21T12:00:00Z\",\"recorded_date\":\"2006-06-21\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:box-q2\"}"
+                }
+              ],
+              "evidence": [
+                {
+                  "category": "evidence",
+                  "id": "application-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"application-q1-evidence\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2006-04-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:application-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "box-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"box-q1-evidence\",\"kind\":\"authoritative_daily_variety_box_office\",\"observed_at\":\"2006-03-21T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:box-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "box-q2-evidence",
+                  "record": "{\"approved\":true,\"id\":\"box-q2-evidence\",\"kind\":\"authoritative_daily_variety_box_office\",\"observed_at\":\"2006-06-21T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:box-q2\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "cb-switch-evidence",
+                  "record": "{\"approved\":true,\"id\":\"cb-switch-evidence\",\"kind\":\"complete_cb_reclassification_zero_credit\",\"observed_at\":\"2006-03-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:cb-switch\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "cost-basis-evidence",
+                  "record": "{\"approved\":true,\"id\":\"cost-basis-evidence\",\"kind\":\"original-production-and-funding-stage\",\"observed_at\":\"2005-12-15T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:cost-basis\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "issue-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"issue-q1-evidence\",\"kind\":\"original_statement_issue\",\"observed_at\":\"2006-04-16T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:issue-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "license-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"license-q1-evidence\",\"kind\":\"actual_license_cash_receipt\",\"observed_at\":\"2006-03-06T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:license-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "license-q2-evidence",
+                  "record": "{\"approved\":true,\"id\":\"license-q2-evidence\",\"kind\":\"actual_license_cash_receipt\",\"observed_at\":\"2006-06-06T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:license-q2\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "no-default-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"no-default-q1-evidence\",\"kind\":\"approved-current-no-material-default-finding\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:no-default-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "no-default-q2-evidence",
+                  "record": "{\"approved\":true,\"id\":\"no-default-q2-evidence\",\"kind\":\"approved-current-no-material-default-finding\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:no-default-q2\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "payment-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"payment-q1-evidence\",\"kind\":\"actual_participant_disbursement\",\"observed_at\":\"2006-04-21T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:payment-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "period-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"period-q1-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "period-q2-evidence",
+                  "record": "{\"approved\":true,\"id\":\"period-q2-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q2\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "period-q3-evidence",
+                  "record": "{\"approved\":true,\"id\":\"period-q3-evidence\",\"kind\":\"declared-calendar-period\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:period-q3\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "population-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"population-q1-evidence\",\"kind\":\"complete_original_known_population\",\"observed_at\":\"2006-04-02T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:population-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "population-q2-evidence",
+                  "record": "{\"approved\":true,\"id\":\"population-q2-evidence\",\"kind\":\"complete_original_known_population\",\"observed_at\":\"2006-07-02T12:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:population-q2\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "qualification-evidence",
+                  "record": "{\"approved\":true,\"id\":\"qualification-evidence\",\"kind\":\"approved-feature-and-pre-photography-records\",\"observed_at\":\"2005-12-21T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:qualification\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "terms-1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"terms-1-evidence\",\"kind\":\"fixed-approved-contract-terms\",\"observed_at\":\"2005-12-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:terms-1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "view-q1-evidence",
+                  "record": "{\"approved\":true,\"id\":\"view-q1-evidence\",\"kind\":\"approved-final-recognition-view\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:view-q1\"}"
+                },
+                {
+                  "category": "evidence",
+                  "id": "view-q2-evidence",
+                  "record": "{\"approved\":true,\"id\":\"view-q2-evidence\",\"kind\":\"approved-final-recognition-view\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original-evidence:view-q2\"}"
+                }
+              ],
+              "issues": [
+                {
+                  "category": "issues",
+                  "id": "issue-q1",
+                  "record": "{\"amount\":\"455\",\"evidence_ref\":\"issue-q1-evidence\",\"id\":\"issue-q1\",\"issued_date\":\"2006-04-15\",\"observed_at\":\"2006-04-16T00:00:00Z\",\"recognition_id\":\"recognition-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:issue-q1\",\"version\":\"1\"}"
+                }
+              ],
+              "no_default": [
+                {
+                  "category": "no_default",
+                  "id": "no-default-q1",
+                  "record": "{\"approved\":true,\"evidence_ref\":\"no-default-q1-evidence\",\"id\":\"no-default-q1\",\"not_in_material_default\":true,\"observed_at\":\"2006-04-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:no-default-q1\",\"view_id\":\"view-q1\"}"
+                },
+                {
+                  "category": "no_default",
+                  "id": "no-default-q2",
+                  "record": "{\"approved\":true,\"evidence_ref\":\"no-default-q2-evidence\",\"id\":\"no-default-q2\",\"not_in_material_default\":true,\"observed_at\":\"2006-07-02T00:00:00Z\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:no-default-q2\",\"view_id\":\"view-q2\"}"
+                }
+              ],
+              "payments": [
+                {
+                  "category": "payments",
+                  "id": "payment-q1",
+                  "record": "{\"amount\":\"400\",\"bank_disbursement_id\":\"owner-bank-q1\",\"evidence_ref\":\"payment-q1-evidence\",\"id\":\"payment-q1\",\"observed_at\":\"2006-04-21T00:00:00Z\",\"paid_date\":\"2006-04-20\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:payment-q1\"}"
+                }
+              ],
+              "periods": [
+                {
+                  "category": "periods",
+                  "id": "period-q1",
+                  "record": "{\"evidence_ref\":\"period-q1-evidence\",\"id\":\"period-q1\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"period\":{\"end\":\"2006-04-01\",\"start\":\"2006-01-01\"},\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:period-q1\"}"
+                },
+                {
+                  "category": "periods",
+                  "id": "period-q2",
+                  "record": "{\"evidence_ref\":\"period-q2-evidence\",\"id\":\"period-q2\",\"observed_at\":\"2005-12-22T00:00:00Z\",\"period\":{\"end\":\"2006-07-01\",\"start\":\"2006-04-01\"},\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:period-q2\"}"
+                }
+              ],
+              "populations": [
+                {
+                  "category": "populations",
+                  "id": "population-q1",
+                  "record": "{\"adjustment_ids\":[],\"adjustment_total\":\"0\",\"application_ids\":[],\"application_total\":\"0\",\"box_office_ids\":[\"box-q1\"],\"complete\":true,\"disbursement_ids\":[],\"evidence_ref\":\"population-q1-evidence\",\"id\":\"population-q1\",\"issue_ids\":[],\"issue_total\":\"0\",\"observed_at\":\"2006-04-02T12:00:00Z\",\"payment_ids\":[],\"payment_total\":\"0\",\"receipt_coverage\":{\"end\":\"2006-04-01\",\"start\":\"2006-01-01\"},\"receipt_ids\":[\"license-q1\"],\"receipt_total\":\"10000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:population-q1\",\"view_id\":\"view-q1\"}"
+                },
+                {
+                  "category": "populations",
+                  "id": "population-q2",
+                  "record": "{\"adjustment_ids\":[],\"adjustment_total\":\"0\",\"application_ids\":[\"application-q1\"],\"application_total\":\"400\",\"box_office_ids\":[\"box-q1\",\"box-q2\"],\"complete\":true,\"disbursement_ids\":[\"owner-bank-q1\"],\"evidence_ref\":\"population-q2-evidence\",\"id\":\"population-q2\",\"issue_ids\":[\"issue-q1\"],\"issue_total\":\"455\",\"observed_at\":\"2006-07-02T12:00:00Z\",\"payment_ids\":[\"payment-q1\"],\"payment_total\":\"400\",\"receipt_coverage\":{\"end\":\"2006-07-01\",\"start\":\"2006-01-01\"},\"receipt_ids\":[\"license-q1\",\"license-q2\"],\"receipt_total\":\"30000\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:population-q2\",\"view_id\":\"view-q2\"}"
+                }
+              ],
+              "receipts": [
+                {
+                  "category": "receipts",
+                  "id": "license-q1",
+                  "record": "{\"amount\":\"10000\",\"evidence_ref\":\"license-q1-evidence\",\"id\":\"license-q1\",\"lane\":\"third_party_license\",\"observed_at\":\"2006-03-06T00:00:00Z\",\"period_id\":\"period-q1\",\"qualifying\":true,\"receipt_ref\":\"synthetic:license-bank-q1#line-1\",\"received_date\":\"2006-03-05\",\"recognition_date\":\"2006-03-05\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:license-q1\"}"
+                },
+                {
+                  "category": "receipts",
+                  "id": "license-q2",
+                  "record": "{\"amount\":\"20000\",\"evidence_ref\":\"license-q2-evidence\",\"id\":\"license-q2\",\"lane\":\"third_party_license\",\"observed_at\":\"2006-06-06T00:00:00Z\",\"period_id\":\"period-q2\",\"qualifying\":true,\"receipt_ref\":\"synthetic:license-bank-q2#line-1\",\"received_date\":\"2006-06-05\",\"recognition_date\":\"2006-06-05\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:license-q2\"}"
+                }
+              ],
+              "views": [
+                {
+                  "category": "views",
+                  "id": "view-q1",
+                  "record": "{\"approved\":true,\"as_of\":\"2006-03-31\",\"coverage_end\":\"2006-04-01\",\"cutoff\":\"2006-04-03T00:00:00Z\",\"evidence_ref\":\"view-q1-evidence\",\"id\":\"view-q1\",\"mode\":\"final\",\"observed_at\":\"2006-04-02T00:00:00Z\",\"period_id\":\"period-q1\",\"recognition_id\":\"recognition-q1\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_case_id\":\"merch-q1\",\"source_ref\":\"synthetic-original:view-q1\"}"
+                },
+                {
+                  "category": "views",
+                  "id": "view-q2",
+                  "record": "{\"approved\":true,\"as_of\":\"2006-06-30\",\"coverage_end\":\"2006-07-01\",\"cutoff\":\"2006-07-03T00:00:00Z\",\"evidence_ref\":\"view-q2-evidence\",\"id\":\"view-q2\",\"mode\":\"final\",\"observed_at\":\"2006-07-02T00:00:00Z\",\"period_id\":\"period-q2\",\"recognition_id\":\"recognition-q2\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_case_id\":\"merch-q2\",\"source_ref\":\"synthetic-original:view-q2\"}"
+                }
+              ]
+            },
+            "terms": "{\"approved\":true,\"effective\":{\"end\":\"2007-01-01\",\"start\":\"2006-01-01\"},\"evidence_ref\":\"terms-1-evidence\",\"id\":\"terms-1\",\"license_deduction_rate\":\"0.30\",\"multipliers\":[\"1.75\",\"2\",\"2.5\"],\"observed_at\":\"2005-12-02T00:00:00Z\",\"production_charge_rate\":\"0.15\",\"rates\":[\"0.065\",\"0.075\",\"0.0875\"],\"recorded_date\":\"2005-12-01\",\"scope\":{\"asset_id\":\"unique-picture\",\"contract_id\":\"synthetic-unique\",\"currency\":\"USD\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\"},\"source_ref\":\"synthetic-original:terms-1\",\"version\":\"1\"}"
+          }
+        },
+        "origin": "supplied_history",
+        "policy": {
+          "amounts": "exact_no_rounding",
+          "cash_date_basis": "supplied_utc_date",
+          "credit_profile": "complete_approved_zero_cb_credit",
+          "evidence_class": "research_assumption",
+          "id": "RR04-MERCHANDISING-CATCHUP-01",
+          "method": "trigger_period_catchup",
+          "negative_adjustments": "reject",
+          "professional_review": "proposed",
+          "revision": "1"
+        },
+        "purpose": "first_dollar_merchandising",
+        "scope": {
+          "asset_id": "unique-picture",
+          "contract_id": "synthetic-unique",
+          "currency": "USD",
+          "participant_id": "synthetic-owner",
+          "pool_id": "unique-merchandising"
+        },
+        "source_case_id": "merch-q2",
+        "transport_profile": "merchandising-original-json/1"
+      },
+      "scenario_id": "SYNTHETIC-MERCHANDISING-REPRICE",
+      "scope": {
+        "agreement_id": "synthetic-unique",
+        "asset_id": "unique-picture",
+        "participant_id": "synthetic-owner",
+        "pool_id": "unique-merchandising"
+      },
+      "state_key": "{\"agreement_id\":\"synthetic-unique\",\"asset_id\":\"unique-picture\",\"participant_id\":\"synthetic-owner\",\"pool_id\":\"unique-merchandising\",\"purpose\":\"first_dollar_merchandising\"}",
+      "unit": "structured"
+    }
+  ]
+}

@@ -1,5 +1,149 @@
 # SPL design conformance ledger
 
+## Active C1 continuation
+
+The selected Disney first-dollar trigger-period policy now passes39 combined
+methods with six actual completed native/reference/Python-emitted bundles.
+Original issues1365/actualpaid1310 remain separate from repriced recognized1837.50;
+catch-up210 plus current262.50 yields new472.50 and unpaid527.50. ActualQ1-Q4
+carry recognizes210 once, Q4new0; preview is partial/no closing state. This
+supersedes the historical C04 absence for the bounded adopted variant, not
+unselected CB policies, amended statements or general C13 replay. Max result
+55,194,678 bytes is an observed four-period witness, not the8-period input limit.
+[Accepted source/evidence](../../cases/merchandising-reprice/README.md).
+The current bounded matrix has35rows/31witnessed/fourgaps/49selectors; four
+inventory checks pass, with no new combined selector campaign.
+
+Later owner sequence: native mixed currency stays out now, reserved for the
+self-modifying compiler tool/skill demonstration after the other current goals.
+The [decision](ld03-owner-decision.md) records this explicitly; the current
+backlog has73 items including the separately deferred tool. This does not change
+native currency execution status or establish financial inexpressibility.
+
+Later executed updates supersede the historical C08/C14 absence statements:
+[authorized offsets](../../cases/authorized-offsets/README.md) pass 37 combined
+methods with actual three-period carry; original paid80 stays80 and recovery
+needs separate authority. Together with the original-rate returns/loss cohort,
+this closes the named finite C08 variants. It does not close C13 dependent-period
+restatement or imply bank execution. Third-period AO result67,025,493 bytes has
+only83,371 bytes of margin below64MiB; input bounds are not publication capacity.
+[Supplied civil-day evidence](../../cases/civil-dates/README.md) passes27 methods,
+including submicroseconds, midnight and23/25-hour cells. Together with the
+calendar/terms cohort, this closes the named finite C14 variants. No ambient
+or IANA timezone rules are inferred. The bounded matrix now has34 rows,
+30 witnessed variations, four gaps and45 selectors; no combined45-selector
+campaign is claimed. All four inventory consistency checks pass.
+
+The emitted definition-cache repair passes38 frozen promoted-target checks and
+a full94-job build plus both smokes. Actual group-building calls114->2 are
+observed on one retained fixture; larger post-change scale evidence remains
+separate. Read [the emitter report](emitter-memoization-experiment.md).
+
+The [RR04/LD03 integration](rr04-ld03-integration.md) records newly received
+review decisions, the separately missing C10 burden variation and the owner
+claim question. The current backlog has72 work items after that addition;
+planning counts are not the atomic coverage denominator.
+
+The [completion plan](completion-plan.md) maps all 17 families and the 195
+granular historical rows to a finite [work backlog](completion-backlog.json).
+Recent named slices have independent original-fact controls and registered
+native/reference/emitted execution: [staged deductions](../../cases/deductions/README.md),
+[settlement/threshold carry](../../cases/settlement/README.md),
+[fiscal/calendar terms](../../cases/calendar-terms/README.md) and
+[signed returns/loss meters](../../cases/returns/README.md). Each combined
+oracle/module cohort passed 29 methods at its recorded source snapshot; these
+are separate runs, not an added-up full-suite claim. Payment-aware clawback and
+broader domain variants remain visible rather than being inferred from signed
+arithmetic. The separately frozen [current-entitlement transfer](../../cases/transfers/README.md) cohort passes all 28 methods, preserving genuine endpoint scopes and current-period conservation.
+
+A fresh clean build passes all 94 jobs, including both benchmark drivers; both smoke executables pass. This build is separate from the historical full Python regression below.
+
+The independent LG allocation pipeline found and fixed a missing channel field
+on projected child receipts. Its post-repair combined 22-method oracle/pipeline
+cohort passes without changing financial goldens. Compiler/reference and module
+fingerprints changed; native arithmetic/runtime sources did not. The historical
+`0.4.3-dev` baseline remains preserved and is not a fingerprint of the current
+working tree. See the [implementation update](implementation.md) for identities.
+
+Native compact transport and [mixed measurements](mixed-workload-plan.md)
+preserve full logical traces, with recorded byte/memory/time limits. Interpreter
+transport validation remains separate from emitted-target decision coverage.
+
+## 23 November continuation: executable validation index
+
+The new [feature/test matrix](feature-test-matrix.json) maps selected ledger IDs
+to exact tests, inputs, stage declarations, assertions and oracle limits.
+The [default campaign](conformance-validation.md) passed eight generated cases
+through reference/native IR/emitted Lean and all 14 mapped unittest methods;
+12 bounded matrix rows receive passing execution credit and six remain gaps.
+Nineteen new harness checks pass in one combined run; build/both smokes pass.
+See the [verification index](conformance-validation-result.json) for exact scope,
+timing, source hashes and artifacts. This is an executable index of selected
+variations, not a replacement for this broader ledger or a closure of whole
+families. Interpreter decisions, uninstrumented target decisions and domain
+witnesses remain separate. The kernel baseline and identities are unchanged;
+no full historical regression rerun is claimed.
+
+M1b profile `0.4.3-dev` completed local verification on 22 November 2026 on
+`feature/spl-typed-quantities`; `main` remains at merged `018dde1` unchanged.
+The [implementation baseline](implementation-baseline.json) is a local record,
+not a GitHub release or push. The published M1a record is preserved byte-for-byte in
+[`baselines/implementation-0.4.2-dev.json`](baselines/implementation-0.4.2-dev.json).
+The [implementation report](implementation.md#m1b-candidate-quantities-and-monetary-rates)
+records one complete combined run of 352 Python checks in 1638.702 seconds,
+16 native suites, the 86-target build and both smokes, with compiler/schema
+sources unchanged. All 35 review paths pass: 24 legacy, four quantity and seven
+M1 cases. Defensive IR admission includes 15 negative unit/currency cases,
+including otherwise empty collection paths. Historical audit rows below keep their original
+snapshot scope; the execution updates supersede their absence statements.
+
+## DYN-02 supplemental method-fit evidence
+
+The [design assessment](dyn02-design-answer.md) recommends **no reserved core
+capability yet**. The earlier supplied-day Quest probe remains historical
+evidence: four positive cases calculated in native interpretation and emitted
+Lean, and three invalid-input cases blocked in both. That probe used positive
+half-away rounding; its non-tie 95.17 baseline and separate minimum qualifying
+cent 95.18 were valid for its dated scope. Its original artifacts are unchanged.
+
+The [external review record](C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/dyn02-compiler-review/review.json)
+retains that probe. On 23 November 2026, the
+[registered Quest method](../../cases/quest/README.md) implements the selected
+[two-flow fixture](quest-two-flow-fixture.md) with half-even rounding on the
+additional charge. Original obligation/payment/application and evidenced calendar
+dates enter the generic canonical boundary; SPL looks up both date ordinals,
+derives elapsed days, computes the charge and checks exact rational rounding
+certificates. A June 30 ordinal 180 to July 2 ordinal 182 case derives two days,
+using only those two supplied endpoint observations. The adapter transports facts
+and validates Gregorian consistency without computing elapsed days or finance.
+
+The selected baseline gives additional charge USD 95.17 and separately supplied
+actual principal paid USD 1000. The minimum-return alternative remains USD 95.18,
+not the selected result. Half-cent ties give USD 0.00 for principal USD 0.01 at
+50% over 365 days and USD 0.02 for principal USD 0.03. These distinguish half-even
+on the additional charge from half-away and round-terminal-total alternatives.
+Monthly and combined status remain text `not_computed` and
+`unresolved_not_computed`; no additional payment is invented, and no financial
+state slots are introduced. Evidence remains proposed `research_assumption`.
+
+The supplemental unified Quest batch passed 34 checks in 402.120 seconds,
+covering canonical/native/reference execution and the independent oracle. The
+86-target build and both smokes passed. Compiler/schema sources, the 45 kernel
+pins, build identities, the existing `0.4.3-dev` record and old probe remain
+unchanged. This is a new library/registered-method fit, not a core extension,
+new baseline or rerun of the dated 352-check snapshot. The separate nine-scenario
+review also passes native IR/generated Lean/reference comparisons and independent
+exact certificate checks, including both ties and the non-origin due-date case.
+
+The supplied acceptance answers resolve the selected fixture sufficiently for
+implementation; they are not reopened by these checks. Partial/multiple flows,
+monthly/combined liability, professional approval, operational Excel equivalence
+and project-owner acceptance of the adjacent patent-rights domain remain outside
+the accepted calculation scope. The pre-FX gate is unchanged, with no reserved
+capability. Reported FAME FX and complete-period LG method fits also do not
+establish native EUR/FX type support or complete canonical C15 integration.
+Keep their source-level expressibility separate from the family statuses below.
+
 ## Execution update: reusable kernel implementation
 
 The original source audit below describes profile 0.3 before this implementation
@@ -20,6 +164,7 @@ are separate claims; unlisted audit gaps remain open.
 | Calendar-month derivation (E1) | `add_calendar_months(Date,Nat,Text) -> Date` with explicit clamp/reject policies, Gregorian range and demanded failures | `spl.calendar-months/1` capability admission; supplied-date and derived reserve registrations, independent oracle, `Tests/test_calendar_months.py` and `Tests/SPLCalendar.lean`; E0 omission/freeze/replay preserved in the extension record |
 | Selected financial compositions | Priority/pro-rata competing claims, usage-weighted pool and event-ordered fee rules over the reusable core | Angel and MQP variants, serialized two-period waterfall state, bounded authorized replacement-fact revision; source and neutral-oracle links in [implementation.md](implementation.md). These are selected methods, not all variants in C02–C14 |
 | M1a financial library | Four pure registered tier/cumulative-tier/cap/guarantee libraries and a canonical root reuse the existing core; no compiler branch or new natural-English tier syntax | [M1a source guide](../../cases/m1/README.md), [separately pinned readable policy](../../cases/m1/policy.md), seven [neutral fixtures](../../cases/m1/fixtures/period-marginal.json), [independent oracle](../../oracles/ordinary_royalties.py) and [module checks](../../Tests/test_m1_modules.py). Seven demo cases and the generic CLI marginal template pass. The final 17-group comparison passes in 481.020 seconds; published profile `0.4.2-dev` retains these bounded witnesses |
+| M1b quantities/rates | Finite `Quantity<U>` and `Rate<U,USD>`, exact tags, same-dimension arithmetic, typed zero, matching quantization, containers/imports and dimensional scalar/tuple sorting; dimensional Map/group/ordered-fold keys rejected | [Registered source and neutral fixture](../../cases/quantities/README.md), [independent oracle](../../oracles/quantities.py), [canonical checks](../../Tests/test_quantity_modules.py), [native checks](../../Tests/SPLQuantities.lean). Explicit closure capability/codec/unit dictionaries; matching dimensional bounds/conservation; complete type-hashed state and 15 negative defensive IR admission cases. Native carry gives 100.5 Download and USD 0.375 after the initial 100/150/75 witness. Local profile `0.4.3-dev` verification is complete; no FX or Money/Quantity, and proof scopes are unchanged. |
 
 Phase builds and focused checks have been run during implementation. E1's
 combined verification history, source pins, registered case outputs and measured
@@ -41,14 +186,15 @@ Calendar-month deadline derivation was deliberately outside frozen E0
 (`0.4.0-dev`) and is implemented in E1 (`0.4.1-dev`). The
 [extension record](extensibility-experiment.md) retains the actual old-compiler
 rejection, legitimate supplied-date method, corrected E0 archive and targeted
-replay. Units/FX, broader calendar
+replay. Broader unit dictionaries/FX, broader calendar
 families, signed-loss policies and full historical replay are not implied by
 these kernel additions.
 
 ## Current C1 family coverage: E1
 
-This matrix now also includes the implemented M1a continuation after E1; the
-heading retains the existing link anchor. M1a is published as profile `0.4.2-dev`.
+This matrix includes the implemented M1a continuation and locally verified
+M1b slice after E1; the heading retains the existing link anchor. M1a remains
+recorded in archived profile `0.4.2-dev`, and M1b in local profile `0.4.3-dev`.
 
 This matrix evaluates the required variants in [the C1 release scope](release-scope-ld02.md),
 not every possible royalty method or vendor configuration. **I** means the stated
@@ -62,22 +208,22 @@ coverage or professional approval is implied.
 
 | Family | Native | Canonical | Executed witness and remaining required variants |
 | --- | --- | --- | --- |
-| C01 Scoped rule selection | I | P | Identified unique/priority selection, fallback, no winner, tied winner, zero and lazy bodies have [priority checks](../../Tests/test_priority.py). Registered [Cedar](../../cases/modules/priority-rates/priority-rates.spl) adds scope/effective-period predicates and two recipients. Broader canonical unique/fallback and independently scoped rule/evidence variants still need dedicated acceptance packages. |
-| C02 Units, bases and rates | P | P | SV/LG and [Angel](../../cases/r1/angel-guild.spl) calculate exact percentage rates over explicitly selected gross/net bases and separate shares. Declared dimensional quantity units and a typed fixed-money-per-unit canonical witness remain absent; numeric usage weights are not a quantity algebra. |
-| C03 Deductions and fees | P | P | SV eligible deduction schedules, Angel marketing/cost order and [waterfall](../../cases/waterfall/waterfall.spl) fee-before-cost-before-recovery execute. General pre-basis/pre-share/post-share alternatives, scoped cumulative deduction caps and prior-consumption identity need additional registered methods and discriminators. |
-| C04 Tiers and escalation | P | P | [M1a tiers](../../cases/m1/tiers.spl) and [cumulative library](../../cases/m1/cumulative-tiers.spl), under the [selected policy](../../cases/m1/policy.md), give period basis 150 → marginal 20 versus whole-base 30, and prior basis 80 + current 70 → current earnings 12 / closing basis 150. Lower-inclusive equality gives 10 versus 20 at basis 100. [Checks](../../Tests/test_m1_modules.py) cover exact fractions, split facts, physical permutations, serialized next-period cumulative carry, invalid/duplicate/gapped/overlapping tables and cutoff/scope failures. MQP's prospective whole-receipt variants remain separate. Whole-base is period-only; crossing-row alternatives and selected retroactive historical recalculation remain gaps. |
-| C05 Caps, floors and guarantees | P | P | [M1a cap](../../cases/m1/cap.spl), [guarantee](../../cases/m1/guarantee.spl) and [canonical root](../../cases/m1/ordinary.spl) give cap 100 / prior consumption 70 / new entitlement 80 → allowed 30 / closing consumption 100; separate period-cap carry requires explicit new-period reset, while cumulative cap cannot reset. Nonrecoupable period floor 100 / earned 80 → entitlement 100, distinct from advance 150 / earnings 80 → payable 0 / closing advance 70 ([advance checks](../../Tests/test_module_mechanisms.py)). The only selected composition reports marginal tiers 20 then explicit cap 15. [M1a checks](../../Tests/test_m1_modules.py) include equality, empty activity, serialized cap carry, method/purpose/scope/period guards and supplied-table validation. Broader term meters, recoupable minimum policies, guarantee/cap/advance precedence and minimum-payment bookkeeping remain gaps. |
+| C01 Scoped rule selection | I | I | Three registered unique/no-fallback, unique/explicit-fallback and priority/explicit-fallback methods now execute with original rule/receipt/evidence bindings. The8-method archived cohort passes19 direct source variants,9 canonicalnative cases and2 Pythonemitter mirrors;20/0/10 controls, duplicates/ties/demandedfailures/laziness and scope/date/observation near-misses retain actual execution-layer credit. Finite three supplied rule slots are explicit; no unbounded rule-management service is inferred. |
+| C02 Units, bases and rates | I | I | Selected fixed USD/unit, separate participation, named gross/net percentage bases and exact owner-scoped usage conversion now have bounded native/canonical witnesses. [Basis methods](../../cases/participation-bases/README.md) retain25/20/150/75 controls, complete typed intermediates, original transport and explicit layer/backend limits. Earlier conversion/IR/state evidence retains its own pins. Native FX remains reserved; generic schema/operator/target-decision obligations stay separate. |
+| C03 Deductions and fees | I | I | Six named pre-basis/pre-share/post-share and gross/stage-net fee variants, eligible/excluded costs, a cumulative scoped cap and original-consumption history execute in cases/deductions. The combined 29 oracle/module checks pass with actual serialized cap carry of 80 -> 100 -> 100 and full stage intermediates. Policies are explicitly synthetic, with no residual-cost or reclassification carry; sourced approval and signed-loss policies remain separate. |
+| C04 Tiers and escalation | P | P | Five named crossing/current-period/row-opening/row-ending/cumulative-reprice synthetic methods now execute with independent12/14/11/14/22 controls, full original historical replay, lexical table/event pin and actual serialized adjacent carry. The30-method combined cohort passes under current323f0d/7a2f98/673 identities. Disney first-dollar merchandising catch-up is a newly specified separate sourced-economic/proposed-operating policy, not this cumulative22 witness; its original facts/independent oracle/native integration remain open. |
+| C05 Caps, floors and guarantees | I | I | Seven named term-cap, term-end-floor, actual-funded-advance and two floor/cap orders with two recovery-eligibility alternatives execute with independent original-history replay and separate earned/recognized/cap/funded/recovered/prepayment meters. The31-method cohort and LF native baseline/funding100->50 carry followup pass. Face150 does not create funding; missing funding population blocks unknown/no state. Existing period cap/reset/floor methods remain separately scoped; no bank payment or universal precedence default is inferred. |
 | C06 Allocation and relationships | P | P | RQ-07 approves bundle allocations; Angel uses the complete platform denominator; Cedar and waterfall emit multiple participant shares with conservation and zero-denominator rejection. General residual assignment after quantization, unmatched-allocation policies and broader relationship variants remain open. See [R1 checks](../../Tests/test_r1_modules.py). |
-| C07 Recoupment and waterfalls | P | P | [Waterfall checks](../../Tests/test_waterfall.py) execute priority 100/20 versus pro rata 60/60, fees/costs, excess residual and actual serialized two-period capital-claim carry. Pooled participant advances remain a separate registered method. A reusable mixed-claim-kind waterfall and competing offset priorities are not established by those separate cases. |
+| C07 Recoupment and waterfalls | P | P | [Mixed claims](../../cases/mixed-waterfall/README.md) now execute selected capital/advance/fee/correction priority and exact pro-rata policies, competing offsets, excess and actual native two-period carry; original paid80 stays80. Existing capital and pooled-advance witnesses remain separately bounded. No registry amendment, nonempty current claim-cash settlement or mixed-currency support is inferred. |
 | C08 Returns and loss policies | A | A | Exact signed arithmetic exists, but no accepted linked-reversal/original-rate method or signed-pool versus per-title-floor/loss-carry canonical discriminator is implemented. Reserve applications and negative correction deltas are different mechanisms and do not complete this family. |
 | C09 Reserve vintages | P | P | [Registered reserve checks](../../Tests/test_module_mechanisms.py) enforce V1/V2 movement bounds and evidence; [calendar checks](../../Tests/test_calendar_months.py) derive explicit clamp/reject deadlines and inclusive release. Contractual basis-stage reserves, broader term/cap schedules and their stage/order alternatives remain unimplemented. LG payment holdback stays a distinct synthetic policy. |
-| C10 Cross-contract movement | A | A | No registered authorized source-to-target entitlement transfer with both scopes, transaction identity, conservation and dependency-graph acceptance exists. Ordinary shares and within-pool recovery do not establish cross-contract movement. |
+| C10 Cross-contract movement | P | P | The registered current-entitlement transfer profile preserves real endpoint scopes, authorization and transaction identities, conserved 70/30 redistribution, downstream credits, explicit graph/sequence order and consumed upstream references. All 28 independent oracle/module checks pass, including actual serialized fresh-period state and atomic cycles/overdraw. The coordinator envelope is execution metadata; this bounded synthetic DAG method is not a cross-contract type guarantee, bank transfer or distributed service. LD03 identifies a separate required subtraction/burden variation (claimant100 stays100; other200 less30 gives170), now inventoried but not executed; global conservation from transfers does not close it. |
 | C11 Gates and ordered histories | P | P | LG preserves separate aggregate/work attestations, full/proxy bases and the strictly-before-start precondition. MQP executes identified same-event order and a payment-based rate transition. Full event-time gate crossings/dips, continuous gate reconstruction and crossing-row payout alternatives still require independent methods/evidence. |
-| C12 Actual payments and obligations | P | P | [Correction-payment](../../cases/mechanisms/correction-payments.spl) and [revision](../../cases/revision/restatement.spl) distinguish entitlement 90, actual paid 80 and outstanding 10; MQP distinguishes actual-paid and fee-available balances. Canonical minimum-payout/deferment carry and a broader issued/paid obligation lifecycle remain open; no bank execution is implemented. |
+| C12 Actual payments and obligations | I | I | The selected settlement profile separates calculated net entitlement, optional original issue notices, actual payments/applications, existing issued debt and unissued threshold carry. The combined 29 oracle/module checks and three-period canonical review pass 10 -> 19 -> 17. Prior issued debt is neither reissued nor withheld again; missing completeness produces no numeric paid result or consumable state. The existing 90/80/10 revision route remains separately scoped. Bank execution and enterprise obligation services are outside this claim. |
 | C13 Corrections and replay | P | P | [Revision checks](../../Tests/test_revision.py) exercise authorized original/replacement references, original opening, conserved 500 cash, revised entitlement 90, delta -10, paid 80, duplicate/replay rejection and outstanding as-of 10. General dependent-period replay, linked reversal alternatives and separately authorized prospective adjustment/application are not completed. |
 | C14 Effective terms and calendars | P | P | Cedar effective intervals, half-open periods, exact as-of cutoffs, readable Gregorian quarters and E1 calendar-month derivation execute. General amended-term chains, fiscal periods, supplied business-day calendar relations and the declared day-proration witness still need methods and integration. |
-| C15 Currency and FX | A | A | Exact USD calculations and currency/scope rejection exist. Typed USD/EUR money and quote units/direction/date selection, conversion, separate contract/payment currencies and explicit FX rounding have no implemented end-to-end witness. USD arithmetic does not count as multi-currency support. |
-| C16 Statement adjustments | A | A | No supplied withholding-rate plus minimum-payout/unpaid-balance method and canonical witness is implemented. Existing fees, recovery and synthetic LG payment holdback provide other statement components but do not establish this family's withholding/deferment semantics. |
+| C15 Currency and FX | A | A | Exact USD calculations and currency/scope rejection exist. The [DYN-02 analysis](dyn02-design-answer.md) reports a record-backed receipt-FX method fit, so ordinary conversion arithmetic must not be described as financially inexpressible. Native typed USD/EUR money, quote units/direction, separate contract/payment currencies and the complete canonical conversion/rounding witness remain absent. The reported method fit does not complete those C15 requirements. |
+| C16 Statement adjustments | I | I | The registered supplied-rate withholding and minimum-payout policy executes gross 100 / withheld 10 / net 90, with cent half-even ties, explicit >= threshold, actual issued/paid facts and structured unpaid carry. Three-period actual canonical results of 10 -> 19 -> 17 match independent original-fact controls. This is an explicitly synthetic USD cent profile, not tax applicability, remittance, filing or professional approval. |
 | C17 Reusable contracts and reporting | I | I | [Generic module checks](../../Tests/test_modules.py), Cedar and multi-participant waterfall demonstrate typed parameterized imports, new registrations without contract-name dispatch, named statements/detail/state, scenario-isolated dependencies and deterministic semantic identity with retained source/policy lineage. This status covers the finite calculation/interface requirement; it does not claim an enterprise contract repository, payment service or concurrent distributed settlement system. |
 
 The next implementation phases are in [the current report](implementation.md).

@@ -12,7 +12,17 @@ open IR
 abbrev Span := Syntax.Span
 abbrev Diagnostic := Syntax.Diagnostic
 
-abbrev Gen := StateT Nat (Except Diagnostic)
+structure GenerationContext where
+  owner : Dimensions.Admission := {}
+  meanings : Dimensions.Meanings := {}
+  owners : List (String × List String) := []
+  extended : Bool := false
+
+structure GenerationState where
+  counter : Nat := 0
+  helpers : List String := []
+
+abbrev Gen := ReaderT GenerationContext (StateT GenerationState (Except Diagnostic))
 abbrev Names := List (String × String)
 
 def quoted (value : String) : String :=
@@ -23,12 +33,23 @@ private def brackets (values : List String) : String :=
 
 private def pair (key value : String) : String := "(" ++ quoted key ++ ", " ++ value ++ ")"
 
+private def admissionSource (owner : Dimensions.Admission) : String :=
+  "({ features := " ++ brackets (owner.features.map quoted) ++ " } : SPL.Dimensions.Admission)"
+
+private def generationContext (program : Program) : Except Diagnostic GenerationContext := do
+  let owner ← (Dimensions.prepare program.features).mapError (fun code => { code, message := code })
+  pure {
+    owner
+    meanings := { features := (program.features ++ program.owners.flatMap Prod.snd).eraseDups }
+    owners := program.owners
+    extended := program.format == "spl-ir/0.2" }
+
 private def block (lines : List String) (result : String) : String :=
   "(do\n" ++ String.intercalate "\n" ((lines ++ [result]).map fun s => "  " ++ s.replace "\n" "\n  ") ++ ")"
 
 private def fresh : Gen String := do
-  let counter ← get
-  set (counter + 1)
+  let counter := (← get).counter
+  modify fun state => { state with counter := counter + 1 }
   pure ("_spl_v" ++ toString counter)
 
 private def fail (code message : String) (span : Span := {}) : Gen α :=
@@ -89,6 +110,7 @@ private def decimal (value : String) (span : Span) : Gen String := do
 
 mutual
   private partial def expression (expr : Expr) (env : Names) : Gen String := do
+    let config ← read
     match expr with
     | .number m value | .money m _ value => decimal value m.span
     | .boolean _ value => pure ("(pure (.flag " ++ (if value then "true" else "false") ++ "))")
@@ -98,8 +120,8 @@ mutual
       pure binderVar
     | .field _ value name =>
       pure (block [] ("SPL.field (← " ++ (← expression value env) ++ ") " ++ quoted name))
-    | .unary _ op value =>
-      let target := if op == "-" then "SPL.Core.numericUnary" else "SPL.unary " ++ quoted op
+    | .unary m op value =>
+      let target := if op == "-" && !Check.dimensional m.ty then "SPL.Core.numericUnary" else (if config.extended then "SPL.unaryWith _spl_dimension_meanings " else "SPL.unary ") ++ quoted op
       pure (block [] (target ++ " (← " ++ (← expression value env) ++ ")"))
     | .binary _ op left right =>
       let a ← expression left env
@@ -110,8 +132,8 @@ mutual
         let arithmetic := match op with
           | "+" => some "add" | "-" => some "subtract" | "*" => some "multiply" | "/" => some "divide" | _ => none
         let target := match arithmetic with
-          | some op => "SPL.Core.numericBinary ." ++ op
-          | none => "SPL.binary " ++ quoted op
+          | some arithmetic => if Check.dimensional left.meta.ty || Check.dimensional right.meta.ty then (if config.extended then "SPL.binaryWith _spl_dimension_meanings " else "SPL.binary ") ++ quoted op else "SPL.Core.numericBinary ." ++ arithmetic
+          | none => (if config.extended then "SPL.binaryWith _spl_dimension_meanings " else "SPL.binary ") ++ quoted op
         pure (block [] (target ++ " (← " ++ a ++ ") (← " ++ b ++ ")"))
     | .ite _ condition yes no =>
       pure ("(SPL.conditional " ++ (← expression condition env) ++ " (fun _ => " ++ (← expression yes env) ++
@@ -135,15 +157,19 @@ mutual
         | none => pure "none"
         | some (id, body) => do pure ("(some (" ++ quoted id ++ ", (fun _ => " ++ (← expression body env) ++ "))) ")
       pure ("(SPL.selectRules " ++ (if priority then "true" else "false") ++ " " ++ brackets values ++ " " ++ fallback ++ ")")
-    | .apply _ _ parameters args declarations body =>
+    | .apply _ label parameters args declarations body =>
       let mut lines := []
       let mut nested : Names := []
       for ((name, _), arg) in parameters.zip args do
         let argumentVar ← fresh
         lines := lines ++ ["let " ++ argumentVar ++ " : SPL.Value ← " ++ (← expression arg env)]
         nested := nested ++ [(name, "(pure " ++ argumentVar ++ ")")]
-      let (localLines, localEnv) ← scope (declarations.map localToDecl) nested
-      pure (block (lines ++ localLines) (← expression body localEnv))
+      let owner ← match Dimensions.prepare ((config.owners.lookup label).getD []) with
+        | .ok owner => pure owner
+        | .error code => fail code code
+      withReader (fun config => { config with owner }) do
+        let (localLines, localEnv) ← scope (declarations.map localToDecl) nested
+        pure (block (lines ++ localLines) (← expression body localEnv))
     | .fold _ source initial state event _ order declarations body =>
       let initialVar ← fresh
       let sourceVar ← fresh
@@ -170,8 +196,12 @@ mutual
     | .collection m name binder _ source body =>
       let binderVar ← fresh
       let target ← match name with
+        | "convert_quantity" => pure ("convertQuantity " ++ admissionSource config.owner ++ " _spl_dimension_meanings")
         | "filter" => pure "filterValues"
-        | "sum" => pure "sumValues"
+        | "sum" => pure (match m.ty with
+          | .quantity unit => (if config.extended then "sumValuesFromWith _spl_dimension_meanings (.quantity " else "sumValuesFrom (.quantity ") ++ quoted unit ++ " 0)"
+          | .rate unit currency => (if config.extended then "sumValuesFromWith _spl_dimension_meanings (.rate " else "sumValuesFrom (.rate ") ++ quoted unit ++ " " ++ quoted currency ++ " 0)"
+          | _ => "sumValues")
         | "sort_by" => pure "sortValues"
         | "map" => pure "mapValues"
         | "group_by" => pure "groupValues"
@@ -199,13 +229,15 @@ mutual
         ") (fun _ => " ++ (← expression args[1]! env) ++ ")")
       let values ← args.mapM fun e => do pure ("(← " ++ (← expression e env) ++ ")")
       let target ← match name with
+        | "convert_quantity" => pure ("convertQuantity " ++ admissionSource config.owner ++ " _spl_dimension_meanings")
+        | "abs" => pure (if config.extended then "absoluteWith _spl_dimension_meanings" else "absolute")
         | "min" => pure "extrema false"
         | "max" => pure "extrema true"
         | "in_period" => pure "inPeriod"
         | "add_calendar_months" => pure "addCalendarMonths"
         | "is_calendar_quarter" => pure "isCalendarQuarter"
           | "instant" => pure "instant"
-        | "quantize" => pure "quantize"
+        | "quantize" => pure (if config.extended then "quantizeWith _spl_dimension_meanings" else "quantize")
         | "require_some" => pure "requireSome"
         | "is_some" => pure "isSome"
         | "tuple_get" => pure "tupleGet"
@@ -224,12 +256,13 @@ mutual
       | .define _ name _ =>
         let functionName ← fresh
         functions := (name, functionName) :: functions
-        env := (name, "(" ++ functionName ++ " ())") :: env
+        env := (name, "(" ++ functionName ++ ".get)") :: env
       | _ => pure ()
     let mut lines := []
     let mut emitted := []
-    -- Only closures are hoisted. Calling a name forces its body inside the
-    -- selected lazy branch; constructing these closures performs no arithmetic.
+    -- Only memoizing thunks are hoisted. First demand forces a body inside its
+    -- selected lazy branch; later demands reuse the same pure Except value.
+    -- Each call/loop scope constructs fresh thunks, never a cross-input cache.
     for declaration in declarations do
       if let .define _ name _ := declaration then
         let (closureLines, doneNames) ← emitDefinition name declarations env functions emitted []
@@ -260,8 +293,29 @@ mutual
       let (requiredLines, nextDone) ← emitDefinition reference declarations env functions doneNames (name :: active)
       lines := lines ++ requiredLines
       doneNames := nextDone
+    -- Captures are deferred values, never eager `.get` arguments.  The original
+    -- scope still owns each memoizing definition thunk and its demand points.
+    -- A Unit argument also keeps a closed helper a computation rather than a
+    -- global cached settlement value.
+    let helperName ← fresh
+    let mut parameters : List String := []
+    let mut arguments : List String := []
+    let mut captured : Names := []
+    for reference in (references body).eraseDups do
+      let some source := env.lookup reference
+        | fail "UNKNOWN_NAME" ("Unknown checked capture " ++ reference) m.span
+      let parameter ← fresh
+      parameters := parameters ++ ["(" ++ parameter ++ " : Thunk (SPL.Eval SPL.Value))"]
+      arguments := arguments ++ ["(Thunk.mk (fun _ => " ++ source ++ "))"]
+      captured := (reference, "(" ++ parameter ++ ".get)") :: captured
+    let helperBody ← expression body captured
+    let helper := "@[noinline] private def " ++ helperName ++ " " ++
+      String.intercalate " " parameters ++
+      " (_spl_force : Unit) : SPL.Eval SPL.Value := " ++ helperBody
+    modify fun state => { state with helpers := state.helpers ++ [helper] }
     lines := lines ++ ["let " ++ (functions.lookup name).getD "unreachable" ++
-      " : Unit → SPL.Eval SPL.Value := fun _ => " ++ (← expression body env)]
+      " : Thunk (SPL.Eval SPL.Value) := Thunk.mk (fun _ => " ++ helperName ++ " " ++
+      String.intercalate " " arguments ++ " ())"]
     pure (lines, name :: doneNames)
 
   private partial def localToDecl : LocalDecl → Decl
@@ -283,6 +337,8 @@ private partial def typeSource : Ty → String
       "(.named \"Id\" [(.named " ++ quoted (String.intercalate ":" ((name.splitOn ":").drop 1)) ++ " [])])"
     else "(.named " ++ quoted name ++ " [])"
   | .money currency => "(.named \"Money\" [(.named " ++ quoted currency ++ " [])])"
+  | .quantity unit => "(.named \"Quantity\" [(.named " ++ quoted unit ++ " [])])"
+  | .rate unit currency => "(.named \"Rate\" [(.named " ++ quoted unit ++ " []), (.named " ++ quoted currency ++ " [])])"
   | .list item => "(.named \"List\" [" ++ typeSource item ++ "])"
   | .option item => "(.named \"Option\" [" ++ typeSource item ++ "])"
   | .tuple items => "(.named \"Tuple\" " ++ brackets (items.map typeSource) ++ ")"
@@ -328,29 +384,34 @@ private def generate (schedule : Program) (standalone : Bool) : Gen String := do
   let openingTypes := brackets (schedule.declarations.filterMap fun d => match d with
     | .opening m name _ => some (pair name (typeSource m.ty)) | _ => none)
   let ns := scheduleNamespace schedule.name
+  let config ← read
+  let runner := if config.extended then "SPL.Bindings.runMainWith " ++ admissionSource config.owner ++ " " ++ ns ++ "._spl_dimension_meanings " else "SPL.Bindings.runMain "
   let entry := if standalone then
     "\n\nnamespace GeneratedSPL\n" ++
     "abbrev scheduleName := " ++ ns ++ ".scheduleName\n" ++
     "abbrev sourceRules := " ++ ns ++ ".sourceRules\n" ++
     "abbrev settle := " ++ ns ++ ".settle\n" ++
     "end GeneratedSPL\n\n" ++
-    "def main (args : List String) : IO UInt32 :=\n  SPL.Bindings.runMain " ++ inputTypes ++ " " ++ openingTypes ++ " " ++ ns ++ ".settle args\n"
+    "def main (args : List String) : IO UInt32 :=\n  " ++ runner ++ inputTypes ++ " " ++ openingTypes ++ " " ++ ns ++ ".settle args\n"
     else "\n"
   pure ("import SPL.Fold\nimport SPL.Core\nimport SPL.Bindings\n\nset_option maxRecDepth 4096\nset_option maxHeartbeats 0\n\nnamespace " ++ ns ++ "\n\n" ++
     "def scheduleName : String := " ++ quoted schedule.name ++ "\n" ++
     "def sourceRules : List (String × String) := " ++ rules ++ "\n\n" ++
+    (if config.extended then "def _spl_dimension_meanings : SPL.Dimensions.Meanings := { features := " ++
+      brackets (config.meanings.features.map quoted) ++ " }\n\n" else "") ++
+    String.intercalate "\n\n" (← get).helpers ++ "\n\n" ++
     "def settle (_inputs _openings : SPL.Env) : SPL.Eval SPL.Settlement := " ++ block lines result ++
     "\n\nend " ++ ns ++ entry)
 
 def emitIR (schedule : Program) : Except Diagnostic String := do
   ValidateIR.validate schedule
-  pure ((← generate schedule true |>.run 0).1)
+  pure ((← (generate schedule true).run (← generationContext schedule) |>.run {}).1)
 
 /-- Importable module mode has only schedule-specific declarations, with no
 global executable entry or convenience aliases that collide across modules. -/
 def emitLibraryIR (schedule : Program) : Except Diagnostic String := do
   ValidateIR.validate schedule
-  pure ((← generate schedule false |>.run 0).1)
+  pure ((← (generate schedule false).run (← generationContext schedule) |>.run {}).1)
 
 /-- Compatibility entry: checking and elaboration happen before generation. -/
 def emit (schedule : Syntax.Schedule) : Except Diagnostic String := do

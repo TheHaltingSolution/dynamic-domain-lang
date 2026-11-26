@@ -139,18 +139,27 @@ def Graph.validate (graph : Graph) : Except String Unit := do
 /-- Source fact IDs remain source identities; arithmetic does not synthesize
 facts or copy their amounts into a second audit ledger. Dependencies connect
 scalar-only nodes back to these structurally observed record identities. -/
-private partial def factIds : Value → List String
-  | .obj fields => fields.flatMap fun (name, value) =>
-      (match name, value with | "fact_id", .text id => [id] | _, _ => []) ++ factIds value
-  | .seq values | .tuple values | .map values => values.flatMap factIds
-  | .present value => factIds value
-  | _ => []
+private partial def collectFactIds (value : Value) (ids : Std.HashSet String) : Std.HashSet String :=
+  match value with
+  | .obj fields => fields.foldl (fun ids (name, value) =>
+      let ids := match name, value with | "fact_id", .text id => ids.insert id | _, _ => ids
+      collectFactIds value ids) ids
+  | .seq values | .tuple values | .map values => values.foldl (fun ids value => collectFactIds value ids) ids
+  | .present value => collectFactIds value ids
+  | _ => ids
+
+/-- Preserve the legacy exact textual identity set and explicit lexical order,
+without constructing duplicate lists or scanning them with `List.eraseDups`. -/
+private def nodeFactIds (node : Node) : List String :=
+  let ids := node.operands.foldl (fun ids value => collectFactIds value ids) {}
+  let ids := match node.result with | some value => collectFactIds value ids | none => ids
+  ids.toList.mergeSort (· ≤ ·)
 
 def nodeJson (node : Node) : Lean.Json := Lean.Json.mkObj ([
   ("node_id", .str node.id), ("kind", .str node.kind), ("rule_id", .str node.rule),
   ("instance_scope", .str node.scope),
   ("value_type", IR.typeJson node.valueType),
-  ("fact_ids", toJson (((node.operands ++ node.result.toList).flatMap factIds).eraseDups.mergeSort (· ≤ ·))),
+  ("fact_ids", toJson (nodeFactIds node)),
   ("source_span", Lean.Json.mkObj [("start", toJson node.span.start),
     ("stop", toJson node.span.stop), ("line", toJson node.span.line),
     ("column", toJson node.span.column)]),
@@ -159,7 +168,7 @@ def nodeJson (node : Node) : Lean.Json := Lean.Json.mkObj ([
     else if node.status == "failed" then "blocked"
     else if node.status == "discarded" then "discarded"
     else match node.result with
-      | some (.num value) => if value == 0 then "calculated_zero" else "calculated"
+      | some (.num value) | some (.quantity _ value) | some (.rate _ _ value) => if value == 0 then "calculated_zero" else "calculated"
       | some _ => "calculated"
       | none => "decision")),
   ("dependencies", toJson node.dependencies),

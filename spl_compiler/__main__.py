@@ -35,6 +35,7 @@ def main():
     p.add_argument("package")
     p.add_argument("--output", required=True, help="Review bundle directory (immutable run identity recommended)")
     p.add_argument("--backend", choices=["compare", "lean", "reference"], default="compare")
+    p.add_argument("--audit-profile", choices=["array-v1", "compact-v2"], default="array-v1")
     p = commands.add_parser("mechanism")
     p.add_argument("case", choices=["advance-issues", "reserve-vintage", "correction-payments"])
     p.add_argument("bindings")
@@ -48,6 +49,7 @@ def main():
     p.add_argument("--registry", default=str(ROOT))
     p.add_argument("--output", required=True)
     p.add_argument("--backend", choices=["compare", "lean", "reference"], default="compare")
+    p.add_argument("--audit-profile", choices=["array-v1", "compact-v2"], default="array-v1")
     args = parser.parse_args()
     try:
         if args.command == "build-native":
@@ -79,12 +81,13 @@ def main():
             print("Wrote pinned module package " + args.output)
         elif args.command == "module-run":
             from .modules import run_module_package
-            result = run_module_package(read_json(args.package), args.registry, backend=args.backend, artifact_dir=args.output)
+            result = run_module_package(read_json(args.package), args.registry, backend=args.backend, artifact_dir=args.output, audit_profile=args.audit_profile)
             print(json.dumps({key: result[key] for key in ["status", "statements", "diagnostics"]}, indent=2))
             return 1 if result["status"] == "blocked" else 0
         else:
-            result = run_package(read_json(args.package), args.schedule, backend=args.backend, artifact_dir=args.output)
-            write_json(Path(args.output) / "result.json", result)
+            result = run_package(read_json(args.package), args.schedule, backend=args.backend, artifact_dir=args.output, audit_profile=args.audit_profile)
+            if args.audit_profile == "array-v1":
+                write_json(Path(args.output) / "result.json", result)
             print(json.dumps({"status": result["status"], "statements": result["statements"], "diagnostics": result["diagnostics"]}, indent=2))
             return 1 if result["status"] == "blocked" else 0
         return 0

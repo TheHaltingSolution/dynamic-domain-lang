@@ -1,0 +1,290 @@
+{
+  "decisions": [
+    {
+      "decision_id": "AMOUNTS_SELECTED",
+      "evidence_ref": "selected-synthetic-supplied-settlement",
+      "policy_id": "SYNTHETIC-SETTLEMENT-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "SETTLEMENT_SELECTED",
+      "evidence_ref": "selected-synthetic-supplied-settlement",
+      "policy_id": "SYNTHETIC-SETTLEMENT-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "SETTLEMENT_SELECTED",
+        "evidence_ref": "source-q1",
+        "id": "source-q1",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-01T01:00:00Z",
+        "period": {
+          "none": true
+        },
+        "scope": {
+          "asset_id": "settlement-picture",
+          "contract_id": "settlement-synthetic",
+          "currency": "USD",
+          "participant_id": "settlement-participant",
+          "pool_id": "settlement-pool"
+        },
+        "source_kind": "synthetic_source_record"
+      },
+      {
+        "approval_ref": "SETTLEMENT_SELECTED",
+        "evidence_ref": "complete-q1",
+        "id": "complete-q1",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "period": {
+          "some": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          }
+        },
+        "scope": {
+          "asset_id": "settlement-picture",
+          "contract_id": "settlement-synthetic",
+          "currency": "USD",
+          "participant_id": "settlement-participant",
+          "pool_id": "settlement-pool"
+        },
+        "source_kind": "complete_settlement_population"
+      }
+    ]
+  },
+  "inputs": {
+    "applications": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "80"
+        },
+        "evidence_ref": "source-q1",
+        "id": "application-q1",
+        "issued_id": "issue-q1",
+        "observed_at": "2026-04-01T01:00:00Z",
+        "payment_id": "payment-q1",
+        "scope": {
+          "asset_id": "settlement-picture",
+          "contract_id": "settlement-synthetic",
+          "currency": "USD",
+          "participant_id": "settlement-participant",
+          "pool_id": "settlement-pool"
+        },
+        "source_ref": "synthetic-remittance-q1"
+      }
+    ],
+    "case_id": "settlement-q1",
+    "earned": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "40"
+        },
+        "effective_date": "2026-01-15",
+        "evidence_ref": "source-q1",
+        "id": "earned-q1-a",
+        "observed_at": "2026-03-29T00:00:00Z",
+        "scope": {
+          "asset_id": "settlement-picture",
+          "contract_id": "settlement-synthetic",
+          "currency": "USD",
+          "participant_id": "settlement-participant",
+          "pool_id": "settlement-pool"
+        },
+        "source_ref": "synthetic-earned-q1-a"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "60"
+        },
+        "effective_date": "2026-03-15",
+        "evidence_ref": "source-q1",
+        "id": "earned-q1-b",
+        "observed_at": "2026-03-29T00:00:00Z",
+        "scope": {
+          "asset_id": "settlement-picture",
+          "contract_id": "settlement-synthetic",
+          "currency": "USD",
+          "participant_id": "settlement-participant",
+          "pool_id": "settlement-pool"
+        },
+        "source_ref": "synthetic-earned-q1-b"
+      }
+    ],
+    "fact_scope": {
+      "asset_id": "settlement-picture",
+      "contract_id": "settlement-synthetic",
+      "currency": "USD",
+      "participant_id": "settlement-participant",
+      "pool_id": "settlement-pool"
+    },
+    "issued": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "90"
+        },
+        "evidence_ref": "source-q1",
+        "id": "issue-q1",
+        "issued_date": "2026-03-30",
+        "observed_at": "2026-03-30T12:00:00Z",
+        "scope": {
+          "asset_id": "settlement-picture",
+          "contract_id": "settlement-synthetic",
+          "currency": "USD",
+          "participant_id": "settlement-participant",
+          "pool_id": "settlement-pool"
+        },
+        "source_ref": "synthetic-issued-statement-q1"
+      }
+    ],
+    "payments": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "80"
+        },
+        "evidence_ref": "source-q1",
+        "id": "payment-q1",
+        "observed_at": "2026-04-01T00:00:00Z",
+        "paid_date": "2026-03-31",
+        "scope": {
+          "asset_id": "settlement-picture",
+          "contract_id": "settlement-synthetic",
+          "currency": "USD",
+          "participant_id": "settlement-participant",
+          "pool_id": "settlement-pool"
+        },
+        "source_ref": "synthetic-bank-q1"
+      }
+    ],
+    "predecessor": {
+      "none": true
+    },
+    "project": "settlement-picture",
+    "scope": {
+      "agreement_id": "settlement-synthetic",
+      "participant_id": "settlement-participant",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "settlement-pool"
+    },
+    "supplied_opening": {
+      "boundary": "2026-01-01",
+      "deferred_unissued": {
+        "currency": "USD",
+        "value": "0"
+      },
+      "issued_obligations": [],
+      "origin": "genesis",
+      "policy_id": "SYNTHETIC-SETTLEMENT-01",
+      "policy_revision": "1",
+      "purpose": "net_unpaid",
+      "recognized_ids": [],
+      "scope": {
+        "asset_id": "settlement-picture",
+        "contract_id": "settlement-synthetic",
+        "currency": "USD",
+        "participant_id": "settlement-participant",
+        "pool_id": "settlement-pool"
+      },
+      "source_case_id": "genesis"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "settlement-q1-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-SETTLEMENT"
+  },
+  "module_ref": {
+    "id": "synthetic:settlement-settlement",
+    "locator": "cases/settlement/settlement-module.json",
+    "revision": "1",
+    "sha256": "a247f6cd04ac60cfaf830fa816384c3f5e791f96ee53f5037f5bc7532ed04d28"
+  },
+  "parameters": {
+    "cutoff": "2026-04-03T00:00:00Z",
+    "evidence_class": "research_assumption",
+    "minimum_payout": {
+      "currency": "USD",
+      "value": "25"
+    },
+    "policy_id": "SYNTHETIC-SETTLEMENT-01",
+    "policy_revision": "1",
+    "rounding": "half_even_cent_once",
+    "threshold_policy": "at_least",
+    "withholding_rate": "0.1"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "settlement-synthetic",
+    "asset_ids": [
+      "settlement-picture"
+    ],
+    "participant_ids": [
+      "settlement-participant"
+    ],
+    "pool_id": "settlement-pool",
+    "purpose": "selected-synthetic-settlement"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "ledger",
+      "provenance_ref": "supplied-original-opening",
+      "purpose": "net_unpaid",
+      "quantity": {
+        "boundary": "2026-01-01",
+        "deferred_unissued": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "issued_obligations": [],
+        "origin": "genesis",
+        "policy_id": "SYNTHETIC-SETTLEMENT-01",
+        "policy_revision": "1",
+        "purpose": "net_unpaid",
+        "recognized_ids": [],
+        "scope": {
+          "asset_id": "settlement-picture",
+          "contract_id": "settlement-synthetic",
+          "currency": "USD",
+          "participant_id": "settlement-participant",
+          "pool_id": "settlement-pool"
+        },
+        "source_case_id": "genesis"
+      },
+      "scenario_id": "SYNTHETIC-SETTLEMENT",
+      "scope": {
+        "agreement_id": "settlement-synthetic",
+        "asset_id": "settlement-picture",
+        "participant_id": "settlement-participant",
+        "pool_id": "settlement-pool"
+      },
+      "state_key": "{\"agreement_id\":\"settlement-synthetic\",\"asset_id\":\"settlement-picture\",\"participant_id\":\"settlement-participant\",\"pool_id\":\"settlement-pool\",\"purpose\":\"net_unpaid\"}",
+      "unit": "structured"
+    }
+  ]
+}

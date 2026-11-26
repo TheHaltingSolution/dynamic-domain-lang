@@ -1,0 +1,196 @@
+// Original facts and selected research policy; no amounts are supplied by a solver.
+schedule MixedClaimRegistry language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input original_participant_ids: List<Text>;
+  input original_payer_id: Text;
+  input original_earning_terms: {approved: Bool, approved_date: Date, approved_date_utc: Instant, effective: Period, evidence_ref: Text, id: Text, observed_at: Instant, original_ref: Text, payer_id: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, share: Ratio, share_source: Text, source_ref: Text};
+  input original_roster_authority: {approved: Bool, complete: Bool, evidence_ref: Text, id: Text, member_ids: List<Text>, observed_at: Instant, original_ref: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text};
+  input original_residual_weights: List<{participant_id: Text, weight: Ratio}>;
+  input original_capital_fundings: List<{amount: Money<USD>, evidence_ref: Text, funded_at: Instant, funded_utc_date: Date, funder_id: Text, id: Text, observed_at: Instant, original_ref: Text, recipient_group: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input original_advance_fundings: List<{amount: Money<USD>, evidence_ref: Text, funded_at: Instant, funded_utc_date: Date, funder_id: Text, id: Text, observed_at: Instant, original_ref: Text, recipient_group: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input original_funding_populations: List<{complete: Bool, evidence_ref: Text, funding_ids: List<Text>, id: Text, kind: Text, observed_at: Instant, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text, total: Money<USD>}>;
+  input original_fee_bases: List<{base_amount: Money<USD>, creditor_id: Text, debtor_group: Text, effective_date: Date, effective_date_utc: Instant, evidence_ref: Text, id: Text, observed_at: Instant, original_ref: Text, rate: Ratio, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input original_correction_sources: List<{evidence_ref: Text, id: Text, observed_at: Instant, original_basis: Money<USD>, original_date: Date, original_date_utc: Instant, original_entitlement_ref: Text, original_rate: Ratio, original_ref: Text, payer_id: Text, recipient_group: Text, return_basis: Money<USD>, return_date: Date, return_date_utc: Instant, return_ref: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input original_historical_payments: List<{amount: Money<USD>, correction_source_id: Text, evidence_ref: Text, id: Text, observed_at: Instant, original_ref: Text, paid_at: Instant, payer_id: Text, recipient_group: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input original_historical_applications: List<{amount: Money<USD>, approved: Bool, correction_source_id: Text, evidence_ref: Text, id: Text, observed_at: Instant, original_entitlement_ref: Text, payment_id: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input original_historical_payment_populations: List<{application_ids: List<Text>, complete: Bool, correction_source_id: Text, evidence_ref: Text, id: Text, observed_at: Instant, paid_total: Money<USD>, payment_ids: List<Text>, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input original_claim_authorities: List<{approved: Bool, approved_date: Date, approved_date_utc: Instant, authorized_principal: Money<USD>, beneficiary: Text, eligible_from: Date, eligible_from_utc: Instant, evidence_ref: Text, id: Text, kind: Text, observed_at: Instant, original_ref: Text, priority: Int, recorded_date: Date, recorded_date_utc: Instant, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, sequence: Int, source_ids: List<Text>, source_ref: Text}>;
+  input original_evidence: List<{approved: Bool, id: Text, kind: Text, observed_at: Instant, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input record_as_of: Date;
+  input record_as_of_next_utc: Instant;
+  input record_cutoff: Instant;
+  input fact_scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text};
+  input first_start: Instant;
+  input method: Text;
+
+  require fact_scope.currency == "USD" and fact_scope.purpose == "mixed_claim_recovery" else "MIXED_SCOPE_PURPOSE_CURRENCY";
+  require sum(original_participant_ids, x => 1) <= 12 and sum(filter(original_participant_ids, x => x == fact_scope.participant_group), x => 1) == 1 and sum(filter(original_participant_ids, x => x == original_payer_id), x => 1) == 1 and original_payer_id != fact_scope.participant_group else "MIXED_PARTY_ROLES";
+  define participants = for each identity in original_participant_ids { require identity != "" and sum(filter(original_participant_ids, x => x == identity), x => 1) == 1 else "MIXED_ID_LIST"; yield identity; };
+  require sum(original_evidence, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+  define unique_evidence = fold sort_by(map(original_evidence, x => x.id), identity => identity) from {started: false, previous: "", count: 0} with step, identity {
+    require identity != "" and (not step.started or identity != step.previous) else "MIXED_DUPLICATE_ID";
+    yield {started: true, previous: identity, count: step.count + 1};
+  };
+  require unique_evidence.count == sum(original_evidence, x => 1) else "MIXED_DUPLICATE_ID";
+  define evidence = for each row in original_evidence {
+    require row.scope == fact_scope and row.approved and row.observed_at < record_cutoff else "MIXED_EVIDENCE_SCOPE_APPROVAL_CUTOFF";
+    yield {id: row.id, kind: row.kind, observed_at: row.observed_at};
+  };
+  define terms = original_earning_terms;
+  require terms.scope == fact_scope and terms.source_ref != "" and sum(filter(evidence, ev => ev.id == terms.evidence_ref and ev.kind == "earning_terms" and ev.observed_at <= terms.observed_at), ev => 1) == 1 and terms.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+  require terms.payer_id == original_payer_id and terms.approved and terms.approved_date <= record_as_of and terms.share >= 0.0 and terms.share <= 1.0 and terms.effective.start < terms.effective.end else "MIXED_EARNING_TERMS";
+  require terms.approved_date_utc <= terms.observed_at else "MIXED_SOURCE_CHRONOLOGY";
+  define roster = original_roster_authority;
+  require roster.scope == fact_scope and roster.source_ref != "" and sum(filter(evidence, ev => ev.id == roster.evidence_ref and ev.kind == "residual_roster" and ev.observed_at <= roster.observed_at), ev => 1) == 1 and roster.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+  require roster.complete and roster.approved and sum(roster.member_ids, x => 1) > 0 and sum(roster.member_ids, x => 1) <= 8 and sum(original_residual_weights, x => 1) <= 8 else "MIXED_COMPLETE_RESIDUAL_ROSTER";
+  define members = for each identity in roster.member_ids {
+    require identity != fact_scope.participant_group and sum(filter(participants, x => x == identity), x => 1) == 1 and sum(filter(roster.member_ids, x => x == identity), x => 1) == 1 else "MIXED_COMPLETE_RESIDUAL_ROSTER";
+    yield identity;
+  };
+  define weights = for each row in sort_by(original_residual_weights, x => x.participant_id) {
+    require row.weight >= 0.0 and sum(filter(original_residual_weights, x => x.participant_id == row.participant_id), x => 1) == 1 and sum(filter(members, x => x == row.participant_id), x => 1) == 1 else "MIXED_RESIDUAL_WEIGHT_POPULATION";
+    yield row;
+  };
+  require sum(weights, x => 1) == sum(members, x => 1) and sum(weights, x => x.weight) > 0.0 else "MIXED_RESIDUAL_WEIGHT_POPULATION";
+  define checked_capital_fundings = for each row in original_capital_fundings {
+    require sum(original_capital_fundings, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_capital_fundings, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "actual_capital_funding" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require sum(filter(participants, x => x == row.funder_id), x => 1) == 1 and row.funder_id != fact_scope.participant_group and row.recipient_group == fact_scope.participant_group else "MIXED_FUNDING_PARTIES";
+    require row.amount >= USD 0 and first_start <= row.funded_at and row.funded_at <= row.observed_at and row.funded_at < record_as_of_next_utc else "MIXED_FUNDING_CHRONOLOGY";
+    yield row;
+  };
+  define checked_advance_fundings = for each row in original_advance_fundings {
+    require sum(original_advance_fundings, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_advance_fundings, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "actual_advance_funding" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require sum(filter(participants, x => x == row.funder_id), x => 1) == 1 and row.funder_id != fact_scope.participant_group and row.recipient_group == fact_scope.participant_group else "MIXED_FUNDING_PARTIES";
+    require row.amount >= USD 0 and first_start <= row.funded_at and row.funded_at <= row.observed_at and row.funded_at < record_as_of_next_utc else "MIXED_FUNDING_CHRONOLOGY";
+    yield row;
+  };
+  define checked_funding_populations = for each row in original_funding_populations {
+    require sum(original_funding_populations, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_funding_populations, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "complete_funding_population" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require row.kind == "capital" or row.kind == "advance" else "MIXED_FUNDING_KIND";
+    yield row;
+  };
+  define capital_population = filter(checked_funding_populations, x => x.kind == "capital");
+    require sum(capital_population, x => 1) == 1 else "MIXED_COMPLETE_FUNDING_POPULATION_REQUIRED";
+  define capital_control = for each row in capital_population {
+    require row.complete and sort_by(row.funding_ids, x => x) == sort_by(map(checked_capital_fundings, x => x.id), x => x) and row.total == sum(checked_capital_fundings, x => x.amount) else "MIXED_FUNDING_POPULATION_CONTROL";
+    require sum(filter(checked_capital_fundings, x => x.observed_at > row.observed_at), x => 1) == 0 else "MIXED_POPULATION_OBSERVATION";
+    yield row.id;
+  };
+  define advance_population = filter(checked_funding_populations, x => x.kind == "advance");
+    require sum(advance_population, x => 1) == 1 else "MIXED_COMPLETE_FUNDING_POPULATION_REQUIRED";
+  define advance_control = for each row in advance_population {
+    require row.complete and sort_by(row.funding_ids, x => x) == sort_by(map(checked_advance_fundings, x => x.id), x => x) and row.total == sum(checked_advance_fundings, x => x.amount) else "MIXED_FUNDING_POPULATION_CONTROL";
+    require sum(filter(checked_advance_fundings, x => x.observed_at > row.observed_at), x => 1) == 0 else "MIXED_POPULATION_OBSERVATION";
+    yield row.id;
+  };
+  define checked_fee_bases = for each row in original_fee_bases {
+    require sum(original_fee_bases, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_fee_bases, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "original_fee_basis" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require row.creditor_id == original_payer_id and row.debtor_group == fact_scope.participant_group and row.rate >= 0.0 and row.rate <= 1.0 and row.base_amount >= USD 0 and row.effective_date_utc >= first_start and row.effective_date <= record_as_of else "MIXED_FEE_SOURCE_AUTHORITY";
+    require row.effective_date_utc <= row.observed_at else "MIXED_SOURCE_CHRONOLOGY";
+    yield row;
+  };
+  define checked_correction_sources = for each row in original_correction_sources {
+    require sum(original_correction_sources, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_correction_sources, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "original_correction_measurements" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require row.payer_id == original_payer_id and row.recipient_group == fact_scope.participant_group and row.original_rate >= 0.0 and row.original_rate <= 1.0 and row.return_basis >= USD 0 and row.return_basis <= row.original_basis and row.original_date <= row.return_date and first_start <= row.return_date_utc and row.return_date <= record_as_of else "MIXED_CORRECTION_SOURCE";
+    require row.return_date_utc <= row.observed_at else "MIXED_SOURCE_CHRONOLOGY";
+    yield row;
+  };
+  define checked_historical_payments = for each row in original_historical_payments {
+    require sum(original_historical_payments, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_historical_payments, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "actual_historical_participation_payment" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require row.payer_id == original_payer_id and row.recipient_group == fact_scope.participant_group and row.amount >= USD 0 and row.paid_at < first_start and row.paid_at <= row.observed_at and sum(filter(checked_correction_sources, x => x.id == row.correction_source_id and x.original_date_utc <= row.paid_at), x => 1) == 1 else "MIXED_ORIGINAL_PAYMENT_SCOPE_CHRONOLOGY";
+    yield row;
+  };
+  define checked_historical_applications = for each row in original_historical_applications {
+    require sum(original_historical_applications, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_historical_applications, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "historical_participation_application" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    define payment = require_some(lookup(make_map(filter(checked_historical_payments, x => x.id == row.payment_id), x => 0, x => x), 0), "MIXED_ORIGINAL_APPLICATION_REFERENCE");
+    define original = require_some(lookup(make_map(filter(checked_correction_sources, x => x.id == row.correction_source_id), x => 0, x => x), 0), "MIXED_ORIGINAL_APPLICATION_REFERENCE");
+    require row.approved and row.amount >= USD 0 and payment.correction_source_id == row.correction_source_id and row.original_entitlement_ref == original.original_entitlement_ref and payment.observed_at <= row.observed_at else "MIXED_ORIGINAL_APPLICATION_AUTHORITY";
+    yield row;
+  };
+  define payment_controls = for each payment in checked_historical_payments {
+    require sum(filter(checked_historical_applications, x => x.payment_id == payment.id), x => x.amount) == payment.amount else "MIXED_ORIGINAL_PAYMENT_CONSERVATION";
+    yield payment.id;
+  };
+  define checked_historical_payment_populations = for each row in original_historical_payment_populations {
+    require sum(original_historical_payment_populations, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_historical_payment_populations, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "complete_original_payment_population" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require sum(filter(checked_correction_sources, x => x.id == row.correction_source_id), x => 1) == 1 else "MIXED_ORIGINAL_POPULATION_REFERENCE";
+    yield row;
+  };
+  define correction_controls = for each row in sort_by(checked_correction_sources, x => x.id) {
+    define pops = filter(checked_historical_payment_populations, x => x.correction_source_id == row.id);
+    require sum(pops, x => 1) == 1 else "MIXED_COMPLETE_ORIGINAL_PAYMENT_POPULATION_REQUIRED";
+    define pop = require_some(lookup(make_map(pops, x => 0, x => x), 0), "MIXED_COMPLETE_ORIGINAL_PAYMENT_POPULATION_REQUIRED");
+    define payments = filter(checked_historical_payments, x => x.correction_source_id == row.id);
+    define applications = filter(checked_historical_applications, x => x.correction_source_id == row.id);
+    define paid = sum(applications, x => x.amount);
+    require pop.complete and sort_by(pop.payment_ids, x => x) == sort_by(map(payments, x => x.id), x => x) and sort_by(pop.application_ids, x => x) == sort_by(map(applications, x => x.id), x => x) and pop.paid_total == paid else "MIXED_ORIGINAL_PAYMENT_POPULATION_CONTROL";
+    require sum(filter(payments, x => x.observed_at > pop.observed_at), x => 1) == 0 and sum(filter(applications, x => x.observed_at > pop.observed_at), x => 1) == 0 else "MIXED_POPULATION_OBSERVATION";
+    define original = row.original_basis * row.original_rate;
+    define reversal = row.return_basis * row.original_rate;
+    define revised = original - reversal;
+    require paid <= original else "MIXED_ORIGINAL_PAID_CEILING";
+    yield {id: row.id, original_entitlement: original, reversal: reversal, revised_entitlement: revised, actual_original_paid: paid, original_outstanding: max(revised - paid, USD 0), potential_overpayment: max(paid - revised, USD 0)};
+  };
+  define bank_refs = concat(concat(map(checked_capital_fundings, x => x.original_ref), map(checked_advance_fundings, x => x.original_ref)), map(checked_historical_payments, x => x.original_ref));
+  define source_refs: List<Text> = concat(map(checked_fee_bases, x => x.original_ref), fold checked_correction_sources from [] with refs, row { yield concat(refs, [row.original_ref, row.original_entitlement_ref, row.return_ref]); });
+  define checked_bank_refs = for each reference in bank_refs { require sum(filter(bank_refs, x => x == reference), x => 1) == 1 else "MIXED_BANK_LINE_ALIAS"; yield reference; };
+  define checked_source_refs = for each reference in source_refs { require sum(filter(source_refs, x => x == reference), x => 1) == 1 else "MIXED_FEE_CORRECTION_LINE_ALIAS"; yield reference; };
+  define checked_claim_authorities = for each row in original_claim_authorities {
+    require sum(original_claim_authorities, x => 1) <= 32 else "MIXED_FINITE_ROWS";
+    require row.id != "" and sum(filter(original_claim_authorities, other => other.id == row.id), other => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "claim_authority" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require row.kind == "capital" or row.kind == "advance" or row.kind == "fee" or row.kind == "approved_correction" else "MIXED_CLAIM_KIND_BENEFICIARY";
+    require row.beneficiary != fact_scope.participant_group and sum(filter(participants, x => x == row.beneficiary), x => 1) == 1 else "MIXED_CLAIM_KIND_BENEFICIARY";
+    require row.approved and first_start <= row.eligible_from_utc and row.approved_date <= row.recorded_date and row.recorded_date <= row.eligible_from and row.recorded_date <= record_as_of else "MIXED_PROSPECTIVE_AUTHORITY";
+    require row.recorded_date_utc <= row.observed_at else "MIXED_SOURCE_CHRONOLOGY";
+    define rank = if row.kind == "capital" then 2 else if row.kind == "advance" then 3 else if row.kind == "fee" then (if method == "priority_correction_first" then 1 else 0) else (if method == "priority_correction_first" then 0 else 1);
+    require row.priority == rank and row.sequence >= 0 else "MIXED_PRIORITY_RECIPE";
+    require sum(filter(original_claim_authorities, x => x.priority == row.priority and x.eligible_from == row.eligible_from and x.sequence == row.sequence), x => 1) == 1 else "MIXED_UNRESOLVED_CLAIM_ORDER";
+    require sum(filter(original_claim_authorities, x => x.original_ref == row.original_ref), x => 1) == 1 else "MIXED_AUTHORITY_LINE_ALIAS";
+    yield row;
+  };
+  require sum(checked_claim_authorities, x => 1) <= 8 else "MIXED_CLAIM_BOUND";
+  define claims = for each row in sort_by(checked_claim_authorities, x => x.id) {
+    define backing = for each identity in row.source_ids {
+      require sum(filter(row.source_ids, x => x == identity), x => 1) == 1 and sum(filter(checked_claim_authorities, x => x.kind == row.kind), x => sum(filter(x.source_ids, s => s == identity), s => 1)) == 1 else "MIXED_CLAIM_SOURCE_REUSE";
+      define funding = if row.kind == "capital" then checked_capital_fundings else checked_advance_fundings;
+      require row.kind != "capital" and row.kind != "advance" or sum(filter(funding, x => x.id == identity and x.funder_id == row.beneficiary), x => 1) == 1 else "MIXED_CLAIM_FUNDING_AUTHORITY";
+      require row.kind != "capital" and row.kind != "advance" or sum(filter(funding, x => x.id == identity and x.funded_utc_date <= row.eligible_from), x => 1) == 1 else "MIXED_SOURCE_ELIGIBILITY";
+      require row.kind == "capital" or row.kind == "advance" or row.beneficiary == original_payer_id else "MIXED_RECIPROCAL_OFFSET_AUTHORITY";
+      require row.kind != "fee" or sum(filter(checked_fee_bases, x => x.id == identity and x.effective_date <= row.eligible_from), x => 1) == 1 else "MIXED_CLAIM_SOURCE_REFERENCE";
+      require row.kind != "approved_correction" or sum(filter(checked_correction_sources, x => x.id == identity and x.return_date <= row.eligible_from), x => 1) == 1 else "MIXED_CLAIM_SOURCE_REFERENCE";
+      yield if row.kind == "capital" or row.kind == "advance" then sum(filter(funding, x => x.id == identity), x => x.amount) else if row.kind == "fee" then sum(filter(checked_fee_bases, x => x.id == identity), x => x.base_amount * x.rate) else sum(filter(correction_controls, x => x.id == identity), x => x.potential_overpayment);
+    };
+    define capacity = sum(backing, x => x);
+    require row.authorized_principal >= USD 0 and row.authorized_principal <= capacity else "MIXED_AUTHORIZED_PRINCIPAL_EXCEEDS_SOURCE";
+    yield {id: row.id, kind: row.kind, beneficiary: row.beneficiary, source_capacity: capacity, authorized_principal: row.authorized_principal, unallocated_source_capacity: capacity - row.authorized_principal, recoupment_credit: USD 0, earning_offset: USD 0, remaining: row.authorized_principal};
+  };
+  require sum(payment_controls, x => 1) == sum(checked_historical_payments, x => 1) and sum(capital_control, x => 1) == 1 and sum(advance_control, x => 1) == 1 else "MIXED_POPULATION_OBSERVATION";
+  define registered = {authorities: map(checked_claim_authorities, x => {id: x.id, eligible_from: x.eligible_from, observed_at: x.observed_at, priority: x.priority, sequence: x.sequence, original_ref: x.original_ref}), claims: claims, weights: weights, controls: {capital_actual_funding: sum(checked_capital_fundings, x => x.amount), advance_actual_funding: sum(checked_advance_fundings, x => x.amount), fee_sources: map(sort_by(checked_fee_bases, x => x.id), x => {id: x.id, original_base: x.base_amount, original_rate: x.rate, derived_fee: x.base_amount * x.rate}), correction_sources: correction_controls}, static_refs: concat(checked_bank_refs, checked_source_refs)};
+
+
+}

@@ -1,0 +1,2408 @@
+{
+  "schema_version": "reserve-stages-casepack/1",
+  "evidence_class": "research_assumption",
+  "scenarios": {
+    "basis_reserve_stage": {
+      "context": {
+        "scope": {
+          "agreement_id": "synthetic-stage-agreement",
+          "participant_id": "participant",
+          "pool_id": "reserve-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD",
+          "purpose": "synthetic_gross_basis_reserve"
+        },
+        "policy": {
+          "id": "SYNTHETIC-RESERVE-STAGES-01",
+          "revision": "1",
+          "stage": "basis_reserve",
+          "reserve_measure": "gross_basis_USD",
+          "fee": "fixed_once_per_original_receipt",
+          "cap": "limit_addition_with_unretained_current",
+          "order": "daily_receipts_then_ordered_applications_then_due_tranches",
+          "release": "unconditional_under_supplied_generic_terms",
+          "rounding": "exact_no_rounding",
+          "evidence_class": "research_assumption"
+        },
+        "terms": {
+          "id": "original-fixed-fee-reserve-terms",
+          "scope": {
+            "agreement_id": "synthetic-stage-agreement",
+            "participant_id": "participant",
+            "pool_id": "reserve-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD",
+            "purpose": "synthetic_gross_basis_reserve"
+          },
+          "observed_at": "2025-12-15T12:00:00Z",
+          "source_ref": "original-source:original-fixed-fee-reserve-terms",
+          "evidence_ref": "evidence:original-fixed-fee-reserve-terms",
+          "version": "1",
+          "approved": true,
+          "approved_date": "2025-12-15",
+          "effective": {
+            "start": "2026-01-01",
+            "end": "2027-01-01"
+          },
+          "reserve_rate": "0.2",
+          "participation_share": "0.5",
+          "fixed_fee": "10",
+          "retained_cap": "32",
+          "reserve_measure": "gross_basis_USD",
+          "calendar_mode": "clamp_day",
+          "release_schedule": [
+            {
+              "id": "final-unused",
+              "offset_months": 3,
+              "kind": "all_remaining"
+            }
+          ]
+        },
+        "registry_evidence": [
+          {
+            "id": "evidence:original-fixed-fee-reserve-terms",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "kind": "generic_reserve_terms",
+            "approved": true,
+            "observed_at": "2025-12-15T12:00:00Z",
+            "source_ref": "supplied-evidence:original-fixed-fee-reserve-terms"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "case_id": "basis_reserve_stage-p1",
+          "period": {
+            "start": "2026-01-01",
+            "end": "2026-04-01"
+          },
+          "as_of": "2026-03-31",
+          "cutoff": "2026-04-03T00:00:00Z",
+          "receipts": [
+            {
+              "id": "receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:receipt:V1",
+              "evidence_ref": "evidence:receipt:V1",
+              "original_ref": "original-gross#receipt:V1",
+              "event_date": "2026-01-01",
+              "sequence": 0,
+              "gross": "100"
+            }
+          ],
+          "elections": [
+            {
+              "id": "election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:election:receipt:V1",
+              "evidence_ref": "evidence:election:receipt:V1",
+              "receipt_id": "receipt:V1",
+              "vintage_id": "V1",
+              "elected": true,
+              "approved": true,
+              "approved_date": "2026-01-01",
+              "event_date": "2026-01-01"
+            }
+          ],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:basis_reserve_stage-p1",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:population:basis_reserve_stage-p1",
+            "evidence_ref": "evidence:population:basis_reserve_stage-p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "complete": true,
+            "receipt_ids": [
+              "receipt:V1"
+            ],
+            "election_ids": [
+              "election:receipt:V1"
+            ],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "100",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "original_gross_basis",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:receipt:V1"
+            },
+            {
+              "id": "evidence:election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_election",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:election:receipt:V1"
+            },
+            {
+              "id": "evidence:population:basis_reserve_stage-p1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-04-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:basis_reserve_stage-p1"
+            }
+          ]
+        },
+        {
+          "case_id": "basis_reserve_stage-p2",
+          "period": {
+            "start": "2026-04-01",
+            "end": "2026-07-01"
+          },
+          "as_of": "2026-06-30",
+          "cutoff": "2026-07-03T00:00:00Z",
+          "receipts": [],
+          "elections": [],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:basis_reserve_stage-p2",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:population:basis_reserve_stage-p2",
+            "evidence_ref": "evidence:population:basis_reserve_stage-p2",
+            "period": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "complete": true,
+            "receipt_ids": [],
+            "election_ids": [],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "0",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:population:basis_reserve_stage-p2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-07-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:basis_reserve_stage-p2"
+            }
+          ]
+        }
+      ]
+    },
+    "basis_reserve_vintages": {
+      "context": {
+        "scope": {
+          "agreement_id": "synthetic-stage-agreement",
+          "participant_id": "participant",
+          "pool_id": "reserve-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD",
+          "purpose": "synthetic_gross_basis_reserve"
+        },
+        "policy": {
+          "id": "SYNTHETIC-RESERVE-STAGES-01",
+          "revision": "1",
+          "stage": "basis_reserve",
+          "reserve_measure": "gross_basis_USD",
+          "fee": "fixed_once_per_original_receipt",
+          "cap": "limit_addition_with_unretained_current",
+          "order": "daily_receipts_then_ordered_applications_then_due_tranches",
+          "release": "unconditional_under_supplied_generic_terms",
+          "rounding": "exact_no_rounding",
+          "evidence_class": "research_assumption"
+        },
+        "terms": {
+          "id": "original-fixed-fee-reserve-terms",
+          "scope": {
+            "agreement_id": "synthetic-stage-agreement",
+            "participant_id": "participant",
+            "pool_id": "reserve-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD",
+            "purpose": "synthetic_gross_basis_reserve"
+          },
+          "observed_at": "2025-12-15T12:00:00Z",
+          "source_ref": "original-source:original-fixed-fee-reserve-terms",
+          "evidence_ref": "evidence:original-fixed-fee-reserve-terms",
+          "version": "1",
+          "approved": true,
+          "approved_date": "2025-12-15",
+          "effective": {
+            "start": "2026-01-01",
+            "end": "2027-01-01"
+          },
+          "reserve_rate": "0.2",
+          "participation_share": "0.5",
+          "fixed_fee": "10",
+          "retained_cap": "32",
+          "reserve_measure": "gross_basis_USD",
+          "calendar_mode": "clamp_day",
+          "release_schedule": [
+            {
+              "id": "final-unused",
+              "offset_months": 3,
+              "kind": "all_remaining"
+            }
+          ]
+        },
+        "registry_evidence": [
+          {
+            "id": "evidence:original-fixed-fee-reserve-terms",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "kind": "generic_reserve_terms",
+            "approved": true,
+            "observed_at": "2025-12-15T12:00:00Z",
+            "source_ref": "supplied-evidence:original-fixed-fee-reserve-terms"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "case_id": "basis_reserve_vintages-p1",
+          "period": {
+            "start": "2026-01-01",
+            "end": "2026-04-01"
+          },
+          "as_of": "2026-03-31",
+          "cutoff": "2026-04-03T00:00:00Z",
+          "receipts": [
+            {
+              "id": "receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:receipt:V1",
+              "evidence_ref": "evidence:receipt:V1",
+              "original_ref": "original-gross#receipt:V1",
+              "event_date": "2026-01-01",
+              "sequence": 0,
+              "gross": "60"
+            }
+          ],
+          "elections": [
+            {
+              "id": "election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:election:receipt:V1",
+              "evidence_ref": "evidence:election:receipt:V1",
+              "receipt_id": "receipt:V1",
+              "vintage_id": "V1",
+              "elected": true,
+              "approved": true,
+              "approved_date": "2026-01-01",
+              "event_date": "2026-01-01"
+            }
+          ],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:basis_reserve_vintages-p1",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:population:basis_reserve_vintages-p1",
+            "evidence_ref": "evidence:population:basis_reserve_vintages-p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "complete": true,
+            "receipt_ids": [
+              "receipt:V1"
+            ],
+            "election_ids": [
+              "election:receipt:V1"
+            ],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "60",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "original_gross_basis",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:receipt:V1"
+            },
+            {
+              "id": "evidence:election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_election",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:election:receipt:V1"
+            },
+            {
+              "id": "evidence:population:basis_reserve_vintages-p1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-04-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:basis_reserve_vintages-p1"
+            }
+          ]
+        },
+        {
+          "case_id": "basis_reserve_vintages-p2",
+          "period": {
+            "start": "2026-04-01",
+            "end": "2026-07-01"
+          },
+          "as_of": "2026-06-30",
+          "cutoff": "2026-07-03T00:00:00Z",
+          "receipts": [
+            {
+              "id": "receipt:V2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-04-01T12:00:00Z",
+              "source_ref": "original-source:receipt:V2",
+              "evidence_ref": "evidence:receipt:V2",
+              "original_ref": "original-gross#receipt:V2",
+              "event_date": "2026-04-01",
+              "sequence": 0,
+              "gross": "100"
+            }
+          ],
+          "elections": [
+            {
+              "id": "election:receipt:V2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-04-01T12:00:00Z",
+              "source_ref": "original-source:election:receipt:V2",
+              "evidence_ref": "evidence:election:receipt:V2",
+              "receipt_id": "receipt:V2",
+              "vintage_id": "V2",
+              "elected": true,
+              "approved": true,
+              "approved_date": "2026-04-01",
+              "event_date": "2026-04-01"
+            }
+          ],
+          "applications": [
+            {
+              "id": "application:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-04-01T15:00:00Z",
+              "source_ref": "original-source:application:V1",
+              "evidence_ref": "evidence:application:V1",
+              "original_ref": "original-application#application:V1",
+              "vintage_id": "V1",
+              "amount": "7",
+              "event_date": "2026-04-01",
+              "sequence": 0,
+              "authority_id": "authority:application:V1",
+              "reserve_measure": "gross_basis_USD"
+            }
+          ],
+          "authorities": [
+            {
+              "id": "authority:application:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-04-01T15:00:00Z",
+              "source_ref": "original-source:authority:application:V1",
+              "evidence_ref": "evidence:authority:application:V1",
+              "application_id": "application:V1",
+              "vintage_id": "V1",
+              "approved": true,
+              "approved_date": "2026-04-01",
+              "reserve_measure": "gross_basis_USD"
+            }
+          ],
+          "population": {
+            "id": "population:basis_reserve_vintages-p2",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:population:basis_reserve_vintages-p2",
+            "evidence_ref": "evidence:population:basis_reserve_vintages-p2",
+            "period": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "complete": true,
+            "receipt_ids": [
+              "receipt:V2"
+            ],
+            "election_ids": [
+              "election:receipt:V2"
+            ],
+            "application_ids": [
+              "application:V1"
+            ],
+            "authority_ids": [
+              "authority:application:V1"
+            ],
+            "gross_total": "100",
+            "application_total": "7"
+          },
+          "evidence": [
+            {
+              "id": "evidence:receipt:V2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "original_gross_basis",
+              "approved": true,
+              "observed_at": "2026-04-01T12:00:00Z",
+              "source_ref": "supplied-evidence:receipt:V2"
+            },
+            {
+              "id": "evidence:election:receipt:V2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_election",
+              "approved": true,
+              "observed_at": "2026-04-01T12:00:00Z",
+              "source_ref": "supplied-evidence:election:receipt:V2"
+            },
+            {
+              "id": "evidence:application:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_application",
+              "approved": true,
+              "observed_at": "2026-04-01T15:00:00Z",
+              "source_ref": "supplied-evidence:application:V1"
+            },
+            {
+              "id": "evidence:authority:application:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_application_authority",
+              "approved": true,
+              "observed_at": "2026-04-01T15:00:00Z",
+              "source_ref": "supplied-evidence:authority:application:V1"
+            },
+            {
+              "id": "evidence:population:basis_reserve_vintages-p2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-07-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:basis_reserve_vintages-p2"
+            }
+          ]
+        },
+        {
+          "case_id": "basis_reserve_vintages-p3",
+          "period": {
+            "start": "2026-07-01",
+            "end": "2026-10-01"
+          },
+          "as_of": "2026-09-30",
+          "cutoff": "2026-10-03T00:00:00Z",
+          "receipts": [],
+          "elections": [],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:basis_reserve_vintages-p3",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "observed_at": "2026-10-02T12:00:00Z",
+            "source_ref": "original-source:population:basis_reserve_vintages-p3",
+            "evidence_ref": "evidence:population:basis_reserve_vintages-p3",
+            "period": {
+              "start": "2026-07-01",
+              "end": "2026-10-01"
+            },
+            "complete": true,
+            "receipt_ids": [],
+            "election_ids": [],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "0",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:population:basis_reserve_vintages-p3",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-10-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:basis_reserve_vintages-p3"
+            }
+          ]
+        }
+      ]
+    },
+    "basis_reserve_tranches": {
+      "context": {
+        "scope": {
+          "agreement_id": "synthetic-stage-agreement",
+          "participant_id": "participant",
+          "pool_id": "reserve-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD",
+          "purpose": "synthetic_gross_basis_reserve"
+        },
+        "policy": {
+          "id": "SYNTHETIC-RESERVE-STAGES-01",
+          "revision": "1",
+          "stage": "basis_reserve",
+          "reserve_measure": "gross_basis_USD",
+          "fee": "fixed_once_per_original_receipt",
+          "cap": "limit_addition_with_unretained_current",
+          "order": "daily_receipts_then_ordered_applications_then_due_tranches",
+          "release": "unconditional_under_supplied_generic_terms",
+          "rounding": "exact_no_rounding",
+          "evidence_class": "research_assumption"
+        },
+        "terms": {
+          "id": "original-fixed-fee-reserve-terms",
+          "scope": {
+            "agreement_id": "synthetic-stage-agreement",
+            "participant_id": "participant",
+            "pool_id": "reserve-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD",
+            "purpose": "synthetic_gross_basis_reserve"
+          },
+          "observed_at": "2025-12-15T12:00:00Z",
+          "source_ref": "original-source:original-fixed-fee-reserve-terms",
+          "evidence_ref": "evidence:original-fixed-fee-reserve-terms",
+          "version": "1",
+          "approved": true,
+          "approved_date": "2025-12-15",
+          "effective": {
+            "start": "2026-01-01",
+            "end": "2027-01-01"
+          },
+          "reserve_rate": "0.2",
+          "participation_share": "0.5",
+          "fixed_fee": "10",
+          "retained_cap": "32",
+          "reserve_measure": "gross_basis_USD",
+          "calendar_mode": "clamp_day",
+          "release_schedule": [
+            {
+              "id": "first-original-quarter",
+              "offset_months": 1,
+              "kind": "fraction_of_original_addition",
+              "fraction": "0.25"
+            },
+            {
+              "id": "final-unused",
+              "offset_months": 3,
+              "kind": "all_remaining"
+            }
+          ]
+        },
+        "registry_evidence": [
+          {
+            "id": "evidence:original-fixed-fee-reserve-terms",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "kind": "generic_reserve_terms",
+            "approved": true,
+            "observed_at": "2025-12-15T12:00:00Z",
+            "source_ref": "supplied-evidence:original-fixed-fee-reserve-terms"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "case_id": "basis_reserve_tranches-p1",
+          "period": {
+            "start": "2026-01-01",
+            "end": "2026-02-01"
+          },
+          "as_of": "2026-01-31",
+          "cutoff": "2026-02-03T00:00:00Z",
+          "receipts": [
+            {
+              "id": "receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:receipt:V1",
+              "evidence_ref": "evidence:receipt:V1",
+              "original_ref": "original-gross#receipt:V1",
+              "event_date": "2026-01-01",
+              "sequence": 0,
+              "gross": "60"
+            }
+          ],
+          "elections": [
+            {
+              "id": "election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:election:receipt:V1",
+              "evidence_ref": "evidence:election:receipt:V1",
+              "receipt_id": "receipt:V1",
+              "vintage_id": "V1",
+              "elected": true,
+              "approved": true,
+              "approved_date": "2026-01-01",
+              "event_date": "2026-01-01"
+            }
+          ],
+          "applications": [
+            {
+              "id": "application:first",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-01-15T15:00:00Z",
+              "source_ref": "original-source:application:first",
+              "evidence_ref": "evidence:application:first",
+              "original_ref": "original-application#application:first",
+              "vintage_id": "V1",
+              "amount": "4",
+              "event_date": "2026-01-15",
+              "sequence": 0,
+              "authority_id": "authority:application:first",
+              "reserve_measure": "gross_basis_USD"
+            }
+          ],
+          "authorities": [
+            {
+              "id": "authority:application:first",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-01-15T15:00:00Z",
+              "source_ref": "original-source:authority:application:first",
+              "evidence_ref": "evidence:authority:application:first",
+              "application_id": "application:first",
+              "vintage_id": "V1",
+              "approved": true,
+              "approved_date": "2026-01-15",
+              "reserve_measure": "gross_basis_USD"
+            }
+          ],
+          "population": {
+            "id": "population:basis_reserve_tranches-p1",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "observed_at": "2026-02-02T12:00:00Z",
+            "source_ref": "original-source:population:basis_reserve_tranches-p1",
+            "evidence_ref": "evidence:population:basis_reserve_tranches-p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-02-01"
+            },
+            "complete": true,
+            "receipt_ids": [
+              "receipt:V1"
+            ],
+            "election_ids": [
+              "election:receipt:V1"
+            ],
+            "application_ids": [
+              "application:first"
+            ],
+            "authority_ids": [
+              "authority:application:first"
+            ],
+            "gross_total": "60",
+            "application_total": "4"
+          },
+          "evidence": [
+            {
+              "id": "evidence:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "original_gross_basis",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:receipt:V1"
+            },
+            {
+              "id": "evidence:election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_election",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:election:receipt:V1"
+            },
+            {
+              "id": "evidence:application:first",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_application",
+              "approved": true,
+              "observed_at": "2026-01-15T15:00:00Z",
+              "source_ref": "supplied-evidence:application:first"
+            },
+            {
+              "id": "evidence:authority:application:first",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_application_authority",
+              "approved": true,
+              "observed_at": "2026-01-15T15:00:00Z",
+              "source_ref": "supplied-evidence:authority:application:first"
+            },
+            {
+              "id": "evidence:population:basis_reserve_tranches-p1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-02-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:basis_reserve_tranches-p1"
+            }
+          ]
+        },
+        {
+          "case_id": "basis_reserve_tranches-p2",
+          "period": {
+            "start": "2026-02-01",
+            "end": "2026-04-01"
+          },
+          "as_of": "2026-03-31",
+          "cutoff": "2026-04-03T00:00:00Z",
+          "receipts": [],
+          "elections": [],
+          "applications": [
+            {
+              "id": "application:second",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-03-01T15:00:00Z",
+              "source_ref": "original-source:application:second",
+              "evidence_ref": "evidence:application:second",
+              "original_ref": "original-application#application:second",
+              "vintage_id": "V1",
+              "amount": "2",
+              "event_date": "2026-03-01",
+              "sequence": 0,
+              "authority_id": "authority:application:second",
+              "reserve_measure": "gross_basis_USD"
+            }
+          ],
+          "authorities": [
+            {
+              "id": "authority:application:second",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "observed_at": "2026-03-01T15:00:00Z",
+              "source_ref": "original-source:authority:application:second",
+              "evidence_ref": "evidence:authority:application:second",
+              "application_id": "application:second",
+              "vintage_id": "V1",
+              "approved": true,
+              "approved_date": "2026-03-01",
+              "reserve_measure": "gross_basis_USD"
+            }
+          ],
+          "population": {
+            "id": "population:basis_reserve_tranches-p2",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:population:basis_reserve_tranches-p2",
+            "evidence_ref": "evidence:population:basis_reserve_tranches-p2",
+            "period": {
+              "start": "2026-02-01",
+              "end": "2026-04-01"
+            },
+            "complete": true,
+            "receipt_ids": [],
+            "election_ids": [],
+            "application_ids": [
+              "application:second"
+            ],
+            "authority_ids": [
+              "authority:application:second"
+            ],
+            "gross_total": "0",
+            "application_total": "2"
+          },
+          "evidence": [
+            {
+              "id": "evidence:application:second",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_application",
+              "approved": true,
+              "observed_at": "2026-03-01T15:00:00Z",
+              "source_ref": "supplied-evidence:application:second"
+            },
+            {
+              "id": "evidence:authority:application:second",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "reserve_application_authority",
+              "approved": true,
+              "observed_at": "2026-03-01T15:00:00Z",
+              "source_ref": "supplied-evidence:authority:application:second"
+            },
+            {
+              "id": "evidence:population:basis_reserve_tranches-p2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-04-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:basis_reserve_tranches-p2"
+            }
+          ]
+        },
+        {
+          "case_id": "basis_reserve_tranches-p3",
+          "period": {
+            "start": "2026-04-01",
+            "end": "2026-07-01"
+          },
+          "as_of": "2026-06-30",
+          "cutoff": "2026-07-03T00:00:00Z",
+          "receipts": [],
+          "elections": [],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:basis_reserve_tranches-p3",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_gross_basis_reserve"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:population:basis_reserve_tranches-p3",
+            "evidence_ref": "evidence:population:basis_reserve_tranches-p3",
+            "period": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "complete": true,
+            "receipt_ids": [],
+            "election_ids": [],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "0",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:population:basis_reserve_tranches-p3",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_gross_basis_reserve"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-07-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:basis_reserve_tranches-p3"
+            }
+          ]
+        }
+      ]
+    },
+    "producer_holdback_stage": {
+      "context": {
+        "scope": {
+          "agreement_id": "synthetic-stage-agreement",
+          "participant_id": "participant",
+          "pool_id": "reserve-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD",
+          "purpose": "synthetic_producer_entitlement_holdback"
+        },
+        "policy": {
+          "id": "SYNTHETIC-RESERVE-STAGES-01",
+          "revision": "1",
+          "stage": "producer_holdback",
+          "reserve_measure": "producer_entitlement_USD",
+          "fee": "fixed_once_per_original_receipt",
+          "cap": "limit_addition_with_unretained_current",
+          "order": "daily_receipts_then_ordered_applications_then_due_tranches",
+          "release": "unconditional_under_supplied_generic_terms",
+          "rounding": "exact_no_rounding",
+          "evidence_class": "research_assumption"
+        },
+        "terms": {
+          "id": "original-fixed-fee-reserve-terms",
+          "scope": {
+            "agreement_id": "synthetic-stage-agreement",
+            "participant_id": "participant",
+            "pool_id": "reserve-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD",
+            "purpose": "synthetic_producer_entitlement_holdback"
+          },
+          "observed_at": "2025-12-15T12:00:00Z",
+          "source_ref": "original-source:original-fixed-fee-reserve-terms",
+          "evidence_ref": "evidence:original-fixed-fee-reserve-terms",
+          "version": "1",
+          "approved": true,
+          "approved_date": "2025-12-15",
+          "effective": {
+            "start": "2026-01-01",
+            "end": "2027-01-01"
+          },
+          "reserve_rate": "0.2",
+          "participation_share": "0.5",
+          "fixed_fee": "10",
+          "retained_cap": "32",
+          "reserve_measure": "producer_entitlement_USD",
+          "calendar_mode": "clamp_day",
+          "release_schedule": [
+            {
+              "id": "final-unused",
+              "offset_months": 3,
+              "kind": "all_remaining"
+            }
+          ]
+        },
+        "registry_evidence": [
+          {
+            "id": "evidence:original-fixed-fee-reserve-terms",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "kind": "generic_reserve_terms",
+            "approved": true,
+            "observed_at": "2025-12-15T12:00:00Z",
+            "source_ref": "supplied-evidence:original-fixed-fee-reserve-terms"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "case_id": "producer_holdback_stage-p1",
+          "period": {
+            "start": "2026-01-01",
+            "end": "2026-04-01"
+          },
+          "as_of": "2026-03-31",
+          "cutoff": "2026-04-03T00:00:00Z",
+          "receipts": [
+            {
+              "id": "receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:receipt:V1",
+              "evidence_ref": "evidence:receipt:V1",
+              "original_ref": "original-gross#receipt:V1",
+              "event_date": "2026-01-01",
+              "sequence": 0,
+              "gross": "100"
+            }
+          ],
+          "elections": [
+            {
+              "id": "election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:election:receipt:V1",
+              "evidence_ref": "evidence:election:receipt:V1",
+              "receipt_id": "receipt:V1",
+              "vintage_id": "V1",
+              "elected": true,
+              "approved": true,
+              "approved_date": "2026-01-01",
+              "event_date": "2026-01-01"
+            }
+          ],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:producer_holdback_stage-p1",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:population:producer_holdback_stage-p1",
+            "evidence_ref": "evidence:population:producer_holdback_stage-p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "complete": true,
+            "receipt_ids": [
+              "receipt:V1"
+            ],
+            "election_ids": [
+              "election:receipt:V1"
+            ],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "100",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "original_gross_basis",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:receipt:V1"
+            },
+            {
+              "id": "evidence:election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_election",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:election:receipt:V1"
+            },
+            {
+              "id": "evidence:population:producer_holdback_stage-p1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-04-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:producer_holdback_stage-p1"
+            }
+          ]
+        },
+        {
+          "case_id": "producer_holdback_stage-p2",
+          "period": {
+            "start": "2026-04-01",
+            "end": "2026-07-01"
+          },
+          "as_of": "2026-06-30",
+          "cutoff": "2026-07-03T00:00:00Z",
+          "receipts": [],
+          "elections": [],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:producer_holdback_stage-p2",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:population:producer_holdback_stage-p2",
+            "evidence_ref": "evidence:population:producer_holdback_stage-p2",
+            "period": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "complete": true,
+            "receipt_ids": [],
+            "election_ids": [],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "0",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:population:producer_holdback_stage-p2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-07-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:producer_holdback_stage-p2"
+            }
+          ]
+        }
+      ]
+    },
+    "producer_holdback_vintages": {
+      "context": {
+        "scope": {
+          "agreement_id": "synthetic-stage-agreement",
+          "participant_id": "participant",
+          "pool_id": "reserve-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD",
+          "purpose": "synthetic_producer_entitlement_holdback"
+        },
+        "policy": {
+          "id": "SYNTHETIC-RESERVE-STAGES-01",
+          "revision": "1",
+          "stage": "producer_holdback",
+          "reserve_measure": "producer_entitlement_USD",
+          "fee": "fixed_once_per_original_receipt",
+          "cap": "limit_addition_with_unretained_current",
+          "order": "daily_receipts_then_ordered_applications_then_due_tranches",
+          "release": "unconditional_under_supplied_generic_terms",
+          "rounding": "exact_no_rounding",
+          "evidence_class": "research_assumption"
+        },
+        "terms": {
+          "id": "original-fixed-fee-reserve-terms",
+          "scope": {
+            "agreement_id": "synthetic-stage-agreement",
+            "participant_id": "participant",
+            "pool_id": "reserve-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD",
+            "purpose": "synthetic_producer_entitlement_holdback"
+          },
+          "observed_at": "2025-12-15T12:00:00Z",
+          "source_ref": "original-source:original-fixed-fee-reserve-terms",
+          "evidence_ref": "evidence:original-fixed-fee-reserve-terms",
+          "version": "1",
+          "approved": true,
+          "approved_date": "2025-12-15",
+          "effective": {
+            "start": "2026-01-01",
+            "end": "2027-01-01"
+          },
+          "reserve_rate": "0.2",
+          "participation_share": "0.5",
+          "fixed_fee": "10",
+          "retained_cap": "32",
+          "reserve_measure": "producer_entitlement_USD",
+          "calendar_mode": "clamp_day",
+          "release_schedule": [
+            {
+              "id": "final-unused",
+              "offset_months": 3,
+              "kind": "all_remaining"
+            }
+          ]
+        },
+        "registry_evidence": [
+          {
+            "id": "evidence:original-fixed-fee-reserve-terms",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "kind": "generic_reserve_terms",
+            "approved": true,
+            "observed_at": "2025-12-15T12:00:00Z",
+            "source_ref": "supplied-evidence:original-fixed-fee-reserve-terms"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "case_id": "producer_holdback_vintages-p1",
+          "period": {
+            "start": "2026-01-01",
+            "end": "2026-04-01"
+          },
+          "as_of": "2026-03-31",
+          "cutoff": "2026-04-03T00:00:00Z",
+          "receipts": [
+            {
+              "id": "receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:receipt:V1",
+              "evidence_ref": "evidence:receipt:V1",
+              "original_ref": "original-gross#receipt:V1",
+              "event_date": "2026-01-01",
+              "sequence": 0,
+              "gross": "130"
+            }
+          ],
+          "elections": [
+            {
+              "id": "election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:election:receipt:V1",
+              "evidence_ref": "evidence:election:receipt:V1",
+              "receipt_id": "receipt:V1",
+              "vintage_id": "V1",
+              "elected": true,
+              "approved": true,
+              "approved_date": "2026-01-01",
+              "event_date": "2026-01-01"
+            }
+          ],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:producer_holdback_vintages-p1",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:population:producer_holdback_vintages-p1",
+            "evidence_ref": "evidence:population:producer_holdback_vintages-p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "complete": true,
+            "receipt_ids": [
+              "receipt:V1"
+            ],
+            "election_ids": [
+              "election:receipt:V1"
+            ],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "130",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "original_gross_basis",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:receipt:V1"
+            },
+            {
+              "id": "evidence:election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_election",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:election:receipt:V1"
+            },
+            {
+              "id": "evidence:population:producer_holdback_vintages-p1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-04-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:producer_holdback_vintages-p1"
+            }
+          ]
+        },
+        {
+          "case_id": "producer_holdback_vintages-p2",
+          "period": {
+            "start": "2026-04-01",
+            "end": "2026-07-01"
+          },
+          "as_of": "2026-06-30",
+          "cutoff": "2026-07-03T00:00:00Z",
+          "receipts": [
+            {
+              "id": "receipt:V2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-04-01T12:00:00Z",
+              "source_ref": "original-source:receipt:V2",
+              "evidence_ref": "evidence:receipt:V2",
+              "original_ref": "original-gross#receipt:V2",
+              "event_date": "2026-04-01",
+              "sequence": 0,
+              "gross": "210"
+            }
+          ],
+          "elections": [
+            {
+              "id": "election:receipt:V2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-04-01T12:00:00Z",
+              "source_ref": "original-source:election:receipt:V2",
+              "evidence_ref": "evidence:election:receipt:V2",
+              "receipt_id": "receipt:V2",
+              "vintage_id": "V2",
+              "elected": true,
+              "approved": true,
+              "approved_date": "2026-04-01",
+              "event_date": "2026-04-01"
+            }
+          ],
+          "applications": [
+            {
+              "id": "application:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-04-01T15:00:00Z",
+              "source_ref": "original-source:application:V1",
+              "evidence_ref": "evidence:application:V1",
+              "original_ref": "original-application#application:V1",
+              "vintage_id": "V1",
+              "amount": "7",
+              "event_date": "2026-04-01",
+              "sequence": 0,
+              "authority_id": "authority:application:V1",
+              "reserve_measure": "producer_entitlement_USD"
+            }
+          ],
+          "authorities": [
+            {
+              "id": "authority:application:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-04-01T15:00:00Z",
+              "source_ref": "original-source:authority:application:V1",
+              "evidence_ref": "evidence:authority:application:V1",
+              "application_id": "application:V1",
+              "vintage_id": "V1",
+              "approved": true,
+              "approved_date": "2026-04-01",
+              "reserve_measure": "producer_entitlement_USD"
+            }
+          ],
+          "population": {
+            "id": "population:producer_holdback_vintages-p2",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:population:producer_holdback_vintages-p2",
+            "evidence_ref": "evidence:population:producer_holdback_vintages-p2",
+            "period": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "complete": true,
+            "receipt_ids": [
+              "receipt:V2"
+            ],
+            "election_ids": [
+              "election:receipt:V2"
+            ],
+            "application_ids": [
+              "application:V1"
+            ],
+            "authority_ids": [
+              "authority:application:V1"
+            ],
+            "gross_total": "210",
+            "application_total": "7"
+          },
+          "evidence": [
+            {
+              "id": "evidence:receipt:V2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "original_gross_basis",
+              "approved": true,
+              "observed_at": "2026-04-01T12:00:00Z",
+              "source_ref": "supplied-evidence:receipt:V2"
+            },
+            {
+              "id": "evidence:election:receipt:V2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_election",
+              "approved": true,
+              "observed_at": "2026-04-01T12:00:00Z",
+              "source_ref": "supplied-evidence:election:receipt:V2"
+            },
+            {
+              "id": "evidence:application:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_application",
+              "approved": true,
+              "observed_at": "2026-04-01T15:00:00Z",
+              "source_ref": "supplied-evidence:application:V1"
+            },
+            {
+              "id": "evidence:authority:application:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_application_authority",
+              "approved": true,
+              "observed_at": "2026-04-01T15:00:00Z",
+              "source_ref": "supplied-evidence:authority:application:V1"
+            },
+            {
+              "id": "evidence:population:producer_holdback_vintages-p2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-07-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:producer_holdback_vintages-p2"
+            }
+          ]
+        },
+        {
+          "case_id": "producer_holdback_vintages-p3",
+          "period": {
+            "start": "2026-07-01",
+            "end": "2026-10-01"
+          },
+          "as_of": "2026-09-30",
+          "cutoff": "2026-10-03T00:00:00Z",
+          "receipts": [],
+          "elections": [],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:producer_holdback_vintages-p3",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "observed_at": "2026-10-02T12:00:00Z",
+            "source_ref": "original-source:population:producer_holdback_vintages-p3",
+            "evidence_ref": "evidence:population:producer_holdback_vintages-p3",
+            "period": {
+              "start": "2026-07-01",
+              "end": "2026-10-01"
+            },
+            "complete": true,
+            "receipt_ids": [],
+            "election_ids": [],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "0",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:population:producer_holdback_vintages-p3",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-10-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:producer_holdback_vintages-p3"
+            }
+          ]
+        }
+      ]
+    },
+    "producer_holdback_tranches": {
+      "context": {
+        "scope": {
+          "agreement_id": "synthetic-stage-agreement",
+          "participant_id": "participant",
+          "pool_id": "reserve-pool",
+          "asset_id": "synthetic-picture",
+          "currency": "USD",
+          "purpose": "synthetic_producer_entitlement_holdback"
+        },
+        "policy": {
+          "id": "SYNTHETIC-RESERVE-STAGES-01",
+          "revision": "1",
+          "stage": "producer_holdback",
+          "reserve_measure": "producer_entitlement_USD",
+          "fee": "fixed_once_per_original_receipt",
+          "cap": "limit_addition_with_unretained_current",
+          "order": "daily_receipts_then_ordered_applications_then_due_tranches",
+          "release": "unconditional_under_supplied_generic_terms",
+          "rounding": "exact_no_rounding",
+          "evidence_class": "research_assumption"
+        },
+        "terms": {
+          "id": "original-fixed-fee-reserve-terms",
+          "scope": {
+            "agreement_id": "synthetic-stage-agreement",
+            "participant_id": "participant",
+            "pool_id": "reserve-pool",
+            "asset_id": "synthetic-picture",
+            "currency": "USD",
+            "purpose": "synthetic_producer_entitlement_holdback"
+          },
+          "observed_at": "2025-12-15T12:00:00Z",
+          "source_ref": "original-source:original-fixed-fee-reserve-terms",
+          "evidence_ref": "evidence:original-fixed-fee-reserve-terms",
+          "version": "1",
+          "approved": true,
+          "approved_date": "2025-12-15",
+          "effective": {
+            "start": "2026-01-01",
+            "end": "2027-01-01"
+          },
+          "reserve_rate": "0.2",
+          "participation_share": "0.5",
+          "fixed_fee": "10",
+          "retained_cap": "32",
+          "reserve_measure": "producer_entitlement_USD",
+          "calendar_mode": "clamp_day",
+          "release_schedule": [
+            {
+              "id": "first-original-quarter",
+              "offset_months": 1,
+              "kind": "fraction_of_original_addition",
+              "fraction": "0.25"
+            },
+            {
+              "id": "final-unused",
+              "offset_months": 3,
+              "kind": "all_remaining"
+            }
+          ]
+        },
+        "registry_evidence": [
+          {
+            "id": "evidence:original-fixed-fee-reserve-terms",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "kind": "generic_reserve_terms",
+            "approved": true,
+            "observed_at": "2025-12-15T12:00:00Z",
+            "source_ref": "supplied-evidence:original-fixed-fee-reserve-terms"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "case_id": "producer_holdback_tranches-p1",
+          "period": {
+            "start": "2026-01-01",
+            "end": "2026-02-01"
+          },
+          "as_of": "2026-01-31",
+          "cutoff": "2026-02-03T00:00:00Z",
+          "receipts": [
+            {
+              "id": "receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:receipt:V1",
+              "evidence_ref": "evidence:receipt:V1",
+              "original_ref": "original-gross#receipt:V1",
+              "event_date": "2026-01-01",
+              "sequence": 0,
+              "gross": "130"
+            }
+          ],
+          "elections": [
+            {
+              "id": "election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "original-source:election:receipt:V1",
+              "evidence_ref": "evidence:election:receipt:V1",
+              "receipt_id": "receipt:V1",
+              "vintage_id": "V1",
+              "elected": true,
+              "approved": true,
+              "approved_date": "2026-01-01",
+              "event_date": "2026-01-01"
+            }
+          ],
+          "applications": [
+            {
+              "id": "application:first",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-01-15T15:00:00Z",
+              "source_ref": "original-source:application:first",
+              "evidence_ref": "evidence:application:first",
+              "original_ref": "original-application#application:first",
+              "vintage_id": "V1",
+              "amount": "4",
+              "event_date": "2026-01-15",
+              "sequence": 0,
+              "authority_id": "authority:application:first",
+              "reserve_measure": "producer_entitlement_USD"
+            }
+          ],
+          "authorities": [
+            {
+              "id": "authority:application:first",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-01-15T15:00:00Z",
+              "source_ref": "original-source:authority:application:first",
+              "evidence_ref": "evidence:authority:application:first",
+              "application_id": "application:first",
+              "vintage_id": "V1",
+              "approved": true,
+              "approved_date": "2026-01-15",
+              "reserve_measure": "producer_entitlement_USD"
+            }
+          ],
+          "population": {
+            "id": "population:producer_holdback_tranches-p1",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "observed_at": "2026-02-02T12:00:00Z",
+            "source_ref": "original-source:population:producer_holdback_tranches-p1",
+            "evidence_ref": "evidence:population:producer_holdback_tranches-p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-02-01"
+            },
+            "complete": true,
+            "receipt_ids": [
+              "receipt:V1"
+            ],
+            "election_ids": [
+              "election:receipt:V1"
+            ],
+            "application_ids": [
+              "application:first"
+            ],
+            "authority_ids": [
+              "authority:application:first"
+            ],
+            "gross_total": "130",
+            "application_total": "4"
+          },
+          "evidence": [
+            {
+              "id": "evidence:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "original_gross_basis",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:receipt:V1"
+            },
+            {
+              "id": "evidence:election:receipt:V1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_election",
+              "approved": true,
+              "observed_at": "2026-01-01T12:00:00Z",
+              "source_ref": "supplied-evidence:election:receipt:V1"
+            },
+            {
+              "id": "evidence:application:first",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_application",
+              "approved": true,
+              "observed_at": "2026-01-15T15:00:00Z",
+              "source_ref": "supplied-evidence:application:first"
+            },
+            {
+              "id": "evidence:authority:application:first",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_application_authority",
+              "approved": true,
+              "observed_at": "2026-01-15T15:00:00Z",
+              "source_ref": "supplied-evidence:authority:application:first"
+            },
+            {
+              "id": "evidence:population:producer_holdback_tranches-p1",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-02-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:producer_holdback_tranches-p1"
+            }
+          ]
+        },
+        {
+          "case_id": "producer_holdback_tranches-p2",
+          "period": {
+            "start": "2026-02-01",
+            "end": "2026-04-01"
+          },
+          "as_of": "2026-03-31",
+          "cutoff": "2026-04-03T00:00:00Z",
+          "receipts": [],
+          "elections": [],
+          "applications": [
+            {
+              "id": "application:second",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-03-01T15:00:00Z",
+              "source_ref": "original-source:application:second",
+              "evidence_ref": "evidence:application:second",
+              "original_ref": "original-application#application:second",
+              "vintage_id": "V1",
+              "amount": "2",
+              "event_date": "2026-03-01",
+              "sequence": 0,
+              "authority_id": "authority:application:second",
+              "reserve_measure": "producer_entitlement_USD"
+            }
+          ],
+          "authorities": [
+            {
+              "id": "authority:application:second",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "observed_at": "2026-03-01T15:00:00Z",
+              "source_ref": "original-source:authority:application:second",
+              "evidence_ref": "evidence:authority:application:second",
+              "application_id": "application:second",
+              "vintage_id": "V1",
+              "approved": true,
+              "approved_date": "2026-03-01",
+              "reserve_measure": "producer_entitlement_USD"
+            }
+          ],
+          "population": {
+            "id": "population:producer_holdback_tranches-p2",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:population:producer_holdback_tranches-p2",
+            "evidence_ref": "evidence:population:producer_holdback_tranches-p2",
+            "period": {
+              "start": "2026-02-01",
+              "end": "2026-04-01"
+            },
+            "complete": true,
+            "receipt_ids": [],
+            "election_ids": [],
+            "application_ids": [
+              "application:second"
+            ],
+            "authority_ids": [
+              "authority:application:second"
+            ],
+            "gross_total": "0",
+            "application_total": "2"
+          },
+          "evidence": [
+            {
+              "id": "evidence:application:second",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_application",
+              "approved": true,
+              "observed_at": "2026-03-01T15:00:00Z",
+              "source_ref": "supplied-evidence:application:second"
+            },
+            {
+              "id": "evidence:authority:application:second",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "reserve_application_authority",
+              "approved": true,
+              "observed_at": "2026-03-01T15:00:00Z",
+              "source_ref": "supplied-evidence:authority:application:second"
+            },
+            {
+              "id": "evidence:population:producer_holdback_tranches-p2",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-04-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:producer_holdback_tranches-p2"
+            }
+          ]
+        },
+        {
+          "case_id": "producer_holdback_tranches-p3",
+          "period": {
+            "start": "2026-04-01",
+            "end": "2026-07-01"
+          },
+          "as_of": "2026-06-30",
+          "cutoff": "2026-07-03T00:00:00Z",
+          "receipts": [],
+          "elections": [],
+          "applications": [],
+          "authorities": [],
+          "population": {
+            "id": "population:producer_holdback_tranches-p3",
+            "scope": {
+              "agreement_id": "synthetic-stage-agreement",
+              "participant_id": "participant",
+              "pool_id": "reserve-pool",
+              "asset_id": "synthetic-picture",
+              "currency": "USD",
+              "purpose": "synthetic_producer_entitlement_holdback"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:population:producer_holdback_tranches-p3",
+            "evidence_ref": "evidence:population:producer_holdback_tranches-p3",
+            "period": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "complete": true,
+            "receipt_ids": [],
+            "election_ids": [],
+            "application_ids": [],
+            "authority_ids": [],
+            "gross_total": "0",
+            "application_total": "0"
+          },
+          "evidence": [
+            {
+              "id": "evidence:population:producer_holdback_tranches-p3",
+              "scope": {
+                "agreement_id": "synthetic-stage-agreement",
+                "participant_id": "participant",
+                "pool_id": "reserve-pool",
+                "asset_id": "synthetic-picture",
+                "currency": "USD",
+                "purpose": "synthetic_producer_entitlement_holdback"
+              },
+              "kind": "complete_current_population",
+              "approved": true,
+              "observed_at": "2026-07-02T12:00:00Z",
+              "source_ref": "supplied-evidence:population:producer_holdback_tranches-p3"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

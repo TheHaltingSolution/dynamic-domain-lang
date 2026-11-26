@@ -1,0 +1,1165 @@
+{
+  "decisions": [
+    {
+      "decision_id": "DEPENDENT_REPLAY_SELECTED",
+      "evidence_ref": "selected-original-dependent-replay-policy",
+      "policy_id": "SYNTHETIC-DEPENDENT-REPLAY-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "fact_scope": {
+      "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+      "asset_id": "73796e7468657469632d70696374757265",
+      "currency": "USD",
+      "participant_id": "7061727469636970616e74",
+      "pool_id": "70617274696369706174696f6e2d706f6f6c",
+      "purpose": "authorized_dependent_replay"
+    },
+    "frames": [
+      {
+        "as_of": "2026-06-30",
+        "as_of_ordinal": "739797",
+        "authorities": [
+          {
+            "apply_revised_basis_to_future": true,
+            "approved": true,
+            "approved_date": "2026-05-06",
+            "approved_date_utc": "2026-05-06T00:00:00Z",
+            "dependent_period_ids": [
+              "7031"
+            ],
+            "evidence_ref": "65766964656e63653a617574686f726974793a7031",
+            "evidence_slot": "4",
+            "id": "617574686f726974793a7031",
+            "observed_at": "2026-05-06T00:00:00Z",
+            "original_issue_id": "69737375653a7031",
+            "original_receipt_id": "726563656970743a7031",
+            "original_ref": "6f726967696e616c2d617574686f72697479237265706c6163652d70312d70726f7370656374697665",
+            "predecessor_result_ref": "737570706c6965642d6973737565642d726573756c74237031",
+            "recorded_date": "2026-05-06",
+            "recorded_date_utc": "2026-05-06T00:00:00Z",
+            "replacement_id": "7265706c6163656d656e743a7031",
+            "route": "prospective",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a617574686f726974793a7031"
+          }
+        ],
+        "cash_population": {
+          "complete": true,
+          "event_ids": [],
+          "evidence_ref": "65766964656e63653a636173683a7032",
+          "evidence_slot": "2",
+          "id": "636173683a7032",
+          "observed_at": "2026-07-02T12:00:00Z",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "period_end_ordinal": "739798",
+          "period_end_utc": "2026-07-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a636173683a7032",
+          "total": {
+            "currency": "USD",
+            "value": "0"
+          }
+        },
+        "correction_population": {
+          "authority_ids": [
+            "617574686f726974793a7031"
+          ],
+          "complete": true,
+          "evidence_ref": "65766964656e63653a636f7272656374696f6e2d706f70756c6174696f6e3a7032",
+          "evidence_slot": "6",
+          "id": "636f7272656374696f6e2d706f70756c6174696f6e3a7032",
+          "observed_at": "2026-07-02T12:00:00Z",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "period_end_ordinal": "739798",
+          "period_end_utc": "2026-07-01T00:00:00Z",
+          "replacement_ids": [
+            "7265706c6163656d656e743a7031"
+          ],
+          "request_ids": [
+            "726571756573743a7031"
+          ],
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a636f7272656374696f6e2d706f70756c6174696f6e3a7032"
+        },
+        "cutoff": "2026-07-03T00:00:00Z",
+        "evidence": [
+          {
+            "approved": true,
+            "id": "65766964656e63653a726563656970743a7032",
+            "kind": "original_receipt_basis",
+            "observed_at": "2026-05-16T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "slot": "0",
+            "source_ref": "6f726967696e616c2d65766964656e63653a726563656970743a7032"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a706f70756c6174696f6e3a7032",
+            "kind": "complete_current_receipt_population",
+            "observed_at": "2026-07-02T12:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "slot": "1",
+            "source_ref": "6f726967696e616c2d65766964656e63653a706f70756c6174696f6e3a7032"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636173683a7032",
+            "kind": "complete_current_cash_population",
+            "observed_at": "2026-07-02T12:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "slot": "2",
+            "source_ref": "6f726967696e616c2d65766964656e63653a636173683a7032"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a7265706c6163656d656e743a7031",
+            "kind": "replacement_measurement",
+            "observed_at": "2026-05-05T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "slot": "3",
+            "source_ref": "6f726967696e616c2d65766964656e63653a7265706c6163656d656e743a7031"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a617574686f726974793a7031",
+            "kind": "correction_authority",
+            "observed_at": "2026-05-06T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "slot": "4",
+            "source_ref": "6f726967696e616c2d65766964656e63653a617574686f726974793a7031"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a726571756573743a7031",
+            "kind": "correction_request",
+            "observed_at": "2026-05-06T12:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "slot": "5",
+            "source_ref": "6f726967696e616c2d65766964656e63653a726571756573743a7031"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636f7272656374696f6e2d706f70756c6174696f6e3a7032",
+            "kind": "complete_correction_population",
+            "observed_at": "2026-07-02T12:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "slot": "6",
+            "source_ref": "6f726967696e616c2d65766964656e63653a636f7272656374696f6e2d706f70756c6174696f6e3a7032"
+          }
+        ],
+        "id": "73696d706c652d70726f73706563746976652d636f7272656374696f6e",
+        "period": {
+          "end": "2026-07-01",
+          "start": "2026-04-01"
+        },
+        "period_end_ordinal": "739798",
+        "period_end_utc": "2026-07-01T00:00:00Z",
+        "period_id": "7032",
+        "population": {
+          "complete": true,
+          "evidence_ref": "65766964656e63653a706f70756c6174696f6e3a7032",
+          "evidence_slot": "1",
+          "gross_basis_total": {
+            "currency": "USD",
+            "value": "60"
+          },
+          "id": "706f70756c6174696f6e3a7032",
+          "observed_at": "2026-07-02T12:00:00Z",
+          "period": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "period_end_ordinal": "739798",
+          "period_end_utc": "2026-07-01T00:00:00Z",
+          "receipt_ids": [
+            "726563656970743a7032"
+          ],
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a706f70756c6174696f6e3a7032"
+        },
+        "predecessor_period_id": "7031",
+        "predecessor_result_ref": "737570706c6965642d6973737565642d726573756c74237031",
+        "receipts": [
+          {
+            "base_amount": {
+              "currency": "USD",
+              "value": "60"
+            },
+            "effective_date": "2026-05-15",
+            "effective_date_utc": "2026-05-15T00:00:00Z",
+            "entitlement_ref": "6f726967696e616c2d656e7469746c656d656e74237032",
+            "evidence_ref": "65766964656e63653a726563656970743a7032",
+            "evidence_slot": "0",
+            "id": "726563656970743a7032",
+            "observed_at": "2026-05-16T00:00:00Z",
+            "original_ref": "6f726967696e616c2d73616c6573237032",
+            "period_id": "7032",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "sequence": "0",
+            "source_ref": "6f726967696e616c2d736f757263653a726563656970743a7032",
+            "term_id": "7465726d3a7032"
+          }
+        ],
+        "replacements": [
+          {
+            "base_amount": {
+              "currency": "USD",
+              "value": "180"
+            },
+            "effective_date": "2026-01-15",
+            "effective_date_utc": "2026-01-15T00:00:00Z",
+            "evidence_ref": "65766964656e63653a7265706c6163656d656e743a7031",
+            "evidence_slot": "3",
+            "id": "7265706c6163656d656e743a7031",
+            "observed_at": "2026-05-05T00:00:00Z",
+            "original_basis_ref": "6f726967696e616c2d73616c6573237031",
+            "original_receipt_id": "726563656970743a7031",
+            "original_ref": "6f726967696e616c2d7265706c6163656d656e742370312d7632",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "source_case_id": "73696d706c652d70726f73706563746976652d636f7272656374696f6e",
+            "source_ref": "6f726967696e616c2d736f757263653a7265706c6163656d656e743a7031"
+          }
+        ],
+        "requests": [
+          {
+            "authority_id": "617574686f726974793a7031",
+            "evidence_ref": "65766964656e63653a726571756573743a7031",
+            "evidence_slot": "5",
+            "id": "726571756573743a7031",
+            "observed_at": "2026-05-06T12:00:00Z",
+            "replacement_id": "7265706c6163656d656e743a7031",
+            "scope": {
+              "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+              "asset_id": "73796e7468657469632d70696374757265",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e74",
+              "pool_id": "70617274696369706174696f6e2d706f6f6c",
+              "purpose": "authorized_dependent_replay"
+            },
+            "sequence": "0",
+            "source_ref": "6f726967696e616c2d736f757263653a726571756573743a7031"
+          }
+        ]
+      }
+    ],
+    "original_frames": [
+      {
+        "id": "73696d706c652d70726f73706563746976652d636f7272656374696f6e",
+        "originals": {
+          "authorities": [
+            {
+              "id": "617574686f726974793a7031",
+              "raw_original": "{\"apply_revised_basis_to_future\":true,\"approved\":true,\"approved_date\":\"2026-05-06\",\"dependent_period_ids\":[\"p1\"],\"evidence_ref\":\"evidence:authority:p1\",\"id\":\"authority:p1\",\"observed_at\":\"2026-05-06T00:00:00Z\",\"original_issue_id\":\"issue:p1\",\"original_receipt_id\":\"receipt:p1\",\"original_ref\":\"original-authority#replace-p1-prospective\",\"predecessor_result_ref\":\"supplied-issued-result#p1\",\"recorded_date\":\"2026-05-06\",\"replacement_id\":\"replacement:p1\",\"route\":\"prospective\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:authority:p1\"}"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "65766964656e63653a726563656970743a7032",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:receipt:p2\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-05-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:receipt:p2\"}"
+            },
+            {
+              "id": "65766964656e63653a706f70756c6174696f6e3a7032",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:population:p2\",\"kind\":\"complete_current_receipt_population\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:population:p2\"}"
+            },
+            {
+              "id": "65766964656e63653a636173683a7032",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:cash:p2\",\"kind\":\"complete_current_cash_population\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:cash:p2\"}"
+            },
+            {
+              "id": "65766964656e63653a7265706c6163656d656e743a7031",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:replacement:p1\",\"kind\":\"replacement_measurement\",\"observed_at\":\"2026-05-05T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:replacement:p1\"}"
+            },
+            {
+              "id": "65766964656e63653a617574686f726974793a7031",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:authority:p1\",\"kind\":\"correction_authority\",\"observed_at\":\"2026-05-06T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:authority:p1\"}"
+            },
+            {
+              "id": "65766964656e63653a726571756573743a7031",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:request:p1\",\"kind\":\"correction_request\",\"observed_at\":\"2026-05-06T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:request:p1\"}"
+            },
+            {
+              "id": "65766964656e63653a636f7272656374696f6e2d706f70756c6174696f6e3a7032",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:correction-population:p2\",\"kind\":\"complete_correction_population\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:correction-population:p2\"}"
+            }
+          ],
+          "receipts": [
+            {
+              "id": "726563656970743a7032",
+              "raw_original": "{\"base_amount\":\"60\",\"effective_date\":\"2026-05-15\",\"entitlement_ref\":\"original-entitlement#p2\",\"evidence_ref\":\"evidence:receipt:p2\",\"id\":\"receipt:p2\",\"observed_at\":\"2026-05-16T00:00:00Z\",\"original_ref\":\"original-sales#p2\",\"period_id\":\"p2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:receipt:p2\",\"term_id\":\"term:p2\"}"
+            }
+          ],
+          "replacements": [
+            {
+              "id": "7265706c6163656d656e743a7031",
+              "raw_original": "{\"base_amount\":\"180\",\"effective_date\":\"2026-01-15\",\"evidence_ref\":\"evidence:replacement:p1\",\"id\":\"replacement:p1\",\"observed_at\":\"2026-05-05T00:00:00Z\",\"original_basis_ref\":\"original-sales#p1\",\"original_receipt_id\":\"receipt:p1\",\"original_ref\":\"original-replacement#p1-v2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:replacement:p1\"}"
+            }
+          ],
+          "requests": [
+            {
+              "id": "726571756573743a7031",
+              "raw_original": "{\"authority_id\":\"authority:p1\",\"evidence_ref\":\"evidence:request:p1\",\"id\":\"request:p1\",\"observed_at\":\"2026-05-06T12:00:00Z\",\"replacement_id\":\"replacement:p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:request:p1\"}"
+            }
+          ]
+        },
+        "period": {
+          "end": "2026-07-01",
+          "start": "2026-04-01"
+        },
+        "raw_original": "{\"as_of\":\"2026-06-30\",\"authorities\":[{\"apply_revised_basis_to_future\":true,\"approved\":true,\"approved_date\":\"2026-05-06\",\"dependent_period_ids\":[\"p1\"],\"evidence_ref\":\"evidence:authority:p1\",\"id\":\"authority:p1\",\"observed_at\":\"2026-05-06T00:00:00Z\",\"original_issue_id\":\"issue:p1\",\"original_receipt_id\":\"receipt:p1\",\"original_ref\":\"original-authority#replace-p1-prospective\",\"predecessor_result_ref\":\"supplied-issued-result#p1\",\"recorded_date\":\"2026-05-06\",\"replacement_id\":\"replacement:p1\",\"route\":\"prospective\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:authority:p1\"}],\"case_id\":\"simple-prospective-correction\",\"cash_population\":{\"complete\":true,\"event_ids\":[],\"evidence_ref\":\"evidence:cash:p2\",\"id\":\"cash:p2\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"period\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:cash:p2\",\"total\":\"0\"},\"correction_population\":{\"authority_ids\":[\"authority:p1\"],\"complete\":true,\"evidence_ref\":\"evidence:correction-population:p2\",\"id\":\"correction-population:p2\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"period\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"replacement_ids\":[\"replacement:p1\"],\"request_ids\":[\"request:p1\"],\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:correction-population:p2\"},\"cutoff\":\"2026-07-03T00:00:00Z\",\"evidence\":[{\"approved\":true,\"id\":\"evidence:receipt:p2\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-05-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:receipt:p2\"},{\"approved\":true,\"id\":\"evidence:population:p2\",\"kind\":\"complete_current_receipt_population\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:population:p2\"},{\"approved\":true,\"id\":\"evidence:cash:p2\",\"kind\":\"complete_current_cash_population\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:cash:p2\"},{\"approved\":true,\"id\":\"evidence:replacement:p1\",\"kind\":\"replacement_measurement\",\"observed_at\":\"2026-05-05T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:replacement:p1\"},{\"approved\":true,\"id\":\"evidence:authority:p1\",\"kind\":\"correction_authority\",\"observed_at\":\"2026-05-06T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:authority:p1\"},{\"approved\":true,\"id\":\"evidence:request:p1\",\"kind\":\"correction_request\",\"observed_at\":\"2026-05-06T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:request:p1\"},{\"approved\":true,\"id\":\"evidence:correction-population:p2\",\"kind\":\"complete_correction_population\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:correction-population:p2\"}],\"period\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"period_id\":\"p2\",\"population\":{\"complete\":true,\"evidence_ref\":\"evidence:population:p2\",\"gross_basis_total\":\"60\",\"id\":\"population:p2\",\"observed_at\":\"2026-07-02T12:00:00Z\",\"period\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"receipt_ids\":[\"receipt:p2\"],\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:population:p2\"},\"predecessor_period_id\":\"p1\",\"predecessor_result_ref\":\"supplied-issued-result#p1\",\"receipts\":[{\"base_amount\":\"60\",\"effective_date\":\"2026-05-15\",\"entitlement_ref\":\"original-entitlement#p2\",\"evidence_ref\":\"evidence:receipt:p2\",\"id\":\"receipt:p2\",\"observed_at\":\"2026-05-16T00:00:00Z\",\"original_ref\":\"original-sales#p2\",\"period_id\":\"p2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:receipt:p2\",\"term_id\":\"term:p2\"}],\"replacements\":[{\"base_amount\":\"180\",\"effective_date\":\"2026-01-15\",\"evidence_ref\":\"evidence:replacement:p1\",\"id\":\"replacement:p1\",\"observed_at\":\"2026-05-05T00:00:00Z\",\"original_basis_ref\":\"original-sales#p1\",\"original_receipt_id\":\"receipt:p1\",\"original_ref\":\"original-replacement#p1-v2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:replacement:p1\"}],\"requests\":[{\"authority_id\":\"authority:p1\",\"evidence_ref\":\"evidence:request:p1\",\"id\":\"request:p1\",\"observed_at\":\"2026-05-06T12:00:00Z\",\"replacement_id\":\"replacement:p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:request:p1\"}]}"
+      }
+    ],
+    "original_registry": {
+      "applications": [
+        {
+          "id": "6170706c69636174696f6e3a6f6c64",
+          "raw_original": "{\"amount\":\"80\",\"approved\":true,\"evidence_ref\":\"evidence:application:old\",\"id\":\"application:old\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"original_entitlement_ref\":\"original-entitlement#p1\",\"payment_id\":\"payment:old\",\"receipt_id\":\"receipt:p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:application:old\"}"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "65766964656e63653a7465726d3a7031",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:term:p1\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p1\"}"
+        },
+        {
+          "id": "65766964656e63653a7465726d3a7032",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:term:p2\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p2\"}"
+        },
+        {
+          "id": "65766964656e63653a7465726d3a7033",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:term:p3\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p3\"}"
+        },
+        {
+          "id": "65766964656e63653a7465726d3a7034",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:term:p4\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p4\"}"
+        },
+        {
+          "id": "65766964656e63653a7031",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:p1\",\"kind\":\"issued_period\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:p1\"}"
+        },
+        {
+          "id": "65766964656e63653a726563656970743a7031",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:receipt:p1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:receipt:p1\"}"
+        },
+        {
+          "id": "65766964656e63653a69737375653a7031",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:issue:p1\",\"kind\":\"original_issued_artifact\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:issue:p1\"}"
+        },
+        {
+          "id": "65766964656e63653a7061796d656e743a6f6c64",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:payment:old\",\"kind\":\"actual_participation_payment\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment:old\"}"
+        },
+        {
+          "id": "65766964656e63653a6170706c69636174696f6e3a6f6c64",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:application:old\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:application:old\"}"
+        },
+        {
+          "id": "65766964656e63653a7061796d656e742d706f70756c6174696f6e",
+          "raw_original": "{\"approved\":true,\"id\":\"evidence:payment-population\",\"kind\":\"complete_historical_payment_population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment-population\"}"
+        }
+      ],
+      "issued_artifacts": [
+        {
+          "id": "69737375653a7031",
+          "raw_original": "{\"basis_total\":\"200\",\"closing_cumulative_basis\":\"200\",\"complete\":true,\"earned\":\"100\",\"evidence_ref\":\"evidence:issue:p1\",\"id\":\"issue:p1\",\"issued_at\":\"2026-04-02T12:00:00Z\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"opening_cumulative_basis\":\"0\",\"original_ref\":\"original-issued-statement#p1\",\"period_id\":\"p1\",\"predecessor_issue_id\":null,\"receipt_ids\":[\"receipt:p1\"],\"result_ref\":\"supplied-issued-result#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:issue:p1\"}"
+        }
+      ],
+      "payments": [
+        {
+          "id": "7061796d656e743a6f6c64",
+          "raw_original": "{\"amount\":\"80\",\"evidence_ref\":\"evidence:payment:old\",\"id\":\"payment:old\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"original_ref\":\"original-bank#payment80\",\"paid_at\":\"2026-02-15T12:00:00Z\",\"payer_id\":\"distributor\",\"purpose\":\"participation_payment\",\"receipt_id\":\"receipt:p1\",\"recipient_id\":\"participant\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment:old\"}"
+        }
+      ],
+      "periods": [
+        {
+          "id": "7031",
+          "raw_original": "{\"as_of\":\"2026-03-31\",\"cutoff\":\"2026-04-03T00:00:00Z\",\"evidence_ref\":\"evidence:p1\",\"id\":\"p1\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"predecessor_period_id\":null,\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:p1\"}"
+        }
+      ],
+      "receipts": [
+        {
+          "id": "726563656970743a7031",
+          "raw_original": "{\"base_amount\":\"200\",\"effective_date\":\"2026-01-15\",\"entitlement_ref\":\"original-entitlement#p1\",\"evidence_ref\":\"evidence:receipt:p1\",\"id\":\"receipt:p1\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"original_ref\":\"original-sales#p1\",\"period_id\":\"p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:receipt:p1\",\"term_id\":\"term:p1\"}"
+        }
+      ],
+      "terms": [
+        {
+          "id": "7465726d3a7031",
+          "raw_original": "{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:term:p1\",\"flat_rate\":\"0.5\",\"id\":\"term:p1\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p1\",\"threshold\":\"0\",\"upper_rate\":\"0\"}"
+        },
+        {
+          "id": "7465726d3a7032",
+          "raw_original": "{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"evidence_ref\":\"evidence:term:p2\",\"flat_rate\":\"0.5\",\"id\":\"term:p2\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p2\",\"threshold\":\"0\",\"upper_rate\":\"0\"}"
+        },
+        {
+          "id": "7465726d3a7033",
+          "raw_original": "{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-07-01\"},\"evidence_ref\":\"evidence:term:p3\",\"flat_rate\":\"0.5\",\"id\":\"term:p3\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p3\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p3\",\"threshold\":\"0\",\"upper_rate\":\"0\"}"
+        },
+        {
+          "id": "7465726d3a7034",
+          "raw_original": "{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2027-01-01\",\"start\":\"2026-10-01\"},\"evidence_ref\":\"evidence:term:p4\",\"flat_rate\":\"0.5\",\"id\":\"term:p4\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p4\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p4\",\"threshold\":\"0\",\"upper_rate\":\"0\"}"
+        }
+      ]
+    },
+    "predecessor": {
+      "none": true
+    },
+    "project": "73796e7468657469632d70696374757265",
+    "registry": {
+      "applications": [
+        {
+          "amount": {
+            "currency": "USD",
+            "value": "80"
+          },
+          "approved": true,
+          "evidence_ref": "65766964656e63653a6170706c69636174696f6e3a6f6c64",
+          "evidence_slot": "8",
+          "id": "6170706c69636174696f6e3a6f6c64",
+          "observed_at": "2026-02-16T12:00:00Z",
+          "original_entitlement_ref": "6f726967696e616c2d656e7469746c656d656e74237031",
+          "payment_id": "7061796d656e743a6f6c64",
+          "receipt_id": "726563656970743a7031",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a6170706c69636174696f6e3a6f6c64"
+        }
+      ],
+      "evidence": [
+        {
+          "approved": true,
+          "id": "65766964656e63653a7465726d3a7031",
+          "kind": "earning_terms",
+          "observed_at": "2026-01-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "0",
+          "source_ref": "6f726967696e616c2d65766964656e63653a7465726d3a7031"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a7465726d3a7032",
+          "kind": "earning_terms",
+          "observed_at": "2026-01-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "1",
+          "source_ref": "6f726967696e616c2d65766964656e63653a7465726d3a7032"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a7465726d3a7033",
+          "kind": "earning_terms",
+          "observed_at": "2026-01-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "2",
+          "source_ref": "6f726967696e616c2d65766964656e63653a7465726d3a7033"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a7465726d3a7034",
+          "kind": "earning_terms",
+          "observed_at": "2026-01-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "3",
+          "source_ref": "6f726967696e616c2d65766964656e63653a7465726d3a7034"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a7031",
+          "kind": "issued_period",
+          "observed_at": "2026-04-02T12:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "4",
+          "source_ref": "6f726967696e616c2d65766964656e63653a7031"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a726563656970743a7031",
+          "kind": "original_receipt_basis",
+          "observed_at": "2026-01-16T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "5",
+          "source_ref": "6f726967696e616c2d65766964656e63653a726563656970743a7031"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a69737375653a7031",
+          "kind": "original_issued_artifact",
+          "observed_at": "2026-04-02T12:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "6",
+          "source_ref": "6f726967696e616c2d65766964656e63653a69737375653a7031"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a7061796d656e743a6f6c64",
+          "kind": "actual_participation_payment",
+          "observed_at": "2026-02-16T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "7",
+          "source_ref": "6f726967696e616c2d65766964656e63653a7061796d656e743a6f6c64"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a6170706c69636174696f6e3a6f6c64",
+          "kind": "actual_payment_application",
+          "observed_at": "2026-02-16T12:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "8",
+          "source_ref": "6f726967696e616c2d65766964656e63653a6170706c69636174696f6e3a6f6c64"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a7061796d656e742d706f70756c6174696f6e",
+          "kind": "complete_historical_payment_population",
+          "observed_at": "2026-04-02T12:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "slot": "9",
+          "source_ref": "6f726967696e616c2d65766964656e63653a7061796d656e742d706f70756c6174696f6e"
+        }
+      ],
+      "issued_artifacts": [
+        {
+          "basis_total": {
+            "currency": "USD",
+            "value": "200"
+          },
+          "closing_cumulative_basis": {
+            "currency": "USD",
+            "value": "200"
+          },
+          "complete": true,
+          "earned": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "evidence_ref": "65766964656e63653a69737375653a7031",
+          "evidence_slot": "6",
+          "id": "69737375653a7031",
+          "issued_at": "2026-04-02T12:00:00Z",
+          "issued_at_utc_date": "2026-04-02",
+          "observed_at": "2026-04-02T12:00:00Z",
+          "opening_cumulative_basis": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "original_ref": "6f726967696e616c2d6973737565642d73746174656d656e74237031",
+          "period_id": "7031",
+          "predecessor_issue_id": {
+            "none": true
+          },
+          "receipt_ids": [
+            "726563656970743a7031"
+          ],
+          "result_ref": "737570706c6965642d6973737565642d726573756c74237031",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a69737375653a7031"
+        }
+      ],
+      "origin": {
+        "actual_paid": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "boundary": "2026-01-01",
+        "cumulative_basis": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "recognized_entitlement": {
+          "currency": "USD",
+          "value": "0"
+        }
+      },
+      "party_ids": [
+        "7061727469636970616e74",
+        "6469737472696275746f72"
+      ],
+      "payer_id": "6469737472696275746f72",
+      "payment_population": {
+        "application_ids": [
+          "6170706c69636174696f6e3a6f6c64"
+        ],
+        "complete": true,
+        "evidence_ref": "65766964656e63653a7061796d656e742d706f70756c6174696f6e",
+        "evidence_slot": "9",
+        "id": "7061796d656e742d706f70756c6174696f6e",
+        "observed_at": "2026-04-02T12:00:00Z",
+        "paid_total": {
+          "currency": "USD",
+          "value": "80"
+        },
+        "payment_ids": [
+          "7061796d656e743a6f6c64"
+        ],
+        "scope": {
+          "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+          "asset_id": "73796e7468657469632d70696374757265",
+          "currency": "USD",
+          "participant_id": "7061727469636970616e74",
+          "pool_id": "70617274696369706174696f6e2d706f6f6c",
+          "purpose": "authorized_dependent_replay"
+        },
+        "source_ref": "6f726967696e616c2d736f757263653a7061796d656e742d706f70756c6174696f6e",
+        "through_period_id": "7031"
+      },
+      "payments": [
+        {
+          "amount": {
+            "currency": "USD",
+            "value": "80"
+          },
+          "evidence_ref": "65766964656e63653a7061796d656e743a6f6c64",
+          "evidence_slot": "7",
+          "id": "7061796d656e743a6f6c64",
+          "observed_at": "2026-02-16T00:00:00Z",
+          "original_ref": "6f726967696e616c2d62616e6b237061796d656e743830",
+          "paid_at": "2026-02-15T12:00:00Z",
+          "paid_at_utc_date": "2026-02-15",
+          "payer_id": "6469737472696275746f72",
+          "purpose": "participation_payment",
+          "receipt_id": "726563656970743a7031",
+          "recipient_id": "7061727469636970616e74",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a7061796d656e743a6f6c64"
+        }
+      ],
+      "periods": [
+        {
+          "as_of": "2026-03-31",
+          "as_of_ordinal": "739706",
+          "as_of_utc": "2026-03-31T00:00:00Z",
+          "cutoff": "2026-04-03T00:00:00Z",
+          "evidence_ref": "65766964656e63653a7031",
+          "evidence_slot": "4",
+          "id": "7031",
+          "observed_at": "2026-04-02T12:00:00Z",
+          "period": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "period_end_ordinal": "739707",
+          "period_end_utc": "2026-04-01T00:00:00Z",
+          "predecessor_period_id": {
+            "none": true
+          },
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a7031"
+        }
+      ],
+      "receipts": [
+        {
+          "base_amount": {
+            "currency": "USD",
+            "value": "200"
+          },
+          "effective_date": "2026-01-15",
+          "effective_date_utc": "2026-01-15T00:00:00Z",
+          "entitlement_ref": "6f726967696e616c2d656e7469746c656d656e74237031",
+          "evidence_ref": "65766964656e63653a726563656970743a7031",
+          "evidence_slot": "5",
+          "id": "726563656970743a7031",
+          "observed_at": "2026-01-16T00:00:00Z",
+          "original_ref": "6f726967696e616c2d73616c6573237031",
+          "period_id": "7031",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "sequence": "0",
+          "source_ref": "6f726967696e616c2d736f757263653a726563656970743a7031",
+          "term_id": "7465726d3a7031"
+        }
+      ],
+      "terms": [
+        {
+          "approved": true,
+          "approved_date": "2026-01-01",
+          "approved_date_utc": "2026-01-01T00:00:00Z",
+          "effective": {
+            "end": "2026-04-01",
+            "start": "2026-01-01"
+          },
+          "effective_end_ordinal": "739707",
+          "effective_end_utc": "2026-04-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a7465726d3a7031",
+          "evidence_slot": "0",
+          "flat_rate": "0.5",
+          "id": "7465726d3a7031",
+          "kind": "flat_ratio",
+          "lower_rate": "0",
+          "observed_at": "2026-01-01T00:00:00Z",
+          "original_ref": "6f726967696e616c2d7465726d73237031",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a7465726d3a7031",
+          "threshold": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "upper_rate": "0"
+        },
+        {
+          "approved": true,
+          "approved_date": "2026-01-01",
+          "approved_date_utc": "2026-01-01T00:00:00Z",
+          "effective": {
+            "end": "2026-07-01",
+            "start": "2026-04-01"
+          },
+          "effective_end_ordinal": "739798",
+          "effective_end_utc": "2026-07-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a7465726d3a7032",
+          "evidence_slot": "1",
+          "flat_rate": "0.5",
+          "id": "7465726d3a7032",
+          "kind": "flat_ratio",
+          "lower_rate": "0",
+          "observed_at": "2026-01-01T00:00:00Z",
+          "original_ref": "6f726967696e616c2d7465726d73237032",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a7465726d3a7032",
+          "threshold": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "upper_rate": "0"
+        },
+        {
+          "approved": true,
+          "approved_date": "2026-01-01",
+          "approved_date_utc": "2026-01-01T00:00:00Z",
+          "effective": {
+            "end": "2026-10-01",
+            "start": "2026-07-01"
+          },
+          "effective_end_ordinal": "739890",
+          "effective_end_utc": "2026-10-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a7465726d3a7033",
+          "evidence_slot": "2",
+          "flat_rate": "0.5",
+          "id": "7465726d3a7033",
+          "kind": "flat_ratio",
+          "lower_rate": "0",
+          "observed_at": "2026-01-01T00:00:00Z",
+          "original_ref": "6f726967696e616c2d7465726d73237033",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a7465726d3a7033",
+          "threshold": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "upper_rate": "0"
+        },
+        {
+          "approved": true,
+          "approved_date": "2026-01-01",
+          "approved_date_utc": "2026-01-01T00:00:00Z",
+          "effective": {
+            "end": "2027-01-01",
+            "start": "2026-10-01"
+          },
+          "effective_end_ordinal": "739982",
+          "effective_end_utc": "2027-01-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a7465726d3a7034",
+          "evidence_slot": "3",
+          "flat_rate": "0.5",
+          "id": "7465726d3a7034",
+          "kind": "flat_ratio",
+          "lower_rate": "0",
+          "observed_at": "2026-01-01T00:00:00Z",
+          "original_ref": "6f726967696e616c2d7465726d73237034",
+          "scope": {
+            "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+            "asset_id": "73796e7468657469632d70696374757265",
+            "currency": "USD",
+            "participant_id": "7061727469636970616e74",
+            "pool_id": "70617274696369706174696f6e2d706f6f6c",
+            "purpose": "authorized_dependent_replay"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a7465726d3a7034",
+          "threshold": {
+            "currency": "USD",
+            "value": "0"
+          },
+          "upper_rate": "0"
+        }
+      ]
+    },
+    "registry_original": "{\"applications\":[{\"amount\":\"80\",\"approved\":true,\"evidence_ref\":\"evidence:application:old\",\"id\":\"application:old\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"original_entitlement_ref\":\"original-entitlement#p1\",\"payment_id\":\"payment:old\",\"receipt_id\":\"receipt:p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:application:old\"}],\"evidence\":[{\"approved\":true,\"id\":\"evidence:application:old\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:application:old\"},{\"approved\":true,\"id\":\"evidence:issue:p1\",\"kind\":\"original_issued_artifact\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:issue:p1\"},{\"approved\":true,\"id\":\"evidence:p1\",\"kind\":\"issued_period\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:p1\"},{\"approved\":true,\"id\":\"evidence:payment-population\",\"kind\":\"complete_historical_payment_population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment-population\"},{\"approved\":true,\"id\":\"evidence:payment:old\",\"kind\":\"actual_participation_payment\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment:old\"},{\"approved\":true,\"id\":\"evidence:receipt:p1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:receipt:p1\"},{\"approved\":true,\"id\":\"evidence:term:p1\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p1\"},{\"approved\":true,\"id\":\"evidence:term:p2\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p2\"},{\"approved\":true,\"id\":\"evidence:term:p3\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p3\"},{\"approved\":true,\"id\":\"evidence:term:p4\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p4\"}],\"issued_artifacts\":[{\"basis_total\":\"200\",\"closing_cumulative_basis\":\"200\",\"complete\":true,\"earned\":\"100\",\"evidence_ref\":\"evidence:issue:p1\",\"id\":\"issue:p1\",\"issued_at\":\"2026-04-02T12:00:00Z\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"opening_cumulative_basis\":\"0\",\"original_ref\":\"original-issued-statement#p1\",\"period_id\":\"p1\",\"predecessor_issue_id\":null,\"receipt_ids\":[\"receipt:p1\"],\"result_ref\":\"supplied-issued-result#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:issue:p1\"}],\"origin\":{\"actual_paid\":\"0\",\"boundary\":\"2026-01-01\",\"cumulative_basis\":\"0\",\"recognized_entitlement\":\"0\"},\"party_ids\":[\"distributor\",\"participant\"],\"payer_id\":\"distributor\",\"payment_population\":{\"application_ids\":[\"application:old\"],\"complete\":true,\"evidence_ref\":\"evidence:payment-population\",\"id\":\"payment-population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"paid_total\":\"80\",\"payment_ids\":[\"payment:old\"],\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment-population\",\"through_period_id\":\"p1\"},\"payments\":[{\"amount\":\"80\",\"evidence_ref\":\"evidence:payment:old\",\"id\":\"payment:old\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"original_ref\":\"original-bank#payment80\",\"paid_at\":\"2026-02-15T12:00:00Z\",\"payer_id\":\"distributor\",\"purpose\":\"participation_payment\",\"receipt_id\":\"receipt:p1\",\"recipient_id\":\"participant\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment:old\"}],\"periods\":[{\"as_of\":\"2026-03-31\",\"cutoff\":\"2026-04-03T00:00:00Z\",\"evidence_ref\":\"evidence:p1\",\"id\":\"p1\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"predecessor_period_id\":null,\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:p1\"}],\"receipts\":[{\"base_amount\":\"200\",\"effective_date\":\"2026-01-15\",\"entitlement_ref\":\"original-entitlement#p1\",\"evidence_ref\":\"evidence:receipt:p1\",\"id\":\"receipt:p1\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"original_ref\":\"original-sales#p1\",\"period_id\":\"p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:receipt:p1\",\"term_id\":\"term:p1\"}],\"terms\":[{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:term:p1\",\"flat_rate\":\"0.5\",\"id\":\"term:p1\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p1\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"evidence_ref\":\"evidence:term:p2\",\"flat_rate\":\"0.5\",\"id\":\"term:p2\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p2\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-07-01\"},\"evidence_ref\":\"evidence:term:p3\",\"flat_rate\":\"0.5\",\"id\":\"term:p3\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p3\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p3\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2027-01-01\",\"start\":\"2026-10-01\"},\"evidence_ref\":\"evidence:term:p4\",\"flat_rate\":\"0.5\",\"id\":\"term:p4\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p4\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p4\",\"threshold\":\"0\",\"upper_rate\":\"0\"}]}",
+    "research": {
+      "backlog_sha256": "1187abcb38bb6420133a7574d40af9839102b7135759c1e28ac29853cfb35d98",
+      "catalog_sha256": "5b6633a85557e8f03df1fee7ce102e825469316b2a89578478c3681f411543c3",
+      "scope_note": "C13.DEPENDENT_PERIOD_REPLAY+C13.PROSPECTIVE_PERIOD_ADJUSTMENT;synthetic-positive-balance-only"
+    },
+    "scope": {
+      "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+      "participant_id": "7061727469636970616e74",
+      "period": {
+        "end": "2026-07-01",
+        "start": "2026-04-01"
+      },
+      "pool_id": "70617274696369706174696f6e2d706f6f6c"
+    },
+    "source_context": "{\"policy\":{\"attribution\":\"original_lines_plus_current_signed_credit\",\"balance_scope\":\"nonnegative_account_and_no_original_overpayment\",\"cash\":\"complete_empty_current_only\",\"economics\":\"original_opening_exact_cumulative_basis\",\"evidence_class\":\"research_assumption\",\"id\":\"SYNTHETIC-DEPENDENT-REPLAY-01\",\"replacements\":\"one_authorized_replacement_per_original_receipt\",\"revision\":\"1\",\"rounding\":\"exact_no_rounding\",\"route\":\"prospective\"},\"registry\":{\"applications\":[{\"amount\":\"80\",\"approved\":true,\"evidence_ref\":\"evidence:application:old\",\"id\":\"application:old\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"original_entitlement_ref\":\"original-entitlement#p1\",\"payment_id\":\"payment:old\",\"receipt_id\":\"receipt:p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:application:old\"}],\"evidence\":[{\"approved\":true,\"id\":\"evidence:term:p1\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p1\"},{\"approved\":true,\"id\":\"evidence:term:p2\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p2\"},{\"approved\":true,\"id\":\"evidence:term:p3\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p3\"},{\"approved\":true,\"id\":\"evidence:term:p4\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p4\"},{\"approved\":true,\"id\":\"evidence:p1\",\"kind\":\"issued_period\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:p1\"},{\"approved\":true,\"id\":\"evidence:receipt:p1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:receipt:p1\"},{\"approved\":true,\"id\":\"evidence:issue:p1\",\"kind\":\"original_issued_artifact\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:issue:p1\"},{\"approved\":true,\"id\":\"evidence:payment:old\",\"kind\":\"actual_participation_payment\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment:old\"},{\"approved\":true,\"id\":\"evidence:application:old\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:application:old\"},{\"approved\":true,\"id\":\"evidence:payment-population\",\"kind\":\"complete_historical_payment_population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment-population\"}],\"issued_artifacts\":[{\"basis_total\":\"200\",\"closing_cumulative_basis\":\"200\",\"complete\":true,\"earned\":\"100\",\"evidence_ref\":\"evidence:issue:p1\",\"id\":\"issue:p1\",\"issued_at\":\"2026-04-02T12:00:00Z\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"opening_cumulative_basis\":\"0\",\"original_ref\":\"original-issued-statement#p1\",\"period_id\":\"p1\",\"predecessor_issue_id\":null,\"receipt_ids\":[\"receipt:p1\"],\"result_ref\":\"supplied-issued-result#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:issue:p1\"}],\"origin\":{\"actual_paid\":\"0\",\"boundary\":\"2026-01-01\",\"cumulative_basis\":\"0\",\"recognized_entitlement\":\"0\"},\"party_ids\":[\"participant\",\"distributor\"],\"payer_id\":\"distributor\",\"payment_population\":{\"application_ids\":[\"application:old\"],\"complete\":true,\"evidence_ref\":\"evidence:payment-population\",\"id\":\"payment-population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"paid_total\":\"80\",\"payment_ids\":[\"payment:old\"],\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment-population\",\"through_period_id\":\"p1\"},\"payments\":[{\"amount\":\"80\",\"evidence_ref\":\"evidence:payment:old\",\"id\":\"payment:old\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"original_ref\":\"original-bank#payment80\",\"paid_at\":\"2026-02-15T12:00:00Z\",\"payer_id\":\"distributor\",\"purpose\":\"participation_payment\",\"receipt_id\":\"receipt:p1\",\"recipient_id\":\"participant\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment:old\"}],\"periods\":[{\"as_of\":\"2026-03-31\",\"cutoff\":\"2026-04-03T00:00:00Z\",\"evidence_ref\":\"evidence:p1\",\"id\":\"p1\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"predecessor_period_id\":null,\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:p1\"}],\"receipts\":[{\"base_amount\":\"200\",\"effective_date\":\"2026-01-15\",\"entitlement_ref\":\"original-entitlement#p1\",\"evidence_ref\":\"evidence:receipt:p1\",\"id\":\"receipt:p1\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"original_ref\":\"original-sales#p1\",\"period_id\":\"p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:receipt:p1\",\"term_id\":\"term:p1\"}],\"terms\":[{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:term:p1\",\"flat_rate\":\"0.5\",\"id\":\"term:p1\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p1\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"evidence_ref\":\"evidence:term:p2\",\"flat_rate\":\"0.5\",\"id\":\"term:p2\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p2\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-07-01\"},\"evidence_ref\":\"evidence:term:p3\",\"flat_rate\":\"0.5\",\"id\":\"term:p3\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p3\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p3\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2027-01-01\",\"start\":\"2026-10-01\"},\"evidence_ref\":\"evidence:term:p4\",\"flat_rate\":\"0.5\",\"id\":\"term:p4\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p4\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p4\",\"threshold\":\"0\",\"upper_rate\":\"0\"}]},\"research\":{\"backlog_sha256\":\"1187abcb38bb6420133a7574d40af9839102b7135759c1e28ac29853cfb35d98\",\"catalog_sha256\":\"5b6633a85557e8f03df1fee7ce102e825469316b2a89578478c3681f411543c3\",\"scope_note\":\"C13.DEPENDENT_PERIOD_REPLAY+C13.PROSPECTIVE_PERIOD_ADJUSTMENT;synthetic-positive-balance-only\"},\"schema_version\":\"dependent-replay-neutral/1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"}}",
+    "supplied_opening": {
+      "boundary": "2026-04-01",
+      "detail": {
+        "none": true
+      },
+      "identity_codec": "unicode-utf8-hex/1",
+      "origin": "genesis",
+      "policy": {
+        "attribution": "original_lines_plus_current_signed_credit",
+        "balance_scope": "nonnegative_account_and_no_original_overpayment",
+        "cash": "complete_empty_current_only",
+        "economics": "original_opening_exact_cumulative_basis",
+        "evidence_class": "research_assumption",
+        "id": "SYNTHETIC-DEPENDENT-REPLAY-01",
+        "replacements": "one_authorized_replacement_per_original_receipt",
+        "revision": "1",
+        "rounding": "exact_no_rounding",
+        "route": "prospective"
+      },
+      "registry_original": "{\"applications\":[{\"amount\":\"80\",\"approved\":true,\"evidence_ref\":\"evidence:application:old\",\"id\":\"application:old\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"original_entitlement_ref\":\"original-entitlement#p1\",\"payment_id\":\"payment:old\",\"receipt_id\":\"receipt:p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:application:old\"}],\"evidence\":[{\"approved\":true,\"id\":\"evidence:application:old\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:application:old\"},{\"approved\":true,\"id\":\"evidence:issue:p1\",\"kind\":\"original_issued_artifact\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:issue:p1\"},{\"approved\":true,\"id\":\"evidence:p1\",\"kind\":\"issued_period\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:p1\"},{\"approved\":true,\"id\":\"evidence:payment-population\",\"kind\":\"complete_historical_payment_population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment-population\"},{\"approved\":true,\"id\":\"evidence:payment:old\",\"kind\":\"actual_participation_payment\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment:old\"},{\"approved\":true,\"id\":\"evidence:receipt:p1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:receipt:p1\"},{\"approved\":true,\"id\":\"evidence:term:p1\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p1\"},{\"approved\":true,\"id\":\"evidence:term:p2\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p2\"},{\"approved\":true,\"id\":\"evidence:term:p3\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p3\"},{\"approved\":true,\"id\":\"evidence:term:p4\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p4\"}],\"issued_artifacts\":[{\"basis_total\":\"200\",\"closing_cumulative_basis\":\"200\",\"complete\":true,\"earned\":\"100\",\"evidence_ref\":\"evidence:issue:p1\",\"id\":\"issue:p1\",\"issued_at\":\"2026-04-02T12:00:00Z\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"opening_cumulative_basis\":\"0\",\"original_ref\":\"original-issued-statement#p1\",\"period_id\":\"p1\",\"predecessor_issue_id\":null,\"receipt_ids\":[\"receipt:p1\"],\"result_ref\":\"supplied-issued-result#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:issue:p1\"}],\"origin\":{\"actual_paid\":\"0\",\"boundary\":\"2026-01-01\",\"cumulative_basis\":\"0\",\"recognized_entitlement\":\"0\"},\"party_ids\":[\"distributor\",\"participant\"],\"payer_id\":\"distributor\",\"payment_population\":{\"application_ids\":[\"application:old\"],\"complete\":true,\"evidence_ref\":\"evidence:payment-population\",\"id\":\"payment-population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"paid_total\":\"80\",\"payment_ids\":[\"payment:old\"],\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment-population\",\"through_period_id\":\"p1\"},\"payments\":[{\"amount\":\"80\",\"evidence_ref\":\"evidence:payment:old\",\"id\":\"payment:old\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"original_ref\":\"original-bank#payment80\",\"paid_at\":\"2026-02-15T12:00:00Z\",\"payer_id\":\"distributor\",\"purpose\":\"participation_payment\",\"receipt_id\":\"receipt:p1\",\"recipient_id\":\"participant\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment:old\"}],\"periods\":[{\"as_of\":\"2026-03-31\",\"cutoff\":\"2026-04-03T00:00:00Z\",\"evidence_ref\":\"evidence:p1\",\"id\":\"p1\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"predecessor_period_id\":null,\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:p1\"}],\"receipts\":[{\"base_amount\":\"200\",\"effective_date\":\"2026-01-15\",\"entitlement_ref\":\"original-entitlement#p1\",\"evidence_ref\":\"evidence:receipt:p1\",\"id\":\"receipt:p1\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"original_ref\":\"original-sales#p1\",\"period_id\":\"p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:receipt:p1\",\"term_id\":\"term:p1\"}],\"terms\":[{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:term:p1\",\"flat_rate\":\"0.5\",\"id\":\"term:p1\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p1\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"evidence_ref\":\"evidence:term:p2\",\"flat_rate\":\"0.5\",\"id\":\"term:p2\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p2\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-07-01\"},\"evidence_ref\":\"evidence:term:p3\",\"flat_rate\":\"0.5\",\"id\":\"term:p3\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p3\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p3\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2027-01-01\",\"start\":\"2026-10-01\"},\"evidence_ref\":\"evidence:term:p4\",\"flat_rate\":\"0.5\",\"id\":\"term:p4\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p4\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p4\",\"threshold\":\"0\",\"upper_rate\":\"0\"}]}",
+      "research": {
+        "backlog_sha256": "1187abcb38bb6420133a7574d40af9839102b7135759c1e28ac29853cfb35d98",
+        "catalog_sha256": "5b6633a85557e8f03df1fee7ce102e825469316b2a89578478c3681f411543c3",
+        "scope_note": "C13.DEPENDENT_PERIOD_REPLAY+C13.PROSPECTIVE_PERIOD_ADJUSTMENT;synthetic-positive-balance-only"
+      },
+      "scope": {
+        "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+        "asset_id": "73796e7468657469632d70696374757265",
+        "currency": "USD",
+        "participant_id": "7061727469636970616e74",
+        "pool_id": "70617274696369706174696f6e2d706f6f6c",
+        "purpose": "authorized_dependent_replay"
+      },
+      "source_case_id": "67656e65736973",
+      "transport_profile": "dependent-replay-original-json/1"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-07-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-07-01",
+      "start": "2026-04-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "dependent-replay-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-DEPENDENT-REPLAY"
+  },
+  "module_ref": {
+    "id": "synthetic:dependent-replay",
+    "locator": "cases/dependent-replay/dependent-replay-module.json",
+    "revision": "1",
+    "sha256": "12ce8d93aca77e706eafd1edbf6c98b0c36754e7a4c7654d8f80f1ddf76f61c2"
+  },
+  "parameters": {
+    "cutoff": "2026-07-03T00:00:00Z",
+    "policy": {
+      "attribution": "original_lines_plus_current_signed_credit",
+      "balance_scope": "nonnegative_account_and_no_original_overpayment",
+      "cash": "complete_empty_current_only",
+      "economics": "original_opening_exact_cumulative_basis",
+      "evidence_class": "research_assumption",
+      "id": "SYNTHETIC-DEPENDENT-REPLAY-01",
+      "replacements": "one_authorized_replacement_per_original_receipt",
+      "revision": "1",
+      "rounding": "exact_no_rounding",
+      "route": "prospective"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+    "asset_ids": [
+      "73796e7468657469632d70696374757265"
+    ],
+    "participant_ids": [
+      "7061727469636970616e74"
+    ],
+    "pool_id": "70617274696369706174696f6e2d706f6f6c",
+    "purpose": "authorized_dependent_replay"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-04-01",
+      "opening_port": "history",
+      "provenance_ref": "original-issued-chain-and-disclosed-replay",
+      "purpose": "authorized_dependent_replay",
+      "quantity": {
+        "boundary": "2026-04-01",
+        "detail": {
+          "none": true
+        },
+        "identity_codec": "unicode-utf8-hex/1",
+        "origin": "genesis",
+        "policy": {
+          "attribution": "original_lines_plus_current_signed_credit",
+          "balance_scope": "nonnegative_account_and_no_original_overpayment",
+          "cash": "complete_empty_current_only",
+          "economics": "original_opening_exact_cumulative_basis",
+          "evidence_class": "research_assumption",
+          "id": "SYNTHETIC-DEPENDENT-REPLAY-01",
+          "replacements": "one_authorized_replacement_per_original_receipt",
+          "revision": "1",
+          "rounding": "exact_no_rounding",
+          "route": "prospective"
+        },
+        "registry_original": "{\"applications\":[{\"amount\":\"80\",\"approved\":true,\"evidence_ref\":\"evidence:application:old\",\"id\":\"application:old\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"original_entitlement_ref\":\"original-entitlement#p1\",\"payment_id\":\"payment:old\",\"receipt_id\":\"receipt:p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:application:old\"}],\"evidence\":[{\"approved\":true,\"id\":\"evidence:application:old\",\"kind\":\"actual_payment_application\",\"observed_at\":\"2026-02-16T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:application:old\"},{\"approved\":true,\"id\":\"evidence:issue:p1\",\"kind\":\"original_issued_artifact\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:issue:p1\"},{\"approved\":true,\"id\":\"evidence:p1\",\"kind\":\"issued_period\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:p1\"},{\"approved\":true,\"id\":\"evidence:payment-population\",\"kind\":\"complete_historical_payment_population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment-population\"},{\"approved\":true,\"id\":\"evidence:payment:old\",\"kind\":\"actual_participation_payment\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:payment:old\"},{\"approved\":true,\"id\":\"evidence:receipt:p1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:receipt:p1\"},{\"approved\":true,\"id\":\"evidence:term:p1\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p1\"},{\"approved\":true,\"id\":\"evidence:term:p2\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p2\"},{\"approved\":true,\"id\":\"evidence:term:p3\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p3\"},{\"approved\":true,\"id\":\"evidence:term:p4\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-evidence:term:p4\"}],\"issued_artifacts\":[{\"basis_total\":\"200\",\"closing_cumulative_basis\":\"200\",\"complete\":true,\"earned\":\"100\",\"evidence_ref\":\"evidence:issue:p1\",\"id\":\"issue:p1\",\"issued_at\":\"2026-04-02T12:00:00Z\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"opening_cumulative_basis\":\"0\",\"original_ref\":\"original-issued-statement#p1\",\"period_id\":\"p1\",\"predecessor_issue_id\":null,\"receipt_ids\":[\"receipt:p1\"],\"result_ref\":\"supplied-issued-result#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:issue:p1\"}],\"origin\":{\"actual_paid\":\"0\",\"boundary\":\"2026-01-01\",\"cumulative_basis\":\"0\",\"recognized_entitlement\":\"0\"},\"party_ids\":[\"distributor\",\"participant\"],\"payer_id\":\"distributor\",\"payment_population\":{\"application_ids\":[\"application:old\"],\"complete\":true,\"evidence_ref\":\"evidence:payment-population\",\"id\":\"payment-population\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"paid_total\":\"80\",\"payment_ids\":[\"payment:old\"],\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment-population\",\"through_period_id\":\"p1\"},\"payments\":[{\"amount\":\"80\",\"evidence_ref\":\"evidence:payment:old\",\"id\":\"payment:old\",\"observed_at\":\"2026-02-16T00:00:00Z\",\"original_ref\":\"original-bank#payment80\",\"paid_at\":\"2026-02-15T12:00:00Z\",\"payer_id\":\"distributor\",\"purpose\":\"participation_payment\",\"receipt_id\":\"receipt:p1\",\"recipient_id\":\"participant\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:payment:old\"}],\"periods\":[{\"as_of\":\"2026-03-31\",\"cutoff\":\"2026-04-03T00:00:00Z\",\"evidence_ref\":\"evidence:p1\",\"id\":\"p1\",\"observed_at\":\"2026-04-02T12:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"predecessor_period_id\":null,\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:p1\"}],\"receipts\":[{\"base_amount\":\"200\",\"effective_date\":\"2026-01-15\",\"entitlement_ref\":\"original-entitlement#p1\",\"evidence_ref\":\"evidence:receipt:p1\",\"id\":\"receipt:p1\",\"observed_at\":\"2026-01-16T00:00:00Z\",\"original_ref\":\"original-sales#p1\",\"period_id\":\"p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"sequence\":0,\"source_ref\":\"original-source:receipt:p1\",\"term_id\":\"term:p1\"}],\"terms\":[{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:term:p1\",\"flat_rate\":\"0.5\",\"id\":\"term:p1\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p1\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p1\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-07-01\",\"start\":\"2026-04-01\"},\"evidence_ref\":\"evidence:term:p2\",\"flat_rate\":\"0.5\",\"id\":\"term:p2\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p2\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p2\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-07-01\"},\"evidence_ref\":\"evidence:term:p3\",\"flat_rate\":\"0.5\",\"id\":\"term:p3\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p3\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p3\",\"threshold\":\"0\",\"upper_rate\":\"0\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2027-01-01\",\"start\":\"2026-10-01\"},\"evidence_ref\":\"evidence:term:p4\",\"flat_rate\":\"0.5\",\"id\":\"term:p4\",\"kind\":\"flat_ratio\",\"lower_rate\":\"0\",\"observed_at\":\"2026-01-01T00:00:00Z\",\"original_ref\":\"original-terms#p4\",\"scope\":{\"agreement_id\":\"synthetic-replay-agreement\",\"asset_id\":\"synthetic-picture\",\"currency\":\"USD\",\"participant_id\":\"participant\",\"pool_id\":\"participation-pool\",\"purpose\":\"authorized_dependent_replay\"},\"source_ref\":\"original-source:term:p4\",\"threshold\":\"0\",\"upper_rate\":\"0\"}]}",
+        "research": {
+          "backlog_sha256": "1187abcb38bb6420133a7574d40af9839102b7135759c1e28ac29853cfb35d98",
+          "catalog_sha256": "5b6633a85557e8f03df1fee7ce102e825469316b2a89578478c3681f411543c3",
+          "scope_note": "C13.DEPENDENT_PERIOD_REPLAY+C13.PROSPECTIVE_PERIOD_ADJUSTMENT;synthetic-positive-balance-only"
+        },
+        "scope": {
+          "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+          "asset_id": "73796e7468657469632d70696374757265",
+          "currency": "USD",
+          "participant_id": "7061727469636970616e74",
+          "pool_id": "70617274696369706174696f6e2d706f6f6c",
+          "purpose": "authorized_dependent_replay"
+        },
+        "source_case_id": "67656e65736973",
+        "transport_profile": "dependent-replay-original-json/1"
+      },
+      "scenario_id": "SYNTHETIC-DEPENDENT-REPLAY",
+      "scope": {
+        "agreement_id": "73796e7468657469632d7265706c61792d61677265656d656e74",
+        "asset_id": "73796e7468657469632d70696374757265",
+        "participant_id": "7061727469636970616e74",
+        "pool_id": "70617274696369706174696f6e2d706f6f6c"
+      },
+      "state_key": "{\"agreement_id\":\"73796e7468657469632d7265706c61792d61677265656d656e74\",\"asset_id\":\"73796e7468657469632d70696374757265\",\"participant_id\":\"7061727469636970616e74\",\"pool_id\":\"70617274696369706174696f6e2d706f6f6c\",\"purpose\":\"authorized_dependent_replay\"}",
+      "unit": "structured"
+    }
+  ]
+}

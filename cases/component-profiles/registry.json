@@ -1,0 +1,9 @@
+{
+  "format": "spl-dependency-registry/1",
+  "profiles": [
+    {
+      "locator": "cases/component-profiles/entitlement-burdens.json",
+      "sha256": "83a2c755d25461ae6be6f7b4b904816326b0edd952f72fefcd772bacd1c4429f"
+    }
+  ]
+}

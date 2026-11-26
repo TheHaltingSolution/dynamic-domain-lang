@@ -1,0 +1,2566 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [],
+      "kind": "evidence",
+      "path": "evidence.evidence",
+      "target": "",
+      "value": "selected_synthetic_record"
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.agreement_id",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.pool_id",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.scope.participant_id",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.period",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.originals",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.sales",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.returns",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "asset_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.current_rates",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "evidence.evidence",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.asset_ids",
+      "target": "scope.asset_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "scope.asset_ids",
+      "target": "inputs.asset_ids",
+      "value": ""
+    }
+  ],
+  "id": "synthetic:returns-losses",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "SettlementScope"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "fact_scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "contract_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "currency",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "asset_ids",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [
+                {
+                  "args": [],
+                  "name": "Asset"
+                }
+              ],
+              "name": "Id"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "case_id",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "cutoff",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "policy",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "recognition",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "measurement",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "rounding",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "evidence_class",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "current_rates",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "asset_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "rate",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "effective",
+                  {
+                    "args": [],
+                    "name": "Period"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "originals",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "asset_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "rate",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "measurement_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "sales",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "asset_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "returns",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "original_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "asset_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "returned_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "return_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "recognition_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "evidence",
+        "role": "evidence",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "source_kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "approval_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Decision"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "supplied_opening",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "contract_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "asset_ids",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "purpose",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "boundary",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "origin",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "loss_carry",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "original_registry",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "basis",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "evidence_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "measurement_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "origin_kind",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "rate",
+                        {
+                          "args": [],
+                          "name": "Ratio"
+                        }
+                      ],
+                      [
+                        "registered_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "returned_basis",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "recognized_ids",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Text"
+                      },
+                      {
+                        "args": [],
+                        "name": "Text"
+                      }
+                    ],
+                    "name": "Tuple"
+                  }
+                ],
+                "name": "List"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "predecessor",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "source_case_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "period",
+                  {
+                    "args": [],
+                    "name": "Period"
+                  }
+                ],
+                [
+                  "closing_state",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "asset_ids",
+                        {
+                          "args": [
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "Asset"
+                                }
+                              ],
+                              "name": "Id"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "purpose",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "policy_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "policy_revision",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "method",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "boundary",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "origin",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "source_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "loss_carry",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "original_registry",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "asset_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "Asset"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "basis",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "measurement_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "origin_kind",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "rate",
+                                  {
+                                    "args": [],
+                                    "name": "Ratio"
+                                  }
+                                ],
+                                [
+                                  "registered_case_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "returned_basis",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "recognized_ids",
+                        {
+                          "args": [
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "Text"
+                                },
+                                {
+                                  "args": [],
+                                  "name": "Text"
+                                }
+                              ],
+                              "name": "Tuple"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "Option"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "ledger",
+        "role": "opening",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "contract_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "asset_ids",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "purpose",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "boundary",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "origin",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "loss_carry",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "original_registry",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "basis",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "evidence_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "measurement_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "origin_kind",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "rate",
+                        {
+                          "args": [],
+                          "name": "Ratio"
+                        }
+                      ],
+                      [
+                        "registered_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "returned_basis",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "recognized_ids",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Text"
+                      },
+                      {
+                        "args": [],
+                        "name": "Text"
+                      }
+                    ],
+                    "name": "Tuple"
+                  }
+                ],
+                "name": "List"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "comparison",
+        "role": "result",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "closing_loss",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "current_earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "loss_applied",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "new_loss",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "opening_loss",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "start",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ],
+                  [
+                    "end",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "pool_signed_earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "recognized_entitlement",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "reversed_earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "status_meaning",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "titles",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "asset_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "current_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "current_earned",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "current_rate",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "floored_earned",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "returned_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "reversed_earned",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "signed_earned",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "sale_lines",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "asset_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "current_rate",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "earned",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "return_lines",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "asset_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "original_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "original_evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "original_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "original_measurement_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "original_rate",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "original_source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "recognition_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "returned_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "reversed_earned",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "signed_effect",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original_lines",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "closing_returned_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "current_returned_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "opening_returned_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "original_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "original_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "original_rate",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "remaining_basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "reconciliation",
+        "role": "reconciliation",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "RETURNS_SELECTED"
+    ],
+    "discriminating_cases": [
+      "signed60-floor100",
+      "old-rate-not-current-rate",
+      "loss40-10-0",
+      "partial30-plus50"
+    ],
+    "evidence_class": "synthetic",
+    "id": "SYNTHETIC-RETURNS-LOSSES-01",
+    "readable": {
+      "locator": "cases/returns/policy.md",
+      "sha256": "9adea50091b1fa5020edc18f7bcd4112b21676785d869140bb797d5e397696ae"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/returns/returns.spl",
+    "sha256": "1bbcf321abadb7a35d02885e413f5a2510c3880e3753307c1b5383d9640b6a05"
+  },
+  "state": [
+    {
+      "closing": "ledger",
+      "history_required": false,
+      "key_fields": [
+        "agreement_id",
+        "participant_id",
+        "pool_id",
+        "purpose"
+      ],
+      "movement_kinds": [
+        "transition"
+      ],
+      "opening": "ledger",
+      "purpose": "returns_and_loss",
+      "unit": "structured"
+    }
+  ]
+}

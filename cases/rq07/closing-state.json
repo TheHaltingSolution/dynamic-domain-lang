@@ -13,7 +13,7 @@
       "APR-RQ07-01"
     ],
     "pool_id": "POOL-SV-AB",
-    "prior_result_ref": "result@sha256:4b1214afc84486278cb3b349bee0a7229b697c2c79fa622c0b6dd124d9ebbf02",
+    "prior_result_ref": "result@sha256:cf437f30189bbe2e75a15c80f4c6bc2482af9e860501c0d133c3a8f36999e557",
     "provenance_ref": "SYN-CLOSE-2025Q4",
     "quantity": "0",
     "scenario_id": "SPL-RQ07-SV-BUNDLE-01",

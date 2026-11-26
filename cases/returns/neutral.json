@@ -1,0 +1,164 @@
+{
+  "schema_version": "returns-neutral/1",
+  "case_id": "returns-q1",
+  "scope": {
+    "contract_id": "returns-synthetic",
+    "participant_id": "returns-participant",
+    "pool_id": "returns-pool",
+    "currency": "USD"
+  },
+  "asset_ids": [
+    "picture-a",
+    "picture-b"
+  ],
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-04-01"
+  },
+  "cutoff": "2026-04-03T00:00:00Z",
+  "policy": {
+    "id": "SYNTHETIC-RETURNS-LOSSES-01",
+    "revision": "1",
+    "method": "signed_pool",
+    "recognition": "supplied_current_period",
+    "measurement": "original_basis_original_rate",
+    "rounding": "exact_no_rounding",
+    "evidence_class": "research_assumption"
+  },
+  "current_rates": [
+    {
+      "scope": {
+        "contract_id": "returns-synthetic",
+        "participant_id": "returns-participant",
+        "pool_id": "returns-pool",
+        "currency": "USD"
+      },
+      "observed_at": "2026-03-01T00:00:00Z",
+      "evidence_ref": "current-source",
+      "asset_id": "picture-a",
+      "rate": "1",
+      "effective": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "source_ref": "synthetic-current-rate-a"
+    },
+    {
+      "scope": {
+        "contract_id": "returns-synthetic",
+        "participant_id": "returns-participant",
+        "pool_id": "returns-pool",
+        "currency": "USD"
+      },
+      "observed_at": "2026-03-01T00:00:00Z",
+      "evidence_ref": "current-source",
+      "asset_id": "picture-b",
+      "rate": "0.8",
+      "effective": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "source_ref": "synthetic-current-rate-b"
+    }
+  ],
+  "originals": [
+    {
+      "id": "old-b",
+      "asset_id": "picture-b",
+      "scope": {
+        "contract_id": "returns-synthetic",
+        "participant_id": "returns-participant",
+        "pool_id": "returns-pool",
+        "currency": "USD"
+      },
+      "basis": "80",
+      "rate": "0.5",
+      "measurement_date": "2025-12-15",
+      "observed_at": "2025-12-16T00:00:00Z",
+      "source_ref": "synthetic-original-b-measurement",
+      "evidence_ref": "historical-source"
+    }
+  ],
+  "sales": [
+    {
+      "scope": {
+        "contract_id": "returns-synthetic",
+        "participant_id": "returns-participant",
+        "pool_id": "returns-pool",
+        "currency": "USD"
+      },
+      "observed_at": "2026-03-01T00:00:00Z",
+      "evidence_ref": "current-source",
+      "id": "sale-a-q1",
+      "asset_id": "picture-a",
+      "basis": "100",
+      "effective_date": "2026-02-01",
+      "source_ref": "synthetic-current-sale-a"
+    }
+  ],
+  "returns": [
+    {
+      "scope": {
+        "contract_id": "returns-synthetic",
+        "participant_id": "returns-participant",
+        "pool_id": "returns-pool",
+        "currency": "USD"
+      },
+      "observed_at": "2026-03-01T00:00:00Z",
+      "evidence_ref": "current-source",
+      "id": "return-b-q1",
+      "original_id": "old-b",
+      "asset_id": "picture-b",
+      "returned_basis": "80",
+      "return_date": "2026-02-15",
+      "recognition_date": "2026-02-15",
+      "source_ref": "synthetic-return-b"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "historical-source",
+      "scope": {
+        "contract_id": "returns-synthetic",
+        "participant_id": "returns-participant",
+        "pool_id": "returns-pool",
+        "currency": "USD"
+      },
+      "observed_at": "2025-12-16T00:00:00Z",
+      "kind": "synthetic_original_measurement"
+    },
+    {
+      "id": "current-source",
+      "scope": {
+        "contract_id": "returns-synthetic",
+        "participant_id": "returns-participant",
+        "pool_id": "returns-pool",
+        "currency": "USD"
+      },
+      "observed_at": "2026-03-01T00:00:00Z",
+      "kind": "synthetic_current_facts"
+    }
+  ],
+  "opening_state": {
+    "scope": {
+      "contract_id": "returns-synthetic",
+      "participant_id": "returns-participant",
+      "pool_id": "returns-pool",
+      "currency": "USD"
+    },
+    "asset_ids": [
+      "picture-a",
+      "picture-b"
+    ],
+    "purpose": "returns_and_loss",
+    "policy_id": "SYNTHETIC-RETURNS-LOSSES-01",
+    "policy_revision": "1",
+    "method": "signed_pool",
+    "boundary": "2026-01-01",
+    "origin": "genesis",
+    "source_case_id": "genesis",
+    "loss_carry": "0",
+    "original_registry": [],
+    "recognized_ids": []
+  }
+}

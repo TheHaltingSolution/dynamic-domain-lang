@@ -23,7 +23,7 @@ class Type:
 
     @property
     def numeric(self) -> bool:
-        return self.name in {"Int", "Nat", "Ratio", "Rational", "Money"}
+        return self.name in {"Int", "Nat", "Ratio", "Rational", "Money", "Quantity", "Rate"}
 
 
 BOOL = Type("Bool")
@@ -33,6 +33,34 @@ TEXT = Type("Text")
 DATE = Type("Date")
 INSTANT = Type("Instant")
 USD = Type("Money", (Type("USD"),))
+
+
+@dataclass(frozen=True)
+class QuantityValue:
+    value: Fraction
+    unit: str
+    context: Any = field(default=None, compare=False, repr=False)
+
+    def __post_init__(self) -> None:
+        from .dimensions import validate_unit
+        validate_unit(self.unit, self.context)
+        if not isinstance(self.value, Fraction):
+            raise SPLException("INVALID_EXACT_NUMBER", "Quantity requires an exact Fraction")
+
+
+@dataclass(frozen=True)
+class RateValue:
+    value: Fraction
+    per_unit: str
+    currency: str = "USD"
+    context: Any = field(default=None, compare=False, repr=False)
+
+    def __post_init__(self) -> None:
+        from .dimensions import validate_currency, validate_unit
+        validate_unit(self.per_unit, self.context)
+        validate_currency(self.currency)
+        if not isinstance(self.value, Fraction):
+            raise SPLException("INVALID_EXACT_NUMBER", "Rate requires an exact Fraction")
 
 
 @dataclass(frozen=True, order=True)
@@ -84,6 +112,8 @@ class CheckedSchedule:
     schedule: dict[str, Any]
     types: dict[str, Type]
     definition_order: list[str]
+    admission: Any = None
+    meanings: Any = None
 
 
 @dataclass
@@ -123,6 +153,15 @@ def encode_fraction(value: Fraction) -> str | dict[str, str]:
 
 
 def encode_value(value: Any) -> Any:
+    if isinstance(value, QuantityValue):
+        from .dimensions import validate_unit
+        validate_unit(value.unit, value.context)
+        return {"value": encode_fraction(value.value), "unit": value.unit}
+    if isinstance(value, RateValue):
+        from .dimensions import validate_unit, validate_currency
+        validate_unit(value.per_unit, value.context)
+        validate_currency(value.currency)
+        return {"value": encode_fraction(value.value), "per_unit": value.per_unit, "currency": value.currency}
     if isinstance(value, OptionValue):
         return {"some":encode_value(value.value)} if value.present else {"none":True}
     if isinstance(value, MapValue):
@@ -134,7 +173,7 @@ def encode_value(value: Any) -> Any:
     if isinstance(value, Type):
         return str(value)
     if isinstance(value, dict):
-        return {key: encode_value(item) for key, item in value.items() if key != "_type"}
+        return {key: encode_value(item) for key, item in value.items() if key not in {"_type", "_admission", "_meanings"}}
     if isinstance(value, (list, tuple)):
         return [encode_value(item) for item in value]
     return value

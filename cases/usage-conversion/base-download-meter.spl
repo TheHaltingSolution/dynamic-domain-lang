@@ -1,0 +1,8 @@
+schedule Usage language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input original: Quantity<Download>;
+  input price: Rate<Download,USD>;
+  opening meter: Quantity<Download> from "usage-meter";
+  emit "quantity" = original;
+  emit "earned" = original * price;
+  closing meter = meter + original;
+}

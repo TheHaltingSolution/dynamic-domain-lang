@@ -1,0 +1,187 @@
+{
+  "schema_version": "transfers-neutral/1",
+  "case_id": "transfers-q1",
+  "coordinator": {
+    "id": "synthetic-transfer-coordinator",
+    "currency": "USD",
+    "purpose": "current_entitlement_transfers"
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-04-01"
+  },
+  "as_of": "2026-03-20",
+  "cutoff": "2026-04-03T00:00:00Z",
+  "policy": {
+    "id": "SYNTHETIC-CONTRACT-TRANSFERS-01",
+    "revision": "1",
+    "measure": "current_period_entitlement",
+    "execution": "topological_then_authorized_sequence",
+    "edge_limit": "one_transaction_per_authorization",
+    "rounding": "exact_no_rounding",
+    "evidence_class": "research_assumption"
+  },
+  "accounts": [
+    {
+      "id": "source",
+      "scope": {
+        "agreement_id": "agreement-source",
+        "participant_id": "participant-source",
+        "pool_id": "pool-source",
+        "currency": "USD"
+      },
+      "source_ref": "synthetic-source-account",
+      "evidence_ref": "scope-authority"
+    },
+    {
+      "id": "target",
+      "scope": {
+        "agreement_id": "agreement-target",
+        "participant_id": "participant-target",
+        "pool_id": "pool-target",
+        "currency": "USD"
+      },
+      "source_ref": "synthetic-target-account",
+      "evidence_ref": "scope-authority"
+    }
+  ],
+  "entitlements": [
+    {
+      "id": "entitlement-source-q1",
+      "account_id": "source",
+      "scope": {
+        "agreement_id": "agreement-source",
+        "participant_id": "participant-source",
+        "pool_id": "pool-source",
+        "currency": "USD"
+      },
+      "amount": "100",
+      "effective_date": "2026-03-01",
+      "observed_at": "2026-03-02T00:00:00Z",
+      "source_ref": "synthetic-source-entitlement-row",
+      "upstream_result_ref": "synthetic:source-entitlement-period-1#line-source",
+      "evidence_ref": "entitlement-source"
+    }
+  ],
+  "authorizations": [
+    {
+      "id": "authorization-q1",
+      "source_account": "source",
+      "target_account": "target",
+      "source_scope": {
+        "agreement_id": "agreement-source",
+        "participant_id": "participant-source",
+        "pool_id": "pool-source",
+        "currency": "USD"
+      },
+      "target_scope": {
+        "agreement_id": "agreement-target",
+        "participant_id": "participant-target",
+        "pool_id": "pool-target",
+        "currency": "USD"
+      },
+      "effective": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "approved": true,
+      "approved_date": "2026-03-19",
+      "recorded_date": "2026-03-20",
+      "observed_at": "2026-03-21T00:00:00Z",
+      "sequence": 1,
+      "maximum_amount": "30",
+      "source_ref": "synthetic-cross-contract-authorization",
+      "evidence_ref": "transfer-authority"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "transfer-q1",
+      "authorization_id": "authorization-q1",
+      "source_account": "source",
+      "target_account": "target",
+      "source_scope": {
+        "agreement_id": "agreement-source",
+        "participant_id": "participant-source",
+        "pool_id": "pool-source",
+        "currency": "USD"
+      },
+      "target_scope": {
+        "agreement_id": "agreement-target",
+        "participant_id": "participant-target",
+        "pool_id": "pool-target",
+        "currency": "USD"
+      },
+      "amount": "30",
+      "recognition_date": "2026-03-25",
+      "observed_at": "2026-03-26T00:00:00Z",
+      "source_ref": "synthetic-transfer-transaction",
+      "evidence_ref": "transfer-authority"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "scope-authority",
+      "coordinator_id": "synthetic-transfer-coordinator",
+      "account_ids": [
+        "source",
+        "target"
+      ],
+      "observed_at": "2026-03-01T00:00:00Z",
+      "kind": "synthetic-coordinator-membership"
+    },
+    {
+      "id": "entitlement-source",
+      "coordinator_id": "synthetic-transfer-coordinator",
+      "account_ids": [
+        "source"
+      ],
+      "observed_at": "2026-03-02T00:00:00Z",
+      "kind": "synthetic-original-entitlement"
+    },
+    {
+      "id": "transfer-authority",
+      "coordinator_id": "synthetic-transfer-coordinator",
+      "account_ids": [
+        "source",
+        "target"
+      ],
+      "observed_at": "2026-03-21T00:00:00Z",
+      "kind": "synthetic-cross-contract-approval"
+    }
+  ],
+  "opening_state": {
+    "coordinator_id": "synthetic-transfer-coordinator",
+    "account_scopes": [
+      {
+        "id": "source",
+        "scope": {
+          "agreement_id": "agreement-source",
+          "participant_id": "participant-source",
+          "pool_id": "pool-source",
+          "currency": "USD"
+        }
+      },
+      {
+        "id": "target",
+        "scope": {
+          "agreement_id": "agreement-target",
+          "participant_id": "participant-target",
+          "pool_id": "pool-target",
+          "currency": "USD"
+        }
+      }
+    ],
+    "purpose": "current_entitlement_transfers",
+    "policy_id": "SYNTHETIC-CONTRACT-TRANSFERS-01",
+    "policy_revision": "1",
+    "boundary": "2026-01-01",
+    "origin": "genesis",
+    "source_case_id": "genesis",
+    "consumed_transfer_ids": [],
+    "consumed_entitlement_ids": [],
+    "consumed_authorization_ids": [],
+    "last_period": [],
+    "consumed_upstream_refs": []
+  }
+}

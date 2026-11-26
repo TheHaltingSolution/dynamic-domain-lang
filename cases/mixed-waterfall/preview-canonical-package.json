@@ -1,0 +1,1089 @@
+{
+  "decisions": [
+    {
+      "decision_id": "CLAIM_REGISTRY_SELECTED",
+      "evidence_ref": "synthetic-selected-mixed-claims-policy",
+      "policy_id": "SYNTHETIC-MIXED-CLAIMS-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "CLAIM_PERIOD_SELECTED",
+      "evidence_ref": "synthetic-selected-mixed-claims-policy",
+      "policy_id": "SYNTHETIC-MIXED-CLAIMS-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "MIXED_CLAIMS_SELECTED",
+      "evidence_ref": "synthetic-selected-mixed-claims-policy",
+      "policy_id": "SYNTHETIC-MIXED-CLAIMS-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "MIXED_CLAIMS_SELECTED",
+        "evidence_ref": "65766964656e63653a6561726e696e673a7131",
+        "id": "65766964656e63653a6561726e696e673a7131",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-03-02T00:00:00Z"
+      },
+      {
+        "approval_ref": "MIXED_CLAIMS_SELECTED",
+        "evidence_ref": "65766964656e63653a6561726e696e672d706f70756c6174696f6e3a7131",
+        "id": "65766964656e63653a6561726e696e672d706f70756c6174696f6e3a7131",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-01T00:00:00Z"
+      },
+      {
+        "approval_ref": "MIXED_CLAIMS_SELECTED",
+        "evidence_ref": "65766964656e63653a636173682d736574746c656d656e742d706f70756c6174696f6e3a7131",
+        "id": "65766964656e63653a636173682d736574746c656d656e742d706f70756c6174696f6e3a7131",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-01T00:00:00Z"
+      }
+    ]
+  },
+  "inputs": {
+    "fact_scope": {
+      "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+      "asset_id": "73796e7468657469632d66696c6d",
+      "currency": "USD",
+      "participant_group": "646562746f722d67726f7570",
+      "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+      "purpose": "mixed_claim_recovery"
+    },
+    "frame": {
+      "as_of": "2026-03-31",
+      "as_of_next": "2026-04-01",
+      "as_of_next_utc": "2026-04-01T00:00:00Z",
+      "case_id": "6d697865642d7131",
+      "cash_settlement_population": {
+        "complete": true,
+        "event_ids": [],
+        "evidence_ref": "65766964656e63653a636173682d736574746c656d656e742d706f70756c6174696f6e3a7131",
+        "id": "636173682d736574746c656d656e742d706f70756c6174696f6e3a7131",
+        "observed_at": "2026-04-01T00:00:00Z",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "scope": {
+          "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+          "asset_id": "73796e7468657469632d66696c6d",
+          "currency": "USD",
+          "participant_group": "646562746f722d67726f7570",
+          "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+          "purpose": "mixed_claim_recovery"
+        },
+        "source_ref": "6f726967696e616c2d736f757263653a636173682d736574746c656d656e742d706f70756c6174696f6e3a7131",
+        "total": {
+          "currency": "USD",
+          "value": "0"
+        }
+      },
+      "cutoff": "2026-04-03T00:00:00Z",
+      "earning_population": {
+        "complete": true,
+        "earning_ids": [
+          "6561726e696e673a7131"
+        ],
+        "evidence_ref": "65766964656e63653a6561726e696e672d706f70756c6174696f6e3a7131",
+        "gross_basis_total": {
+          "currency": "USD",
+          "value": "240"
+        },
+        "id": "6561726e696e672d706f70756c6174696f6e3a7131",
+        "observed_at": "2026-04-01T00:00:00Z",
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "scope": {
+          "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+          "asset_id": "73796e7468657469632d66696c6d",
+          "currency": "USD",
+          "participant_group": "646562746f722d67726f7570",
+          "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+          "purpose": "mixed_claim_recovery"
+        },
+        "source_ref": "6f726967696e616c2d736f757263653a6561726e696e672d706f70756c6174696f6e3a7131"
+      },
+      "earnings": [
+        {
+          "base_amount": {
+            "currency": "USD",
+            "value": "240"
+          },
+          "effective_date": "2026-03-01",
+          "effective_date_utc": "2026-03-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a6561726e696e673a7131",
+          "id": "6561726e696e673a7131",
+          "observed_at": "2026-03-02T00:00:00Z",
+          "original_ref": "6f726967696e616c2d63757272656e742d67726f75702d6561726e696e67237131",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "sequence": "1",
+          "source_ref": "6f726967696e616c2d736f757263653a6561726e696e673a7131"
+        }
+      ],
+      "evidence": [
+        {
+          "approved": true,
+          "id": "65766964656e63653a6561726e696e673a7131",
+          "kind": "current_group_earning_basis",
+          "observed_at": "2026-03-02T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a6561726e696e673a7131"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a6561726e696e672d706f70756c6174696f6e3a7131",
+          "kind": "complete_earning_population",
+          "observed_at": "2026-04-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a6561726e696e672d706f70756c6174696f6e3a7131"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a636173682d736574746c656d656e742d706f70756c6174696f6e3a7131",
+          "kind": "complete_current_claim_cash_settlement_population",
+          "observed_at": "2026-04-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a636173682d736574746c656d656e742d706f70756c6174696f6e3a7131"
+        }
+      ],
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "period_end_utc": "2026-04-01T00:00:00Z",
+      "period_start_utc": "2026-01-01T00:00:00Z"
+    },
+    "original_frames": [
+      {
+        "cash_population_id": "636173682d736574746c656d656e742d706f70756c6174696f6e3a7131",
+        "earning_ids": [
+          "6561726e696e673a7131"
+        ],
+        "earning_population_id": "6561726e696e672d706f70756c6174696f6e3a7131",
+        "evidence_ids": [
+          "65766964656e63653a6561726e696e673a7131",
+          "65766964656e63653a6561726e696e672d706f70756c6174696f6e3a7131",
+          "65766964656e63653a636173682d736574746c656d656e742d706f70756c6174696f6e3a7131"
+        ],
+        "id": "6d697865642d7131",
+        "original": "{\"as_of\":\"2026-03-31\",\"case_id\":\"mixed-q1\",\"cash_settlement_population\":{\"complete\":true,\"event_ids\":[],\"evidence_ref\":\"evidence:cash-settlement-population:q1\",\"id\":\"cash-settlement-population:q1\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:cash-settlement-population:q1\",\"total\":\"0\"},\"cutoff\":\"2026-04-03T00:00:00Z\",\"earning_population\":{\"complete\":true,\"earning_ids\":[\"earning:q1\"],\"evidence_ref\":\"evidence:earning-population:q1\",\"gross_basis_total\":\"240\",\"id\":\"earning-population:q1\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:earning-population:q1\"},\"earnings\":[{\"base_amount\":\"240\",\"effective_date\":\"2026-03-01\",\"evidence_ref\":\"evidence:earning:q1\",\"id\":\"earning:q1\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"original_ref\":\"original-current-group-earning#q1\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"sequence\":1,\"source_ref\":\"original-source:earning:q1\"}],\"evidence\":[{\"approved\":true,\"id\":\"evidence:earning:q1\",\"kind\":\"current_group_earning_basis\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:earning:q1\"},{\"approved\":true,\"id\":\"evidence:earning-population:q1\",\"kind\":\"complete_earning_population\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:earning-population:q1\"},{\"approved\":true,\"id\":\"evidence:cash-settlement-population:q1\",\"kind\":\"complete_current_claim_cash_settlement_population\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:cash-settlement-population:q1\"}],\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"}}"
+      }
+    ],
+    "original_registry_ids": [
+      {
+        "category": "participant_ids",
+        "ids": [
+          "616476616e63652d6f776e6572",
+          "6361706974616c2d6f776e6572",
+          "646562746f722d67726f7570",
+          "646973747269627574696f6e2d7061796572"
+        ]
+      },
+      {
+        "category": "earning_terms",
+        "ids": [
+          "6561726e696e672d7465726d73"
+        ]
+      },
+      {
+        "category": "roster_authority",
+        "ids": [
+          "726573696475616c2d726f73746572"
+        ]
+      },
+      {
+        "category": "residual_weights",
+        "ids": [
+          "616476616e63652d6f776e6572",
+          "6361706974616c2d6f776e6572"
+        ]
+      },
+      {
+        "category": "capital_fundings",
+        "ids": [
+          "6361706974616c2d66756e64696e67"
+        ]
+      },
+      {
+        "category": "advance_fundings",
+        "ids": [
+          "616476616e63652d66756e64696e67"
+        ]
+      },
+      {
+        "category": "funding_populations",
+        "ids": [
+          "66756e64696e672d706f70756c6174696f6e3a616476616e6365",
+          "66756e64696e672d706f70756c6174696f6e3a6361706974616c"
+        ]
+      },
+      {
+        "category": "fee_bases",
+        "ids": [
+          "6665652d736f75726365"
+        ]
+      },
+      {
+        "category": "correction_sources",
+        "ids": [
+          "636f7272656374696f6e2d736f75726365"
+        ]
+      },
+      {
+        "category": "historical_payments",
+        "ids": [
+          "686973746f726963616c2d7061796d656e74"
+        ]
+      },
+      {
+        "category": "historical_applications",
+        "ids": [
+          "686973746f726963616c2d6170706c69636174696f6e"
+        ]
+      },
+      {
+        "category": "historical_payment_populations",
+        "ids": [
+          "686973746f726963616c2d7061796d656e742d706f70756c6174696f6e"
+        ]
+      },
+      {
+        "category": "claim_authorities",
+        "ids": [
+          "636c61696d3a616476616e6365",
+          "636c61696d3a617070726f7665645f636f7272656374696f6e",
+          "636c61696d3a6361706974616c",
+          "636c61696d3a666565"
+        ]
+      },
+      {
+        "category": "evidence",
+        "ids": [
+          "65766964656e63653a616476616e63652d66756e64696e67",
+          "65766964656e63653a6361706974616c2d66756e64696e67",
+          "65766964656e63653a636c61696d3a616476616e6365",
+          "65766964656e63653a636c61696d3a617070726f7665645f636f7272656374696f6e",
+          "65766964656e63653a636c61696d3a6361706974616c",
+          "65766964656e63653a636c61696d3a666565",
+          "65766964656e63653a636f7272656374696f6e2d736f75726365",
+          "65766964656e63653a6561726e696e672d7465726d73",
+          "65766964656e63653a6665652d736f75726365",
+          "65766964656e63653a66756e64696e672d706f70756c6174696f6e3a616476616e6365",
+          "65766964656e63653a66756e64696e672d706f70756c6174696f6e3a6361706974616c",
+          "65766964656e63653a686973746f726963616c2d6170706c69636174696f6e",
+          "65766964656e63653a686973746f726963616c2d7061796d656e74",
+          "65766964656e63653a686973746f726963616c2d7061796d656e742d706f70756c6174696f6e",
+          "65766964656e63653a726573696475616c2d726f73746572"
+        ]
+      }
+    ],
+    "predecessor": {
+      "none": true
+    },
+    "project": "73796e7468657469632d66696c6d",
+    "registry": {
+      "advance_fundings": [
+        {
+          "amount": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "evidence_ref": "65766964656e63653a616476616e63652d66756e64696e67",
+          "funded_at": "2026-01-01T12:00:00Z",
+          "funded_utc_date": "2026-01-01",
+          "funder_id": "616476616e63652d6f776e6572",
+          "id": "616476616e63652d66756e64696e67",
+          "observed_at": "2026-01-02T00:00:00Z",
+          "original_ref": "6f726967696e616c2d62616e6b2d66756e64696e6723616476616e6365",
+          "recipient_group": "646562746f722d67726f7570",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a616476616e63652d66756e64696e67"
+        }
+      ],
+      "capital_fundings": [
+        {
+          "amount": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "evidence_ref": "65766964656e63653a6361706974616c2d66756e64696e67",
+          "funded_at": "2026-01-01T12:00:00Z",
+          "funded_utc_date": "2026-01-01",
+          "funder_id": "6361706974616c2d6f776e6572",
+          "id": "6361706974616c2d66756e64696e67",
+          "observed_at": "2026-01-02T00:00:00Z",
+          "original_ref": "6f726967696e616c2d62616e6b2d66756e64696e67236361706974616c",
+          "recipient_group": "646562746f722d67726f7570",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a6361706974616c2d66756e64696e67"
+        }
+      ],
+      "claim_authorities": [
+        {
+          "approved": true,
+          "approved_date": "2026-01-01",
+          "approved_date_utc": "2026-01-01T00:00:00Z",
+          "authorized_principal": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "beneficiary": "6361706974616c2d6f776e6572",
+          "eligible_from": "2026-01-01",
+          "eligible_from_utc": "2026-01-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a636c61696d3a6361706974616c",
+          "id": "636c61696d3a6361706974616c",
+          "kind": "capital",
+          "observed_at": "2026-01-03T00:00:00Z",
+          "original_ref": "6f726967696e616c2d636c61696d2d617574686f72697479236361706974616c",
+          "priority": "2",
+          "recorded_date": "2026-01-01",
+          "recorded_date_utc": "2026-01-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "sequence": "1",
+          "source_ids": [
+            "6361706974616c2d66756e64696e67"
+          ],
+          "source_ref": "6f726967696e616c2d736f757263653a636c61696d3a6361706974616c"
+        },
+        {
+          "approved": true,
+          "approved_date": "2026-01-01",
+          "approved_date_utc": "2026-01-01T00:00:00Z",
+          "authorized_principal": {
+            "currency": "USD",
+            "value": "100"
+          },
+          "beneficiary": "616476616e63652d6f776e6572",
+          "eligible_from": "2026-01-01",
+          "eligible_from_utc": "2026-01-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a636c61696d3a616476616e6365",
+          "id": "636c61696d3a616476616e6365",
+          "kind": "advance",
+          "observed_at": "2026-01-03T00:00:00Z",
+          "original_ref": "6f726967696e616c2d636c61696d2d617574686f7269747923616476616e6365",
+          "priority": "3",
+          "recorded_date": "2026-01-01",
+          "recorded_date_utc": "2026-01-01T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "sequence": "1",
+          "source_ids": [
+            "616476616e63652d66756e64696e67"
+          ],
+          "source_ref": "6f726967696e616c2d736f757263653a636c61696d3a616476616e6365"
+        },
+        {
+          "approved": true,
+          "approved_date": "2026-02-10",
+          "approved_date_utc": "2026-02-10T00:00:00Z",
+          "authorized_principal": {
+            "currency": "USD",
+            "value": "25"
+          },
+          "beneficiary": "646973747269627574696f6e2d7061796572",
+          "eligible_from": "2026-03-01",
+          "eligible_from_utc": "2026-03-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a636c61696d3a666565",
+          "id": "636c61696d3a666565",
+          "kind": "fee",
+          "observed_at": "2026-02-11T00:00:00Z",
+          "original_ref": "6f726967696e616c2d636c61696d2d617574686f7269747923666565",
+          "priority": "0",
+          "recorded_date": "2026-02-10",
+          "recorded_date_utc": "2026-02-10T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "sequence": "1",
+          "source_ids": [
+            "6665652d736f75726365"
+          ],
+          "source_ref": "6f726967696e616c2d736f757263653a636c61696d3a666565"
+        },
+        {
+          "approved": true,
+          "approved_date": "2026-02-10",
+          "approved_date_utc": "2026-02-10T00:00:00Z",
+          "authorized_principal": {
+            "currency": "USD",
+            "value": "20"
+          },
+          "beneficiary": "646973747269627574696f6e2d7061796572",
+          "eligible_from": "2026-03-01",
+          "eligible_from_utc": "2026-03-01T00:00:00Z",
+          "evidence_ref": "65766964656e63653a636c61696d3a617070726f7665645f636f7272656374696f6e",
+          "id": "636c61696d3a617070726f7665645f636f7272656374696f6e",
+          "kind": "approved_correction",
+          "observed_at": "2026-02-11T00:00:00Z",
+          "original_ref": "6f726967696e616c2d636c61696d2d617574686f7269747923617070726f7665645f636f7272656374696f6e",
+          "priority": "1",
+          "recorded_date": "2026-02-10",
+          "recorded_date_utc": "2026-02-10T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "sequence": "1",
+          "source_ids": [
+            "636f7272656374696f6e2d736f75726365"
+          ],
+          "source_ref": "6f726967696e616c2d736f757263653a636c61696d3a617070726f7665645f636f7272656374696f6e"
+        }
+      ],
+      "correction_sources": [
+        {
+          "evidence_ref": "65766964656e63653a636f7272656374696f6e2d736f75726365",
+          "id": "636f7272656374696f6e2d736f75726365",
+          "observed_at": "2026-02-06T00:00:00Z",
+          "original_basis": {
+            "currency": "USD",
+            "value": "200"
+          },
+          "original_date": "2025-12-01",
+          "original_date_utc": "2025-12-01T00:00:00Z",
+          "original_entitlement_ref": "6f726967696e616c2d70617274696369706174696f6e2d6c656467657223656e7469746c656d656e74313030",
+          "original_rate": "0.5",
+          "original_ref": "6f726967696e616c2d636f7272656374696f6e2d736f75726365236d6561737572656d656e74",
+          "payer_id": "646973747269627574696f6e2d7061796572",
+          "recipient_group": "646562746f722d67726f7570",
+          "return_basis": {
+            "currency": "USD",
+            "value": "80"
+          },
+          "return_date": "2026-02-05",
+          "return_date_utc": "2026-02-05T00:00:00Z",
+          "return_ref": "6f726967696e616c2d72657475726e2d6c65646765722362617369733830",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a636f7272656374696f6e2d736f75726365"
+        }
+      ],
+      "earning_terms": {
+        "approved": true,
+        "approved_date": "2026-01-01",
+        "approved_date_utc": "2026-01-01T00:00:00Z",
+        "effective": {
+          "end": "2026-10-01",
+          "start": "2026-01-01"
+        },
+        "evidence_ref": "65766964656e63653a6561726e696e672d7465726d73",
+        "id": "6561726e696e672d7465726d73",
+        "observed_at": "2026-01-02T00:00:00Z",
+        "original_ref": "6f726967696e616c2d70617274696369706174696f6e2d7465726d732363757272656e74",
+        "payer_id": "646973747269627574696f6e2d7061796572",
+        "scope": {
+          "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+          "asset_id": "73796e7468657469632d66696c6d",
+          "currency": "USD",
+          "participant_group": "646562746f722d67726f7570",
+          "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+          "purpose": "mixed_claim_recovery"
+        },
+        "share": "0.5",
+        "share_source": "0.5",
+        "source_ref": "6f726967696e616c2d736f757263653a6561726e696e672d7465726d73"
+      },
+      "evidence": [
+        {
+          "approved": true,
+          "id": "65766964656e63653a6561726e696e672d7465726d73",
+          "kind": "earning_terms",
+          "observed_at": "2026-01-02T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a6561726e696e672d7465726d73"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a726573696475616c2d726f73746572",
+          "kind": "residual_roster",
+          "observed_at": "2026-01-02T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a726573696475616c2d726f73746572"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a6361706974616c2d66756e64696e67",
+          "kind": "actual_capital_funding",
+          "observed_at": "2026-01-02T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a6361706974616c2d66756e64696e67"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a616476616e63652d66756e64696e67",
+          "kind": "actual_advance_funding",
+          "observed_at": "2026-01-02T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a616476616e63652d66756e64696e67"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a66756e64696e672d706f70756c6174696f6e3a6361706974616c",
+          "kind": "complete_funding_population",
+          "observed_at": "2026-01-03T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a66756e64696e672d706f70756c6174696f6e3a6361706974616c"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a66756e64696e672d706f70756c6174696f6e3a616476616e6365",
+          "kind": "complete_funding_population",
+          "observed_at": "2026-01-03T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a66756e64696e672d706f70756c6174696f6e3a616476616e6365"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a6665652d736f75726365",
+          "kind": "original_fee_basis",
+          "observed_at": "2026-01-21T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a6665652d736f75726365"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a636f7272656374696f6e2d736f75726365",
+          "kind": "original_correction_measurements",
+          "observed_at": "2026-02-06T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a636f7272656374696f6e2d736f75726365"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a686973746f726963616c2d7061796d656e74",
+          "kind": "actual_historical_participation_payment",
+          "observed_at": "2025-12-16T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a686973746f726963616c2d7061796d656e74"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a686973746f726963616c2d6170706c69636174696f6e",
+          "kind": "historical_participation_application",
+          "observed_at": "2025-12-17T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a686973746f726963616c2d6170706c69636174696f6e"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a686973746f726963616c2d7061796d656e742d706f70756c6174696f6e",
+          "kind": "complete_original_payment_population",
+          "observed_at": "2025-12-31T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a686973746f726963616c2d7061796d656e742d706f70756c6174696f6e"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a636c61696d3a6361706974616c",
+          "kind": "claim_authority",
+          "observed_at": "2026-01-03T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a636c61696d3a6361706974616c"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a636c61696d3a616476616e6365",
+          "kind": "claim_authority",
+          "observed_at": "2026-01-03T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a636c61696d3a616476616e6365"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a636c61696d3a666565",
+          "kind": "claim_authority",
+          "observed_at": "2026-02-11T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a636c61696d3a666565"
+        },
+        {
+          "approved": true,
+          "id": "65766964656e63653a636c61696d3a617070726f7665645f636f7272656374696f6e",
+          "kind": "claim_authority",
+          "observed_at": "2026-02-11T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d65766964656e63653a636c61696d3a617070726f7665645f636f7272656374696f6e"
+        }
+      ],
+      "fee_bases": [
+        {
+          "base_amount": {
+            "currency": "USD",
+            "value": "250"
+          },
+          "creditor_id": "646973747269627574696f6e2d7061796572",
+          "debtor_group": "646562746f722d67726f7570",
+          "effective_date": "2026-01-20",
+          "effective_date_utc": "2026-01-20T00:00:00Z",
+          "evidence_ref": "65766964656e63653a6665652d736f75726365",
+          "id": "6665652d736f75726365",
+          "observed_at": "2026-01-21T00:00:00Z",
+          "original_ref": "6f726967696e616c2d6665652d6261736973237365706172617465323530",
+          "rate": "0.1",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a6665652d736f75726365"
+        }
+      ],
+      "funding_populations": [
+        {
+          "complete": true,
+          "evidence_ref": "65766964656e63653a66756e64696e672d706f70756c6174696f6e3a6361706974616c",
+          "funding_ids": [
+            "6361706974616c2d66756e64696e67"
+          ],
+          "id": "66756e64696e672d706f70756c6174696f6e3a6361706974616c",
+          "kind": "capital",
+          "observed_at": "2026-01-03T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a66756e64696e672d706f70756c6174696f6e3a6361706974616c",
+          "total": {
+            "currency": "USD",
+            "value": "100"
+          }
+        },
+        {
+          "complete": true,
+          "evidence_ref": "65766964656e63653a66756e64696e672d706f70756c6174696f6e3a616476616e6365",
+          "funding_ids": [
+            "616476616e63652d66756e64696e67"
+          ],
+          "id": "66756e64696e672d706f70756c6174696f6e3a616476616e6365",
+          "kind": "advance",
+          "observed_at": "2026-01-03T00:00:00Z",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a66756e64696e672d706f70756c6174696f6e3a616476616e6365",
+          "total": {
+            "currency": "USD",
+            "value": "100"
+          }
+        }
+      ],
+      "historical_applications": [
+        {
+          "amount": {
+            "currency": "USD",
+            "value": "80"
+          },
+          "approved": true,
+          "correction_source_id": "636f7272656374696f6e2d736f75726365",
+          "evidence_ref": "65766964656e63653a686973746f726963616c2d6170706c69636174696f6e",
+          "id": "686973746f726963616c2d6170706c69636174696f6e",
+          "observed_at": "2025-12-17T00:00:00Z",
+          "original_entitlement_ref": "6f726967696e616c2d70617274696369706174696f6e2d6c656467657223656e7469746c656d656e74313030",
+          "payment_id": "686973746f726963616c2d7061796d656e74",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a686973746f726963616c2d6170706c69636174696f6e"
+        }
+      ],
+      "historical_payment_populations": [
+        {
+          "application_ids": [
+            "686973746f726963616c2d6170706c69636174696f6e"
+          ],
+          "complete": true,
+          "correction_source_id": "636f7272656374696f6e2d736f75726365",
+          "evidence_ref": "65766964656e63653a686973746f726963616c2d7061796d656e742d706f70756c6174696f6e",
+          "id": "686973746f726963616c2d7061796d656e742d706f70756c6174696f6e",
+          "observed_at": "2025-12-31T00:00:00Z",
+          "paid_total": {
+            "currency": "USD",
+            "value": "80"
+          },
+          "payment_ids": [
+            "686973746f726963616c2d7061796d656e74"
+          ],
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a686973746f726963616c2d7061796d656e742d706f70756c6174696f6e"
+        }
+      ],
+      "historical_payments": [
+        {
+          "amount": {
+            "currency": "USD",
+            "value": "80"
+          },
+          "correction_source_id": "636f7272656374696f6e2d736f75726365",
+          "evidence_ref": "65766964656e63653a686973746f726963616c2d7061796d656e74",
+          "id": "686973746f726963616c2d7061796d656e74",
+          "observed_at": "2025-12-16T00:00:00Z",
+          "original_ref": "6f726967696e616c2d62616e6b2d7061796d656e7423706169643830",
+          "paid_at": "2025-12-15T12:00:00Z",
+          "payer_id": "646973747269627574696f6e2d7061796572",
+          "recipient_group": "646562746f722d67726f7570",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+            "asset_id": "73796e7468657469632d66696c6d",
+            "currency": "USD",
+            "participant_group": "646562746f722d67726f7570",
+            "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+            "purpose": "mixed_claim_recovery"
+          },
+          "source_ref": "6f726967696e616c2d736f757263653a686973746f726963616c2d7061796d656e74"
+        }
+      ],
+      "participant_ids": [
+        "646562746f722d67726f7570",
+        "6361706974616c2d6f776e6572",
+        "616476616e63652d6f776e6572",
+        "646973747269627574696f6e2d7061796572"
+      ],
+      "payer_id": "646973747269627574696f6e2d7061796572",
+      "residual_weights": [
+        {
+          "participant_id": "6361706974616c2d6f776e6572",
+          "weight": "1"
+        },
+        {
+          "participant_id": "616476616e63652d6f776e6572",
+          "weight": "1"
+        }
+      ],
+      "roster_authority": {
+        "approved": true,
+        "complete": true,
+        "evidence_ref": "65766964656e63653a726573696475616c2d726f73746572",
+        "id": "726573696475616c2d726f73746572",
+        "member_ids": [
+          "6361706974616c2d6f776e6572",
+          "616476616e63652d6f776e6572"
+        ],
+        "observed_at": "2026-01-02T00:00:00Z",
+        "original_ref": "6f726967696e616c2d726f7374657223636f6d706c657465",
+        "scope": {
+          "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+          "asset_id": "73796e7468657469632d66696c6d",
+          "currency": "USD",
+          "participant_group": "646562746f722d67726f7570",
+          "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+          "purpose": "mixed_claim_recovery"
+        },
+        "source_ref": "6f726967696e616c2d736f757263653a726573696475616c2d726f73746572"
+      }
+    },
+    "registry_original": "{\"advance_fundings\":[{\"amount\":\"100\",\"evidence_ref\":\"evidence:advance-funding\",\"funded_at\":\"2026-01-01T12:00:00Z\",\"funder_id\":\"advance-owner\",\"id\":\"advance-funding\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"original_ref\":\"original-bank-funding#advance\",\"recipient_group\":\"debtor-group\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:advance-funding\"}],\"capital_fundings\":[{\"amount\":\"100\",\"evidence_ref\":\"evidence:capital-funding\",\"funded_at\":\"2026-01-01T12:00:00Z\",\"funder_id\":\"capital-owner\",\"id\":\"capital-funding\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"original_ref\":\"original-bank-funding#capital\",\"recipient_group\":\"debtor-group\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:capital-funding\"}],\"claim_authorities\":[{\"approved\":true,\"approved_date\":\"2026-01-01\",\"authorized_principal\":\"100\",\"beneficiary\":\"advance-owner\",\"eligible_from\":\"2026-01-01\",\"evidence_ref\":\"evidence:claim:advance\",\"id\":\"claim:advance\",\"kind\":\"advance\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"original_ref\":\"original-claim-authority#advance\",\"priority\":3,\"recorded_date\":\"2026-01-01\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"sequence\":1,\"source_ids\":[\"advance-funding\"],\"source_ref\":\"original-source:claim:advance\"},{\"approved\":true,\"approved_date\":\"2026-02-10\",\"authorized_principal\":\"20\",\"beneficiary\":\"distribution-payer\",\"eligible_from\":\"2026-03-01\",\"evidence_ref\":\"evidence:claim:approved_correction\",\"id\":\"claim:approved_correction\",\"kind\":\"approved_correction\",\"observed_at\":\"2026-02-11T00:00:00Z\",\"original_ref\":\"original-claim-authority#approved_correction\",\"priority\":1,\"recorded_date\":\"2026-02-10\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"sequence\":1,\"source_ids\":[\"correction-source\"],\"source_ref\":\"original-source:claim:approved_correction\"},{\"approved\":true,\"approved_date\":\"2026-01-01\",\"authorized_principal\":\"100\",\"beneficiary\":\"capital-owner\",\"eligible_from\":\"2026-01-01\",\"evidence_ref\":\"evidence:claim:capital\",\"id\":\"claim:capital\",\"kind\":\"capital\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"original_ref\":\"original-claim-authority#capital\",\"priority\":2,\"recorded_date\":\"2026-01-01\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"sequence\":1,\"source_ids\":[\"capital-funding\"],\"source_ref\":\"original-source:claim:capital\"},{\"approved\":true,\"approved_date\":\"2026-02-10\",\"authorized_principal\":\"25\",\"beneficiary\":\"distribution-payer\",\"eligible_from\":\"2026-03-01\",\"evidence_ref\":\"evidence:claim:fee\",\"id\":\"claim:fee\",\"kind\":\"fee\",\"observed_at\":\"2026-02-11T00:00:00Z\",\"original_ref\":\"original-claim-authority#fee\",\"priority\":0,\"recorded_date\":\"2026-02-10\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"sequence\":1,\"source_ids\":[\"fee-source\"],\"source_ref\":\"original-source:claim:fee\"}],\"correction_sources\":[{\"evidence_ref\":\"evidence:correction-source\",\"id\":\"correction-source\",\"observed_at\":\"2026-02-06T00:00:00Z\",\"original_basis\":\"200\",\"original_date\":\"2025-12-01\",\"original_entitlement_ref\":\"original-participation-ledger#entitlement100\",\"original_rate\":\"0.5\",\"original_ref\":\"original-correction-source#measurement\",\"payer_id\":\"distribution-payer\",\"recipient_group\":\"debtor-group\",\"return_basis\":\"80\",\"return_date\":\"2026-02-05\",\"return_ref\":\"original-return-ledger#basis80\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:correction-source\"}],\"earning_terms\":{\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:earning-terms\",\"id\":\"earning-terms\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"original_ref\":\"original-participation-terms#current\",\"payer_id\":\"distribution-payer\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"share\":\"0.5\",\"source_ref\":\"original-source:earning-terms\"},\"evidence\":[{\"approved\":true,\"id\":\"evidence:advance-funding\",\"kind\":\"actual_advance_funding\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:advance-funding\"},{\"approved\":true,\"id\":\"evidence:capital-funding\",\"kind\":\"actual_capital_funding\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:capital-funding\"},{\"approved\":true,\"id\":\"evidence:claim:advance\",\"kind\":\"claim_authority\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:claim:advance\"},{\"approved\":true,\"id\":\"evidence:claim:approved_correction\",\"kind\":\"claim_authority\",\"observed_at\":\"2026-02-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:claim:approved_correction\"},{\"approved\":true,\"id\":\"evidence:claim:capital\",\"kind\":\"claim_authority\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:claim:capital\"},{\"approved\":true,\"id\":\"evidence:claim:fee\",\"kind\":\"claim_authority\",\"observed_at\":\"2026-02-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:claim:fee\"},{\"approved\":true,\"id\":\"evidence:correction-source\",\"kind\":\"original_correction_measurements\",\"observed_at\":\"2026-02-06T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:correction-source\"},{\"approved\":true,\"id\":\"evidence:earning-terms\",\"kind\":\"earning_terms\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:earning-terms\"},{\"approved\":true,\"id\":\"evidence:fee-source\",\"kind\":\"original_fee_basis\",\"observed_at\":\"2026-01-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:fee-source\"},{\"approved\":true,\"id\":\"evidence:funding-population:advance\",\"kind\":\"complete_funding_population\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:funding-population:advance\"},{\"approved\":true,\"id\":\"evidence:funding-population:capital\",\"kind\":\"complete_funding_population\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:funding-population:capital\"},{\"approved\":true,\"id\":\"evidence:historical-application\",\"kind\":\"historical_participation_application\",\"observed_at\":\"2025-12-17T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:historical-application\"},{\"approved\":true,\"id\":\"evidence:historical-payment\",\"kind\":\"actual_historical_participation_payment\",\"observed_at\":\"2025-12-16T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:historical-payment\"},{\"approved\":true,\"id\":\"evidence:historical-payment-population\",\"kind\":\"complete_original_payment_population\",\"observed_at\":\"2025-12-31T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:historical-payment-population\"},{\"approved\":true,\"id\":\"evidence:residual-roster\",\"kind\":\"residual_roster\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-evidence:residual-roster\"}],\"fee_bases\":[{\"base_amount\":\"250\",\"creditor_id\":\"distribution-payer\",\"debtor_group\":\"debtor-group\",\"effective_date\":\"2026-01-20\",\"evidence_ref\":\"evidence:fee-source\",\"id\":\"fee-source\",\"observed_at\":\"2026-01-21T00:00:00Z\",\"original_ref\":\"original-fee-basis#separate250\",\"rate\":\"0.1\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:fee-source\"}],\"funding_populations\":[{\"complete\":true,\"evidence_ref\":\"evidence:funding-population:advance\",\"funding_ids\":[\"advance-funding\"],\"id\":\"funding-population:advance\",\"kind\":\"advance\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:funding-population:advance\",\"total\":\"100\"},{\"complete\":true,\"evidence_ref\":\"evidence:funding-population:capital\",\"funding_ids\":[\"capital-funding\"],\"id\":\"funding-population:capital\",\"kind\":\"capital\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:funding-population:capital\",\"total\":\"100\"}],\"historical_applications\":[{\"amount\":\"80\",\"approved\":true,\"correction_source_id\":\"correction-source\",\"evidence_ref\":\"evidence:historical-application\",\"id\":\"historical-application\",\"observed_at\":\"2025-12-17T00:00:00Z\",\"original_entitlement_ref\":\"original-participation-ledger#entitlement100\",\"payment_id\":\"historical-payment\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:historical-application\"}],\"historical_payment_populations\":[{\"application_ids\":[\"historical-application\"],\"complete\":true,\"correction_source_id\":\"correction-source\",\"evidence_ref\":\"evidence:historical-payment-population\",\"id\":\"historical-payment-population\",\"observed_at\":\"2025-12-31T00:00:00Z\",\"paid_total\":\"80\",\"payment_ids\":[\"historical-payment\"],\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:historical-payment-population\"}],\"historical_payments\":[{\"amount\":\"80\",\"correction_source_id\":\"correction-source\",\"evidence_ref\":\"evidence:historical-payment\",\"id\":\"historical-payment\",\"observed_at\":\"2025-12-16T00:00:00Z\",\"original_ref\":\"original-bank-payment#paid80\",\"paid_at\":\"2025-12-15T12:00:00Z\",\"payer_id\":\"distribution-payer\",\"recipient_group\":\"debtor-group\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:historical-payment\"}],\"participant_ids\":[\"advance-owner\",\"capital-owner\",\"debtor-group\",\"distribution-payer\"],\"payer_id\":\"distribution-payer\",\"residual_weights\":[{\"participant_id\":\"advance-owner\",\"weight\":\"1\"},{\"participant_id\":\"capital-owner\",\"weight\":\"1\"}],\"roster_authority\":{\"approved\":true,\"complete\":true,\"evidence_ref\":\"evidence:residual-roster\",\"id\":\"residual-roster\",\"member_ids\":[\"capital-owner\",\"advance-owner\"],\"observed_at\":\"2026-01-02T00:00:00Z\",\"original_ref\":\"original-roster#complete\",\"scope\":{\"agreement_id\":\"synthetic-mixed-agreement\",\"asset_id\":\"synthetic-film\",\"currency\":\"USD\",\"participant_group\":\"debtor-group\",\"pool_id\":\"group-earnings-pool\",\"purpose\":\"mixed_claim_recovery\"},\"source_ref\":\"original-source:residual-roster\"}}",
+    "research": {
+      "atomic_catalog_sha256": "a5b9b5d4676b3c1eee175feff804e575b21179c77455e476db03dad373144553",
+      "offset_policy_sha256": "12c9c44259fb9d1e2d75cdd732d778062d7996aaa83d40849a448af6718e774c",
+      "scope_note": "C07.MIXED_CLAIM_KINDS;capital/advance/correction plus fee-priority composition",
+      "waterfall_policy_sha256": "c545da1200b067ac25423389b092578b5303bced444aecb70bd14b8033c9e89f"
+    },
+    "scope": {
+      "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+      "participant_id": "646562746f722d67726f7570",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "67726f75702d6561726e696e67732d706f6f6c"
+    },
+    "supplied_opening": {
+      "boundary": "2026-01-01",
+      "detail": {
+        "none": true
+      },
+      "identity_codec": "unicode-utf8-hex/1",
+      "origin": "genesis",
+      "source_case_id": "67656e65736973",
+      "transport_profile": "mixed-claims-original-json/3"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "preview",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "6d697865642d7131-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-MIXED-CLAIMS"
+  },
+  "module_ref": {
+    "id": "synthetic:mixed-claims",
+    "locator": "cases/mixed-waterfall/mixed-claims-module.json",
+    "revision": "1",
+    "sha256": "b29398917ceb2de0bce993970c53e179ff12e7b3b280ff041059022c852598c4"
+  },
+  "parameters": {
+    "cutoff": "2026-04-03T00:00:00Z",
+    "policy": {
+      "claim_order": "kind_priority_then_eligible_date_then_sequence",
+      "correction_treatment": "prospective_offset_not_second_reversal",
+      "current_cash_settlement": "complete_empty_only",
+      "event_order": "date_then_unique_sequence",
+      "evidence_class": "research_assumption",
+      "fee_treatment": "claim_only_not_pre_deduction",
+      "fund": "original_current_group_earning_capacity",
+      "id": "SYNTHETIC-MIXED-CLAIMS-01",
+      "method": "priority_fee_first",
+      "new_claims": "genesis_registry_only",
+      "residual": "complete_original_roster_positive_weight_sum",
+      "revision": "1",
+      "rounding": "exact_no_rounding"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+    "asset_ids": [
+      "73796e7468657469632d66696c6d"
+    ],
+    "participant_ids": [
+      "646562746f722d67726f7570"
+    ],
+    "pool_id": "67726f75702d6561726e696e67732d706f6f6c",
+    "purpose": "mixed_claim_recovery"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "history",
+      "provenance_ref": "supplied-original-mixed-claim-history",
+      "purpose": "mixed_claim_recovery",
+      "quantity": {
+        "boundary": "2026-01-01",
+        "detail": {
+          "none": true
+        },
+        "identity_codec": "unicode-utf8-hex/1",
+        "origin": "genesis",
+        "source_case_id": "67656e65736973",
+        "transport_profile": "mixed-claims-original-json/3"
+      },
+      "scenario_id": "SYNTHETIC-MIXED-CLAIMS",
+      "scope": {
+        "agreement_id": "73796e7468657469632d6d697865642d61677265656d656e74",
+        "asset_id": "73796e7468657469632d66696c6d",
+        "participant_id": "646562746f722d67726f7570",
+        "pool_id": "67726f75702d6561726e696e67732d706f6f6c"
+      },
+      "state_key": "{\"agreement_id\":\"73796e7468657469632d6d697865642d61677265656d656e74\",\"asset_id\":\"73796e7468657469632d66696c6d\",\"participant_id\":\"646562746f722d67726f7570\",\"pool_id\":\"67726f75702d6561726e696e67732d706f6f6c\",\"purpose\":\"mixed_claim_recovery\"}",
+      "unit": "structured"
+    }
+  ]
+}

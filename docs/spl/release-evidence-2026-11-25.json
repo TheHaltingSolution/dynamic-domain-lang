@@ -1,0 +1,141 @@
+{
+  "format": "spl-bounded-release-evidence/1",
+  "date": "2026-11-25",
+  "verified_source": {
+    "git_commit": "87d140df4aada6c800fcd96932bb2a24c84761fa",
+    "git_tree": "937273f1f7cfa33efc353a2ccb3e40771fcea02d",
+    "archive_sha256": "8e0ee9092761036e2684a0cad704558b5f6b7a00189b2362222c2fa6466346da"
+  },
+  "local_tag": "spl-bounded-research-20261125",
+  "toolchain": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "identities": {
+    "compiler": "9c0e519627d67295666443c28878ccc65b3931a7655c9950e1536151bd60d682",
+    "module": "9cc3591ff9990fb56efc79aa0ba0c6296dc6d7d8adbe301634bace49ee4014e0",
+    "runtime": "77a18c1992ab39bd97977e8b94c9ef0741f557c8c6680d243bed8dcae2b3a6f5"
+  },
+  "regression": {
+    "shards": 12,
+    "counts": {
+      "run": 1558,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "expectedFailures": 0,
+      "unexpectedSuccesses": 0
+    },
+    "elapsed_wall_seconds": 2598.085240125656,
+    "source_and_compiled_pins_unchanged": true,
+    "receipt": {
+      "path": "release-regression-87d140d-20261125-a/combined/verification.json",
+      "sha256": "3443744d2c3a16b1a5c63a9ae8283bc1f251c15bffb3ffe9e55a5900214f4a50"
+    }
+  },
+  "native_reserve": {
+    "completed_calculations": 16,
+    "actual_successors": 10,
+    "previews": 6,
+    "pre_source_blocks": 9,
+    "public_reload_count": 31,
+    "receipt": {
+      "path": "release-c09-87d140d-20261125-a/verification.json",
+      "sha256": "92b89f75f2dd58f0a4142e33c04b11d232e9b2dbaa7a52cd6847df70cafc85d4"
+    },
+    "review": {
+      "path": "release-c09-87d140d-20261125-a/independent-review.json",
+      "sha256": "18f89ffcdd64eafa83cbaabe568ab7b12fd5b6a6f5122ad6df3244a8a6b95cff"
+    },
+    "archive_sha256": "68382549e0fc87a559c77289c080501185ec9d35c57feec2fe840bf5abbb8096"
+  },
+  "capacity": {
+    "completed_observations": 16,
+    "record_counts": {
+      "100": {
+        "distinct_chain_originals": 385,
+        "successful_cached_samples": 3,
+        "cached_seconds": {
+          "api_seconds": {
+            "max": 4.639775700001337,
+            "median": 4.634876300002361,
+            "n": 3,
+            "p95_nearest_rank": 4.639775700001337
+          },
+          "consumer_seconds": {
+            "max": 0.43201549999866984,
+            "median": 0.42856180000308086,
+            "n": 3,
+            "p95_nearest_rank": 0.43201549999866984
+          },
+          "through_consumer_seconds": {
+            "max": 5.071791200000007,
+            "median": 5.061941800002387,
+            "n": 3,
+            "p95_nearest_rank": 5.071791200000007
+          }
+        }
+      },
+      "1000": {
+        "distinct_chain_originals": 3850,
+        "successful_cached_samples": 4,
+        "cached_seconds": {
+          "api_seconds": {
+            "max": 34.69367749999947,
+            "median": 34.67895255000076,
+            "n": 4,
+            "p95_nearest_rank": 34.69367749999947
+          },
+          "consumer_seconds": {
+            "max": 5.6647696,
+            "median": 5.504109200001039,
+            "n": 4,
+            "p95_nearest_rank": 5.6647696
+          },
+          "through_consumer_seconds": {
+            "max": 40.358447099999466,
+            "median": 40.1830617500018,
+            "n": 4,
+            "p95_nearest_rank": 40.358447099999466
+          }
+        }
+      }
+    },
+    "recouped_usd_by_quarter": [
+      250,
+      0,
+      0,
+      0
+    ],
+    "receipt": {
+      "path": "release-capacity-20261125-a/campaign.json",
+      "sha256": "124f74355dac5f85a5631f6f1cffbe1afe0e751cc8f533fd50a1b0da9781e0d0"
+    },
+    "review": {
+      "path": "release-capacity-20261125-a/root-title-carry-review.json",
+      "sha256": "9ee8a545922465ab5bf32c567f5a1caecb2514185fa3ec929cf4f086f9165ce4"
+    }
+  },
+  "candidate_registrations": {
+    "path": "release-registration-review-87d140d-20261125-a/verification.json",
+    "sha256": "4f349f2c462c7a73827ce680b32be60817c53afd695864296a0124b66230b4dd"
+  },
+  "focused_historical_receipts": [
+    {
+      "path": "physical-relationships-c93e122-20261125-a/verification.json",
+      "sha256": "31cb9a29029fc81de8d0c212311713580018a310fd2753106dab1d270b2ee6a0"
+    },
+    {
+      "path": "report-audit-integration-20261125-a/verification.json",
+      "sha256": "70875247bede771903077787de80422295043e8a19df3ee8d73a6c6f804985ac"
+    }
+  ],
+  "draft_preservation": {
+    "files": 23,
+    "archive": {
+      "path": "resume-untracked-drafts-a/drafts.zip",
+      "sha256": "ba426fbc7c04ac43be6fc401965a5b59a50fcb03bfd6fcefdc1dacc6457f7cc2"
+    },
+    "manifest": {
+      "path": "resume-untracked-drafts-a/manifest.json",
+      "sha256": "c20aa868d0e0f84a633741f280896c26ccf6a2da1fdc4bfc38acbcd6438a43d4"
+    }
+  }
+}

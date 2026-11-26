@@ -2,6 +2,7 @@ name: Lean
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -28,10 +29,6 @@ jobs:
       - run: lake exe spl_sv_readable cases/sv/readable/bindings.json
       - run: lake exe spl_lg_readable cases/lg/readable/bindings.json
       - run: lake exe spl_rq07_readable cases/rq07/readable/bindings.json
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: python -m unittest discover -s Tests -v
       - run: lake env lean --run Tests/SPLParser.lean
       - run: lake env lean --run Tests/SPLCheck.lean
       - run: lake env lean --run Tests/SPLBindings.lean
@@ -42,8 +39,60 @@ jobs:
       - run: lake env lean --run Tests/SPLIR.lean
       - run: lake env lean --run Tests/SPLValidateIR.lean
       - run: lake env lean --run Tests/SPLCalendar.lean
+      - run: lake env lean --run Tests/SPLQuantities.lean
       - run: lake env lean --run Tests/SPLTrace.lean
       - run: lake env lean --run Tests/SPLPriority.lean
       - run: lake env lean --run Tests/SPLCollections.lean
       - run: lake env lean --run Tests/SPLFold.lean
       - run: lake env lean --run Tests/SPLTraceScaling.lean --quota
+
+  regression:
+    name: Windows regression (${{ matrix.shard }})
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    env:
+      ELAN_HOME: 'C:\elan'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the pinned Lean toolchain
+        run: |
+          $installer = Join-Path $env:RUNNER_TEMP 'elan-installer'
+          $archive = Join-Path $env:RUNNER_TEMP 'elan.zip'
+          Invoke-WebRequest -Uri 'https://github.com/leanprover/elan/releases/latest/download/elan-x86_64-pc-windows-msvc.zip' -OutFile $archive
+          Expand-Archive -LiteralPath $archive -DestinationPath $installer
+          & "$installer/elan-init.exe" -y --no-modify-path --default-toolchain none
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $elan = "$env:ELAN_HOME/bin/elan.exe"
+          & $elan toolchain install (Get-Content -Raw lean-toolchain).Trim()
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $lean = & $elan which lean
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "SPL_LEAN_BIN=$(Split-Path -Parent $lean)" >> $env:GITHUB_ENV
+      - name: Build and run the regression shard
+        env:
+          SHARD_INDEX: ${{ matrix.shard }}
+          SHARD_COUNT: ${{ strategy.job-total }}
+        run: |
+          # Short physical paths leave room for generated Lean and audit files.
+          $checkout = "C:\s$env:SHARD_INDEX"
+          $logs = Join-Path $env:RUNNER_TEMP 'regression'
+          $env:TEMP = 'C:\spl-tmp'
+          $env:TMP = $env:TEMP
+          New-Item -ItemType Directory -Path $env:TEMP | Out-Null
+          git worktree add --detach $checkout $env:GITHUB_SHA
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -B scripts/spl_release_verification.py --checkout $checkout --commit $env:GITHUB_SHA --lean-bin $env:SPL_LEAN_BIN --output $logs --shards $env:SHARD_COUNT --shard-index $env:SHARD_INDEX
+          $status = $LASTEXITCODE
+          if ($status -ne 0) {
+            Get-ChildItem -LiteralPath $logs -Filter '*.log' | ForEach-Object { Get-Content -LiteralPath $_.FullName }
+          }
+          if (Test-Path -LiteralPath "$logs/verification.json") {
+            Get-Content -LiteralPath "$logs/verification.json"
+          }
+          exit $status

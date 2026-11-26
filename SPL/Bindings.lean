@@ -1,4 +1,5 @@
-import Lean
+import Lean.Data.Json.Parser
+import Lean.Data.Json.Printer
 import SPL.Runtime
 import SPL.Check
 import Std.Internal.Parsec
@@ -161,7 +162,7 @@ def exact (value : Json) : Except String Rat := do
     pure (mkRat n d)
   | _ => throw "INVALID_EXACT_NUMBER"
 
-partial def decode (type : Check.Ty) (value : Json) : Except String Value := do
+partial def decodeWith (context : Dimensions.Meanings) (type : Check.Ty) (value : Json) : Except String Value := do
   match type with
   | .atom name =>
     if name == "Bool" then return .flag (← value.getBool? |>.mapError (fun _ => "EXPECTED_BOOL"))
@@ -183,10 +184,27 @@ partial def decode (type : Check.Ty) (value : Json) : Except String Value := do
     let _ ← exactFields value ["value", "currency"]
     unless (← str (← value.getObjVal? "currency")) == currency do throw "UNSUPPORTED_CURRENCY"
     return .num (← exact (← value.getObjVal? "value"))
+  | .quantity unit =>
+    unless Dimensions.known context unit do throw "UNSUPPORTED_UNIT"
+    let _ ← exactFields value ["value", "unit"] |>.mapError (fun _ => "INVALID_QUANTITY")
+    let tag ← str (← value.getObjVal? "unit") |>.mapError (fun _ => "INVALID_QUANTITY")
+    unless Dimensions.known context tag do throw "UNSUPPORTED_UNIT"
+    unless tag == unit do throw "UNIT_MISMATCH"
+    return .quantity unit (← exact (← value.getObjVal? "value"))
+  | .rate unit currency =>
+    unless Dimensions.known context unit do throw "UNSUPPORTED_UNIT"
+    unless currency == "USD" do throw "UNSUPPORTED_CURRENCY"
+    let _ ← exactFields value ["value", "per_unit", "currency"] |>.mapError (fun _ => "INVALID_RATE")
+    let tag ← str (← value.getObjVal? "per_unit") |>.mapError (fun _ => "INVALID_RATE")
+    let denomination ← str (← value.getObjVal? "currency") |>.mapError (fun _ => "INVALID_RATE")
+    unless Dimensions.known context tag do throw "UNSUPPORTED_UNIT"
+    unless tag == unit do throw "UNIT_MISMATCH"
+    unless denomination == currency do throw "CURRENCY_MISMATCH"
+    return .rate unit currency (← exact (← value.getObjVal? "value"))
   | .list type =>
     let values ← value.getArr? |>.mapError (fun _ => "EXPECTED_LIST")
     checkCollectionSize values.size
-    let decoded ← values.toList.mapM (decode type)
+    let decoded ← values.toList.mapM (decodeWith context type)
     if let .record name _ := type then
       if ["AdvanceIssue", "ReserveMovement", "PaymentApplication"].contains name then
         let identities ← decoded.mapM fun item => do asText (← field item "event_id")
@@ -202,38 +220,43 @@ partial def decode (type : Check.Ty) (value : Json) : Except String Value := do
   | .option type =>
     let fields ← value.getObj? |>.mapError (fun _ => "EXPECTED_OPTION")
     if fields.toList.length != 1 then throw "EXPECTED_OPTION"
-    if let some present := fields.get? "some" then return .present (← decode type present)
+    if let some present := fields.get? "some" then return .present (← decodeWith context type present)
     if fields.get? "none" == some (.bool true) then return .absent
     throw "EXPECTED_OPTION"
   | .tuple types =>
     let values ← value.getArr? |>.mapError (fun _ => "EXPECTED_TUPLE")
     unless values.size == types.length do throw "TUPLE_ARITY"
-    return .tuple (← (types.zip values.toList).mapM fun (ty,v) => decode ty v)
+    return .tuple (← (types.zip values.toList).mapM fun (ty,v) => decodeWith context ty v)
   | .map kt vt =>
     let entries ← value.getArr? |>.mapError (fun _ => "EXPECTED_MAP")
     checkCollectionSize entries.size
     let keyed ← entries.toList.mapM fun entry => do
       let _ ← exactFields entry ["key","value"]
-      pure (← decode kt (← entry.getObjVal? "key"), ← entry.getObjVal? "value")
+      pure (← decodeWith context kt (← entry.getObjVal? "key"), ← entry.getObjVal? "value")
     for (key,_) in keyed do
       if (keyed.filter fun p => equal key p.1).length > 1 then throw "DUPLICATE_MAP_KEY"
-    let rows ← keyed.mapM fun (key,value) => do pure (.obj [("key",key),("value",← decode vt value)])
+    let rows ← keyed.mapM fun (key,value) => do pure (.obj [("key",key),("value",← decodeWith context vt value)])
     makeMap (.seq rows) (fun row => field row "key") (fun row => field row "value")
   | .record name fields =>
     let _ ← exactFields value (fields.map Prod.fst)
     let values ← fields.mapM fun (key, type) => do
-      pure (key, ← decode type (← value.getObjVal? key))
+      pure (key, ← decodeWith context type (← value.getObjVal? key))
     if name == "Period" then
       let start ← asText (← lookup values "start")
       let finish ← asText (← lookup values "end")
       unless start < finish do throw "INVALID_PERIOD"
     return .obj values
 
-def decodeBindings (types : List (String × Syntax.TypeExpr)) (value : Json) : Except String Env := do
+def decode (type : Check.Ty) (value : Json) : Except String Value := decodeWith {} type value
+
+def decodeBindingsWith (owner : Dimensions.Admission) (context : Dimensions.Meanings) (types : List (String × Syntax.TypeExpr)) (value : Json) : Except String Env := do
   let _ ← exactFields value (types.map Prod.fst)
   types.mapM fun (name, type) => do
-    let type ← Check.parseType type |>.mapError (fun diagnostic => diagnostic.code)
-    pure (name, ← decode type (← value.getObjVal? name))
+    let type ← Check.parseTypeWith owner type |>.mapError (fun diagnostic => diagnostic.code)
+    pure (name, ← decodeWith context type (← value.getObjVal? name))
+
+def decodeBindings (types : List (String × Syntax.TypeExpr)) (value : Json) : Except String Env :=
+  decodeBindingsWith {} {} types value
 
 def runMain (inputTypes openingTypes : List (String × Syntax.TypeExpr))
     (settle : Env → Env → Eval Settlement) (args : List String) : IO UInt32 := do
@@ -248,6 +271,24 @@ def runMain (inputTypes openingTypes : List (String × Syntax.TypeExpr))
       let inputs ← decodeBindings inputTypes (← json.getObjVal? "inputs")
       let openings ← decodeBindings openingTypes (← json.getObjVal? "openings")
       settle inputs openings)
+    catch _ => pure (.error "BINDING_FILE_IO_ERROR")
+  IO.println (outcomeJson result).compress
+  return 0
+def runMainWith (owner : Dimensions.Admission) (context : Dimensions.Meanings) (inputTypes openingTypes : List (String × Syntax.TypeExpr))
+    (settle : Env → Env → Eval Settlement) (args : List String) : IO UInt32 := do
+  let [path] := args | do
+    IO.println (outcomeJson (.error "BINDING_FILE_ARGUMENT_REQUIRED")).compress
+    return 1
+  let result ← try
+    let source ← IO.FS.readFile path
+    pure (do
+      let json ← parseStrict source
+      let _ ← exactFields json ["inputs", "openings"]
+      let inputs ← decodeBindingsWith owner context inputTypes (← json.getObjVal? "inputs")
+      let openings ← decodeBindingsWith owner context openingTypes (← json.getObjVal? "openings")
+      let settlement ← settle inputs openings
+      for (_, value) in settlement.emissions ++ settlement.closing do validateValueWith context value
+      pure settlement)
     catch _ => pure (.error "BINDING_FILE_IO_ERROR")
   IO.println (outcomeJson result).compress
   return 0

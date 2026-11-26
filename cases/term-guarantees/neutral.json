@@ -1,0 +1,201 @@
+{
+  "schema_version": "term-guarantees-neutral/1",
+  "case_id": "term-minimum-q1",
+  "scope": {
+    "contract_id": "term-guarantee-synthetic",
+    "participant_id": "term-participant",
+    "pool_id": "term-pool",
+    "asset_id": "term-picture",
+    "currency": "USD"
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-04-01"
+  },
+  "as_of": "2026-03-31",
+  "cutoff": "2026-04-03T00:00:00Z",
+  "policy": {
+    "id": "SYNTHETIC-TERM-GUARANTEES-01",
+    "revision": "1",
+    "method": "actual_funded_advance",
+    "floor_timing": "term_end",
+    "cap_reset": "never_within_term",
+    "cap_reduction_order": "topup_before_earned",
+    "funding_date_basis": "supplied_utc_date",
+    "term_availability": "known_at_open_utc",
+    "rounding": "exact_no_rounding",
+    "evidence_class": "research_assumption"
+  },
+  "term": {
+    "id": "minimum-term",
+    "revision": "1",
+    "scope": {
+      "contract_id": "term-guarantee-synthetic",
+      "participant_id": "term-participant",
+      "pool_id": "term-pool",
+      "asset_id": "term-picture",
+      "currency": "USD"
+    },
+    "period": {
+      "start": "2026-01-01",
+      "end": "2026-04-01"
+    },
+    "floor": "0",
+    "cap": "0",
+    "recoupable_minimum_face": "150",
+    "approved_date": "2025-12-29",
+    "recorded_date": "2025-12-30",
+    "observed_at": "2025-12-30T00:00:00Z",
+    "source_ref": "synthetic-original-minimum-terms",
+    "evidence_ref": "term-source"
+  },
+  "earnings": [
+    {
+      "id": "earned-q1",
+      "term_id": "minimum-term",
+      "scope": {
+        "contract_id": "term-guarantee-synthetic",
+        "participant_id": "term-participant",
+        "pool_id": "term-pool",
+        "asset_id": "term-picture",
+        "currency": "USD"
+      },
+      "amount": "80",
+      "effective_date": "2026-02-15",
+      "observed_at": "2026-03-01T00:00:00Z",
+      "source_ref": "synthetic-original-earned80",
+      "evidence_ref": "earnings-source"
+    }
+  ],
+  "fundings": [
+    {
+      "id": "funded-advance-q1",
+      "disbursement_id": "actual-disbursement-q1",
+      "term_id": "minimum-term",
+      "scope": {
+        "contract_id": "term-guarantee-synthetic",
+        "participant_id": "term-participant",
+        "pool_id": "term-pool",
+        "asset_id": "term-picture",
+        "currency": "USD"
+      },
+      "amount": "150",
+      "funded_date": "2026-01-10",
+      "funded_at": "2026-01-10T12:00:00Z",
+      "observed_at": "2026-01-11T00:00:00Z",
+      "approved": true,
+      "source_ref": "synthetic-actual-funded-advance150",
+      "evidence_ref": "funding-source"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "term-source",
+      "scope": {
+        "contract_id": "term-guarantee-synthetic",
+        "participant_id": "term-participant",
+        "pool_id": "term-pool",
+        "asset_id": "term-picture",
+        "currency": "USD"
+      },
+      "observed_at": "2025-12-30T00:00:00Z",
+      "kind": "synthetic-fixed-term"
+    },
+    {
+      "id": "earnings-source",
+      "scope": {
+        "contract_id": "term-guarantee-synthetic",
+        "participant_id": "term-participant",
+        "pool_id": "term-pool",
+        "asset_id": "term-picture",
+        "currency": "USD"
+      },
+      "observed_at": "2026-03-01T00:00:00Z",
+      "kind": "synthetic-original-earnings"
+    },
+    {
+      "id": "funding-source",
+      "scope": {
+        "contract_id": "term-guarantee-synthetic",
+        "participant_id": "term-participant",
+        "pool_id": "term-pool",
+        "asset_id": "term-picture",
+        "currency": "USD"
+      },
+      "observed_at": "2026-01-11T00:00:00Z",
+      "kind": "actual_advance_funding"
+    },
+    {
+      "id": "complete-q1",
+      "scope": {
+        "contract_id": "term-guarantee-synthetic",
+        "participant_id": "term-participant",
+        "pool_id": "term-pool",
+        "asset_id": "term-picture",
+        "currency": "USD"
+      },
+      "observed_at": "2026-04-02T00:00:00Z",
+      "kind": "complete_funding_population",
+      "term_id": "minimum-term",
+      "period": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "funding_ids": [
+        "funded-advance-q1"
+      ],
+      "disbursement_ids": [
+        "actual-disbursement-q1"
+      ],
+      "funded_total": "150"
+    }
+  ],
+  "opening_state": {
+    "scope": {
+      "contract_id": "term-guarantee-synthetic",
+      "participant_id": "term-participant",
+      "pool_id": "term-pool",
+      "asset_id": "term-picture",
+      "currency": "USD"
+    },
+    "purpose": "term_guarantee_and_prepayment",
+    "policy_id": "SYNTHETIC-TERM-GUARANTEES-01",
+    "policy_revision": "1",
+    "method": "actual_funded_advance",
+    "cap_reduction_order": "topup_before_earned",
+    "term": {
+      "id": "minimum-term",
+      "revision": "1",
+      "scope": {
+        "contract_id": "term-guarantee-synthetic",
+        "participant_id": "term-participant",
+        "pool_id": "term-pool",
+        "asset_id": "term-picture",
+        "currency": "USD"
+      },
+      "period": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "floor": "0",
+      "cap": "0",
+      "recoupable_minimum_face": "150",
+      "approved_date": "2025-12-29",
+      "recorded_date": "2025-12-30",
+      "observed_at": "2025-12-30T00:00:00Z",
+      "source_ref": "synthetic-original-minimum-terms",
+      "evidence_ref": "term-source"
+    },
+    "boundary": "2026-01-01",
+    "origin": "genesis",
+    "source_case_id": "genesis",
+    "term_earned": "0",
+    "term_recognized_entitlement": "0",
+    "term_cap_consumed": "0",
+    "total_funded": "0",
+    "total_recovered": "0",
+    "prepayment": "0",
+    "term_closed": false,
+    "period_history": []
+  }
+}

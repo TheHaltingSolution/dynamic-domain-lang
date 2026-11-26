@@ -1,0 +1,3613 @@
+{
+  "format": "spl-c1-atomic-variants/1",
+  "date": "2026-11-23",
+  "disposition": "reviewed_finite_planning_catalog",
+  "denominator_frozen": true,
+  "scope": "Finite proposed named semantic variants inside adopted C1, with supporting interface/compiler obligations and separately qualified execution evidence. A variant is a semantic discriminator, not a task, test method, historical ledger disposition, source spelling, or Cartesian product of options.",
+  "sources": [
+    "docs/spl/release-scope-ld02.md",
+    "docs/spl/rr04-ld03-integration.md",
+    "docs/spl/ld03-owner-decision.md",
+    "docs/spl/completion-backlog.json",
+    "docs/spl/feature-test-matrix.json",
+    "docs/spl/active-work.md"
+  ],
+  "authority_rules": [
+    "Release scope and adopted source/policy decisions determine required semantics. This draft proposes identities and grouping; root must review the denominator before freezing it.",
+    "Evidence records qualify their exact frozen sources, effective backends and build identities. An old passing cohort is not a rerun under the current emitter; mappings and reported witnesses are not new execution.",
+    "Family-level letters, task counts and historical dispositions are not the denominator. Newer named evidence may supersede an older absence statement only for its exact acceptance.",
+    "Source inspection, canonical wrapper rejection, native-IR calculation failure, reference execution, native-emitted execution, Python-emitted execution, native-IR audit observations and emitted-target decisions receive separate credit.",
+    "No automatic professional approval, vendor parity, whole-compiler proof, all-program or all-combination claim follows from any row."
+  ],
+  "status_meanings": {
+    "qualified": "Named bounded implemented witness with explicit retained cohort record. Not a current whole-corpus rerun or exhaustive semantic coverage.",
+    "reported": "Previously recorded bounded implementation/test mapping; not independently rerun or recensused for this catalog.",
+    "partial": "Existing finite support covers only the listed subset; named remaining acceptance stays open.",
+    "in_progress": "Assigned independent or implementation slice; acceptance not yet closed.",
+    "pending": "Named accepted semantic or integration obligation lacks native/canonical acceptance.",
+    "gated": "Standing owner gate blocks this native interface."
+  },
+  "requirement_layers": {
+    "accepted_c1_variant": "Named scope proposition supported by release/adopted decisions; identity/grouping still awaits root denominator review.",
+    "supporting_engineering": "Required or selected enabling interface/compiler obligation, separate from counting independent monetary methods.",
+    "denominator_review_required": "Review whether separately required positive semantics or only a control for an already selected method.",
+    "alternative_requires_explicit_selection": "Documented alternative, not an additional unconditional requirement. Include in frozen denominator only if explicitly selected."
+  },
+  "counting_rules": {
+    "financial_equivalence": "Count financial_method groups under stated assumptions, preserving distinct source/stage observations separately. Different fixture outputs alone do not establish distinct methods.",
+    "cross_family": "A shared economic operation may satisfy multiple family requirements. Related-family links do not create independent monetary methods.",
+    "alternatives": "Mutually exclusive recognition routes are alternatives, not additive credits or two catch-up amounts.",
+    "composition": "Keep targeted compositions as additional controls; do not manufacture every possible permutation as a required method.",
+    "supporting_axes": "Compiler/interface and source-form obligations have stable identities in their own catalog axes. Do not merge them into a financial coverage percentage.",
+    "percentages": "No numerical coverage percentage is asserted. Even a reviewed finite denominator would describe only its declared scope."
+  },
+  "families": [
+    {
+      "id": "C01",
+      "name": "Scoped rule selection",
+      "variant_ids": [
+        "C01.PRIORITY_FALLBACK",
+        "C01.UNIQUE_FALLBACK",
+        "C01.UNIQUE_REQUIRED"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C02",
+      "name": "Units, bases and rates",
+      "variant_ids": [
+        "C02.EXPLICIT_USAGE_CONVERSION",
+        "C02.FIXED_UNIT_RATE",
+        "C02.GROSS_PERCENT",
+        "C02.NET_PERCENT",
+        "C02.SEPARATE_PARTICIPATION"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C03",
+      "name": "Deductions and fees",
+      "variant_ids": [
+        "C03.COST_CAP_IDENTITY",
+        "C03.GROSS_FEE_POST_SHARE",
+        "C03.GROSS_FEE_PRE_SHARE",
+        "C03.NET_FEE_POST_SHARE",
+        "C03.NET_FEE_PRE_SHARE",
+        "C03.STAGE_NET_FEE_PRE_BASIS"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C04",
+      "name": "Tiers and escalation",
+      "variant_ids": [
+        "C04.CUMULATIVE_SPLIT",
+        "C04.DISNEY_FIRST_DOLLAR",
+        "C04.PERIOD_ENDING_RATE",
+        "C04.PERIOD_MARGINAL",
+        "C04.PERIOD_WHOLE_BASE",
+        "C04.ROW_ENDING_RATE",
+        "C04.ROW_OPENING_RATE",
+        "C04.SYNTHETIC_CUMULATIVE_REPRICE"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C05",
+      "name": "Caps, floors and guarantees",
+      "variant_ids": [
+        "C05.ACTUAL_FUNDED_ADVANCE",
+        "C05.CAP_FLOOR_EARNED_ONLY",
+        "C05.CAP_FLOOR_INCLUDE_TOPUP",
+        "C05.CUMULATIVE_CAP",
+        "C05.FLOOR_CAP_EARNED_ONLY",
+        "C05.FLOOR_CAP_INCLUDE_TOPUP",
+        "C05.PERIOD_CAP_RESET",
+        "C05.PERIOD_NONRECOUPABLE_FLOOR",
+        "C05.TERM_CAP",
+        "C05.TERM_END_FLOOR"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C06",
+      "name": "Allocation and relationships",
+      "variant_ids": [
+        "C06.APPROVED_DIRECT_ALLOCATION",
+        "C06.COMPLETE_WEIGHTED_POOL",
+        "C06.RELATION_CARDINALITY",
+        "C06.ROUNDED_RESIDUAL"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C07",
+      "name": "Recoupment and waterfalls",
+      "variant_ids": [
+        "C07.MIXED_CLAIM_KINDS",
+        "C07.PARTICIPANT_ADVANCE_POOL",
+        "C07.PRIORITY_CAPITAL",
+        "C07.PRO_RATA_CAPITAL"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C08",
+      "name": "Returns and loss policies",
+      "variant_ids": [
+        "C08.PAID_ORIGINAL_REVISION_ONLY",
+        "C08.PER_TITLE_FLOOR",
+        "C08.POOLED_LOSS_CARRY",
+        "C08.SIGNED_POOL"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C09",
+      "name": "Reserve vintages",
+      "variant_ids": [
+        "C09.FINITE_RELEASE_SCHEDULE",
+        "C09.GENIUS_BASIS_RESERVE",
+        "C09.PAYMENT_HOLDBACK",
+        "C09.VINTAGE_MOVEMENTS"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C10",
+      "name": "Cross-contract movement",
+      "variant_ids": [
+        "C10.CONSERVED_TRANSFER",
+        "C10.ENTITLEMENT_BURDEN"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C11",
+      "name": "Gates and ordered histories",
+      "variant_ids": [
+        "C11.ATTESTED_FULL_GATE_PROXY_PAYOUT",
+        "C11.CLOSING_GATE",
+        "C11.CONTINUOUS_ORIGINAL_HISTORY",
+        "C11.OPENING_GATE",
+        "C11.SPLIT_REOPEN_GATE"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C12",
+      "name": "Actual payments and obligations",
+      "variant_ids": [
+        "C12.CALCULATED_ISSUED_PAID",
+        "C12.PAYMENT_APPLICATIONS",
+        "C12.UNISSUED_THRESHOLD"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C13",
+      "name": "Corrections and replay",
+      "variant_ids": [
+        "C13.DEPENDENT_PERIOD_REPLAY",
+        "C13.DISNEY_AMENDED_PERIODS",
+        "C13.DISNEY_TRIGGER_CATCHUP",
+        "C13.OFFSET_CLAWBACK_FIRST",
+        "C13.OFFSET_OTHER_FIRST",
+        "C13.ORIGINAL_OPENING_RESTATEMENT",
+        "C13.PROSPECTIVE_PERIOD_ADJUSTMENT"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C14",
+      "name": "Effective terms and calendars",
+      "variant_ids": [
+        "C14.BUSINESS_ROLL_FOLLOWING",
+        "C14.BUSINESS_ROLL_PRECEDING",
+        "C14.CALENDAR_MONTH_CLAMP",
+        "C14.CALENDAR_MONTH_REJECT",
+        "C14.EFFECTIVE_REVISION",
+        "C14.FISCAL_DAY_PRORATION",
+        "C14.SUPPLIED_ZONE_DATE"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C15",
+      "name": "Currency and FX",
+      "variant_ids": [
+        "C15.NATIVE_DIRECTED_FX"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C16",
+      "name": "Statement adjustments",
+      "variant_ids": [
+        "C16.SUPPLIED_WITHHOLDING"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    },
+    {
+      "id": "C17",
+      "name": "Reusable contracts and reporting",
+      "variant_ids": [
+        "C17.ATOMIC_COMPLETED_ARTIFACT",
+        "C17.GENERIC_REGISTRATION",
+        "C17.MULTI_PARTY_REPORT_STATE",
+        "C17.SCENARIO_REPLAY"
+      ],
+      "closure": "requires_review_of_named_variants_and_all_evidence_axes"
+    }
+  ],
+  "equivalence_groups": [
+    {
+      "id": "EQ-C03-GROSS-PRESTAGES",
+      "variant_ids": [
+        "C03.GROSS_FEE_PRE_SHARE"
+      ],
+      "source_variants": [
+        "pre_basis_gross_fee",
+        "pre_share_gross_fee"
+      ],
+      "assumptions": "Selected exact arithmetic, no intermediate rounding and the same gross-based fee/cost/share eligibility.",
+      "financial_identity": "(B - D - G*f)*s = (B - G*f - D)*s",
+      "meaning": "One monetary method with distinct stage/lineage observations. Equality of other recipes on a particular baseline is not a general equivalence."
+    },
+    {
+      "id": "DISNEY-FIRST-DOLLAR",
+      "variant_ids": [
+        "C04.DISNEY_FIRST_DOLLAR",
+        "C13.DISNEY_TRIGGER_CATCHUP",
+        "C13.DISNEY_AMENDED_PERIODS"
+      ],
+      "meaning": "Shared first-dollar economic repricing creates one old-period difference210. C13 rows distinguish recognition workflows; they do not create another210."
+    }
+  ],
+  "alternative_groups": [
+    {
+      "id": "DISNEY-RECOGNIZE-ONCE",
+      "variant_ids": [
+        "C13.DISNEY_TRIGGER_CATCHUP",
+        "C13.DISNEY_AMENDED_PERIODS"
+      ],
+      "selected_current_fixture": "C13.DISNEY_TRIGGER_CATCHUP",
+      "other_route": "Documented alternative requiring explicit additional selection; never stack both."
+    }
+  ],
+  "targeted_compositions": [
+    {
+      "id": "COMP-M1-TIER-CAP",
+      "variant_ids": [
+        "C04.PERIOD_MARGINAL",
+        "C05.PERIOD_CAP_RESET"
+      ],
+      "evidence_groups": [
+        "m1"
+      ],
+      "control": "Selected marginal20 limited by period cap15; separate stages and scoped meter.",
+      "status": "reported",
+      "counting": "Composition control, not a third primitive monetary method."
+    },
+    {
+      "id": "COMP-TERM-FLOOR-CAP",
+      "variant_ids": [
+        "C05.FLOOR_CAP_INCLUDE_TOPUP",
+        "C05.FLOOR_CAP_EARNED_ONLY",
+        "C05.CAP_FLOOR_INCLUDE_TOPUP",
+        "C05.CAP_FLOOR_EARNED_ONLY"
+      ],
+      "evidence_groups": [
+        "term"
+      ],
+      "control": "Order and top-up meter policy change named results; original population/funding authority retained.",
+      "status": "qualified"
+    },
+    {
+      "id": "COMP-AO-PAID-REVERSAL-RECOVERY",
+      "variant_ids": [
+        "C08.PAID_ORIGINAL_REVISION_ONLY",
+        "C13.OFFSET_CLAWBACK_FIRST",
+        "C13.OFFSET_OTHER_FIRST"
+      ],
+      "evidence_groups": [
+        "ao"
+      ],
+      "control": "Original paid80 remains80; revised60 exposes20 potential, separate claim authority; actual cash before earning offsets, adjacent serialized carry.",
+      "status": "qualified"
+    }
+  ],
+  "coverage_axes": [
+    {
+      "id": "AX-SOURCE",
+      "question": "Which admitted source form and readable expansion actually executed?",
+      "credit": "Parser/checker success and explicit failures; original/readable aliases do not multiply monetary methods.",
+      "remaining": "Map approved readable main-text forms and multiple-Settle authoring separately from canonical core source; do not infer exhaustive grammar from successful financial programs."
+    },
+    {
+      "id": "AX-WRAPPER",
+      "question": "Which canonical envelope, neutral adapter, codec, scope and predecessor checks executed?",
+      "credit": "Record exact rejecting layer. Mechanical original chronology/calendar checks may be adapter controls.",
+      "remaining": "Every new method must map original facts and reject invalid scope/completeness without solved financial inputs; partial wrapper success is not a native invalid-case witness."
+    },
+    {
+      "id": "AX-REFERENCE",
+      "question": "Did the reference evaluator execute under the frozen source identity?",
+      "credit": "Differential implementation path, not independent financial truth.",
+      "remaining": "Record actual effective backend flags; environment narrowing must be visible."
+    },
+    {
+      "id": "AX-IR",
+      "question": "Which typed IR success/failure and native interpreter observations executed?",
+      "credit": "Observed finite IR outcomes and native audit decisions/skips, not all typed IR nodes/rules.",
+      "remaining": "Retain invalid IR and resource failures as separate controls; do not turn a header into financial state."
+    },
+    {
+      "id": "AX-NATIVE-EMITTED",
+      "question": "Did current native-emitted Lean execute?",
+      "credit": "Values/errors/state comparison. Native IR trace is not emitted-target decision coverage.",
+      "remaining": "Emitted-target branch/decision instrumentation is not established by the case comparisons."
+    },
+    {
+      "id": "AX-PYTHON-EMITTED",
+      "question": "Did the separately Python-emitted Lean execute?",
+      "credit": "Explicit separate driver runs only; generic compare does not imply this path.",
+      "remaining": "Map selectors and retained outputs when required; avoid assuming from a native backend filename."
+    },
+    {
+      "id": "AX-INDEPENDENT",
+      "question": "What independently derived original-fact intermediates/finals were compared?",
+      "credit": "Neutral-fact independent oracle versus hand control explicitly named; shared runtime/reference is differential.",
+      "remaining": "New financial slices need all material intermediates, not only matching terminal values."
+    },
+    {
+      "id": "AX-STATE",
+      "question": "Were actual serialized predecessor and successor bundles consumed?",
+      "credit": "Real scoped history, method/terms pins and original identities; same-opening replay is distinct.",
+      "remaining": "General dependent-period restatement remains open despite AO claim carry. Empty civil-date state is explicit."
+    },
+    {
+      "id": "AX-AUDIT-PUBLICATION",
+      "question": "Was complete bounded audit/result published and validated?",
+      "credit": "Stable completed manifest plus hashes, loader and result/state parity; partial/running output is not consumable.",
+      "remaining": "Declare per-case capacity; AO third result leaves only83371 bytes below64MiB. No general history capacity follows."
+    },
+    {
+      "id": "AX-REVIEW",
+      "question": "Which source economics, synthetic policy and final bundle were reviewed?",
+      "credit": "Adopted design/research decisions are distinct from execution and professional approval.",
+      "remaining": "No actual professional final source/policy/fixture/results approval is recorded."
+    }
+  ],
+  "engineering_catalog": [
+    {
+      "id": "ENG-K1-SELECTION",
+      "requirements": [
+        "C01"
+      ],
+      "status": "reported",
+      "obligation": "Deterministic unique/priority selection, explicit fallback, demanded predicate failure and lazy unselected value; canonical delivery and source form remain separate axes.",
+      "evidence_groups": [
+        "selection"
+      ],
+      "not_a_new_money_method": true
+    },
+    {
+      "id": "ENG-K2-RELATIONS",
+      "requirements": [
+        "C06",
+        "C17"
+      ],
+      "status": "reported",
+      "obligation": "Tuple/map/Option/group/join key, cardinality, duplicate/missing and deterministic-enumeration controls. Financial relationship mapping remains partial at C06.RELATION_CARDINALITY.",
+      "evidence_groups": [
+        "modules"
+      ],
+      "not_a_new_money_method": true
+    },
+    {
+      "id": "ENG-K3-ORDERED-FOLD",
+      "requirements": [
+        "C04",
+        "C07",
+        "C09",
+        "C11",
+        "C17"
+      ],
+      "status": "reported",
+      "obligation": "Finite folds, explicit complete ordering and acyclic first-order definitions; selected economic order must remain original visible policy.",
+      "evidence_groups": [
+        "escalation",
+        "transfers",
+        "term"
+      ],
+      "not_a_new_money_method": true
+    },
+    {
+      "id": "ENG-ID-COMPATIBILITY",
+      "requirements": [
+        "C17"
+      ],
+      "status": "reported",
+      "obligation": "Preserve adopted exact nonempty case-sensitive ASCII Id profile, including existing ASCII control/whitespace; Text identities are a separate type. New context-sensitive admissions must preserve unchanged old sources/state.",
+      "evidence_groups": [
+        "modules"
+      ],
+      "not_a_new_money_method": true
+    },
+    {
+      "id": "ENG-QUANTITY-CONVERSION",
+      "requirements": [
+        "C02",
+        "C17"
+      ],
+      "status": "pending",
+      "obligation": "Review and implement versioned unit dictionary/declared relation/source admission/defensive IR/codecs/runtime/state compatibility; retain old custom unit/builtin spellings and base IR0.1 exact replay.",
+      "evidence_groups": [
+        "quantities"
+      ],
+      "not_a_new_money_method": true
+    },
+    {
+      "id": "ENG-ATOMIC-PUBLISH",
+      "requirements": [
+        "C17"
+      ],
+      "status": "qualified",
+      "obligation": "Atomic completion, validated manifest/hash/cap loader, failure/interruption non-consumption and case-scoped bounds.",
+      "evidence_groups": [
+        "publication",
+        "ao",
+        "civil"
+      ],
+      "not_a_new_money_method": true
+    },
+    {
+      "id": "ENG-GENERATED-VALIDATION",
+      "requirements": [
+        "C01",
+        "C17"
+      ],
+      "status": "partial",
+      "obligation": "Expand successful else/short-circuit/selection and invalid source/checker/IR/package generation; preserve independent/metamorphic controls and reproducible actual backend observation. Existing finite matrix is not a whole-program generator.",
+      "evidence_groups": [
+        "modules"
+      ],
+      "not_a_new_money_method": true
+    },
+    {
+      "id": "ENG-CAPACITY-ENVELOPE",
+      "requirements": [
+        "C17"
+      ],
+      "status": "partial",
+      "obligation": "Retain honest finite 100/1000 and bounded10k outcomes, full audit/collector/consumer stages, failures and scope-qualified source variants; no unlimited history, retry-at-raised-limit or universal speed claim.",
+      "evidence_groups": [
+        "ao"
+      ],
+      "not_a_new_money_method": true
+    },
+    {
+      "id": "ENG-REPRODUCTION",
+      "requirements": [
+        "C17"
+      ],
+      "status": "partial",
+      "obligation": "LF physical/Git identity, generated descriptor/unbound-template pins, exact compiler/module/runtime snapshots, reproducible completed cases and frozen unchanged prior corpus. Separate archived old and current identities.",
+      "evidence_groups": [
+        "escalation",
+        "term",
+        "transfers",
+        "ao",
+        "civil"
+      ],
+      "not_a_new_money_method": true
+    }
+  ],
+  "limitations": [
+    "AO selected37 plus actual baseline/three-period completed bundles pass. Third result67025493 of67108864 bytes leaves83371 bytes; source input guard is not an eight-period or general publication-capacity guarantee.",
+    "Civil selected27 passes with original supplied zone/version UTC day cells, midnight/submicrosecond/23/25-hour controls and no state. No ambient/IANA timezone or legal-calendar inference.",
+    "C10 conserved transfer is not the separately required entitlement burden100 unchanged/200-30=170.",
+    "C04 synthetic cumulative repricing22 is not Disney first-dollar catch-up210; the latter now passes39 methods and six actual native/reference/Python-emitted bundles under its bounded selected policy.",
+    "Native EUR/FX is reserved by explicit owner decision for the later self-modifying compiler tool/demo after the other current goals. Faithful old record-backed FX and rational compounding remain legitimate alternatives.",
+    "The historical baseline and accepted Quest/full-period interest methods are preserved. No additional interest convention is selected merely to enlarge this denominator.",
+    "Raw incremental overlap/replacement intake, bank execution, vendor parity, distributed service, general optimization and whole-compiler proofs are outside the current finite acceptance.",
+    "Descriptions may point to earlier accepted cohorts; the current abee/daf/673 identity is established for AO/civil only here, not a new combined full-suite campaign."
+  ],
+  "review_required": [
+    "Keep final professional source/policy/fixture/results review separate from engineering acceptance; no professional approval is recorded.",
+    "Review any future scope/variant addition explicitly and version the planning denominator; do not silently relabel an old alternative or counterfactual as a completed required method.",
+    "Update evidence/status axes only from actual qualified frozen records. A combined current-corpus replay is still required before a release claim."
+  ],
+  "evidence_groups": {
+    "selection": {
+      "sources": [
+        "cases/selection/README.md",
+        "cases/selection/policy.md"
+      ],
+      "controls": [
+        "Tests/test_selection_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/selection-frozen-20261123-b877055c/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/selection-lf-followup-20261123-ae3a5a96/verification.json"
+      ],
+      "basis": "recorded selected source/canonical/native witnesses; fixed supplied rule slots"
+    },
+    "quantities": {
+      "sources": [
+        "cases/quantities/README.md"
+      ],
+      "controls": [
+        "Tests/test_quantities.py",
+        "Tests/test_native_quantities.py"
+      ],
+      "records": [
+        "docs/spl/feature-test-matrix.json"
+      ],
+      "basis": "matrix-mapped finite quantity/rate/canonical state witnesses; not every unit or conversion"
+    },
+    "m1": {
+      "sources": [
+        "cases/m1/README.md",
+        "cases/m1/policy.md"
+      ],
+      "controls": [
+        "Tests/test_m1_modules.py",
+        "oracles/ordinary_royalties.py"
+      ],
+      "records": [
+        "docs/spl/feature-test-matrix.json",
+        "docs/spl/conformance-validation-result.json"
+      ],
+      "basis": "seven M1a recipes; effective backend must be checked because SPL_M1_BACKEND can narrow execution"
+    },
+    "deductions": {
+      "sources": [
+        "cases/deductions/README.md",
+        "cases/deductions/policy.md"
+      ],
+      "controls": [
+        "Tests/test_deduction_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/deduction-module-checks-b/verification.json"
+      ],
+      "basis": "six source recipes, five distinct monetary formulas after the stated equivalence; cumulative cost-cap carry"
+    },
+    "escalation": {
+      "sources": [
+        "cases/escalation/README.md",
+        "cases/escalation/policy.md"
+      ],
+      "controls": [
+        "oracles/escalation.py",
+        "Tests/test_escalation_oracle.py",
+        "Tests/test_escalation_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/escalation-checks-7f36a881/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/checkpoint-lf-20261123-a/verification.json"
+      ],
+      "basis": "five synthetic fixed-table methods, original replay and actual carry; distinct from Disney first-dollar catch-up"
+    },
+    "term": {
+      "sources": [
+        "cases/term-guarantees/README.md",
+        "cases/term-guarantees/policy.md"
+      ],
+      "controls": [
+        "oracles/term_guarantees.py",
+        "Tests/test_term_guarantee_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/term-guarantees-checks-9d8a3b87/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/term-guarantees-lf-followup-d2cc6d0d/verification.json"
+      ],
+      "basis": "seven named term/funding recipes; face is not funding; complete-empty/missing evidence separated"
+    },
+    "r1": {
+      "sources": [
+        "cases/r1/README.md"
+      ],
+      "controls": [
+        "oracles/r1.py",
+        "Tests/test_r1_modules.py"
+      ],
+      "records": [
+        "docs/spl/feature-test-matrix.json"
+      ],
+      "basis": "bounded Angel complete-platform allocation and MQP ordered controls; proposed operating interpretations"
+    },
+    "waterfall": {
+      "sources": [
+        "cases/waterfall/README.md",
+        "cases/waterfall/policy.md"
+      ],
+      "controls": [
+        "oracles/waterfall.py",
+        "Tests/test_waterfall.py"
+      ],
+      "records": [
+        "docs/spl/feature-test-matrix.json"
+      ],
+      "basis": "priority/pro-rata capital claims and residuals with actual two-period carry; not every mixed claim kind"
+    },
+    "mechanisms": {
+      "sources": [
+        "docs/spl/conformance-ledger.md"
+      ],
+      "controls": [
+        "Tests/test_module_mechanisms.py",
+        "Tests/test_calendar_months.py"
+      ],
+      "records": [
+        "docs/spl/feature-test-matrix.json"
+      ],
+      "basis": "selected reserve vintage, advance and finite calendar-month mechanisms; verify exact backend per selector"
+    },
+    "returns": {
+      "sources": [
+        "cases/returns/README.md",
+        "cases/returns/policy.md"
+      ],
+      "controls": [
+        "oracles/returns_losses.py",
+        "Tests/test_returns_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/returns-checks-b25e079f/verification.json"
+      ],
+      "basis": "three earnings-only return/loss policies and original measurement registry; no bank recovery inferred"
+    },
+    "transfers": {
+      "sources": [
+        "cases/transfers/README.md",
+        "cases/transfers/policy.md"
+      ],
+      "controls": [
+        "oracles/contract_transfers.py",
+        "Tests/test_transfer_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/transfers-checks-cfa86332/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/checkpoint-lf-20261123-a/verification.json"
+      ],
+      "basis": "conserved current-entitlement DAG transfers; coordinator envelope is metadata; burden is separate"
+    },
+    "lg": {
+      "sources": [
+        "docs/spl/lionsgate-oracle-design.md",
+        "cases/lg/canonical-package.json"
+      ],
+      "controls": [
+        "oracles/lionsgate.py",
+        "Tests/test_lionsgate_oracle.py",
+        "Tests/test_lionsgate_pipeline.py"
+      ],
+      "records": [
+        "docs/spl/feature-test-matrix.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/lionsgate-original-fact-checks-20261123-c/verification.json"
+      ],
+      "basis": "cleared LG01 gate400/100 versus proxy210, candidates30/35, original crossed worksheet175 and supplied attestations; no reconstructed full net/history"
+    },
+    "settlement": {
+      "sources": [
+        "cases/settlement/README.md",
+        "cases/settlement/policy.md"
+      ],
+      "controls": [
+        "Tests/test_settlement_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/settlement-module-checks-3dffec9f/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/settlement-review-20261123-b/summary.json"
+      ],
+      "basis": "supplied withholding, issued/paid applications and unissued threshold10/19/17; not tax applicability or bank execution"
+    },
+    "revision": {
+      "sources": [
+        "docs/spl/conformance-ledger.md"
+      ],
+      "controls": [
+        "Tests/test_revision.py"
+      ],
+      "records": [
+        "docs/spl/feature-test-matrix.json"
+      ],
+      "basis": "selected original-opening replacement/revision90, delta-10, paid80/outstanding10; no general dependent chain"
+    },
+    "calendar": {
+      "sources": [
+        "cases/calendar-terms/README.md",
+        "cases/calendar-terms/policy.md"
+      ],
+      "controls": [
+        "oracles/calendar_terms.py",
+        "Tests/test_calendar_terms_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/calendar-terms-checks-57573d5c/verification.json"
+      ],
+      "basis": "original fiscal/day relation, known greatest revision, proration and following/preceding; Date as-of distinct from Instant cutoff"
+    },
+    "ao": {
+      "sources": [
+        "cases/authorized-offsets/README.md",
+        "cases/authorized-offsets/policy.md"
+      ],
+      "controls": [
+        "oracles/authorized_offsets.py",
+        "Tests/test_authorized_offset_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/authorized-offsets-checks-8eac5174/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/authorized-offsets-checks-8eac5174/actual/actual-verification.json"
+      ],
+      "basis": "37 pass plus completed actual three-period carry on abee/daf/673; former failed37 retained, full records and actual source_case_id scopes; third result67025493 bytes under67108864"
+    },
+    "civil": {
+      "sources": [
+        "cases/civil-dates/README.md",
+        "cases/civil-dates/policy.md"
+      ],
+      "controls": [
+        "oracles/civil_dates.py",
+        "Tests/test_civil_date_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/civil-dates-checks-67ea0b79/verification.json"
+      ],
+      "basis": "27 pass on abee/daf/673; finite supplied zone/version relation and native event classification, mechanical table validation is a separate boundary"
+    },
+    "modules": {
+      "sources": [
+        "docs/spl/module-interface-v1.md",
+        "docs/spl/policy-modules.md"
+      ],
+      "controls": [
+        "Tests/test_modules.py",
+        "Tests/test_policies.py"
+      ],
+      "records": [
+        "docs/spl/feature-test-matrix.json"
+      ],
+      "basis": "bounded generic registrations, policy/source closure, scenarios and reports; no enterprise service or professional approval"
+    },
+    "publication": {
+      "sources": [
+        "docs/spl/module-interface-v1.md",
+        "spl_compiler/artifacts.py"
+      ],
+      "controls": [
+        "Tests/test_artifact_publication.py",
+        "Tests/test_publication_runners.py"
+      ],
+      "records": [
+        "docs/spl/active-work.md"
+      ],
+      "basis": "Root-recorded 19-method frozen publication controls plus case-specific completed bundles; inspect the root record for interruption/corruption coverage; case controls alone do not establish every interruption stage."
+    },
+    "merchandising": {
+      "sources": [
+        "cases/merchandising-reprice/policy.md",
+        "cases/merchandising-reprice/neutral.json",
+        "docs/spl/merchandising-reprice-design.md",
+        "cases/merchandising-reprice/merchandising-reprice.spl",
+        "cases/merchandising-reprice/build_modules.py",
+        "cases/merchandising-reprice/merchandising-reprice-module.json"
+      ],
+      "controls": [
+        "oracles/merchandising_reprice.py",
+        "Tests/test_merchandising_reprice_oracle.py",
+        "Tests/test_merchandising_reprice_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-oracle-20261123-ec7a285a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-checks-cf96f81d/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/merchandising-reprice-carry-purity-5970c3c9/verification.json"
+      ],
+      "basis": "Qualified39-method immutable cohort on20ea/a516/673, six completed full-control bundles including actualQ1-Q4 andpreview. Separate helper purity verifies exact actual cells minus output-only movement, unchanged previous results/artifacts and real prior_result_ref."
+    },
+    "quantized_allocation": {
+      "sources": [
+        "cases/quantized-allocation/README.md",
+        "cases/quantized-allocation/policy.md",
+        "cases/quantized-allocation/allocation.spl",
+        "cases/quantized-allocation/quantized-allocation.spl"
+      ],
+      "controls": [
+        "oracles/quantized_allocation.py",
+        "Tests/test_quantized_allocation_oracle.py",
+        "Tests/test_quantized_allocation_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/quantized-allocation-checks-20261123-a/verification.json"
+      ],
+      "basis": "44 methods; 15 actual native comparisons and completed publications; bounded separate 8-recipient/4-parent maxima and adjacent native original-state carry"
+    },
+    "basis_reserves": {
+      "sources": [
+        "cases/basis-reserves/README.md",
+        "cases/basis-reserves/policy.md",
+        "cases/basis-reserves/basis-reserves.spl"
+      ],
+      "controls": [
+        "oracles/basis_reserves.py",
+        "Tests/test_basis_reserve_oracle.py",
+        "Tests/test_basis_reserve_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/basis-reserves-checks-6b3d9171/verification.json"
+      ],
+      "basis": "46 methods and six completed native/reference/Python-emitted bundles; actual five-period original-state carry; selected within-vintage only, sourced excess-return NR remains open"
+    },
+    "usage_conversion": {
+      "sources": [
+        "cases/usage-conversion/README.md",
+        "cases/usage-conversion/policy.md",
+        "docs/spl/unit-conversion-implementation.md",
+        "docs/spl/unit-module-interface.md"
+      ],
+      "controls": [
+        "oracles/usage_conversion.py",
+        "Tests/test_usage_conversion_oracle.py",
+        "Tests/test_usage_units.py",
+        "Tests/test_usage_unit_modules.py"
+      ],
+      "records": [
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-unit-broad-20261123-b569/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/usage-unit-main-integration-20261123-a/verification.json",
+        "C:/Projects/Film_TV_participation_dynamic_DSL/artifacts/spl/linked-opaque-kind-20261123-b/verification.json"
+      ],
+      "basis": "Finite explicit conversion+owner/interface/state guarantees;931 candidate regression and46 main checks; historical replay records retain actual dated implementation pins."
+    },
+    "mixed_claims": {
+      "sources": [
+        "cases/mixed-waterfall/README.md",
+        "cases/mixed-waterfall/policy.md",
+        "cases/mixed-waterfall/mixed-claims.spl",
+        "cases/mixed-waterfall/claim-registry.spl",
+        "cases/mixed-waterfall/claim-period.spl"
+      ],
+      "controls": [
+        "oracles/mixed_claims.py",
+        "Tests/test_mixed_claim_oracle.py",
+        "Tests/test_mixed_claim_modules.py"
+      ],
+      "records": [
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-checks-1715f26d\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-date-max-957cdbb4\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\line-ending-equivalence.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\mixed-claims-lf-final-20261123-a\\final-audit.json"
+      ],
+      "basis": "Selected four-kind capital/advance/fee/approved-correction method accepted through composite source-stable cohorts:51 methods on physical/2,49 Date-max follow-up methods on/3, and final LF all-kind actual carry/preview/tamper acceptance. Exact parsed non-span AST equality qualifies the sole CRLF-to-LF source change. No all-final-source51-method rerun, full-bound Cartesian capacity, FX or current nonempty claim-cash settlement support is claimed."
+    },
+    "participation_bases_oracle": {
+      "sources": [
+        "cases/participation-bases/neutral.json",
+        "cases/participation-bases/policy.md",
+        "docs/spl/participation-base-design.md"
+      ],
+      "controls": [
+        "oracles/participation_bases.py",
+        "Tests/test_participation_base_oracle.py"
+      ],
+      "records": [
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\frozen-d\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-base-oracle-20261123\\timestamp-reviewed-e\\verification.json"
+      ],
+      "basis": "Independent original-fact controls now25 methods after UTC-year-bound/lowercase-marker review; all original22 records remain dated. RFC3339 negativezero retains knownUTC with unknownlocaloffset metadata, not guessed localtime. Separate author froze41 reference/oracle methods and8 complete reference bundles at participation-bases-reference-5d23c27f. Native/source/backend qualification remains open; genuine Money/Quantity/Ratio/Rate alternatives stay distinct."
+    },
+    "dependent_replay_oracle": {
+      "sources": [
+        "cases/dependent-replay/neutral.json",
+        "cases/dependent-replay/policy.md",
+        "docs/spl/dependent-replay-design.md"
+      ],
+      "controls": [
+        "oracles/dependent_replay.py",
+        "Tests/test_dependent_replay_oracle.py"
+      ],
+      "records": [
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\hand-and-carry.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\dependent-replay-oracle-20261123-a369dd7c\\byte-audit.json"
+      ],
+      "basis": "35 isolated original-fact/state/provenance methods only; no source/native credit. Four factsets retain immutable original issues, actualpaid80 and true dependent tier replay."
+    },
+    "participation_bases": {
+      "sources": [
+        "cases/participation-bases/README.md",
+        "cases/participation-bases/participation-bases.spl",
+        "cases/participation-bases/build_modules.py"
+      ],
+      "controls": [
+        "oracles/participation_bases.py",
+        "Tests/test_participation_base_oracle.py",
+        "Tests/test_participation_base_modules.py"
+      ],
+      "records": [
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-20261123-a\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-negatives-20261123-b\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-native4-boundaries-20261123-c\\verification.json",
+        "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\participation-bases-main-integration-20261123-a\\verification.json"
+      ],
+      "basis": "Four registered named selections in one pinned stateless descriptor: gross25/net20, per-unit150/separate-share75, typed option bases/rates. Main43 methods/six actual native cases pass on a0; separate4b bounded25-case composite covers allfour paths/complete publications including everyzero/empty policy. First17-positive campaign retains overallFAILED for native-vs-wrapper scope-test mismatch; fresh2native-negative+6boundary followups pass, no source changes. Publicwrapper raw/typed/cutoff/scope/method correspondence and stale invalidation verified. Explicit finite admission/capacity/backend limits remain in README; no FX/state/bank/proof claim."
+    }
+  },
+  "variants": [
+    {
+      "id": "C01.PRIORITY_FALLBACK",
+      "family": "C01",
+      "name": "Greatest priority with fallback",
+      "kind": "selection_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C01"
+      ],
+      "discriminator": "20/0/10 controls, tied highest blocks, demanded predicate failures differ from lazy unselected bodies.",
+      "evidence_groups": [
+        "selection"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C01.UNIQUE_FALLBACK",
+      "family": "C01",
+      "name": "Unique rule with explicitly selected fallback",
+      "kind": "selection_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C01"
+      ],
+      "discriminator": "No match selects declared fallback; ambiguity still blocks.",
+      "evidence_groups": [
+        "selection"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C01.UNIQUE_REQUIRED",
+      "family": "C01",
+      "name": "Unique matching rule without fallback",
+      "kind": "selection_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C01"
+      ],
+      "discriminator": "No match and multiple matches block; valid winning zero is distinct from missing.",
+      "evidence_groups": [
+        "selection"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C02.EXPLICIT_USAGE_CONVERSION",
+      "family": "C02",
+      "name": "Versioned explicit Minute/Hour conversion interface",
+      "kind": "typed_interface",
+      "requiredness": "supporting_engineering",
+      "status": "qualified",
+      "requirements": [
+        "C02"
+      ],
+      "discriminator": "90 Minute becomes1.5 Hour under explicit60:1 relation; original USD12/Hour yields18.",
+      "evidence_groups": [
+        "usage_conversion"
+      ],
+      "execution": {
+        "source": "qualified_finite_owner_scoped_feature",
+        "canonical": "registered_original_quantity_price_and_actual_old_new_state_cases",
+        "native_ir": "executed_selected_valid_and_hostile_IR_paths",
+        "native_emitted": "executed_selected_finite_cases",
+        "python_emitted": "executed_selected_finite_cases",
+        "independent_controls": "original_measurement_price_scale_controls",
+        "boundary_invalid_controls": "owner_unit_relation_currency_signature_codec_state_namespace_and_version_controls",
+        "native_audit": "selected_complete_native_observations",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "unit-conversion-extension-plan.md",
+        "policy": "reviewed_explicit_non_FX_unit_plan",
+        "professional_approval": "not_applicable"
+      },
+      "remaining_obligation": "No remaining implementation obligation for the finite60:1 interface. Additional unit registries/currencies remain separate; existing USD.20/Minute encoding remains legitimate. No final latest-corpus release or whole-compiler proof."
+    },
+    {
+      "id": "C02.FIXED_UNIT_RATE",
+      "family": "C02",
+      "name": "Fixed USD price per admitted unit",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C02",
+        "F01"
+      ],
+      "discriminator": "100 Download at USD1.50/Download gives150 with explicit dimensional tags.",
+      "evidence_groups": [
+        "quantities",
+        "participation_bases_oracle",
+        "participation_bases"
+      ],
+      "execution": {
+        "source": "executed_bounded_registered_four_method_source",
+        "canonical": "main_default_v1_and_separate_bounded_v2_complete_publications",
+        "native_ir": "six_main_cases_and25_split_bounded_controls",
+        "native_emitted": "actual_native_execution_with_complete_values",
+        "python_emitted": "separate_generator_and_bounded_C_execution_for25_split_controls",
+        "independent_controls": "25_original_fact_oracle_methods_and_complete_outputs",
+        "boundary_invalid_controls": "zero_empty_allmethods_fraction_scope_knowledge_and_preparedwrapper_controls_exact_layer_credit",
+        "native_audit": "complete_lossless_native_traces_no_general_path_coverage",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Selected finite method accepted; no all-bound Cartesian native capacity, state/bank execution, native FX or whole-compiler proof. Separate operator/diagnostic/target-observation obligations remain."
+    },
+    {
+      "id": "C02.GROSS_PERCENT",
+      "family": "C02",
+      "name": "Flat percentage of named gross basis",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C02"
+      ],
+      "discriminator": "Gross125 at20% gives25; source gross/net are views of the same activity.",
+      "evidence_groups": [
+        "participation_bases_oracle",
+        "participation_bases"
+      ],
+      "execution": {
+        "source": "executed_bounded_registered_four_method_source",
+        "canonical": "main_default_v1_and_separate_bounded_v2_complete_publications",
+        "native_ir": "six_main_cases_and25_split_bounded_controls",
+        "native_emitted": "actual_native_execution_with_complete_values",
+        "python_emitted": "separate_generator_and_bounded_C_execution_for25_split_controls",
+        "independent_controls": "25_original_fact_oracle_methods_and_complete_outputs",
+        "boundary_invalid_controls": "zero_empty_allmethods_fraction_scope_knowledge_and_preparedwrapper_controls_exact_layer_credit",
+        "native_audit": "complete_lossless_native_traces_no_general_path_coverage",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Selected finite method accepted; no all-bound Cartesian native capacity, state/bank execution, native FX or whole-compiler proof. Separate operator/diagnostic/target-observation obligations remain."
+    },
+    {
+      "id": "C02.NET_PERCENT",
+      "family": "C02",
+      "name": "Flat percentage of named selected net basis",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C02"
+      ],
+      "discriminator": "Selected net100 at20% gives20, without adding gross as another cash fact.",
+      "evidence_groups": [
+        "participation_bases_oracle",
+        "participation_bases"
+      ],
+      "execution": {
+        "source": "executed_bounded_registered_four_method_source",
+        "canonical": "main_default_v1_and_separate_bounded_v2_complete_publications",
+        "native_ir": "six_main_cases_and25_split_bounded_controls",
+        "native_emitted": "actual_native_execution_with_complete_values",
+        "python_emitted": "separate_generator_and_bounded_C_execution_for25_split_controls",
+        "independent_controls": "25_original_fact_oracle_methods_and_complete_outputs",
+        "boundary_invalid_controls": "zero_empty_allmethods_fraction_scope_knowledge_and_preparedwrapper_controls_exact_layer_credit",
+        "native_audit": "complete_lossless_native_traces_no_general_path_coverage",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Selected finite method accepted; no all-bound Cartesian native capacity, state/bank execution, native FX or whole-compiler proof. Separate operator/diagnostic/target-observation obligations remain."
+    },
+    {
+      "id": "C02.SEPARATE_PARTICIPATION",
+      "family": "C02",
+      "name": "Participation applied separately from per-unit price",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C02"
+      ],
+      "discriminator": "The150 entitlement with separately supplied50% share gives75; share is not hidden in price.",
+      "evidence_groups": [
+        "quantities",
+        "participation_bases_oracle",
+        "participation_bases"
+      ],
+      "execution": {
+        "source": "executed_bounded_registered_four_method_source",
+        "canonical": "main_default_v1_and_separate_bounded_v2_complete_publications",
+        "native_ir": "six_main_cases_and25_split_bounded_controls",
+        "native_emitted": "actual_native_execution_with_complete_values",
+        "python_emitted": "separate_generator_and_bounded_C_execution_for25_split_controls",
+        "independent_controls": "25_original_fact_oracle_methods_and_complete_outputs",
+        "boundary_invalid_controls": "zero_empty_allmethods_fraction_scope_knowledge_and_preparedwrapper_controls_exact_layer_credit",
+        "native_audit": "complete_lossless_native_traces_no_general_path_coverage",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Selected finite method accepted; no all-bound Cartesian native capacity, state/bank execution, native FX or whole-compiler proof. Separate operator/diagnostic/target-observation obligations remain."
+    },
+    {
+      "id": "C03.COST_CAP_IDENTITY",
+      "family": "C03",
+      "name": "Cumulative scoped eligible-cost cap",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C03"
+      ],
+      "discriminator": "Actual consumed cap80->100->100; excluded/partially admitted originals cannot be reused.",
+      "evidence_groups": [
+        "deductions"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C05"
+      ],
+      "controls_required": [
+        "eligibility",
+        "original_id",
+        "authorized_sequence",
+        "scope_purpose",
+        "cap_equality",
+        "actual_predecessor"
+      ]
+    },
+    {
+      "id": "C03.GROSS_FEE_POST_SHARE",
+      "family": "C03",
+      "name": "Gross fee before share, cost after share",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C03"
+      ],
+      "discriminator": "(B-Gf)*s-D differs from deductingD before share; cost-stage400/300.",
+      "evidence_groups": [
+        "deductions"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "source_observation_variants": [
+        "post_share_gross_fee"
+      ]
+    },
+    {
+      "id": "C03.GROSS_FEE_PRE_SHARE",
+      "family": "C03",
+      "name": "Gross-based fee and cost before participant share",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C03"
+      ],
+      "discriminator": "(B-D-Gf)*s and (B-Gf-D)*s are equal under selected exact/no-rounding nonnegative policy.",
+      "evidence_groups": [
+        "deductions"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "equivalence_group": "EQ-C03-GROSS-PRESTAGES",
+      "source_observation_variants": [
+        "pre_basis_gross_fee",
+        "pre_share_gross_fee"
+      ],
+      "monetary_method_groups": 1
+    },
+    {
+      "id": "C03.NET_FEE_POST_SHARE",
+      "family": "C03",
+      "name": "Net fee before share, cost after share",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C03"
+      ],
+      "discriminator": "(B-Bf)*s-D; keep eligible cost and fee base explicit.",
+      "evidence_groups": [
+        "deductions"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "source_observation_variants": [
+        "post_share_net_fee"
+      ]
+    },
+    {
+      "id": "C03.NET_FEE_PRE_SHARE",
+      "family": "C03",
+      "name": "Fee on selected net before costs/share",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C03"
+      ],
+      "discriminator": "F=Bf; separate net/gross views110/100 give45 versus44.5.",
+      "evidence_groups": [
+        "deductions"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "source_observation_variants": [
+        "pre_share_net_fee"
+      ]
+    },
+    {
+      "id": "C03.STAGE_NET_FEE_PRE_BASIS",
+      "family": "C03",
+      "name": "Fee on balance after costs, then share",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C03"
+      ],
+      "discriminator": "F=(B-D)f; fixture earns360 versus320 when fee is measured before costs.",
+      "evidence_groups": [
+        "deductions"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "source_observation_variants": [
+        "pre_basis_net_fee"
+      ]
+    },
+    {
+      "id": "C04.CUMULATIVE_SPLIT",
+      "family": "C04",
+      "name": "Cumulative prospective marginal split",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C04"
+      ],
+      "discriminator": "Opening80/recognized8 plus30+40 earns12, closes20.",
+      "evidence_groups": [
+        "escalation"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "source_observation_variants": [
+        "m1 cumulative_marginal",
+        "escalation prospective_split"
+      ],
+      "equivalence_note": "Same fixed-table marginal increment where their complete input/meter assumptions coincide; richer original-history replay is an integration distinction."
+    },
+    {
+      "id": "C04.DISNEY_FIRST_DOLLAR",
+      "family": "C04",
+      "name": "Disney first-dollar old entitlement repricing",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C04"
+      ],
+      "discriminator": "77m/87m/107m thresholds; revised old525/1050 vsissued455/910 gives210 catch-up.",
+      "evidence_groups": [
+        "merchandising"
+      ],
+      "execution": {
+        "source": "qualified_bounded39_and_six_completed_bundles",
+        "canonical": "qualified_bounded39_and_six_completed_bundles",
+        "native_ir": "qualified_bounded39_and_six_completed_bundles",
+        "native_emitted": "qualified_bounded39_and_six_completed_bundles",
+        "python_emitted": "qualified_bounded39_and_six_completed_bundles",
+        "independent_controls": "qualified_bounded39_and_six_completed_bundles",
+        "boundary_invalid_controls": "qualified_bounded39_and_six_completed_bundles",
+        "native_audit": "qualified_bounded39_and_six_completed_bundles",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "RR04/LD03 source economics selected",
+        "policy": "trigger-period recognition proposed synthetic operating policy; amended route alternative",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining acceptance for this selected bounded trigger-period witness. General dependent-period replay, amended-old-period recognition and unselectedCB/source variants remain separate; professional approval is not recorded.",
+      "related_families": [
+        "C13"
+      ],
+      "scope_limits": [
+        "ActualQ4 result55,194,678 bytes under64MiB; no general eight-period capacity.",
+        "Physical state merchandising-original-json/1 retains complete original record content and lexemes; adapter slots are transient associations, not evidence authority or economic identity.",
+        "New source/trace differs from earlier failed drafts; normalized complete financial/original-state comparison does not establish trace identity."
+      ]
+    },
+    {
+      "id": "C04.PERIOD_ENDING_RATE",
+      "family": "C04",
+      "name": "Current rows at period ending rate",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C04"
+      ],
+      "discriminator": "Current70 at ending.2 earns14; historical8 remains unchanged.",
+      "evidence_groups": [
+        "escalation"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C04.PERIOD_MARGINAL",
+      "family": "C04",
+      "name": "Current-period marginal bands",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C04"
+      ],
+      "discriminator": "Basis150 over100@.1 then.2 earns20.",
+      "evidence_groups": [
+        "m1"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C04.PERIOD_WHOLE_BASE",
+      "family": "C04",
+      "name": "Current-period whole-base ending band",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C04"
+      ],
+      "discriminator": "Basis150 at ending20% earns30; equality100 selects upper band.",
+      "evidence_groups": [
+        "m1"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C04.ROW_ENDING_RATE",
+      "family": "C04",
+      "name": "Each whole row at its ending rate",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C04"
+      ],
+      "discriminator": "30+40 earns14;10+60 earns13.",
+      "evidence_groups": [
+        "escalation"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C04.ROW_OPENING_RATE",
+      "family": "C04",
+      "name": "Each whole row at its opening rate",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C04"
+      ],
+      "discriminator": "30+40 earns11 while one70 earns7; explicit sequence matters.",
+      "evidence_groups": [
+        "escalation"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C04.SYNTHETIC_CUMULATIVE_REPRICE",
+      "family": "C04",
+      "name": "Synthetic cumulative repricing delta",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C04"
+      ],
+      "discriminator": "150*.2-original recognized8 gives22, closing30.",
+      "evidence_groups": [
+        "escalation"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "exclusion": "Not the Disney first-dollar merchandising catch-up210."
+    },
+    {
+      "id": "C05.ACTUAL_FUNDED_ADVANCE",
+      "family": "C05",
+      "name": "Actual-funded recoupable minimum",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Face150/funded150/earned80 gives recovered80/prepayment70; complete-empty face-only gives payable80/prepayment0.",
+      "evidence_groups": [
+        "term"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C05.CAP_FLOOR_EARNED_ONLY",
+      "family": "C05",
+      "name": "cap_floor_advance_earned_only",
+      "kind": "financial_precedence_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Same entitlement100 but recovery80/payable20/prepayment70.",
+      "evidence_groups": [
+        "term"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C07"
+      ]
+    },
+    {
+      "id": "C05.CAP_FLOOR_INCLUDE_TOPUP",
+      "family": "C05",
+      "name": "cap_floor_advance_including_topup",
+      "kind": "financial_precedence_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Cap consumes80; floor gives entitlement100/payable0/prepayment50.",
+      "evidence_groups": [
+        "term"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C07"
+      ]
+    },
+    {
+      "id": "C05.CUMULATIVE_CAP",
+      "family": "C05",
+      "name": "Cumulative nonreset ceiling",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Opening consumption70/new80/cap100 admits30 and closes100.",
+      "evidence_groups": [
+        "m1"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C05.FLOOR_CAP_EARNED_ONLY",
+      "family": "C05",
+      "name": "floor_cap_advance_earned_only",
+      "kind": "financial_precedence_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Same entitlement90 but recovery80/payable10/prepayment70.",
+      "evidence_groups": [
+        "term"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C07"
+      ]
+    },
+    {
+      "id": "C05.FLOOR_CAP_INCLUDE_TOPUP",
+      "family": "C05",
+      "name": "floor_cap_advance_including_topup",
+      "kind": "financial_precedence_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "E80/F100/C90/funded150: entitlement90/payable0/prepayment60.",
+      "evidence_groups": [
+        "term"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C07"
+      ]
+    },
+    {
+      "id": "C05.PERIOD_CAP_RESET",
+      "family": "C05",
+      "name": "Explicit period cap/reset meter",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Period cap has explicit boundary reset; reset forbidden for other methods.",
+      "evidence_groups": [
+        "m1"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "limitation": "M1 duplicate-fact guard is within-run, not a general consumed-fact/replay registry."
+    },
+    {
+      "id": "C05.PERIOD_NONRECOUPABLE_FLOOR",
+      "family": "C05",
+      "name": "Nonrecoupable current-period floor",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Earned80/floor100 gives100 and creates no funded advance.",
+      "evidence_groups": [
+        "m1"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C05.TERM_CAP",
+      "family": "C05",
+      "name": "Fixed-term cap with complete original replay",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Term cap100 across earned60 then60 admits60 then40.",
+      "evidence_groups": [
+        "term"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C05.TERM_END_FLOOR",
+      "family": "C05",
+      "name": "Floor activated only at exact term end",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C05"
+      ],
+      "discriminator": "Interim40 then final40 gives40 then60; floor meter counts entitlement, not reduced payable.",
+      "evidence_groups": [
+        "term"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C06.APPROVED_DIRECT_ALLOCATION",
+      "family": "C06",
+      "name": "Approved bundle/direct allocations with parent lineage",
+      "kind": "allocation_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C06"
+      ],
+      "discriminator": "Child allocations conserve the original parent; parent plus children are never counted together.",
+      "evidence_groups": [
+        "r1"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Preserve the named direct-allocation source/policy mapping; broader ownership/availability administration is outside C1."
+    },
+    {
+      "id": "C06.COMPLETE_WEIGHTED_POOL",
+      "family": "C06",
+      "name": "Complete declared weighted pool",
+      "kind": "allocation_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C06"
+      ],
+      "discriminator": "Angel focal170/total1000 gives85; adding1000 other minutes gives42.50, not a focal-only denominator.",
+      "evidence_groups": [
+        "r1"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "controls_required": [
+        "complete_population",
+        "repeat_title_aggregation",
+        "zero_title",
+        "zero_total_block",
+        "scope_metric_period"
+      ]
+    },
+    {
+      "id": "C06.RELATION_CARDINALITY",
+      "family": "C06",
+      "name": "Declared join/reference cardinality and no multiplication",
+      "kind": "interface_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "partial",
+      "requirements": [
+        "C06"
+      ],
+      "discriminator": "A2x3 join preserves six occurrences, while authoritative parent/child money is not duplicated.",
+      "evidence_groups": [],
+      "execution": {
+        "source": "partial",
+        "canonical": "partial",
+        "native_ir": "partial",
+        "native_emitted": "partial",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "partial",
+        "boundary_invalid_controls": "partial",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Map generic kernel join controls to registered required-reference/cardinality/money reconciliation acceptance; retain missing/duplicate recipient outcomes."
+    },
+    {
+      "id": "C06.ROUNDED_RESIDUAL",
+      "family": "C06",
+      "name": "Largest-remainder cent residual assignment",
+      "kind": "allocation_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C06"
+      ],
+      "discriminator": "USD.01 split equally X/Y uses an explicitly authorized stable tie key, not physical order.",
+      "evidence_groups": [
+        "quantized_allocation"
+      ],
+      "execution": {
+        "source": "executed_selected_bounded_source",
+        "canonical": "15_complete_loader_validated_publications",
+        "native_ir": "15_actual_comparisons",
+        "native_emitted": "15_actual_comparisons",
+        "python_emitted": "not_executed_in_this_cohort",
+        "independent_controls": "24_oracle_and20_module_methods_original_fact_controls",
+        "boundary_invalid_controls": "explicit_zero_empty_scope_cutoff_population_minor_unit_and_reuse_controls",
+        "native_audit": "complete_native_ir_traces_retained_no_general_path_coverage",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Selected bounded residual/supplied-cent methods complete; generic relationship cardinality remains separate. No all-Cartesian native bound, Python-emitted execution or general capacity claim."
+    },
+    {
+      "id": "C07.MIXED_CLAIM_KINDS",
+      "family": "C07",
+      "name": "Reusable mixed capital/advance/correction waterfall",
+      "kind": "recovery_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C07"
+      ],
+      "discriminator": "Claim-purpose, priority/pro-rata, excess and actual successor identities must remain separate.",
+      "evidence_groups": [
+        "mixed_claims"
+      ],
+      "execution": {
+        "source": "executed_selected_bounded_source",
+        "canonical": "actual_completed_loader_validated_bundles",
+        "native_ir": "composite_51_then49_then_final_LF_native_carry_acceptance",
+        "native_emitted": "actual_financial_and_state_controls_in_named_cohorts",
+        "python_emitted": "separate_generator_controls_on_native_comparison_cases",
+        "independent_controls": "22_frozen_original_fact_oracle_methods",
+        "boundary_invalid_controls": "explicit_priority_pro_rata_excess_empty_zero_scope_population_order_unicode_date_max_and_state_controls",
+        "native_audit": "complete_native_ir_traces_retained_no_general_path_coverage",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Selected bounded mixed-kind method accepted with explicit composite evidence. No registry amendments/new claims, nonempty current cash settlements, all-bound Cartesian publication capacity, FX or whole-compiler proof. Broader family witness recensus remains separate.",
+      "related_variants": [
+        "C13.OFFSET_CLAWBACK_FIRST",
+        "C13.OFFSET_OTHER_FIRST"
+      ]
+    },
+    {
+      "id": "C07.PARTICIPANT_ADVANCE_POOL",
+      "family": "C07",
+      "name": "Separately scoped pooled participant advances",
+      "kind": "recovery_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C07"
+      ],
+      "discriminator": "Selected balances/funds are consumed under explicit participant/pool/purpose.",
+      "evidence_groups": [
+        "mechanisms"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No generic mixed capital/advance/correction completion is inferred from the separate advance case."
+    },
+    {
+      "id": "C07.PRIORITY_CAPITAL",
+      "family": "C07",
+      "name": "Ordered capital recovery",
+      "kind": "recovery_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C07"
+      ],
+      "discriminator": "Funds120/claims100+100 gives100/20 under supplied order.",
+      "evidence_groups": [
+        "waterfall"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C07.PRO_RATA_CAPITAL",
+      "family": "C07",
+      "name": "Proportional capital recovery",
+      "kind": "recovery_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C07"
+      ],
+      "discriminator": "Same funds/claims gives60/60 with actual remaining40/40.",
+      "evidence_groups": [
+        "waterfall"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C08.PAID_ORIGINAL_REVISION_ONLY",
+      "family": "C08",
+      "name": "Revise paid old obligation without automatic claim",
+      "kind": "financial_revision_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C08"
+      ],
+      "discriminator": "OriginalG100/issued100/paid80, reversal40 -> revised60/outstanding0/potential20; no authority leaves new30 payable30.",
+      "evidence_groups": [
+        "ao"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C12",
+        "C13"
+      ],
+      "source_condition": "AO37 publication and actual completed carry passed; earlier failed publication cohort is not credited."
+    },
+    {
+      "id": "C08.PER_TITLE_FLOOR",
+      "family": "C08",
+      "name": "Per-title zero floor before pooling",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C08"
+      ],
+      "discriminator": "Same source facts give100, not60.",
+      "evidence_groups": [
+        "returns"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C08.POOLED_LOSS_CARRY",
+      "family": "C08",
+      "name": "Pooled loss carry and later earning credit",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C08"
+      ],
+      "discriminator": "Return-only creates40 loss; later30 then20 gives loss40->10->0 and final credit10.",
+      "evidence_groups": [
+        "returns"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C08.SIGNED_POOL",
+      "family": "C08",
+      "name": "Original-rate signed current pool",
+      "kind": "financial_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C08"
+      ],
+      "discriminator": "A100 plus oldB80@.5 reversal-40 gives60 even if currentB rate.8.",
+      "evidence_groups": [
+        "returns"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C09.FINITE_RELEASE_SCHEDULE",
+      "family": "C09",
+      "name": "Finite capped/term release deadline policy",
+      "kind": "calendar_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "partial",
+      "requirements": [
+        "C09"
+      ],
+      "discriminator": "Keep source vintage, cap, deadline and clamp/reject calendar-month choices explicit.",
+      "evidence_groups": [
+        "mechanisms"
+      ],
+      "execution": {
+        "source": "partial",
+        "canonical": "partial",
+        "native_ir": "partial",
+        "native_emitted": "partial",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "partial",
+        "boundary_invalid_controls": "partial",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Map/finish full stage/term/cap schedule composition, beyond the admitted standalone vintage and calendar mechanisms."
+    },
+    {
+      "id": "C09.GENIUS_BASIS_RESERVE",
+      "family": "C09",
+      "name": "Genius basis reserve before fee",
+      "kind": "financial_precedence_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "partial",
+      "requirements": [
+        "C09"
+      ],
+      "discriminator": "20% gross creates200/160; return60 consumesV1 once; release140/160 givesfee14/16 andallocation126/144; totals1740=174+1566.",
+      "evidence_groups": [
+        "basis_reserves"
+      ],
+      "execution": {
+        "source": "qualified_selected_within_vintage_slice",
+        "canonical": "six_complete_loader_validated_bundles",
+        "native_ir": "executed_selected_finite_cohort",
+        "native_emitted": "executed_selected_finite_cohort",
+        "python_emitted": "executed_separate_selected_mirrors",
+        "independent_controls": "32_oracle_and14_module_methods_original_facts",
+        "boundary_invalid_controls": "selected_zero_empty_calendar_scope_cutoff_alias_slot_population_and_unsupported_variant_controls",
+        "native_audit": "complete_native_ir_traces_retained_no_general_path_coverage",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "RR04/LD03 selected source economics",
+        "policy": "fee substitution and exact operating choices synthetic",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Sourced excess-return/post-liquidation signed Net Receipts remains unsupported. Generic reserve cap/payment-stage/term schedule and source fee-band/claim/successor approval obligations stay separate; selected five-checkpoint slice is accepted."
+    },
+    {
+      "id": "C09.PAYMENT_HOLDBACK",
+      "family": "C09",
+      "name": "Post-entitlement payment holdback",
+      "kind": "financial_precedence_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C09"
+      ],
+      "discriminator": "Retain the cleared synthetic LG holdback independently of basis-stage reserve.",
+      "evidence_groups": [
+        "lg"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No basis-stage reserve or actual settlement-paid inference follows."
+    },
+    {
+      "id": "C09.VINTAGE_MOVEMENTS",
+      "family": "C09",
+      "name": "Scoped add/application/release by vintage",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C09"
+      ],
+      "discriminator": "V1 12-7-5=0 and V2 0+20=20; V1 application8 cannot borrow V2's20.",
+      "evidence_groups": [
+        "mechanisms"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C10.CONSERVED_TRANSFER",
+      "family": "C10",
+      "name": "Authorized current-entitlement DAG transfer",
+      "kind": "cross_scope_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C10"
+      ],
+      "discriminator": "Source100/transfer30 ->70/30; fresh next30/transfer10 ->20/10, never reuse old cash.",
+      "evidence_groups": [
+        "transfers"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "limitation": "Coordinator execution envelope is not an intrinsic cross-contract type or distributed payment service."
+    },
+    {
+      "id": "C10.ENTITLEMENT_BURDEN",
+      "family": "C10",
+      "name": "Authorized subtraction/burden on another entitlement",
+      "kind": "cross_scope_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "pending",
+      "requirements": [
+        "C10"
+      ],
+      "discriminator": "Claimant100 stays100; other agreement200-authorized30 becomes170. Global transfer conservation is wrong for this method.",
+      "evidence_groups": [],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "pending",
+        "boundary_invalid_controls": "pending",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Choose/pin accrued-versus-paid measurement, endpoint scope/purpose/cap, original dependency and exactly-once actual predecessor; implement independent oracle and native/canonical method."
+    },
+    {
+      "id": "C11.ATTESTED_FULL_GATE_PROXY_PAYOUT",
+      "family": "C11",
+      "name": "Cleared LG01 full gate and separate payout proxy",
+      "kind": "gate_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C11"
+      ],
+      "discriminator": "Gate400/100 is separate from proxy210/candidates30/35; strict outside hurdle before period start and continuous work are explicit supplied attestations.",
+      "evidence_groups": [
+        "lg"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "limitation": "Original crossed worksheet175 is supplied. No full net-ledger or continuous-history reconstruction.",
+      "mapped_release_obligations": [
+        "Full-versus-proxy bases for cleared attested profile",
+        "Strict outside-hurdle effective-before-period-start attestation",
+        "Supplied continuous-work attestation only; original-history reconstruction remains pending"
+      ]
+    },
+    {
+      "id": "C11.CLOSING_GATE",
+      "family": "C11",
+      "name": "Closing-endpoint ordered gate policy",
+      "kind": "gate_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "pending",
+      "requirements": [
+        "C11"
+      ],
+      "discriminator": "Same RR04 closing150/130 gives comparator11 under endpoint method.",
+      "evidence_groups": [],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "pending",
+        "boundary_invalid_controls": "pending",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Implement as a separately registered positive synthetic method with original ordered receipts/costs, independent per-event controls and canonical/native execution. Existing backlog B-C11-GATES already selects opening/closing/event-time variants; historical contract sequencing remains unresolved."
+    },
+    {
+      "id": "C11.CONTINUOUS_ORIGINAL_HISTORY",
+      "family": "C11",
+      "name": "Continuous gate from original complete ordered history",
+      "kind": "history_gate_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "pending",
+      "requirements": [
+        "C11"
+      ],
+      "discriminator": "A gate satisfied at the endpoint may have failed during the period. Continuous eligibility must examine the complete selected history, not only opening/closing totals or a supplied attestation.",
+      "evidence_groups": [],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "pending",
+        "boundary_invalid_controls": "pending",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "Lionsgate-Mandate source economics, historical sequence unresolved",
+        "policy": "proposed synthetic ordered-event choice",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Supply/approve the finite original complete history and independently calculate continuous full-basis eligibility, with a dip-and-recovery discriminator against endpoint eligibility and explicit same-event order. Current LG supplied continuous-work attestation is a separate admitted fact, not reconstruction of continuous original history.",
+      "counterfactual_controls": [
+        "latch8",
+        "full-cross-row7",
+        "authorized reversed tie4"
+      ],
+      "not_additional_required_methods_without_selection": true,
+      "related_variants": [
+        "C11.ATTESTED_FULL_GATE_PROXY_PAYOUT",
+        "C11.SPLIT_REOPEN_GATE"
+      ]
+    },
+    {
+      "id": "C11.OPENING_GATE",
+      "family": "C11",
+      "name": "Opening-only ordered gate policy",
+      "kind": "gate_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "pending",
+      "requirements": [
+        "C11"
+      ],
+      "discriminator": "Opening80/cost100 yields0 in the RR04 dynamic comparator.",
+      "evidence_groups": [],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "pending",
+        "boundary_invalid_controls": "pending",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Implement as a separately registered positive synthetic method with original ordered receipts/costs, independent per-event controls and canonical/native execution. Existing backlog B-C11-GATES already selects opening/closing/event-time variants; historical contract sequencing remains unresolved."
+    },
+    {
+      "id": "C11.SPLIT_REOPEN_GATE",
+      "family": "C11",
+      "name": "Selected split-crossing dip/reopening method",
+      "kind": "gate_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "pending",
+      "requirements": [
+        "C11"
+      ],
+      "discriminator": "RR04 selected gross6 differs from latch8/full-cross7/reversed tie4/opening0/endpoint11 despite equal closing150/130.",
+      "evidence_groups": [],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "pending",
+        "boundary_invalid_controls": "pending",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "Lionsgate-Mandate source economics, historical sequence unresolved",
+        "policy": "proposed synthetic ordered-event choice",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Create original receipts/costs and independent native/canonical split/reopen case; preserve zero net/aggregate assumptions and unresolved historical sequencing.",
+      "counterfactual_controls": [
+        "latch8",
+        "full-cross-row7",
+        "authorized reversed tie4"
+      ],
+      "not_additional_required_methods_without_selection": true,
+      "mapped_release_obligations": [
+        "Event-time gate and explicit crossing row",
+        "Same-event order",
+        "Separate full gate receipts from home-video payout proxy",
+        "Reopening rather than irreversible latch"
+      ]
+    },
+    {
+      "id": "C12.CALCULATED_ISSUED_PAID",
+      "family": "C12",
+      "name": "Distinct calculated, issued and actual-paid lifecycle",
+      "kind": "obligation_interface",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C12"
+      ],
+      "discriminator": "New calculation does not issue or pay it; original notices/payments/applications retain identities.",
+      "evidence_groups": [
+        "settlement"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C12.PAYMENT_APPLICATIONS",
+      "family": "C12",
+      "name": "Actual-payment application and outstanding roll-forward",
+      "kind": "obligation_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C12"
+      ],
+      "discriminator": "Revised/issued90 minus independently paid80 leaves10; missing population is unknown, not zero.",
+      "evidence_groups": [
+        "settlement"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C13"
+      ]
+    },
+    {
+      "id": "C12.UNISSUED_THRESHOLD",
+      "family": "C12",
+      "name": "Minimum issuance on unissued plus new net",
+      "kind": "stateful_financial_policy",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C12"
+      ],
+      "discriminator": "Three-period10/19/17; final new candidate27, not37. Old issued10 remains due separately.",
+      "evidence_groups": [
+        "settlement"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C16"
+      ]
+    },
+    {
+      "id": "C13.DEPENDENT_PERIOD_REPLAY",
+      "family": "C13",
+      "name": "Finite dependent-period authorized restatement",
+      "kind": "revision_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "in_progress",
+      "requirements": [
+        "C13"
+      ],
+      "discriminator": "Revised old90 lesspaid80 plus next earned30 reconciles40 with preserved period/delta detail.",
+      "evidence_groups": [
+        "dependent_replay_oracle"
+      ],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "35_frozen_original_fact_oracle_methods_and_actual_JSON_carry",
+        "boundary_invalid_controls": "independent_scope_authority_predecessor_dependency_population_alias_temporal_history_controls_no_native_credit",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Extend the bounded original-opening replacement through dependent periods with original issue/authority/predecessors. Complete-period AO history replay does not supply this restatement variant."
+    },
+    {
+      "id": "C13.DISNEY_AMENDED_PERIODS",
+      "family": "C13",
+      "name": "Disney amended-old-period recognition alternative",
+      "kind": "recognition_variant",
+      "requiredness": "alternative_requires_explicit_selection",
+      "status": "pending",
+      "requirements": [
+        "C13"
+      ],
+      "discriminator": "Apply the same first-dollar210 economic revision to old periods instead of also crediting trigger period.",
+      "evidence_groups": [],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "pending",
+        "boundary_invalid_controls": "pending",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "RR04 economics selected",
+        "policy": "alternative recognition route needs explicit case selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Retain as mutually exclusive documented alternative. Implement only if this route is selected as an additional acceptance requirement; never stack with trigger-period recognition.",
+      "financial_economic_group": "DISNEY-FIRST-DOLLAR",
+      "alternative_group": "DISNEY-RECOGNIZE-ONCE"
+    },
+    {
+      "id": "C13.DISNEY_TRIGGER_CATCHUP",
+      "family": "C13",
+      "name": "Disney trigger-period catch-up recognition alternative",
+      "kind": "recognition_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C13"
+      ],
+      "discriminator": "Current262.50+catch-up210 -> newly unissued472.50; old issued arrears55 remain distinct, total unpaid527.50.",
+      "evidence_groups": [
+        "merchandising"
+      ],
+      "execution": {
+        "source": "qualified_bounded39_and_six_completed_bundles",
+        "canonical": "qualified_bounded39_and_six_completed_bundles",
+        "native_ir": "qualified_bounded39_and_six_completed_bundles",
+        "native_emitted": "qualified_bounded39_and_six_completed_bundles",
+        "python_emitted": "qualified_bounded39_and_six_completed_bundles",
+        "independent_controls": "qualified_bounded39_and_six_completed_bundles",
+        "boundary_invalid_controls": "qualified_bounded39_and_six_completed_bundles",
+        "native_audit": "qualified_bounded39_and_six_completed_bundles",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "RR04 economics selected",
+        "policy": "trigger-period operating policy synthetic/proposed",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining acceptance for this selected bounded trigger-period witness. General dependent-period replay, amended-old-period recognition and unselectedCB/source variants remain separate; professional approval is not recorded.",
+      "financial_economic_group": "DISNEY-FIRST-DOLLAR",
+      "related_variants": [
+        "C04.DISNEY_FIRST_DOLLAR",
+        "C13.DISNEY_AMENDED_PERIODS"
+      ],
+      "alternative_group": "DISNEY-RECOGNIZE-ONCE",
+      "scope_limits": [
+        "ActualQ4 result55,194,678 bytes under64MiB; no general eight-period capacity.",
+        "Physical state merchandising-original-json/1 retains complete original record content and lexemes; adapter slots are transient associations, not evidence authority or economic identity.",
+        "New source/trace differs from earlier failed drafts; normalized complete financial/original-state comparison does not establish trace identity."
+      ]
+    },
+    {
+      "id": "C13.OFFSET_CLAWBACK_FIRST",
+      "family": "C13",
+      "name": "Prospective limited offset, original claim first",
+      "kind": "recovery_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C13"
+      ],
+      "discriminator": "Original claim20/other25/new earning30 offsets20/10 and carries0/15.",
+      "evidence_groups": [
+        "ao"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C07",
+        "C08"
+      ],
+      "controls_required": [
+        "separate_authority",
+        "eligibility_date",
+        "ever_authorized_capacity",
+        "cash_first",
+        "actual_receipts",
+        "payment_population",
+        "recovery_population",
+        "old_cutoff_replay",
+        "actual_predecessor"
+      ]
+    },
+    {
+      "id": "C13.OFFSET_OTHER_FIRST",
+      "family": "C13",
+      "name": "Prospective limited offset, other claim first",
+      "kind": "recovery_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C13"
+      ],
+      "discriminator": "Same facts offset5/25 and carry15/0; original paid80 is immutable.",
+      "evidence_groups": [
+        "ao"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_families": [
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "id": "C13.ORIGINAL_OPENING_RESTATEMENT",
+      "family": "C13",
+      "name": "Authorized original/replacement replay from original opening",
+      "kind": "revision_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C13"
+      ],
+      "discriminator": "Original100/paid80/revised90 givesdelta-10/outstanding10, not a new90 disbursement.",
+      "evidence_groups": [
+        "revision"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C13.PROSPECTIVE_PERIOD_ADJUSTMENT",
+      "family": "C13",
+      "name": "Current-period prospective adjustment versus old-period restatement",
+      "kind": "recognition_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "in_progress",
+      "requirements": [
+        "C13"
+      ],
+      "discriminator": "Original100 / actual paid80 / revised90, plus following earned30 gives outstanding40. A prospective -10 line is recognized in the current period; original-opening restatement revises the old period. Period lines differ despite equal total outstanding.",
+      "evidence_groups": [
+        "dependent_replay_oracle"
+      ],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "35_frozen_original_fact_oracle_methods_and_actual_JSON_carry",
+        "boundary_invalid_controls": "independent_scope_authority_predecessor_dependency_population_alias_temporal_history_controls_no_native_credit",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Implement independently specified original-fact prospective -10 current-period adjustment and its comparison with actual dependent-period restatement. Retain original issued/paid amounts, period attribution, authority, delta-versus-total and actual serialized predecessor; reject duplicate/future/scope errors atomically. AO potential-overpayment20 recovery does not fulfill this distinct method.",
+      "related_variants": [
+        "C13.ORIGINAL_OPENING_RESTATEMENT",
+        "C13.DEPENDENT_PERIOD_REPLAY"
+      ]
+    },
+    {
+      "id": "C14.BUSINESS_ROLL_FOLLOWING",
+      "family": "C14",
+      "name": "Supplied following business-day roll",
+      "kind": "calendar_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C14"
+      ],
+      "discriminator": "Following selected deadline yieldsMay4 under declared closure/calendar rows.",
+      "evidence_groups": [
+        "calendar"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C14.BUSINESS_ROLL_PRECEDING",
+      "family": "C14",
+      "name": "Supplied preceding business-day roll",
+      "kind": "calendar_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C14"
+      ],
+      "discriminator": "Same declared deadline with preceding rule yieldsApr30.",
+      "evidence_groups": [
+        "calendar"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C14.CALENDAR_MONTH_CLAMP",
+      "family": "C14",
+      "name": "Explicit Gregorian calendar-month clamp",
+      "kind": "calendar_primitive_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C14"
+      ],
+      "discriminator": "Month-end clamp derives a real deadline; no ambient calendar or fractional-month assumption.",
+      "evidence_groups": [
+        "mechanisms"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C14.CALENDAR_MONTH_REJECT",
+      "family": "C14",
+      "name": "Explicit invalid month-end rejection",
+      "kind": "calendar_primitive_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C14"
+      ],
+      "discriminator": "Reject invalid target day instead of silently clamping under a different policy.",
+      "evidence_groups": [
+        "mechanisms"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C14.EFFECTIVE_REVISION",
+      "family": "C14",
+      "name": "Greatest known amended-term revision",
+      "kind": "term_selection_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C14"
+      ],
+      "discriminator": "RecordedApr20 at as-of equality gives100; before gives80; ties reject, inactive days zero.",
+      "evidence_groups": [
+        "calendar"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C14.FISCAL_DAY_PRORATION",
+      "family": "C14",
+      "name": "Original supplied fiscal/day proration",
+      "kind": "calendar_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C14"
+      ],
+      "discriminator": "OriginalApr6-May6 denominator30 and ten active days produce300*10/30=100.",
+      "evidence_groups": [
+        "calendar"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope."
+    },
+    {
+      "id": "C14.SUPPLIED_ZONE_DATE",
+      "family": "C14",
+      "name": "Civil Date from finite named-zone/version day cells",
+      "kind": "calendar_interface_variant",
+      "requiredness": "supporting_engineering",
+      "status": "qualified",
+      "requirements": [
+        "C14"
+      ],
+      "discriminator": "SameInstant west/east givesMar7/Mar8; explicit versions discriminate;23/25-hour cells, midnight/submicroseconds.",
+      "evidence_groups": [
+        "civil"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "qualified_selected_witness",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "limitation": "Mechanical original-table validation is a separate adapter boundary; native SPL selects the event cell. No IANA/ambient/legal-calendar or currency/money meaning."
+    },
+    {
+      "id": "C15.NATIVE_DIRECTED_FX",
+      "family": "C15",
+      "name": "Native USD/EUR and directed quoted FX",
+      "kind": "typed_financial_interface",
+      "requiredness": "accepted_c1_variant",
+      "status": "gated",
+      "requirements": [
+        "C15"
+      ],
+      "discriminator": "EUR100 * USD1.10/EUR =USD110; reverse quote/date/source/currency/rounding are explicit.",
+      "evidence_groups": [],
+      "execution": {
+        "source": "not_executed",
+        "canonical": "not_executed",
+        "native_ir": "not_executed",
+        "native_emitted": "not_executed",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "pending",
+        "boundary_invalid_controls": "pending",
+        "native_audit": "pending",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "RR04/LD03 no qualified necessary financial-core residual",
+        "policy": "Owner reserves native mixed currency for later self-modifying compiler tool/demo; continue other current goals first.",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "After other current authorized feature/performance/testing goals are verified complete, or owner starts the later phase, build the tool and use reserved directed currency checks as its demonstration. No native FX implementation now.",
+      "gate": "B-EXT-AUTOMATION later owner-selected tool/demo sequence",
+      "preserved_alternative": "Existing record-backed FX remains a legitimate method fit; no financial-inexpressibility claim."
+    },
+    {
+      "id": "C16.SUPPLIED_WITHHOLDING",
+      "family": "C16",
+      "name": "Explicit supplied-rate withholding and net statement",
+      "kind": "statement_method",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C16"
+      ],
+      "discriminator": "Gross100,10% withheld10, net90; cent half-even and threshold are explicit composition controls.",
+      "evidence_groups": [
+        "settlement"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No remaining implementation obligation is asserted for this named bounded witness; family-wide closure still requires review of this draft denominator and its evidence scope.",
+      "related_variants": [
+        "C12.UNISSUED_THRESHOLD"
+      ],
+      "limitation": "No tax applicability, remittance, filing or actual-paid inference."
+    },
+    {
+      "id": "C17.ATOMIC_COMPLETED_ARTIFACT",
+      "family": "C17",
+      "name": "Atomic completed publication and validated consumer",
+      "kind": "interface_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "qualified",
+      "requirements": [
+        "C17"
+      ],
+      "discriminator": "A running/header/prefix or altered file is not consumable; failed publication exposes no completed state.",
+      "evidence_groups": [
+        "publication",
+        "ao"
+      ],
+      "execution": {
+        "source": "qualified_selected_witness",
+        "canonical": "qualified_selected_witness",
+        "native_ir": "qualified_selected_witness",
+        "native_emitted": "qualified_selected_witness",
+        "python_emitted": "case_specific_success_only",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "selected_positive_zero_boundary_invalid_not_exhaustive",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Keep explicit resource/size qualification per case. Native IR audit is separate from emitted-target branch coverage.",
+      "related_evidence_groups": [
+        "civil",
+        "term",
+        "settlement"
+      ]
+    },
+    {
+      "id": "C17.GENERIC_REGISTRATION",
+      "family": "C17",
+      "name": "Typed reusable modules and new contract registration",
+      "kind": "interface_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C17"
+      ],
+      "discriminator": "New contracts/parameterized first-order imports require no case-name branch; unused closure signatures still validate.",
+      "evidence_groups": [
+        "modules"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Map each new financial atom to its generic source/interface entry; no enterprise repository or general recursive host program claim."
+    },
+    {
+      "id": "C17.MULTI_PARTY_REPORT_STATE",
+      "family": "C17",
+      "name": "Multi-participant statement/detail and scoped state",
+      "kind": "interface_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C17"
+      ],
+      "discriminator": "Retain participant/group ownership without duplicate shared state or parent money.",
+      "evidence_groups": [
+        "modules"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "Retain typed scope and source/evidence lineage for each new method; readable multi-Settle syntax is a separate source-axis obligation."
+    },
+    {
+      "id": "C17.SCENARIO_REPLAY",
+      "family": "C17",
+      "name": "Deterministic what-if with actual scenario-isolated state",
+      "kind": "interface_variant",
+      "requiredness": "accepted_c1_variant",
+      "status": "reported",
+      "requirements": [
+        "C17"
+      ],
+      "discriminator": "Same original inputs replay deterministically; scenario state is distinct from issued financial artifacts.",
+      "evidence_groups": [
+        "modules"
+      ],
+      "execution": {
+        "source": "reported_selected_witness",
+        "canonical": "reported_selected_witness",
+        "native_ir": "reported_selected_witness",
+        "native_emitted": "reported_selected_witness",
+        "python_emitted": "not_mapped_here",
+        "independent_controls": "selected_neutral_or_hand_controls",
+        "boundary_invalid_controls": "see_named_test_map_not_recensused_here",
+        "native_audit": "selected_native_ir_observations_only",
+        "emitted_target_decisions": "not_established_by_value_agreement"
+      },
+      "review": {
+        "source": "synthetic_or_development_selection_as_named",
+        "policy": "explicit_bounded_selection",
+        "professional_approval": "not_recorded"
+      },
+      "remaining_obligation": "No concurrent distributed settlement service is inferred."
+    }
+  ],
+  "denominator_scope": "Required C1 semantic rows have requiredness accepted_c1_variant. Supporting engineering and explicitly unselected alternatives are separate axes. Freezing identities/requiredness establishes a planning denominator, never passing execution or a coverage percentage.",
+  "review_decisions": [
+    {
+      "date": "2026-11-23",
+      "decision": "C11 opening and closing are required positive synthetic methods.",
+      "basis": "Existing B-C11-GATES acceptance explicitly requires separate opening/closing/event-time policies. The source historical sequence remains unresolved; no sourced-account approval is inferred."
+    },
+    {
+      "date": "2026-11-23",
+      "decision": "Disney amended-old-period recognition stays an explicitly unselected alternative.",
+      "basis": "The adopted bounded operating fixture selects trigger-period recognition. Repricing economics count once; an additional recognition implementation requires a separately recorded selection."
+    },
+    {
+      "date": "2026-11-23",
+      "decision": "Retain distinct C13 prospective-versus-restatement comparison and continuous-history gate gaps.",
+      "basis": "AO recovery carry and LG attestations do not execute these accepted positive variants."
+    },
+    {
+      "date": "2026-11-23",
+      "decision": "C06/C07 open rows retain exact backlog scope.",
+      "basis": "C06 residual includes approved amount-versus-weight and unmatched policy; cardinality includes one-to-one/one-to-many and 2x3 multiplicity. C07 mixed capital/advance/correction purposes includes fee/correction priority, excess, ties and actual two-period carry."
+    },
+    {
+      "date": "2026-11-23",
+      "decision": "Reserve native mixed currency for the later self-modifying compiler tool/skill demonstration.",
+      "basis": "Owner explicitly selects the extensibility example and asks to leave native mixed-currency/FX out now while other current feature/performance/testing goals remain. This is sequencing, not passing native currency evidence or a financial inexpressibility claim."
+    }
+  ]
+}

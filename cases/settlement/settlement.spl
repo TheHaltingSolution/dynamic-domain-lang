@@ -1,0 +1,145 @@
+// Selected supplied-rate settlement; original notices and actual payments remain separate.
+schedule SuppliedSettlement language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input project: Id<Asset>;
+  input fact_scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text};
+  input case_id: Text;
+  input cutoff: Instant;
+  input policy_id: Text;
+  input policy_revision: Text;
+  input rounding: Text;
+  input threshold_policy: Text;
+  input evidence_class: Text;
+  input withholding_rate: Ratio;
+  input minimum_payout: Money<USD>;
+  input earned: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, observed_at: Instant, source_ref: Text, evidence_ref: Text, effective_date: Date}>;
+  input issued: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, observed_at: Instant, source_ref: Text, evidence_ref: Text, issued_date: Date}>;
+  input payments: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, observed_at: Instant, source_ref: Text, evidence_ref: Text, paid_date: Date}>;
+  input applications: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, amount: Money<USD>, observed_at: Instant, source_ref: Text, evidence_ref: Text, payment_id: Text, issued_id: Text}>;
+  input evidence: List<{id: Text, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, observed_at: Instant, source_kind: Text, period: Option<Period>, approval_ref: Id<Decision>, evidence_ref: Text, kind: Text}>;
+  input supplied_opening: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, purpose: Text, policy_id: Text, policy_revision: Text, boundary: Date, origin: Text, source_case_id: Text, deferred_unissued: Money<USD>, issued_obligations: List<{amount: Money<USD>, evidence_ref: Text, id: Text, issued_date: Date, observed_at: Instant, paid_to_date: Money<USD>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, source_ref: Text}>, recognized_ids: List<Tuple<Text,Text>>};
+  input predecessor: Option<{source_case_id: Text, period: Period, closing_state: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, purpose: Text, policy_id: Text, policy_revision: Text, boundary: Date, origin: Text, source_case_id: Text, deferred_unissued: Money<USD>, issued_obligations: List<{amount: Money<USD>, evidence_ref: Text, id: Text, issued_date: Date, observed_at: Instant, paid_to_date: Money<USD>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, source_ref: Text}>, recognized_ids: List<Tuple<Text,Text>>}}>;
+  opening ledger: {scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, purpose: Text, policy_id: Text, policy_revision: Text, boundary: Date, origin: Text, source_case_id: Text, deferred_unissued: Money<USD>, issued_obligations: List<{amount: Money<USD>, evidence_ref: Text, id: Text, issued_date: Date, observed_at: Instant, paid_to_date: Money<USD>, scope: {contract_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, source_ref: Text}>, recognized_ids: List<Tuple<Text,Text>>} from "settlement/net-unpaid";
+  require policy_id == "SYNTHETIC-SETTLEMENT-01" and policy_revision == "1" and rounding == "half_even_cent_once" and threshold_policy == "at_least" and evidence_class == "research_assumption" else "SETTLEMENT_POLICY";
+  require fact_scope.contract_id == scope.agreement_id and fact_scope.participant_id == scope.participant_id and fact_scope.pool_id == scope.pool_id and fact_scope.asset_id == project and fact_scope.currency == "USD" else "SETTLEMENT_FACT_SCOPE";
+  require case_id != "" else "SETTLEMENT_IDENTITY_REQUIRED";
+  require ledger == supplied_opening else "SETTLEMENT_OPENING_SNAPSHOT";
+  require ledger.scope == fact_scope and ledger.purpose == "net_unpaid" else "SETTLEMENT_OPENING_SCOPE";
+  require ledger.policy_id == policy_id and ledger.policy_revision == policy_revision else "SETTLEMENT_OPENING_POLICY";
+  require ledger.boundary == scope.period.start else "SETTLEMENT_OPENING_BOUNDARY";
+  require ledger.deferred_unissued >= USD 0 and quantize(ledger.deferred_unissued, USD 0.01, "half_even") == ledger.deferred_unissued else "SETTLEMENT_MINOR_UNIT";
+  define prior_ids = for each token in ledger.recognized_ids {
+    require (tuple_get(token, 0) == "earned" or tuple_get(token, 0) == "issued" or tuple_get(token, 0) == "payments" or tuple_get(token, 0) == "applications") and tuple_get(token, 1) != "" else "SETTLEMENT_RECOGNIZED_IDS";
+    require sum(filter(ledger.recognized_ids, candidate => candidate == token), candidate => 1) == 1 else "SETTLEMENT_DUPLICATE_ID";
+    yield token;
+  };
+  require if ledger.origin == "genesis" then ledger.source_case_id == "genesis" and ledger.deferred_unissued == USD 0 and sum(ledger.issued_obligations, row => 1) == 0 and sum(ledger.recognized_ids, token => 1) == 0 and not is_some(predecessor) else ledger.origin == "prior_result" and is_some(predecessor) else "SETTLEMENT_GENESIS";
+  require ledger.origin == "genesis" or (require_some(predecessor, "SETTLEMENT_PREDECESSOR_REQUIRED").closing_state == ledger and require_some(predecessor, "SETTLEMENT_PREDECESSOR_REQUIRED").source_case_id == ledger.source_case_id and require_some(predecessor, "SETTLEMENT_PREDECESSOR_REQUIRED").source_case_id != case_id and require_some(predecessor, "SETTLEMENT_PREDECESSOR_REQUIRED").period.start < require_some(predecessor, "SETTLEMENT_PREDECESSOR_REQUIRED").period.end and require_some(predecessor, "SETTLEMENT_PREDECESSOR_REQUIRED").period.end == scope.period.start) else "SETTLEMENT_PREDECESSOR_MISMATCH";
+  define checked_evidence = for each support in evidence {
+    require support.id != "" and support.source_kind != "" else "SETTLEMENT_IDENTITY_REQUIRED";
+    require sum(filter(evidence, other => other.id == support.id), other => 1) == 1 else "SETTLEMENT_DUPLICATE_ID";
+    require support.scope == fact_scope else "SETTLEMENT_EVIDENCE_SCOPE";
+    require support.observed_at < cutoff else "SETTLEMENT_EVIDENCE_CUTOFF";
+    require support.source_kind != "complete_settlement_population" or get_or(support.period, scope.period) == scope.period and is_some(support.period) else "SETTLEMENT_COMPLETENESS_SCOPE";
+    yield support;
+  };
+  define evidence_index = checked_evidence;
+  define complete = filter(evidence_index, support => support.source_kind == "complete_settlement_population");
+  require sum(complete, support => 1) >= 1 else "SETTLEMENT_PAYMENT_POPULATION_REQUIRED";
+  require sum(complete, support => 1) == 1 else "SETTLEMENT_COMPLETENESS_AMBIGUOUS";
+  define checked_opening = for each row in ledger.issued_obligations {
+    require sum(filter(ledger.issued_obligations, other => other.id == row.id), other => 1) == 1 else "SETTLEMENT_DUPLICATE_ID";
+    require row.id != "" and row.source_ref != "" else "SETTLEMENT_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "SETTLEMENT_FACT_SCOPE";
+    require row.observed_at < cutoff else "SETTLEMENT_FACT_CUTOFF";
+    require sum(filter(evidence_index, support => support.id == row.evidence_ref), support => 1) == 1 else "SETTLEMENT_FACT_EVIDENCE";
+    require row.issued_date < scope.period.start else "SETTLEMENT_ORIGINAL_ISSUE_DATE";
+    require row.amount > USD 0 and row.paid_to_date >= USD 0 and row.paid_to_date < row.amount and (sum(filter(prior_ids, token => token == tuple("issued", row.id)), token => 1) > 0) else "SETTLEMENT_ORIGINAL_OBLIGATION";
+    require quantize(row.amount, USD 0.01, "half_even") == row.amount and quantize(row.paid_to_date, USD 0.01, "half_even") == row.paid_to_date else "SETTLEMENT_MINOR_UNIT";
+    yield row;
+  };
+  define checked_earned = for each row in earned {
+    require sum(filter(earned, other => other.id == row.id), other => 1) == 1 else "SETTLEMENT_DUPLICATE_ID";
+    require row.id != "" and row.source_ref != "" else "SETTLEMENT_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "SETTLEMENT_FACT_SCOPE";
+    require row.observed_at < cutoff else "SETTLEMENT_FACT_CUTOFF";
+    require sum(filter(evidence_index, support => support.id == row.evidence_ref), support => 1) == 1 else "SETTLEMENT_FACT_EVIDENCE";
+    require not (sum(filter(prior_ids, token => token == tuple("earned", row.id)), token => 1) > 0) else "SETTLEMENT_ALREADY_RECOGNIZED";
+    require row.amount >= USD 0 else "SETTLEMENT_AMOUNT_DOMAIN";
+    require quantize(row.amount, USD 0.01, "half_even") == row.amount else "SETTLEMENT_MINOR_UNIT";
+    require in_period(row.effective_date, scope.period) else "SETTLEMENT_FACT_PERIOD";
+    yield row;
+  };
+  define checked_issued = for each row in issued {
+    require sum(filter(issued, other => other.id == row.id), other => 1) == 1 else "SETTLEMENT_DUPLICATE_ID";
+    require row.id != "" and row.source_ref != "" else "SETTLEMENT_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "SETTLEMENT_FACT_SCOPE";
+    require row.observed_at < cutoff else "SETTLEMENT_FACT_CUTOFF";
+    require sum(filter(evidence_index, support => support.id == row.evidence_ref), support => 1) == 1 else "SETTLEMENT_FACT_EVIDENCE";
+    require not (sum(filter(prior_ids, token => token == tuple("issued", row.id)), token => 1) > 0) else "SETTLEMENT_ALREADY_RECOGNIZED";
+    require row.amount > USD 0 else "SETTLEMENT_AMOUNT_DOMAIN";
+    require quantize(row.amount, USD 0.01, "half_even") == row.amount else "SETTLEMENT_MINOR_UNIT";
+    require in_period(row.issued_date, scope.period) else "SETTLEMENT_FACT_PERIOD";
+    yield row;
+  };
+  define checked_payments = for each row in payments {
+    require sum(filter(payments, other => other.id == row.id), other => 1) == 1 else "SETTLEMENT_DUPLICATE_ID";
+    require row.id != "" and row.source_ref != "" else "SETTLEMENT_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "SETTLEMENT_FACT_SCOPE";
+    require row.observed_at < cutoff else "SETTLEMENT_FACT_CUTOFF";
+    require sum(filter(evidence_index, support => support.id == row.evidence_ref), support => 1) == 1 else "SETTLEMENT_FACT_EVIDENCE";
+    require not (sum(filter(prior_ids, token => token == tuple("payments", row.id)), token => 1) > 0) else "SETTLEMENT_ALREADY_RECOGNIZED";
+    require row.amount > USD 0 else "SETTLEMENT_AMOUNT_DOMAIN";
+    require quantize(row.amount, USD 0.01, "half_even") == row.amount else "SETTLEMENT_MINOR_UNIT";
+    require in_period(row.paid_date, scope.period) else "SETTLEMENT_FACT_PERIOD";
+    yield row;
+  };
+  define checked_applications = for each row in applications {
+    require sum(filter(applications, other => other.id == row.id), other => 1) == 1 else "SETTLEMENT_DUPLICATE_ID";
+    require row.id != "" and row.source_ref != "" else "SETTLEMENT_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "SETTLEMENT_FACT_SCOPE";
+    require row.observed_at < cutoff else "SETTLEMENT_FACT_CUTOFF";
+    require sum(filter(evidence_index, support => support.id == row.evidence_ref), support => 1) == 1 else "SETTLEMENT_FACT_EVIDENCE";
+    require not (sum(filter(prior_ids, token => token == tuple("applications", row.id)), token => 1) > 0) else "SETTLEMENT_ALREADY_RECOGNIZED";
+    require row.amount > USD 0 else "SETTLEMENT_AMOUNT_DOMAIN";
+    require quantize(row.amount, USD 0.01, "half_even") == row.amount else "SETTLEMENT_MINOR_UNIT";
+    yield row;
+  };
+  define earned_total = sum(checked_earned, row => row.amount);
+  define calculated = settlement_amounts(earned_total, ledger.deferred_unissued, withholding_rate, minimum_payout);
+  require sum(checked_issued, row => 1) <= 1 else "SETTLEMENT_ONE_NEW_ISSUE";
+  define new_issued = sum(checked_issued, row => row.amount);
+  require sum(checked_issued, row => 1) == 0 or new_issued == calculated.new_due else "SETTLEMENT_ISSUE_AMOUNT";
+  define all_obligations = concat(checked_opening, map(checked_issued, row => {id: row.id, scope: row.scope, amount: row.amount, observed_at: row.observed_at, source_ref: row.source_ref, evidence_ref: row.evidence_ref, issued_date: row.issued_date, paid_to_date: USD 0}));
+  define linked_applications = for each application in checked_applications {
+    require sum(filter(checked_payments, payment => payment.id == application.payment_id), payment => 1) == 1 and sum(filter(all_obligations, obligation => obligation.id == application.issued_id), obligation => 1) == 1 else "SETTLEMENT_APPLICATION_REFERENCE";
+    require sum(filter(checked_payments, payment => payment.id == application.payment_id), payment => sum(filter(all_obligations, obligation => obligation.id == application.issued_id), obligation => if obligation.issued_date <= payment.paid_date then 1 else 0)) == 1 else "SETTLEMENT_PAYMENT_BEFORE_ISSUE";
+    require sum(filter(checked_payments, payment => payment.id == application.payment_id), payment => if payment.observed_at <= application.observed_at then 1 else 0) == 1 and sum(filter(all_obligations, obligation => obligation.id == application.issued_id), obligation => if obligation.observed_at <= application.observed_at then 1 else 0) == 1 else "SETTLEMENT_APPLICATION_OBSERVATION";
+    yield application;
+  };
+  define reconciled_payments = for each payment in checked_payments {
+    require sum(filter(linked_applications, application => application.payment_id == payment.id), application => application.amount) == payment.amount else "SETTLEMENT_PAYMENT_CONSERVATION";
+    yield payment;
+  };
+  define obligation_movements = for each obligation in all_obligations {
+    require sum(filter(all_obligations, other => other.id == obligation.id), other => 1) == 1 else "SETTLEMENT_DUPLICATE_ID";
+    define applied = sum(filter(linked_applications, application => application.issued_id == obligation.id), application => application.amount);
+    require obligation.paid_to_date + applied <= obligation.amount else "SETTLEMENT_OBLIGATION_OVERPAYMENT";
+    yield {issued_id: obligation.id, original_amount: obligation.amount, opening_paid_to_date: obligation.paid_to_date, current_actual_paid: applied, remaining: obligation.amount - obligation.paid_to_date - applied, source_ref: obligation.source_ref, evidence_ref: obligation.evidence_ref};
+  };
+  define closing_obligations = for each obligation in sort_by(filter(all_obligations, row => row.amount - row.paid_to_date - sum(filter(linked_applications, application => application.issued_id == row.id), application => application.amount) > USD 0), row => row.id) {
+    define current_paid = sum(filter(linked_applications, application => application.issued_id == obligation.id), application => application.amount);
+    yield {id: obligation.id, scope: obligation.scope, amount: obligation.amount, observed_at: obligation.observed_at, source_ref: obligation.source_ref, evidence_ref: obligation.evidence_ref, issued_date: obligation.issued_date, paid_to_date: obligation.paid_to_date + current_paid};
+  };
+  define opening_issued = sum(checked_opening, row => row.amount - row.paid_to_date);
+  define actual_paid = sum(reconciled_payments, row => row.amount);
+  define closing_unissued = calculated.issuance_candidate - new_issued;
+  define closing_issued = sum(obligation_movements, row => row.remaining);
+  define recognized = sort_by(concat(ledger.recognized_ids, concat(map(checked_earned, row => tuple("earned", row.id)), concat(map(checked_issued, row => tuple("issued", row.id)), concat(map(reconciled_payments, row => tuple("payments", row.id)), map(linked_applications, row => tuple("applications", row.id)))))), token => token);
+  require sum(prior_ids, token => 1) == sum(ledger.recognized_ids, token => 1) else "SETTLEMENT_DUPLICATE_ID";
+  require closing_unissued + closing_issued == ledger.deferred_unissued + opening_issued + calculated.net_earned - actual_paid else "SETTLEMENT_RECONCILIATION";
+  closing ledger = {scope: fact_scope, purpose: "net_unpaid", policy_id: policy_id, policy_revision: policy_revision, boundary: scope.period.end, origin: "prior_result", source_case_id: case_id, deferred_unissued: closing_unissued, issued_obligations: closing_obligations, recognized_ids: recognized};
+  emit "comparison" = {earned: earned_total, withheld: calculated.withheld, current_net: calculated.net_earned, opening_unissued: ledger.deferred_unissued, opening_issued_outstanding: opening_issued, opening_unpaid: ledger.deferred_unissued + opening_issued, issuance_candidate: calculated.issuance_candidate, threshold_reached: calculated.issuance_candidate >= minimum_payout, new_eligible_due: calculated.new_due, total_eligible_due: opening_issued + calculated.new_due, new_issued: new_issued, actual_paid: actual_paid, closing_unissued: closing_unissued, closing_issued_outstanding: closing_issued, closing_unpaid: closing_unissued + closing_issued, payment_evidence_status: if sum(reconciled_payments, row => 1) > 0 then "complete_with_events" else "complete_no_events", issuance_evidence_status: if sum(checked_issued, row => 1) > 0 then "supplied_issue" else "complete_no_events"};
+  emit "obligations" = sort_by(obligation_movements, row => row.issued_id);
+  emit "reconciliation" = closing_unissued + closing_issued == ledger.deferred_unissued + opening_issued + calculated.net_earned - actual_paid;
+}

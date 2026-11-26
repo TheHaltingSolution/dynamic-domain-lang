@@ -15,6 +15,14 @@ limits. Typed allocation/cost authority terms prevent substituting a conserved
 but unapproved allocation or deduction. The wider logical schema below remains
 a target, and accountant review/schema freeze are still pending.
 
+M1b update, 22 November 2026: verified profile `0.4.3-dev` adds finite dimensional
+transport through the separate [`spl-module/1` interface](module-interface-v1.md).
+It is implemented and recorded locally on `feature/spl-typed-quantities`.
+The published `0.4.2-dev` record remains
+[archived](baselines/implementation-0.4.2-dev.json); prior runs and legacy
+physical profiles are not silently migrated. The wider logical target below
+retains its original scope.
+
 ## Ownership and versions
 
 Adapters preserve source bytes, normalize identifiers using a separately versioned mapping, and report rejected or unmapped rows. The schedule determines contractual eligibility, bases, allocation and economic order. A run binds those objects to immutable snapshots. Reporting may format results but must not change amounts.
@@ -28,6 +36,48 @@ JSON is UTF-8 without BOM. Duplicate object keys, nonfinite numbers and trailing
 Exact decimals are JSON strings matching `-?(0|[1-9][0-9]*)(\.[0-9]+)?`, with no exponent, comma or leading plus. Transport preserves the original source representation separately; canonical numeric serialization removes trailing fractional zeros and maps negative zero to `0`. Decimal scale is not a rounding instruction. Rates are exact decimal ratios (for example `"0.075"`) or normalized rational objects `{ "numerator": "3", "denominator": "40" }`; denominators must be positive integer strings, numerator and denominator coprime, and zero represented as `0/1`. Core intermediate amounts may use these same normalized rational objects because division need not have a finite decimal representation. Integers use decimal strings when arbitrary precision is needed. Financial calculation never passes through binary floating point.
 
 A monetary value is `{ "value": "100000", "currency": "USD" }`; currency codes reference a versioned dictionary. One output currency and no FX conversion are supported in the initial executable slice. Other currencies are rejected for that scope. A later explicit FX operator must name the observation, quote direction, date selection, fallback and rounding; supplying an FX table alone does not enable conversion.
+
+### M1b exact quantity and per-unit transport
+
+The finite dictionary `spl.units/1` admits exactly `Download` and `UsageMinute`,
+with exact case and no implicit unit conversion. `Quantity<Download>` input is
+`{"value":"100","unit":"Download"}`. `Rate<Download,USD>` input is
+`{"value":"1.50","per_unit":"Download","currency":"USD"}`. Each `value`
+uses the exact decimal-string or reduced rational-object codec above. Floats,
+booleans, missing tags and unknown envelope fields fail. Tags survive recursive
+decoding and encoding through records, lists, tuples, Options and map values,
+and remain present in outputs, audit and successor state. Quantity/rate values
+are not interchangeable Ratio inputs. Non-USD rates and FX are unsupported.
+
+Descriptors using these types explicitly require `spl.quantities/1`, codec
+`spl-quantity/1` and an `interface.dictionaries["spl.units/1"]` list covering
+their used admitted units. Every descriptor in the import closure is checked,
+including unused local schemas and export signatures. New dimensional numeric
+bounds and conservation targets must carry matching explicit tags. Empty typed
+collections retain the declared dimension; scalar zero is not a substitute.
+Legacy Money/scalar domain behavior is unchanged.
+
+Any opening type containing a Quantity or Rate, including nested structural
+payloads, requires unit `dimensioned:<sha256>` in its state slot, cell and cell
+scope. `unit` must occur in declared key fields and the canonical state key.
+The hash covers the complete checked type, units, currencies, argument order
+and sorted record fields. The public helper
+`spl_compiler.modules.dimensioned_state_unit` admits expanded AST input through
+the checker first, so built-in structural types such as nested `Period` match
+checked Type inputs. Money-only and legacy `structured` state retain their
+previous state identity; no issued state is repinned automatically.
+
+Evidence constraints default to `required:true`. A descriptor can explicitly
+declare `required:false` to permit an empty evidence collection while still
+checking every supplied event's authority, reference, kind and strict cutoff.
+The [selected Download witness](../../cases/quantities/README.md) uses that
+setting: empty usage plus empty evidence is valid zero activity; every supplied
+usage row still requires its referenced evidence in checked source. Every
+supplied observation, including unused evidence, must precede cutoff, and
+out-of-period supplied usage blocks. Nonnegativity is this case's selected
+policy; signed fractional quantities and rates remain valid exact core values.
+The [arithmetic matrix](next-core-semantics.md#m1b-implemented-dimensional-boundary)
+defines the implemented operations and explicit rounding boundary.
 
 Dates are valid Gregorian `YYYY-MM-DD` values. Timestamps use RFC 3339 with an explicit numeric offset or `Z`; their conversion to a contract date requires a declared timezone and versioned timezone policy. The core consumes already selected dates. Reporting and effective intervals are half-open `[start,end)` and require `start < end`; a user-facing inclusive end date is translated by the adapter with that translation recorded. A source period cannot silently acquire a transaction date.
 

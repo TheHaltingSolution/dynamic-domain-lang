@@ -11,6 +11,7 @@ import json
 
 from .model import SPLException
 from .parser import parse
+from .dimensions import admission, selected_features
 
 BUILTINS = frozenset("filter map sum sort_by min max instant in_period is_calendar_quarter add_calendar_months quantize require_some tuple tuple_get make_map lookup entries group_by join left_join some none get_or is_some append concat".split())
 
@@ -34,6 +35,7 @@ def link_schedule(schedule: dict, manifest: dict) -> dict:
         if any(descriptor.get(field) != entry["reference"][field] for field in ("id", "revision")):
             fail("MODULE_IDENTITY_MISMATCH", "Descriptor and exact reference disagree")
         source = parse(entry["source"], "module:" + descriptor["id"])
+        admission(source.get("features", ()))
         if any(source.get(k) != v for k, v in (("language", "spl/0.1-draft"), ("core", "spl-core/0.1-draft"), ("schema", "spl-data/0.1-draft"))):
             fail("UNSUPPORTED_VERSION", "Unsupported module source versions")
         if any(d["kind"] not in {"input", "define", "require"} for d in source["declarations"]):
@@ -43,7 +45,10 @@ def link_schedule(schedule: dict, manifest: dict) -> dict:
             fail("DUPLICATE_EXPORT", "Export names must be unique")
         modules[key] = (descriptor, source, exports)
 
-    def namespace(imports, own=()):
+    def reserved(features):
+        return BUILTINS | {name for feature in selected_features(admission(features)) for name in feature.builtins}
+
+    def namespace(imports, own=(), features=()):
         result, aliases = {}, set()
         for spec in imports:
             key = identity(spec["module_ref"])
@@ -55,7 +60,7 @@ def link_schedule(schedule: dict, manifest: dict) -> dict:
             aliases.add(alias)
             for symbol in spec["symbols"]:
                 name = symbol["local"]
-                if name in result or name in own or name in BUILTINS:
+                if name in result or name in own or name in reserved(features):
                     fail("AMBIGUOUS_IMPORT", "Imported local name collides: " + name)
                 if not any(e["name"] == symbol["export"] for e in modules[key][2]):
                     fail("UNRESOLVED_EXPORT", "Imported symbol is not exported")
@@ -65,14 +70,14 @@ def link_schedule(schedule: dict, manifest: dict) -> dict:
     namespaces = {}
     for key, (descriptor, source, exports) in modules.items():
         names = [e["name"] for e in exports]
-        if any(name in BUILTINS for name in names):
+        if any(name in reserved(source.get("features", ())) for name in names):
             fail("AMBIGUOUS_EXPORT", "Function export collides with a published builtin")
-        namespaces[key] = namespace(descriptor["imports"], names)
+        namespaces[key] = namespace(descriptor["imports"], names, source.get("features", ()))
         bindings = {d.get("name") for d in source["declarations"] if d["kind"] in {"input", "define"}}
         if bindings & namespaces[key].keys():
             fail("AMBIGUOUS_IMPORT", "Imported function collides with a module binding")
         namespaces[key].update({name: (key, name) for name in names})
-    root_names = namespace(manifest.get("imports", []))
+    root_names = namespace(manifest.get("imports", []), features=schedule.get("features", ()))
     root_bindings = {d.get("name") for d in schedule["declarations"] if d["kind"] in {"input", "opening", "define"}}
     if root_bindings & root_names.keys():
         fail("AMBIGUOUS_IMPORT", "Imported function collides with a schedule binding")
@@ -126,12 +131,25 @@ def link_schedule(schedule: dict, manifest: dict) -> dict:
 
     # Validate every export, including unused definitions/cycles.
     from .checker import Checker, Scope, type_from_ast
-    for key, (_, _, exports) in modules.items():
+    owners = []
+    signatures = []
+    for key, (descriptor, source, exports) in modules.items():
+        features = tuple(source.get("features", ()))
+        owners.append(("@module:" + key, features))
+        owners.extend((descriptor["id"] + "@" + descriptor["revision"] + ":" + export["name"], features) for export in exports)
+        signatures.extend({"label": descriptor["id"] + "@" + descriptor["revision"] + ":" + export["name"],
+                           "parameters": deepcopy(export["parameters"]), "result": deepcopy(export["result"])} for export in exports)
+    extended = bool(schedule.get("features")) or any(features for _, features in owners)
+    for key, (_, source, exports) in modules.items():
         for export in exports:
             compiled = function((key, export["name"]), set())
-            checker = Checker()
-            bound = {p["name"]: type_from_ast(p["type"]) for p in compiled["parameters"]}
+            checker = Checker(source.get("features", ()), owners, signatures if extended else ())
+            bound = {p["name"]: type_from_ast(p["type"], checker.admission) for p in compiled["parameters"]}
             checker.expr({"kind": "apply", "span": {}, **compiled,
                           "args": [{"kind":"name", "name":p["name"], "span":{}}
                                    for p in compiled["parameters"]]}, Scope(checker, [], bound=bound))
-    return transform(deepcopy(schedule), root_names, set())
+    result = transform(deepcopy(schedule), root_names, set())
+    if extended:
+        result["dimension_owners"] = owners
+        result["dimension_signatures"] = signatures
+    return result

@@ -1,0 +1,246 @@
+{
+  "decisions": [
+    {
+      "decision_id": "STAGES_SELECTED",
+      "evidence_ref": "selected-synthetic-staged-deductions",
+      "policy_id": "SYNTHETIC-STAGED-DEDUCTIONS-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    },
+    {
+      "decision_id": "DEDUCTIONS_SELECTED",
+      "evidence_ref": "selected-synthetic-staged-deductions",
+      "policy_id": "SYNTHETIC-STAGED-DEDUCTIONS-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "DEDUCTIONS_SELECTED",
+        "evidence_ref": "source-q1",
+        "id": "source-q1",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-04-02T00:00:00Z",
+        "scope": {
+          "asset_id": "deduction-picture",
+          "contract_id": "deduction-synthetic",
+          "currency": "USD",
+          "participant_id": "deduction-participant",
+          "pool_id": "deduction-pool"
+        },
+        "source_kind": "synthetic_source_record"
+      }
+    ]
+  },
+  "inputs": {
+    "case_id": "deduction-q1",
+    "costs": [
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "500"
+        },
+        "category": "distribution",
+        "effective_date": "2026-02-15",
+        "evidence_ref": "source-q1",
+        "id": "cost-q1",
+        "observed_at": "2026-04-01T00:00:00Z",
+        "scope": {
+          "asset_id": "deduction-picture",
+          "contract_id": "deduction-synthetic",
+          "currency": "USD",
+          "participant_id": "deduction-participant",
+          "pool_id": "deduction-pool"
+        },
+        "sequence": "1",
+        "source_ref": "synthetic-original-cost-q1"
+      },
+      {
+        "amount": {
+          "currency": "USD",
+          "value": "200"
+        },
+        "category": "unselected_publicity",
+        "effective_date": "2026-02-15",
+        "evidence_ref": "source-q1",
+        "id": "excluded-q1",
+        "observed_at": "2026-04-01T00:00:00Z",
+        "scope": {
+          "asset_id": "deduction-picture",
+          "contract_id": "deduction-synthetic",
+          "currency": "USD",
+          "participant_id": "deduction-participant",
+          "pool_id": "deduction-pool"
+        },
+        "sequence": "2",
+        "source_ref": "synthetic-original-excluded-q1"
+      }
+    ],
+    "fact_scope": {
+      "asset_id": "deduction-picture",
+      "contract_id": "deduction-synthetic",
+      "currency": "USD",
+      "participant_id": "deduction-participant",
+      "pool_id": "deduction-pool"
+    },
+    "predecessor": {
+      "none": true
+    },
+    "project": "deduction-picture",
+    "receipts": [
+      {
+        "effective_date": "2026-03-15",
+        "evidence_ref": "source-q1",
+        "gross_amount": {
+          "currency": "USD",
+          "value": "1000"
+        },
+        "id": "receipt-q1",
+        "net_amount": {
+          "currency": "USD",
+          "value": "1000"
+        },
+        "observed_at": "2026-04-01T00:00:00Z",
+        "scope": {
+          "asset_id": "deduction-picture",
+          "contract_id": "deduction-synthetic",
+          "currency": "USD",
+          "participant_id": "deduction-participant",
+          "pool_id": "deduction-pool"
+        },
+        "source_ref": "synthetic-receipt-q1"
+      }
+    ],
+    "scope": {
+      "agreement_id": "deduction-synthetic",
+      "participant_id": "deduction-participant",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "deduction-pool"
+    },
+    "supplied_opening": {
+      "boundary": "2026-01-01",
+      "cap_consumed": {
+        "currency": "USD",
+        "value": "0"
+      },
+      "cap_limit": {
+        "currency": "USD",
+        "value": "1000"
+      },
+      "cost_history": [],
+      "origin": "genesis",
+      "policy_id": "SYNTHETIC-STAGED-DEDUCTIONS-01",
+      "policy_revision": "1",
+      "purpose": "distribution_deduction",
+      "scope": {
+        "asset_id": "deduction-picture",
+        "contract_id": "deduction-synthetic",
+        "currency": "USD",
+        "participant_id": "deduction-participant",
+        "pool_id": "deduction-pool"
+      },
+      "source_case_id": "genesis",
+      "variant": "pre_share_net_fee"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "deduction-q1-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-DEDUCTIONS"
+  },
+  "module_ref": {
+    "id": "synthetic:deduction-deductions",
+    "locator": "cases/deductions/deductions-module.json",
+    "revision": "1",
+    "sha256": "8bc80a798f318afb47cf1e477c84caa41dc72bf3108b4213b5d53ac03d3b3e4d"
+  },
+  "parameters": {
+    "allocation": "sequence_priority_no_residual",
+    "cap": {
+      "currency": "USD",
+      "value": "1000"
+    },
+    "cutoff": "2026-04-03T00:00:00Z",
+    "eligible_categories": [
+      "distribution"
+    ],
+    "evidence_class": "research_assumption",
+    "fee_rate": "0",
+    "policy_id": "SYNTHETIC-STAGED-DEDUCTIONS-01",
+    "policy_revision": "1",
+    "rounding": "exact_no_rounding",
+    "share": "0.8",
+    "variant": "pre_share_net_fee"
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "deduction-synthetic",
+    "asset_ids": [
+      "deduction-picture"
+    ],
+    "participant_ids": [
+      "deduction-participant"
+    ],
+    "pool_id": "deduction-pool",
+    "purpose": "selected-synthetic-deductions"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "ledger",
+      "provenance_ref": "supplied-original-cost-opening",
+      "purpose": "distribution_deduction",
+      "quantity": {
+        "boundary": "2026-01-01",
+        "cap_consumed": {
+          "currency": "USD",
+          "value": "0"
+        },
+        "cap_limit": {
+          "currency": "USD",
+          "value": "1000"
+        },
+        "cost_history": [],
+        "origin": "genesis",
+        "policy_id": "SYNTHETIC-STAGED-DEDUCTIONS-01",
+        "policy_revision": "1",
+        "purpose": "distribution_deduction",
+        "scope": {
+          "asset_id": "deduction-picture",
+          "contract_id": "deduction-synthetic",
+          "currency": "USD",
+          "participant_id": "deduction-participant",
+          "pool_id": "deduction-pool"
+        },
+        "source_case_id": "genesis",
+        "variant": "pre_share_net_fee"
+      },
+      "scenario_id": "SYNTHETIC-DEDUCTIONS",
+      "scope": {
+        "agreement_id": "deduction-synthetic",
+        "asset_id": "deduction-picture",
+        "participant_id": "deduction-participant",
+        "pool_id": "deduction-pool"
+      },
+      "state_key": "{\"agreement_id\":\"deduction-synthetic\",\"asset_id\":\"deduction-picture\",\"participant_id\":\"deduction-participant\",\"pool_id\":\"deduction-pool\",\"purpose\":\"distribution_deduction\"}",
+      "unit": "structured"
+    }
+  ]
+}

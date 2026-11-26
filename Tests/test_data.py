@@ -68,6 +68,12 @@ class PackageTests(unittest.TestCase):
         self.assertEqual(r["payment_evidence_status"], "no_event_supplied")
         self.assertNotIn("paid", r["statements"][0])
         self.assertTrue(any(x.get("allocation_id") for x in r["source_to_target_lineage"]))
+        funding = r["evidence_to_target_lineage"]
+        self.assertEqual({row["target_key"]["asset_id"]: row["evidence_ids"] for row in funding},
+                         {"PIC-A": ["FUND-A-V"], "PIC-B": ["FUND-B-S", "FUND-B-V"]})
+        self.assertEqual({row["target_input"] for row in funding}, {"pictures"})
+        self.assertEqual({row["population_ref"] for row in funding},
+                         {p["parameters"]["funding_snapshot"]["evidence_ref"]})
         self.assertEqual(len(r["trace"]), len({node["node_id"] for node in r["trace"]}))
         controls = {b["batch_id"]: b["control_totals"][0]["signed_total"] for b in p["source_batches"]}
         self.assertEqual(controls, {"raw_invoice_lines": "210000", "raw_bank_receipts": "160000",

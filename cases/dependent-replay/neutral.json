@@ -1,0 +1,3070 @@
+{
+  "schema_version": "dependent-replay-casepack/1",
+  "research_class": "synthetic_research_assumption",
+  "scenarios": {
+    "simple_restatement": {
+      "schema_version": "dependent-replay-neutral/1",
+      "scope": {
+        "agreement_id": "synthetic-replay-agreement",
+        "pool_id": "participation-pool",
+        "asset_id": "synthetic-picture",
+        "participant_id": "participant",
+        "currency": "USD",
+        "purpose": "authorized_dependent_replay"
+      },
+      "policy": {
+        "id": "SYNTHETIC-DEPENDENT-REPLAY-01",
+        "revision": "1",
+        "route": "restatement",
+        "economics": "original_opening_exact_cumulative_basis",
+        "attribution": "revised_historical_lines",
+        "cash": "complete_empty_current_only",
+        "replacements": "one_authorized_replacement_per_original_receipt",
+        "balance_scope": "nonnegative_account_and_no_original_overpayment",
+        "rounding": "exact_no_rounding",
+        "evidence_class": "research_assumption"
+      },
+      "research": {
+        "catalog_sha256": "5b6633a85557e8f03df1fee7ce102e825469316b2a89578478c3681f411543c3",
+        "backlog_sha256": "1187abcb38bb6420133a7574d40af9839102b7135759c1e28ac29853cfb35d98",
+        "scope_note": "C13.DEPENDENT_PERIOD_REPLAY+C13.PROSPECTIVE_PERIOD_ADJUSTMENT;synthetic-positive-balance-only"
+      },
+      "registry": {
+        "party_ids": [
+          "participant",
+          "distributor"
+        ],
+        "payer_id": "distributor",
+        "origin": {
+          "boundary": "2026-01-01",
+          "cumulative_basis": "0",
+          "recognized_entitlement": "0",
+          "actual_paid": "0"
+        },
+        "periods": [
+          {
+            "id": "p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:p1",
+            "evidence_ref": "evidence:p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "as_of": "2026-03-31",
+            "cutoff": "2026-04-03T00:00:00Z",
+            "predecessor_period_id": null
+          }
+        ],
+        "terms": [
+          {
+            "id": "term:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p1",
+            "evidence_ref": "evidence:term:p1",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p1",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          },
+          {
+            "id": "term:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p2",
+            "evidence_ref": "evidence:term:p2",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p2",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          },
+          {
+            "id": "term:p3",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p3",
+            "evidence_ref": "evidence:term:p3",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-07-01",
+              "end": "2026-10-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p3",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          },
+          {
+            "id": "term:p4",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p4",
+            "evidence_ref": "evidence:term:p4",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-10-01",
+              "end": "2027-01-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p4",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "receipt:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-16T00:00:00Z",
+            "source_ref": "original-source:receipt:p1",
+            "evidence_ref": "evidence:receipt:p1",
+            "period_id": "p1",
+            "term_id": "term:p1",
+            "base_amount": "200",
+            "effective_date": "2026-01-15",
+            "sequence": 0,
+            "original_ref": "original-sales#p1",
+            "entitlement_ref": "original-entitlement#p1"
+          }
+        ],
+        "issued_artifacts": [
+          {
+            "id": "issue:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:issue:p1",
+            "evidence_ref": "evidence:issue:p1",
+            "period_id": "p1",
+            "receipt_ids": [
+              "receipt:p1"
+            ],
+            "complete": true,
+            "issued_at": "2026-04-02T12:00:00Z",
+            "original_ref": "original-issued-statement#p1",
+            "result_ref": "supplied-issued-result#p1",
+            "predecessor_issue_id": null,
+            "basis_total": "200",
+            "earned": "100",
+            "opening_cumulative_basis": "0",
+            "closing_cumulative_basis": "200"
+          }
+        ],
+        "payments": [
+          {
+            "id": "payment:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-02-16T00:00:00Z",
+            "source_ref": "original-source:payment:old",
+            "evidence_ref": "evidence:payment:old",
+            "receipt_id": "receipt:p1",
+            "payer_id": "distributor",
+            "recipient_id": "participant",
+            "purpose": "participation_payment",
+            "amount": "80",
+            "paid_at": "2026-02-15T12:00:00Z",
+            "original_ref": "original-bank#payment80"
+          }
+        ],
+        "applications": [
+          {
+            "id": "application:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-02-16T12:00:00Z",
+            "source_ref": "original-source:application:old",
+            "evidence_ref": "evidence:application:old",
+            "payment_id": "payment:old",
+            "receipt_id": "receipt:p1",
+            "original_entitlement_ref": "original-entitlement#p1",
+            "amount": "80",
+            "approved": true
+          }
+        ],
+        "payment_population": {
+          "id": "payment-population",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-04-02T12:00:00Z",
+          "source_ref": "original-source:payment-population",
+          "evidence_ref": "evidence:payment-population",
+          "complete": true,
+          "through_period_id": "p1",
+          "payment_ids": [
+            "payment:old"
+          ],
+          "application_ids": [
+            "application:old"
+          ],
+          "paid_total": "80"
+        },
+        "evidence": [
+          {
+            "id": "evidence:term:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p1"
+          },
+          {
+            "id": "evidence:term:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p2"
+          },
+          {
+            "id": "evidence:term:p3",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p3"
+          },
+          {
+            "id": "evidence:term:p4",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p4"
+          },
+          {
+            "id": "evidence:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "issued_period",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:p1"
+          },
+          {
+            "id": "evidence:receipt:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_receipt_basis",
+            "approved": true,
+            "observed_at": "2026-01-16T00:00:00Z",
+            "source_ref": "original-evidence:receipt:p1"
+          },
+          {
+            "id": "evidence:issue:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_issued_artifact",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:issue:p1"
+          },
+          {
+            "id": "evidence:payment:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "actual_participation_payment",
+            "approved": true,
+            "observed_at": "2026-02-16T00:00:00Z",
+            "source_ref": "original-evidence:payment:old"
+          },
+          {
+            "id": "evidence:application:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "actual_payment_application",
+            "approved": true,
+            "observed_at": "2026-02-16T12:00:00Z",
+            "source_ref": "original-evidence:application:old"
+          },
+          {
+            "id": "evidence:payment-population",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "complete_historical_payment_population",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:payment-population"
+          }
+        ]
+      },
+      "opening_state": {
+        "origin": "genesis",
+        "boundary": "2026-04-01",
+        "source_case_id": "genesis",
+        "history": []
+      },
+      "case_id": "simple-restatement-correction",
+      "period_id": "p2",
+      "period": {
+        "start": "2026-04-01",
+        "end": "2026-07-01"
+      },
+      "as_of": "2026-06-30",
+      "cutoff": "2026-07-03T00:00:00Z",
+      "predecessor_period_id": "p1",
+      "predecessor_result_ref": "supplied-issued-result#p1",
+      "receipts": [
+        {
+          "id": "receipt:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-05-16T00:00:00Z",
+          "source_ref": "original-source:receipt:p2",
+          "evidence_ref": "evidence:receipt:p2",
+          "period_id": "p2",
+          "term_id": "term:p2",
+          "base_amount": "60",
+          "effective_date": "2026-05-15",
+          "sequence": 0,
+          "original_ref": "original-sales#p2",
+          "entitlement_ref": "original-entitlement#p2"
+        }
+      ],
+      "population": {
+        "id": "population:p2",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-07-02T12:00:00Z",
+        "source_ref": "original-source:population:p2",
+        "evidence_ref": "evidence:population:p2",
+        "period": {
+          "start": "2026-04-01",
+          "end": "2026-07-01"
+        },
+        "complete": true,
+        "receipt_ids": [
+          "receipt:p2"
+        ],
+        "gross_basis_total": "60"
+      },
+      "cash_population": {
+        "id": "cash:p2",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-07-02T12:00:00Z",
+        "source_ref": "original-source:cash:p2",
+        "evidence_ref": "evidence:cash:p2",
+        "period": {
+          "start": "2026-04-01",
+          "end": "2026-07-01"
+        },
+        "complete": true,
+        "event_ids": [],
+        "total": "0"
+      },
+      "replacements": [
+        {
+          "id": "replacement:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-05-05T00:00:00Z",
+          "source_ref": "original-source:replacement:p1",
+          "evidence_ref": "evidence:replacement:p1",
+          "original_receipt_id": "receipt:p1",
+          "base_amount": "180",
+          "effective_date": "2026-01-15",
+          "original_basis_ref": "original-sales#p1",
+          "original_ref": "original-replacement#p1-v2"
+        }
+      ],
+      "authorities": [
+        {
+          "id": "authority:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-05-06T00:00:00Z",
+          "source_ref": "original-source:authority:p1",
+          "evidence_ref": "evidence:authority:p1",
+          "replacement_id": "replacement:p1",
+          "original_receipt_id": "receipt:p1",
+          "original_issue_id": "issue:p1",
+          "route": "restatement",
+          "dependent_period_ids": [
+            "p1"
+          ],
+          "predecessor_result_ref": "supplied-issued-result#p1",
+          "approved": true,
+          "approved_date": "2026-05-06",
+          "recorded_date": "2026-05-06",
+          "apply_revised_basis_to_future": true,
+          "original_ref": "original-authority#replace-p1-restatement"
+        }
+      ],
+      "requests": [
+        {
+          "id": "request:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-05-06T12:00:00Z",
+          "source_ref": "original-source:request:p1",
+          "evidence_ref": "evidence:request:p1",
+          "replacement_id": "replacement:p1",
+          "authority_id": "authority:p1",
+          "sequence": 0
+        }
+      ],
+      "correction_population": {
+        "id": "correction-population:p2",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-07-02T12:00:00Z",
+        "source_ref": "original-source:correction-population:p2",
+        "evidence_ref": "evidence:correction-population:p2",
+        "period": {
+          "start": "2026-04-01",
+          "end": "2026-07-01"
+        },
+        "complete": true,
+        "request_ids": [
+          "request:p1"
+        ],
+        "replacement_ids": [
+          "replacement:p1"
+        ],
+        "authority_ids": [
+          "authority:p1"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "evidence:receipt:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "original_receipt_basis",
+          "approved": true,
+          "observed_at": "2026-05-16T00:00:00Z",
+          "source_ref": "original-evidence:receipt:p2"
+        },
+        {
+          "id": "evidence:population:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_current_receipt_population",
+          "approved": true,
+          "observed_at": "2026-07-02T12:00:00Z",
+          "source_ref": "original-evidence:population:p2"
+        },
+        {
+          "id": "evidence:cash:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_current_cash_population",
+          "approved": true,
+          "observed_at": "2026-07-02T12:00:00Z",
+          "source_ref": "original-evidence:cash:p2"
+        },
+        {
+          "id": "evidence:replacement:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "replacement_measurement",
+          "approved": true,
+          "observed_at": "2026-05-05T00:00:00Z",
+          "source_ref": "original-evidence:replacement:p1"
+        },
+        {
+          "id": "evidence:authority:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "correction_authority",
+          "approved": true,
+          "observed_at": "2026-05-06T00:00:00Z",
+          "source_ref": "original-evidence:authority:p1"
+        },
+        {
+          "id": "evidence:request:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "correction_request",
+          "approved": true,
+          "observed_at": "2026-05-06T12:00:00Z",
+          "source_ref": "original-evidence:request:p1"
+        },
+        {
+          "id": "evidence:correction-population:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_correction_population",
+          "approved": true,
+          "observed_at": "2026-07-02T12:00:00Z",
+          "source_ref": "original-evidence:correction-population:p2"
+        }
+      ]
+    },
+    "simple_prospective": {
+      "schema_version": "dependent-replay-neutral/1",
+      "scope": {
+        "agreement_id": "synthetic-replay-agreement",
+        "pool_id": "participation-pool",
+        "asset_id": "synthetic-picture",
+        "participant_id": "participant",
+        "currency": "USD",
+        "purpose": "authorized_dependent_replay"
+      },
+      "policy": {
+        "id": "SYNTHETIC-DEPENDENT-REPLAY-01",
+        "revision": "1",
+        "route": "prospective",
+        "economics": "original_opening_exact_cumulative_basis",
+        "attribution": "original_lines_plus_current_signed_credit",
+        "cash": "complete_empty_current_only",
+        "replacements": "one_authorized_replacement_per_original_receipt",
+        "balance_scope": "nonnegative_account_and_no_original_overpayment",
+        "rounding": "exact_no_rounding",
+        "evidence_class": "research_assumption"
+      },
+      "research": {
+        "catalog_sha256": "5b6633a85557e8f03df1fee7ce102e825469316b2a89578478c3681f411543c3",
+        "backlog_sha256": "1187abcb38bb6420133a7574d40af9839102b7135759c1e28ac29853cfb35d98",
+        "scope_note": "C13.DEPENDENT_PERIOD_REPLAY+C13.PROSPECTIVE_PERIOD_ADJUSTMENT;synthetic-positive-balance-only"
+      },
+      "registry": {
+        "party_ids": [
+          "participant",
+          "distributor"
+        ],
+        "payer_id": "distributor",
+        "origin": {
+          "boundary": "2026-01-01",
+          "cumulative_basis": "0",
+          "recognized_entitlement": "0",
+          "actual_paid": "0"
+        },
+        "periods": [
+          {
+            "id": "p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:p1",
+            "evidence_ref": "evidence:p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "as_of": "2026-03-31",
+            "cutoff": "2026-04-03T00:00:00Z",
+            "predecessor_period_id": null
+          }
+        ],
+        "terms": [
+          {
+            "id": "term:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p1",
+            "evidence_ref": "evidence:term:p1",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p1",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          },
+          {
+            "id": "term:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p2",
+            "evidence_ref": "evidence:term:p2",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p2",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          },
+          {
+            "id": "term:p3",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p3",
+            "evidence_ref": "evidence:term:p3",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-07-01",
+              "end": "2026-10-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p3",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          },
+          {
+            "id": "term:p4",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p4",
+            "evidence_ref": "evidence:term:p4",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-10-01",
+              "end": "2027-01-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p4",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "receipt:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-16T00:00:00Z",
+            "source_ref": "original-source:receipt:p1",
+            "evidence_ref": "evidence:receipt:p1",
+            "period_id": "p1",
+            "term_id": "term:p1",
+            "base_amount": "200",
+            "effective_date": "2026-01-15",
+            "sequence": 0,
+            "original_ref": "original-sales#p1",
+            "entitlement_ref": "original-entitlement#p1"
+          }
+        ],
+        "issued_artifacts": [
+          {
+            "id": "issue:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:issue:p1",
+            "evidence_ref": "evidence:issue:p1",
+            "period_id": "p1",
+            "receipt_ids": [
+              "receipt:p1"
+            ],
+            "complete": true,
+            "issued_at": "2026-04-02T12:00:00Z",
+            "original_ref": "original-issued-statement#p1",
+            "result_ref": "supplied-issued-result#p1",
+            "predecessor_issue_id": null,
+            "basis_total": "200",
+            "earned": "100",
+            "opening_cumulative_basis": "0",
+            "closing_cumulative_basis": "200"
+          }
+        ],
+        "payments": [
+          {
+            "id": "payment:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-02-16T00:00:00Z",
+            "source_ref": "original-source:payment:old",
+            "evidence_ref": "evidence:payment:old",
+            "receipt_id": "receipt:p1",
+            "payer_id": "distributor",
+            "recipient_id": "participant",
+            "purpose": "participation_payment",
+            "amount": "80",
+            "paid_at": "2026-02-15T12:00:00Z",
+            "original_ref": "original-bank#payment80"
+          }
+        ],
+        "applications": [
+          {
+            "id": "application:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-02-16T12:00:00Z",
+            "source_ref": "original-source:application:old",
+            "evidence_ref": "evidence:application:old",
+            "payment_id": "payment:old",
+            "receipt_id": "receipt:p1",
+            "original_entitlement_ref": "original-entitlement#p1",
+            "amount": "80",
+            "approved": true
+          }
+        ],
+        "payment_population": {
+          "id": "payment-population",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-04-02T12:00:00Z",
+          "source_ref": "original-source:payment-population",
+          "evidence_ref": "evidence:payment-population",
+          "complete": true,
+          "through_period_id": "p1",
+          "payment_ids": [
+            "payment:old"
+          ],
+          "application_ids": [
+            "application:old"
+          ],
+          "paid_total": "80"
+        },
+        "evidence": [
+          {
+            "id": "evidence:term:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p1"
+          },
+          {
+            "id": "evidence:term:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p2"
+          },
+          {
+            "id": "evidence:term:p3",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p3"
+          },
+          {
+            "id": "evidence:term:p4",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p4"
+          },
+          {
+            "id": "evidence:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "issued_period",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:p1"
+          },
+          {
+            "id": "evidence:receipt:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_receipt_basis",
+            "approved": true,
+            "observed_at": "2026-01-16T00:00:00Z",
+            "source_ref": "original-evidence:receipt:p1"
+          },
+          {
+            "id": "evidence:issue:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_issued_artifact",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:issue:p1"
+          },
+          {
+            "id": "evidence:payment:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "actual_participation_payment",
+            "approved": true,
+            "observed_at": "2026-02-16T00:00:00Z",
+            "source_ref": "original-evidence:payment:old"
+          },
+          {
+            "id": "evidence:application:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "actual_payment_application",
+            "approved": true,
+            "observed_at": "2026-02-16T12:00:00Z",
+            "source_ref": "original-evidence:application:old"
+          },
+          {
+            "id": "evidence:payment-population",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "complete_historical_payment_population",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:payment-population"
+          }
+        ]
+      },
+      "opening_state": {
+        "origin": "genesis",
+        "boundary": "2026-04-01",
+        "source_case_id": "genesis",
+        "history": []
+      },
+      "case_id": "simple-prospective-correction",
+      "period_id": "p2",
+      "period": {
+        "start": "2026-04-01",
+        "end": "2026-07-01"
+      },
+      "as_of": "2026-06-30",
+      "cutoff": "2026-07-03T00:00:00Z",
+      "predecessor_period_id": "p1",
+      "predecessor_result_ref": "supplied-issued-result#p1",
+      "receipts": [
+        {
+          "id": "receipt:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-05-16T00:00:00Z",
+          "source_ref": "original-source:receipt:p2",
+          "evidence_ref": "evidence:receipt:p2",
+          "period_id": "p2",
+          "term_id": "term:p2",
+          "base_amount": "60",
+          "effective_date": "2026-05-15",
+          "sequence": 0,
+          "original_ref": "original-sales#p2",
+          "entitlement_ref": "original-entitlement#p2"
+        }
+      ],
+      "population": {
+        "id": "population:p2",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-07-02T12:00:00Z",
+        "source_ref": "original-source:population:p2",
+        "evidence_ref": "evidence:population:p2",
+        "period": {
+          "start": "2026-04-01",
+          "end": "2026-07-01"
+        },
+        "complete": true,
+        "receipt_ids": [
+          "receipt:p2"
+        ],
+        "gross_basis_total": "60"
+      },
+      "cash_population": {
+        "id": "cash:p2",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-07-02T12:00:00Z",
+        "source_ref": "original-source:cash:p2",
+        "evidence_ref": "evidence:cash:p2",
+        "period": {
+          "start": "2026-04-01",
+          "end": "2026-07-01"
+        },
+        "complete": true,
+        "event_ids": [],
+        "total": "0"
+      },
+      "replacements": [
+        {
+          "id": "replacement:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-05-05T00:00:00Z",
+          "source_ref": "original-source:replacement:p1",
+          "evidence_ref": "evidence:replacement:p1",
+          "original_receipt_id": "receipt:p1",
+          "base_amount": "180",
+          "effective_date": "2026-01-15",
+          "original_basis_ref": "original-sales#p1",
+          "original_ref": "original-replacement#p1-v2"
+        }
+      ],
+      "authorities": [
+        {
+          "id": "authority:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-05-06T00:00:00Z",
+          "source_ref": "original-source:authority:p1",
+          "evidence_ref": "evidence:authority:p1",
+          "replacement_id": "replacement:p1",
+          "original_receipt_id": "receipt:p1",
+          "original_issue_id": "issue:p1",
+          "route": "prospective",
+          "dependent_period_ids": [
+            "p1"
+          ],
+          "predecessor_result_ref": "supplied-issued-result#p1",
+          "approved": true,
+          "approved_date": "2026-05-06",
+          "recorded_date": "2026-05-06",
+          "apply_revised_basis_to_future": true,
+          "original_ref": "original-authority#replace-p1-prospective"
+        }
+      ],
+      "requests": [
+        {
+          "id": "request:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-05-06T12:00:00Z",
+          "source_ref": "original-source:request:p1",
+          "evidence_ref": "evidence:request:p1",
+          "replacement_id": "replacement:p1",
+          "authority_id": "authority:p1",
+          "sequence": 0
+        }
+      ],
+      "correction_population": {
+        "id": "correction-population:p2",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-07-02T12:00:00Z",
+        "source_ref": "original-source:correction-population:p2",
+        "evidence_ref": "evidence:correction-population:p2",
+        "period": {
+          "start": "2026-04-01",
+          "end": "2026-07-01"
+        },
+        "complete": true,
+        "request_ids": [
+          "request:p1"
+        ],
+        "replacement_ids": [
+          "replacement:p1"
+        ],
+        "authority_ids": [
+          "authority:p1"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "evidence:receipt:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "original_receipt_basis",
+          "approved": true,
+          "observed_at": "2026-05-16T00:00:00Z",
+          "source_ref": "original-evidence:receipt:p2"
+        },
+        {
+          "id": "evidence:population:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_current_receipt_population",
+          "approved": true,
+          "observed_at": "2026-07-02T12:00:00Z",
+          "source_ref": "original-evidence:population:p2"
+        },
+        {
+          "id": "evidence:cash:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_current_cash_population",
+          "approved": true,
+          "observed_at": "2026-07-02T12:00:00Z",
+          "source_ref": "original-evidence:cash:p2"
+        },
+        {
+          "id": "evidence:replacement:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "replacement_measurement",
+          "approved": true,
+          "observed_at": "2026-05-05T00:00:00Z",
+          "source_ref": "original-evidence:replacement:p1"
+        },
+        {
+          "id": "evidence:authority:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "correction_authority",
+          "approved": true,
+          "observed_at": "2026-05-06T00:00:00Z",
+          "source_ref": "original-evidence:authority:p1"
+        },
+        {
+          "id": "evidence:request:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "correction_request",
+          "approved": true,
+          "observed_at": "2026-05-06T12:00:00Z",
+          "source_ref": "original-evidence:request:p1"
+        },
+        {
+          "id": "evidence:correction-population:p2",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_correction_population",
+          "approved": true,
+          "observed_at": "2026-07-02T12:00:00Z",
+          "source_ref": "original-evidence:correction-population:p2"
+        }
+      ]
+    },
+    "dependent_restatement": {
+      "schema_version": "dependent-replay-neutral/1",
+      "scope": {
+        "agreement_id": "synthetic-replay-agreement",
+        "pool_id": "participation-pool",
+        "asset_id": "synthetic-picture",
+        "participant_id": "participant",
+        "currency": "USD",
+        "purpose": "authorized_dependent_replay"
+      },
+      "policy": {
+        "id": "SYNTHETIC-DEPENDENT-REPLAY-01",
+        "revision": "1",
+        "route": "restatement",
+        "economics": "original_opening_exact_cumulative_basis",
+        "attribution": "revised_historical_lines",
+        "cash": "complete_empty_current_only",
+        "replacements": "one_authorized_replacement_per_original_receipt",
+        "balance_scope": "nonnegative_account_and_no_original_overpayment",
+        "rounding": "exact_no_rounding",
+        "evidence_class": "research_assumption"
+      },
+      "research": {
+        "catalog_sha256": "5b6633a85557e8f03df1fee7ce102e825469316b2a89578478c3681f411543c3",
+        "backlog_sha256": "1187abcb38bb6420133a7574d40af9839102b7135759c1e28ac29853cfb35d98",
+        "scope_note": "C13.DEPENDENT_PERIOD_REPLAY+C13.PROSPECTIVE_PERIOD_ADJUSTMENT;synthetic-positive-balance-only"
+      },
+      "registry": {
+        "party_ids": [
+          "participant",
+          "distributor"
+        ],
+        "payer_id": "distributor",
+        "origin": {
+          "boundary": "2026-01-01",
+          "cumulative_basis": "0",
+          "recognized_entitlement": "0",
+          "actual_paid": "0"
+        },
+        "periods": [
+          {
+            "id": "p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:p1",
+            "evidence_ref": "evidence:p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "as_of": "2026-03-31",
+            "cutoff": "2026-04-03T00:00:00Z",
+            "predecessor_period_id": null
+          },
+          {
+            "id": "p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:p2",
+            "evidence_ref": "evidence:p2",
+            "period": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "as_of": "2026-06-30",
+            "cutoff": "2026-07-03T00:00:00Z",
+            "predecessor_period_id": "p1"
+          }
+        ],
+        "terms": [
+          {
+            "id": "term:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p1",
+            "evidence_ref": "evidence:term:p1",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p1",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          },
+          {
+            "id": "term:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p2",
+            "evidence_ref": "evidence:term:p2",
+            "kind": "cumulative_marginal",
+            "effective": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p2",
+            "flat_rate": "0",
+            "lower_rate": "0.1",
+            "upper_rate": "0.2",
+            "threshold": "220"
+          },
+          {
+            "id": "term:p3",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p3",
+            "evidence_ref": "evidence:term:p3",
+            "kind": "cumulative_marginal",
+            "effective": {
+              "start": "2026-07-01",
+              "end": "2026-10-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p3",
+            "flat_rate": "0",
+            "lower_rate": "0.1",
+            "upper_rate": "0.2",
+            "threshold": "220"
+          },
+          {
+            "id": "term:p4",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p4",
+            "evidence_ref": "evidence:term:p4",
+            "kind": "cumulative_marginal",
+            "effective": {
+              "start": "2026-10-01",
+              "end": "2027-01-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p4",
+            "flat_rate": "0",
+            "lower_rate": "0.1",
+            "upper_rate": "0.2",
+            "threshold": "220"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "receipt:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-16T00:00:00Z",
+            "source_ref": "original-source:receipt:p1",
+            "evidence_ref": "evidence:receipt:p1",
+            "period_id": "p1",
+            "term_id": "term:p1",
+            "base_amount": "200",
+            "effective_date": "2026-01-15",
+            "sequence": 0,
+            "original_ref": "original-sales#p1",
+            "entitlement_ref": "original-entitlement#p1"
+          },
+          {
+            "id": "receipt:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-05-16T00:00:00Z",
+            "source_ref": "original-source:receipt:p2",
+            "evidence_ref": "evidence:receipt:p2",
+            "period_id": "p2",
+            "term_id": "term:p2",
+            "base_amount": "60",
+            "effective_date": "2026-05-15",
+            "sequence": 0,
+            "original_ref": "original-sales#p2",
+            "entitlement_ref": "original-entitlement#p2"
+          }
+        ],
+        "issued_artifacts": [
+          {
+            "id": "issue:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:issue:p1",
+            "evidence_ref": "evidence:issue:p1",
+            "period_id": "p1",
+            "receipt_ids": [
+              "receipt:p1"
+            ],
+            "complete": true,
+            "issued_at": "2026-04-02T12:00:00Z",
+            "original_ref": "original-issued-statement#p1",
+            "result_ref": "supplied-issued-result#p1",
+            "predecessor_issue_id": null,
+            "basis_total": "200",
+            "earned": "100",
+            "opening_cumulative_basis": "0",
+            "closing_cumulative_basis": "200"
+          },
+          {
+            "id": "issue:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:issue:p2",
+            "evidence_ref": "evidence:issue:p2",
+            "period_id": "p2",
+            "receipt_ids": [
+              "receipt:p2"
+            ],
+            "complete": true,
+            "issued_at": "2026-07-02T12:00:00Z",
+            "original_ref": "original-issued-statement#p2",
+            "result_ref": "supplied-issued-result#p2",
+            "predecessor_issue_id": "issue:p1",
+            "basis_total": "60",
+            "earned": "10",
+            "opening_cumulative_basis": "200",
+            "closing_cumulative_basis": "260"
+          }
+        ],
+        "payments": [
+          {
+            "id": "payment:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-02-16T00:00:00Z",
+            "source_ref": "original-source:payment:old",
+            "evidence_ref": "evidence:payment:old",
+            "receipt_id": "receipt:p1",
+            "payer_id": "distributor",
+            "recipient_id": "participant",
+            "purpose": "participation_payment",
+            "amount": "80",
+            "paid_at": "2026-02-15T12:00:00Z",
+            "original_ref": "original-bank#payment80"
+          }
+        ],
+        "applications": [
+          {
+            "id": "application:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-02-16T12:00:00Z",
+            "source_ref": "original-source:application:old",
+            "evidence_ref": "evidence:application:old",
+            "payment_id": "payment:old",
+            "receipt_id": "receipt:p1",
+            "original_entitlement_ref": "original-entitlement#p1",
+            "amount": "80",
+            "approved": true
+          }
+        ],
+        "payment_population": {
+          "id": "payment-population",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-07-02T12:00:00Z",
+          "source_ref": "original-source:payment-population",
+          "evidence_ref": "evidence:payment-population",
+          "complete": true,
+          "through_period_id": "p2",
+          "payment_ids": [
+            "payment:old"
+          ],
+          "application_ids": [
+            "application:old"
+          ],
+          "paid_total": "80"
+        },
+        "evidence": [
+          {
+            "id": "evidence:term:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p1"
+          },
+          {
+            "id": "evidence:term:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p2"
+          },
+          {
+            "id": "evidence:term:p3",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p3"
+          },
+          {
+            "id": "evidence:term:p4",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p4"
+          },
+          {
+            "id": "evidence:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "issued_period",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:p1"
+          },
+          {
+            "id": "evidence:receipt:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_receipt_basis",
+            "approved": true,
+            "observed_at": "2026-01-16T00:00:00Z",
+            "source_ref": "original-evidence:receipt:p1"
+          },
+          {
+            "id": "evidence:issue:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_issued_artifact",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:issue:p1"
+          },
+          {
+            "id": "evidence:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "issued_period",
+            "approved": true,
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-evidence:p2"
+          },
+          {
+            "id": "evidence:receipt:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_receipt_basis",
+            "approved": true,
+            "observed_at": "2026-05-16T00:00:00Z",
+            "source_ref": "original-evidence:receipt:p2"
+          },
+          {
+            "id": "evidence:issue:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_issued_artifact",
+            "approved": true,
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-evidence:issue:p2"
+          },
+          {
+            "id": "evidence:payment:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "actual_participation_payment",
+            "approved": true,
+            "observed_at": "2026-02-16T00:00:00Z",
+            "source_ref": "original-evidence:payment:old"
+          },
+          {
+            "id": "evidence:application:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "actual_payment_application",
+            "approved": true,
+            "observed_at": "2026-02-16T12:00:00Z",
+            "source_ref": "original-evidence:application:old"
+          },
+          {
+            "id": "evidence:payment-population",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "complete_historical_payment_population",
+            "approved": true,
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-evidence:payment-population"
+          }
+        ]
+      },
+      "opening_state": {
+        "origin": "genesis",
+        "boundary": "2026-07-01",
+        "source_case_id": "genesis",
+        "history": []
+      },
+      "case_id": "dependent-restatement-correction",
+      "period_id": "p3",
+      "period": {
+        "start": "2026-07-01",
+        "end": "2026-10-01"
+      },
+      "as_of": "2026-09-30",
+      "cutoff": "2026-10-03T00:00:00Z",
+      "predecessor_period_id": "p2",
+      "predecessor_result_ref": "supplied-issued-result#p2",
+      "receipts": [],
+      "population": {
+        "id": "population:p3",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-10-02T12:00:00Z",
+        "source_ref": "original-source:population:p3",
+        "evidence_ref": "evidence:population:p3",
+        "period": {
+          "start": "2026-07-01",
+          "end": "2026-10-01"
+        },
+        "complete": true,
+        "receipt_ids": [],
+        "gross_basis_total": "0"
+      },
+      "cash_population": {
+        "id": "cash:p3",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-10-02T12:00:00Z",
+        "source_ref": "original-source:cash:p3",
+        "evidence_ref": "evidence:cash:p3",
+        "period": {
+          "start": "2026-07-01",
+          "end": "2026-10-01"
+        },
+        "complete": true,
+        "event_ids": [],
+        "total": "0"
+      },
+      "replacements": [
+        {
+          "id": "replacement:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-08-05T00:00:00Z",
+          "source_ref": "original-source:replacement:p1",
+          "evidence_ref": "evidence:replacement:p1",
+          "original_receipt_id": "receipt:p1",
+          "base_amount": "180",
+          "effective_date": "2026-01-15",
+          "original_basis_ref": "original-sales#p1",
+          "original_ref": "original-replacement#p1-v2"
+        }
+      ],
+      "authorities": [
+        {
+          "id": "authority:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-08-06T00:00:00Z",
+          "source_ref": "original-source:authority:p1",
+          "evidence_ref": "evidence:authority:p1",
+          "replacement_id": "replacement:p1",
+          "original_receipt_id": "receipt:p1",
+          "original_issue_id": "issue:p1",
+          "route": "restatement",
+          "dependent_period_ids": [
+            "p1",
+            "p2"
+          ],
+          "predecessor_result_ref": "supplied-issued-result#p2",
+          "approved": true,
+          "approved_date": "2026-08-06",
+          "recorded_date": "2026-08-06",
+          "apply_revised_basis_to_future": true,
+          "original_ref": "original-authority#replace-p1-restatement"
+        }
+      ],
+      "requests": [
+        {
+          "id": "request:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-08-06T12:00:00Z",
+          "source_ref": "original-source:request:p1",
+          "evidence_ref": "evidence:request:p1",
+          "replacement_id": "replacement:p1",
+          "authority_id": "authority:p1",
+          "sequence": 0
+        }
+      ],
+      "correction_population": {
+        "id": "correction-population:p3",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-10-02T12:00:00Z",
+        "source_ref": "original-source:correction-population:p3",
+        "evidence_ref": "evidence:correction-population:p3",
+        "period": {
+          "start": "2026-07-01",
+          "end": "2026-10-01"
+        },
+        "complete": true,
+        "request_ids": [
+          "request:p1"
+        ],
+        "replacement_ids": [
+          "replacement:p1"
+        ],
+        "authority_ids": [
+          "authority:p1"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "evidence:population:p3",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_current_receipt_population",
+          "approved": true,
+          "observed_at": "2026-10-02T12:00:00Z",
+          "source_ref": "original-evidence:population:p3"
+        },
+        {
+          "id": "evidence:cash:p3",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_current_cash_population",
+          "approved": true,
+          "observed_at": "2026-10-02T12:00:00Z",
+          "source_ref": "original-evidence:cash:p3"
+        },
+        {
+          "id": "evidence:replacement:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "replacement_measurement",
+          "approved": true,
+          "observed_at": "2026-08-05T00:00:00Z",
+          "source_ref": "original-evidence:replacement:p1"
+        },
+        {
+          "id": "evidence:authority:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "correction_authority",
+          "approved": true,
+          "observed_at": "2026-08-06T00:00:00Z",
+          "source_ref": "original-evidence:authority:p1"
+        },
+        {
+          "id": "evidence:request:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "correction_request",
+          "approved": true,
+          "observed_at": "2026-08-06T12:00:00Z",
+          "source_ref": "original-evidence:request:p1"
+        },
+        {
+          "id": "evidence:correction-population:p3",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_correction_population",
+          "approved": true,
+          "observed_at": "2026-10-02T12:00:00Z",
+          "source_ref": "original-evidence:correction-population:p3"
+        }
+      ]
+    },
+    "dependent_prospective": {
+      "schema_version": "dependent-replay-neutral/1",
+      "scope": {
+        "agreement_id": "synthetic-replay-agreement",
+        "pool_id": "participation-pool",
+        "asset_id": "synthetic-picture",
+        "participant_id": "participant",
+        "currency": "USD",
+        "purpose": "authorized_dependent_replay"
+      },
+      "policy": {
+        "id": "SYNTHETIC-DEPENDENT-REPLAY-01",
+        "revision": "1",
+        "route": "prospective",
+        "economics": "original_opening_exact_cumulative_basis",
+        "attribution": "original_lines_plus_current_signed_credit",
+        "cash": "complete_empty_current_only",
+        "replacements": "one_authorized_replacement_per_original_receipt",
+        "balance_scope": "nonnegative_account_and_no_original_overpayment",
+        "rounding": "exact_no_rounding",
+        "evidence_class": "research_assumption"
+      },
+      "research": {
+        "catalog_sha256": "5b6633a85557e8f03df1fee7ce102e825469316b2a89578478c3681f411543c3",
+        "backlog_sha256": "1187abcb38bb6420133a7574d40af9839102b7135759c1e28ac29853cfb35d98",
+        "scope_note": "C13.DEPENDENT_PERIOD_REPLAY+C13.PROSPECTIVE_PERIOD_ADJUSTMENT;synthetic-positive-balance-only"
+      },
+      "registry": {
+        "party_ids": [
+          "participant",
+          "distributor"
+        ],
+        "payer_id": "distributor",
+        "origin": {
+          "boundary": "2026-01-01",
+          "cumulative_basis": "0",
+          "recognized_entitlement": "0",
+          "actual_paid": "0"
+        },
+        "periods": [
+          {
+            "id": "p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:p1",
+            "evidence_ref": "evidence:p1",
+            "period": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "as_of": "2026-03-31",
+            "cutoff": "2026-04-03T00:00:00Z",
+            "predecessor_period_id": null
+          },
+          {
+            "id": "p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:p2",
+            "evidence_ref": "evidence:p2",
+            "period": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "as_of": "2026-06-30",
+            "cutoff": "2026-07-03T00:00:00Z",
+            "predecessor_period_id": "p1"
+          }
+        ],
+        "terms": [
+          {
+            "id": "term:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p1",
+            "evidence_ref": "evidence:term:p1",
+            "kind": "flat_ratio",
+            "effective": {
+              "start": "2026-01-01",
+              "end": "2026-04-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p1",
+            "flat_rate": "0.5",
+            "lower_rate": "0",
+            "upper_rate": "0",
+            "threshold": "0"
+          },
+          {
+            "id": "term:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p2",
+            "evidence_ref": "evidence:term:p2",
+            "kind": "cumulative_marginal",
+            "effective": {
+              "start": "2026-04-01",
+              "end": "2026-07-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p2",
+            "flat_rate": "0",
+            "lower_rate": "0.1",
+            "upper_rate": "0.2",
+            "threshold": "220"
+          },
+          {
+            "id": "term:p3",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p3",
+            "evidence_ref": "evidence:term:p3",
+            "kind": "cumulative_marginal",
+            "effective": {
+              "start": "2026-07-01",
+              "end": "2026-10-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p3",
+            "flat_rate": "0",
+            "lower_rate": "0.1",
+            "upper_rate": "0.2",
+            "threshold": "220"
+          },
+          {
+            "id": "term:p4",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-source:term:p4",
+            "evidence_ref": "evidence:term:p4",
+            "kind": "cumulative_marginal",
+            "effective": {
+              "start": "2026-10-01",
+              "end": "2027-01-01"
+            },
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "original_ref": "original-terms#p4",
+            "flat_rate": "0",
+            "lower_rate": "0.1",
+            "upper_rate": "0.2",
+            "threshold": "220"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "receipt:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-01-16T00:00:00Z",
+            "source_ref": "original-source:receipt:p1",
+            "evidence_ref": "evidence:receipt:p1",
+            "period_id": "p1",
+            "term_id": "term:p1",
+            "base_amount": "200",
+            "effective_date": "2026-01-15",
+            "sequence": 0,
+            "original_ref": "original-sales#p1",
+            "entitlement_ref": "original-entitlement#p1"
+          },
+          {
+            "id": "receipt:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-05-16T00:00:00Z",
+            "source_ref": "original-source:receipt:p2",
+            "evidence_ref": "evidence:receipt:p2",
+            "period_id": "p2",
+            "term_id": "term:p2",
+            "base_amount": "60",
+            "effective_date": "2026-05-15",
+            "sequence": 0,
+            "original_ref": "original-sales#p2",
+            "entitlement_ref": "original-entitlement#p2"
+          }
+        ],
+        "issued_artifacts": [
+          {
+            "id": "issue:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-source:issue:p1",
+            "evidence_ref": "evidence:issue:p1",
+            "period_id": "p1",
+            "receipt_ids": [
+              "receipt:p1"
+            ],
+            "complete": true,
+            "issued_at": "2026-04-02T12:00:00Z",
+            "original_ref": "original-issued-statement#p1",
+            "result_ref": "supplied-issued-result#p1",
+            "predecessor_issue_id": null,
+            "basis_total": "200",
+            "earned": "100",
+            "opening_cumulative_basis": "0",
+            "closing_cumulative_basis": "200"
+          },
+          {
+            "id": "issue:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-source:issue:p2",
+            "evidence_ref": "evidence:issue:p2",
+            "period_id": "p2",
+            "receipt_ids": [
+              "receipt:p2"
+            ],
+            "complete": true,
+            "issued_at": "2026-07-02T12:00:00Z",
+            "original_ref": "original-issued-statement#p2",
+            "result_ref": "supplied-issued-result#p2",
+            "predecessor_issue_id": "issue:p1",
+            "basis_total": "60",
+            "earned": "10",
+            "opening_cumulative_basis": "200",
+            "closing_cumulative_basis": "260"
+          }
+        ],
+        "payments": [
+          {
+            "id": "payment:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-02-16T00:00:00Z",
+            "source_ref": "original-source:payment:old",
+            "evidence_ref": "evidence:payment:old",
+            "receipt_id": "receipt:p1",
+            "payer_id": "distributor",
+            "recipient_id": "participant",
+            "purpose": "participation_payment",
+            "amount": "80",
+            "paid_at": "2026-02-15T12:00:00Z",
+            "original_ref": "original-bank#payment80"
+          }
+        ],
+        "applications": [
+          {
+            "id": "application:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "observed_at": "2026-02-16T12:00:00Z",
+            "source_ref": "original-source:application:old",
+            "evidence_ref": "evidence:application:old",
+            "payment_id": "payment:old",
+            "receipt_id": "receipt:p1",
+            "original_entitlement_ref": "original-entitlement#p1",
+            "amount": "80",
+            "approved": true
+          }
+        ],
+        "payment_population": {
+          "id": "payment-population",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-07-02T12:00:00Z",
+          "source_ref": "original-source:payment-population",
+          "evidence_ref": "evidence:payment-population",
+          "complete": true,
+          "through_period_id": "p2",
+          "payment_ids": [
+            "payment:old"
+          ],
+          "application_ids": [
+            "application:old"
+          ],
+          "paid_total": "80"
+        },
+        "evidence": [
+          {
+            "id": "evidence:term:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p1"
+          },
+          {
+            "id": "evidence:term:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p2"
+          },
+          {
+            "id": "evidence:term:p3",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p3"
+          },
+          {
+            "id": "evidence:term:p4",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "earning_terms",
+            "approved": true,
+            "observed_at": "2026-01-01T00:00:00Z",
+            "source_ref": "original-evidence:term:p4"
+          },
+          {
+            "id": "evidence:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "issued_period",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:p1"
+          },
+          {
+            "id": "evidence:receipt:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_receipt_basis",
+            "approved": true,
+            "observed_at": "2026-01-16T00:00:00Z",
+            "source_ref": "original-evidence:receipt:p1"
+          },
+          {
+            "id": "evidence:issue:p1",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_issued_artifact",
+            "approved": true,
+            "observed_at": "2026-04-02T12:00:00Z",
+            "source_ref": "original-evidence:issue:p1"
+          },
+          {
+            "id": "evidence:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "issued_period",
+            "approved": true,
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-evidence:p2"
+          },
+          {
+            "id": "evidence:receipt:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_receipt_basis",
+            "approved": true,
+            "observed_at": "2026-05-16T00:00:00Z",
+            "source_ref": "original-evidence:receipt:p2"
+          },
+          {
+            "id": "evidence:issue:p2",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "original_issued_artifact",
+            "approved": true,
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-evidence:issue:p2"
+          },
+          {
+            "id": "evidence:payment:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "actual_participation_payment",
+            "approved": true,
+            "observed_at": "2026-02-16T00:00:00Z",
+            "source_ref": "original-evidence:payment:old"
+          },
+          {
+            "id": "evidence:application:old",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "actual_payment_application",
+            "approved": true,
+            "observed_at": "2026-02-16T12:00:00Z",
+            "source_ref": "original-evidence:application:old"
+          },
+          {
+            "id": "evidence:payment-population",
+            "scope": {
+              "agreement_id": "synthetic-replay-agreement",
+              "pool_id": "participation-pool",
+              "asset_id": "synthetic-picture",
+              "participant_id": "participant",
+              "currency": "USD",
+              "purpose": "authorized_dependent_replay"
+            },
+            "kind": "complete_historical_payment_population",
+            "approved": true,
+            "observed_at": "2026-07-02T12:00:00Z",
+            "source_ref": "original-evidence:payment-population"
+          }
+        ]
+      },
+      "opening_state": {
+        "origin": "genesis",
+        "boundary": "2026-07-01",
+        "source_case_id": "genesis",
+        "history": []
+      },
+      "case_id": "dependent-prospective-correction",
+      "period_id": "p3",
+      "period": {
+        "start": "2026-07-01",
+        "end": "2026-10-01"
+      },
+      "as_of": "2026-09-30",
+      "cutoff": "2026-10-03T00:00:00Z",
+      "predecessor_period_id": "p2",
+      "predecessor_result_ref": "supplied-issued-result#p2",
+      "receipts": [],
+      "population": {
+        "id": "population:p3",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-10-02T12:00:00Z",
+        "source_ref": "original-source:population:p3",
+        "evidence_ref": "evidence:population:p3",
+        "period": {
+          "start": "2026-07-01",
+          "end": "2026-10-01"
+        },
+        "complete": true,
+        "receipt_ids": [],
+        "gross_basis_total": "0"
+      },
+      "cash_population": {
+        "id": "cash:p3",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-10-02T12:00:00Z",
+        "source_ref": "original-source:cash:p3",
+        "evidence_ref": "evidence:cash:p3",
+        "period": {
+          "start": "2026-07-01",
+          "end": "2026-10-01"
+        },
+        "complete": true,
+        "event_ids": [],
+        "total": "0"
+      },
+      "replacements": [
+        {
+          "id": "replacement:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-08-05T00:00:00Z",
+          "source_ref": "original-source:replacement:p1",
+          "evidence_ref": "evidence:replacement:p1",
+          "original_receipt_id": "receipt:p1",
+          "base_amount": "180",
+          "effective_date": "2026-01-15",
+          "original_basis_ref": "original-sales#p1",
+          "original_ref": "original-replacement#p1-v2"
+        }
+      ],
+      "authorities": [
+        {
+          "id": "authority:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-08-06T00:00:00Z",
+          "source_ref": "original-source:authority:p1",
+          "evidence_ref": "evidence:authority:p1",
+          "replacement_id": "replacement:p1",
+          "original_receipt_id": "receipt:p1",
+          "original_issue_id": "issue:p1",
+          "route": "prospective",
+          "dependent_period_ids": [
+            "p1",
+            "p2"
+          ],
+          "predecessor_result_ref": "supplied-issued-result#p2",
+          "approved": true,
+          "approved_date": "2026-08-06",
+          "recorded_date": "2026-08-06",
+          "apply_revised_basis_to_future": true,
+          "original_ref": "original-authority#replace-p1-prospective"
+        }
+      ],
+      "requests": [
+        {
+          "id": "request:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "observed_at": "2026-08-06T12:00:00Z",
+          "source_ref": "original-source:request:p1",
+          "evidence_ref": "evidence:request:p1",
+          "replacement_id": "replacement:p1",
+          "authority_id": "authority:p1",
+          "sequence": 0
+        }
+      ],
+      "correction_population": {
+        "id": "correction-population:p3",
+        "scope": {
+          "agreement_id": "synthetic-replay-agreement",
+          "pool_id": "participation-pool",
+          "asset_id": "synthetic-picture",
+          "participant_id": "participant",
+          "currency": "USD",
+          "purpose": "authorized_dependent_replay"
+        },
+        "observed_at": "2026-10-02T12:00:00Z",
+        "source_ref": "original-source:correction-population:p3",
+        "evidence_ref": "evidence:correction-population:p3",
+        "period": {
+          "start": "2026-07-01",
+          "end": "2026-10-01"
+        },
+        "complete": true,
+        "request_ids": [
+          "request:p1"
+        ],
+        "replacement_ids": [
+          "replacement:p1"
+        ],
+        "authority_ids": [
+          "authority:p1"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "evidence:population:p3",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_current_receipt_population",
+          "approved": true,
+          "observed_at": "2026-10-02T12:00:00Z",
+          "source_ref": "original-evidence:population:p3"
+        },
+        {
+          "id": "evidence:cash:p3",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_current_cash_population",
+          "approved": true,
+          "observed_at": "2026-10-02T12:00:00Z",
+          "source_ref": "original-evidence:cash:p3"
+        },
+        {
+          "id": "evidence:replacement:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "replacement_measurement",
+          "approved": true,
+          "observed_at": "2026-08-05T00:00:00Z",
+          "source_ref": "original-evidence:replacement:p1"
+        },
+        {
+          "id": "evidence:authority:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "correction_authority",
+          "approved": true,
+          "observed_at": "2026-08-06T00:00:00Z",
+          "source_ref": "original-evidence:authority:p1"
+        },
+        {
+          "id": "evidence:request:p1",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "correction_request",
+          "approved": true,
+          "observed_at": "2026-08-06T12:00:00Z",
+          "source_ref": "original-evidence:request:p1"
+        },
+        {
+          "id": "evidence:correction-population:p3",
+          "scope": {
+            "agreement_id": "synthetic-replay-agreement",
+            "pool_id": "participation-pool",
+            "asset_id": "synthetic-picture",
+            "participant_id": "participant",
+            "currency": "USD",
+            "purpose": "authorized_dependent_replay"
+          },
+          "kind": "complete_correction_population",
+          "approved": true,
+          "observed_at": "2026-10-02T12:00:00Z",
+          "source_ref": "original-evidence:correction-population:p3"
+        }
+      ]
+    }
+  }
+}

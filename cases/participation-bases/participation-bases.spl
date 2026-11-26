@@ -1,0 +1,99 @@
+// Original monetary and quantity spaces remain separately typed throughout.
+schedule ParticipationBases language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, period: Period};
+  input project: Id<Asset>;
+  input case_id: Text;
+  input fact_scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, asset_id: Id<Asset>, pool_id: Id<Pool>, currency: Text};
+  input accounting_period: Period;
+  input period_end_utc: Instant;
+  input terms: {id: Text, source_ref: Text, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, asset_id: Id<Asset>, pool_id: Id<Pool>, currency: Text}, approved: Bool, effective: Period, observed_at: Instant, percentage: Ratio, unit_rate: Rate<Download,USD>, unit: Text, participation_share: Ratio};
+  input receipts: List<{id: Text, original_ref: Text, source_ref: Text, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, asset_id: Id<Asset>, pool_id: Id<Pool>, currency: Text}, effective_date: Date, effective_midnight: Instant, observed_at: Instant, amount: Money<USD>}>;
+  input deductions: List<{id: Text, original_ref: Text, source_ref: Text, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, asset_id: Id<Asset>, pool_id: Id<Pool>, currency: Text}, effective_date: Date, effective_midnight: Instant, observed_at: Instant, amount: Money<USD>}>;
+  input usage: List<{id: Text, original_ref: Text, source_ref: Text, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, asset_id: Id<Asset>, pool_id: Id<Pool>, currency: Text}, effective_date: Date, effective_midnight: Instant, observed_at: Instant, amount: Quantity<Download>}>;
+  input populations: List<{id: Text, source_ref: Text, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, asset_id: Id<Asset>, pool_id: Id<Pool>, currency: Text}, kind: Text, period: Period, complete: Bool, row_ids: List<Text>, money_total: Option<Money<USD>>, quantity_total: Option<Quantity<Download>>, observed_at: Instant}>;
+  input originals: {profile: Text, identity_codec: Text, case_id: Text, terms_id: Text, cutoff: Instant, unknown_local_offset_paths: List<Text>, receipts_ids: List<Text>, deductions_ids: List<Text>, usage_ids: List<Text>, populations_ids: List<Text>, raw_original: Text};
+  input method: Text;
+  input cutoff: Instant;
+  require method == "gross_percent" or method == "net_percent" or method == "unit_rate" or method == "unit_rate_then_participation" else "BASE_METHOD";
+  require case_id != "" and fact_scope.currency == "USD" else "BASE_SCOPE";
+  require fact_scope.agreement_id == scope.agreement_id and fact_scope.participant_id == scope.participant_id and fact_scope.pool_id == scope.pool_id and fact_scope.asset_id == project else "BASE_SCOPE";
+  require accounting_period == scope.period and scope.period.start < scope.period.end and cutoff >= period_end_utc else "BASE_PERIOD";
+  require originals.profile == "participation-bases-original-json/1" and originals.identity_codec == "unicode-utf8-hex/1" and originals.raw_original != "" else "BASE_ORIGINAL_TRANSPORT";
+  require originals.case_id == case_id and originals.terms_id == terms.id and originals.cutoff == cutoff and originals.receipts_ids == map(receipts, row => row.id) and originals.deductions_ids == map(deductions, row => row.id) and originals.usage_ids == map(usage, row => row.id) and originals.populations_ids == map(populations, row => row.id) else "BASE_ORIGINAL_POPULATION";
+  require terms.id != "" and terms.source_ref != "" and terms.scope == fact_scope and terms.approved else "BASE_TERMS_AUTHORITY";
+  require terms.effective.start <= scope.period.start and scope.period.end <= terms.effective.end else "BASE_TERMS_PERIOD";
+  require terms.observed_at < cutoff else "BASE_TERMS_CUTOFF";
+  require terms.percentage >= 0 and terms.percentage <= 1 and terms.participation_share >= 0 and terms.participation_share <= 1 and terms.unit_rate >= terms.unit_rate * 0 else "BASE_RATE_RANGE";
+  require terms.unit == "Download" else "BASE_UNIT";
+  require sum(receipts, row => 1) <= 32 and sum(deductions, row => 1) <= 32 and sum(usage, row => 1) <= 32 else "BASE_ROW_BOUND";
+  require sum(populations, row => 1) == 3 and sum(filter(populations, row => row.kind == "receipts"), row => 1) == 1 and sum(filter(populations, row => row.kind == "deductions"), row => 1) == 1 and sum(filter(populations, row => row.kind == "usage"), row => 1) == 1 else "BASE_POPULATIONS";
+  define original_ids = concat(map(receipts, row => row.id), concat(map(deductions, row => row.id), map(usage, row => row.id)));
+  define original_refs = concat(map(receipts, row => row.original_ref), concat(map(deductions, row => row.original_ref), map(usage, row => row.original_ref)));
+  define checked_ids: Option<Text> = fold sort_by(original_ids, id => id) from none() with previous, id {
+    require id != "" and (not is_some(previous) or require_some(previous, "BASE_ORIGINAL_REUSE") != id) else "BASE_ORIGINAL_REUSE";
+    yield some(id);
+  };
+  define checked_refs: Option<Text> = fold sort_by(original_refs, ref => ref) from none() with previous, ref {
+    require ref != "" and (not is_some(previous) or require_some(previous, "BASE_ORIGINAL_REUSE") != ref) else "BASE_ORIGINAL_REUSE";
+    yield some(ref);
+  };
+  define checked_populations = for each population in populations {
+    require population.id != "" and population.source_ref != "" and population.scope == fact_scope and population.period == scope.period and population.complete else "BASE_POPULATION_AUTHORITY";
+    require population.observed_at >= period_end_utc and population.observed_at < cutoff else "BASE_POPULATION_CUTOFF";
+    define checked_population_ids: Option<Text> = fold sort_by(population.row_ids, id => id) from none() with previous, id {
+      require id != "" and (not is_some(previous) or require_some(previous, "BASE_POPULATION_ROWS") != id) else "BASE_POPULATION_ROWS";
+      yield some(id);
+    };
+    require (population.kind == "usage" and is_some(population.quantity_total) and not is_some(population.money_total)) or (population.kind != "usage" and is_some(population.money_total) and not is_some(population.quantity_total)) else "BASE_POPULATION_DIMENSION";
+    yield population;
+  };
+  define checked_receipts = for each row in receipts {
+    require row.source_ref != "" and row.scope == fact_scope else "BASE_ROW_SCOPE";
+    require in_period(row.effective_date, scope.period) else "BASE_ROW_PERIOD";
+    require row.effective_midnight <= row.observed_at and row.observed_at < cutoff and terms.observed_at <= row.observed_at else "BASE_ROW_OBSERVATION";
+    require sum(filter(checked_populations, population => population.kind == "receipts" and row.observed_at <= population.observed_at), population => 1) == 1 else "BASE_ROW_OBSERVATION";
+    require row.amount >= row.amount * 0 else "BASE_NONNEGATIVE";
+    yield {id: row.id, amount: row.amount};
+  };
+  define checked_deductions = for each row in deductions {
+    require row.source_ref != "" and row.scope == fact_scope else "BASE_ROW_SCOPE";
+    require in_period(row.effective_date, scope.period) else "BASE_ROW_PERIOD";
+    require row.effective_midnight <= row.observed_at and row.observed_at < cutoff and terms.observed_at <= row.observed_at else "BASE_ROW_OBSERVATION";
+    require sum(filter(checked_populations, population => population.kind == "deductions" and row.observed_at <= population.observed_at), population => 1) == 1 else "BASE_ROW_OBSERVATION";
+    require row.amount >= row.amount * 0 else "BASE_NONNEGATIVE";
+    yield {id: row.id, amount: row.amount};
+  };
+  define checked_usage = for each row in usage {
+    require row.source_ref != "" and row.scope == fact_scope else "BASE_ROW_SCOPE";
+    require in_period(row.effective_date, scope.period) else "BASE_ROW_PERIOD";
+    require row.effective_midnight <= row.observed_at and row.observed_at < cutoff and terms.observed_at <= row.observed_at else "BASE_ROW_OBSERVATION";
+    require sum(filter(checked_populations, population => population.kind == "usage" and row.observed_at <= population.observed_at), population => 1) == 1 else "BASE_ROW_OBSERVATION";
+    require row.amount >= row.amount * 0 else "BASE_NONNEGATIVE";
+    yield {id: row.id, amount: row.amount};
+  };
+  define gross = sum(checked_receipts, row => row.amount);
+  define deductible = sum(checked_deductions, row => row.amount);
+  define measured = sum(checked_usage, row => row.amount);
+  define reconciled_populations = for each population in checked_populations {
+    require (population.kind != "receipts" or (sort_by(population.row_ids, id => id) == sort_by(map(checked_receipts, row => row.id), id => id) and require_some(population.money_total, "BASE_POPULATION_DIMENSION") == gross)) and
+      (population.kind != "deductions" or (sort_by(population.row_ids, id => id) == sort_by(map(checked_deductions, row => row.id), id => id) and require_some(population.money_total, "BASE_POPULATION_DIMENSION") == deductible)) and
+      (population.kind != "usage" or (sort_by(population.row_ids, id => id) == sort_by(map(checked_usage, row => row.id), id => id) and require_some(population.quantity_total, "BASE_POPULATION_DIMENSION") == measured)) else "BASE_POPULATION_RECONCILIATION";
+    yield population.id;
+  };
+  require deductible <= gross else "BASE_NET_LOSS_VARIANT_REQUIRED";
+  define net = gross - deductible;
+  define monetary_method = method == "gross_percent" or method == "net_percent";
+  define monetary_basis = if method == "net_percent" then net else gross;
+  define selected_money_basis: Option<Money<USD>> = if monetary_method then some(monetary_basis) else none();
+  define selected_quantity_basis: Option<Quantity<Download>> = if monetary_method then none() else some(measured);
+  define selected_percentage: Option<Ratio> = if monetary_method then some(terms.percentage) else none();
+  define selected_unit_rate: Option<Rate<Download,USD>> = if monetary_method then none() else some(terms.unit_rate);
+  define pre_participation = if monetary_method then monetary_basis * terms.percentage else measured * terms.unit_rate;
+  define applied_participation = if method == "unit_rate_then_participation" then terms.participation_share else 1;
+  define earned = pre_participation * applied_participation citing "PARTICIPATION_BASES_SELECTED";
+  emit "comparison" = {case_id: case_id, method: method, scope: fact_scope, period: scope.period, gross: gross, deductions: deductible, net: net, quantity: measured,
+    selected_money_basis: selected_money_basis, selected_quantity_basis: selected_quantity_basis, selected_percentage: selected_percentage, selected_unit_rate: selected_unit_rate,
+    pre_participation: pre_participation, applied_participation: applied_participation, earned: earned, issuance_status: "unissued"};
+  emit "original_detail" = {originals: originals, unknown_local_offset_meaning: "UTC_known_local_offset_unknown_no_local_zone_inferred", original_terms: terms, validated_population_ids: reconciled_populations, payment_evidence_status: "not_part_of_profile", bank_movement_created: false};
+  emit "reconciliation" = gross == net + deductible and earned == pre_participation * applied_participation;
+}

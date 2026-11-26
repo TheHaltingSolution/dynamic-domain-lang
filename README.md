@@ -1,5 +1,43 @@
 # dynamic-domain-lang
 
+The [bounded research checkpoint](docs/spl/release-checkpoint-2026-11-25.md)
+records the selected SPL profiles and capacity evidence. Start with
+`AGENTS.md` and the [25 November session handoff](docs/spl/session-handoff-2026-11-25.md)
+for the owner's scope and prior evidence. The
+[release reproduction guide](docs/spl/release-reproduction.md) gives the
+frozen regression and native reserve commands.
+
+Earlier completion work is tracked in the
+[finite completion plan](docs/spl/completion-plan.md) and
+[requirement backlog](docs/spl/completion-backlog.json), covering all 17 agreed
+C1 calculation families plus performance and validation obligations. For the
+external agents, use the paste-ready
+[research](docs/spl/for-royalties-research-agent.md) and
+[design](docs/spl/for-language-design-agent.md) notes.
+
+The [active checkpoint](docs/spl/completion-checkpoint.md) records newer financial
+slices, measured audit improvements and verification scopes. Current artifact
+consumption uses the [validated completion contract](docs/spl/artifact-publication-design.md).
+
+The [atomic variant inventory](docs/spl/c1-coverage.md) records the reviewed finite
+semantic scope, separate backend/evidence axes and remaining gaps.
+[Live work](docs/spl/active-work.md) records later checkpoints and active jobs.
+
+Explicit [Minute/Hour conversion](docs/spl/unit-conversion-implementation.md)
+is now integrated under owner feature `spl.usage-time/1`; the base dictionary
+remains unchanged. Its frozen candidate passes931 tests, with46 additional main
+integration checks. Native mixed currency remains reserved for the later tool
+demonstration. The `0.4.3-dev` records below are historical baselines.
+
+For a new implementation session, read the
+[compiler session handoff](docs/spl/session-handoff.md) after `AGENTS.md`.
+
+23 November 2026 continuation: the first
+[bounded conformance campaign](docs/spl/conformance-validation.md) is implemented
+and verified. It maps 12 supported variations and six explicit gaps, runs eight
+generated cases through three backends and executes 14 existing witness methods.
+The 19 new harness checks pass; the kernel baseline remains `0.4.3-dev`.
+
 Research infrastructure for dynamic domain-specific languages, starting with
 Screen Participation Language for film and television participation accounting.
 
@@ -10,6 +48,17 @@ Reusable functions, keyed collections and ordered folds support these additions.
 The ordinary-royalty library adds selected marginal/whole-base tiers, cumulative
 meters, caps and a separate nonrecoupable guarantee; its executable cases and
 readable policy are in [cases/m1](cases/m1/README.md).
+The M1b feature branch adds exact `Quantity<U>` and `Rate<U,USD>` inputs,
+tagged outputs and dimension-safe state for the finite `spl.units/1` dictionary
+(`Download`, `UsageMinute`). Its [synthetic Download demo](cases/quantities/README.md)
+checks USD 150 gross, USD 75 participation, zero/fractional activity and actual
+successor meter carry. It uses existing generic type syntax; no new literal
+grammar was added. The verified local baseline is `0.4.3-dev` on
+`feature/spl-typed-quantities`, based on merged `018dde1`. Its single combined
+Python regression run passed all 352 tests; 16 native suites and all 35 review
+paths also passed. `main` is unchanged; this local record includes no GitHub
+release or push. The [historical `0.4.2-dev` record](docs/spl/baselines/implementation-0.4.2-dev.json)
+is preserved.
 See
 [the implementation and demo instructions](docs/spl/implementation.md).
 The initial toy compiler infrastructure remains separate. Complete SPL compiler
@@ -37,7 +86,12 @@ lean --version
 lake build
 lake exe smoke
 lake exe participation
+python scripts/quantity_demo.py
 ```
+
+The quantity demo checks four cases against native interpretation, generated
+Lean and independent financial controls. Its review artifacts are written to
+the external project artifacts folder; use `--output` to choose another location.
 
 `lean-toolchain` pins Lean to **4.35.0**. Elan installs that version when needed;
 Lake comes with it. No separate C compiler installation was needed on the

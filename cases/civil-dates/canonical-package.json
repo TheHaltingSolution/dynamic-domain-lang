@@ -1,0 +1,444 @@
+{
+  "decisions": [
+    {
+      "decision_id": "CIVIL_DATES_SELECTED",
+      "evidence_ref": "supplied-synthetic-zone-relation",
+      "policy_id": "SYNTHETIC-CIVIL-DATE-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {
+    "evidence": [
+      {
+        "approval_ref": "CIVIL_DATES_SELECTED",
+        "evidence_ref": "calendar-source",
+        "id": "calendar-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-03-05T00:00:00Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_kind": "synthetic-versioned-zone-days"
+      },
+      {
+        "approval_ref": "CIVIL_DATES_SELECTED",
+        "evidence_ref": "event-source",
+        "id": "event-source",
+        "kind": "selected_synthetic_record",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_kind": "synthetic-original-events"
+      }
+    ]
+  },
+  "inputs": {
+    "case_id": "civil-date-boundaries",
+    "contract": "civil-date-synthetic",
+    "days": [
+      {
+        "end_offset_minutes": "-480",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/West-Shift/2026-03-06",
+        "local_date": "2026-03-06",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-west-calendar/2026-03-06",
+        "source_utc_end": "2026-03-07T08:00:00Z",
+        "source_utc_start": "2026-03-06T08:00:00Z",
+        "start_offset_minutes": "-480",
+        "utc_end": "2026-03-07T08:00:00Z",
+        "utc_start": "2026-03-06T08:00:00Z",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "-420",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/West-Shift/2026-03-07",
+        "local_date": "2026-03-07",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-west-calendar/2026-03-07",
+        "source_utc_end": "2026-03-08T07:00:00Z",
+        "source_utc_start": "2026-03-07T08:00:00Z",
+        "start_offset_minutes": "-480",
+        "utc_end": "2026-03-08T07:00:00Z",
+        "utc_start": "2026-03-07T08:00:00Z",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "-420",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/West-Shift/2026-03-08",
+        "local_date": "2026-03-08",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-west-calendar/2026-03-08",
+        "source_utc_end": "2026-03-09T07:00:00Z",
+        "source_utc_start": "2026-03-08T07:00:00Z",
+        "start_offset_minutes": "-420",
+        "utc_end": "2026-03-09T07:00:00Z",
+        "utc_start": "2026-03-08T07:00:00Z",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "-480",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/West-Shift/2026-03-09",
+        "local_date": "2026-03-09",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-west-calendar/2026-03-09",
+        "source_utc_end": "2026-03-10T08:00:00Z",
+        "source_utc_start": "2026-03-09T07:00:00Z",
+        "start_offset_minutes": "-420",
+        "utc_end": "2026-03-10T08:00:00Z",
+        "utc_start": "2026-03-09T07:00:00Z",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "-480",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/West-Shift/2026-03-10",
+        "local_date": "2026-03-10",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-west-calendar/2026-03-10",
+        "source_utc_end": "2026-03-11T08:00:00Z",
+        "source_utc_start": "2026-03-10T08:00:00Z",
+        "start_offset_minutes": "-480",
+        "utc_end": "2026-03-11T08:00:00Z",
+        "utc_start": "2026-03-10T08:00:00Z",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "120",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/East-Fixed/2026-03-06",
+        "local_date": "2026-03-06",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-east-calendar/2026-03-06",
+        "source_utc_end": "2026-03-06T22:00:00Z",
+        "source_utc_start": "2026-03-05T22:00:00Z",
+        "start_offset_minutes": "120",
+        "utc_end": "2026-03-06T22:00:00Z",
+        "utc_start": "2026-03-05T22:00:00Z",
+        "zone_id": "Synthetic/East-Fixed",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "120",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/East-Fixed/2026-03-07",
+        "local_date": "2026-03-07",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-east-calendar/2026-03-07",
+        "source_utc_end": "2026-03-07T22:00:00Z",
+        "source_utc_start": "2026-03-06T22:00:00Z",
+        "start_offset_minutes": "120",
+        "utc_end": "2026-03-07T22:00:00Z",
+        "utc_start": "2026-03-06T22:00:00Z",
+        "zone_id": "Synthetic/East-Fixed",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "120",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/East-Fixed/2026-03-08",
+        "local_date": "2026-03-08",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-east-calendar/2026-03-08",
+        "source_utc_end": "2026-03-08T22:00:00Z",
+        "source_utc_start": "2026-03-07T22:00:00Z",
+        "start_offset_minutes": "120",
+        "utc_end": "2026-03-08T22:00:00Z",
+        "utc_start": "2026-03-07T22:00:00Z",
+        "zone_id": "Synthetic/East-Fixed",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "120",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/East-Fixed/2026-03-09",
+        "local_date": "2026-03-09",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-east-calendar/2026-03-09",
+        "source_utc_end": "2026-03-09T22:00:00Z",
+        "source_utc_start": "2026-03-08T22:00:00Z",
+        "start_offset_minutes": "120",
+        "utc_end": "2026-03-09T22:00:00Z",
+        "utc_start": "2026-03-08T22:00:00Z",
+        "zone_id": "Synthetic/East-Fixed",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "end_offset_minutes": "120",
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/East-Fixed/2026-03-10",
+        "local_date": "2026-03-10",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-east-calendar/2026-03-10",
+        "source_utc_end": "2026-03-10T22:00:00Z",
+        "source_utc_start": "2026-03-09T22:00:00Z",
+        "start_offset_minutes": "120",
+        "utc_end": "2026-03-10T22:00:00Z",
+        "utc_start": "2026-03-09T22:00:00Z",
+        "zone_id": "Synthetic/East-Fixed",
+        "zone_version": "synthetic-v1"
+      }
+    ],
+    "events": [
+      {
+        "evidence_ref": "event-source",
+        "id": "before-midnight",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-07T07:59:59.9999999Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-07T07:59:59.9999999Z",
+        "source_ref": "synthetic-event/before-midnight",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "event-source",
+        "id": "at-midnight",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-07T08:00:00Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-07T08:00:00Z",
+        "source_ref": "synthetic-event/at-midnight",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "event-source",
+        "id": "after-midnight",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-07T08:00:00.0000001Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-07T08:00:00.0000001Z",
+        "source_ref": "synthetic-event/after-midnight",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "event-source",
+        "id": "before-short-end",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-08T06:59:59.9999999Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-08T06:59:59.9999999Z",
+        "source_ref": "synthetic-event/before-short-end",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "event-source",
+        "id": "at-short-end",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-08T07:00:00Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-08T07:00:00Z",
+        "source_ref": "synthetic-event/at-short-end",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "event-source",
+        "id": "before-long-end",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-10T07:59:59.9999999Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-10T07:59:59.9999999Z",
+        "source_ref": "synthetic-event/before-long-end",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "event-source",
+        "id": "at-long-end",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-10T08:00:00Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-10T08:00:00Z",
+        "source_ref": "synthetic-event/at-long-end",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "event-source",
+        "id": "same-instant-west",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-08T06:00:00Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-08T06:00:00Z",
+        "source_ref": "synthetic-event/same-instant-west",
+        "zone_id": "Synthetic/West-Shift",
+        "zone_version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "event-source",
+        "id": "same-instant-east",
+        "observed_at": "2026-03-12T00:00:00Z",
+        "occurred_at": "2026-03-08T06:00:00Z",
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_observed_at": "2026-03-12T00:00:00Z",
+        "source_occurred_at": "2026-03-08T06:00:00Z",
+        "source_ref": "synthetic-event/same-instant-east",
+        "zone_id": "Synthetic/East-Fixed",
+        "zone_version": "synthetic-v1"
+      }
+    ],
+    "fact_scope": {
+      "asset_id": "civil-date-picture",
+      "contract_id": "civil-date-synthetic"
+    },
+    "project": "civil-date-picture",
+    "zones": [
+      {
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/West-Shift",
+        "local_coverage": {
+          "end": "2026-03-11",
+          "start": "2026-03-06"
+        },
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-west-calendar",
+        "version": "synthetic-v1"
+      },
+      {
+        "evidence_ref": "calendar-source",
+        "id": "Synthetic/East-Fixed",
+        "local_coverage": {
+          "end": "2026-03-11",
+          "start": "2026-03-06"
+        },
+        "scope": {
+          "asset_id": "civil-date-picture",
+          "contract_id": "civil-date-synthetic"
+        },
+        "source_ref": "synthetic-east-calendar",
+        "version": "synthetic-v1"
+      }
+    ]
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-03-13T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2026-03-11",
+      "start": "2026-03-06"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "civil-date-boundaries-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-CIVIL-DATE"
+  },
+  "module_ref": {
+    "id": "synthetic:civil-dates",
+    "locator": "cases/civil-dates/civil-dates-module.json",
+    "revision": "1",
+    "sha256": "4873e1f9f8f2b44b66e9338d2ddeaa1b73bc8d710966b3b312857fdde952907d"
+  },
+  "parameters": {
+    "cutoff": "2026-03-13T00:00:00Z",
+    "policy": {
+      "coverage": "complete_declared_local_dates",
+      "evidence_class": "research_assumption",
+      "id": "SYNTHETIC-CIVIL-DATE-01",
+      "offset_convention": "local_equals_utc_plus_minutes",
+      "revision": "1",
+      "selection": "unique_containing_half_open_utc_cell"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "civil-date-synthetic",
+    "asset_ids": [
+      "civil-date-picture"
+    ],
+    "participant_ids": [
+      "civil-date-reader"
+    ],
+    "pool_id": "civil-date-evidence",
+    "purpose": "civil_date_evidence_envelope_only"
+  },
+  "state_cells": []
+}

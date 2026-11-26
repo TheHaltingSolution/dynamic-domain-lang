@@ -1,3 +1,4 @@
+import Lean
 import SPL.Core
 
 /-!
@@ -25,7 +26,7 @@ namespace SPL.Core
 private theorem arithmetic_primitive (op : Arithmetic) (a b : Rat) :
     SPL.binary (arithmeticToken op) (.num a) (.num b) =
       (arithmeticMeaning op a b).map Value.num := by
-  cases op <;> simp [arithmeticToken, arithmeticMeaning, SPL.binary, SPL.asNum, Except.map]
+  cases op <;> simp [arithmeticToken, arithmeticMeaning, SPL.binary, Except.map]
   split <;> rfl
 
 private theorem comparison_primitive (op : Comparison) (a b : Rat) :
@@ -70,7 +71,7 @@ theorem lower_correct (expression : Expr kind) (inputs : Nat → Rat) :
     cases eval inputs condition <;> simp [Except.map, embed, SPL.assertValue, SPL.asBool]
     split <;> simp_all
 
-/-- The actual emitted arithmetic entry agrees with independent arithmetic
+/-- The emitted scalar arithmetic entry agrees with independent arithmetic
 semantics, including invalid dynamic operand tags and demanded division errors.
 This connects the checked core theorem to the active generated-code path. -/
 theorem numericBinary_correct (op : Arithmetic) (left right : Value) :

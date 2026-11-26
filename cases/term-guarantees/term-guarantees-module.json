@@ -1,0 +1,4630 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [],
+      "kind": "evidence",
+      "path": "evidence.evidence",
+      "target": "",
+      "value": "selected_synthetic_record"
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.agreement_id",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.pool_id",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.scope.participant_id",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.period",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.project",
+      "target": "scope.asset_ids",
+      "value": ""
+    },
+    {
+      "fields": [
+        "scope.asset_id"
+      ],
+      "kind": "equals",
+      "path": "state_cells",
+      "target": "inputs.project",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.earnings",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.fundings",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "evidence.evidence",
+      "target": "",
+      "value": ""
+    }
+  ],
+  "id": "synthetic:term-guarantees",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "SettlementScope"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "project",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Asset"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "fact_scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "asset_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Asset"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "contract_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "currency",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "case_id",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "as_of",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Date"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "cutoff",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "policy",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "floor_timing",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "cap_reset",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "cap_reduction_order",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "funding_date_basis",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "term_availability",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "rounding",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "evidence_class",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "term",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "approved_date",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "cap",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "evidence_ref",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "floor",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "observed_at",
+              {
+                "args": [],
+                "name": "Instant"
+              }
+            ],
+            [
+              "opening_utc",
+              {
+                "args": [],
+                "name": "Instant"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ],
+            [
+              "recorded_date",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "recoupable_minimum_face",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "contract_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "source_cap",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_floor",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_observed_at",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_recoupable_minimum_face",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_ref",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "earnings",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_amount",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_observed_at",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "term_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "fundings",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "approved",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "disbursement_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "funded_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "funded_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "funded_utc_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_amount",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_funded_at",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_observed_at",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "term_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "evidence",
+        "role": "evidence",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "approval_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Decision"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "population",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "fields": [
+                          [
+                            "disbursement_ids",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "Text"
+                                }
+                              ],
+                              "name": "List"
+                            }
+                          ],
+                          [
+                            "funded_total",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "USD"
+                                }
+                              ],
+                              "name": "Money"
+                            }
+                          ],
+                          [
+                            "funding_ids",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "Text"
+                                }
+                              ],
+                              "name": "List"
+                            }
+                          ],
+                          [
+                            "period",
+                            {
+                              "args": [],
+                              "name": "Period"
+                            }
+                          ],
+                          [
+                            "term_id",
+                            {
+                              "args": [],
+                              "name": "Text"
+                            }
+                          ]
+                        ],
+                        "name": "Record"
+                      }
+                    ],
+                    "name": "Option"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_observed_at",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "supplied_opening",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "boundary",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "cap_reduction_order",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "origin",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "period_history",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "earnings",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "amount",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "effective_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_amount",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "term_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "fundings",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "amount",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "approved",
+                                  {
+                                    "args": [],
+                                    "name": "Bool"
+                                  }
+                                ],
+                                [
+                                  "disbursement_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "funded_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "funded_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "funded_utc_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_amount",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_funded_at",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "term_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "period",
+                        {
+                          "args": [],
+                          "name": "Period"
+                        }
+                      ],
+                      [
+                        "source_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "policy_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "prepayment",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "purpose",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "contract_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "term",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "approved_date",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ],
+                  [
+                    "cap",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "evidence_ref",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "floor",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "id",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "observed_at",
+                    {
+                      "args": [],
+                      "name": "Instant"
+                    }
+                  ],
+                  [
+                    "opening_utc",
+                    {
+                      "args": [],
+                      "name": "Instant"
+                    }
+                  ],
+                  [
+                    "period",
+                    {
+                      "args": [],
+                      "name": "Period"
+                    }
+                  ],
+                  [
+                    "recorded_date",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ],
+                  [
+                    "recoupable_minimum_face",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "revision",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "scope",
+                    {
+                      "args": [],
+                      "fields": [
+                        [
+                          "asset_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Asset"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "contract_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Agreement"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "currency",
+                          {
+                            "args": [],
+                            "name": "Text"
+                          }
+                        ],
+                        [
+                          "participant_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Participant"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "pool_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Pool"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ]
+                      ],
+                      "name": "Record"
+                    }
+                  ],
+                  [
+                    "source_cap",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_floor",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_observed_at",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_recoupable_minimum_face",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_ref",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "term_cap_consumed",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "term_closed",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "term_earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "term_recognized_entitlement",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "total_funded",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "total_recovered",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "predecessor",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "source_case_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "period",
+                  {
+                    "args": [],
+                    "name": "Period"
+                  }
+                ],
+                [
+                  "closing_state",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "boundary",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "cap_reduction_order",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "method",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "origin",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "period_history",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "earnings",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "fields": [
+                                          [
+                                            "amount",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "USD"
+                                                }
+                                              ],
+                                              "name": "Money"
+                                            }
+                                          ],
+                                          [
+                                            "effective_date",
+                                            {
+                                              "args": [],
+                                              "name": "Date"
+                                            }
+                                          ],
+                                          [
+                                            "evidence_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "id",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Instant"
+                                            }
+                                          ],
+                                          [
+                                            "scope",
+                                            {
+                                              "args": [],
+                                              "fields": [
+                                                [
+                                                  "asset_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Asset"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "contract_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Agreement"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "currency",
+                                                  {
+                                                    "args": [],
+                                                    "name": "Text"
+                                                  }
+                                                ],
+                                                [
+                                                  "participant_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Participant"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "pool_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Pool"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ]
+                                              ],
+                                              "name": "Record"
+                                            }
+                                          ],
+                                          [
+                                            "source_amount",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "source_observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "source_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "term_id",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ]
+                                        ],
+                                        "name": "Record"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ],
+                                [
+                                  "fundings",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "fields": [
+                                          [
+                                            "amount",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "USD"
+                                                }
+                                              ],
+                                              "name": "Money"
+                                            }
+                                          ],
+                                          [
+                                            "approved",
+                                            {
+                                              "args": [],
+                                              "name": "Bool"
+                                            }
+                                          ],
+                                          [
+                                            "disbursement_id",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "evidence_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "funded_at",
+                                            {
+                                              "args": [],
+                                              "name": "Instant"
+                                            }
+                                          ],
+                                          [
+                                            "funded_date",
+                                            {
+                                              "args": [],
+                                              "name": "Date"
+                                            }
+                                          ],
+                                          [
+                                            "funded_utc_date",
+                                            {
+                                              "args": [],
+                                              "name": "Date"
+                                            }
+                                          ],
+                                          [
+                                            "id",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Instant"
+                                            }
+                                          ],
+                                          [
+                                            "scope",
+                                            {
+                                              "args": [],
+                                              "fields": [
+                                                [
+                                                  "asset_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Asset"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "contract_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Agreement"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "currency",
+                                                  {
+                                                    "args": [],
+                                                    "name": "Text"
+                                                  }
+                                                ],
+                                                [
+                                                  "participant_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Participant"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "pool_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Pool"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ]
+                                              ],
+                                              "name": "Record"
+                                            }
+                                          ],
+                                          [
+                                            "source_amount",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "source_funded_at",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "source_observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "source_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "term_id",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ]
+                                        ],
+                                        "name": "Record"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ],
+                                [
+                                  "period",
+                                  {
+                                    "args": [],
+                                    "name": "Period"
+                                  }
+                                ],
+                                [
+                                  "source_case_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "policy_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "policy_revision",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "prepayment",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "purpose",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "source_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "term",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "approved_date",
+                              {
+                                "args": [],
+                                "name": "Date"
+                              }
+                            ],
+                            [
+                              "cap",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ],
+                            [
+                              "evidence_ref",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "floor",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ],
+                            [
+                              "id",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "observed_at",
+                              {
+                                "args": [],
+                                "name": "Instant"
+                              }
+                            ],
+                            [
+                              "opening_utc",
+                              {
+                                "args": [],
+                                "name": "Instant"
+                              }
+                            ],
+                            [
+                              "period",
+                              {
+                                "args": [],
+                                "name": "Period"
+                              }
+                            ],
+                            [
+                              "recorded_date",
+                              {
+                                "args": [],
+                                "name": "Date"
+                              }
+                            ],
+                            [
+                              "recoupable_minimum_face",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ],
+                            [
+                              "revision",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "scope",
+                              {
+                                "args": [],
+                                "fields": [
+                                  [
+                                    "asset_id",
+                                    {
+                                      "args": [
+                                        {
+                                          "args": [],
+                                          "name": "Asset"
+                                        }
+                                      ],
+                                      "name": "Id"
+                                    }
+                                  ],
+                                  [
+                                    "contract_id",
+                                    {
+                                      "args": [
+                                        {
+                                          "args": [],
+                                          "name": "Agreement"
+                                        }
+                                      ],
+                                      "name": "Id"
+                                    }
+                                  ],
+                                  [
+                                    "currency",
+                                    {
+                                      "args": [],
+                                      "name": "Text"
+                                    }
+                                  ],
+                                  [
+                                    "participant_id",
+                                    {
+                                      "args": [
+                                        {
+                                          "args": [],
+                                          "name": "Participant"
+                                        }
+                                      ],
+                                      "name": "Id"
+                                    }
+                                  ],
+                                  [
+                                    "pool_id",
+                                    {
+                                      "args": [
+                                        {
+                                          "args": [],
+                                          "name": "Pool"
+                                        }
+                                      ],
+                                      "name": "Id"
+                                    }
+                                  ]
+                                ],
+                                "name": "Record"
+                              }
+                            ],
+                            [
+                              "source_cap",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "source_floor",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "source_observed_at",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "source_recoupable_minimum_face",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "source_ref",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "term_cap_consumed",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "term_closed",
+                        {
+                          "args": [],
+                          "name": "Bool"
+                        }
+                      ],
+                      [
+                        "term_earned",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "term_recognized_entitlement",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "total_funded",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "total_recovered",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "Option"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "history",
+        "role": "opening",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "boundary",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "cap_reduction_order",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "origin",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "period_history",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "earnings",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "amount",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "effective_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_amount",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "term_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "fundings",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "amount",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "approved",
+                                  {
+                                    "args": [],
+                                    "name": "Bool"
+                                  }
+                                ],
+                                [
+                                  "disbursement_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "funded_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "funded_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "funded_utc_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_amount",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_funded_at",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "term_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "period",
+                        {
+                          "args": [],
+                          "name": "Period"
+                        }
+                      ],
+                      [
+                        "source_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "policy_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "prepayment",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "purpose",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "contract_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "term",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "approved_date",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ],
+                  [
+                    "cap",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "evidence_ref",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "floor",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "id",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "observed_at",
+                    {
+                      "args": [],
+                      "name": "Instant"
+                    }
+                  ],
+                  [
+                    "opening_utc",
+                    {
+                      "args": [],
+                      "name": "Instant"
+                    }
+                  ],
+                  [
+                    "period",
+                    {
+                      "args": [],
+                      "name": "Period"
+                    }
+                  ],
+                  [
+                    "recorded_date",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ],
+                  [
+                    "recoupable_minimum_face",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "revision",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "scope",
+                    {
+                      "args": [],
+                      "fields": [
+                        [
+                          "asset_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Asset"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "contract_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Agreement"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "currency",
+                          {
+                            "args": [],
+                            "name": "Text"
+                          }
+                        ],
+                        [
+                          "participant_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Participant"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "pool_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Pool"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ]
+                      ],
+                      "name": "Record"
+                    }
+                  ],
+                  [
+                    "source_cap",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_floor",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_observed_at",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_recoupable_minimum_face",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_ref",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "term_cap_consumed",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "term_closed",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "term_earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "term_recognized_entitlement",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "total_funded",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "total_recovered",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "comparison",
+        "role": "result",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "advance_active",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "available_prepayment",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "cap_active",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "cap_applied",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "cap_stage_input",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "closing_meters",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "prepayment",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "term_cap_consumed",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "term_closed",
+                    {
+                      "args": [],
+                      "name": "Bool"
+                    }
+                  ],
+                  [
+                    "term_earned",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "term_recognized_entitlement",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "total_funded",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "total_recovered",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "entitlement",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "floor_active",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "floor_topup_before_cap",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "funding_population_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "is_term_end",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "new_actual_funding",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "opening_meters",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "prepayment",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "term_cap_consumed",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "term_closed",
+                    {
+                      "args": [],
+                      "name": "Bool"
+                    }
+                  ],
+                  [
+                    "term_earned",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "term_recognized_entitlement",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "total_funded",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "total_recovered",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "payable_calculated",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "start",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ],
+                  [
+                    "end",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "recovered",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "recovery_base",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "retained_earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "retained_topup",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "settlement_payment_evidence_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "status_meaning",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "unmet_floor_at_term_end",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "period_replays",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "funding_population_status",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "opening_meters",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "prepayment",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "term_cap_consumed",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "term_closed",
+                        {
+                          "args": [],
+                          "name": "Bool"
+                        }
+                      ],
+                      [
+                        "term_earned",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "term_recognized_entitlement",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "total_funded",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "total_recovered",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "period",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "start",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "end",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_case_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "stages",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "advance_active",
+                        {
+                          "args": [],
+                          "name": "Bool"
+                        }
+                      ],
+                      [
+                        "available_prepayment",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "cap_active",
+                        {
+                          "args": [],
+                          "name": "Bool"
+                        }
+                      ],
+                      [
+                        "cap_applied",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "cap_stage_input",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "closing_meters",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "prepayment",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ],
+                            [
+                              "term_cap_consumed",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ],
+                            [
+                              "term_closed",
+                              {
+                                "args": [],
+                                "name": "Bool"
+                              }
+                            ],
+                            [
+                              "term_earned",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ],
+                            [
+                              "term_recognized_entitlement",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ],
+                            [
+                              "total_funded",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ],
+                            [
+                              "total_recovered",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "USD"
+                                  }
+                                ],
+                                "name": "Money"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "earned",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "entitlement",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "floor_active",
+                        {
+                          "args": [],
+                          "name": "Bool"
+                        }
+                      ],
+                      [
+                        "floor_topup_before_cap",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "is_term_end",
+                        {
+                          "args": [],
+                          "name": "Bool"
+                        }
+                      ],
+                      [
+                        "new_actual_funding",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "payable_calculated",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "recovered",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "recovery_base",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "retained_earned",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "retained_topup",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "unmet_floor_at_term_end",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "current_facts",
+        "role": "detail",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "earnings",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "amount",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "effective_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "evidence_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "source_amount",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "source_observed_at",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "term_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "fundings",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "amount",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "approved",
+                        {
+                          "args": [],
+                          "name": "Bool"
+                        }
+                      ],
+                      [
+                        "disbursement_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "evidence_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "funded_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "funded_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "funded_utc_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "source_amount",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "source_funded_at",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "source_observed_at",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "term_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "reconciliation",
+        "role": "reconciliation",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "TERM_GUARANTEES_SELECTED"
+    ],
+    "discriminating_cases": [
+      "seven-explicit-methods",
+      "final-only-floor",
+      "nonreset-term-cap",
+      "actual-funding-not-face",
+      "complete-empty-versus-missing",
+      "original-history-meter-replay"
+    ],
+    "evidence_class": "synthetic",
+    "id": "SYNTHETIC-TERM-GUARANTEES-01",
+    "readable": {
+      "locator": "cases/term-guarantees/policy.md",
+      "sha256": "afb8982e47dd65db38d4545ad2bcd1312b096de528c16cf47bb04260075c19b6"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/term-guarantees/term-guarantees.spl",
+    "sha256": "a6c4e0096e331686eaeeed0c8352ffb127eff4eed241fe2680a381c0968c9f2e"
+  },
+  "state": [
+    {
+      "closing": "history",
+      "history_required": false,
+      "key_fields": [
+        "agreement_id",
+        "participant_id",
+        "pool_id",
+        "asset_id",
+        "purpose"
+      ],
+      "movement_kinds": [
+        "transition"
+      ],
+      "opening": "history",
+      "purpose": "term_guarantee_and_prepayment",
+      "unit": "structured"
+    }
+  ]
+}

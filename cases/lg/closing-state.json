@@ -13,7 +13,7 @@
       "SYNTHETIC-PAYMENT-HOLDBACK"
     ],
     "pool_id": "crossed-group",
-    "prior_result_ref": "result@sha256:a4c524f72b2f7a65822dfee96bfd8445159fef8edb696be2e1aced933cdb0003",
+    "prior_result_ref": "result@sha256:8ee2acc33fa62b21700271da84deb518982bae5d9a790bfece4ac356ff1b9ff8",
     "provenance_ref": "synthetic-approved-opening",
     "quantity": "100",
     "scenario_id": "LG-01",
@@ -41,7 +41,7 @@
       "SYNTHETIC-PAYMENT-HOLDBACK"
     ],
     "pool_id": "crossed-group",
-    "prior_result_ref": "result@sha256:a4c524f72b2f7a65822dfee96bfd8445159fef8edb696be2e1aced933cdb0003",
+    "prior_result_ref": "result@sha256:8ee2acc33fa62b21700271da84deb518982bae5d9a790bfece4ac356ff1b9ff8",
     "provenance_ref": "synthetic-approved-opening",
     "quantity": "400",
     "scenario_id": "LG-01",
@@ -69,7 +69,7 @@
       "SYNTHETIC-PAYMENT-HOLDBACK"
     ],
     "pool_id": "crossed-group",
-    "prior_result_ref": "result@sha256:a4c524f72b2f7a65822dfee96bfd8445159fef8edb696be2e1aced933cdb0003",
+    "prior_result_ref": "result@sha256:8ee2acc33fa62b21700271da84deb518982bae5d9a790bfece4ac356ff1b9ff8",
     "provenance_ref": "synthetic-approved-opening",
     "quantity": "0",
     "scenario_id": "LG-01",

@@ -1,0 +1,238 @@
+{
+  "schema_version": "quantized-allocation-neutral/1",
+  "case_id": "quantized-allocation-q1",
+  "scope": {
+    "contract_id": "allocation-synthetic",
+    "participant_id": "allocation-participant",
+    "pool_id": "allocation-pool",
+    "asset_id": "allocation-picture",
+    "currency": "USD"
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-04-01"
+  },
+  "as_of": "2026-03-31",
+  "cutoff": "2026-04-03T00:00:00Z",
+  "policy": {
+    "id": "SYNTHETIC-QUANTIZED-ALLOCATION-01",
+    "revision": "1",
+    "method": "exact_weights_largest_remainder",
+    "parent_rounding": "half_even_once_to_cent",
+    "quota_basis": "rounded_parent_target",
+    "residual_order": "descending_remainder_then_ascii_recipient_id",
+    "evidence_class": "research_assumption",
+    "limits": {
+      "recipients": 8,
+      "parents_per_period": 4,
+      "historical_periods": 8
+    }
+  },
+  "recipient_registry": [
+    {
+      "id": "X",
+      "scope": {
+        "contract_id": "allocation-synthetic",
+        "participant_id": "allocation-participant",
+        "pool_id": "allocation-pool",
+        "asset_id": "allocation-picture",
+        "currency": "USD"
+      },
+      "observed_at": "2025-12-15T00:00:00Z",
+      "source_ref": "synthetic-recipient-X",
+      "evidence_ref": "recipient-source"
+    },
+    {
+      "id": "Y",
+      "scope": {
+        "contract_id": "allocation-synthetic",
+        "participant_id": "allocation-participant",
+        "pool_id": "allocation-pool",
+        "asset_id": "allocation-picture",
+        "currency": "USD"
+      },
+      "observed_at": "2025-12-15T00:00:00Z",
+      "source_ref": "synthetic-recipient-Y",
+      "evidence_ref": "recipient-source"
+    }
+  ],
+  "parents": [
+    {
+      "id": "parent-q1",
+      "scope": {
+        "contract_id": "allocation-synthetic",
+        "participant_id": "allocation-participant",
+        "pool_id": "allocation-pool",
+        "asset_id": "allocation-picture",
+        "currency": "USD"
+      },
+      "amount": "0.01",
+      "effective_date": "2026-02-01",
+      "observed_at": "2026-02-02T00:00:00Z",
+      "source_ref": "synthetic-original-parent-q1",
+      "upstream_ref": "synthetic:parent-ledger-q1#line-1",
+      "evidence_ref": "parent-source",
+      "authority_id": "authority-q1"
+    }
+  ],
+  "authorities": [
+    {
+      "id": "authority-q1",
+      "parent_id": "parent-q1",
+      "parent_upstream_ref": "synthetic:parent-ledger-q1#line-1",
+      "scope": {
+        "contract_id": "allocation-synthetic",
+        "participant_id": "allocation-participant",
+        "pool_id": "allocation-pool",
+        "asset_id": "allocation-picture",
+        "currency": "USD"
+      },
+      "method": "exact_weights_largest_remainder",
+      "effective": {
+        "start": "2026-01-01",
+        "end": "2026-04-01"
+      },
+      "approved": true,
+      "approved_date": "2026-01-01",
+      "recorded_date": "2026-01-01",
+      "observed_at": "2026-01-02T00:00:00Z",
+      "recipient_ids": [
+        "X",
+        "Y"
+      ],
+      "terms": [
+        {
+          "id": "weight-X",
+          "recipient_id": "X",
+          "scope": {
+            "contract_id": "allocation-synthetic",
+            "participant_id": "allocation-participant",
+            "pool_id": "allocation-pool",
+            "asset_id": "allocation-picture",
+            "currency": "USD"
+          },
+          "weight": "1",
+          "observed_at": "2026-01-02T00:00:00Z",
+          "source_ref": "synthetic-approved-weight-X",
+          "evidence_ref": "authority-source"
+        },
+        {
+          "id": "weight-Y",
+          "recipient_id": "Y",
+          "scope": {
+            "contract_id": "allocation-synthetic",
+            "participant_id": "allocation-participant",
+            "pool_id": "allocation-pool",
+            "asset_id": "allocation-picture",
+            "currency": "USD"
+          },
+          "weight": "1",
+          "observed_at": "2026-01-02T00:00:00Z",
+          "source_ref": "synthetic-approved-weight-Y",
+          "evidence_ref": "authority-source"
+        }
+      ],
+      "supplied_allocation_ids": [],
+      "residual_order": "descending_remainder_then_ascii_recipient_id",
+      "source_ref": "synthetic-complete-allocation-authority-q1",
+      "evidence_ref": "authority-source"
+    }
+  ],
+  "supplied_allocations": [],
+  "evidence": [
+    {
+      "id": "recipient-source",
+      "scope": {
+        "contract_id": "allocation-synthetic",
+        "participant_id": "allocation-participant",
+        "pool_id": "allocation-pool",
+        "asset_id": "allocation-picture",
+        "currency": "USD"
+      },
+      "kind": "synthetic-complete-recipient-registry",
+      "observed_at": "2025-12-15T00:00:00Z"
+    },
+    {
+      "id": "parent-source",
+      "scope": {
+        "contract_id": "allocation-synthetic",
+        "participant_id": "allocation-participant",
+        "pool_id": "allocation-pool",
+        "asset_id": "allocation-picture",
+        "currency": "USD"
+      },
+      "kind": "synthetic-original-parent",
+      "observed_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "authority-source",
+      "scope": {
+        "contract_id": "allocation-synthetic",
+        "participant_id": "allocation-participant",
+        "pool_id": "allocation-pool",
+        "asset_id": "allocation-picture",
+        "currency": "USD"
+      },
+      "kind": "synthetic-approved-allocation-authority",
+      "observed_at": "2026-01-02T00:00:00Z"
+    }
+  ],
+  "opening_state": {
+    "scope": {
+      "contract_id": "allocation-synthetic",
+      "participant_id": "allocation-participant",
+      "pool_id": "allocation-pool",
+      "asset_id": "allocation-picture",
+      "currency": "USD"
+    },
+    "purpose": "quantized_parent_allocation",
+    "policy": {
+      "id": "SYNTHETIC-QUANTIZED-ALLOCATION-01",
+      "revision": "1",
+      "method": "exact_weights_largest_remainder",
+      "parent_rounding": "half_even_once_to_cent",
+      "quota_basis": "rounded_parent_target",
+      "residual_order": "descending_remainder_then_ascii_recipient_id",
+      "evidence_class": "research_assumption",
+      "limits": {
+        "recipients": 8,
+        "parents_per_period": 4,
+        "historical_periods": 8
+      }
+    },
+    "recipient_registry": [
+      {
+        "id": "X",
+        "scope": {
+          "contract_id": "allocation-synthetic",
+          "participant_id": "allocation-participant",
+          "pool_id": "allocation-pool",
+          "asset_id": "allocation-picture",
+          "currency": "USD"
+        },
+        "observed_at": "2025-12-15T00:00:00Z",
+        "source_ref": "synthetic-recipient-X",
+        "evidence_ref": "recipient-source"
+      },
+      {
+        "id": "Y",
+        "scope": {
+          "contract_id": "allocation-synthetic",
+          "participant_id": "allocation-participant",
+          "pool_id": "allocation-pool",
+          "asset_id": "allocation-picture",
+          "currency": "USD"
+        },
+        "observed_at": "2025-12-15T00:00:00Z",
+        "source_ref": "synthetic-recipient-Y",
+        "evidence_ref": "recipient-source"
+      }
+    ],
+    "boundary": "2026-01-01",
+    "origin": "genesis",
+    "source_case_id": "genesis",
+    "consumed_parent_ids": [],
+    "consumed_upstream_refs": [],
+    "history": []
+  }
+}

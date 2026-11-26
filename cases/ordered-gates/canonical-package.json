@@ -1,0 +1,2220 @@
+{
+  "decisions": [
+    {
+      "decision_id": "ORDERED_GATES_SELECTED",
+      "evidence_ref": "selected-synthetic-work-gate-policy",
+      "policy_id": "SYNTHETIC-LG-ORDERED-GATE-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "fact_scope": {
+      "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+      "asset_id": "646572697661746976652d44",
+      "currency": "USD",
+      "participant_id": "73656c6c65722d67726f7570",
+      "pool_id": "776f726b2d676174652d706f6f6c",
+      "purpose": "rolling_work_gate"
+    },
+    "frames": [
+      {
+        "aggregate_hurdles": [
+          {
+            "attained": true,
+            "effective_date": "2007-12-31",
+            "evidence_ref": "65766964656e63653a6f7574736964652d687572646c65",
+            "evidence_slot": "9",
+            "id": "6f7574736964652d687572646c65",
+            "observed_at": "2007-12-31T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f75726365236f7574736964652d687572646c65",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "none": true
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "none": true
+              },
+              "purpose": {
+                "none": true
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a6f7574736964652d687572646c65"
+          }
+        ],
+        "costs": [
+          {
+            "actual_third_party": true,
+            "decision_id": "636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030",
+            "evidence_ref": "65766964656e63653a6f726967696e616c2d636f7374313030",
+            "evidence_slot": "2",
+            "gross_amount": {
+              "currency": "USD",
+              "value": "100"
+            },
+            "id": "6f726967696e616c2d636f7374313030",
+            "incurred_at": "2008-01-10T12:00:00Z",
+            "kind": "cost",
+            "observed_at": "2008-01-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f75726365236f726967696e616c2d636f7374313030",
+            "reduction_ids": [],
+            "row_slot": "0",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "sequence": "1",
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a6f726967696e616c2d636f7374313030"
+          }
+        ],
+        "cutoff": "2008-04-05T00:00:00Z",
+        "decisions": [
+          {
+            "channel": "not_applicable",
+            "eligible": true,
+            "event_ref": "6f726967696e616c2d736f75726365236f726967696e616c2d636f7374313030",
+            "evidence_ref": "65766964656e63653a636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030",
+            "evidence_slot": "3",
+            "id": "636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030",
+            "observed_at": "2008-01-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030",
+            "parent_event_id": "6f726967696e616c2d636f7374313030",
+            "reason": "6578706c696369742070726f706f73656420656c696769626c6520636f7374",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030"
+          },
+          {
+            "channel": "ordinary",
+            "eligible": true,
+            "event_ref": "6f726967696e616c2d736f75726365236f726967696e616c2d726563656970743830",
+            "evidence_ref": "65766964656e63653a636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830",
+            "evidence_slot": "5",
+            "id": "636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830",
+            "observed_at": "2008-03-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830",
+            "parent_event_id": "6f726967696e616c2d726563656970743830",
+            "reason": "6578706c696369742070726f706f73656420656c696769626c652072656365697074",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830"
+          }
+        ],
+        "evidence": [
+          {
+            "approved": true,
+            "id": "65766964656e63653a7465726d73",
+            "kind": "terms",
+            "observed_at": "2007-12-20T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "0",
+            "source_ref": "6f726967696e616c2d65766964656e6365237465726d73"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a776f726b",
+            "kind": "work_eligibility",
+            "observed_at": "2007-12-20T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "1",
+            "source_ref": "6f726967696e616c2d65766964656e636523776f726b"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a6f726967696e616c2d636f7374313030",
+            "kind": "cost",
+            "observed_at": "2008-01-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "2",
+            "source_ref": "6f726967696e616c2d65766964656e6365236f726967696e616c2d636f7374313030"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030",
+            "kind": "classification",
+            "observed_at": "2008-01-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "3",
+            "source_ref": "6f726967696e616c2d65766964656e636523636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a6f726967696e616c2d726563656970743830",
+            "kind": "receipt",
+            "observed_at": "2008-03-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "4",
+            "source_ref": "6f726967696e616c2d65766964656e6365236f726967696e616c2d726563656970743830"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830",
+            "kind": "classification",
+            "observed_at": "2008-03-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "5",
+            "source_ref": "6f726967696e616c2d65766964656e636523636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a676174652d71313a706f70756c6174696f6e3a72656365697074",
+            "kind": "population",
+            "observed_at": "2008-04-01T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "6",
+            "source_ref": "6f726967696e616c2d65766964656e636523676174652d71313a706f70756c6174696f6e3a72656365697074"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a676174652d71313a706f70756c6174696f6e3a636f7374",
+            "kind": "population",
+            "observed_at": "2008-04-01T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "7",
+            "source_ref": "6f726967696e616c2d65766964656e636523676174652d71313a706f70756c6174696f6e3a636f7374"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a676174652d71313a6f72646572696e67",
+            "kind": "event_order",
+            "observed_at": "2008-04-01T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "8",
+            "source_ref": "6f726967696e616c2d65766964656e636523676174652d71313a6f72646572696e67"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a6f7574736964652d687572646c65",
+            "kind": "aggregate_hurdle",
+            "observed_at": "2007-12-31T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "none": true
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "none": true
+              },
+              "purpose": {
+                "none": true
+              }
+            },
+            "slot": "9",
+            "source_ref": "6f726967696e616c2d65766964656e6365236f7574736964652d687572646c65"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a676174652d71313a6e65742d7a65726f",
+            "kind": "net_worksheet",
+            "observed_at": "2008-04-01T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "none": true
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "63726f737365642d6e65742d67726f7570"
+              },
+              "purpose": {
+                "none": true
+              }
+            },
+            "slot": "10",
+            "source_ref": "6f726967696e616c2d65766964656e636523676174652d71313a6e65742d7a65726f"
+          }
+        ],
+        "id": "676174652d7131",
+        "net_worksheets": [
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "0"
+            },
+            "evidence_ref": "65766964656e63653a676174652d71313a6e65742d7a65726f",
+            "evidence_slot": "10",
+            "id": "676174652d71313a6e65742d7a65726f",
+            "member_asset_ids": [
+              "646572697661746976652d44"
+            ],
+            "observed_at": "2008-04-01T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523676174652d71313a6e65742d7a65726f",
+            "period": {
+              "end": "2008-04-01",
+              "start": "2008-01-01"
+            },
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "none": true
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "63726f737365642d6e65742d67726f7570"
+              },
+              "purpose": {
+                "none": true
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a676174652d71313a6e65742d7a65726f"
+          }
+        ],
+        "ordering_authorities": [
+          {
+            "evidence_ref": "65766964656e63653a676174652d71313a6f72646572696e67",
+            "evidence_slot": "8",
+            "id": "676174652d71313a6f72646572696e67",
+            "keys": [
+              {
+                "event_id": "6f726967696e616c2d636f7374313030",
+                "occurred_at": "2008-01-10T12:00:00Z",
+                "sequence": "1"
+              },
+              {
+                "event_id": "6f726967696e616c2d726563656970743830",
+                "occurred_at": "2008-03-10T12:00:00Z",
+                "sequence": "1"
+              }
+            ],
+            "observed_at": "2008-04-01T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523676174652d71313a6f72646572696e67",
+            "period": {
+              "end": "2008-04-01",
+              "start": "2008-01-01"
+            },
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a676174652d71313a6f72646572696e67"
+          }
+        ],
+        "period": {
+          "end": "2008-04-01",
+          "start": "2008-01-01"
+        },
+        "period_end_utc": "2008-04-01T00:00:00Z",
+        "period_start_utc": "2008-01-01T00:00:00Z",
+        "populations": [
+          {
+            "complete": true,
+            "event_ids": [
+              "6f726967696e616c2d726563656970743830"
+            ],
+            "evidence_ref": "65766964656e63653a676174652d71313a706f70756c6174696f6e3a72656365697074",
+            "evidence_slot": "6",
+            "id": "676174652d71313a706f70756c6174696f6e3a72656365697074",
+            "kind": "receipt",
+            "observed_at": "2008-04-01T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523676174652d71313a706f70756c6174696f6e3a72656365697074",
+            "period": {
+              "end": "2008-04-01",
+              "start": "2008-01-01"
+            },
+            "raw_total": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a676174652d71313a706f70756c6174696f6e3a72656365697074"
+          },
+          {
+            "complete": true,
+            "event_ids": [
+              "6f726967696e616c2d636f7374313030"
+            ],
+            "evidence_ref": "65766964656e63653a676174652d71313a706f70756c6174696f6e3a636f7374",
+            "evidence_slot": "7",
+            "id": "676174652d71313a706f70756c6174696f6e3a636f7374",
+            "kind": "cost",
+            "observed_at": "2008-04-01T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523676174652d71313a706f70756c6174696f6e3a636f7374",
+            "period": {
+              "end": "2008-04-01",
+              "start": "2008-01-01"
+            },
+            "raw_total": {
+              "currency": "USD",
+              "value": "100"
+            },
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a676174652d71313a706f70756c6174696f6e3a636f7374"
+          }
+        ],
+        "receipts": [
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "80"
+            },
+            "channel": "ordinary",
+            "decision_id": "636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830",
+            "earned_at": "2008-03-10T12:00:00Z",
+            "evidence_ref": "65766964656e63653a6f726967696e616c2d726563656970743830",
+            "evidence_slot": "4",
+            "id": "6f726967696e616c2d726563656970743830",
+            "kind": "receipt",
+            "nonrefundable": true,
+            "observed_at": "2008-03-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f75726365236f726967696e616c2d726563656970743830",
+            "received_at": "2008-03-10T12:00:00Z",
+            "row_slot": "1",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "sequence": "1",
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a6f726967696e616c2d726563656970743830"
+          }
+        ],
+        "reductions": [],
+        "terms_slot": "0",
+        "work_slot": "1"
+      },
+      {
+        "aggregate_hurdles": [
+          {
+            "attained": true,
+            "effective_date": "2007-12-31",
+            "evidence_ref": "65766964656e63653a6f7574736964652d687572646c65",
+            "evidence_slot": "15",
+            "id": "6f7574736964652d687572646c65",
+            "observed_at": "2007-12-31T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f75726365236f7574736964652d687572646c65",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "none": true
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "none": true
+              },
+              "purpose": {
+                "none": true
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a6f7574736964652d687572646c65"
+          }
+        ],
+        "costs": [
+          {
+            "actual_third_party": true,
+            "decision_id": "636c617373696669636174696f6e3a61707232302d636f7374",
+            "evidence_ref": "65766964656e63653a61707232302d636f7374",
+            "evidence_slot": "6",
+            "gross_amount": {
+              "currency": "USD",
+              "value": "30"
+            },
+            "id": "61707232302d636f7374",
+            "incurred_at": "2008-04-20T12:00:00Z",
+            "kind": "cost",
+            "observed_at": "2008-04-21T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f757263652361707232302d636f7374",
+            "reduction_ids": [],
+            "row_slot": "2",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "sequence": "2",
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a61707232302d636f7374"
+          }
+        ],
+        "cutoff": "2008-07-05T00:00:00Z",
+        "decisions": [
+          {
+            "channel": "ordinary",
+            "eligible": true,
+            "event_ref": "6f726967696e616c2d736f757263652361707231302d72656365697074",
+            "evidence_ref": "65766964656e63653a636c617373696669636174696f6e3a61707231302d72656365697074",
+            "evidence_slot": "3",
+            "id": "636c617373696669636174696f6e3a61707231302d72656365697074",
+            "observed_at": "2008-04-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523636c617373696669636174696f6e3a61707231302d72656365697074",
+            "parent_event_id": "61707231302d72656365697074",
+            "reason": "6578706c696369742070726f706f73656420656c696769626c652072656365697074",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a636c617373696669636174696f6e3a61707231302d72656365697074"
+          },
+          {
+            "channel": "home_video",
+            "eligible": true,
+            "event_ref": "6f726967696e616c2d736f757263652361707232302d766964656f",
+            "evidence_ref": "65766964656e63653a636c617373696669636174696f6e3a61707232302d766964656f",
+            "evidence_slot": "5",
+            "id": "636c617373696669636174696f6e3a61707232302d766964656f",
+            "observed_at": "2008-04-21T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523636c617373696669636174696f6e3a61707232302d766964656f",
+            "parent_event_id": "61707232302d766964656f",
+            "reason": "6578706c696369742070726f706f73656420656c696769626c652072656365697074",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a636c617373696669636174696f6e3a61707232302d766964656f"
+          },
+          {
+            "channel": "not_applicable",
+            "eligible": true,
+            "event_ref": "6f726967696e616c2d736f757263652361707232302d636f7374",
+            "evidence_ref": "65766964656e63653a636c617373696669636174696f6e3a61707232302d636f7374",
+            "evidence_slot": "7",
+            "id": "636c617373696669636174696f6e3a61707232302d636f7374",
+            "observed_at": "2008-04-21T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523636c617373696669636174696f6e3a61707232302d636f7374",
+            "parent_event_id": "61707232302d636f7374",
+            "reason": "6578706c696369742070726f706f73656420656c696769626c6520636f7374",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a636c617373696669636174696f6e3a61707232302d636f7374"
+          },
+          {
+            "channel": "ordinary",
+            "eligible": true,
+            "event_ref": "6f726967696e616c2d736f75726365236d617931302d72656365697074",
+            "evidence_ref": "65766964656e63653a636c617373696669636174696f6e3a6d617931302d72656365697074",
+            "evidence_slot": "9",
+            "id": "636c617373696669636174696f6e3a6d617931302d72656365697074",
+            "observed_at": "2008-05-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523636c617373696669636174696f6e3a6d617931302d72656365697074",
+            "parent_event_id": "6d617931302d72656365697074",
+            "reason": "6578706c696369742070726f706f73656420656c696769626c652072656365697074",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a636c617373696669636174696f6e3a6d617931302d72656365697074"
+          },
+          {
+            "channel": "ordinary",
+            "eligible": true,
+            "event_ref": "6f726967696e616c2d736f75726365236a756e31302d72656365697074",
+            "evidence_ref": "65766964656e63653a636c617373696669636174696f6e3a6a756e31302d72656365697074",
+            "evidence_slot": "11",
+            "id": "636c617373696669636174696f6e3a6a756e31302d72656365697074",
+            "observed_at": "2008-06-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523636c617373696669636174696f6e3a6a756e31302d72656365697074",
+            "parent_event_id": "6a756e31302d72656365697074",
+            "reason": "6578706c696369742070726f706f73656420656c696769626c652072656365697074",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a636c617373696669636174696f6e3a6a756e31302d72656365697074"
+          }
+        ],
+        "evidence": [
+          {
+            "approved": true,
+            "id": "65766964656e63653a7465726d73",
+            "kind": "terms",
+            "observed_at": "2007-12-20T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "0",
+            "source_ref": "6f726967696e616c2d65766964656e6365237465726d73"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a776f726b",
+            "kind": "work_eligibility",
+            "observed_at": "2007-12-20T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "1",
+            "source_ref": "6f726967696e616c2d65766964656e636523776f726b"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a61707231302d72656365697074",
+            "kind": "receipt",
+            "observed_at": "2008-04-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "2",
+            "source_ref": "6f726967696e616c2d65766964656e63652361707231302d72656365697074"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636c617373696669636174696f6e3a61707231302d72656365697074",
+            "kind": "classification",
+            "observed_at": "2008-04-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "3",
+            "source_ref": "6f726967696e616c2d65766964656e636523636c617373696669636174696f6e3a61707231302d72656365697074"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a61707232302d766964656f",
+            "kind": "receipt",
+            "observed_at": "2008-04-21T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "4",
+            "source_ref": "6f726967696e616c2d65766964656e63652361707232302d766964656f"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636c617373696669636174696f6e3a61707232302d766964656f",
+            "kind": "classification",
+            "observed_at": "2008-04-21T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "5",
+            "source_ref": "6f726967696e616c2d65766964656e636523636c617373696669636174696f6e3a61707232302d766964656f"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a61707232302d636f7374",
+            "kind": "cost",
+            "observed_at": "2008-04-21T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "6",
+            "source_ref": "6f726967696e616c2d65766964656e63652361707232302d636f7374"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636c617373696669636174696f6e3a61707232302d636f7374",
+            "kind": "classification",
+            "observed_at": "2008-04-21T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "7",
+            "source_ref": "6f726967696e616c2d65766964656e636523636c617373696669636174696f6e3a61707232302d636f7374"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a6d617931302d72656365697074",
+            "kind": "receipt",
+            "observed_at": "2008-05-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "8",
+            "source_ref": "6f726967696e616c2d65766964656e6365236d617931302d72656365697074"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636c617373696669636174696f6e3a6d617931302d72656365697074",
+            "kind": "classification",
+            "observed_at": "2008-05-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "9",
+            "source_ref": "6f726967696e616c2d65766964656e636523636c617373696669636174696f6e3a6d617931302d72656365697074"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a6a756e31302d72656365697074",
+            "kind": "receipt",
+            "observed_at": "2008-06-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "10",
+            "source_ref": "6f726967696e616c2d65766964656e6365236a756e31302d72656365697074"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a636c617373696669636174696f6e3a6a756e31302d72656365697074",
+            "kind": "classification",
+            "observed_at": "2008-06-11T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "11",
+            "source_ref": "6f726967696e616c2d65766964656e636523636c617373696669636174696f6e3a6a756e31302d72656365697074"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a676174652d71323a706f70756c6174696f6e3a72656365697074",
+            "kind": "population",
+            "observed_at": "2008-07-01T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "12",
+            "source_ref": "6f726967696e616c2d65766964656e636523676174652d71323a706f70756c6174696f6e3a72656365697074"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a676174652d71323a706f70756c6174696f6e3a636f7374",
+            "kind": "population",
+            "observed_at": "2008-07-01T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "13",
+            "source_ref": "6f726967696e616c2d65766964656e636523676174652d71323a706f70756c6174696f6e3a636f7374"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a676174652d71323a6f72646572696e67",
+            "kind": "event_order",
+            "observed_at": "2008-07-01T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "slot": "14",
+            "source_ref": "6f726967696e616c2d65766964656e636523676174652d71323a6f72646572696e67"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a6f7574736964652d687572646c65",
+            "kind": "aggregate_hurdle",
+            "observed_at": "2007-12-31T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "none": true
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "none": true
+              },
+              "purpose": {
+                "none": true
+              }
+            },
+            "slot": "15",
+            "source_ref": "6f726967696e616c2d65766964656e6365236f7574736964652d687572646c65"
+          },
+          {
+            "approved": true,
+            "id": "65766964656e63653a676174652d71323a6e65742d7a65726f",
+            "kind": "net_worksheet",
+            "observed_at": "2008-07-01T00:00:00Z",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "none": true
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "63726f737365642d6e65742d67726f7570"
+              },
+              "purpose": {
+                "none": true
+              }
+            },
+            "slot": "16",
+            "source_ref": "6f726967696e616c2d65766964656e636523676174652d71323a6e65742d7a65726f"
+          }
+        ],
+        "id": "676174652d7132",
+        "net_worksheets": [
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "0"
+            },
+            "evidence_ref": "65766964656e63653a676174652d71323a6e65742d7a65726f",
+            "evidence_slot": "16",
+            "id": "676174652d71323a6e65742d7a65726f",
+            "member_asset_ids": [
+              "646572697661746976652d44"
+            ],
+            "observed_at": "2008-07-01T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523676174652d71323a6e65742d7a65726f",
+            "period": {
+              "end": "2008-07-01",
+              "start": "2008-04-01"
+            },
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "none": true
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "63726f737365642d6e65742d67726f7570"
+              },
+              "purpose": {
+                "none": true
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a676174652d71323a6e65742d7a65726f"
+          }
+        ],
+        "ordering_authorities": [
+          {
+            "evidence_ref": "65766964656e63653a676174652d71323a6f72646572696e67",
+            "evidence_slot": "14",
+            "id": "676174652d71323a6f72646572696e67",
+            "keys": [
+              {
+                "event_id": "61707231302d72656365697074",
+                "occurred_at": "2008-04-10T12:00:00Z",
+                "sequence": "1"
+              },
+              {
+                "event_id": "61707232302d766964656f",
+                "occurred_at": "2008-04-20T12:00:00Z",
+                "sequence": "1"
+              },
+              {
+                "event_id": "61707232302d636f7374",
+                "occurred_at": "2008-04-20T12:00:00Z",
+                "sequence": "2"
+              },
+              {
+                "event_id": "6d617931302d72656365697074",
+                "occurred_at": "2008-05-10T12:00:00Z",
+                "sequence": "1"
+              },
+              {
+                "event_id": "6a756e31302d72656365697074",
+                "occurred_at": "2008-06-10T12:00:00Z",
+                "sequence": "1"
+              }
+            ],
+            "observed_at": "2008-07-01T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523676174652d71323a6f72646572696e67",
+            "period": {
+              "end": "2008-07-01",
+              "start": "2008-04-01"
+            },
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a676174652d71323a6f72646572696e67"
+          }
+        ],
+        "period": {
+          "end": "2008-07-01",
+          "start": "2008-04-01"
+        },
+        "period_end_utc": "2008-07-01T00:00:00Z",
+        "period_start_utc": "2008-04-01T00:00:00Z",
+        "populations": [
+          {
+            "complete": true,
+            "event_ids": [
+              "61707231302d72656365697074",
+              "61707232302d766964656f",
+              "6d617931302d72656365697074",
+              "6a756e31302d72656365697074"
+            ],
+            "evidence_ref": "65766964656e63653a676174652d71323a706f70756c6174696f6e3a72656365697074",
+            "evidence_slot": "12",
+            "id": "676174652d71323a706f70756c6174696f6e3a72656365697074",
+            "kind": "receipt",
+            "observed_at": "2008-07-01T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523676174652d71323a706f70756c6174696f6e3a72656365697074",
+            "period": {
+              "end": "2008-07-01",
+              "start": "2008-04-01"
+            },
+            "raw_total": {
+              "currency": "USD",
+              "value": "70"
+            },
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a676174652d71323a706f70756c6174696f6e3a72656365697074"
+          },
+          {
+            "complete": true,
+            "event_ids": [
+              "61707232302d636f7374"
+            ],
+            "evidence_ref": "65766964656e63653a676174652d71323a706f70756c6174696f6e3a636f7374",
+            "evidence_slot": "13",
+            "id": "676174652d71323a706f70756c6174696f6e3a636f7374",
+            "kind": "cost",
+            "observed_at": "2008-07-01T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523676174652d71323a706f70756c6174696f6e3a636f7374",
+            "period": {
+              "end": "2008-07-01",
+              "start": "2008-04-01"
+            },
+            "raw_total": {
+              "currency": "USD",
+              "value": "30"
+            },
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a676174652d71323a706f70756c6174696f6e3a636f7374"
+          }
+        ],
+        "receipts": [
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "10"
+            },
+            "channel": "ordinary",
+            "decision_id": "636c617373696669636174696f6e3a61707231302d72656365697074",
+            "earned_at": "2008-04-10T12:00:00Z",
+            "evidence_ref": "65766964656e63653a61707231302d72656365697074",
+            "evidence_slot": "2",
+            "id": "61707231302d72656365697074",
+            "kind": "receipt",
+            "nonrefundable": true,
+            "observed_at": "2008-04-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f757263652361707231302d72656365697074",
+            "received_at": "2008-04-10T12:00:00Z",
+            "row_slot": "0",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "sequence": "1",
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a61707231302d72656365697074"
+          },
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "30"
+            },
+            "channel": "home_video",
+            "decision_id": "636c617373696669636174696f6e3a61707232302d766964656f",
+            "earned_at": "2008-04-20T12:00:00Z",
+            "evidence_ref": "65766964656e63653a61707232302d766964656f",
+            "evidence_slot": "4",
+            "id": "61707232302d766964656f",
+            "kind": "receipt",
+            "nonrefundable": true,
+            "observed_at": "2008-04-21T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f757263652361707232302d766964656f",
+            "received_at": "2008-04-20T12:00:00Z",
+            "row_slot": "1",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "sequence": "1",
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a61707232302d766964656f"
+          },
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "10"
+            },
+            "channel": "ordinary",
+            "decision_id": "636c617373696669636174696f6e3a6d617931302d72656365697074",
+            "earned_at": "2008-05-10T12:00:00Z",
+            "evidence_ref": "65766964656e63653a6d617931302d72656365697074",
+            "evidence_slot": "8",
+            "id": "6d617931302d72656365697074",
+            "kind": "receipt",
+            "nonrefundable": true,
+            "observed_at": "2008-05-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f75726365236d617931302d72656365697074",
+            "received_at": "2008-05-10T12:00:00Z",
+            "row_slot": "3",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "sequence": "1",
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a6d617931302d72656365697074"
+          },
+          {
+            "amount": {
+              "currency": "USD",
+              "value": "20"
+            },
+            "channel": "ordinary",
+            "decision_id": "636c617373696669636174696f6e3a6a756e31302d72656365697074",
+            "earned_at": "2008-06-10T12:00:00Z",
+            "evidence_ref": "65766964656e63653a6a756e31302d72656365697074",
+            "evidence_slot": "10",
+            "id": "6a756e31302d72656365697074",
+            "kind": "receipt",
+            "nonrefundable": true,
+            "observed_at": "2008-06-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f75726365236a756e31302d72656365697074",
+            "received_at": "2008-06-10T12:00:00Z",
+            "row_slot": "4",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "sequence": "1",
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a6a756e31302d72656365697074"
+          }
+        ],
+        "reductions": [],
+        "terms_slot": "0",
+        "work_slot": "1"
+      }
+    ],
+    "original_frames": [
+      {
+        "id": "676174652d7131",
+        "originals": {
+          "aggregate_hurdles": [
+            {
+              "id": "6f7574736964652d687572646c65",
+              "raw_original": "{\"attained\":true,\"effective_date\":\"2007-12-31\",\"evidence_ref\":\"evidence:outside-hurdle\",\"id\":\"outside-hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"original_ref\":\"original-source#outside-hurdle\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"disclosed-synthetic-source:outside-hurdle\"}"
+            }
+          ],
+          "costs": [
+            {
+              "id": "6f726967696e616c2d636f7374313030",
+              "kind": "cost",
+              "raw_original": "{\"actual_third_party\":true,\"decision\":{\"channel\":\"not_applicable\",\"eligible\":true,\"event_ref\":\"original-source#original-cost100\",\"evidence_ref\":\"evidence:classification:original-cost100\",\"id\":\"classification:original-cost100\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-cost100\",\"reason\":\"explicit proposed eligible cost\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-cost100\"},\"evidence_ref\":\"evidence:original-cost100\",\"gross_amount\":\"100\",\"id\":\"original-cost100\",\"incurred_at\":\"2008-01-10T12:00:00Z\",\"kind\":\"cost\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#original-cost100\",\"reductions\":[],\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:original-cost100\"}",
+              "row_slot": "0"
+            }
+          ],
+          "decisions": [
+            {
+              "id": "636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030",
+              "raw_original": "{\"channel\":\"not_applicable\",\"eligible\":true,\"event_ref\":\"original-source#original-cost100\",\"evidence_ref\":\"evidence:classification:original-cost100\",\"id\":\"classification:original-cost100\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-cost100\",\"reason\":\"explicit proposed eligible cost\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-cost100\"}"
+            },
+            {
+              "id": "636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830",
+              "raw_original": "{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#original-receipt80\",\"evidence_ref\":\"evidence:classification:original-receipt80\",\"id\":\"classification:original-receipt80\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-receipt80\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-receipt80\"}"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "65766964656e63653a7465726d73",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:terms\",\"kind\":\"terms\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#terms\"}",
+              "slot": "0"
+            },
+            {
+              "id": "65766964656e63653a776f726b",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:work\",\"kind\":\"work_eligibility\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#work\"}",
+              "slot": "1"
+            },
+            {
+              "id": "65766964656e63653a6f726967696e616c2d636f7374313030",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:original-cost100\",\"kind\":\"cost\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#original-cost100\"}",
+              "slot": "2"
+            },
+            {
+              "id": "65766964656e63653a636c617373696669636174696f6e3a6f726967696e616c2d636f7374313030",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:classification:original-cost100\",\"kind\":\"classification\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:original-cost100\"}",
+              "slot": "3"
+            },
+            {
+              "id": "65766964656e63653a6f726967696e616c2d726563656970743830",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:original-receipt80\",\"kind\":\"receipt\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#original-receipt80\"}",
+              "slot": "4"
+            },
+            {
+              "id": "65766964656e63653a636c617373696669636174696f6e3a6f726967696e616c2d726563656970743830",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:classification:original-receipt80\",\"kind\":\"classification\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:original-receipt80\"}",
+              "slot": "5"
+            },
+            {
+              "id": "65766964656e63653a676174652d71313a706f70756c6174696f6e3a72656365697074",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:gate-q1:population:receipt\",\"kind\":\"population\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:population:receipt\"}",
+              "slot": "6"
+            },
+            {
+              "id": "65766964656e63653a676174652d71313a706f70756c6174696f6e3a636f7374",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:gate-q1:population:cost\",\"kind\":\"population\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:population:cost\"}",
+              "slot": "7"
+            },
+            {
+              "id": "65766964656e63653a676174652d71313a6f72646572696e67",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:gate-q1:ordering\",\"kind\":\"event_order\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:ordering\"}",
+              "slot": "8"
+            },
+            {
+              "id": "65766964656e63653a6f7574736964652d687572646c65",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:outside-hurdle\",\"kind\":\"aggregate_hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"original-evidence#outside-hurdle\"}",
+              "slot": "9"
+            },
+            {
+              "id": "65766964656e63653a676174652d71313a6e65742d7a65726f",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:gate-q1:net-zero\",\"kind\":\"net_worksheet\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"original-evidence#gate-q1:net-zero\"}",
+              "slot": "10"
+            }
+          ],
+          "net_worksheets": [
+            {
+              "id": "676174652d71313a6e65742d7a65726f",
+              "raw_original": "{\"amount\":\"0\",\"evidence_ref\":\"evidence:gate-q1:net-zero\",\"id\":\"gate-q1:net-zero\",\"member_asset_ids\":[\"derivative-D\"],\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:net-zero\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:net-zero\"}"
+            }
+          ],
+          "ordering_authorities": [
+            {
+              "id": "676174652d71313a6f72646572696e67",
+              "raw_original": "{\"evidence_ref\":\"evidence:gate-q1:ordering\",\"id\":\"gate-q1:ordering\",\"keys\":[{\"event_id\":\"original-cost100\",\"occurred_at\":\"2008-01-10T12:00:00Z\",\"sequence\":1},{\"event_id\":\"original-receipt80\",\"occurred_at\":\"2008-03-10T12:00:00Z\",\"sequence\":1}],\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:ordering\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:ordering\"}"
+            }
+          ],
+          "populations": [
+            {
+              "id": "676174652d71313a706f70756c6174696f6e3a72656365697074",
+              "raw_original": "{\"complete\":true,\"event_ids\":[\"original-receipt80\"],\"evidence_ref\":\"evidence:gate-q1:population:receipt\",\"id\":\"gate-q1:population:receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:population:receipt\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"raw_total\":\"80\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:population:receipt\"}"
+            },
+            {
+              "id": "676174652d71313a706f70756c6174696f6e3a636f7374",
+              "raw_original": "{\"complete\":true,\"event_ids\":[\"original-cost100\"],\"evidence_ref\":\"evidence:gate-q1:population:cost\",\"id\":\"gate-q1:population:cost\",\"kind\":\"cost\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:population:cost\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"raw_total\":\"100\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:population:cost\"}"
+            }
+          ],
+          "receipts": [
+            {
+              "id": "6f726967696e616c2d726563656970743830",
+              "kind": "receipt",
+              "raw_original": "{\"amount\":\"80\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#original-receipt80\",\"evidence_ref\":\"evidence:classification:original-receipt80\",\"id\":\"classification:original-receipt80\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-receipt80\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-receipt80\"},\"earned_at\":\"2008-03-10T12:00:00Z\",\"evidence_ref\":\"evidence:original-receipt80\",\"id\":\"original-receipt80\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#original-receipt80\",\"received_at\":\"2008-03-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:original-receipt80\"}",
+              "row_slot": "1"
+            }
+          ],
+          "reductions": []
+        },
+        "period": {
+          "end": "2008-04-01",
+          "start": "2008-01-01"
+        },
+        "raw_original": "{\"aggregate_hurdle\":{\"attained\":true,\"effective_date\":\"2007-12-31\",\"evidence_ref\":\"evidence:outside-hurdle\",\"id\":\"outside-hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"original_ref\":\"original-source#outside-hurdle\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"disclosed-synthetic-source:outside-hurdle\"},\"case_id\":\"gate-q1\",\"cutoff\":\"2008-04-05T00:00:00Z\",\"evidence\":[{\"approved\":true,\"id\":\"evidence:terms\",\"kind\":\"terms\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#terms\"},{\"approved\":true,\"id\":\"evidence:work\",\"kind\":\"work_eligibility\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#work\"},{\"approved\":true,\"id\":\"evidence:original-cost100\",\"kind\":\"cost\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#original-cost100\"},{\"approved\":true,\"id\":\"evidence:classification:original-cost100\",\"kind\":\"classification\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:original-cost100\"},{\"approved\":true,\"id\":\"evidence:original-receipt80\",\"kind\":\"receipt\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#original-receipt80\"},{\"approved\":true,\"id\":\"evidence:classification:original-receipt80\",\"kind\":\"classification\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:original-receipt80\"},{\"approved\":true,\"id\":\"evidence:gate-q1:population:receipt\",\"kind\":\"population\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:population:receipt\"},{\"approved\":true,\"id\":\"evidence:gate-q1:population:cost\",\"kind\":\"population\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:population:cost\"},{\"approved\":true,\"id\":\"evidence:gate-q1:ordering\",\"kind\":\"event_order\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:ordering\"},{\"approved\":true,\"id\":\"evidence:outside-hurdle\",\"kind\":\"aggregate_hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"original-evidence#outside-hurdle\"},{\"approved\":true,\"id\":\"evidence:gate-q1:net-zero\",\"kind\":\"net_worksheet\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"original-evidence#gate-q1:net-zero\"}],\"net_worksheet\":{\"amount\":\"0\",\"evidence_ref\":\"evidence:gate-q1:net-zero\",\"id\":\"gate-q1:net-zero\",\"member_asset_ids\":[\"derivative-D\"],\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:net-zero\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:net-zero\"},\"ordering_authority\":{\"evidence_ref\":\"evidence:gate-q1:ordering\",\"id\":\"gate-q1:ordering\",\"keys\":[{\"event_id\":\"original-cost100\",\"occurred_at\":\"2008-01-10T12:00:00Z\",\"sequence\":1},{\"event_id\":\"original-receipt80\",\"occurred_at\":\"2008-03-10T12:00:00Z\",\"sequence\":1}],\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:ordering\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:ordering\"},\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"populations\":[{\"complete\":true,\"event_ids\":[\"original-receipt80\"],\"evidence_ref\":\"evidence:gate-q1:population:receipt\",\"id\":\"gate-q1:population:receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:population:receipt\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"raw_total\":\"80\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:population:receipt\"},{\"complete\":true,\"event_ids\":[\"original-cost100\"],\"evidence_ref\":\"evidence:gate-q1:population:cost\",\"id\":\"gate-q1:population:cost\",\"kind\":\"cost\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:population:cost\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"raw_total\":\"100\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:population:cost\"}],\"rows\":[{\"actual_third_party\":true,\"decision\":{\"channel\":\"not_applicable\",\"eligible\":true,\"event_ref\":\"original-source#original-cost100\",\"evidence_ref\":\"evidence:classification:original-cost100\",\"id\":\"classification:original-cost100\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-cost100\",\"reason\":\"explicit proposed eligible cost\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-cost100\"},\"evidence_ref\":\"evidence:original-cost100\",\"gross_amount\":\"100\",\"id\":\"original-cost100\",\"incurred_at\":\"2008-01-10T12:00:00Z\",\"kind\":\"cost\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#original-cost100\",\"reductions\":[],\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:original-cost100\"},{\"amount\":\"80\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#original-receipt80\",\"evidence_ref\":\"evidence:classification:original-receipt80\",\"id\":\"classification:original-receipt80\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-receipt80\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-receipt80\"},\"earned_at\":\"2008-03-10T12:00:00Z\",\"evidence_ref\":\"evidence:original-receipt80\",\"id\":\"original-receipt80\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#original-receipt80\",\"received_at\":\"2008-03-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:original-receipt80\"}]}"
+      },
+      {
+        "id": "676174652d7132",
+        "originals": {
+          "aggregate_hurdles": [
+            {
+              "id": "6f7574736964652d687572646c65",
+              "raw_original": "{\"attained\":true,\"effective_date\":\"2007-12-31\",\"evidence_ref\":\"evidence:outside-hurdle\",\"id\":\"outside-hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"original_ref\":\"original-source#outside-hurdle\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"disclosed-synthetic-source:outside-hurdle\"}"
+            }
+          ],
+          "costs": [
+            {
+              "id": "61707232302d636f7374",
+              "kind": "cost",
+              "raw_original": "{\"actual_third_party\":true,\"decision\":{\"channel\":\"not_applicable\",\"eligible\":true,\"event_ref\":\"original-source#apr20-cost\",\"evidence_ref\":\"evidence:classification:apr20-cost\",\"id\":\"classification:apr20-cost\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#classification:apr20-cost\",\"reason\":\"explicit proposed eligible cost\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr20-cost\"},\"evidence_ref\":\"evidence:apr20-cost\",\"gross_amount\":\"30\",\"id\":\"apr20-cost\",\"incurred_at\":\"2008-04-20T12:00:00Z\",\"kind\":\"cost\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#apr20-cost\",\"reductions\":[],\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":2,\"source_ref\":\"disclosed-synthetic-source:apr20-cost\"}",
+              "row_slot": "2"
+            }
+          ],
+          "decisions": [
+            {
+              "id": "636c617373696669636174696f6e3a61707231302d72656365697074",
+              "raw_original": "{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#apr10-receipt\",\"evidence_ref\":\"evidence:classification:apr10-receipt\",\"id\":\"classification:apr10-receipt\",\"observed_at\":\"2008-04-11T00:00:00Z\",\"original_ref\":\"original-source#classification:apr10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr10-receipt\"}"
+            },
+            {
+              "id": "636c617373696669636174696f6e3a61707232302d766964656f",
+              "raw_original": "{\"channel\":\"home_video\",\"eligible\":true,\"event_ref\":\"original-source#apr20-video\",\"evidence_ref\":\"evidence:classification:apr20-video\",\"id\":\"classification:apr20-video\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#classification:apr20-video\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr20-video\"}"
+            },
+            {
+              "id": "636c617373696669636174696f6e3a61707232302d636f7374",
+              "raw_original": "{\"channel\":\"not_applicable\",\"eligible\":true,\"event_ref\":\"original-source#apr20-cost\",\"evidence_ref\":\"evidence:classification:apr20-cost\",\"id\":\"classification:apr20-cost\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#classification:apr20-cost\",\"reason\":\"explicit proposed eligible cost\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr20-cost\"}"
+            },
+            {
+              "id": "636c617373696669636174696f6e3a6d617931302d72656365697074",
+              "raw_original": "{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#may10-receipt\",\"evidence_ref\":\"evidence:classification:may10-receipt\",\"id\":\"classification:may10-receipt\",\"observed_at\":\"2008-05-11T00:00:00Z\",\"original_ref\":\"original-source#classification:may10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:may10-receipt\"}"
+            },
+            {
+              "id": "636c617373696669636174696f6e3a6a756e31302d72656365697074",
+              "raw_original": "{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#jun10-receipt\",\"evidence_ref\":\"evidence:classification:jun10-receipt\",\"id\":\"classification:jun10-receipt\",\"observed_at\":\"2008-06-11T00:00:00Z\",\"original_ref\":\"original-source#classification:jun10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:jun10-receipt\"}"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "65766964656e63653a7465726d73",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:terms\",\"kind\":\"terms\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#terms\"}",
+              "slot": "0"
+            },
+            {
+              "id": "65766964656e63653a776f726b",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:work\",\"kind\":\"work_eligibility\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#work\"}",
+              "slot": "1"
+            },
+            {
+              "id": "65766964656e63653a61707231302d72656365697074",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:apr10-receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-04-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#apr10-receipt\"}",
+              "slot": "2"
+            },
+            {
+              "id": "65766964656e63653a636c617373696669636174696f6e3a61707231302d72656365697074",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:classification:apr10-receipt\",\"kind\":\"classification\",\"observed_at\":\"2008-04-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:apr10-receipt\"}",
+              "slot": "3"
+            },
+            {
+              "id": "65766964656e63653a61707232302d766964656f",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:apr20-video\",\"kind\":\"receipt\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#apr20-video\"}",
+              "slot": "4"
+            },
+            {
+              "id": "65766964656e63653a636c617373696669636174696f6e3a61707232302d766964656f",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:classification:apr20-video\",\"kind\":\"classification\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:apr20-video\"}",
+              "slot": "5"
+            },
+            {
+              "id": "65766964656e63653a61707232302d636f7374",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:apr20-cost\",\"kind\":\"cost\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#apr20-cost\"}",
+              "slot": "6"
+            },
+            {
+              "id": "65766964656e63653a636c617373696669636174696f6e3a61707232302d636f7374",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:classification:apr20-cost\",\"kind\":\"classification\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:apr20-cost\"}",
+              "slot": "7"
+            },
+            {
+              "id": "65766964656e63653a6d617931302d72656365697074",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:may10-receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-05-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#may10-receipt\"}",
+              "slot": "8"
+            },
+            {
+              "id": "65766964656e63653a636c617373696669636174696f6e3a6d617931302d72656365697074",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:classification:may10-receipt\",\"kind\":\"classification\",\"observed_at\":\"2008-05-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:may10-receipt\"}",
+              "slot": "9"
+            },
+            {
+              "id": "65766964656e63653a6a756e31302d72656365697074",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:jun10-receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-06-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#jun10-receipt\"}",
+              "slot": "10"
+            },
+            {
+              "id": "65766964656e63653a636c617373696669636174696f6e3a6a756e31302d72656365697074",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:classification:jun10-receipt\",\"kind\":\"classification\",\"observed_at\":\"2008-06-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:jun10-receipt\"}",
+              "slot": "11"
+            },
+            {
+              "id": "65766964656e63653a676174652d71323a706f70756c6174696f6e3a72656365697074",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:gate-q2:population:receipt\",\"kind\":\"population\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q2:population:receipt\"}",
+              "slot": "12"
+            },
+            {
+              "id": "65766964656e63653a676174652d71323a706f70756c6174696f6e3a636f7374",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:gate-q2:population:cost\",\"kind\":\"population\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q2:population:cost\"}",
+              "slot": "13"
+            },
+            {
+              "id": "65766964656e63653a676174652d71323a6f72646572696e67",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:gate-q2:ordering\",\"kind\":\"event_order\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q2:ordering\"}",
+              "slot": "14"
+            },
+            {
+              "id": "65766964656e63653a6f7574736964652d687572646c65",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:outside-hurdle\",\"kind\":\"aggregate_hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"original-evidence#outside-hurdle\"}",
+              "slot": "15"
+            },
+            {
+              "id": "65766964656e63653a676174652d71323a6e65742d7a65726f",
+              "raw_original": "{\"approved\":true,\"id\":\"evidence:gate-q2:net-zero\",\"kind\":\"net_worksheet\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"original-evidence#gate-q2:net-zero\"}",
+              "slot": "16"
+            }
+          ],
+          "net_worksheets": [
+            {
+              "id": "676174652d71323a6e65742d7a65726f",
+              "raw_original": "{\"amount\":\"0\",\"evidence_ref\":\"evidence:gate-q2:net-zero\",\"id\":\"gate-q2:net-zero\",\"member_asset_ids\":[\"derivative-D\"],\"observed_at\":\"2008-07-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q2:net-zero\",\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"disclosed-synthetic-source:gate-q2:net-zero\"}"
+            }
+          ],
+          "ordering_authorities": [
+            {
+              "id": "676174652d71323a6f72646572696e67",
+              "raw_original": "{\"evidence_ref\":\"evidence:gate-q2:ordering\",\"id\":\"gate-q2:ordering\",\"keys\":[{\"event_id\":\"apr10-receipt\",\"occurred_at\":\"2008-04-10T12:00:00Z\",\"sequence\":1},{\"event_id\":\"apr20-video\",\"occurred_at\":\"2008-04-20T12:00:00Z\",\"sequence\":1},{\"event_id\":\"apr20-cost\",\"occurred_at\":\"2008-04-20T12:00:00Z\",\"sequence\":2},{\"event_id\":\"may10-receipt\",\"occurred_at\":\"2008-05-10T12:00:00Z\",\"sequence\":1},{\"event_id\":\"jun10-receipt\",\"occurred_at\":\"2008-06-10T12:00:00Z\",\"sequence\":1}],\"observed_at\":\"2008-07-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q2:ordering\",\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q2:ordering\"}"
+            }
+          ],
+          "populations": [
+            {
+              "id": "676174652d71323a706f70756c6174696f6e3a72656365697074",
+              "raw_original": "{\"complete\":true,\"event_ids\":[\"apr10-receipt\",\"apr20-video\",\"may10-receipt\",\"jun10-receipt\"],\"evidence_ref\":\"evidence:gate-q2:population:receipt\",\"id\":\"gate-q2:population:receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q2:population:receipt\",\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"raw_total\":\"70\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q2:population:receipt\"}"
+            },
+            {
+              "id": "676174652d71323a706f70756c6174696f6e3a636f7374",
+              "raw_original": "{\"complete\":true,\"event_ids\":[\"apr20-cost\"],\"evidence_ref\":\"evidence:gate-q2:population:cost\",\"id\":\"gate-q2:population:cost\",\"kind\":\"cost\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q2:population:cost\",\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"raw_total\":\"30\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q2:population:cost\"}"
+            }
+          ],
+          "receipts": [
+            {
+              "id": "61707231302d72656365697074",
+              "kind": "receipt",
+              "raw_original": "{\"amount\":\"10\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#apr10-receipt\",\"evidence_ref\":\"evidence:classification:apr10-receipt\",\"id\":\"classification:apr10-receipt\",\"observed_at\":\"2008-04-11T00:00:00Z\",\"original_ref\":\"original-source#classification:apr10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr10-receipt\"},\"earned_at\":\"2008-04-10T12:00:00Z\",\"evidence_ref\":\"evidence:apr10-receipt\",\"id\":\"apr10-receipt\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-04-11T00:00:00Z\",\"original_ref\":\"original-source#apr10-receipt\",\"received_at\":\"2008-04-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:apr10-receipt\"}",
+              "row_slot": "0"
+            },
+            {
+              "id": "61707232302d766964656f",
+              "kind": "receipt",
+              "raw_original": "{\"amount\":\"30\",\"channel\":\"home_video\",\"decision\":{\"channel\":\"home_video\",\"eligible\":true,\"event_ref\":\"original-source#apr20-video\",\"evidence_ref\":\"evidence:classification:apr20-video\",\"id\":\"classification:apr20-video\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#classification:apr20-video\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr20-video\"},\"earned_at\":\"2008-04-20T12:00:00Z\",\"evidence_ref\":\"evidence:apr20-video\",\"id\":\"apr20-video\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#apr20-video\",\"received_at\":\"2008-04-20T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:apr20-video\"}",
+              "row_slot": "1"
+            },
+            {
+              "id": "6d617931302d72656365697074",
+              "kind": "receipt",
+              "raw_original": "{\"amount\":\"10\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#may10-receipt\",\"evidence_ref\":\"evidence:classification:may10-receipt\",\"id\":\"classification:may10-receipt\",\"observed_at\":\"2008-05-11T00:00:00Z\",\"original_ref\":\"original-source#classification:may10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:may10-receipt\"},\"earned_at\":\"2008-05-10T12:00:00Z\",\"evidence_ref\":\"evidence:may10-receipt\",\"id\":\"may10-receipt\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-05-11T00:00:00Z\",\"original_ref\":\"original-source#may10-receipt\",\"received_at\":\"2008-05-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:may10-receipt\"}",
+              "row_slot": "3"
+            },
+            {
+              "id": "6a756e31302d72656365697074",
+              "kind": "receipt",
+              "raw_original": "{\"amount\":\"20\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#jun10-receipt\",\"evidence_ref\":\"evidence:classification:jun10-receipt\",\"id\":\"classification:jun10-receipt\",\"observed_at\":\"2008-06-11T00:00:00Z\",\"original_ref\":\"original-source#classification:jun10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:jun10-receipt\"},\"earned_at\":\"2008-06-10T12:00:00Z\",\"evidence_ref\":\"evidence:jun10-receipt\",\"id\":\"jun10-receipt\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-06-11T00:00:00Z\",\"original_ref\":\"original-source#jun10-receipt\",\"received_at\":\"2008-06-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:jun10-receipt\"}",
+              "row_slot": "4"
+            }
+          ],
+          "reductions": []
+        },
+        "period": {
+          "end": "2008-07-01",
+          "start": "2008-04-01"
+        },
+        "raw_original": "{\"aggregate_hurdle\":{\"attained\":true,\"effective_date\":\"2007-12-31\",\"evidence_ref\":\"evidence:outside-hurdle\",\"id\":\"outside-hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"original_ref\":\"original-source#outside-hurdle\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"disclosed-synthetic-source:outside-hurdle\"},\"case_id\":\"gate-q2\",\"cutoff\":\"2008-07-05T00:00:00Z\",\"evidence\":[{\"approved\":true,\"id\":\"evidence:terms\",\"kind\":\"terms\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#terms\"},{\"approved\":true,\"id\":\"evidence:work\",\"kind\":\"work_eligibility\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#work\"},{\"approved\":true,\"id\":\"evidence:apr10-receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-04-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#apr10-receipt\"},{\"approved\":true,\"id\":\"evidence:classification:apr10-receipt\",\"kind\":\"classification\",\"observed_at\":\"2008-04-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:apr10-receipt\"},{\"approved\":true,\"id\":\"evidence:apr20-video\",\"kind\":\"receipt\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#apr20-video\"},{\"approved\":true,\"id\":\"evidence:classification:apr20-video\",\"kind\":\"classification\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:apr20-video\"},{\"approved\":true,\"id\":\"evidence:apr20-cost\",\"kind\":\"cost\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#apr20-cost\"},{\"approved\":true,\"id\":\"evidence:classification:apr20-cost\",\"kind\":\"classification\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:apr20-cost\"},{\"approved\":true,\"id\":\"evidence:may10-receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-05-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#may10-receipt\"},{\"approved\":true,\"id\":\"evidence:classification:may10-receipt\",\"kind\":\"classification\",\"observed_at\":\"2008-05-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:may10-receipt\"},{\"approved\":true,\"id\":\"evidence:jun10-receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-06-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#jun10-receipt\"},{\"approved\":true,\"id\":\"evidence:classification:jun10-receipt\",\"kind\":\"classification\",\"observed_at\":\"2008-06-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:jun10-receipt\"},{\"approved\":true,\"id\":\"evidence:gate-q2:population:receipt\",\"kind\":\"population\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q2:population:receipt\"},{\"approved\":true,\"id\":\"evidence:gate-q2:population:cost\",\"kind\":\"population\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q2:population:cost\"},{\"approved\":true,\"id\":\"evidence:gate-q2:ordering\",\"kind\":\"event_order\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q2:ordering\"},{\"approved\":true,\"id\":\"evidence:outside-hurdle\",\"kind\":\"aggregate_hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"original-evidence#outside-hurdle\"},{\"approved\":true,\"id\":\"evidence:gate-q2:net-zero\",\"kind\":\"net_worksheet\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"original-evidence#gate-q2:net-zero\"}],\"net_worksheet\":{\"amount\":\"0\",\"evidence_ref\":\"evidence:gate-q2:net-zero\",\"id\":\"gate-q2:net-zero\",\"member_asset_ids\":[\"derivative-D\"],\"observed_at\":\"2008-07-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q2:net-zero\",\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"disclosed-synthetic-source:gate-q2:net-zero\"},\"ordering_authority\":{\"evidence_ref\":\"evidence:gate-q2:ordering\",\"id\":\"gate-q2:ordering\",\"keys\":[{\"event_id\":\"apr10-receipt\",\"occurred_at\":\"2008-04-10T12:00:00Z\",\"sequence\":1},{\"event_id\":\"apr20-video\",\"occurred_at\":\"2008-04-20T12:00:00Z\",\"sequence\":1},{\"event_id\":\"apr20-cost\",\"occurred_at\":\"2008-04-20T12:00:00Z\",\"sequence\":2},{\"event_id\":\"may10-receipt\",\"occurred_at\":\"2008-05-10T12:00:00Z\",\"sequence\":1},{\"event_id\":\"jun10-receipt\",\"occurred_at\":\"2008-06-10T12:00:00Z\",\"sequence\":1}],\"observed_at\":\"2008-07-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q2:ordering\",\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q2:ordering\"},\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"populations\":[{\"complete\":true,\"event_ids\":[\"apr10-receipt\",\"apr20-video\",\"may10-receipt\",\"jun10-receipt\"],\"evidence_ref\":\"evidence:gate-q2:population:receipt\",\"id\":\"gate-q2:population:receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q2:population:receipt\",\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"raw_total\":\"70\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q2:population:receipt\"},{\"complete\":true,\"event_ids\":[\"apr20-cost\"],\"evidence_ref\":\"evidence:gate-q2:population:cost\",\"id\":\"gate-q2:population:cost\",\"kind\":\"cost\",\"observed_at\":\"2008-07-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q2:population:cost\",\"period\":{\"end\":\"2008-07-01\",\"start\":\"2008-04-01\"},\"raw_total\":\"30\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q2:population:cost\"}],\"rows\":[{\"amount\":\"10\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#apr10-receipt\",\"evidence_ref\":\"evidence:classification:apr10-receipt\",\"id\":\"classification:apr10-receipt\",\"observed_at\":\"2008-04-11T00:00:00Z\",\"original_ref\":\"original-source#classification:apr10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr10-receipt\"},\"earned_at\":\"2008-04-10T12:00:00Z\",\"evidence_ref\":\"evidence:apr10-receipt\",\"id\":\"apr10-receipt\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-04-11T00:00:00Z\",\"original_ref\":\"original-source#apr10-receipt\",\"received_at\":\"2008-04-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:apr10-receipt\"},{\"amount\":\"30\",\"channel\":\"home_video\",\"decision\":{\"channel\":\"home_video\",\"eligible\":true,\"event_ref\":\"original-source#apr20-video\",\"evidence_ref\":\"evidence:classification:apr20-video\",\"id\":\"classification:apr20-video\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#classification:apr20-video\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr20-video\"},\"earned_at\":\"2008-04-20T12:00:00Z\",\"evidence_ref\":\"evidence:apr20-video\",\"id\":\"apr20-video\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#apr20-video\",\"received_at\":\"2008-04-20T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:apr20-video\"},{\"actual_third_party\":true,\"decision\":{\"channel\":\"not_applicable\",\"eligible\":true,\"event_ref\":\"original-source#apr20-cost\",\"evidence_ref\":\"evidence:classification:apr20-cost\",\"id\":\"classification:apr20-cost\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#classification:apr20-cost\",\"reason\":\"explicit proposed eligible cost\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:apr20-cost\"},\"evidence_ref\":\"evidence:apr20-cost\",\"gross_amount\":\"30\",\"id\":\"apr20-cost\",\"incurred_at\":\"2008-04-20T12:00:00Z\",\"kind\":\"cost\",\"observed_at\":\"2008-04-21T00:00:00Z\",\"original_ref\":\"original-source#apr20-cost\",\"reductions\":[],\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":2,\"source_ref\":\"disclosed-synthetic-source:apr20-cost\"},{\"amount\":\"10\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#may10-receipt\",\"evidence_ref\":\"evidence:classification:may10-receipt\",\"id\":\"classification:may10-receipt\",\"observed_at\":\"2008-05-11T00:00:00Z\",\"original_ref\":\"original-source#classification:may10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:may10-receipt\"},\"earned_at\":\"2008-05-10T12:00:00Z\",\"evidence_ref\":\"evidence:may10-receipt\",\"id\":\"may10-receipt\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-05-11T00:00:00Z\",\"original_ref\":\"original-source#may10-receipt\",\"received_at\":\"2008-05-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:may10-receipt\"},{\"amount\":\"20\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#jun10-receipt\",\"evidence_ref\":\"evidence:classification:jun10-receipt\",\"id\":\"classification:jun10-receipt\",\"observed_at\":\"2008-06-11T00:00:00Z\",\"original_ref\":\"original-source#classification:jun10-receipt\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:jun10-receipt\"},\"earned_at\":\"2008-06-10T12:00:00Z\",\"evidence_ref\":\"evidence:jun10-receipt\",\"id\":\"jun10-receipt\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-06-11T00:00:00Z\",\"original_ref\":\"original-source#jun10-receipt\",\"received_at\":\"2008-06-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:jun10-receipt\"}]}"
+      }
+    ],
+    "predecessor": {
+      "none": true
+    },
+    "project": "646572697661746976652d44",
+    "registry": {
+      "genesis_date": "2008-01-01",
+      "net_pool_id": "63726f737365642d6e65742d67726f7570",
+      "terms": {
+        "effective_end": "2009-01-01",
+        "effective_start": "2008-01-01",
+        "evidence_ref": "65766964656e63653a7465726d73",
+        "gross_rate": "0.2",
+        "id": "7465726d73",
+        "net_rate": "0.2",
+        "observed_at": "2007-12-20T00:00:00Z",
+        "original_ref": "6f726967696e616c2d736f75726365237465726d73",
+        "scope": {
+          "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+          "asset_id": {
+            "some": "646572697661746976652d44"
+          },
+          "currency": "USD",
+          "participant_id": "73656c6c65722d67726f7570",
+          "pool_id": {
+            "some": "776f726b2d676174652d706f6f6c"
+          },
+          "purpose": {
+            "some": "rolling_work_gate"
+          }
+        },
+        "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a7465726d73",
+        "video_proxy": "0.5"
+      },
+      "work": {
+        "eligible": true,
+        "evidence_ref": "65766964656e63653a776f726b",
+        "id": "776f726b",
+        "observed_at": "2007-12-20T00:00:00Z",
+        "original_ref": "6f726967696e616c2d736f7572636523776f726b",
+        "purchaser_produced": true,
+        "scope": {
+          "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+          "asset_id": {
+            "some": "646572697661746976652d44"
+          },
+          "currency": "USD",
+          "participant_id": "73656c6c65722d67726f7570",
+          "pool_id": {
+            "some": "776f726b2d676174652d706f6f6c"
+          },
+          "purpose": {
+            "some": "rolling_work_gate"
+          }
+        },
+        "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a776f726b"
+      }
+    },
+    "registry_original": "{\"genesis_date\":\"2008-01-01\",\"net_pool_id\":\"crossed-net-group\",\"terms\":{\"effective_end\":\"2009-01-01\",\"effective_start\":\"2008-01-01\",\"evidence_ref\":\"evidence:terms\",\"gross_rate\":\"0.2\",\"id\":\"terms\",\"net_rate\":\"0.2\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"original_ref\":\"original-source#terms\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:terms\",\"video_proxy\":\"0.5\"},\"work\":{\"eligible\":true,\"evidence_ref\":\"evidence:work\",\"id\":\"work\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"original_ref\":\"original-source#work\",\"purchaser_produced\":true,\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:work\"}}",
+    "research": {
+      "professional_approval": "not_established",
+      "references": [
+        {
+          "locator": "4331312e2a",
+          "path": "646f63732f73706c2f63312d61746f6d69632d76617269616e74732e6a736f6e",
+          "sha256": "cc4b3f3a1874c6ddd93d4788fbb308f7d4a4ad3aaa1e2cbaa1ec714c057134a7"
+        },
+        {
+          "locator": "422d4331312d474154455320616e6420422d4331312d534f5552434544",
+          "path": "646f63732f73706c2f636f6d706c6574696f6e2d6261636b6c6f672e6a736f6e",
+          "sha256": "c328702813a329623a045e93e2f643aa83b11d9661bb7aa12e3bca43bf7c3f76"
+        },
+        {
+          "locator": "73656374696f6e34206c696e657336322d3737",
+          "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f525230345f436f6d706c6574696f6e5f4465636973696f6e732e6d64",
+          "sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+        },
+        {
+          "locator": "73656374696f6e36206c696e65733236352d333133",
+          "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f4c4430335f436f6d706c6574696f6e5f5265766965772e6d64",
+          "sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712"
+        },
+        {
+          "locator": "5251303320666f726d756c6120736865657473312d33",
+          "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f525130335f525130345f4c696f6e73676174655f52657365617263682e6d64",
+          "sha256": "f06ade6f62b7062f05fd14f1df59050aecd21e9def1018e23de060203f17c57e"
+        },
+        {
+          "locator": "534543204578686962697431302e34332073656374696f6e312e313b2073656374696f6e322e34286129286969293b206f6666696369616c2068747470733a2f2f7777772e7365632e676f762f41726368697665732f65646761722f646174612f3932393335312f3030303039353031323430373030343637312f76333336353265787631307734332e68746d",
+          "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f7265666572656e63652f636f6e7472616374732f6c672d6f7264657265642d676174652f76333336353265787631307734332e68746d",
+          "sha256": "4d585771d4306837997436dffed0acc56f56dbc4f2fad60d6552d82a365f4745"
+        }
+      ],
+      "source_boundary": "source_economics_with_synthetic_history_and_operating_choices"
+    },
+    "research_original": "{\"professional_approval\":\"not_established\",\"references\":[{\"locator\":\"C11.*\",\"path\":\"docs/spl/c1-atomic-variants.json\",\"sha256\":\"cc4b3f3a1874c6ddd93d4788fbb308f7d4a4ad3aaa1e2cbaa1ec714c057134a7\"},{\"locator\":\"B-C11-GATES and B-C11-SOURCED\",\"path\":\"docs/spl/completion-backlog.json\",\"sha256\":\"c328702813a329623a045e93e2f643aa83b11d9661bb7aa12e3bca43bf7c3f76\"},{\"locator\":\"section4 lines62-77\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_RR04_Completion_Decisions.md\",\"sha256\":\"c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f\"},{\"locator\":\"section6 lines265-313\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_LD03_Completion_Review.md\",\"sha256\":\"658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712\"},{\"locator\":\"RQ03 formula sheets1-3\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_RQ03_RQ04_Lionsgate_Research.md\",\"sha256\":\"f06ade6f62b7062f05fd14f1df59050aecd21e9def1018e23de060203f17c57e\"},{\"locator\":\"SEC Exhibit10.43 section1.1; section2.4(a)(ii); official https://www.sec.gov/Archives/edgar/data/929351/000095012407004671/v33652exv10w43.htm\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/reference/contracts/lg-ordered-gate/v33652exv10w43.htm\",\"sha256\":\"4d585771d4306837997436dffed0acc56f56dbc4f2fad60d6552d82a365f4745\"}],\"source_boundary\":\"source_economics_with_synthetic_history_and_operating_choices\"}",
+    "scope": {
+      "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+      "participant_id": "73656c6c65722d67726f7570",
+      "period": {
+        "end": "2008-07-01",
+        "start": "2008-04-01"
+      },
+      "pool_id": "776f726b2d676174652d706f6f6c"
+    },
+    "supplied_opening": {
+      "boundary": "2008-04-01",
+      "detail": {
+        "none": true
+      },
+      "identity_codec": "unicode-utf8-hex/1",
+      "origin": "original_history",
+      "original_frames": [
+        {
+          "id": "676174652d7131",
+          "period": {
+            "end": "2008-04-01",
+            "start": "2008-01-01"
+          },
+          "raw_original": "{\"aggregate_hurdle\":{\"attained\":true,\"effective_date\":\"2007-12-31\",\"evidence_ref\":\"evidence:outside-hurdle\",\"id\":\"outside-hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"original_ref\":\"original-source#outside-hurdle\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"disclosed-synthetic-source:outside-hurdle\"},\"case_id\":\"gate-q1\",\"cutoff\":\"2008-04-05T00:00:00Z\",\"evidence\":[{\"approved\":true,\"id\":\"evidence:terms\",\"kind\":\"terms\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#terms\"},{\"approved\":true,\"id\":\"evidence:work\",\"kind\":\"work_eligibility\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#work\"},{\"approved\":true,\"id\":\"evidence:original-cost100\",\"kind\":\"cost\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#original-cost100\"},{\"approved\":true,\"id\":\"evidence:classification:original-cost100\",\"kind\":\"classification\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:original-cost100\"},{\"approved\":true,\"id\":\"evidence:original-receipt80\",\"kind\":\"receipt\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#original-receipt80\"},{\"approved\":true,\"id\":\"evidence:classification:original-receipt80\",\"kind\":\"classification\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:original-receipt80\"},{\"approved\":true,\"id\":\"evidence:gate-q1:population:receipt\",\"kind\":\"population\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:population:receipt\"},{\"approved\":true,\"id\":\"evidence:gate-q1:population:cost\",\"kind\":\"population\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:population:cost\"},{\"approved\":true,\"id\":\"evidence:gate-q1:ordering\",\"kind\":\"event_order\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:ordering\"},{\"approved\":true,\"id\":\"evidence:outside-hurdle\",\"kind\":\"aggregate_hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"original-evidence#outside-hurdle\"},{\"approved\":true,\"id\":\"evidence:gate-q1:net-zero\",\"kind\":\"net_worksheet\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"original-evidence#gate-q1:net-zero\"}],\"net_worksheet\":{\"amount\":\"0\",\"evidence_ref\":\"evidence:gate-q1:net-zero\",\"id\":\"gate-q1:net-zero\",\"member_asset_ids\":[\"derivative-D\"],\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:net-zero\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:net-zero\"},\"ordering_authority\":{\"evidence_ref\":\"evidence:gate-q1:ordering\",\"id\":\"gate-q1:ordering\",\"keys\":[{\"event_id\":\"original-cost100\",\"occurred_at\":\"2008-01-10T12:00:00Z\",\"sequence\":1},{\"event_id\":\"original-receipt80\",\"occurred_at\":\"2008-03-10T12:00:00Z\",\"sequence\":1}],\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:ordering\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:ordering\"},\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"populations\":[{\"complete\":true,\"event_ids\":[\"original-receipt80\"],\"evidence_ref\":\"evidence:gate-q1:population:receipt\",\"id\":\"gate-q1:population:receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:population:receipt\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"raw_total\":\"80\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:population:receipt\"},{\"complete\":true,\"event_ids\":[\"original-cost100\"],\"evidence_ref\":\"evidence:gate-q1:population:cost\",\"id\":\"gate-q1:population:cost\",\"kind\":\"cost\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:population:cost\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"raw_total\":\"100\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:population:cost\"}],\"rows\":[{\"actual_third_party\":true,\"decision\":{\"channel\":\"not_applicable\",\"eligible\":true,\"event_ref\":\"original-source#original-cost100\",\"evidence_ref\":\"evidence:classification:original-cost100\",\"id\":\"classification:original-cost100\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-cost100\",\"reason\":\"explicit proposed eligible cost\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-cost100\"},\"evidence_ref\":\"evidence:original-cost100\",\"gross_amount\":\"100\",\"id\":\"original-cost100\",\"incurred_at\":\"2008-01-10T12:00:00Z\",\"kind\":\"cost\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#original-cost100\",\"reductions\":[],\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:original-cost100\"},{\"amount\":\"80\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#original-receipt80\",\"evidence_ref\":\"evidence:classification:original-receipt80\",\"id\":\"classification:original-receipt80\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-receipt80\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-receipt80\"},\"earned_at\":\"2008-03-10T12:00:00Z\",\"evidence_ref\":\"evidence:original-receipt80\",\"id\":\"original-receipt80\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#original-receipt80\",\"received_at\":\"2008-03-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:original-receipt80\"}]}"
+        }
+      ],
+      "policy": {
+        "amendments": "unsupported",
+        "continuous": "opening_and_every_current_prefix",
+        "event_order": "exact_instant_then_authorized_unique_sequence",
+        "evidence_class": "research_assumption",
+        "fee_offset": "0",
+        "id": "SYNTHETIC-LG-ORDERED-GATE-01",
+        "latch": "positive_receipt_reaches_equality_from_false_genesis",
+        "method": "split_reopen",
+        "net": "separately_evidenced_zero_worksheet",
+        "reserve_movements": "0",
+        "revision": "1",
+        "rounding": "exact_no_rounding"
+      },
+      "registry": {
+        "genesis_date": "2008-01-01",
+        "net_pool_id": "63726f737365642d6e65742d67726f7570",
+        "terms": {
+          "effective_end": "2009-01-01",
+          "effective_start": "2008-01-01",
+          "evidence_ref": "65766964656e63653a7465726d73",
+          "gross_rate": "0.2",
+          "id": "7465726d73",
+          "net_rate": "0.2",
+          "observed_at": "2007-12-20T00:00:00Z",
+          "original_ref": "6f726967696e616c2d736f75726365237465726d73",
+          "scope": {
+            "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+            "asset_id": {
+              "some": "646572697661746976652d44"
+            },
+            "currency": "USD",
+            "participant_id": "73656c6c65722d67726f7570",
+            "pool_id": {
+              "some": "776f726b2d676174652d706f6f6c"
+            },
+            "purpose": {
+              "some": "rolling_work_gate"
+            }
+          },
+          "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a7465726d73",
+          "video_proxy": "0.5"
+        },
+        "work": {
+          "eligible": true,
+          "evidence_ref": "65766964656e63653a776f726b",
+          "id": "776f726b",
+          "observed_at": "2007-12-20T00:00:00Z",
+          "original_ref": "6f726967696e616c2d736f7572636523776f726b",
+          "purchaser_produced": true,
+          "scope": {
+            "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+            "asset_id": {
+              "some": "646572697661746976652d44"
+            },
+            "currency": "USD",
+            "participant_id": "73656c6c65722d67726f7570",
+            "pool_id": {
+              "some": "776f726b2d676174652d706f6f6c"
+            },
+            "purpose": {
+              "some": "rolling_work_gate"
+            }
+          },
+          "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a776f726b"
+        }
+      },
+      "registry_original": "{\"genesis_date\":\"2008-01-01\",\"net_pool_id\":\"crossed-net-group\",\"terms\":{\"effective_end\":\"2009-01-01\",\"effective_start\":\"2008-01-01\",\"evidence_ref\":\"evidence:terms\",\"gross_rate\":\"0.2\",\"id\":\"terms\",\"net_rate\":\"0.2\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"original_ref\":\"original-source#terms\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:terms\",\"video_proxy\":\"0.5\"},\"work\":{\"eligible\":true,\"evidence_ref\":\"evidence:work\",\"id\":\"work\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"original_ref\":\"original-source#work\",\"purchaser_produced\":true,\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:work\"}}",
+      "research": {
+        "professional_approval": "not_established",
+        "references": [
+          {
+            "locator": "4331312e2a",
+            "path": "646f63732f73706c2f63312d61746f6d69632d76617269616e74732e6a736f6e",
+            "sha256": "cc4b3f3a1874c6ddd93d4788fbb308f7d4a4ad3aaa1e2cbaa1ec714c057134a7"
+          },
+          {
+            "locator": "422d4331312d474154455320616e6420422d4331312d534f5552434544",
+            "path": "646f63732f73706c2f636f6d706c6574696f6e2d6261636b6c6f672e6a736f6e",
+            "sha256": "c328702813a329623a045e93e2f643aa83b11d9661bb7aa12e3bca43bf7c3f76"
+          },
+          {
+            "locator": "73656374696f6e34206c696e657336322d3737",
+            "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f525230345f436f6d706c6574696f6e5f4465636973696f6e732e6d64",
+            "sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+          },
+          {
+            "locator": "73656374696f6e36206c696e65733236352d333133",
+            "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f4c4430335f436f6d706c6574696f6e5f5265766965772e6d64",
+            "sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712"
+          },
+          {
+            "locator": "5251303320666f726d756c6120736865657473312d33",
+            "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f525130335f525130345f4c696f6e73676174655f52657365617263682e6d64",
+            "sha256": "f06ade6f62b7062f05fd14f1df59050aecd21e9def1018e23de060203f17c57e"
+          },
+          {
+            "locator": "534543204578686962697431302e34332073656374696f6e312e313b2073656374696f6e322e34286129286969293b206f6666696369616c2068747470733a2f2f7777772e7365632e676f762f41726368697665732f65646761722f646174612f3932393335312f3030303039353031323430373030343637312f76333336353265787631307734332e68746d",
+            "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f7265666572656e63652f636f6e7472616374732f6c672d6f7264657265642d676174652f76333336353265787631307734332e68746d",
+            "sha256": "4d585771d4306837997436dffed0acc56f56dbc4f2fad60d6552d82a365f4745"
+          }
+        ],
+        "source_boundary": "source_economics_with_synthetic_history_and_operating_choices"
+      },
+      "research_original": "{\"professional_approval\":\"not_established\",\"references\":[{\"locator\":\"C11.*\",\"path\":\"docs/spl/c1-atomic-variants.json\",\"sha256\":\"cc4b3f3a1874c6ddd93d4788fbb308f7d4a4ad3aaa1e2cbaa1ec714c057134a7\"},{\"locator\":\"B-C11-GATES and B-C11-SOURCED\",\"path\":\"docs/spl/completion-backlog.json\",\"sha256\":\"c328702813a329623a045e93e2f643aa83b11d9661bb7aa12e3bca43bf7c3f76\"},{\"locator\":\"section4 lines62-77\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_RR04_Completion_Decisions.md\",\"sha256\":\"c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f\"},{\"locator\":\"section6 lines265-313\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_LD03_Completion_Review.md\",\"sha256\":\"658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712\"},{\"locator\":\"RQ03 formula sheets1-3\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_RQ03_RQ04_Lionsgate_Research.md\",\"sha256\":\"f06ade6f62b7062f05fd14f1df59050aecd21e9def1018e23de060203f17c57e\"},{\"locator\":\"SEC Exhibit10.43 section1.1; section2.4(a)(ii); official https://www.sec.gov/Archives/edgar/data/929351/000095012407004671/v33652exv10w43.htm\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/reference/contracts/lg-ordered-gate/v33652exv10w43.htm\",\"sha256\":\"4d585771d4306837997436dffed0acc56f56dbc4f2fad60d6552d82a365f4745\"}],\"source_boundary\":\"source_economics_with_synthetic_history_and_operating_choices\"}",
+      "scope": {
+        "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+        "asset_id": "646572697661746976652d44",
+        "currency": "USD",
+        "participant_id": "73656c6c65722d67726f7570",
+        "pool_id": "776f726b2d676174652d706f6f6c",
+        "purpose": "rolling_work_gate"
+      },
+      "source_case_id": {
+        "none": true
+      },
+      "transport_profile": "ordered-gates-original-json/1"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2008-07-05T00:00:00Z",
+    "mode": "final",
+    "module_closure": [],
+    "period": {
+      "end": "2008-07-01",
+      "start": "2008-04-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "ordered-gate-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-ORDERED-GATES"
+  },
+  "module_ref": {
+    "id": "synthetic:ordered-gates",
+    "locator": "cases/ordered-gates/ordered-gates-module.json",
+    "revision": "1",
+    "sha256": "16bd7f2eee9e2085a131b3bdc7c911e29ed25c29f7b7351c547ee69f1703b858"
+  },
+  "parameters": {
+    "cutoff": "2008-07-05T00:00:00Z",
+    "policy": {
+      "amendments": "unsupported",
+      "continuous": "opening_and_every_current_prefix",
+      "event_order": "exact_instant_then_authorized_unique_sequence",
+      "evidence_class": "research_assumption",
+      "fee_offset": "0",
+      "id": "SYNTHETIC-LG-ORDERED-GATE-01",
+      "latch": "positive_receipt_reaches_equality_from_false_genesis",
+      "method": "split_reopen",
+      "net": "separately_evidenced_zero_worksheet",
+      "reserve_movements": "0",
+      "revision": "1",
+      "rounding": "exact_no_rounding"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+    "asset_ids": [
+      "646572697661746976652d44"
+    ],
+    "participant_ids": [
+      "73656c6c65722d67726f7570"
+    ],
+    "pool_id": "776f726b2d676174652d706f6f6c",
+    "purpose": "rolling_work_gate"
+  },
+  "state_cells": [
+    {
+      "boundary": "2008-04-01",
+      "opening_port": "history",
+      "provenance_ref": "disclosed-original-work-history",
+      "purpose": "rolling_work_gate",
+      "quantity": {
+        "boundary": "2008-04-01",
+        "detail": {
+          "none": true
+        },
+        "identity_codec": "unicode-utf8-hex/1",
+        "origin": "original_history",
+        "original_frames": [
+          {
+            "id": "676174652d7131",
+            "period": {
+              "end": "2008-04-01",
+              "start": "2008-01-01"
+            },
+            "raw_original": "{\"aggregate_hurdle\":{\"attained\":true,\"effective_date\":\"2007-12-31\",\"evidence_ref\":\"evidence:outside-hurdle\",\"id\":\"outside-hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"original_ref\":\"original-source#outside-hurdle\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"disclosed-synthetic-source:outside-hurdle\"},\"case_id\":\"gate-q1\",\"cutoff\":\"2008-04-05T00:00:00Z\",\"evidence\":[{\"approved\":true,\"id\":\"evidence:terms\",\"kind\":\"terms\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#terms\"},{\"approved\":true,\"id\":\"evidence:work\",\"kind\":\"work_eligibility\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#work\"},{\"approved\":true,\"id\":\"evidence:original-cost100\",\"kind\":\"cost\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#original-cost100\"},{\"approved\":true,\"id\":\"evidence:classification:original-cost100\",\"kind\":\"classification\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:original-cost100\"},{\"approved\":true,\"id\":\"evidence:original-receipt80\",\"kind\":\"receipt\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#original-receipt80\"},{\"approved\":true,\"id\":\"evidence:classification:original-receipt80\",\"kind\":\"classification\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#classification:original-receipt80\"},{\"approved\":true,\"id\":\"evidence:gate-q1:population:receipt\",\"kind\":\"population\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:population:receipt\"},{\"approved\":true,\"id\":\"evidence:gate-q1:population:cost\",\"kind\":\"population\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:population:cost\"},{\"approved\":true,\"id\":\"evidence:gate-q1:ordering\",\"kind\":\"event_order\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"original-evidence#gate-q1:ordering\"},{\"approved\":true,\"id\":\"evidence:outside-hurdle\",\"kind\":\"aggregate_hurdle\",\"observed_at\":\"2007-12-31T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\"},\"source_ref\":\"original-evidence#outside-hurdle\"},{\"approved\":true,\"id\":\"evidence:gate-q1:net-zero\",\"kind\":\"net_worksheet\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"original-evidence#gate-q1:net-zero\"}],\"net_worksheet\":{\"amount\":\"0\",\"evidence_ref\":\"evidence:gate-q1:net-zero\",\"id\":\"gate-q1:net-zero\",\"member_asset_ids\":[\"derivative-D\"],\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:net-zero\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"crossed-net-group\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:net-zero\"},\"ordering_authority\":{\"evidence_ref\":\"evidence:gate-q1:ordering\",\"id\":\"gate-q1:ordering\",\"keys\":[{\"event_id\":\"original-cost100\",\"occurred_at\":\"2008-01-10T12:00:00Z\",\"sequence\":1},{\"event_id\":\"original-receipt80\",\"occurred_at\":\"2008-03-10T12:00:00Z\",\"sequence\":1}],\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:ordering\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:ordering\"},\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"populations\":[{\"complete\":true,\"event_ids\":[\"original-receipt80\"],\"evidence_ref\":\"evidence:gate-q1:population:receipt\",\"id\":\"gate-q1:population:receipt\",\"kind\":\"receipt\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:population:receipt\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"raw_total\":\"80\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:population:receipt\"},{\"complete\":true,\"event_ids\":[\"original-cost100\"],\"evidence_ref\":\"evidence:gate-q1:population:cost\",\"id\":\"gate-q1:population:cost\",\"kind\":\"cost\",\"observed_at\":\"2008-04-01T00:00:00Z\",\"original_ref\":\"original-source#gate-q1:population:cost\",\"period\":{\"end\":\"2008-04-01\",\"start\":\"2008-01-01\"},\"raw_total\":\"100\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:gate-q1:population:cost\"}],\"rows\":[{\"actual_third_party\":true,\"decision\":{\"channel\":\"not_applicable\",\"eligible\":true,\"event_ref\":\"original-source#original-cost100\",\"evidence_ref\":\"evidence:classification:original-cost100\",\"id\":\"classification:original-cost100\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-cost100\",\"reason\":\"explicit proposed eligible cost\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-cost100\"},\"evidence_ref\":\"evidence:original-cost100\",\"gross_amount\":\"100\",\"id\":\"original-cost100\",\"incurred_at\":\"2008-01-10T12:00:00Z\",\"kind\":\"cost\",\"observed_at\":\"2008-01-11T00:00:00Z\",\"original_ref\":\"original-source#original-cost100\",\"reductions\":[],\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:original-cost100\"},{\"amount\":\"80\",\"channel\":\"ordinary\",\"decision\":{\"channel\":\"ordinary\",\"eligible\":true,\"event_ref\":\"original-source#original-receipt80\",\"evidence_ref\":\"evidence:classification:original-receipt80\",\"id\":\"classification:original-receipt80\",\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#classification:original-receipt80\",\"reason\":\"explicit proposed eligible receipt\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:classification:original-receipt80\"},\"earned_at\":\"2008-03-10T12:00:00Z\",\"evidence_ref\":\"evidence:original-receipt80\",\"id\":\"original-receipt80\",\"kind\":\"receipt\",\"nonrefundable\":true,\"observed_at\":\"2008-03-11T00:00:00Z\",\"original_ref\":\"original-source#original-receipt80\",\"received_at\":\"2008-03-10T12:00:00Z\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"sequence\":1,\"source_ref\":\"disclosed-synthetic-source:original-receipt80\"}]}"
+          }
+        ],
+        "policy": {
+          "amendments": "unsupported",
+          "continuous": "opening_and_every_current_prefix",
+          "event_order": "exact_instant_then_authorized_unique_sequence",
+          "evidence_class": "research_assumption",
+          "fee_offset": "0",
+          "id": "SYNTHETIC-LG-ORDERED-GATE-01",
+          "latch": "positive_receipt_reaches_equality_from_false_genesis",
+          "method": "split_reopen",
+          "net": "separately_evidenced_zero_worksheet",
+          "reserve_movements": "0",
+          "revision": "1",
+          "rounding": "exact_no_rounding"
+        },
+        "registry": {
+          "genesis_date": "2008-01-01",
+          "net_pool_id": "63726f737365642d6e65742d67726f7570",
+          "terms": {
+            "effective_end": "2009-01-01",
+            "effective_start": "2008-01-01",
+            "evidence_ref": "65766964656e63653a7465726d73",
+            "gross_rate": "0.2",
+            "id": "7465726d73",
+            "net_rate": "0.2",
+            "observed_at": "2007-12-20T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f75726365237465726d73",
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a7465726d73",
+            "video_proxy": "0.5"
+          },
+          "work": {
+            "eligible": true,
+            "evidence_ref": "65766964656e63653a776f726b",
+            "id": "776f726b",
+            "observed_at": "2007-12-20T00:00:00Z",
+            "original_ref": "6f726967696e616c2d736f7572636523776f726b",
+            "purchaser_produced": true,
+            "scope": {
+              "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+              "asset_id": {
+                "some": "646572697661746976652d44"
+              },
+              "currency": "USD",
+              "participant_id": "73656c6c65722d67726f7570",
+              "pool_id": {
+                "some": "776f726b2d676174652d706f6f6c"
+              },
+              "purpose": {
+                "some": "rolling_work_gate"
+              }
+            },
+            "source_ref": "646973636c6f7365642d73796e7468657469632d736f757263653a776f726b"
+          }
+        },
+        "registry_original": "{\"genesis_date\":\"2008-01-01\",\"net_pool_id\":\"crossed-net-group\",\"terms\":{\"effective_end\":\"2009-01-01\",\"effective_start\":\"2008-01-01\",\"evidence_ref\":\"evidence:terms\",\"gross_rate\":\"0.2\",\"id\":\"terms\",\"net_rate\":\"0.2\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"original_ref\":\"original-source#terms\",\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:terms\",\"video_proxy\":\"0.5\"},\"work\":{\"eligible\":true,\"evidence_ref\":\"evidence:work\",\"id\":\"work\",\"observed_at\":\"2007-12-20T00:00:00Z\",\"original_ref\":\"original-source#work\",\"purchaser_produced\":true,\"scope\":{\"agreement_id\":\"synthetic-lg-mandate\",\"asset_id\":\"derivative-D\",\"currency\":\"USD\",\"participant_id\":\"seller-group\",\"pool_id\":\"work-gate-pool\",\"purpose\":\"rolling_work_gate\"},\"source_ref\":\"disclosed-synthetic-source:work\"}}",
+        "research": {
+          "professional_approval": "not_established",
+          "references": [
+            {
+              "locator": "4331312e2a",
+              "path": "646f63732f73706c2f63312d61746f6d69632d76617269616e74732e6a736f6e",
+              "sha256": "cc4b3f3a1874c6ddd93d4788fbb308f7d4a4ad3aaa1e2cbaa1ec714c057134a7"
+            },
+            {
+              "locator": "422d4331312d474154455320616e6420422d4331312d534f5552434544",
+              "path": "646f63732f73706c2f636f6d706c6574696f6e2d6261636b6c6f672e6a736f6e",
+              "sha256": "c328702813a329623a045e93e2f643aa83b11d9661bb7aa12e3bca43bf7c3f76"
+            },
+            {
+              "locator": "73656374696f6e34206c696e657336322d3737",
+              "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f525230345f436f6d706c6574696f6e5f4465636973696f6e732e6d64",
+              "sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+            },
+            {
+              "locator": "73656374696f6e36206c696e65733236352d333133",
+              "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f4c4430335f436f6d706c6574696f6e5f5265766965772e6d64",
+              "sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712"
+            },
+            {
+              "locator": "5251303320666f726d756c6120736865657473312d33",
+              "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f52657365617263684167656e742f646f63756d656e74732f53504c5f525130335f525130345f4c696f6e73676174655f52657365617263682e6d64",
+              "sha256": "f06ade6f62b7062f05fd14f1df59050aecd21e9def1018e23de060203f17c57e"
+            },
+            {
+              "locator": "534543204578686962697431302e34332073656374696f6e312e313b2073656374696f6e322e34286129286969293b206f6666696369616c2068747470733a2f2f7777772e7365632e676f762f41726368697665732f65646761722f646174612f3932393335312f3030303039353031323430373030343637312f76333336353265787631307734332e68746d",
+              "path": "433a2f50726f6a656374732f46696c6d5f54565f70617274696369706174696f6e5f64796e616d69635f44534c2f7265666572656e63652f636f6e7472616374732f6c672d6f7264657265642d676174652f76333336353265787631307734332e68746d",
+              "sha256": "4d585771d4306837997436dffed0acc56f56dbc4f2fad60d6552d82a365f4745"
+            }
+          ],
+          "source_boundary": "source_economics_with_synthetic_history_and_operating_choices"
+        },
+        "research_original": "{\"professional_approval\":\"not_established\",\"references\":[{\"locator\":\"C11.*\",\"path\":\"docs/spl/c1-atomic-variants.json\",\"sha256\":\"cc4b3f3a1874c6ddd93d4788fbb308f7d4a4ad3aaa1e2cbaa1ec714c057134a7\"},{\"locator\":\"B-C11-GATES and B-C11-SOURCED\",\"path\":\"docs/spl/completion-backlog.json\",\"sha256\":\"c328702813a329623a045e93e2f643aa83b11d9661bb7aa12e3bca43bf7c3f76\"},{\"locator\":\"section4 lines62-77\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_RR04_Completion_Decisions.md\",\"sha256\":\"c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f\"},{\"locator\":\"section6 lines265-313\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_LD03_Completion_Review.md\",\"sha256\":\"658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712\"},{\"locator\":\"RQ03 formula sheets1-3\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/ResearchAgent/documents/SPL_RQ03_RQ04_Lionsgate_Research.md\",\"sha256\":\"f06ade6f62b7062f05fd14f1df59050aecd21e9def1018e23de060203f17c57e\"},{\"locator\":\"SEC Exhibit10.43 section1.1; section2.4(a)(ii); official https://www.sec.gov/Archives/edgar/data/929351/000095012407004671/v33652exv10w43.htm\",\"path\":\"C:/Projects/Film_TV_participation_dynamic_DSL/reference/contracts/lg-ordered-gate/v33652exv10w43.htm\",\"sha256\":\"4d585771d4306837997436dffed0acc56f56dbc4f2fad60d6552d82a365f4745\"}],\"source_boundary\":\"source_economics_with_synthetic_history_and_operating_choices\"}",
+        "scope": {
+          "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+          "asset_id": "646572697661746976652d44",
+          "currency": "USD",
+          "participant_id": "73656c6c65722d67726f7570",
+          "pool_id": "776f726b2d676174652d706f6f6c",
+          "purpose": "rolling_work_gate"
+        },
+        "source_case_id": {
+          "none": true
+        },
+        "transport_profile": "ordered-gates-original-json/1"
+      },
+      "scenario_id": "SYNTHETIC-ORDERED-GATES",
+      "scope": {
+        "agreement_id": "73796e7468657469632d6c672d6d616e64617465",
+        "asset_id": "646572697661746976652d44",
+        "participant_id": "73656c6c65722d67726f7570",
+        "pool_id": "776f726b2d676174652d706f6f6c"
+      },
+      "state_key": "{\"agreement_id\":\"73796e7468657469632d6c672d6d616e64617465\",\"asset_id\":\"646572697661746976652d44\",\"participant_id\":\"73656c6c65722d67726f7570\",\"pool_id\":\"776f726b2d676174652d706f6f6c\",\"purpose\":\"rolling_work_gate\"}",
+      "unit": "structured"
+    }
+  ]
+}

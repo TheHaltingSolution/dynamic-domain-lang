@@ -5,6 +5,7 @@ from fractions import Fraction
 import itertools
 import json
 from pathlib import Path
+import sys
 import unittest
 
 from oracles.r1 import (OracleError, angel_guild, exact_json, mqp_correction,
@@ -20,19 +21,22 @@ def fixture(name):
 
 class R1OracleTests(unittest.TestCase):
     def test_oracle_imports_only_standard_library_and_oracle_siblings(self):
-        allowed = {"calendar", "copy", "datetime", "fractions", "re"}
+        allowed = sys.stdlib_module_names
         for path in (ROOT / "oracles").glob("*.py"):
             tree = ast.parse(path.read_text(encoding="utf-8"))
             for node in ast.walk(tree):
                 if isinstance(node, ast.Import):
-                    self.assertTrue(all(n.name.split(".")[0] in allowed for n in node.names))
+                    for alias in node.names:
+                        self.assertIn(alias.name.split(".")[0], allowed,
+                                      f"{path.name}:{node.lineno}: {alias.name}")
                 if isinstance(node, ast.ImportFrom):
                     if node.level:
                         self.assertEqual(node.level, 1)
                         self.assertTrue(node.module and "." not in node.module)
                         self.assertTrue((ROOT / "oracles" / (node.module + ".py")).is_file())
                     else:
-                        self.assertIn(node.module.split(".")[0], allowed)
+                        self.assertIn(node.module.split(".")[0], allowed,
+                                      f"{path.name}:{node.lineno}: {node.module}")
 
     def assert_rejects(self, code, calculate, data):
         with self.assertRaisesRegex(OracleError, "^" + code + "$"):

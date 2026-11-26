@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false, "required": ["format", "profiles"],
+  "properties": {
+    "format": {"const": "spl-dependency-registry/1"},
+    "profiles": {"type": "array", "maxItems": 128, "items": {
+      "type": "object", "additionalProperties": false, "required": ["locator", "sha256"],
+      "properties": {"locator": {"type": "string", "minLength": 1},
+                     "sha256": {"type": "string", "pattern": "[0-9a-f]{64}"}}
+    }}
+  }
+}

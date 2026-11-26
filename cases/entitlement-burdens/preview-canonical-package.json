@@ -1,0 +1,849 @@
+{
+  "decisions": [
+    {
+      "decision_id": "ENTITLEMENT_BURDENS_SELECTED",
+      "evidence_ref": "synthetic-selected-burden-policy",
+      "policy_id": "SYNTHETIC-CONTRACT-BURDENS-01",
+      "policy_revision": "1",
+      "status": "proposed"
+    }
+  ],
+  "evidence": {},
+  "inputs": {
+    "coordinator": {
+      "currency": "USD",
+      "id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+      "purpose": "cross_contract_entitlement_burden"
+    },
+    "frames": [
+      {
+        "accounts": [
+          {
+            "evidence_ref": "65766964656e63653a636c61696d616e74",
+            "evidence_slot": "0",
+            "id": "636c61696d616e74",
+            "observed_at": "2026-01-02T00:00:00Z",
+            "scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a636c61696d616e74"
+          },
+          {
+            "evidence_ref": "65766964656e63653a62757264656e6564",
+            "evidence_slot": "1",
+            "id": "62757264656e6564",
+            "observed_at": "2026-01-02T00:00:00Z",
+            "scope": {
+              "agreement_id": "61677265656d656e742d62757264656e6564",
+              "asset_id": "7469746c652d62757264656e6564",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d62757264656e6564",
+              "pool_id": "706f6f6c2d62757264656e6564"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a62757264656e6564"
+          }
+        ],
+        "applications": [
+          {
+            "account_id": "636c61696d616e74",
+            "amount": {
+              "currency": "USD",
+              "value": "60"
+            },
+            "application_date": "2026-03-10",
+            "application_date_utc": "2026-03-10T00:00:00Z",
+            "approved": true,
+            "entitlement_line_ref": "6f726967696e616c2d70617274696369706174696f6e2d6c656467657223636c61696d616e742d7131",
+            "evidence_ref": "65766964656e63653a6170706c69636174696f6e3a7131",
+            "evidence_slot": "9",
+            "id": "6170706c69636174696f6e3a7131",
+            "observed_at": "2026-03-12T00:00:00Z",
+            "payment_id": "7061796d656e743a7131",
+            "receipt_id": "726563656970743a636c61696d616e743a7131",
+            "scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a6170706c69636174696f6e3a7131"
+          }
+        ],
+        "as_of": "2026-03-31",
+        "as_of_next": "2026-04-01",
+        "authorizations": [
+          {
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "basis_kind": "accrued_basis_current_period",
+            "burden_rate": "0.3",
+            "burdened_account": "62757264656e6564",
+            "burdened_scope": {
+              "agreement_id": "61677265656d656e742d62757264656e6564",
+              "asset_id": "7469746c652d62757264656e6564",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d62757264656e6564",
+              "pool_id": "706f6f6c2d62757264656e6564"
+            },
+            "cap": {
+              "currency": "USD",
+              "value": "45"
+            },
+            "claimant_account": "636c61696d616e74",
+            "claimant_scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "effective": {
+              "end": "2026-10-01",
+              "start": "2026-01-01"
+            },
+            "evidence_ref": "65766964656e63653a617574686f726974793a62757264656e",
+            "evidence_slot": "6",
+            "id": "617574686f726974793a62757264656e",
+            "minimum_basis": {
+              "currency": "USD",
+              "value": "0"
+            },
+            "observed_at": "2026-01-03T00:00:00Z",
+            "original_ref": "6f726967696e616c2d63726f73732d636f6e74726163742d617574686f726974792362757264656e2d6361703435",
+            "purpose": "cross_contract_entitlement_burden",
+            "recorded_date": "2026-01-02",
+            "recorded_date_utc": "2026-01-02T00:00:00Z",
+            "sequence": "1",
+            "source_ref": "6f726967696e616c2d736f757263653a617574686f726974793a62757264656e"
+          }
+        ],
+        "cutoff": "2026-04-03T00:00:00Z",
+        "evidence": [
+          {
+            "account_ids": [
+              "636c61696d616e74"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a636c61696d616e74",
+            "kind": "account_scope",
+            "observed_at": "2026-01-02T00:00:00Z",
+            "slot": "0",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a636c61696d616e74"
+          },
+          {
+            "account_ids": [
+              "62757264656e6564"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a62757264656e6564",
+            "kind": "account_scope",
+            "observed_at": "2026-01-02T00:00:00Z",
+            "slot": "1",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a62757264656e6564"
+          },
+          {
+            "account_ids": [
+              "636c61696d616e74"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a7465726d733a636c61696d616e74",
+            "kind": "participation_terms",
+            "observed_at": "2026-01-02T00:00:00Z",
+            "slot": "2",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a7465726d733a636c61696d616e74"
+          },
+          {
+            "account_ids": [
+              "62757264656e6564"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a7465726d733a62757264656e6564",
+            "kind": "participation_terms",
+            "observed_at": "2026-01-02T00:00:00Z",
+            "slot": "3",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a7465726d733a62757264656e6564"
+          },
+          {
+            "account_ids": [
+              "636c61696d616e74"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a726563656970743a636c61696d616e743a7131",
+            "kind": "original_receipt_basis",
+            "observed_at": "2026-03-02T00:00:00Z",
+            "slot": "4",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a726563656970743a636c61696d616e743a7131"
+          },
+          {
+            "account_ids": [
+              "62757264656e6564"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a726563656970743a62757264656e65643a7131",
+            "kind": "original_receipt_basis",
+            "observed_at": "2026-03-02T00:00:00Z",
+            "slot": "5",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a726563656970743a62757264656e65643a7131"
+          },
+          {
+            "account_ids": [
+              "636c61696d616e74",
+              "62757264656e6564"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a617574686f726974793a62757264656e",
+            "kind": "cross_contract_authority",
+            "observed_at": "2026-01-03T00:00:00Z",
+            "slot": "6",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a617574686f726974793a62757264656e"
+          },
+          {
+            "account_ids": [
+              "636c61696d616e74",
+              "62757264656e6564"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a726571756573743a7131",
+            "kind": "original_burden_request",
+            "observed_at": "2026-04-02T00:00:00Z",
+            "slot": "7",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a726571756573743a7131"
+          },
+          {
+            "account_ids": [
+              "636c61696d616e74"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a7061796d656e743a7131",
+            "kind": "actual_participation_payment",
+            "observed_at": "2026-03-11T00:00:00Z",
+            "slot": "8",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a7061796d656e743a7131"
+          },
+          {
+            "account_ids": [
+              "636c61696d616e74"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a6170706c69636174696f6e3a7131",
+            "kind": "approved_participation_application",
+            "observed_at": "2026-03-12T00:00:00Z",
+            "slot": "9",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a6170706c69636174696f6e3a7131"
+          },
+          {
+            "account_ids": [
+              "636c61696d616e74"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a726563656970742d706f70756c6174696f6e3a636c61696d616e743a7131",
+            "kind": "complete_receipt_population",
+            "observed_at": "2026-04-01T00:00:00Z",
+            "slot": "10",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a726563656970742d706f70756c6174696f6e3a636c61696d616e743a7131"
+          },
+          {
+            "account_ids": [
+              "62757264656e6564"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a726563656970742d706f70756c6174696f6e3a62757264656e65643a7131",
+            "kind": "complete_receipt_population",
+            "observed_at": "2026-04-01T00:00:00Z",
+            "slot": "11",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a726563656970742d706f70756c6174696f6e3a62757264656e65643a7131"
+          },
+          {
+            "account_ids": [
+              "636c61696d616e74"
+            ],
+            "approved": true,
+            "coordinator_id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+            "id": "65766964656e63653a7061796d656e742d706f70756c6174696f6e3a636c61696d616e743a7131",
+            "kind": "complete_payment_population",
+            "observed_at": "2026-04-01T00:00:00Z",
+            "slot": "12",
+            "source_ref": "73796e7468657469632d617070726f7665642d65766964656e63653a7061796d656e742d706f70756c6174696f6e3a636c61696d616e743a7131"
+          }
+        ],
+        "id": "62757264656e2d7131",
+        "payment_populations": [
+          {
+            "account_id": "636c61696d616e74",
+            "application_ids": [
+              "6170706c69636174696f6e3a7131"
+            ],
+            "complete": true,
+            "evidence_ref": "65766964656e63653a7061796d656e742d706f70756c6174696f6e3a636c61696d616e743a7131",
+            "evidence_slot": "12",
+            "id": "7061796d656e742d706f70756c6174696f6e3a636c61696d616e743a7131",
+            "observed_at": "2026-04-01T00:00:00Z",
+            "paid_total": {
+              "currency": "USD",
+              "value": "60"
+            },
+            "payment_ids": [
+              "7061796d656e743a7131"
+            ],
+            "period": {
+              "end": "2026-04-01",
+              "start": "2026-01-01"
+            },
+            "scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a7061796d656e742d706f70756c6174696f6e3a636c61696d616e743a7131"
+          }
+        ],
+        "payments": [
+          {
+            "account_id": "636c61696d616e74",
+            "amount": {
+              "currency": "USD",
+              "value": "60"
+            },
+            "evidence_ref": "65766964656e63653a7061796d656e743a7131",
+            "evidence_slot": "8",
+            "id": "7061796d656e743a7131",
+            "observed_at": "2026-03-11T00:00:00Z",
+            "original_ref": "6f726967696e616c2d62616e6b2d73746174656d656e7423636c61696d616e742d7131",
+            "paid_at": "2026-03-10T12:00:00Z",
+            "paid_utc_date": "2026-03-10",
+            "purpose": "participation_entitlement_settlement",
+            "scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a7061796d656e743a7131"
+          }
+        ],
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "period_end_utc": "2026-04-01T00:00:00Z",
+        "receipt_populations": [
+          {
+            "account_id": "636c61696d616e74",
+            "complete": true,
+            "evidence_ref": "65766964656e63653a726563656970742d706f70756c6174696f6e3a636c61696d616e743a7131",
+            "evidence_slot": "10",
+            "gross_total": {
+              "currency": "USD",
+              "value": "200"
+            },
+            "id": "726563656970742d706f70756c6174696f6e3a636c61696d616e743a7131",
+            "observed_at": "2026-04-01T00:00:00Z",
+            "period": {
+              "end": "2026-04-01",
+              "start": "2026-01-01"
+            },
+            "receipt_ids": [
+              "726563656970743a636c61696d616e743a7131"
+            ],
+            "scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a726563656970742d706f70756c6174696f6e3a636c61696d616e743a7131"
+          },
+          {
+            "account_id": "62757264656e6564",
+            "complete": true,
+            "evidence_ref": "65766964656e63653a726563656970742d706f70756c6174696f6e3a62757264656e65643a7131",
+            "evidence_slot": "11",
+            "gross_total": {
+              "currency": "USD",
+              "value": "400"
+            },
+            "id": "726563656970742d706f70756c6174696f6e3a62757264656e65643a7131",
+            "observed_at": "2026-04-01T00:00:00Z",
+            "period": {
+              "end": "2026-04-01",
+              "start": "2026-01-01"
+            },
+            "receipt_ids": [
+              "726563656970743a62757264656e65643a7131"
+            ],
+            "scope": {
+              "agreement_id": "61677265656d656e742d62757264656e6564",
+              "asset_id": "7469746c652d62757264656e6564",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d62757264656e6564",
+              "pool_id": "706f6f6c2d62757264656e6564"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a726563656970742d706f70756c6174696f6e3a62757264656e65643a7131"
+          }
+        ],
+        "receipts": [
+          {
+            "account_id": "636c61696d616e74",
+            "amount": {
+              "currency": "USD",
+              "value": "200"
+            },
+            "effective_date": "2026-03-01",
+            "effective_date_utc": "2026-03-01T00:00:00Z",
+            "entitlement_line_ref": "6f726967696e616c2d70617274696369706174696f6e2d6c656467657223636c61696d616e742d7131",
+            "evidence_ref": "65766964656e63653a726563656970743a636c61696d616e743a7131",
+            "evidence_slot": "4",
+            "id": "726563656970743a636c61696d616e743a7131",
+            "observed_at": "2026-03-02T00:00:00Z",
+            "original_ref": "6f726967696e616c2d726563656970742d6c656467657223636c61696d616e742d7131",
+            "scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a726563656970743a636c61696d616e743a7131",
+            "term_id": "7465726d733a636c61696d616e74"
+          },
+          {
+            "account_id": "62757264656e6564",
+            "amount": {
+              "currency": "USD",
+              "value": "400"
+            },
+            "effective_date": "2026-03-01",
+            "effective_date_utc": "2026-03-01T00:00:00Z",
+            "entitlement_line_ref": "6f726967696e616c2d70617274696369706174696f6e2d6c65646765722362757264656e65642d7131",
+            "evidence_ref": "65766964656e63653a726563656970743a62757264656e65643a7131",
+            "evidence_slot": "5",
+            "id": "726563656970743a62757264656e65643a7131",
+            "observed_at": "2026-03-02T00:00:00Z",
+            "original_ref": "6f726967696e616c2d726563656970742d6c65646765722362757264656e65642d7131",
+            "scope": {
+              "agreement_id": "61677265656d656e742d62757264656e6564",
+              "asset_id": "7469746c652d62757264656e6564",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d62757264656e6564",
+              "pool_id": "706f6f6c2d62757264656e6564"
+            },
+            "source_ref": "6f726967696e616c2d736f757263653a726563656970743a62757264656e65643a7131",
+            "term_id": "7465726d733a62757264656e6564"
+          }
+        ],
+        "requests": [
+          {
+            "authorization_id": "617574686f726974793a62757264656e",
+            "basis_receipt_ids": [
+              "726563656970743a636c61696d616e743a7131"
+            ],
+            "burdened_account": "62757264656e6564",
+            "burdened_scope": {
+              "agreement_id": "61677265656d656e742d62757264656e6564",
+              "asset_id": "7469746c652d62757264656e6564",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d62757264656e6564",
+              "pool_id": "706f6f6c2d62757264656e6564"
+            },
+            "claimant_account": "636c61696d616e74",
+            "claimant_scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "evidence_ref": "65766964656e63653a726571756573743a7131",
+            "evidence_slot": "7",
+            "id": "726571756573743a7131",
+            "measurement_id": "6f726967696e616c2d63757272656e742d70617274696369706174696f6e2d6d6561737572656d656e743a7131",
+            "observed_at": "2026-04-02T00:00:00Z",
+            "original_ref": "6f726967696e616c2d62757264656e2d726571756573742d6c6564676572237131",
+            "recognition_date": "2026-03-31",
+            "recognition_date_utc": "2026-03-31T00:00:00Z",
+            "source_ref": "6f726967696e616c2d736f757263653a726571756573743a7131"
+          }
+        ],
+        "terms": [
+          {
+            "account_id": "636c61696d616e74",
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "approved_date_utc": "2026-01-01T00:00:00Z",
+            "effective": {
+              "end": "2026-10-01",
+              "start": "2026-01-01"
+            },
+            "evidence_ref": "65766964656e63653a7465726d733a636c61696d616e74",
+            "evidence_slot": "2",
+            "id": "7465726d733a636c61696d616e74",
+            "observed_at": "2026-01-02T00:00:00Z",
+            "original_ref": "6f726967696e616c2d70617274696369706174696f6e2d636f6e747261637423636c61696d616e74",
+            "scope": {
+              "agreement_id": "61677265656d656e742d636c61696d616e74",
+              "asset_id": "7469746c652d636c61696d616e74",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d636c61696d616e74",
+              "pool_id": "706f6f6c2d636c61696d616e74"
+            },
+            "share": "0.5",
+            "source_ref": "6f726967696e616c2d736f757263653a7465726d733a636c61696d616e74",
+            "source_share": "0.5"
+          },
+          {
+            "account_id": "62757264656e6564",
+            "approved": true,
+            "approved_date": "2026-01-01",
+            "approved_date_utc": "2026-01-01T00:00:00Z",
+            "effective": {
+              "end": "2026-10-01",
+              "start": "2026-01-01"
+            },
+            "evidence_ref": "65766964656e63653a7465726d733a62757264656e6564",
+            "evidence_slot": "3",
+            "id": "7465726d733a62757264656e6564",
+            "observed_at": "2026-01-02T00:00:00Z",
+            "original_ref": "6f726967696e616c2d70617274696369706174696f6e2d636f6e74726163742362757264656e6564",
+            "scope": {
+              "agreement_id": "61677265656d656e742d62757264656e6564",
+              "asset_id": "7469746c652d62757264656e6564",
+              "currency": "USD",
+              "participant_id": "7061727469636970616e742d62757264656e6564",
+              "pool_id": "706f6f6c2d62757264656e6564"
+            },
+            "share": "0.5",
+            "source_ref": "6f726967696e616c2d736f757263653a7465726d733a62757264656e6564",
+            "source_share": "0.5"
+          }
+        ]
+      }
+    ],
+    "original_frames": [
+      {
+        "id": "62757264656e2d7131",
+        "originals": {
+          "accounts": [
+            {
+              "id": "636c61696d616e74",
+              "raw_original": "{\"evidence_ref\":\"evidence:claimant\",\"id\":\"claimant\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:claimant\"}"
+            },
+            {
+              "id": "62757264656e6564",
+              "raw_original": "{\"evidence_ref\":\"evidence:burdened\",\"id\":\"burdened\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"source_ref\":\"original-source:burdened\"}"
+            }
+          ],
+          "applications": [
+            {
+              "id": "6170706c69636174696f6e3a7131",
+              "raw_original": "{\"account_id\":\"claimant\",\"amount\":\"60\",\"application_date\":\"2026-03-10\",\"approved\":true,\"entitlement_line_ref\":\"original-participation-ledger#claimant-q1\",\"evidence_ref\":\"evidence:application:q1\",\"id\":\"application:q1\",\"observed_at\":\"2026-03-12T00:00:00Z\",\"payment_id\":\"payment:q1\",\"receipt_id\":\"receipt:claimant:q1\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:application:q1\"}"
+            }
+          ],
+          "authorizations": [
+            {
+              "id": "617574686f726974793a62757264656e",
+              "raw_original": "{\"approved\":true,\"approved_date\":\"2026-01-01\",\"basis_kind\":\"accrued_basis_current_period\",\"burden_rate\":\"0.3\",\"burdened_account\":\"burdened\",\"burdened_scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"cap\":\"45\",\"claimant_account\":\"claimant\",\"claimant_scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:authority:burden\",\"id\":\"authority:burden\",\"minimum_basis\":\"0\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"original_ref\":\"original-cross-contract-authority#burden-cap45\",\"purpose\":\"cross_contract_entitlement_burden\",\"recorded_date\":\"2026-01-02\",\"sequence\":1,\"source_ref\":\"original-source:authority:burden\"}"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "65766964656e63653a636c61696d616e74",
+              "raw_original": "{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:claimant\",\"kind\":\"account_scope\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:claimant\"}",
+              "slot": "0"
+            },
+            {
+              "id": "65766964656e63653a62757264656e6564",
+              "raw_original": "{\"account_ids\":[\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:burdened\",\"kind\":\"account_scope\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:burdened\"}",
+              "slot": "1"
+            },
+            {
+              "id": "65766964656e63653a7465726d733a636c61696d616e74",
+              "raw_original": "{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:terms:claimant\",\"kind\":\"participation_terms\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:terms:claimant\"}",
+              "slot": "2"
+            },
+            {
+              "id": "65766964656e63653a7465726d733a62757264656e6564",
+              "raw_original": "{\"account_ids\":[\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:terms:burdened\",\"kind\":\"participation_terms\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:terms:burdened\"}",
+              "slot": "3"
+            },
+            {
+              "id": "65766964656e63653a726563656970743a636c61696d616e743a7131",
+              "raw_original": "{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:receipt:claimant:q1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:receipt:claimant:q1\"}",
+              "slot": "4"
+            },
+            {
+              "id": "65766964656e63653a726563656970743a62757264656e65643a7131",
+              "raw_original": "{\"account_ids\":[\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:receipt:burdened:q1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:receipt:burdened:q1\"}",
+              "slot": "5"
+            },
+            {
+              "id": "65766964656e63653a617574686f726974793a62757264656e",
+              "raw_original": "{\"account_ids\":[\"claimant\",\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:authority:burden\",\"kind\":\"cross_contract_authority\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:authority:burden\"}",
+              "slot": "6"
+            },
+            {
+              "id": "65766964656e63653a726571756573743a7131",
+              "raw_original": "{\"account_ids\":[\"claimant\",\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:request:q1\",\"kind\":\"original_burden_request\",\"observed_at\":\"2026-04-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:request:q1\"}",
+              "slot": "7"
+            },
+            {
+              "id": "65766964656e63653a7061796d656e743a7131",
+              "raw_original": "{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:payment:q1\",\"kind\":\"actual_participation_payment\",\"observed_at\":\"2026-03-11T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:payment:q1\"}",
+              "slot": "8"
+            },
+            {
+              "id": "65766964656e63653a6170706c69636174696f6e3a7131",
+              "raw_original": "{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:application:q1\",\"kind\":\"approved_participation_application\",\"observed_at\":\"2026-03-12T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:application:q1\"}",
+              "slot": "9"
+            },
+            {
+              "id": "65766964656e63653a726563656970742d706f70756c6174696f6e3a636c61696d616e743a7131",
+              "raw_original": "{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:receipt-population:claimant:q1\",\"kind\":\"complete_receipt_population\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:receipt-population:claimant:q1\"}",
+              "slot": "10"
+            },
+            {
+              "id": "65766964656e63653a726563656970742d706f70756c6174696f6e3a62757264656e65643a7131",
+              "raw_original": "{\"account_ids\":[\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:receipt-population:burdened:q1\",\"kind\":\"complete_receipt_population\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:receipt-population:burdened:q1\"}",
+              "slot": "11"
+            },
+            {
+              "id": "65766964656e63653a7061796d656e742d706f70756c6174696f6e3a636c61696d616e743a7131",
+              "raw_original": "{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:payment-population:claimant:q1\",\"kind\":\"complete_payment_population\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:payment-population:claimant:q1\"}",
+              "slot": "12"
+            }
+          ],
+          "payment_populations": [
+            {
+              "id": "7061796d656e742d706f70756c6174696f6e3a636c61696d616e743a7131",
+              "raw_original": "{\"account_id\":\"claimant\",\"application_ids\":[\"application:q1\"],\"complete\":true,\"evidence_ref\":\"evidence:payment-population:claimant:q1\",\"id\":\"payment-population:claimant:q1\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"paid_total\":\"60\",\"payment_ids\":[\"payment:q1\"],\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:payment-population:claimant:q1\"}"
+            }
+          ],
+          "payments": [
+            {
+              "id": "7061796d656e743a7131",
+              "raw_original": "{\"account_id\":\"claimant\",\"amount\":\"60\",\"evidence_ref\":\"evidence:payment:q1\",\"id\":\"payment:q1\",\"observed_at\":\"2026-03-11T00:00:00Z\",\"original_ref\":\"original-bank-statement#claimant-q1\",\"paid_at\":\"2026-03-10T12:00:00Z\",\"purpose\":\"participation_entitlement_settlement\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:payment:q1\"}"
+            }
+          ],
+          "receipt_populations": [
+            {
+              "id": "726563656970742d706f70756c6174696f6e3a636c61696d616e743a7131",
+              "raw_original": "{\"account_id\":\"claimant\",\"complete\":true,\"evidence_ref\":\"evidence:receipt-population:claimant:q1\",\"gross_total\":\"200\",\"id\":\"receipt-population:claimant:q1\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"receipt_ids\":[\"receipt:claimant:q1\"],\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:receipt-population:claimant:q1\"}"
+            },
+            {
+              "id": "726563656970742d706f70756c6174696f6e3a62757264656e65643a7131",
+              "raw_original": "{\"account_id\":\"burdened\",\"complete\":true,\"evidence_ref\":\"evidence:receipt-population:burdened:q1\",\"gross_total\":\"400\",\"id\":\"receipt-population:burdened:q1\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"receipt_ids\":[\"receipt:burdened:q1\"],\"scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"source_ref\":\"original-source:receipt-population:burdened:q1\"}"
+            }
+          ],
+          "receipts": [
+            {
+              "id": "726563656970743a636c61696d616e743a7131",
+              "raw_original": "{\"account_id\":\"claimant\",\"amount\":\"200\",\"effective_date\":\"2026-03-01\",\"entitlement_line_ref\":\"original-participation-ledger#claimant-q1\",\"evidence_ref\":\"evidence:receipt:claimant:q1\",\"id\":\"receipt:claimant:q1\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"original_ref\":\"original-receipt-ledger#claimant-q1\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:receipt:claimant:q1\",\"term_id\":\"terms:claimant\"}"
+            },
+            {
+              "id": "726563656970743a62757264656e65643a7131",
+              "raw_original": "{\"account_id\":\"burdened\",\"amount\":\"400\",\"effective_date\":\"2026-03-01\",\"entitlement_line_ref\":\"original-participation-ledger#burdened-q1\",\"evidence_ref\":\"evidence:receipt:burdened:q1\",\"id\":\"receipt:burdened:q1\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"original_ref\":\"original-receipt-ledger#burdened-q1\",\"scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"source_ref\":\"original-source:receipt:burdened:q1\",\"term_id\":\"terms:burdened\"}"
+            }
+          ],
+          "requests": [
+            {
+              "id": "726571756573743a7131",
+              "raw_original": "{\"authorization_id\":\"authority:burden\",\"basis_receipt_ids\":[\"receipt:claimant:q1\"],\"burdened_account\":\"burdened\",\"burdened_scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"claimant_account\":\"claimant\",\"claimant_scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"evidence_ref\":\"evidence:request:q1\",\"id\":\"request:q1\",\"measurement_id\":\"original-current-participation-measurement:q1\",\"observed_at\":\"2026-04-02T00:00:00Z\",\"original_ref\":\"original-burden-request-ledger#q1\",\"recognition_date\":\"2026-03-31\",\"source_ref\":\"original-source:request:q1\"}"
+            }
+          ],
+          "terms": [
+            {
+              "id": "7465726d733a636c61696d616e74",
+              "raw_original": "{\"account_id\":\"claimant\",\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:terms:claimant\",\"id\":\"terms:claimant\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"original_ref\":\"original-participation-contract#claimant\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"share\":\"0.5\",\"source_ref\":\"original-source:terms:claimant\"}"
+            },
+            {
+              "id": "7465726d733a62757264656e6564",
+              "raw_original": "{\"account_id\":\"burdened\",\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:terms:burdened\",\"id\":\"terms:burdened\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"original_ref\":\"original-participation-contract#burdened\",\"scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"share\":\"0.5\",\"source_ref\":\"original-source:terms:burdened\"}"
+            }
+          ]
+        },
+        "period": {
+          "end": "2026-04-01",
+          "start": "2026-01-01"
+        },
+        "raw_original": "{\"accounts\":[{\"evidence_ref\":\"evidence:claimant\",\"id\":\"claimant\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:claimant\"},{\"evidence_ref\":\"evidence:burdened\",\"id\":\"burdened\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"source_ref\":\"original-source:burdened\"}],\"applications\":[{\"account_id\":\"claimant\",\"amount\":\"60\",\"application_date\":\"2026-03-10\",\"approved\":true,\"entitlement_line_ref\":\"original-participation-ledger#claimant-q1\",\"evidence_ref\":\"evidence:application:q1\",\"id\":\"application:q1\",\"observed_at\":\"2026-03-12T00:00:00Z\",\"payment_id\":\"payment:q1\",\"receipt_id\":\"receipt:claimant:q1\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:application:q1\"}],\"as_of\":\"2026-03-31\",\"authorizations\":[{\"approved\":true,\"approved_date\":\"2026-01-01\",\"basis_kind\":\"accrued_basis_current_period\",\"burden_rate\":\"0.3\",\"burdened_account\":\"burdened\",\"burdened_scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"cap\":\"45\",\"claimant_account\":\"claimant\",\"claimant_scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:authority:burden\",\"id\":\"authority:burden\",\"minimum_basis\":\"0\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"original_ref\":\"original-cross-contract-authority#burden-cap45\",\"purpose\":\"cross_contract_entitlement_burden\",\"recorded_date\":\"2026-01-02\",\"sequence\":1,\"source_ref\":\"original-source:authority:burden\"}],\"case_id\":\"burden-q1\",\"cutoff\":\"2026-04-03T00:00:00Z\",\"evidence\":[{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:claimant\",\"kind\":\"account_scope\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:claimant\"},{\"account_ids\":[\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:burdened\",\"kind\":\"account_scope\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:burdened\"},{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:terms:claimant\",\"kind\":\"participation_terms\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:terms:claimant\"},{\"account_ids\":[\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:terms:burdened\",\"kind\":\"participation_terms\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:terms:burdened\"},{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:receipt:claimant:q1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:receipt:claimant:q1\"},{\"account_ids\":[\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:receipt:burdened:q1\",\"kind\":\"original_receipt_basis\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:receipt:burdened:q1\"},{\"account_ids\":[\"claimant\",\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:authority:burden\",\"kind\":\"cross_contract_authority\",\"observed_at\":\"2026-01-03T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:authority:burden\"},{\"account_ids\":[\"claimant\",\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:request:q1\",\"kind\":\"original_burden_request\",\"observed_at\":\"2026-04-02T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:request:q1\"},{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:payment:q1\",\"kind\":\"actual_participation_payment\",\"observed_at\":\"2026-03-11T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:payment:q1\"},{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:application:q1\",\"kind\":\"approved_participation_application\",\"observed_at\":\"2026-03-12T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:application:q1\"},{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:receipt-population:claimant:q1\",\"kind\":\"complete_receipt_population\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:receipt-population:claimant:q1\"},{\"account_ids\":[\"burdened\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:receipt-population:burdened:q1\",\"kind\":\"complete_receipt_population\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:receipt-population:burdened:q1\"},{\"account_ids\":[\"claimant\"],\"approved\":true,\"coordinator_id\":\"synthetic-burden-coordinator\",\"id\":\"evidence:payment-population:claimant:q1\",\"kind\":\"complete_payment_population\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"source_ref\":\"synthetic-approved-evidence:payment-population:claimant:q1\"}],\"payment_populations\":[{\"account_id\":\"claimant\",\"application_ids\":[\"application:q1\"],\"complete\":true,\"evidence_ref\":\"evidence:payment-population:claimant:q1\",\"id\":\"payment-population:claimant:q1\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"paid_total\":\"60\",\"payment_ids\":[\"payment:q1\"],\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:payment-population:claimant:q1\"}],\"payments\":[{\"account_id\":\"claimant\",\"amount\":\"60\",\"evidence_ref\":\"evidence:payment:q1\",\"id\":\"payment:q1\",\"observed_at\":\"2026-03-11T00:00:00Z\",\"original_ref\":\"original-bank-statement#claimant-q1\",\"paid_at\":\"2026-03-10T12:00:00Z\",\"purpose\":\"participation_entitlement_settlement\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:payment:q1\"}],\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"receipt_populations\":[{\"account_id\":\"claimant\",\"complete\":true,\"evidence_ref\":\"evidence:receipt-population:claimant:q1\",\"gross_total\":\"200\",\"id\":\"receipt-population:claimant:q1\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"receipt_ids\":[\"receipt:claimant:q1\"],\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:receipt-population:claimant:q1\"},{\"account_id\":\"burdened\",\"complete\":true,\"evidence_ref\":\"evidence:receipt-population:burdened:q1\",\"gross_total\":\"400\",\"id\":\"receipt-population:burdened:q1\",\"observed_at\":\"2026-04-01T00:00:00Z\",\"period\":{\"end\":\"2026-04-01\",\"start\":\"2026-01-01\"},\"receipt_ids\":[\"receipt:burdened:q1\"],\"scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"source_ref\":\"original-source:receipt-population:burdened:q1\"}],\"receipts\":[{\"account_id\":\"claimant\",\"amount\":\"200\",\"effective_date\":\"2026-03-01\",\"entitlement_line_ref\":\"original-participation-ledger#claimant-q1\",\"evidence_ref\":\"evidence:receipt:claimant:q1\",\"id\":\"receipt:claimant:q1\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"original_ref\":\"original-receipt-ledger#claimant-q1\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"source_ref\":\"original-source:receipt:claimant:q1\",\"term_id\":\"terms:claimant\"},{\"account_id\":\"burdened\",\"amount\":\"400\",\"effective_date\":\"2026-03-01\",\"entitlement_line_ref\":\"original-participation-ledger#burdened-q1\",\"evidence_ref\":\"evidence:receipt:burdened:q1\",\"id\":\"receipt:burdened:q1\",\"observed_at\":\"2026-03-02T00:00:00Z\",\"original_ref\":\"original-receipt-ledger#burdened-q1\",\"scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"source_ref\":\"original-source:receipt:burdened:q1\",\"term_id\":\"terms:burdened\"}],\"requests\":[{\"authorization_id\":\"authority:burden\",\"basis_receipt_ids\":[\"receipt:claimant:q1\"],\"burdened_account\":\"burdened\",\"burdened_scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"claimant_account\":\"claimant\",\"claimant_scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"evidence_ref\":\"evidence:request:q1\",\"id\":\"request:q1\",\"measurement_id\":\"original-current-participation-measurement:q1\",\"observed_at\":\"2026-04-02T00:00:00Z\",\"original_ref\":\"original-burden-request-ledger#q1\",\"recognition_date\":\"2026-03-31\",\"source_ref\":\"original-source:request:q1\"}],\"terms\":[{\"account_id\":\"claimant\",\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:terms:claimant\",\"id\":\"terms:claimant\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"original_ref\":\"original-participation-contract#claimant\",\"scope\":{\"agreement_id\":\"agreement-claimant\",\"asset_id\":\"title-claimant\",\"currency\":\"USD\",\"participant_id\":\"participant-claimant\",\"pool_id\":\"pool-claimant\"},\"share\":\"0.5\",\"source_ref\":\"original-source:terms:claimant\"},{\"account_id\":\"burdened\",\"approved\":true,\"approved_date\":\"2026-01-01\",\"effective\":{\"end\":\"2026-10-01\",\"start\":\"2026-01-01\"},\"evidence_ref\":\"evidence:terms:burdened\",\"id\":\"terms:burdened\",\"observed_at\":\"2026-01-02T00:00:00Z\",\"original_ref\":\"original-participation-contract#burdened\",\"scope\":{\"agreement_id\":\"agreement-burdened\",\"asset_id\":\"title-burdened\",\"currency\":\"USD\",\"participant_id\":\"participant-burdened\",\"pool_id\":\"pool-burdened\"},\"share\":\"0.5\",\"source_ref\":\"original-source:terms:burdened\"}]}"
+      }
+    ],
+    "predecessor": {
+      "none": true
+    },
+    "research": {
+      "ld03_sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712",
+      "review_locator": "LD03:390-399;B-C10-BURDEN;RR04:no-C10-specific-rule",
+      "rr04_sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+    },
+    "scope": {
+      "agreement_id": "entitlement-burden-execution",
+      "participant_id": "coordinator-reader",
+      "period": {
+        "end": "2026-04-01",
+        "start": "2026-01-01"
+      },
+      "pool_id": "coordinator-execution"
+    },
+    "supplied_opening": {
+      "boundary": "2026-01-01",
+      "coordinator": {
+        "currency": "USD",
+        "id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+        "purpose": "cross_contract_entitlement_burden"
+      },
+      "detail": {
+        "none": true
+      },
+      "identity_codec": "unicode-utf8-hex/1",
+      "origin": "genesis",
+      "policy": {
+        "cap": "cumulative_original_authority",
+        "cap_excess": "consume_no_carry",
+        "evidence_class": "research_assumption",
+        "id": "SYNTHETIC-CONTRACT-BURDENS-01",
+        "late_payment_reopening": "unsupported",
+        "measurement": "original_pre_burden_current_participation",
+        "method": "accrued_basis_current_period",
+        "observation_date_basis": "UTC",
+        "order": "unique_authorized_sequence",
+        "request_limit": "one_canonical_authority_source_period_measurement",
+        "revision": "1",
+        "rounding": "exact_no_rounding",
+        "shortfall": "atomic_reject_after_cap",
+        "threshold": "basis_at_least_minimum"
+      },
+      "research": {
+        "ld03_sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712",
+        "review_locator": "LD03:390-399;B-C10-BURDEN;RR04:no-C10-specific-rule",
+        "rr04_sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+      },
+      "source_case_id": "67656e65736973",
+      "transport_profile": "entitlement-burdens-original-json/5"
+    }
+  },
+  "manifest": {
+    "compiler_build": "unbound",
+    "cutoff": "2026-04-03T00:00:00Z",
+    "mode": "preview",
+    "module_closure": [],
+    "period": {
+      "end": "2026-04-01",
+      "start": "2026-01-01"
+    },
+    "resource_limits": {
+      "lean_timeout_seconds": 180,
+      "max_input_rows": 100000
+    },
+    "run_id": "entitlement-burden-run",
+    "runtime_build": "unbound",
+    "scenario_id": "SYNTHETIC-ENTITLEMENT-BURDENS"
+  },
+  "module_ref": {
+    "id": "synthetic:entitlement-burdens",
+    "locator": "cases/entitlement-burdens/entitlement-burdens-module.json",
+    "revision": "1",
+    "sha256": "43f18b7b4692a7f160a1080ad9b662633e680da9fc9b8dd6664ea589e64e0f6e"
+  },
+  "parameters": {
+    "cutoff": "2026-04-03T00:00:00Z",
+    "policy": {
+      "cap": "cumulative_original_authority",
+      "cap_excess": "consume_no_carry",
+      "evidence_class": "research_assumption",
+      "id": "SYNTHETIC-CONTRACT-BURDENS-01",
+      "late_payment_reopening": "unsupported",
+      "measurement": "original_pre_burden_current_participation",
+      "method": "accrued_basis_current_period",
+      "observation_date_basis": "UTC",
+      "order": "unique_authorized_sequence",
+      "request_limit": "one_canonical_authority_source_period_measurement",
+      "revision": "1",
+      "rounding": "exact_no_rounding",
+      "shortfall": "atomic_reject_after_cap",
+      "threshold": "basis_at_least_minimum"
+    }
+  },
+  "profile": "spl-module/1",
+  "scope": {
+    "agreement_id": "entitlement-burden-execution",
+    "asset_ids": [],
+    "participant_ids": [
+      "coordinator-reader"
+    ],
+    "pool_id": "coordinator-execution",
+    "purpose": "cross_contract_entitlement_burden"
+  },
+  "state_cells": [
+    {
+      "boundary": "2026-01-01",
+      "opening_port": "history",
+      "provenance_ref": "original-burden-history-transport",
+      "purpose": "cross_contract_entitlement_burden",
+      "quantity": {
+        "boundary": "2026-01-01",
+        "coordinator": {
+          "currency": "USD",
+          "id": "73796e7468657469632d62757264656e2d636f6f7264696e61746f72",
+          "purpose": "cross_contract_entitlement_burden"
+        },
+        "detail": {
+          "none": true
+        },
+        "identity_codec": "unicode-utf8-hex/1",
+        "origin": "genesis",
+        "policy": {
+          "cap": "cumulative_original_authority",
+          "cap_excess": "consume_no_carry",
+          "evidence_class": "research_assumption",
+          "id": "SYNTHETIC-CONTRACT-BURDENS-01",
+          "late_payment_reopening": "unsupported",
+          "measurement": "original_pre_burden_current_participation",
+          "method": "accrued_basis_current_period",
+          "observation_date_basis": "UTC",
+          "order": "unique_authorized_sequence",
+          "request_limit": "one_canonical_authority_source_period_measurement",
+          "revision": "1",
+          "rounding": "exact_no_rounding",
+          "shortfall": "atomic_reject_after_cap",
+          "threshold": "basis_at_least_minimum"
+        },
+        "research": {
+          "ld03_sha256": "658740285501e66f39c44f31f4ada0f86d4d8ff35f8245e03fd3cb3e5cf42712",
+          "review_locator": "LD03:390-399;B-C10-BURDEN;RR04:no-C10-specific-rule",
+          "rr04_sha256": "c93433744619545c6f78eab3b50397c6c4765436d8a2c7e5b7fba18ba2c6fa2f"
+        },
+        "source_case_id": "67656e65736973",
+        "transport_profile": "entitlement-burdens-original-json/5"
+      },
+      "scenario_id": "SYNTHETIC-ENTITLEMENT-BURDENS",
+      "scope": {
+        "agreement_id": "entitlement-burden-execution",
+        "participant_id": "coordinator-reader",
+        "pool_id": "coordinator-execution"
+      },
+      "state_key": "{\"agreement_id\":\"entitlement-burden-execution\",\"participant_id\":\"coordinator-reader\",\"pool_id\":\"coordinator-execution\",\"purpose\":\"cross_contract_entitlement_burden\"}",
+      "unit": "structured"
+    }
+  ]
+}

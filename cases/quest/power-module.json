@@ -1,0 +1,105 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "quest:power",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "result",
+        "name": "pow",
+        "parameters": [
+          {
+            "name": "base",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          },
+          {
+            "name": "exponent",
+            "type": {
+              "args": [],
+              "name": "Ratio"
+            }
+          }
+        ],
+        "result": {
+          "args": [],
+          "name": "Ratio"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "base",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "exponent",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "QUEST_POWER_SELECTED"
+    ],
+    "discriminating_cases": [
+      "quest-1000-20pct-182days",
+      "quest-half-cent-even-zero",
+      "quest-half-cent-even-two",
+      "quest-zero-days",
+      "quest-full-year",
+      "quest-180days",
+      "quest-invalid-flow-calendar-cutoff"
+    ],
+    "evidence_class": "synthetic",
+    "id": "quest:power-policy",
+    "readable": {
+      "locator": "cases/quest/policy.md",
+      "sha256": "0adb8d3bc176e9d3e2a2081858c625a1caa013a552abca1581873a09353e98db"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/quest/power.spl",
+    "sha256": "9a126bb03338c0f0715997c85a18da38272b90bd4c0108430be65c814ba65164"
+  },
+  "state": []
+}

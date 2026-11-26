@@ -1,7 +1,8 @@
-import Lean
+import Lean.Data.Json.Printer
 import Init.Data.Rat
 import SPL.Instant
 import SPL.Calendar
+import SPL.Dimensions
 
 /-!
 Pure target primitives for the bounded SPL compiler. Units and record schemas
@@ -13,6 +14,8 @@ namespace SPL
 
 inductive Value where
   | num : Rat → Value
+  | quantity : String → Rat → Value
+  | rate : String → String → Rat → Value
   | instant : Rat → String → Value
   | flag : Bool → Value
   | text : String → Value
@@ -52,6 +55,46 @@ def asNum : Value → Eval Rat
   | .num n => .ok n
   | _ => .error "TARGET_EXPECTED_NUMBER"
 
+/-- Numeric payload access is explicit; legacy asNum deliberately rejects dimensions. -/
+def magnitude : Value → Eval Rat
+  | .num value => pure value
+  | .quantity unit value =>
+    if Dimensions.admitted unit then pure value else throw "UNSUPPORTED_UNIT"
+  | .rate unit currency value =>
+    if !Dimensions.admitted unit then throw "UNSUPPORTED_UNIT"
+    else if currency != "USD" then throw "UNSUPPORTED_CURRENCY" else pure value
+  | _ => throw "TARGET_EXPECTED_NUMBER"
+
+def withMagnitude (template : Value) (value : Rat) : Value :=
+  match template with
+  | .quantity unit _ => .quantity unit value
+  | .rate unit currency _ => .rate unit currency value
+  | _ => .num value
+
+def sameDimension (left right : Value) : Bool :=
+  match left, right with
+  | .num _, .num _ => true
+  | .quantity a _, .quantity b _ => a == b
+  | .rate a c _, .rate b d _ => a == b && c == d
+  | _, _ => false
+
+/-- Tagged arithmetic; scalar Money/Ratio distinctions remain a checked-IR assumption. -/
+def dimensionalArithmetic (op : String) (left right : Value) : Eval Value := do
+  let a ← magnitude left
+  let b ← magnitude right
+  if op == "/" && b == 0 then throw "DIVISION_BY_ZERO"
+  if (op == "+" || op == "-") && sameDimension left right then
+    return withMagnitude left (if op == "+" then a + b else a - b)
+  match op, left, right with
+  | "*", .quantity u _, .rate v _ _ | "*", .rate v _ _, .quantity u _ =>
+    if u == v then pure (.num (a * b)) else throw "TYPE_MISMATCH"
+  | "*", .num _, .quantity .. | "*", .num _, .rate .. => pure (withMagnitude right (a * b))
+  | "*", .quantity .., .num _ | "*", .rate .., .num _ => pure (withMagnitude left (a * b))
+  | "/", .quantity .., .num _ | "/", .rate .., .num _ => pure (withMagnitude left (a / b))
+  | "/", .quantity .., .quantity .. | "/", .rate .., .rate .. =>
+    if sameDimension left right then pure (.num (a / b)) else throw "TYPE_MISMATCH"
+  | _, _, _ => throw "TYPE_MISMATCH"
+
 def asList : Value → Eval (List Value)
   | .seq xs => do checkCollectionSize xs.length; pure xs
   | _ => .error "TARGET_EXPECTED_LIST"
@@ -72,7 +115,10 @@ def assertValue (value : Value) (code : String) : Eval Unit := do
 
 def unary (op : String) (value : Value) : Eval Value := do
   match op with
-  | "-" => pure (.num (-(← asNum value)))
+  | "-" => match value with
+    | .quantity unit n => pure (.quantity unit (-n))
+    | .rate unit currency n => pure (.rate unit currency (-n))
+    | _ => pure (.num (-(← asNum value)))
   | "not" => pure (.flag (!(← asBool value)))
   | _ => throw "TARGET_UNKNOWN_UNARY_OPERATOR"
 
@@ -87,6 +133,12 @@ private def compareFuel : Nat → Value → Value → Eval Ordering
         if order == .eq then order ← compareFuel fuel x y
       pure order
     | .num a, .num b => pure (if a < b then .lt else if a == b then .eq else .gt)
+    | .quantity u a, .quantity v b =>
+      if u != v then throw "TYPE_MISMATCH"
+      pure (if a < b then .lt else if a == b then .eq else .gt)
+    | .rate u c a, .rate v d b =>
+      if u != v || c != d then throw "TYPE_MISMATCH"
+      pure (if a < b then .lt else if a == b then .eq else .gt)
     | .instant a _, .instant b _ => pure (if a < b then .lt else if a == b then .eq else .gt)
     | .text a, .text b => pure (Ord.compare a b)
     | .flag a, .flag b => pure (Ord.compare a b)
@@ -104,6 +156,12 @@ end
 def compare (left right : Value) : Eval Ordering := do
   match left, right with
   | .num a, .num b => pure (if a < b then .lt else if a == b then .eq else .gt)
+  | .quantity u a, .quantity v b =>
+    if u != v then throw "TYPE_MISMATCH"
+    pure (if a < b then .lt else if a == b then .eq else .gt)
+  | .rate u c a, .rate v d b =>
+    if u != v || c != d then throw "TYPE_MISMATCH"
+    pure (if a < b then .lt else if a == b then .eq else .gt)
   | .instant a _, .instant b _ => pure (if a < b then .lt else if a == b then .eq else .gt)
   | .text a, .text b => pure (Ord.compare a b)
   | .flag a, .flag b => pure (Ord.compare a b)
@@ -112,7 +170,7 @@ def compare (left right : Value) : Eval Ordering := do
 
 mutual
   private def valueSize : Value → Nat
-    | .num _ | .instant .. | .flag _ | .text _ | .absent => 1
+    | .num _ | .quantity .. | .rate .. | .instant .. | .flag _ | .text _ | .absent => 1
     | .present value => 1 + valueSize value
     | .seq values | .tuple values | .map values => 1 + listSize values
     | .obj fields => 1 + fieldSize fields
@@ -131,6 +189,8 @@ private def structuralEqual : Nat → Value → Value → Bool
   | fuel + 1, left, right =>
     match left, right with
     | .num a, .num b => a == b
+    | .quantity u a, .quantity v b => u == v && a == b
+    | .rate u c a, .rate v d b => u == v && c == d && a == b
     | .instant a _, .instant b _ => a == b
     | .flag a, .flag b => a == b
     | .text a, .text b => a == b
@@ -144,6 +204,8 @@ private def structuralEqual : Nat → Value → Value → Bool
 def equal (left right : Value) : Bool :=
   match left, right with
   | .num a, .num b => a == b
+  | .quantity u a, .quantity v b => u == v && a == b
+  | .rate u c a, .rate v d b => u == v && c == d && a == b
   | .instant a _, .instant b _ => a == b
   | .flag a, .flag b => a == b
   | .text a, .text b => a == b
@@ -151,14 +213,20 @@ def equal (left right : Value) : Bool :=
 
 def binary (op : String) (left right : Value) : Eval Value := do
   match op with
-  | "+" => pure (.num ((← asNum left) + (← asNum right)))
-  | "-" => pure (.num ((← asNum left) - (← asNum right)))
-  | "*" => pure (.num ((← asNum left) * (← asNum right)))
-  | "/" =>
-    let a ← asNum left
-    let b ← asNum right
-    if b == 0 then throw "DIVISION_BY_ZERO"
-    pure (.num (a / b))
+  | "+" => match left, right with
+    | .num a, .num b => pure (.num (a + b))
+    | _, _ => dimensionalArithmetic op left right
+  | "-" => match left, right with
+    | .num a, .num b => pure (.num (a - b))
+    | _, _ => dimensionalArithmetic op left right
+  | "*" => match left, right with
+    | .num a, .num b => pure (.num (a * b))
+    | _, _ => dimensionalArithmetic op left right
+  | "/" => match left, right with
+    | .num a, .num b =>
+      if b == 0 then throw "DIVISION_BY_ZERO"
+      pure (.num (a / b))
+    | _, _ => dimensionalArithmetic op left right
   | "==" => pure (.flag (equal left right))
   | "!=" => pure (.flag (!equal left right))
   | "<" => pure (.flag ((← compare left right) == .lt))
@@ -223,6 +291,17 @@ def sumValues (value : Value) (body : Value → Eval Value) : Eval Value := do
   for x in xs do
     total := total + (← asNum (← body x))
   pure (.num total)
+
+/-- The checked body type supplies zero even when no element is visited. -/
+def sumValuesFrom (zero value : Value) (body : Value → Eval Value) : Eval Value := do
+  let mut total := zero
+  for item in ← asList value do
+    total ← binary "+" total (← body item)
+  pure total
+
+def absolute (value : Value) : Eval Value := do
+  let n ← magnitude value
+  pure (withMagnitude value (if n < 0 then -n else n))
 
 private def insertKeyed (item : Value × Value) : List (Value × Value) → Eval (List (Value × Value))
   | [] => pure [item]
@@ -352,8 +431,9 @@ def isCalendarQuarter (period : Value) : Eval Value := do
   | _, _ => pure (.flag false)
 
 def quantize (value quantum mode : Value) : Eval Value := do
-  let x ← asNum value
-  let q ← asNum quantum
+  unless sameDimension value quantum do throw "TYPE_MISMATCH"
+  let x ← magnitude value
+  let q ← magnitude quantum
   let mode ← asText mode
   if q ≤ 0 then throw "INVALID_QUANTUM"
   let scaled := x / q
@@ -371,7 +451,121 @@ def quantize (value quantum mode : Value) : Eval Value := do
         else if fraction > mkRat 1 2 then hi
         else if scaled < 0 then lo else hi)
     | _ => throw "INVALID_ROUNDING_MODE"
-  pure (.num ((rounded : Rat) * q))
+  pure (withMagnitude value ((rounded : Rat) * q))
+
+
+/-- Context-aware execution validates the immutable closure meaning universe. -/
+def magnitudeWith (context : Dimensions.Meanings) (value : Value) : Eval Rat := do
+  let _ ← Dimensions.prepare context.features
+  match value with
+  | .num number => pure number
+  | .quantity unit number =>
+    unless Dimensions.known context unit do throw "UNSUPPORTED_UNIT"
+    pure number
+  | .rate unit currency number =>
+    unless Dimensions.known context unit do throw "UNSUPPORTED_UNIT"
+    unless currency == "USD" do throw "UNSUPPORTED_CURRENCY"
+    pure number
+  | _ => throw "TARGET_EXPECTED_NUMBER"
+
+
+def dimensionalArithmeticWith (context : Dimensions.Meanings) (op : String) (left right : Value) : Eval Value := do
+  let a ← magnitudeWith context left
+  let b ← magnitudeWith context right
+  if op == "/" && b == 0 then throw "DIVISION_BY_ZERO"
+  if (op == "+" || op == "-") && sameDimension left right then
+    return withMagnitude left (if op == "+" then a + b else a - b)
+  match op, left, right with
+  | "*", .quantity u _, .rate v _ _ | "*", .rate v _ _, .quantity u _ =>
+    if u == v then pure (.num (a * b)) else throw "TYPE_MISMATCH"
+  | "*", .num _, .quantity .. | "*", .num _, .rate .. => pure (withMagnitude right (a * b))
+  | "*", .quantity .., .num _ | "*", .rate .., .num _ => pure (withMagnitude left (a * b))
+  | "/", .quantity .., .num _ | "/", .rate .., .num _ => pure (withMagnitude left (a / b))
+  | "/", .quantity .., .quantity .. | "/", .rate .., .rate .. =>
+    if sameDimension left right then pure (.num (a / b)) else throw "TYPE_MISMATCH"
+  | _, _, _ => throw "TYPE_MISMATCH"
+
+def binaryWith (context : Dimensions.Meanings) (op : String) (left right : Value) : Eval Value := do
+  match op with
+  | "+" => match left, right with
+    | .num a, .num b => pure (.num (a + b))
+    | _, _ => dimensionalArithmeticWith context op left right
+  | "-" => match left, right with
+    | .num a, .num b => pure (.num (a - b))
+    | _, _ => dimensionalArithmeticWith context op left right
+  | "*" => match left, right with
+    | .num a, .num b => pure (.num (a * b))
+    | _, _ => dimensionalArithmeticWith context op left right
+  | "/" => match left, right with
+    | .num a, .num b =>
+      if b == 0 then throw "DIVISION_BY_ZERO"
+      pure (.num (a / b))
+    | _, _ => dimensionalArithmeticWith context op left right
+  | "==" => pure (.flag (equal left right))
+  | "!=" => pure (.flag (!equal left right))
+  | "<" => pure (.flag ((← compare left right) == .lt))
+  | "<=" => pure (.flag ((← compare left right) != .gt))
+  | ">" => pure (.flag ((← compare left right) == .gt))
+  | ">=" => pure (.flag ((← compare left right) != .lt))
+  | _ => throw "TARGET_UNKNOWN_BINARY_OPERATOR"
+
+def sumValuesFromWith (context : Dimensions.Meanings) (zero value : Value) (body : Value → Eval Value) : Eval Value := do
+  let mut total := zero
+  for item in ← asList value do
+    total ← binaryWith context "+" total (← body item)
+  pure total
+
+def absoluteWith (context : Dimensions.Meanings) (value : Value) : Eval Value := do
+  let n ← magnitudeWith context value
+  pure (withMagnitude value (if n < 0 then -n else n))
+
+def quantizeWith (context : Dimensions.Meanings) (value quantum mode : Value) : Eval Value := do
+  unless sameDimension value quantum do throw "TYPE_MISMATCH"
+  let x ← magnitudeWith context value
+  let q ← magnitudeWith context quantum
+  let mode ← asText mode
+  if q ≤ 0 then throw "INVALID_QUANTUM"
+  let scaled := x / q
+  let lo := scaled.floor
+  let hi := scaled.ceil
+  let fraction := scaled - (lo : Rat)
+  let rounded ← match mode with
+    | "floor" => pure lo
+    | "ceiling" => pure hi
+    | "toward_zero" => pure (if scaled < 0 then hi else lo)
+    | "half_even" => pure (if fraction < mkRat 1 2 then lo
+        else if fraction > mkRat 1 2 then hi
+        else if lo % 2 == 0 then lo else hi)
+    | "half_away_from_zero" => pure (if fraction < mkRat 1 2 then lo
+        else if fraction > mkRat 1 2 then hi
+        else if scaled < 0 then lo else hi)
+    | _ => throw "INVALID_ROUNDING_MODE"
+  pure (withMagnitude value ((rounded : Rat) * q))
+
+def unaryWith (context : Dimensions.Meanings) (op : String) (value : Value) : Eval Value := do
+  if op == "-" && !sameDimension value (.num 0) then
+    let _ ← magnitudeWith context value
+    pure ()
+  unary op value
+
+def convertQuantity (owner : Dimensions.Admission) (context : Dimensions.Meanings)
+    (value target relation : Value) : Eval Value := do
+  let .quantity source number := value | throw "TYPE_MISMATCH"
+  let target ← asText target
+  let relation ← asText relation
+  let _ ← magnitudeWith context value
+  let factor ← Dimensions.conversionFactor owner source target relation
+  unless Dimensions.known context target do throw "UNSUPPORTED_UNIT"
+  pure (.quantity target (number * factor))
+
+partial def validateValueWith (context : Dimensions.Meanings) (value : Value) : Eval Unit := do
+  match value with
+  | .quantity .. | .rate .. => let _ ← magnitudeWith context value; pure ()
+  | .seq values | .tuple values | .map values => for value in values do validateValueWith context value
+  | .obj fields => for (_, value) in fields do validateValueWith context value
+  | .present value => validateValueWith context value
+  | _ => pure ()
+
 
 structure Settlement where
   emissions : Env
@@ -385,6 +579,8 @@ private def rationalJson (value : Rat) : Lean.Json :=
 mutual
   def valueJson : Value → Lean.Json
     | .num value => rationalJson value
+    | .quantity unit value => Lean.Json.mkObj [("value", rationalJson value), ("unit", .str unit)]
+    | .rate unit currency value => Lean.Json.mkObj [("value", rationalJson value), ("per_unit", .str unit), ("currency", .str currency)]
     | .instant _ canonical => .str canonical
     | .flag value => .bool value
     | .text value => .str value

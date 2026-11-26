@@ -1,5 +1,16 @@
 # SPL compiler implementation handoff
 
+**Latest continuation:** start with the
+[25 November handoff](session-handoff-2026-11-25.md) for the owner's revised
+finish line, saved integration and next steps. Work is paused for handoff.
+The earlier documents below retain historical design and implementation context.
+
+For a new implementation session, start with the
+[23 November session handoff](session-handoff.md). It records the implemented
+kernel and Quest checkpoint, agent responsibilities, resources, verification
+evidence, Windows lessons and the proposed next validation milestone. The earlier
+initial-compiler handoff below remains historical design/policy provenance.
+
 Next-stage handoff, 21 November 2026: the bounded demo now exists. For broad
 calculation coverage, start with the [LD-02 release decision](release-scope-ld02.md),
 [conformance ledger](conformance-ledger.md),

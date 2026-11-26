@@ -1,0 +1,5063 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [],
+      "kind": "evidence",
+      "path": "evidence.evidence",
+      "target": "",
+      "value": "selected_synthetic_record"
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.agreement_id",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.pool_id",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.scope.participant_id",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.period",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.project",
+      "target": "scope.asset_ids",
+      "value": ""
+    },
+    {
+      "fields": [
+        "scope.asset_id"
+      ],
+      "kind": "equals",
+      "path": "state_cells",
+      "target": "inputs.project",
+      "value": ""
+    }
+  ],
+  "id": "synthetic:quantized-allocation",
+  "imports": [
+    {
+      "alias": "allocation",
+      "module_ref": {
+        "id": "synthetic:quantized-parent-library",
+        "locator": "cases/quantized-allocation/allocation-module.json",
+        "revision": "1",
+        "sha256": "e17c34cf6986127834adebbd5ea61a801853660b7ad1ab7514900496e68c18c7"
+      },
+      "symbols": [
+        {
+          "export": "calculate",
+          "local": "allocate_parent_record"
+        }
+      ]
+    }
+  ],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "SettlementScope"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "project",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Asset"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "fact_scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "asset_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Asset"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "contract_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "currency",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "case_id",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "cutoff",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "cutoff_source",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "as_of",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Date"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "policy",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "evidence_class",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "limits",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "historical_periods",
+                    {
+                      "args": [],
+                      "name": "Int"
+                    }
+                  ],
+                  [
+                    "parents_per_period",
+                    {
+                      "args": [],
+                      "name": "Int"
+                    }
+                  ],
+                  [
+                    "recipients",
+                    {
+                      "args": [],
+                      "name": "Int"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "parent_rounding",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "quota_basis",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "residual_order",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "recipients",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "evidence_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "observed_at_source",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "parents",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "amount_source",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "authority_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "observed_at_source",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "upstream_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "authorities",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "approved",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "approved_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "effective",
+                  {
+                    "args": [],
+                    "name": "Period"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "method",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "observed_at_source",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "parent_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "parent_upstream_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "recipient_ids",
+                  {
+                    "args": [
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "AllocationRecord"
+                          }
+                        ],
+                        "name": "Id"
+                      }
+                    ],
+                    "name": "List"
+                  }
+                ],
+                [
+                  "recorded_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "residual_order",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "supplied_allocation_ids",
+                  {
+                    "args": [
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "AllocationRecord"
+                          }
+                        ],
+                        "name": "Id"
+                      }
+                    ],
+                    "name": "List"
+                  }
+                ],
+                [
+                  "terms",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "fields": [
+                          [
+                            "evidence_ref",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "AllocationRecord"
+                                }
+                              ],
+                              "name": "Id"
+                            }
+                          ],
+                          [
+                            "id",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "AllocationRecord"
+                                }
+                              ],
+                              "name": "Id"
+                            }
+                          ],
+                          [
+                            "observed_at",
+                            {
+                              "args": [],
+                              "name": "Instant"
+                            }
+                          ],
+                          [
+                            "observed_at_source",
+                            {
+                              "args": [],
+                              "name": "Text"
+                            }
+                          ],
+                          [
+                            "recipient_id",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "AllocationRecord"
+                                }
+                              ],
+                              "name": "Id"
+                            }
+                          ],
+                          [
+                            "scope",
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "asset_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "Asset"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "contract_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "Agreement"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "currency",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "participant_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "Participant"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "pool_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "Pool"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          [
+                            "source_ref",
+                            {
+                              "args": [],
+                              "name": "Text"
+                            }
+                          ],
+                          [
+                            "weight",
+                            {
+                              "args": [],
+                              "name": "Ratio"
+                            }
+                          ],
+                          [
+                            "weight_source",
+                            {
+                              "args": [],
+                              "name": "Text"
+                            }
+                          ]
+                        ],
+                        "name": "Record"
+                      }
+                    ],
+                    "name": "List"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "supplied_allocations",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "amount_source",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "observed_at_source",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "parent_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "recipient_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "evidence",
+        "role": "evidence",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "approval_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Decision"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "observed_at_source",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "contract_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "source_kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "supplied_opening",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "boundary",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "consumed_parent_ids",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "consumed_upstream_refs",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "history",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "as_of",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "authorities",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "approved",
+                                  {
+                                    "args": [],
+                                    "name": "Bool"
+                                  }
+                                ],
+                                [
+                                  "approved_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "effective",
+                                  {
+                                    "args": [],
+                                    "name": "Period"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "method",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "observed_at_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "parent_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "parent_upstream_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "recipient_ids",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [
+                                          {
+                                            "args": [],
+                                            "name": "AllocationRecord"
+                                          }
+                                        ],
+                                        "name": "Id"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ],
+                                [
+                                  "recorded_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "residual_order",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "supplied_allocation_ids",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [
+                                          {
+                                            "args": [],
+                                            "name": "AllocationRecord"
+                                          }
+                                        ],
+                                        "name": "Id"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ],
+                                [
+                                  "terms",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "fields": [
+                                          [
+                                            "evidence_ref",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Instant"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "recipient_id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "scope",
+                                            {
+                                              "args": [],
+                                              "fields": [
+                                                [
+                                                  "asset_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Asset"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "contract_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Agreement"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "currency",
+                                                  {
+                                                    "args": [],
+                                                    "name": "Text"
+                                                  }
+                                                ],
+                                                [
+                                                  "participant_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Participant"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "pool_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Pool"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ]
+                                              ],
+                                              "name": "Record"
+                                            }
+                                          ],
+                                          [
+                                            "source_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "weight",
+                                            {
+                                              "args": [],
+                                              "name": "Ratio"
+                                            }
+                                          ],
+                                          [
+                                            "weight_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ]
+                                        ],
+                                        "name": "Record"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "cutoff",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "cutoff_source",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "parents",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "amount",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "amount_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "authority_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "effective_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "observed_at_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "upstream_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "period",
+                        {
+                          "args": [],
+                          "name": "Period"
+                        }
+                      ],
+                      [
+                        "source_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "supplied_allocations",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "amount",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "amount_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "observed_at_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "parent_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "recipient_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "origin",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "evidence_class",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "id",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "limits",
+                    {
+                      "args": [],
+                      "fields": [
+                        [
+                          "historical_periods",
+                          {
+                            "args": [],
+                            "name": "Int"
+                          }
+                        ],
+                        [
+                          "parents_per_period",
+                          {
+                            "args": [],
+                            "name": "Int"
+                          }
+                        ],
+                        [
+                          "recipients",
+                          {
+                            "args": [],
+                            "name": "Int"
+                          }
+                        ]
+                      ],
+                      "name": "Record"
+                    }
+                  ],
+                  [
+                    "method",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "parent_rounding",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "quota_basis",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "residual_order",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "revision",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "purpose",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "recipient_registry",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "evidence_ref",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "AllocationRecord"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "AllocationRecord"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "observed_at_source",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "contract_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "predecessor",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "closing_state",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "boundary",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "consumed_parent_ids",
+                        {
+                          "args": [
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "AllocationRecord"
+                                }
+                              ],
+                              "name": "Id"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "consumed_upstream_refs",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Text"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "history",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "as_of",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "authorities",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "fields": [
+                                          [
+                                            "approved",
+                                            {
+                                              "args": [],
+                                              "name": "Bool"
+                                            }
+                                          ],
+                                          [
+                                            "approved_date",
+                                            {
+                                              "args": [],
+                                              "name": "Date"
+                                            }
+                                          ],
+                                          [
+                                            "effective",
+                                            {
+                                              "args": [],
+                                              "name": "Period"
+                                            }
+                                          ],
+                                          [
+                                            "evidence_ref",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "method",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Instant"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "parent_id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "parent_upstream_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "recipient_ids",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [
+                                                    {
+                                                      "args": [],
+                                                      "name": "AllocationRecord"
+                                                    }
+                                                  ],
+                                                  "name": "Id"
+                                                }
+                                              ],
+                                              "name": "List"
+                                            }
+                                          ],
+                                          [
+                                            "recorded_date",
+                                            {
+                                              "args": [],
+                                              "name": "Date"
+                                            }
+                                          ],
+                                          [
+                                            "residual_order",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "scope",
+                                            {
+                                              "args": [],
+                                              "fields": [
+                                                [
+                                                  "asset_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Asset"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "contract_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Agreement"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "currency",
+                                                  {
+                                                    "args": [],
+                                                    "name": "Text"
+                                                  }
+                                                ],
+                                                [
+                                                  "participant_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Participant"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "pool_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Pool"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ]
+                                              ],
+                                              "name": "Record"
+                                            }
+                                          ],
+                                          [
+                                            "source_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "supplied_allocation_ids",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [
+                                                    {
+                                                      "args": [],
+                                                      "name": "AllocationRecord"
+                                                    }
+                                                  ],
+                                                  "name": "Id"
+                                                }
+                                              ],
+                                              "name": "List"
+                                            }
+                                          ],
+                                          [
+                                            "terms",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "fields": [
+                                                    [
+                                                      "evidence_ref",
+                                                      {
+                                                        "args": [
+                                                          {
+                                                            "args": [],
+                                                            "name": "AllocationRecord"
+                                                          }
+                                                        ],
+                                                        "name": "Id"
+                                                      }
+                                                    ],
+                                                    [
+                                                      "id",
+                                                      {
+                                                        "args": [
+                                                          {
+                                                            "args": [],
+                                                            "name": "AllocationRecord"
+                                                          }
+                                                        ],
+                                                        "name": "Id"
+                                                      }
+                                                    ],
+                                                    [
+                                                      "observed_at",
+                                                      {
+                                                        "args": [],
+                                                        "name": "Instant"
+                                                      }
+                                                    ],
+                                                    [
+                                                      "observed_at_source",
+                                                      {
+                                                        "args": [],
+                                                        "name": "Text"
+                                                      }
+                                                    ],
+                                                    [
+                                                      "recipient_id",
+                                                      {
+                                                        "args": [
+                                                          {
+                                                            "args": [],
+                                                            "name": "AllocationRecord"
+                                                          }
+                                                        ],
+                                                        "name": "Id"
+                                                      }
+                                                    ],
+                                                    [
+                                                      "scope",
+                                                      {
+                                                        "args": [],
+                                                        "fields": [
+                                                          [
+                                                            "asset_id",
+                                                            {
+                                                              "args": [
+                                                                {
+                                                                  "args": [],
+                                                                  "name": "Asset"
+                                                                }
+                                                              ],
+                                                              "name": "Id"
+                                                            }
+                                                          ],
+                                                          [
+                                                            "contract_id",
+                                                            {
+                                                              "args": [
+                                                                {
+                                                                  "args": [],
+                                                                  "name": "Agreement"
+                                                                }
+                                                              ],
+                                                              "name": "Id"
+                                                            }
+                                                          ],
+                                                          [
+                                                            "currency",
+                                                            {
+                                                              "args": [],
+                                                              "name": "Text"
+                                                            }
+                                                          ],
+                                                          [
+                                                            "participant_id",
+                                                            {
+                                                              "args": [
+                                                                {
+                                                                  "args": [],
+                                                                  "name": "Participant"
+                                                                }
+                                                              ],
+                                                              "name": "Id"
+                                                            }
+                                                          ],
+                                                          [
+                                                            "pool_id",
+                                                            {
+                                                              "args": [
+                                                                {
+                                                                  "args": [],
+                                                                  "name": "Pool"
+                                                                }
+                                                              ],
+                                                              "name": "Id"
+                                                            }
+                                                          ]
+                                                        ],
+                                                        "name": "Record"
+                                                      }
+                                                    ],
+                                                    [
+                                                      "source_ref",
+                                                      {
+                                                        "args": [],
+                                                        "name": "Text"
+                                                      }
+                                                    ],
+                                                    [
+                                                      "weight",
+                                                      {
+                                                        "args": [],
+                                                        "name": "Ratio"
+                                                      }
+                                                    ],
+                                                    [
+                                                      "weight_source",
+                                                      {
+                                                        "args": [],
+                                                        "name": "Text"
+                                                      }
+                                                    ]
+                                                  ],
+                                                  "name": "Record"
+                                                }
+                                              ],
+                                              "name": "List"
+                                            }
+                                          ]
+                                        ],
+                                        "name": "Record"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ],
+                                [
+                                  "cutoff",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "cutoff_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "parents",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "fields": [
+                                          [
+                                            "amount",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "USD"
+                                                }
+                                              ],
+                                              "name": "Money"
+                                            }
+                                          ],
+                                          [
+                                            "amount_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "authority_id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "effective_date",
+                                            {
+                                              "args": [],
+                                              "name": "Date"
+                                            }
+                                          ],
+                                          [
+                                            "evidence_ref",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Instant"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "scope",
+                                            {
+                                              "args": [],
+                                              "fields": [
+                                                [
+                                                  "asset_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Asset"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "contract_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Agreement"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "currency",
+                                                  {
+                                                    "args": [],
+                                                    "name": "Text"
+                                                  }
+                                                ],
+                                                [
+                                                  "participant_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Participant"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "pool_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Pool"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ]
+                                              ],
+                                              "name": "Record"
+                                            }
+                                          ],
+                                          [
+                                            "source_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "upstream_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ]
+                                        ],
+                                        "name": "Record"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ],
+                                [
+                                  "period",
+                                  {
+                                    "args": [],
+                                    "name": "Period"
+                                  }
+                                ],
+                                [
+                                  "source_case_id",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "supplied_allocations",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "fields": [
+                                          [
+                                            "amount",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "USD"
+                                                }
+                                              ],
+                                              "name": "Money"
+                                            }
+                                          ],
+                                          [
+                                            "amount_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "evidence_ref",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Instant"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "parent_id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "recipient_id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "scope",
+                                            {
+                                              "args": [],
+                                              "fields": [
+                                                [
+                                                  "asset_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Asset"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "contract_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Agreement"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "currency",
+                                                  {
+                                                    "args": [],
+                                                    "name": "Text"
+                                                  }
+                                                ],
+                                                [
+                                                  "participant_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Participant"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "pool_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Pool"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ]
+                                              ],
+                                              "name": "Record"
+                                            }
+                                          ],
+                                          [
+                                            "source_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ]
+                                        ],
+                                        "name": "Record"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "origin",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "policy",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "evidence_class",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "id",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "limits",
+                              {
+                                "args": [],
+                                "fields": [
+                                  [
+                                    "historical_periods",
+                                    {
+                                      "args": [],
+                                      "name": "Int"
+                                    }
+                                  ],
+                                  [
+                                    "parents_per_period",
+                                    {
+                                      "args": [],
+                                      "name": "Int"
+                                    }
+                                  ],
+                                  [
+                                    "recipients",
+                                    {
+                                      "args": [],
+                                      "name": "Int"
+                                    }
+                                  ]
+                                ],
+                                "name": "Record"
+                              }
+                            ],
+                            [
+                              "method",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "parent_rounding",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "quota_basis",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "residual_order",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "revision",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "purpose",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "recipient_registry",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "observed_at_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "source_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "period",
+                  {
+                    "args": [],
+                    "name": "Period"
+                  }
+                ],
+                [
+                  "source_case_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "Option"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "ledger",
+        "role": "opening",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "boundary",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "consumed_parent_ids",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "consumed_upstream_refs",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "history",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "as_of",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "authorities",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "approved",
+                                  {
+                                    "args": [],
+                                    "name": "Bool"
+                                  }
+                                ],
+                                [
+                                  "approved_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "effective",
+                                  {
+                                    "args": [],
+                                    "name": "Period"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "method",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "observed_at_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "parent_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "parent_upstream_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "recipient_ids",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [
+                                          {
+                                            "args": [],
+                                            "name": "AllocationRecord"
+                                          }
+                                        ],
+                                        "name": "Id"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ],
+                                [
+                                  "recorded_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "residual_order",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "supplied_allocation_ids",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [
+                                          {
+                                            "args": [],
+                                            "name": "AllocationRecord"
+                                          }
+                                        ],
+                                        "name": "Id"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ],
+                                [
+                                  "terms",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "fields": [
+                                          [
+                                            "evidence_ref",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at",
+                                            {
+                                              "args": [],
+                                              "name": "Instant"
+                                            }
+                                          ],
+                                          [
+                                            "observed_at_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "recipient_id",
+                                            {
+                                              "args": [
+                                                {
+                                                  "args": [],
+                                                  "name": "AllocationRecord"
+                                                }
+                                              ],
+                                              "name": "Id"
+                                            }
+                                          ],
+                                          [
+                                            "scope",
+                                            {
+                                              "args": [],
+                                              "fields": [
+                                                [
+                                                  "asset_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Asset"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "contract_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Agreement"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "currency",
+                                                  {
+                                                    "args": [],
+                                                    "name": "Text"
+                                                  }
+                                                ],
+                                                [
+                                                  "participant_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Participant"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ],
+                                                [
+                                                  "pool_id",
+                                                  {
+                                                    "args": [
+                                                      {
+                                                        "args": [],
+                                                        "name": "Pool"
+                                                      }
+                                                    ],
+                                                    "name": "Id"
+                                                  }
+                                                ]
+                                              ],
+                                              "name": "Record"
+                                            }
+                                          ],
+                                          [
+                                            "source_ref",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ],
+                                          [
+                                            "weight",
+                                            {
+                                              "args": [],
+                                              "name": "Ratio"
+                                            }
+                                          ],
+                                          [
+                                            "weight_source",
+                                            {
+                                              "args": [],
+                                              "name": "Text"
+                                            }
+                                          ]
+                                        ],
+                                        "name": "Record"
+                                      }
+                                    ],
+                                    "name": "List"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "cutoff",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "cutoff_source",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "parents",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "amount",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "amount_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "authority_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "effective_date",
+                                  {
+                                    "args": [],
+                                    "name": "Date"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "observed_at_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "upstream_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ],
+                      [
+                        "period",
+                        {
+                          "args": [],
+                          "name": "Period"
+                        }
+                      ],
+                      [
+                        "source_case_id",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "supplied_allocations",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "fields": [
+                                [
+                                  "amount",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "USD"
+                                      }
+                                    ],
+                                    "name": "Money"
+                                  }
+                                ],
+                                [
+                                  "amount_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "evidence_ref",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "observed_at",
+                                  {
+                                    "args": [],
+                                    "name": "Instant"
+                                  }
+                                ],
+                                [
+                                  "observed_at_source",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ],
+                                [
+                                  "parent_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "recipient_id",
+                                  {
+                                    "args": [
+                                      {
+                                        "args": [],
+                                        "name": "AllocationRecord"
+                                      }
+                                    ],
+                                    "name": "Id"
+                                  }
+                                ],
+                                [
+                                  "scope",
+                                  {
+                                    "args": [],
+                                    "fields": [
+                                      [
+                                        "asset_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Asset"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "contract_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Agreement"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "currency",
+                                        {
+                                          "args": [],
+                                          "name": "Text"
+                                        }
+                                      ],
+                                      [
+                                        "participant_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Participant"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ],
+                                      [
+                                        "pool_id",
+                                        {
+                                          "args": [
+                                            {
+                                              "args": [],
+                                              "name": "Pool"
+                                            }
+                                          ],
+                                          "name": "Id"
+                                        }
+                                      ]
+                                    ],
+                                    "name": "Record"
+                                  }
+                                ],
+                                [
+                                  "source_ref",
+                                  {
+                                    "args": [],
+                                    "name": "Text"
+                                  }
+                                ]
+                              ],
+                              "name": "Record"
+                            }
+                          ],
+                          "name": "List"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "origin",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "evidence_class",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "id",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "limits",
+                    {
+                      "args": [],
+                      "fields": [
+                        [
+                          "historical_periods",
+                          {
+                            "args": [],
+                            "name": "Int"
+                          }
+                        ],
+                        [
+                          "parents_per_period",
+                          {
+                            "args": [],
+                            "name": "Int"
+                          }
+                        ],
+                        [
+                          "recipients",
+                          {
+                            "args": [],
+                            "name": "Int"
+                          }
+                        ]
+                      ],
+                      "name": "Record"
+                    }
+                  ],
+                  [
+                    "method",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "parent_rounding",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "quota_basis",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "residual_order",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "revision",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "purpose",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "recipient_registry",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "evidence_ref",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "AllocationRecord"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "AllocationRecord"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "observed_at_source",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "contract_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "contract_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "comparison",
+        "role": "result",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "child_allocation_total",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "original_parent_total",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "parent_count",
+              {
+                "args": [],
+                "name": "Int"
+              }
+            ],
+            [
+              "parent_rounding_delta_total",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "payment_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "start",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ],
+                  [
+                    "end",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "recognized_amount_space",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "rounded_target_total",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "source_case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "allocations",
+        "role": "detail",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "authority_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "base_cents_total",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "child_total",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "children",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "fields": [
+                          [
+                            "floor_base_cents",
+                            {
+                              "args": [],
+                              "name": "Ratio"
+                            }
+                          ],
+                          [
+                            "fractional_cent_remainder",
+                            {
+                              "args": [],
+                              "name": "Ratio"
+                            }
+                          ],
+                          [
+                            "original_parent_exact_quota",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "USD"
+                                }
+                              ],
+                              "name": "Money"
+                            }
+                          ],
+                          [
+                            "parent_id",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "AllocationRecord"
+                                }
+                              ],
+                              "name": "Id"
+                            }
+                          ],
+                          [
+                            "parent_upstream_ref",
+                            {
+                              "args": [],
+                              "name": "Text"
+                            }
+                          ],
+                          [
+                            "rank",
+                            {
+                              "args": [],
+                              "name": "Ratio"
+                            }
+                          ],
+                          [
+                            "recipient_id",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "AllocationRecord"
+                                }
+                              ],
+                              "name": "Id"
+                            }
+                          ],
+                          [
+                            "selected_amount",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "USD"
+                                }
+                              ],
+                              "name": "Money"
+                            }
+                          ],
+                          [
+                            "target_exact_share",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "USD"
+                                }
+                              ],
+                              "name": "Money"
+                            }
+                          ],
+                          [
+                            "weight",
+                            {
+                              "args": [],
+                              "name": "Ratio"
+                            }
+                          ],
+                          [
+                            "weight_denominator",
+                            {
+                              "args": [],
+                              "name": "Ratio"
+                            }
+                          ],
+                          [
+                            "weighted_amount",
+                            {
+                              "args": [
+                                {
+                                  "args": [],
+                                  "name": "USD"
+                                }
+                              ],
+                              "name": "Money"
+                            }
+                          ],
+                          [
+                            "weighted_residual_cent",
+                            {
+                              "args": [],
+                              "name": "Ratio"
+                            }
+                          ]
+                        ],
+                        "name": "Record"
+                      }
+                    ],
+                    "name": "List"
+                  }
+                ],
+                [
+                  "original_parent_amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "parent_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "AllocationRecord"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "parent_rounding_delta",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "parent_upstream_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "ranked_recipient_ids",
+                  {
+                    "args": [
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "AllocationRecord"
+                          }
+                        ],
+                        "name": "Id"
+                      }
+                    ],
+                    "name": "List"
+                  }
+                ],
+                [
+                  "residual_cents",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "rounded_target",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "target_cents",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "weight_denominator",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "reconciliation",
+        "role": "reconciliation",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "QUANTIZED_ALLOCATION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "parent-first-half-even",
+      "hamilton-ascii-tie",
+      "supplied-amount-alternative",
+      "original-parent-carry"
+    ],
+    "evidence_class": "synthetic",
+    "id": "SYNTHETIC-QUANTIZED-ALLOCATION-01",
+    "readable": {
+      "locator": "cases/quantized-allocation/policy.md",
+      "sha256": "f4a40a4ee8827f88d6d2ff6f1f32b0bc80ff1309c141595c802b672916aa96b4"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/quantized-allocation/quantized-allocation.spl",
+    "sha256": "06aefe7a6e2e69750750b2675ebc68486825c2ff57ce68ab7279b65b0a099812"
+  },
+  "state": [
+    {
+      "closing": "ledger",
+      "history_required": false,
+      "key_fields": [
+        "agreement_id",
+        "participant_id",
+        "pool_id",
+        "asset_id",
+        "purpose"
+      ],
+      "movement_kinds": [
+        "transition"
+      ],
+      "opening": "ledger",
+      "purpose": "quantized_parent_allocation",
+      "unit": "structured"
+    }
+  ]
+}

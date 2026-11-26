@@ -1,0 +1,160 @@
+// Selected synthetic two-flow target-return method, proposed and unissued.
+// Original dates/evidence are preserved; only the additional charge is rounded.
+// No monthly component, combined liability or actual additional payment is inferred.
+schedule QuestTwoFlowNearestEven language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: SettlementScope;
+  input project: Id<Asset>;
+  input cutoff: Instant;
+  input obligation_id: Id<Obligation>;
+  input payment_id: Id<Disbursement>;
+  input application_id: Id<Application>;
+  input clause_source: Text;
+  input clause_locator: Text;
+  input annual_target: Ratio;
+  input quantum: Money<USD>;
+  input rounding: Text;
+  input day_count: Text;
+  input policy_id: Text;
+  input policy_revision: Text;
+  input calendar_id: Id<Calendar>;
+  input calendar_version: Text;
+  input calendar_origin: Date;
+  input calendar_source: Text;
+  input calendar_source_sha256: Text;
+  input calendar_truth: List<{calendar_date: Date, ordinal: Ratio}>;
+  input obligations: List<{id: Id<Obligation>, amount: Money<USD>, currency: Text, due_date: Date, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, observed_at: Instant, evidence_id: Id<Evidence>, source_ref: Text}>;
+  input payments: List<{id: Id<Disbursement>, economic_event_id: Id<EconomicEvent>, amount: Money<USD>, currency: Text, paid_date: Date, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, observed_at: Instant, evidence_id: Id<Evidence>, source_ref: Text}>;
+  input applications: List<{id: Id<Application>, obligation_id: Id<Obligation>, payment_id: Id<Disbursement>, amount: Money<USD>, currency: Text, effective_date: Date, scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, asset_id: Id<Asset>, currency: Text}, observed_at: Instant, evidence_id: Id<Evidence>, source_ref: Text}>;
+  input calendar: List<{id: Id<CalendarObservation>, calendar_id: Id<Calendar>, version: Text, origin: Date, calendar_date: Date, ordinal: Ratio, observed_at: Instant, evidence_id: Id<Evidence>, source_ref: Text}>;
+  input evidence: List<{evidence_id: Id<Evidence>, observed_at: Instant, approval_ref: Id<Decision>, evidence_ref: Id<Evidence>, kind: Text, source_ref: Text}>;
+
+  require policy_id == "DYN02-QUEST-TWOFLOW-NEAREST-EVEN" and policy_revision == "1" else "QUEST_POLICY";
+  require day_count == "ACT/365" and rounding == "half_even" and quantum == USD 0.01 else "QUEST_POLICY";
+  require clause_source != "" and clause_locator != "" else "QUEST_CLAUSE_SOURCE";
+  require calendar_version == "1" and calendar_origin == date "2026-01-01" and calendar_source != "" and calendar_source_sha256 != "" else "QUEST_CALENDAR_IDENTITY";
+  require annual_target >= 0.0 else "QUEST_RATE_DOMAIN";
+
+  // Force every support, including unused supplied evidence, through availability.
+  define checked_evidence = for each support in evidence {
+    require support.observed_at < cutoff else "QUEST_EVIDENCE_AFTER_CUTOFF";
+    require support.source_ref != "" and support.kind != "" else "QUEST_EVIDENCE_SOURCE";
+    yield support;
+  };
+  define evidence_by_id = make_map(checked_evidence, support => support.evidence_id, support => support);
+  require sum(entries(evidence_by_id), entry => 1) == sum(evidence, support => 1) else "QUEST_EVIDENCE_REQUIRED";
+
+  // This exact five-row ordinary calendar relation is a declared version boundary.
+  // It contains no elapsed-days or financial answer, and is checked in SPL too.
+  define truth_by_date = make_map(calendar_truth, fact => fact.calendar_date, fact => fact.ordinal);
+  require sum(calendar_truth, fact => 1) == 5 and sum(entries(truth_by_date), entry => 1) == 5 else "QUEST_CALENDAR_TRUTH";
+  require require_some(lookup(truth_by_date, date "2026-01-01"), "QUEST_CALENDAR_TRUTH") == 0.0 else "QUEST_CALENDAR_TRUTH";
+  require require_some(lookup(truth_by_date, date "2026-06-30"), "QUEST_CALENDAR_TRUTH") == 180.0 else "QUEST_CALENDAR_TRUTH";
+  require require_some(lookup(truth_by_date, date "2026-07-02"), "QUEST_CALENDAR_TRUTH") == 182.0 else "QUEST_CALENDAR_TRUTH";
+  require require_some(lookup(truth_by_date, date "2027-01-01"), "QUEST_CALENDAR_TRUTH") == 365.0 else "QUEST_CALENDAR_TRUTH";
+  require require_some(lookup(truth_by_date, date "2027-01-02"), "QUEST_CALENDAR_TRUTH") == 366.0 else "QUEST_CALENDAR_TRUTH";
+  define checked_calendar = for each observation in calendar {
+    require observation.calendar_id == calendar_id and observation.version == calendar_version and observation.origin == calendar_origin else "QUEST_CALENDAR_IDENTITY";
+    require observation.source_ref == calendar_source else "QUEST_CALENDAR_SOURCE";
+    require observation.observed_at < cutoff else "QUEST_CALENDAR_AFTER_CUTOFF";
+    require observation.ordinal >= 0.0 and quantize(observation.ordinal, 1.0, "floor") == observation.ordinal else "QUEST_CALENDAR_ORDINAL";
+    define calendar_support = require_some(lookup(evidence_by_id, observation.evidence_id), "QUEST_CALENDAR_EVIDENCE");
+    require calendar_support.source_ref == observation.source_ref else "QUEST_EVIDENCE_SOURCE";
+    define truthful_ordinal = require_some(lookup(truth_by_date, observation.calendar_date), "QUEST_CALENDAR_DATE_UNSUPPORTED");
+    require observation.ordinal == truthful_ordinal else "QUEST_CALENDAR_ORDINAL";
+    yield observation;
+  };
+  define calendar_by_id = make_map(checked_calendar, observation => observation.id, observation => observation);
+  define calendar_by_date = make_map(checked_calendar, observation => observation.calendar_date, observation => observation);
+  require sum(entries(calendar_by_id), entry => 1) == sum(calendar, observation => 1) and sum(entries(calendar_by_date), entry => 1) == sum(calendar, observation => 1) else "QUEST_CALENDAR_DUPLICATE";
+
+  // Check the complete original lists; never select one row and discard others.
+  define obligation_count = sum(obligations, row => 1);
+  define payment_count = sum(payments, row => 1);
+  define application_count = sum(applications, row => 1);
+  define obligations_by_id = make_map(obligations, row => row.id, row => row);
+  define payments_by_id = make_map(payments, row => row.id, row => row);
+  define payments_by_event = make_map(payments, row => row.economic_event_id, row => row);
+  define applications_by_id = make_map(applications, row => row.id, row => row);
+  require sum(entries(obligations_by_id), entry => 1) == obligation_count else "QUEST_FLOW_DUPLICATE";
+  require sum(entries(payments_by_id), entry => 1) == payment_count and sum(entries(payments_by_event), entry => 1) == payment_count else "QUEST_FLOW_DUPLICATE";
+  require sum(entries(applications_by_id), entry => 1) == application_count else "QUEST_FLOW_DUPLICATE";
+  require obligation_count == 1 and payment_count == 1 and application_count == 1 else "QUEST_FLOW_CARDINALITY";
+  define obligation = require_some(lookup(obligations_by_id, obligation_id), "QUEST_OBLIGATION_REQUIRED");
+  define payment = require_some(lookup(payments_by_id, payment_id), "QUEST_PAYMENT_REQUIRED");
+  define application = require_some(lookup(applications_by_id, application_id), "QUEST_APPLICATION_REQUIRED");
+  define expected_row_scope = {agreement_id:scope.agreement_id, participant_id:scope.participant_id, pool_id:scope.pool_id, asset_id:project, currency:"USD"};
+  require obligation.scope == expected_row_scope and payment.scope == expected_row_scope and application.scope == expected_row_scope else "QUEST_FLOW_SCOPE";
+  require obligation.currency == "USD" and payment.currency == "USD" and application.currency == "USD" else "QUEST_FLOW_CURRENCY";
+  require obligation.amount >= USD 0.01 else "QUEST_PRINCIPAL_DOMAIN";
+  require obligation.amount == payment.amount and obligation.amount == application.amount else "QUEST_FULL_PRINCIPAL_REQUIRED";
+  require application.obligation_id == obligation_id and application.payment_id == payment_id else "QUEST_APPLICATION_LINK";
+  require application.effective_date == payment.paid_date and obligation.due_date <= payment.paid_date else "QUEST_FLOW_DATE";
+  require in_period(payment.paid_date, scope.period) else "QUEST_PAYMENT_OUTSIDE_PERIOD";
+  require obligation.observed_at < cutoff and payment.observed_at < cutoff and application.observed_at < cutoff else "QUEST_FLOW_AFTER_CUTOFF";
+  define obligation_support = require_some(lookup(evidence_by_id, obligation.evidence_id), "QUEST_FLOW_EVIDENCE");
+  define payment_support = require_some(lookup(evidence_by_id, payment.evidence_id), "QUEST_FLOW_EVIDENCE");
+  define application_support = require_some(lookup(evidence_by_id, application.evidence_id), "QUEST_FLOW_EVIDENCE");
+  require obligation.source_ref != "" and obligation_support.source_ref == obligation.source_ref else "QUEST_EVIDENCE_SOURCE";
+  require payment.source_ref != "" and payment_support.source_ref == payment.source_ref else "QUEST_EVIDENCE_SOURCE";
+  require application.source_ref != "" and application_support.source_ref == application.source_ref else "QUEST_EVIDENCE_SOURCE";
+  define due_observation = require_some(lookup(calendar_by_date, obligation.due_date), "QUEST_DUE_CALENDAR_REQUIRED");
+  define paid_observation = require_some(lookup(calendar_by_date, payment.paid_date), "QUEST_PAID_CALENDAR_REQUIRED");
+  define elapsed_days = paid_observation.ordinal - due_observation.ordinal;
+  require elapsed_days >= 0.0 and elapsed_days <= 365.0 else "QUEST_DAY_DOMAIN";
+  require quantize(elapsed_days, 1.0, "floor") == elapsed_days else "QUEST_INTEGER_DAYS";
+
+  // Powers and cent search use only ordinary exact ratios, folds and quantization.
+  define principal = obligation.amount;
+  define target_power = int_power(1.0 + annual_target, elapsed_days);
+  define upper_cent_index = quantize((principal * annual_target) / quantum, 1.0, "ceiling");
+  require upper_cent_index < 16777216.0 else "QUEST_CENT_SEARCH_DOMAIN";
+  define search_slots = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+  define cent_search = fold search_slots from {lo:0.0, hi:upper_cent_index} with state,slot {
+    define middle = quantize((state.lo + state.hi) / 2.0, 1.0, "floor");
+    define middle_power = if state.lo == state.hi then target_power else int_power((principal + quantum * middle) / principal, 365.0);
+    yield if state.lo == state.hi then state else (if middle_power < target_power then {lo:middle + 1.0, hi:state.hi} else {lo:state.lo, hi:middle});
+  };
+  require cent_search.lo == cent_search.hi else "QUEST_CENT_SEARCH_BUDGET";
+  define minimum_index = cent_search.lo;
+  define minimum_charge = quantum * minimum_index;
+  define minimum_ok = int_power((principal + minimum_charge) / principal, 365.0) >= target_power;
+  define predecessor_ok = if minimum_index == 0.0 then target_power == 1.0 else int_power((principal + minimum_charge - quantum) / principal, 365.0) < target_power;
+  require minimum_ok and predecessor_ok else "QUEST_MINIMUM_CERTIFICATE";
+  define minimum_even = minimum_index == 2.0 * quantize(minimum_index / 2.0, 1.0, "floor");
+  define pivot_power = if minimum_index == 0.0 then 1.0 else int_power((principal + minimum_charge - quantum * 0.5) / principal, 365.0);
+  define chosen_index = if minimum_index == 0.0 then 0.0 else (if target_power < pivot_power then minimum_index - 1.0 else (if target_power > pivot_power then minimum_index else (if minimum_even then minimum_index else minimum_index - 1.0)));
+  define index_even = chosen_index == 2.0 * quantize(chosen_index / 2.0, 1.0, "floor");
+  define additional_charge = quantum * chosen_index citing "QUEST_TWOFLOW_SELECTED";
+  require chosen_index >= 0.0 and quantize(chosen_index, 1.0, "floor") == chosen_index else "QUEST_CHOSEN_INDEX";
+  define lower_domain_boundary = chosen_index == 0.0;
+  define lower_bound = if lower_domain_boundary then USD 0 else additional_charge - quantum * 0.5;
+  define upper_bound = additional_charge + quantum * 0.5;
+  define lower_power = if lower_domain_boundary then 1.0 else int_power((principal + lower_bound) / principal, 365.0);
+  define upper_power = int_power((principal + upper_bound) / principal, 365.0);
+  define lower_ok = if lower_domain_boundary then target_power >= 1.0 else (if index_even then lower_power <= target_power else lower_power < target_power);
+  define upper_ok = if index_even then target_power <= upper_power else target_power < upper_power;
+  require lower_ok and upper_ok else "QUEST_HALF_EVEN_CERTIFICATE";
+
+  emit "comparison" = {additional_charge:additional_charge, actual_principal_paid:payment.amount,
+    elapsed_days:elapsed_days, day_count:day_count, annual_target:annual_target,
+    policy_id:policy_id, policy_revision:policy_revision, policy_status:"proposed", evidence_class:"research_assumption",
+    obligation_id:obligation_id, payment_id:payment_id, application_id:application_id,
+    scenario_status:"calculated_unissued", additional_payment_status:"no_event_supplied",
+    monthly_status:"not_computed", combined_status:"unresolved_not_computed"};
+  emit "settlements" = [{scope:scope, asset_id:project, period:scope.period,
+    additional_charge:additional_charge, actual_principal_paid:payment.amount,
+    scenario_status:"calculated_unissued", additional_payment_status:"no_event_supplied",
+    monthly_status:"not_computed", combined_status:"unresolved_not_computed"}];
+  emit "certificate" = {target_power:target_power, chosen_index:chosen_index, index_even:index_even,
+    lower_bound:lower_bound, upper_bound:upper_bound, lower_power:lower_power, upper_power:upper_power,
+    lower_domain_boundary:lower_domain_boundary, lower_ok:lower_ok, upper_ok:upper_ok,
+    minimum_charge:minimum_charge, minimum_status:"alternative_not_selected", minimum_ok:minimum_ok, predecessor_ok:predecessor_ok};
+  emit "observations" = {scope:scope, project:project, cutoff:cutoff,
+    obligation_id:obligation_id, payment_id:payment_id, application_id:application_id,
+    due_date:obligation.due_date, paid_date:payment.paid_date, application_date:application.effective_date,
+    clause_source:clause_source, clause_locator:clause_locator, calendar_id:calendar_id,
+    calendar_version:calendar_version, calendar_origin:calendar_origin, calendar_source:calendar_source,
+    calendar_source_sha256:calendar_source_sha256, calendar_truth:calendar_truth,
+    obligations:obligations, payments:payments, applications:applications,
+    calendar:checked_calendar, evidence:checked_evidence};
+}

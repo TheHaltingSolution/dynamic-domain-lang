@@ -251,16 +251,42 @@ private def branch (config : Config) (rules : Array Line) (index parent : Nat) :
 private structure CompileState where
   output : Array (String × Span) := #[]
   policies : List String := []
+  roles : Array (Option String) := #[]
+  activeRole : Option String := none
+  nextRole : Nat := 0
+  multipleSettlements : Bool := false
+  authoredNames : List String := []
   deriving Inhabited
 
 private abbrev C := StateT CompileState (Except Diagnostic)
 private def emit (text : String) (line : Line) : C Unit :=
-  modify fun s => { s with output := s.output.push (text, line.span) }
+  modify fun s => { s with output := s.output.push (text, line.span), roles := s.roles.push s.activeRole }
 private def liftResult (value : Except Diagnostic α) : C α :=
   match value with
   | .ok value => pure value
   | .error error => throw error
 private def failAt (line : Line) (message : String) : C α := liftResult (failure line message)
+
+private def authoredIdentifiers (source : String) : List String := Id.run do
+  let mut result := []
+  let mut current := ""
+  for c in source.toList do
+    if word c then
+      if !current.isEmpty || !('0' ≤ c && c ≤ '9') then current := current.push c
+    else if !current.isEmpty then
+      result := current :: result
+      current := ""
+  return if current.isEmpty then result else current :: result
+
+private def freshRole : C String := do
+  let state ← get
+  let mut index := state.nextRole
+  let mut name := s!"readable_settlement_participant_{index}"
+  while state.authoredNames.contains name do
+    index := index + 1
+    name := s!"readable_settlement_participant_{index}"
+  modify fun s => { s with nextRole := index + 1, authoredNames := name :: s.authoredNames }
+  return name
 
 private def policyIdentity (value : String) : Bool :=
   let alnum := fun c => ('a' ≤ c && c ≤ 'z') || ('A' ≤ c && c ≤ 'Z') || ('0' ≤ c && c ≤ '9')
@@ -310,8 +336,12 @@ private partial def compileBlock (config : Config) (rules : Array Line)
       let participant ← match config.settlements.find? (fun p => p.1 == party) with
         | some p => pure p.2
         | none => failAt line "Settlement party requires an explicit Settle binding"
-      emit ("define settlement_participant : Id<Participant> = " ++ participant ++ ";") line
+      let state ← get
+      let role ← if state.multipleSettlements then freshRole else pure "settlement_participant"
+      emit ("define " ++ role ++ " : Id<Participant> = " ++ participant ++ ";") line
+      if state.multipleSettlements then modify fun s => { s with activeRole := some role }
       let next ← compileBlock config rules (index + 1) (some line.indent) (depth + 1)
+      modify fun s => { s with activeRole := state.activeRole }
       unless next > index + 1 do failAt line "Settlement block must contain statements"
       index := next
     else if text.startsWith "If " && text.endsWith ":" then
@@ -345,12 +375,12 @@ private partial def compileBlock (config : Config) (rules : Array Line)
         emit ("require " ++ expression config parts[0]! ++ " else " ++ parts[1]! ++ ";") line
       else if text.startsWith "Report by " && text.endsWith "." then
         let parts := (unlast text).splitOn ": "
-        unless parts.length == 2 do failAt line "Report by needs a label and expression"
-        emit ("yield " ++ (← liftResult (report config line parts[1]!)) ++ ";") line
+        unless parts.length ≥ 2 do failAt line "Report by needs a label and expression"
+        emit ("yield " ++ (← liftResult (report config line (String.intercalate ": " (parts.drop 1)))) ++ ";") line
       else if text.startsWith "Report " && text.endsWith "." then
         let parts := (middle text 7).splitOn ": "
-        unless parts.length == 2 do failAt line "Report needs quoted-port: expression."
-        emit ("emit " ++ parts[0]! ++ " = " ++ (← liftResult (report config line parts[1]!)) ++ ";") line
+        unless parts.length ≥ 2 do failAt line "Report needs quoted-port: expression."
+        emit ("emit " ++ parts[0]! ++ " = " ++ (← liftResult (report config line (String.intercalate ": " (parts.drop 1)))) ++ ";") line
       else if text.startsWith "Closing " then
         let value ← liftResult (definition config { line with text := cut text 8 })
         unless value.citation.isEmpty do failAt line "Closing citation belongs on the movement definition"
@@ -361,6 +391,81 @@ private partial def compileBlock (config : Config) (rules : Array Line)
         emit s!"define {value.target} = {value.value}{value.citation};" line
       index := index + 1
   return index
+
+private abbrev RoleEdits := StateT (List (Span × String)) (Except Diagnostic)
+
+private def roleFailure (origins : Array Span) (span : Span) (message : String) : RoleEdits α :=
+  throw { code := "READABLE_SETTLEMENT_ROLE", message := message, span := origins[span.line - 1]?.getD (origins[origins.size - 1]?.getD default) }
+
+private def roleBinder (origins : Array Span) (span : Span) (name : String) : RoleEdits Unit :=
+  if name == "settlement_participant" then
+    roleFailure origins span "A local binder cannot shadow the settlement role marker"
+  else pure ()
+
+mutual
+private partial def roleExpr (roles : Array (Option String)) (origins : Array Span) : Expr → RoleEdits Unit
+  | .name span name => do
+    if name == "settlement_participant" then
+      match roles[span.line - 1]?.getD none with
+      | some role => modify ((span, role) :: ·)
+      | none => roleFailure origins span "A settlement role requires an enclosing heading with multiple settlements"
+  | .unary _ _ a | .field _ a _ => roleExpr roles origins a
+  | .binary _ _ a b => do roleExpr roles origins a; roleExpr roles origins b
+  | .ite _ a b c => do roleExpr roles origins a; roleExpr roles origins b; roleExpr roles origins c
+  | .call _ _ args | .list _ args => args.forM (roleExpr roles origins)
+  | .lambda span name body => do roleBinder origins span name; roleExpr roles origins body
+  | .record _ fields => fields.forM fun (_, value) => roleExpr roles origins value
+  | .choose _ branches fallback => do
+    for (a, b) in branches do roleExpr roles origins a; roleExpr roles origins b
+    for value in fallback do roleExpr roles origins value
+  | .selectRules _ _ arms fallback => do
+    for (_, _, a, b) in arms do roleExpr roles origins a; roleExpr roles origins b
+    for (_, value) in fallback do roleExpr roles origins value
+  | .forEach span name source locals result => do
+    roleBinder origins span name
+    roleExpr roles origins source
+    locals.forM (roleLocal roles origins)
+    roleExpr roles origins result
+  | .fold span source initial state event order locals result => do
+    roleBinder origins span state; roleBinder origins span event
+    roleExpr roles origins source; roleExpr roles origins initial
+    for (keyBinder, key, idBinder, identity, _) in order do
+      roleBinder origins span keyBinder; roleBinder origins span idBinder
+      roleExpr roles origins key; roleExpr roles origins identity
+    locals.forM (roleLocal roles origins)
+    roleExpr roles origins result
+  | .apply span _ parameters args _ locals body => do
+    for (name, _) in parameters do roleBinder origins span name
+    args.forM (roleExpr roles origins)
+    locals.forM (roleLocal roles origins)
+    roleExpr roles origins body
+  | _ => pure ()
+private partial def roleLocal (roles : Array (Option String)) (origins : Array Span) : LocalDecl → RoleEdits Unit
+  | .define span name _ value _ => do roleBinder origins span name; roleExpr roles origins value
+  | .require _ value _ => roleExpr roles origins value
+end
+
+private def settlementRoles (source : String) (roles : Array (Option String))
+    (origins : Array Span) : Except Diagnostic String := do
+  let parsed ← match SPL.Parser.parse source with
+    | .ok value => pure value
+    | .error diagnostic => throw { diagnostic with
+        span := origins[diagnostic.span.line - 1]?.getD (origins[origins.size - 1]?.getD default) }
+  let (_, edits) ← (do
+    for declaration in parsed.declarations do
+      match declaration with
+      | .input span name _ | .opening span name _ _ => roleBinder origins span name
+      | .define span name _ value _ => do roleBinder origins span name; roleExpr roles origins value
+      | .require _ value _ | .closing _ _ value | .emit _ _ value => roleExpr roles origins value
+    : RoleEdits Unit).run []
+  let mut remaining := source.toList
+  let mut cursor := 0
+  let mut pieces := []
+  for (span, role) in edits.mergeSort (fun a b => a.1.start ≤ b.1.start) do
+    pieces := role :: String.ofList (remaining.take (span.start - cursor)) :: pieces
+    remaining := remaining.drop (span.stop - cursor)
+    cursor := span.stop
+  return String.join pieces.reverse ++ String.ofList remaining
 
 def isReadable (source : String) : Bool :=
   (strip source).startsWith "Participation Schedule for "
@@ -384,9 +489,13 @@ def expand (source : String) : Except Diagnostic Expansion := do
   if rules.isEmpty then failure title "At least one readable rule is required"
   unless rules[0]!.indent == 0 do failure rules[0]! "Top-level rules must start in column one" "READABLE_INDENTATION"
   let initial := #[((s!"schedule {name} {metadata} " ++ "{"), title.span)] ++ config.declarations
-  let (_, state) ← (compileBlock config rules 0).run { output := initial }
+  let multiple := (rules.toList.filter fun line => line.text.startsWith "For settlement with " && line.text.endsWith ":").length > 1
+  let (_, state) ← (compileBlock config rules 0).run { output := initial, roles := initial.map (fun _ => none), multipleSettlements := multiple, authoredNames := authoredIdentifiers source }
   let output := state.output.push ("}", (lines[lines.size - 1]?.getD default).span)
-  return { source := String.intercalate "\n" (output.toList.map (·.1)), origins := output.map (·.2) }
+  let expanded := String.intercalate "\n" (output.toList.map (·.1))
+  let origins := output.map (·.2)
+  let expanded ← if multiple then settlementRoles expanded (state.roles.push none) origins else pure expanded
+  return { source := expanded, origins }
 
 private def remapSpan (origins : Array Span) (span : Span) : Span :=
   origins[span.line - 1]?.getD (origins[origins.size - 1]?.getD default)

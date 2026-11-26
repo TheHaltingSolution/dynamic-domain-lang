@@ -70,7 +70,7 @@
     }
   },
   "manifest": {
-    "compiler_build": "18a3b75dac19a9874fe1e28489f7505e9c81012b5d25c873a4791a1958a79fdf",
+    "compiler_build": "f65e6bec55269c3baf49ea856710f4e3202bc7c1cc2e6f229a742ab695f79a01",
     "cutoff": "2026-03-01T00:00:00Z",
     "mode": "final",
     "module_closure": [
@@ -96,7 +96,7 @@
       "max_input_rows": 100000
     },
     "run_id": "roundlake-like-selected-2026-02-01",
-    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "runtime_build": "673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9",
     "scenario_id": "roundlake-like-selected"
   },
   "module_ref": {
@@ -128,7 +128,7 @@
     {
       "boundary": "2026-02-01",
       "opening_port": "claim_ledger",
-      "prior_result_ref": "result@sha256:8531d5dfeeb31930a96fa63d9cefb3dade4d7c0ba0f39e863b9f22cdd2b7e337",
+      "prior_result_ref": "result@sha256:684f89cee9ad6721e9cca9298b75409bfadeaccf116f944220b69465f9b124fa",
       "provenance_ref": "selected-synthetic-opening-claims",
       "purpose": "capital_recovery",
       "quantity": [

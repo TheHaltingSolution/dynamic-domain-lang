@@ -1,11 +1,85 @@
 # Screen Participation Language design
 
-Implementation continuation, 21 November 2026: K1-K3, generic registered methods
+The [bounded research checkpoint](release-checkpoint-2026-11-25.md) records
+the selected release profiles and measured capacity. The
+[25 November session handoff](session-handoff-2026-11-25.md) defines the owner's
+scope and the inherited integration evidence. Use the
+[release reproduction guide](release-reproduction.md) for the frozen regression
+and native reserve checks, and the [capacity envelope](capacity-envelope.md)
+for the RR03 measurement results.
+
+The earlier [finite completion plan](completion-plan.md) and
+[machine-readable backlog](completion-backlog.json) retain detailed engineering
+history. The [research](for-royalties-research-agent.md) and
+[design](for-language-design-agent.md) notes provide paste-ready external review
+requests with exact paths and reading order. Ready work continues while those
+specific answers are pending.
+
+Read the [active checkpoint](completion-checkpoint.md) before historical updates
+below. It indexes newer financial cohorts, finite interaction tests, measured
+trace optimization and the [artifact completion contract](artifact-publication-design.md).
+
+The [atomic variant inventory](c1-coverage.md) records the reviewed finite
+semantic scope, separate backend/evidence axes and remaining gaps.
+[Live work](active-work.md) records later checkpoints and active jobs.
+
+The explicit [usage-time extension](unit-conversion-implementation.md) is now
+integrated: owner-scoped Minute/Hour conversion, versioned IR and old/new state
+controls.931 frozen-candidate tests and46 main integration checks pass; this is
+not a full latest-corpus release. Native mixed currency remains reserved for the
+later tool demonstration. Historical updates below retain their original scope.
+
+[Native method source guidance](native-method-source-guide.md) collects measured
+audit-cost lessons without changing financial policy or the readable authoring
+target.
+
+The [bounded conformance-validation guide](conformance-validation.md) records
+the completed first validation milestone: an executable feature/test matrix,
+independent seeded boundary controls, retained replay inputs and native IR
+decision observations. All eight generated cases, 14 mapped witness methods and
+19 new harness checks pass. Six matrix gaps remain explicit; this supplemental
+campaign does not replace the historical kernel baseline or full-suite record.
+
+For session continuity, start with the
+[23 November compiler session handoff](session-handoff.md): current branch,
+completed work, agent roles, setup, evidence and proposed next steps.
+
+23 November 2026 execution update: the proposed
+[Quest two-flow half-even method](../../cases/quest/README.md) now runs through
+the existing `0.4.3-dev` kernel and generic canonical registration. Its new
+dated [fixture](quest-two-flow-fixture.md), [SPL source](../../cases/quest/charge.spl)
+and [readable policy](../../cases/quest/policy.md) retain one full principal
+payment and calculate only the additional target-return component. All 34 new
+checks passed in one combined run: 20 independent oracle, nine canonical and
+five direct execution checks (402.120 seconds). The 86-target build and both
+smokes also passed. Baseline additional USD 95.17 and the USD 0.00/USD 0.02
+half-even ties are verified without a solver, date-difference builtin or core
+extension. All nine review scenarios also pass native IR/generated Lean/reference
+comparison and independent exact certificates. The historical
+352-check baseline was not rerun or republished for this method. Policy remains
+proposed `research_assumption`; monthly/combined liability, partial-payment
+rules, Excel operational equivalence and adjacent-domain owner approval remain
+unresolved. Existing proof scopes are unchanged.
+
+Implementation continuation, 22 November 2026: K1-K3, generic registered methods
 and the disclosed calendar-month extension are executable. The
 M1a continuation adds reusable tier/cap/guarantee modules and
-[seven ordinary-royalty cases](../../cases/m1/README.md). Typed quantity/rate
-and FX extensions remain planned, with their boundary recorded in
-[the core continuation](next-core-semantics.md#next-dimensional-slice-quantities-and-per-unit-rates).
+[seven ordinary-royalty cases](../../cases/m1/README.md). The M1b feature branch
+implements exact `Quantity<U>` and `Rate<U,USD>` values, tagged transport and
+dimension-safe state, with `Download` and `UsageMinute` admitted by the finite
+`spl.units/1` dictionary. Existing generic type syntax supplies these typed
+inputs; no new literal grammar was added. The
+[synthetic quantity demo](../../cases/quantities/README.md) checks 100 Download
+at USD 1.50/Download, a separately declared 50% share, zero/fractional activity
+and actual successor carry. FX remains planned. See
+[the dimensional boundary](next-core-semantics.md#m1b-implemented-dimensional-boundary).
+The verified local `0.4.3-dev` baseline is on `feature/spl-typed-quantities`,
+based on merged `018dde1`. All 352 Python tests passed in one combined run,
+along with 16 native suites, the 86-target build and both smokes. All 35 review
+paths passed: 24 legacy, four quantity and seven M1a paths. Implementation
+identities and source pins remained unchanged through verification. `main` is
+unchanged; this is a local baseline record with no GitHub release or push. The
+[historical `0.4.2-dev` record](baselines/implementation-0.4.2-dev.json) is preserved.
 See the [implementation report](implementation.md),
 [fold/function semantics](folds-and-linking.md) and
 [module interface](module-interface-v1.md). The ledger's execution update
@@ -18,7 +92,31 @@ statements and closing state for the original 15 registered runs, six
 original/readable legacy runs, three direct mechanisms and the separate seven
 M1a runs.
 
+Run the quantity review from the repository root with the pinned Python setup:
+
+```powershell
+python scripts/quantity_demo.py
+```
+
+All four demo cases passed native/generated comparison and independent
+financial controls. This evidence does not extend the scalar proof scope or
+establish contract approval; see the case README for focused verification and
+remaining limits.
+
 Initial design draft 0.1 · 15 November 2026
+
+22 November extension-selection update: read the
+[independent DYN-02 assessment](dyn02-design-answer.md) and its
+[targeted follow-ups](dyn02-research-followups.md). The research recommendation
+has been incorporated; no necessary new core capability is selected. The current
+`0.4.3-dev` source/kernel must be assessed directly rather than inferring a
+gap from the older 21 November conformance snapshot or an absent builtin name.
+
+The subsequent targeted research response is now reconciled into a
+[compact Quest input/output fixture](quest-two-flow-fixture.md): proposed
+ACT/365 mathematical target, half-even charge rounding, one obligation/full
+payment, original date/calendar lineage and separate unresolved monthly
+liability. The prior half-away probe does not establish half-even tie behavior.
 
 Feature-coverage design update · 21 November 2026. Start the next compiler
 iteration with the [LD-02 release decision](release-scope-ld02.md),
@@ -71,6 +169,9 @@ contract interpretation has been approved.
 
 | Document | Purpose |
 | --- | --- |
+| [Quest two-flow fixture](quest-two-flow-fixture.md) and [execution guide](../../cases/quest/README.md) | Proposed synthetic acceptance contract and executed half-even method, original-fact lineage, exact certificates and remaining authority limits |
+| [DYN-02 design answer](dyn02-design-answer.md) | Independent candidate assessment, exact rounding evidence and unchanged-compiler encoding gate |
+| [DYN-02 targeted follow-ups](dyn02-research-followups.md) | Required output/rounding/flow decisions before selecting a necessary extension |
 | [RR-03 response integration](rr03-response-integration.md) | Adopted R1 priorities, Angel/MQP/optional Roundlake cases and unmeasured workload brackets |
 | [Extensibility experiment](extensibility-experiment.md) | Deliberate gaps, baseline freeze, unchanged encoding attempt and smallest extension |
 | [LD-02 next release](release-scope-ld02.md) | Proposed C1 method families, priorities, finite deferred list and acceptance |

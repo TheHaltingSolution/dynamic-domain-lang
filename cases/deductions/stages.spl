@@ -1,0 +1,29 @@
+// Pure exact stage/base arithmetic for six explicitly selected synthetic variants.
+schedule DeductionStages language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input gross: Money<USD>;
+  input net: Money<USD>;
+  input deduction: Money<USD>;
+  input share: Ratio;
+  input fee_rate: Ratio;
+  input variant: Text;
+  require gross >= USD 0 and net >= USD 0 and deduction >= USD 0 else "DEDUCTION_NEGATIVE_MONEY";
+  require net <= gross else "DEDUCTION_RECEIPT_VIEWS";
+  require share >= 0.0 and share <= 1.0 and fee_rate >= 0.0 and fee_rate <= 1.0 else "DEDUCTION_RATE_DOMAIN";
+  define pre_basis = variant == "pre_basis_gross_fee" or variant == "pre_basis_net_fee";
+  define pre_share = variant == "pre_share_gross_fee" or variant == "pre_share_net_fee";
+  define post_share = variant == "post_share_gross_fee" or variant == "post_share_net_fee";
+  require pre_basis or pre_share or post_share else "DEDUCTION_VARIANT_REQUIRED";
+  define gross_fee = variant == "pre_basis_gross_fee" or variant == "pre_share_gross_fee" or variant == "post_share_gross_fee";
+  define stage_net = if pre_basis then net - deduction else net;
+  require stage_net >= USD 0 else "DEDUCTION_NEGATIVE_STAGE";
+  define fee_base = if gross_fee then gross else stage_net;
+  define fee = fee_base * fee_rate;
+  define after_fee = stage_net - fee;
+  require after_fee >= USD 0 else "DEDUCTION_NEGATIVE_STAGE";
+  define participation_basis = if pre_share then after_fee - deduction else after_fee;
+  require participation_basis >= USD 0 else "DEDUCTION_NEGATIVE_STAGE";
+  define before_post_share = participation_basis * share;
+  define earned = if post_share then before_post_share - deduction else before_post_share;
+  require earned >= USD 0 else "DEDUCTION_NEGATIVE_EARNINGS";
+  define stages = {cost_stage: if pre_basis then "pre_basis" else if pre_share then "pre_share" else "post_share", fee_base_kind: if gross_fee then "gross_receipts" else "stage_net", stage_net: stage_net, fee_base: fee_base, fee: fee, after_fee: after_fee, participation_basis: participation_basis, before_post_share: before_post_share, earned: earned};
+}

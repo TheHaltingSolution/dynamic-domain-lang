@@ -58,6 +58,12 @@ inductive Decl where
   | emit : Span → String → Expr → Decl
   deriving Repr, Inhabited
 
+structure FunctionSignature where
+  label : String
+  parameters : List (String × TypeExpr)
+  result : TypeExpr
+  deriving Repr, BEq, Inhabited
+
 structure Schedule where
   name : String
   language : String
@@ -65,6 +71,9 @@ structure Schedule where
   schema : String
   declarations : List Decl
   span : Span := {}
+  features : List String := []
+  owners : List (String × List String) := []
+  signatures : List FunctionSignature := []
   deriving Repr, Inhabited
 
 def Expr.span : Expr → Span

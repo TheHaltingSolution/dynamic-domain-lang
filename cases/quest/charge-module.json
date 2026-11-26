@@ -1,0 +1,2552 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [],
+      "kind": "evidence",
+      "path": "evidence.evidence",
+      "target": "",
+      "value": "selected_synthetic_record"
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.agreement_id",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.pool_id",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.scope.participant_id",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.period",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.project",
+      "target": "scope.asset_ids",
+      "value": ""
+    },
+    {
+      "fields": [
+        "scope.asset_id"
+      ],
+      "kind": "equals",
+      "path": "state_cells",
+      "target": "inputs.project",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.obligations",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_id"
+      ],
+      "kind": "references",
+      "path": "inputs.obligations",
+      "target": "evidence.evidence.*.evidence_id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.payments",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "economic_event_id"
+      ],
+      "kind": "unique",
+      "path": "inputs.payments",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_id"
+      ],
+      "kind": "references",
+      "path": "inputs.payments",
+      "target": "evidence.evidence.*.evidence_id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.applications",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_id"
+      ],
+      "kind": "references",
+      "path": "inputs.applications",
+      "target": "evidence.evidence.*.evidence_id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "id"
+      ],
+      "kind": "unique",
+      "path": "inputs.calendar",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "calendar_date"
+      ],
+      "kind": "unique",
+      "path": "inputs.calendar",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_id"
+      ],
+      "kind": "references",
+      "path": "inputs.calendar",
+      "target": "evidence.evidence.*.evidence_id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "evidence_id"
+      ],
+      "kind": "unique",
+      "path": "evidence.evidence",
+      "target": "",
+      "value": ""
+    },
+    {
+      "fields": [
+        "obligation_id"
+      ],
+      "kind": "references",
+      "path": "inputs.applications",
+      "target": "inputs.obligations.*.id",
+      "value": ""
+    },
+    {
+      "fields": [
+        "payment_id"
+      ],
+      "kind": "references",
+      "path": "inputs.applications",
+      "target": "inputs.payments.*.id",
+      "value": ""
+    }
+  ],
+  "id": "quest:charge",
+  "imports": [
+    {
+      "alias": "quest_power",
+      "module_ref": {
+        "id": "quest:power",
+        "locator": "cases/quest/power-module.json",
+        "revision": "1",
+        "sha256": "14aa2f94ccf8445bf869d4dfdb22d643503a0990d686f6c904dba15a079b2a22"
+      },
+      "symbols": [
+        {
+          "export": "pow",
+          "local": "int_power"
+        }
+      ]
+    }
+  ],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "SettlementScope"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "project",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Asset"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "cutoff",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "obligation_id",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Obligation"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "payment_id",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Disbursement"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "application_id",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Application"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "sec-quest-agreement@sha256:9f1c535acfa79aaab13b860e18cd731936425e2d42ac519942d37451deeda151"
+          ],
+          "methodology": true
+        },
+        "name": "clause_source",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "Schedule II, page 19, late-payment paragraph"
+          ],
+          "methodology": true
+        },
+        "name": "clause_locator",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "minimum": "0"
+        },
+        "name": "annual_target",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Ratio"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            {
+              "currency": "USD",
+              "value": "0.01"
+            }
+          ],
+          "methodology": true
+        },
+        "name": "quantum",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "half_even"
+          ],
+          "methodology": true
+        },
+        "name": "rounding",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "ACT/365"
+          ],
+          "methodology": true
+        },
+        "name": "day_count",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "DYN02-QUEST-TWOFLOW-NEAREST-EVEN"
+          ],
+          "methodology": true
+        },
+        "name": "policy_id",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "1"
+          ],
+          "methodology": true
+        },
+        "name": "policy_revision",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "gregorian-2026"
+          ],
+          "methodology": true
+        },
+        "name": "calendar_id",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Calendar"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "1"
+          ],
+          "methodology": true
+        },
+        "name": "calendar_version",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "2026-01-01"
+          ],
+          "methodology": true
+        },
+        "name": "calendar_origin",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Date"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "gregorian-calendar-2026-v1"
+          ],
+          "methodology": true
+        },
+        "name": "calendar_source",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            "a5dd154c1902e5f81abba05e0f1ed770edaa8ff4f3e32364781ce96cc6109d31"
+          ],
+          "methodology": true
+        },
+        "name": "calendar_source_sha256",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "choices": [
+            [
+              {
+                "calendar_date": "2026-01-01",
+                "ordinal": "0"
+              },
+              {
+                "calendar_date": "2026-06-30",
+                "ordinal": "180"
+              },
+              {
+                "calendar_date": "2026-07-02",
+                "ordinal": "182"
+              },
+              {
+                "calendar_date": "2027-01-01",
+                "ordinal": "365"
+              },
+              {
+                "calendar_date": "2027-01-02",
+                "ordinal": "366"
+              }
+            ]
+          ],
+          "methodology": true
+        },
+        "name": "calendar_truth",
+        "role": "parameter",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "calendar_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "ordinal",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "max_items": 1,
+          "min_items": 1
+        },
+        "name": "obligations",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Obligation"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "due_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "evidence_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Evidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "max_items": 1,
+          "min_items": 1
+        },
+        "name": "payments",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Disbursement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "economic_event_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "EconomicEvent"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "paid_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "evidence_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Evidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {
+          "max_items": 1,
+          "min_items": 1
+        },
+        "name": "applications",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Application"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "obligation_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Obligation"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "payment_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Disbursement"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "currency",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "evidence_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Evidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "calendar",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "CalendarObservation"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "calendar_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Calendar"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "version",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "origin",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "calendar_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "ordinal",
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "evidence_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Evidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "evidence",
+        "role": "evidence",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "evidence_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Evidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "approval_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Decision"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "evidence_ref",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Evidence"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "comparison",
+        "role": "detail",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "actual_principal_paid",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "additional_charge",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "additional_payment_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "annual_target",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "application_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Application"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "combined_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "day_count",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "elapsed_days",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "evidence_class",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "monthly_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "obligation_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Obligation"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "payment_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Disbursement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "policy_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "scenario_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "settlements",
+        "role": "result",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "actual_principal_paid",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "additional_charge",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "additional_payment_status",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "asset_id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Asset"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "combined_status",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "monthly_status",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "period",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "start",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "end",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "scenario_status",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "period",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "start",
+                              {
+                                "args": [],
+                                "name": "Date"
+                              }
+                            ],
+                            [
+                              "end",
+                              {
+                                "args": [],
+                                "name": "Date"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "certificate",
+        "role": "reconciliation",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "chosen_index",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "index_even",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "lower_bound",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "lower_domain_boundary",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "lower_ok",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "lower_power",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "minimum_charge",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "minimum_ok",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "minimum_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "predecessor_ok",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "target_power",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "upper_bound",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "upper_ok",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "upper_power",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "observations",
+        "role": "detail",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "application_date",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "application_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Application"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "applications",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Application"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "obligation_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Obligation"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "payment_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Disbursement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "amount",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "effective_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "agreement_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "evidence_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Evidence"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "calendar",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "CalendarObservation"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "calendar_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Calendar"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "version",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "origin",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "calendar_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "ordinal",
+                        {
+                          "args": [],
+                          "name": "Ratio"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "evidence_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Evidence"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "calendar_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Calendar"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "calendar_origin",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "calendar_source",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "calendar_source_sha256",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "calendar_truth",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "calendar_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "ordinal",
+                        {
+                          "args": [],
+                          "name": "Ratio"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "calendar_version",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "clause_locator",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "clause_source",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "cutoff",
+              {
+                "args": [],
+                "name": "Instant"
+              }
+            ],
+            [
+              "due_date",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "evidence",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "evidence_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Evidence"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "approval_ref",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Decision"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "evidence_ref",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Evidence"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "kind",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "obligation_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Obligation"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "obligations",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Obligation"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "amount",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "due_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "agreement_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "evidence_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Evidence"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "paid_date",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "payment_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Disbursement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "payments",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Disbursement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "economic_event_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "EconomicEvent"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "amount",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "paid_date",
+                        {
+                          "args": [],
+                          "name": "Date"
+                        }
+                      ],
+                      [
+                        "scope",
+                        {
+                          "args": [],
+                          "fields": [
+                            [
+                              "agreement_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Agreement"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "participant_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Participant"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "pool_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Pool"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "asset_id",
+                              {
+                                "args": [
+                                  {
+                                    "args": [],
+                                    "name": "Asset"
+                                  }
+                                ],
+                                "name": "Id"
+                              }
+                            ],
+                            [
+                              "currency",
+                              {
+                                "args": [],
+                                "name": "Text"
+                              }
+                            ]
+                          ],
+                          "name": "Record"
+                        }
+                      ],
+                      [
+                        "observed_at",
+                        {
+                          "args": [],
+                          "name": "Instant"
+                        }
+                      ],
+                      [
+                        "evidence_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Evidence"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "source_ref",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "project",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Asset"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "agreement_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "period",
+                    {
+                      "args": [],
+                      "fields": [
+                        [
+                          "start",
+                          {
+                            "args": [],
+                            "name": "Date"
+                          }
+                        ],
+                        [
+                          "end",
+                          {
+                            "args": [],
+                            "name": "Date"
+                          }
+                        ]
+                      ],
+                      "name": "Record"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "QUEST_TWOFLOW_SELECTED"
+    ],
+    "discriminating_cases": [
+      "quest-1000-20pct-182days",
+      "quest-half-cent-even-zero",
+      "quest-half-cent-even-two",
+      "quest-zero-days",
+      "quest-full-year",
+      "quest-180days",
+      "quest-invalid-flow-calendar-cutoff"
+    ],
+    "evidence_class": "synthetic",
+    "id": "quest:charge-policy",
+    "readable": {
+      "locator": "cases/quest/policy.md",
+      "sha256": "0adb8d3bc176e9d3e2a2081858c625a1caa013a552abca1581873a09353e98db"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/quest/charge.spl",
+    "sha256": "4996ad7b7ea15d12ca4641d3a8fcd0990a7c79e46896da0ec0fa500b4d7afd11"
+  },
+  "state": []
+}

@@ -1,0 +1,110 @@
+// Pure selected parent-first half-even/Hamilton allocation, from original terms.
+schedule QuantizedParentAllocation language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input fact_scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>};
+  input method: Text;
+  input current_cutoff: Instant;
+  input recipients: List<{evidence_ref: Id<AllocationRecord>, id: Id<AllocationRecord>, observed_at: Instant, observed_at_source: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_ref: Text}>;
+  input evidence: List<{approval_ref: Id<Decision>, evidence_ref: Text, id: Id<AllocationRecord>, kind: Text, observed_at: Instant, observed_at_source: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_kind: Text}>;
+  input record: {as_of: Date, authorities: List<{approved: Bool, approved_date: Date, effective: Period, evidence_ref: Id<AllocationRecord>, id: Id<AllocationRecord>, method: Text, observed_at: Instant, observed_at_source: Text, parent_id: Id<AllocationRecord>, parent_upstream_ref: Text, recipient_ids: List<Id<AllocationRecord>>, recorded_date: Date, residual_order: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_ref: Text, supplied_allocation_ids: List<Id<AllocationRecord>>, terms: List<{evidence_ref: Id<AllocationRecord>, id: Id<AllocationRecord>, observed_at: Instant, observed_at_source: Text, recipient_id: Id<AllocationRecord>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_ref: Text, weight: Ratio, weight_source: Text}>}>, cutoff: Instant, cutoff_source: Text, parents: List<{amount: Money<USD>, amount_source: Text, authority_id: Id<AllocationRecord>, effective_date: Date, evidence_ref: Id<AllocationRecord>, id: Id<AllocationRecord>, observed_at: Instant, observed_at_source: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_ref: Text, upstream_ref: Text}>, period: Period, source_case_id: Text, supplied_allocations: List<{amount: Money<USD>, amount_source: Text, evidence_ref: Id<AllocationRecord>, id: Id<AllocationRecord>, observed_at: Instant, observed_at_source: Text, parent_id: Id<AllocationRecord>, recipient_id: Id<AllocationRecord>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_ref: Text}>};
+  require record.period.start < record.period.end else "QA_PERIOD";
+  require record.cutoff == instant(record.cutoff_source) and record.cutoff <= current_cutoff else "QA_HISTORY_CUTOFF";
+  require sum(recipients, row => 1) >= 1 and sum(recipients, row => 1) <= 8 else "QA_RECIPIENT_BOUND";
+  define recipient_ids = sort_by(map(recipients, row => row.id), identity => identity);
+  define checked_recipients = for each recipient in recipients {
+    require sum(filter(recipients, other => other.id == recipient.id), other => 1) == 1 else "QA_DUPLICATE_ID";
+    require recipient.scope == fact_scope and recipient.source_ref != "" else "QA_FACT_SCOPE";
+    require recipient.observed_at == instant(recipient.observed_at_source) and recipient.observed_at < record.cutoff else "QA_FACT_CUTOFF";
+    require sum(filter(evidence, support => support.id == recipient.evidence_ref and support.observed_at < record.cutoff), support => 1) == 1 else "QA_EVIDENCE_REQUIRED";
+    yield recipient.id;
+  };
+  require sum(record.parents, row => 1) <= 4 else "QA_PARENT_BOUND";
+  require sum(record.authorities, row => 1) == sum(record.parents, row => 1) else "QA_AUTHORITY_CARDINALITY";
+  require sum(record.supplied_allocations, row => 1) <= 32 else "QA_ALLOCATION_BOUND";
+  define checked_authorities = for each authority in record.authorities {
+    require sum(filter(record.authorities, other => other.id == authority.id), other => 1) == 1 else "QA_DUPLICATE_ID";
+    require sum(filter(record.parents, row => row.authority_id == authority.id), row => 1) == 1 else "QA_UNUSED_AUTHORITY";
+    yield authority;
+  };
+  define checked_supplied = for each allocation in record.supplied_allocations {
+    require sum(filter(record.supplied_allocations, other => other.id == allocation.id), other => 1) == 1 else "QA_DUPLICATE_ID";
+    require allocation.scope == fact_scope and allocation.source_ref != "" else "QA_FACT_SCOPE";
+    require allocation.observed_at == instant(allocation.observed_at_source) and allocation.observed_at < record.cutoff else "QA_FACT_CUTOFF";
+    require sum(filter(evidence, support => support.id == allocation.evidence_ref and support.observed_at < record.cutoff), support => 1) == 1 else "QA_EVIDENCE_REQUIRED";
+    require sum(filter(record.parents, row => row.id == allocation.parent_id), row => 1) == 1 and sum(filter(recipients, row => row.id == allocation.recipient_id), row => 1) == 1 else "QA_SUPPLIED_REFERENCE";
+    require sum(record.authorities, authority => sum(filter(authority.supplied_allocation_ids, identity => identity == allocation.id), identity => 1)) == 1 else "QA_UNMATCHED_SUPPLIED_ALLOCATION";
+    yield allocation;
+  };
+  define allocation_lines = for each parent in sort_by(record.parents, row => row.id) {
+    require sum(filter(record.parents, other => other.id == parent.id), other => 1) == 1 else "QA_DUPLICATE_ID";
+    require parent.scope == fact_scope and parent.source_ref != "" and parent.upstream_ref != "" else "QA_FACT_SCOPE";
+    require parent.observed_at == instant(parent.observed_at_source) and parent.observed_at < record.cutoff else "QA_FACT_CUTOFF";
+    require sum(filter(evidence, support => support.id == parent.evidence_ref and support.observed_at < record.cutoff), support => 1) == 1 else "QA_EVIDENCE_REQUIRED";
+    require in_period(parent.effective_date, record.period) else "QA_PARENT_PERIOD";
+    require parent.amount >= USD 0 else "QA_EXACT_NONNEGATIVE_VALUE";
+    define authority_list = filter(checked_authorities, row => row.id == parent.authority_id);
+    require sum(authority_list, row => 1) == 1 else "QA_PARENT_AUTHORITY_REQUIRED";
+    define authority = require_some(lookup(make_map(authority_list, row => row.id, row => row), parent.authority_id), "QA_PARENT_AUTHORITY_REQUIRED");
+    require authority.parent_id == parent.id and authority.parent_upstream_ref == parent.upstream_ref else "QA_AUTHORITY_PARENT_SCOPE";
+    require authority.scope == fact_scope and authority.source_ref != "" else "QA_FACT_SCOPE";
+    require authority.observed_at == instant(authority.observed_at_source) and authority.observed_at < record.cutoff else "QA_FACT_CUTOFF";
+    require sum(filter(evidence, support => support.id == authority.evidence_ref and support.observed_at < record.cutoff), support => 1) == 1 else "QA_EVIDENCE_REQUIRED";
+    require authority.method == method and authority.residual_order == "descending_remainder_then_ascii_recipient_id" else "QA_AUTHORITY_METHOD";
+    require authority.effective == record.period and authority.approved and authority.approved_date <= authority.recorded_date and authority.recorded_date <= record.as_of else "QA_AUTHORITY_ASOF";
+    require sort_by(authority.recipient_ids, identity => identity) == recipient_ids else "QA_COMPLETE_RECIPIENTS";
+    require sum(authority.terms, row => 1) == sum(recipients, row => 1) else "QA_COMPLETE_WEIGHT_TERMS";
+    define terms = for each term in authority.terms {
+      require sum(filter(authority.terms, other => other.id == term.id), other => 1) == 1 else "QA_DUPLICATE_ID";
+      require sum(filter(authority.terms, other => other.recipient_id == term.recipient_id), other => 1) == 1 and sum(filter(recipients, other => other.id == term.recipient_id), other => 1) == 1 else "QA_WEIGHT_RECIPIENT_REFERENCE";
+      require term.scope == fact_scope and term.source_ref != "" else "QA_FACT_SCOPE";
+      require term.observed_at == instant(term.observed_at_source) and term.observed_at < record.cutoff else "QA_FACT_CUTOFF";
+      require sum(filter(evidence, support => support.id == term.evidence_ref and support.observed_at < record.cutoff), support => 1) == 1 else "QA_EVIDENCE_REQUIRED";
+      require term.weight >= 0.0 else "QA_EXACT_NONNEGATIVE_VALUE";
+      yield term;
+    };
+    define denominator = sum(terms, row => row.weight);
+    require denominator > 0.0 else "QA_ZERO_WEIGHT_DENOMINATOR";
+    define target = quantize(parent.amount, USD 0.01, "half_even");
+    define target_cents = target / USD 0.01;
+    define bases = for each term in terms {
+      define quota = target_cents * term.weight / denominator;
+      define base = quantize(quota, 1.0, "floor");
+      yield {id: term.recipient_id, weight: term.weight, quota: quota, base: base, remainder: quota - base};
+    };
+    define base_total = sum(bases, row => row.base);
+    define residual = target_cents - base_total;
+    require residual >= 0.0 and residual < sum(bases, row => 1.0) else "QA_RESIDUAL_BOUND";
+    define ordered = sort_by(bases, row => tuple(-row.remainder, row.id));
+    define chosen_supplied = for each identity in authority.supplied_allocation_ids {
+      require sum(filter(authority.supplied_allocation_ids, other => other == identity), other => 1) == 1 else "QA_DUPLICATE_RECIPIENT_OR_REFERENCE";
+      define original = require_some(lookup(make_map(checked_supplied, row => row.id, row => row), identity), "QA_COMPLETE_SUPPLIED_ALLOCATIONS");
+      require original.parent_id == parent.id else "QA_SUPPLIED_RECIPIENT_REFERENCE";
+      require original.amount >= USD 0 and quantize(original.amount, USD 0.01, "half_even") == original.amount else "QA_SUPPLIED_MINOR_UNIT";
+      yield original;
+    };
+    require if method == "exact_weights_largest_remainder" then sum(chosen_supplied, row => 1) == 0 else sum(chosen_supplied, row => 1) == sum(recipients, row => 1) else "QA_COMPLETE_SUPPLIED_ALLOCATIONS";
+    require method != "authorized_supplied_cents" or sum(chosen_supplied, row => row.amount) == target else "QA_SUPPLIED_TARGET_CONSERVATION";
+    define children = for each base in sort_by(bases, row => row.id) {
+      define rank = 1.0 + sum(filter(bases, other => other.remainder > base.remainder or other.remainder == base.remainder and other.id < base.id), other => 1.0);
+      define award = if rank <= residual then 1.0 else 0.0;
+      define weighted = USD 0.01 * (base.base + award);
+      define matches = filter(chosen_supplied, row => row.recipient_id == base.id);
+      require method != "authorized_supplied_cents" or sum(matches, row => 1) == 1 else "QA_SUPPLIED_RECIPIENT_REFERENCE";
+      define selected = if method == "exact_weights_largest_remainder" then weighted else sum(matches, row => row.amount);
+      yield {parent_id: parent.id, parent_upstream_ref: parent.upstream_ref, recipient_id: base.id,
+             weight: base.weight, weight_denominator: denominator, original_parent_exact_quota: parent.amount * base.weight / denominator,
+             target_exact_share: USD 0.01 * base.quota, floor_base_cents: base.base, fractional_cent_remainder: base.remainder,
+             rank: rank, weighted_residual_cent: award, weighted_amount: weighted, selected_amount: selected};
+    };
+    define child_total = sum(children, row => row.selected_amount);
+    require child_total == target else "QA_CHILD_CONSERVATION";
+    yield {parent_id: parent.id, parent_upstream_ref: parent.upstream_ref, authority_id: authority.id, original_parent_amount: parent.amount,
+           target_cents: target_cents, rounded_target: target, parent_rounding_delta: target - parent.amount, weight_denominator: denominator,
+           base_cents_total: base_total, residual_cents: residual, ranked_recipient_ids: map(ordered, row => row.id), children: children, child_total: child_total};
+  };
+  define normalized_authorities = for each row in sort_by(record.authorities, item => item.id) {
+    yield {id: row.id, parent_id: row.parent_id, parent_upstream_ref: row.parent_upstream_ref, scope: row.scope, method: row.method, effective: row.effective, approved: row.approved, approved_date: row.approved_date, recorded_date: row.recorded_date, observed_at: row.observed_at, observed_at_source: row.observed_at_source, recipient_ids: sort_by(row.recipient_ids, identity => identity), terms: sort_by(row.terms, item => item.id), supplied_allocation_ids: sort_by(row.supplied_allocation_ids, identity => identity), residual_order: row.residual_order, source_ref: row.source_ref, evidence_ref: row.evidence_ref};
+  };
+  define normalized_record = {source_case_id: record.source_case_id, period: record.period, as_of: record.as_of, cutoff: record.cutoff, cutoff_source: record.cutoff_source, parents: sort_by(record.parents, row => row.id), authorities: normalized_authorities, supplied_allocations: sort_by(record.supplied_allocations, row => row.id)};
+  define calculated_record = {allocations: allocation_lines, normalized: normalized_record};
+}
+

@@ -1,0 +1,96 @@
+{
+  "format": "spl-conformance-verification/1",
+  "date": "2026-11-23",
+  "campaign": {
+    "artifact_directory": "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\conformance-20261123",
+    "status": "passed",
+    "elapsed_seconds": "468.912938",
+    "generated_cases": 8,
+    "generated_backends": [
+      "reference",
+      "native_ir",
+      "native_emitted"
+    ],
+    "mapped_test_methods": 14,
+    "passed_matrix_rows": 12,
+    "gap_matrix_rows": 6,
+    "changed_sources": [],
+    "artifact_sha256": {
+      "campaign.json": "7324b74f90dca90223c6b30869c1182ebd68b6928fecd33bf304aaa59e0314f0",
+      "source-manifest.json": "dd8fd98a5660134cad868d607f93672d938777f242b1f77c55a420fac769be99",
+      "feature-execution.json": "7ed8baed671a3df727d1216881949af6aec7e4d39dda9e6741dd2fcdeb42427c",
+      "witness-results.json": "cd269af64cbe54bf9d29aed83723a5682cfc5e1c08b4065cffb25d9b6e96f1b9",
+      "witnesses.log": "d786fe5a51bdc831dfc6ad0e782a8c874acf4e4a257ce41460652bf3b1a1f480",
+      "compiler-coverage.json": "da27871c40f1d2142f7375d10903a094e3e3c506475643e47e66255d3ad4b2a3",
+      "settlement-coverage.json": "6279ba4be3607789b3711cdbbdf8e8b65fe047c777a29f87a3f625fecc5668ab",
+      "domain-coverage.json": "32df0af5f9a2ce201a7ad98790ef86411010cec316b9f06dc59fe009a957ec0d",
+      "cases.json": "6930d81daa2a613544177a7b3d37b7a6359a27b834d3b75ddf1ee24d26426e9e"
+    }
+  },
+  "new_harness_tests": {
+    "artifact_directory": "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\conformance-checks-20261123",
+    "passed": 19,
+    "exit_code": 0,
+    "elapsed_seconds": "32.266570"
+  },
+  "single_case_replay": {
+    "artifact_directory": "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\conformance-replay-20261123",
+    "seed": 7,
+    "status": "passed",
+    "elapsed_seconds": "5.423862",
+    "matrix_execution": "not_executed"
+  },
+  "lean_checks": [
+    {
+      "command": "lake build",
+      "exit_code": 0,
+      "evidence": "Observed session tool execution; raw log not separately saved."
+    },
+    {
+      "command": "lake exe smoke",
+      "exit_code": 0,
+      "evidence": "Observed session tool execution; raw log not separately saved."
+    },
+    {
+      "command": "lake exe spl_smoke",
+      "exit_code": 0,
+      "evidence": "Observed session tool execution; raw log not separately saved."
+    }
+  ],
+  "build_identities": {
+    "compiler": "1ec2ca5ec6df9ae844348d9fe5961c58ecb3dab614b0e01cfdea741ace93a20a",
+    "module": "f65e6bec55269c3baf49ea856710f4e3202bc7c1cc2e6f229a742ab695f79a01",
+    "runtime": "673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9"
+  },
+  "native_ir_observations": {
+    "observations": 349,
+    "decisions": 15,
+    "not_evaluated_roots": 8,
+    "failed_observations": 3,
+    "discarded_outputs": 0
+  },
+  "limitations": [
+    "This is a supplemental bounded campaign, not a rerun of all 386 historical tests or the 16 native-suite cohort.",
+    "Matrix backend stages are inspected declarations; generated backend outcomes are recorded directly.",
+    "Two expected blocked calculations account for three failed native observations, including propagation.",
+    "No emitted-target decision coverage, coverage denominator, exhaustive combinations, workload capacity or full compiler proof.",
+    "Source freeze records the pre-results checkout; subsequent documentation/result indexes may differ. The calculation/compiler sources are unchanged.",
+    "Existing 0.4.3-dev baseline and archived run artifacts remain unchanged.",
+    "After the calculation campaign, the standalone source-freeze inventory and its existing regression were extended to retain validation/. That separate one-method check passed; calculation/compiler/campaign code was unchanged."
+  ],
+  "source_archive_followup": {
+    "command": [
+      "C:\\Projects\\Film_TV_participation_dynamic_DSL\\environment\\python\\python.exe",
+      "-m",
+      "unittest",
+      "Tests.test_freeze_inventory",
+      "-v"
+    ],
+    "exit_code": 0,
+    "test_methods": 1,
+    "elapsed_seconds": "0.105209",
+    "reason": "Include the new validation package in general source archives; archive-only follow-up after the calculation campaign.",
+    "artifact_directory": "C:\\Projects\\Film_TV_participation_dynamic_DSL\\artifacts\\spl\\conformance-checks-20261123",
+    "log": "freeze-inventory.log"
+  }
+}

@@ -8,7 +8,7 @@ from pathlib import Path
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_ROOTS = ["SPL", "spl_compiler", "oracles", "Tests", "cases", "Demos", "schemas",
+SOURCE_ROOTS = ["SPL", "spl_compiler", "oracles", "validation", "Tests", "cases", "Demos", "schemas",
                 "Participation", "Generated", "docs", "scripts", ".github", ".vscode"]
 SUFFIXES = {".lean", ".py", ".md", ".json", ".spl", ".csv", ".toml", ".yml", ".yaml", ".ps1", ".cmd", ".txt"}
 

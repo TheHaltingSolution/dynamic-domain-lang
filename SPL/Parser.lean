@@ -478,13 +478,16 @@ private def schedule : P Schedule := do
   let core := (← stringToken).value
   let _ ← expect "schema"
   let schema := (← stringToken).value
+  let mut features := []
+  while ← accept "uses" do
+    features := features ++ [(← stringToken).value]
   let _ ← expect "{"
   let mut declarations := []
   while !(← isToken "}") do
     declarations := declarations ++ [← declaration]
   let _ ← expect "}"
   unless (← peek).kind == "eof" do fail "Trailing source after schedule" "TRAILING_CONTENT"
-  return { name, language, core, schema, declarations, span := ← endSpan start.span }
+  return { name, language, core, schema, declarations, features, span := ← endSpan start.span }
 
 def parse (source : String) : Except Diagnostic Schedule := do
   let tokens ← lex source

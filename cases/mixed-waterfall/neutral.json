@@ -1,0 +1,756 @@
+{
+  "schema_version": "mixed-claims-neutral/1",
+  "case_id": "mixed-q1",
+  "scope": {
+    "agreement_id": "synthetic-mixed-agreement",
+    "pool_id": "group-earnings-pool",
+    "asset_id": "synthetic-film",
+    "participant_group": "debtor-group",
+    "purpose": "mixed_claim_recovery",
+    "currency": "USD"
+  },
+  "policy": {
+    "id": "SYNTHETIC-MIXED-CLAIMS-01",
+    "revision": "1",
+    "method": "priority_fee_first",
+    "fund": "original_current_group_earning_capacity",
+    "fee_treatment": "claim_only_not_pre_deduction",
+    "correction_treatment": "prospective_offset_not_second_reversal",
+    "event_order": "date_then_unique_sequence",
+    "claim_order": "kind_priority_then_eligible_date_then_sequence",
+    "residual": "complete_original_roster_positive_weight_sum",
+    "current_cash_settlement": "complete_empty_only",
+    "new_claims": "genesis_registry_only",
+    "rounding": "exact_no_rounding",
+    "evidence_class": "research_assumption"
+  },
+  "research": {
+    "atomic_catalog_sha256": "a5b9b5d4676b3c1eee175feff804e575b21179c77455e476db03dad373144553",
+    "waterfall_policy_sha256": "c545da1200b067ac25423389b092578b5303bced444aecb70bd14b8033c9e89f",
+    "offset_policy_sha256": "12c9c44259fb9d1e2d75cdd732d778062d7996aaa83d40849a448af6718e774c",
+    "scope_note": "C07.MIXED_CLAIM_KINDS;capital/advance/correction plus fee-priority composition"
+  },
+  "registry": {
+    "participant_ids": [
+      "debtor-group",
+      "capital-owner",
+      "advance-owner",
+      "distribution-payer"
+    ],
+    "payer_id": "distribution-payer",
+    "earning_terms": {
+      "id": "earning-terms",
+      "scope": {
+        "agreement_id": "synthetic-mixed-agreement",
+        "pool_id": "group-earnings-pool",
+        "asset_id": "synthetic-film",
+        "participant_group": "debtor-group",
+        "purpose": "mixed_claim_recovery",
+        "currency": "USD"
+      },
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "original-source:earning-terms",
+      "evidence_ref": "evidence:earning-terms",
+      "payer_id": "distribution-payer",
+      "share": "0.5",
+      "effective": {
+        "start": "2026-01-01",
+        "end": "2026-10-01"
+      },
+      "approved": true,
+      "approved_date": "2026-01-01",
+      "original_ref": "original-participation-terms#current"
+    },
+    "roster_authority": {
+      "id": "residual-roster",
+      "scope": {
+        "agreement_id": "synthetic-mixed-agreement",
+        "pool_id": "group-earnings-pool",
+        "asset_id": "synthetic-film",
+        "participant_group": "debtor-group",
+        "purpose": "mixed_claim_recovery",
+        "currency": "USD"
+      },
+      "observed_at": "2026-01-02T00:00:00Z",
+      "source_ref": "original-source:residual-roster",
+      "evidence_ref": "evidence:residual-roster",
+      "complete": true,
+      "member_ids": [
+        "capital-owner",
+        "advance-owner"
+      ],
+      "approved": true,
+      "original_ref": "original-roster#complete"
+    },
+    "residual_weights": [
+      {
+        "participant_id": "capital-owner",
+        "weight": "1"
+      },
+      {
+        "participant_id": "advance-owner",
+        "weight": "1"
+      }
+    ],
+    "capital_fundings": [
+      {
+        "id": "capital-funding",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-01-02T00:00:00Z",
+        "source_ref": "original-source:capital-funding",
+        "evidence_ref": "evidence:capital-funding",
+        "funder_id": "capital-owner",
+        "recipient_group": "debtor-group",
+        "amount": "100",
+        "funded_at": "2026-01-01T12:00:00Z",
+        "original_ref": "original-bank-funding#capital"
+      }
+    ],
+    "advance_fundings": [
+      {
+        "id": "advance-funding",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-01-02T00:00:00Z",
+        "source_ref": "original-source:advance-funding",
+        "evidence_ref": "evidence:advance-funding",
+        "funder_id": "advance-owner",
+        "recipient_group": "debtor-group",
+        "amount": "100",
+        "funded_at": "2026-01-01T12:00:00Z",
+        "original_ref": "original-bank-funding#advance"
+      }
+    ],
+    "funding_populations": [
+      {
+        "id": "funding-population:capital",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-01-03T00:00:00Z",
+        "source_ref": "original-source:funding-population:capital",
+        "evidence_ref": "evidence:funding-population:capital",
+        "kind": "capital",
+        "complete": true,
+        "funding_ids": [
+          "capital-funding"
+        ],
+        "total": "100"
+      },
+      {
+        "id": "funding-population:advance",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-01-03T00:00:00Z",
+        "source_ref": "original-source:funding-population:advance",
+        "evidence_ref": "evidence:funding-population:advance",
+        "kind": "advance",
+        "complete": true,
+        "funding_ids": [
+          "advance-funding"
+        ],
+        "total": "100"
+      }
+    ],
+    "fee_bases": [
+      {
+        "id": "fee-source",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-01-21T00:00:00Z",
+        "source_ref": "original-source:fee-source",
+        "evidence_ref": "evidence:fee-source",
+        "creditor_id": "distribution-payer",
+        "debtor_group": "debtor-group",
+        "base_amount": "250",
+        "rate": "0.1",
+        "effective_date": "2026-01-20",
+        "original_ref": "original-fee-basis#separate250"
+      }
+    ],
+    "correction_sources": [
+      {
+        "id": "correction-source",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-02-06T00:00:00Z",
+        "source_ref": "original-source:correction-source",
+        "evidence_ref": "evidence:correction-source",
+        "payer_id": "distribution-payer",
+        "recipient_group": "debtor-group",
+        "original_basis": "200",
+        "original_rate": "0.5",
+        "original_date": "2025-12-01",
+        "original_entitlement_ref": "original-participation-ledger#entitlement100",
+        "return_basis": "80",
+        "return_date": "2026-02-05",
+        "return_ref": "original-return-ledger#basis80",
+        "original_ref": "original-correction-source#measurement"
+      }
+    ],
+    "historical_payments": [
+      {
+        "id": "historical-payment",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2025-12-16T00:00:00Z",
+        "source_ref": "original-source:historical-payment",
+        "evidence_ref": "evidence:historical-payment",
+        "correction_source_id": "correction-source",
+        "payer_id": "distribution-payer",
+        "recipient_group": "debtor-group",
+        "amount": "80",
+        "paid_at": "2025-12-15T12:00:00Z",
+        "original_ref": "original-bank-payment#paid80"
+      }
+    ],
+    "historical_applications": [
+      {
+        "id": "historical-application",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2025-12-17T00:00:00Z",
+        "source_ref": "original-source:historical-application",
+        "evidence_ref": "evidence:historical-application",
+        "payment_id": "historical-payment",
+        "correction_source_id": "correction-source",
+        "original_entitlement_ref": "original-participation-ledger#entitlement100",
+        "amount": "80",
+        "approved": true
+      }
+    ],
+    "historical_payment_populations": [
+      {
+        "id": "historical-payment-population",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2025-12-31T00:00:00Z",
+        "source_ref": "original-source:historical-payment-population",
+        "evidence_ref": "evidence:historical-payment-population",
+        "correction_source_id": "correction-source",
+        "complete": true,
+        "payment_ids": [
+          "historical-payment"
+        ],
+        "application_ids": [
+          "historical-application"
+        ],
+        "paid_total": "80"
+      }
+    ],
+    "claim_authorities": [
+      {
+        "id": "claim:capital",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-01-03T00:00:00Z",
+        "source_ref": "original-source:claim:capital",
+        "evidence_ref": "evidence:claim:capital",
+        "kind": "capital",
+        "beneficiary": "capital-owner",
+        "source_ids": [
+          "capital-funding"
+        ],
+        "authorized_principal": "100",
+        "priority": 2,
+        "sequence": 1,
+        "eligible_from": "2026-01-01",
+        "approved": true,
+        "approved_date": "2026-01-01",
+        "recorded_date": "2026-01-01",
+        "original_ref": "original-claim-authority#capital"
+      },
+      {
+        "id": "claim:advance",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-01-03T00:00:00Z",
+        "source_ref": "original-source:claim:advance",
+        "evidence_ref": "evidence:claim:advance",
+        "kind": "advance",
+        "beneficiary": "advance-owner",
+        "source_ids": [
+          "advance-funding"
+        ],
+        "authorized_principal": "100",
+        "priority": 3,
+        "sequence": 1,
+        "eligible_from": "2026-01-01",
+        "approved": true,
+        "approved_date": "2026-01-01",
+        "recorded_date": "2026-01-01",
+        "original_ref": "original-claim-authority#advance"
+      },
+      {
+        "id": "claim:fee",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-02-11T00:00:00Z",
+        "source_ref": "original-source:claim:fee",
+        "evidence_ref": "evidence:claim:fee",
+        "kind": "fee",
+        "beneficiary": "distribution-payer",
+        "source_ids": [
+          "fee-source"
+        ],
+        "authorized_principal": "25",
+        "priority": 0,
+        "sequence": 1,
+        "eligible_from": "2026-03-01",
+        "approved": true,
+        "approved_date": "2026-02-10",
+        "recorded_date": "2026-02-10",
+        "original_ref": "original-claim-authority#fee"
+      },
+      {
+        "id": "claim:approved_correction",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "observed_at": "2026-02-11T00:00:00Z",
+        "source_ref": "original-source:claim:approved_correction",
+        "evidence_ref": "evidence:claim:approved_correction",
+        "kind": "approved_correction",
+        "beneficiary": "distribution-payer",
+        "source_ids": [
+          "correction-source"
+        ],
+        "authorized_principal": "20",
+        "priority": 1,
+        "sequence": 1,
+        "eligible_from": "2026-03-01",
+        "approved": true,
+        "approved_date": "2026-02-10",
+        "recorded_date": "2026-02-10",
+        "original_ref": "original-claim-authority#approved_correction"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "evidence:earning-terms",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "earning_terms",
+        "approved": true,
+        "observed_at": "2026-01-02T00:00:00Z",
+        "source_ref": "original-evidence:earning-terms"
+      },
+      {
+        "id": "evidence:residual-roster",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "residual_roster",
+        "approved": true,
+        "observed_at": "2026-01-02T00:00:00Z",
+        "source_ref": "original-evidence:residual-roster"
+      },
+      {
+        "id": "evidence:capital-funding",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "actual_capital_funding",
+        "approved": true,
+        "observed_at": "2026-01-02T00:00:00Z",
+        "source_ref": "original-evidence:capital-funding"
+      },
+      {
+        "id": "evidence:advance-funding",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "actual_advance_funding",
+        "approved": true,
+        "observed_at": "2026-01-02T00:00:00Z",
+        "source_ref": "original-evidence:advance-funding"
+      },
+      {
+        "id": "evidence:funding-population:capital",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "complete_funding_population",
+        "approved": true,
+        "observed_at": "2026-01-03T00:00:00Z",
+        "source_ref": "original-evidence:funding-population:capital"
+      },
+      {
+        "id": "evidence:funding-population:advance",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "complete_funding_population",
+        "approved": true,
+        "observed_at": "2026-01-03T00:00:00Z",
+        "source_ref": "original-evidence:funding-population:advance"
+      },
+      {
+        "id": "evidence:fee-source",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "original_fee_basis",
+        "approved": true,
+        "observed_at": "2026-01-21T00:00:00Z",
+        "source_ref": "original-evidence:fee-source"
+      },
+      {
+        "id": "evidence:correction-source",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "original_correction_measurements",
+        "approved": true,
+        "observed_at": "2026-02-06T00:00:00Z",
+        "source_ref": "original-evidence:correction-source"
+      },
+      {
+        "id": "evidence:historical-payment",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "actual_historical_participation_payment",
+        "approved": true,
+        "observed_at": "2025-12-16T00:00:00Z",
+        "source_ref": "original-evidence:historical-payment"
+      },
+      {
+        "id": "evidence:historical-application",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "historical_participation_application",
+        "approved": true,
+        "observed_at": "2025-12-17T00:00:00Z",
+        "source_ref": "original-evidence:historical-application"
+      },
+      {
+        "id": "evidence:historical-payment-population",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "complete_original_payment_population",
+        "approved": true,
+        "observed_at": "2025-12-31T00:00:00Z",
+        "source_ref": "original-evidence:historical-payment-population"
+      },
+      {
+        "id": "evidence:claim:capital",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "claim_authority",
+        "approved": true,
+        "observed_at": "2026-01-03T00:00:00Z",
+        "source_ref": "original-evidence:claim:capital"
+      },
+      {
+        "id": "evidence:claim:advance",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "claim_authority",
+        "approved": true,
+        "observed_at": "2026-01-03T00:00:00Z",
+        "source_ref": "original-evidence:claim:advance"
+      },
+      {
+        "id": "evidence:claim:fee",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "claim_authority",
+        "approved": true,
+        "observed_at": "2026-02-11T00:00:00Z",
+        "source_ref": "original-evidence:claim:fee"
+      },
+      {
+        "id": "evidence:claim:approved_correction",
+        "scope": {
+          "agreement_id": "synthetic-mixed-agreement",
+          "pool_id": "group-earnings-pool",
+          "asset_id": "synthetic-film",
+          "participant_group": "debtor-group",
+          "purpose": "mixed_claim_recovery",
+          "currency": "USD"
+        },
+        "kind": "claim_authority",
+        "approved": true,
+        "observed_at": "2026-02-11T00:00:00Z",
+        "source_ref": "original-evidence:claim:approved_correction"
+      }
+    ]
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-04-01"
+  },
+  "as_of": "2026-03-31",
+  "cutoff": "2026-04-03T00:00:00Z",
+  "earnings": [
+    {
+      "id": "earning:q1",
+      "scope": {
+        "agreement_id": "synthetic-mixed-agreement",
+        "pool_id": "group-earnings-pool",
+        "asset_id": "synthetic-film",
+        "participant_group": "debtor-group",
+        "purpose": "mixed_claim_recovery",
+        "currency": "USD"
+      },
+      "observed_at": "2026-03-02T00:00:00Z",
+      "source_ref": "original-source:earning:q1",
+      "evidence_ref": "evidence:earning:q1",
+      "base_amount": "240",
+      "effective_date": "2026-03-01",
+      "sequence": 1,
+      "original_ref": "original-current-group-earning#q1"
+    }
+  ],
+  "earning_population": {
+    "id": "earning-population:q1",
+    "scope": {
+      "agreement_id": "synthetic-mixed-agreement",
+      "pool_id": "group-earnings-pool",
+      "asset_id": "synthetic-film",
+      "participant_group": "debtor-group",
+      "purpose": "mixed_claim_recovery",
+      "currency": "USD"
+    },
+    "observed_at": "2026-04-01T00:00:00Z",
+    "source_ref": "original-source:earning-population:q1",
+    "evidence_ref": "evidence:earning-population:q1",
+    "period": {
+      "start": "2026-01-01",
+      "end": "2026-04-01"
+    },
+    "complete": true,
+    "earning_ids": [
+      "earning:q1"
+    ],
+    "gross_basis_total": "240"
+  },
+  "cash_settlement_population": {
+    "id": "cash-settlement-population:q1",
+    "scope": {
+      "agreement_id": "synthetic-mixed-agreement",
+      "pool_id": "group-earnings-pool",
+      "asset_id": "synthetic-film",
+      "participant_group": "debtor-group",
+      "purpose": "mixed_claim_recovery",
+      "currency": "USD"
+    },
+    "observed_at": "2026-04-01T00:00:00Z",
+    "source_ref": "original-source:cash-settlement-population:q1",
+    "evidence_ref": "evidence:cash-settlement-population:q1",
+    "period": {
+      "start": "2026-01-01",
+      "end": "2026-04-01"
+    },
+    "complete": true,
+    "event_ids": [],
+    "total": "0"
+  },
+  "evidence": [
+    {
+      "id": "evidence:earning:q1",
+      "scope": {
+        "agreement_id": "synthetic-mixed-agreement",
+        "pool_id": "group-earnings-pool",
+        "asset_id": "synthetic-film",
+        "participant_group": "debtor-group",
+        "purpose": "mixed_claim_recovery",
+        "currency": "USD"
+      },
+      "kind": "current_group_earning_basis",
+      "approved": true,
+      "observed_at": "2026-03-02T00:00:00Z",
+      "source_ref": "original-evidence:earning:q1"
+    },
+    {
+      "id": "evidence:earning-population:q1",
+      "scope": {
+        "agreement_id": "synthetic-mixed-agreement",
+        "pool_id": "group-earnings-pool",
+        "asset_id": "synthetic-film",
+        "participant_group": "debtor-group",
+        "purpose": "mixed_claim_recovery",
+        "currency": "USD"
+      },
+      "kind": "complete_earning_population",
+      "approved": true,
+      "observed_at": "2026-04-01T00:00:00Z",
+      "source_ref": "original-evidence:earning-population:q1"
+    },
+    {
+      "id": "evidence:cash-settlement-population:q1",
+      "scope": {
+        "agreement_id": "synthetic-mixed-agreement",
+        "pool_id": "group-earnings-pool",
+        "asset_id": "synthetic-film",
+        "participant_group": "debtor-group",
+        "purpose": "mixed_claim_recovery",
+        "currency": "USD"
+      },
+      "kind": "complete_current_claim_cash_settlement_population",
+      "approved": true,
+      "observed_at": "2026-04-01T00:00:00Z",
+      "source_ref": "original-evidence:cash-settlement-population:q1"
+    }
+  ],
+  "opening_state": {
+    "origin": "genesis",
+    "boundary": "2026-01-01",
+    "source_case_id": "genesis",
+    "history": []
+  }
+}

@@ -11,6 +11,12 @@ The implementation is [`modules.py`](../../spl_compiler/modules.py). Descriptors
 contain exact file/module pins, typed ports and a finite constraint vocabulary.
 Economic expressions and function preconditions remain checked SPL source.
 
+M1b adds the dimensional boundary below as verified local profile `0.4.3-dev` on
+`feature/spl-typed-quantities`. The published M1a
+`0.4.2-dev` record remains
+[archived](baselines/implementation-0.4.2-dev.json), and legacy state identities
+and issued package pins are preserved.
+
 ## Registration and replay
 
 A registration contains a namespaced ID, immutable revision, registry-relative
@@ -62,6 +68,25 @@ lineage unchanged. Scenario, period, cutoff, mode, inputs, openings, actual term
 and all module/policy/evidence dependencies remain in the semantic closure. The
 full result envelope retains its invocation label and has its own result digest.
 
+Optional `manifest.report_date` and `manifest.issue_date` are explicitly supplied
+`YYYY-MM-DD` Dates for presentation and intended issuance. No invocation-clock
+default or ordering relative to each other, period or cutoff is inferred. They
+remain in the manifest, are excluded from semantic identity, and are never
+forwarded to financial ports or used to select recognition. Date-only changes
+under one implementation pin leave financial outputs, trace and candidate
+closing-state lineage unchanged. Under the default `array-v1` audit profile,
+the module result digest changes because it includes the full manifest. Under
+`compact-v2`, the existing publication digest excludes the manifest for both
+registered modules and bounded profiles; date-only changes leave it unchanged.
+These labels do not make a calculation issued or
+paid. A separately supplied economic Date port retains its selected semantics.
+The bounded canonical profile accepts the same optional metadata; its existing
+result digest excludes the entire manifest, so a date-only change leaves that
+legacy result digest unchanged. Published file hashes change in both audit
+profiles because they still cover the actual manifest and owned files. Adding
+this implementation/schema capability changes build pins; it does not preserve
+the digests of packages bound against an older compiler.
+
 Types use the compiler's type AST. Descriptor-local named structural schemas
 expand to inline `Record` types without adding entries to a global registry.
 Tuples, maps and nested records retain their compiler transport. Explicit
@@ -80,6 +105,13 @@ constraint requires at least one matching supplied event, a registered approval
 reference, an evidence reference and `observed_at < cutoff`. Equality with the
 cutoff remains excluded. Other conditional economic evidence belongs in checked
 source assertions.
+
+An evidence constraint may explicitly set `required:false`; the default is
+`true`, preserving existing descriptors. This permits an empty supplied event
+collection. Every supplied event still undergoes the same authority/reference/
+kind/cutoff checks, including unused events. Only evidence constraints may use
+`required`. Per-fact conditional evidence relationships remain checked source
+assertions; this option does not waive them.
 
 The required manifest resource profile is `{"max_input_rows":100000,
 "lean_timeout_seconds":180}`. Input rows count top-level array values separately
@@ -121,10 +153,24 @@ state. All calculations remain unissued; actual payments are supplied facts.
 Named emitted values are in `result["results"]`. `statements` and `detail`
 flatten one array level from their corresponding port roles. Reconciliation ports
 retain names. Review bundles include `results.json`, the pinned source/policy/
-descriptor closure, typed bindings, native artifacts when requested, diagnostics
-and an envelope written last. This file publication is not a database transaction
-or concurrency guarantee. Profile build pins include both machine-readable schema
+descriptor closure, typed bindings, native artifacts when requested and diagnostics.
+New artifact invocations use a private short `.runs/` directory and an atomic
+`completion.json` marker. Root files remain review mirrors. Consume completed
+artifacts through `spl_compiler.artifacts.load_completed_result`, which validates
+all referenced bytes and a stable marker; an interrupted rerun cannot reuse its
+previous successful completion. Completed blocked/preview objects remain
+inspectable, with final-success checks still required for state carry. See the
+[publication contract](artifact-publication-design.md) for 64 MiB result/8 MiB
+manifest bounds and normal-process guarantees. Historical artifacts without this
+marker remain historical review evidence; they are not silently repinned.
+This is not a database transaction or concurrency guarantee. Profile build pins include both machine-readable schema
 files in addition to the compiler and runtime identities.
+
+An optional `blocked_evidence_labels` runner argument maps actual diagnostic
+codes to unknown evidence labels before publication. Only payment, funding and
+recovery `*_evidence_status` fields with `not_assessed`/`no_event_supplied` values
+are admitted, only on blocked unfinalized results. It cannot assert completeness,
+change a successful result/digest or supply numeric finance or closing state.
 
 `policy_review` and `policy-review.json` retain the actual supplied parameter
 values, their declared domains and methodology flags, and the corresponding
@@ -134,6 +180,69 @@ and readable binding/footer support where applicable. `function_sources` maps an
 existing application-trace function label to its pinned exported definition.
 These links support human review; they do not establish semantic equivalence or
 approve the selected interpretation.
+
+## M1b dimensional interfaces and state
+
+The finite dictionary `spl.units/1` admits `Download` and `UsageMinute`, with
+exact case and no conversion. Existing generic syntax admits `Quantity<U>` and
+`Rate<U,USD>`; prices are typed parameters, with no new English literal grammar.
+Transport is explicitly tagged:
+
+```json
+{"value":"100","unit":"Download"}
+{"value":"1.50","per_unit":"Download","currency":"USD"}
+```
+
+Each `value` uses the existing exact decimal-string or canonical rational-object
+codec. Floats, booleans, missing tags and unknown envelope fields fail. Records,
+lists, tuples, Options and map values retain tags recursively, including output,
+audit and successor-state transport. These are distinct runtime values rather
+than ordinary Ratio bindings. Non-USD rates, FX and Money/Quantity are outside
+this slice; the [operation matrix](next-core-semantics.md#m1b-implemented-dimensional-boundary)
+specifies matching arithmetic, typed zero, rounding and sorting/key restrictions.
+
+Every descriptor using these types must declare capability `spl.quantities/1`,
+codec `spl-quantity/1` in addition to the existing exact/instant codecs, and
+`interface.dictionaries: {"spl.units/1":["Download"]}` (or the admitted used
+units for that descriptor). Every descriptor in the import closure is checked,
+including unused local structural schemas, export results and parameters.
+Missing unit declarations, unknown units and unsupported signature currencies
+fail before execution.
+
+Quantity/rate `minimum` and `maximum` domain bounds must have explicit matching
+tags. Conservation fields and their target must match Quantity/Rate kind, unit
+and currency. Equal numeric magnitudes in different dimensions do not reconcile.
+For an empty declared dimensional collection, the registered field type still
+requires a matching tagged target; untagged scalar zero cannot stand in for it.
+Legacy Money/scalar bound and conservation behavior remains unchanged.
+
+If an opening type contains a Quantity or Rate anywhere, its unit identifier is
+`dimensioned:<sha256>` of the complete normalized checked type. Use
+`spl_compiler.modules.dimensioned_state_unit(typ)` with either a checked Type or
+an expanded type AST. AST input first passes through `checker.type_from_ast`,
+so built-in structures such as nested `Period` expand identically; descriptor-
+local aliases must first be expanded with their owning descriptor. The signature
+at every node is `{"name":name,"args":[...],"fields":[[name,type],...]}`,
+including empty arrays. It retains checked names, sorts record fields by name,
+retains argument order and hashes compact sorted-key UTF-8 JSON using SHA-256.
+For `Quantity<Download>`, the identifier is
+`dimensioned:495808ae9a33038bcc29cf5b3fc3c7cff8da359bf26c7daf90e0e5852e171978`.
+
+That exact identifier is required in the state slot's `unit`, cell's `unit` and
+cell's `scope.unit`; `unit` must also be in `key_fields` and the canonical
+`state_key`. This distinguishes quantities, rates, units and complete compound
+shapes, including nested lists/records/Options. Such state uses `transition`
+movement retaining tagged opening/closing payloads. Existing Money-only and
+`structured` state keep their established rules; no issued state is migrated.
+
+The [selected Download witness](../../cases/quantities/README.md) produces
+100 Download * USD 1.50/Download = USD 150, then a separately declared 50% share
+= USD 75. A successor consumes its actual native closing meter and adds 0.5,
+giving 100.5 Download and USD 0.375 earned. It requires nonnegative selected
+period quantities/rate/opening, strict observation cutoff and per-row evidence;
+signed fractional values remain valid in the core. Its `required:false` evidence
+constraint permits empty usage with empty evidence without weakening supplied
+event checks. The policy remains proposed and results remain unissued.
 
 ## Cedar synthetic witness
 

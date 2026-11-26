@@ -12,7 +12,10 @@ import re
 import unicodedata
 from typing import Any, Callable
 
-from .model import CheckedSchedule, Diagnostic, MapValue, OptionValue, Outcome, SPLException, Type, encode_value
+from .model import CheckedSchedule, Diagnostic, MapValue, OptionValue, Outcome, QuantityValue, RateValue, SPLException, Type, encode_value
+from .dimensions import (DIMENSIONAL_VALUES, dimension_key, dimensional_binary, is_zero,
+                         typed_zero, validate_currency, validate_unit, with_number,
+                         BASE_ADMISSION, BASE_MEANINGS, conversion_factor)
 from .instant import parse_instant
 from .calendar_months import add_calendar_months
 
@@ -35,7 +38,7 @@ def parse_exact(value: Any) -> Fraction:
     raise SPLException("INVALID_EXACT_NUMBER", "Expected exact decimal string or reduced rational with positive denominator")
 
 
-def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
+def decode_value(value: Any, typ: Type, pointer: str = "input", *, context=BASE_MEANINGS) -> Any:
     def error(code: str, message: str) -> None:
         raise SPLException(code, f"{pointer}: {message}")
 
@@ -49,6 +52,27 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
         if value["currency"] != typ.args[0].name:
             error("CURRENCY_MISMATCH", f"Expected {typ.args[0].name}")
         return parse_exact(value["value"])
+    if typ.name in {"Quantity", "Rate"}:
+        unit = typ.args[0].name
+        validate_unit(unit, context)
+        if typ.name == "Rate":
+            validate_currency(typ.args[1].name)
+        invalid = "INVALID_QUANTITY" if typ.name == "Quantity" else "INVALID_RATE"
+        fields = {"value", "unit"} if typ.name == "Quantity" else {"value", "per_unit", "currency"}
+        if not isinstance(value, dict) or set(value) != fields:
+            error(invalid, "Expected exactly the dimensional value and tag fields")
+        tag = value["unit" if typ.name == "Quantity" else "per_unit"]
+        if not isinstance(tag, str) or (typ.name == "Rate" and not isinstance(value["currency"], str)):
+            error(invalid, "Dimension tags must be strings")
+        validate_unit(tag, context)
+        if tag != unit:
+            error("UNIT_MISMATCH", f"Expected {unit}")
+        if typ.name == "Quantity":
+            return QuantityValue(parse_exact(value["value"]), unit, context)
+        currency = typ.args[1].name
+        if value["currency"] != currency:
+            error("CURRENCY_MISMATCH", f"Expected {currency}")
+        return RateValue(parse_exact(value["value"]), unit, currency, context)
     if typ.name in {"Ratio", "Rational", "Int", "Nat"}:
         number = parse_exact(value)
         if typ.name in {"Int", "Nat"} and number.denominator != 1:
@@ -79,7 +103,7 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
     if typ.name == "List":
         if not isinstance(value, list):
             error("INVALID_LIST", "Expected a finite JSON array")
-        decoded = [decode_value(item, typ.args[0], f"{pointer}[{i}]") for i, item in enumerate(value)]
+        decoded = [decode_value(item, typ.args[0], f"{pointer}[{i}]", context=context) for i, item in enumerate(value)]
         if typ.args[0].name in {"AdvanceIssue", "ReserveMovement", "PaymentApplication"}:
             identities = [item["event_id"] for item in decoded]
             if len(set(identities)) != len(identities):
@@ -96,19 +120,19 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
     if typ.name == "Tuple":
         if not isinstance(value,list) or len(value) != len(typ.args):
             error("TUPLE_ARITY","Expected fixed-arity tuple array")
-        return tuple(decode_value(v,t,f"{pointer}[{i}]") for i,(v,t) in enumerate(zip(value,typ.args)))
+        return tuple(decode_value(v,t,f"{pointer}[{i}]",context=context) for i,(v,t) in enumerate(zip(value,typ.args)))
     if typ.name == "Map":
         if not isinstance(value,list) or any(not isinstance(e,dict) or set(e) != {"key","value"} for e in value):
             error("EXPECTED_MAP","Expected key/value entry array")
-        keyed = [(decode_value(e["key"],typ.args[0],f"{pointer}[{i}].key"),e["value"]) for i,e in enumerate(value)]
+        keyed = [(decode_value(e["key"],typ.args[0],f"{pointer}[{i}].key",context=context),e["value"]) for i,e in enumerate(value)]
         if len({k for k,_ in keyed}) != len(keyed):
             error("DUPLICATE_MAP_KEY","Duplicate supplied map key")
-        return MapValue(tuple((k,decode_value(v,typ.args[1],pointer+".value")) for k,v in sorted(keyed,key=lambda p:p[0])))
+        return MapValue(tuple((k,decode_value(v,typ.args[1],pointer+".value",context=context)) for k,v in sorted(keyed,key=lambda p:p[0])))
     if typ.name == "Option":
         if value == {"none": True}:
             return OptionValue(False)
         if isinstance(value, dict) and set(value) == {"some"}:
-            return OptionValue(True,decode_value(value["some"], typ.args[0], pointer + ".some"))
+            return OptionValue(True,decode_value(value["some"], typ.args[0], pointer + ".some",context=context))
         error("INVALID_OPTION", "Expected {none:true} or {some:value}")
     if typ.fields:
         fields = dict(typ.fields)
@@ -119,7 +143,7 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
             error("MISSING_FIELD", f"Missing {', '.join(sorted(missing))}")
         if extra:
             error("UNKNOWN_FIELD", f"Unknown fields {', '.join(sorted(extra))}")
-        result = {name: decode_value(value[name], field_type, pointer + "." + name) for name, field_type in typ.fields}
+        result = {name: decode_value(value[name], field_type, pointer + "." + name,context=context) for name, field_type in typ.fields}
         if typ.name == "Period" and result["start"] >= result["end"]:
             error("INVALID_PERIOD", "Half-open period requires start < end")
         return result
@@ -127,6 +151,10 @@ def decode_value(value: Any, typ: Type, pointer: str = "input") -> Any:
 
 
 def quantize(value: Fraction, quantum: Fraction, mode: str) -> Fraction:
+    if isinstance(value, DIMENSIONAL_VALUES) or isinstance(quantum, DIMENSIONAL_VALUES):
+        if dimension_key(value) is None or dimension_key(value) != dimension_key(quantum):
+            raise SPLException("TYPE_MISMATCH", "Quantum must have the same dimension as its value")
+        return with_number(value, quantize(value.value, quantum.value, mode))
     if quantum <= 0:
         raise SPLException("INVALID_QUANTUM", "Rounding quantum must be strictly positive")
     scaled = value / quantum
@@ -145,6 +173,15 @@ def quantize(value: Fraction, quantum: Fraction, mode: str) -> Fraction:
     else:
         raise SPLException("UNSUPPORTED_ROUNDING_MODE", f"Unsupported mode {mode}")
     return rounded * quantum
+
+
+def comparison_key(value):
+    """Lexicographic scalar ordering retains checked tuple shape and dimensions."""
+    if isinstance(value, DIMENSIONAL_VALUES):
+        return value.value
+    if isinstance(value, tuple):
+        return tuple(comparison_key(item) for item in value)
+    return value
 
 
 class Environment:
@@ -172,7 +209,8 @@ class Environment:
 
 
 class Evaluator:
-    def __init__(self):
+    def __init__(self, context=BASE_MEANINGS):
+        self.context = context
         self.trace: list[dict[str, Any]] = []
         self.instances: list[str] = []
 
@@ -203,6 +241,8 @@ class Evaluator:
             return [self.expr(expression, env) for expression in node["items"]]
         if kind == "unary":
             value = self.expr(node["expr"], env)
+            if node["op"] == "-" and isinstance(value, DIMENSIONAL_VALUES):
+                return with_number(value, -value.value)
             return not value if node["op"] == "not" else -value
         if kind == "binary":
             left = self.expr(node["left"], env)
@@ -211,13 +251,14 @@ class Evaluator:
                 self.observe(node, "short_circuit", operator=op, left=left, right="not_evaluated", result=left)
                 return left
             right = self.expr(node["right"], env)
-            if op == "/" and right == 0:
+            if op == "/" and is_zero(right):
                 raise SPLException("DIVISION_BY_ZERO", "Demanded exact division by zero", node.get("span"))
             operations = {"+": lambda: left + right, "-": lambda: left - right, "*": lambda: left * right,
                           "/": lambda: left / right, "==": lambda: left == right, "!=": lambda: left != right,
-                          "<": lambda: left < right, "<=": lambda: left <= right, ">": lambda: left > right,
-                          ">=": lambda: left >= right, "and": lambda: bool(left and right), "or": lambda: bool(left or right)}
-            result = operations[op]()
+                          "<": lambda: comparison_key(left) < comparison_key(right), "<=": lambda: comparison_key(left) <= comparison_key(right),
+                          ">": lambda: comparison_key(left) > comparison_key(right), ">=": lambda: comparison_key(left) >= comparison_key(right),
+                          "and": lambda: bool(left and right), "or": lambda: bool(left or right)}
+            result = dimensional_binary(op, left, right) if isinstance(left, DIMENSIONAL_VALUES) or isinstance(right, DIMENSIONAL_VALUES) else operations[op]()
             if node.get("_type", Type("Unknown")).name == "Nat" and result < 0:
                 raise SPLException("NAT_UNDERFLOW", "Natural subtraction would be negative", node.get("span"))
             self.observe(node, "binary", operator=op, operands=[left, right], result=result)
@@ -272,7 +313,7 @@ class Evaluator:
                 self.observe(node, "selection", **details, body_status="failed", code=error.code)
                 raise
             self.observe(node, "selection", **details, result=result,
-                         selection_status="calculated_zero" if result == 0 else "calculated")
+                         selection_status="calculated_zero" if is_zero(result) else "calculated")
             return result
         if kind == "choose":
             matches = []
@@ -354,6 +395,16 @@ class Evaluator:
             return results
         if kind == "call":
             name, args = node["name"], node["args"]
+            if name == "convert_quantity":
+                value = self.expr(args[0], env)
+                target, relation = (self.expr(arg, env) for arg in args[1:])
+                if not isinstance(value, QuantityValue):
+                    raise SPLException("TYPE_MISMATCH", "Conversion requires Quantity")
+                factor = conversion_factor(value.unit, target, relation, node.get("_admission", BASE_ADMISSION))
+                result = QuantityValue(value.value * factor, target, self.context)
+                self.observe(node, name, operands=[value, target, relation], result=result,
+                             relation_id=relation, factor=factor)
+                return result
             if name == "get_or":
                 option = self.expr(args[0],env)
                 result = self.expr(args[1],env) if not option.present else option.value
@@ -416,9 +467,11 @@ class Evaluator:
                 elif name == "map":
                     result = mapped
                 elif name == "sum":
-                    result = sum(mapped, Fraction(0))
+                    result = typed_zero(node["_type"], self.context)
+                    for item in mapped:
+                        result = dimensional_binary("+", result, item) if isinstance(result, DIMENSIONAL_VALUES) else result + item
                 else:
-                    result = [item for _, item in sorted(zip(mapped, source), key=lambda pair: pair[0])]
+                    result = [item for _, item in sorted(zip(mapped, source), key=lambda pair: comparison_key(pair[0]))]
                 self.observe(node, name, operands=mapped, result=result)
                 return result
             values = [self.expr(arg, env) for arg in args]
@@ -445,11 +498,13 @@ class Evaluator:
             elif name == "lookup":
                 result = next((OptionValue(True,v) for k,v in values[0].entries if k == values[1]),OptionValue(False))
             elif name == "min":
-                result = min(values)
+                result = min(values, key=lambda v: v.value if isinstance(v, DIMENSIONAL_VALUES) else v)
+            elif name == "abs":
+                result = with_number(values[0], abs(values[0].value)) if isinstance(values[0], DIMENSIONAL_VALUES) else abs(values[0])
             elif name == "instant":
                 result = parse_instant(values[0])
             elif name == "max":
-                result = max(values)
+                result = max(values, key=lambda v: v.value if isinstance(v, DIMENSIONAL_VALUES) else v)
             elif name == "add_calendar_months":
                 result = add_calendar_months(*values)
             elif name == "in_period":
@@ -483,7 +538,7 @@ class Evaluator:
             try:
                 value = self.expr(declaration["expr"], env)
                 self.observe(declaration, "definition", name=name, rule_id=declaration.get("citation") or name,
-                             result=value, outcome="calculated_zero" if isinstance(value, Fraction) and value == 0 else "calculated")
+                             result=value, outcome="calculated_zero" if isinstance(value, (Fraction,) + DIMENSIONAL_VALUES) and is_zero(value) else "calculated")
                 return value
             finally:
                 self.instances = demand_scope
@@ -504,7 +559,7 @@ class Evaluator:
 
 
 def evaluate(checked: CheckedSchedule, inputs: dict[str, Any], openings: dict[str, Any]) -> Outcome:
-    evaluator = Evaluator()
+    evaluator = Evaluator(checked.meanings or BASE_MEANINGS)
     try:
         # Readable expansion maps every subexpression back to its authored
         # statement span. A preorder AST identity distinguishes nested operators
@@ -538,8 +593,8 @@ def evaluate(checked: CheckedSchedule, inputs: dict[str, Any], openings: dict[st
             normalized_openings[binding] = value
         if normalized_openings.keys() != expected_openings:
             raise SPLException("OPENING_BINDING_MISMATCH", "Missing opening binding")
-        values = {name: decode_value(value, checked.types[name], name) for name, value in inputs.items()}
-        values.update({name: decode_value(value, checked.types[name], name) for name, value in normalized_openings.items()})
+        values = {name: decode_value(value, checked.types[name], name, context=evaluator.context) for name, value in inputs.items()}
+        values.update({name: decode_value(value, checked.types[name], name,context=evaluator.context) for name, value in normalized_openings.items()})
         env = Environment(values)
         evaluator.declarations(declarations, checked.definition_order, env)
         emissions, closing = {}, {}

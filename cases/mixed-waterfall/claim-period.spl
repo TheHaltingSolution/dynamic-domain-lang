@@ -1,0 +1,92 @@
+// Exact selected mixed-claim rules from original facts.
+schedule MixedClaimPeriod language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input original_earning_terms: {approved: Bool, approved_date: Date, approved_date_utc: Instant, effective: Period, evidence_ref: Text, id: Text, observed_at: Instant, original_ref: Text, payer_id: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, share: Ratio, share_source: Text, source_ref: Text};
+  input original_authorities: List<{eligible_from: Date, id: Text, observed_at: Instant, original_ref: Text, priority: Int, sequence: Int}>;
+  input original_weights: List<{participant_id: Text, weight: Ratio}>;
+  input original_static_refs: List<Text>;
+  input original_controls: {advance_actual_funding: Money<USD>, capital_actual_funding: Money<USD>, correction_sources: List<{actual_original_paid: Money<USD>, id: Text, original_entitlement: Money<USD>, original_outstanding: Money<USD>, potential_overpayment: Money<USD>, reversal: Money<USD>, revised_entitlement: Money<USD>}>, fee_sources: List<{derived_fee: Money<USD>, id: Text, original_base: Money<USD>, original_rate: Ratio}>};
+  input record_period: Period;
+  input record_as_of_next: Date;
+  input record_cutoff: Instant;
+  input record_period_end_utc: Instant;
+  input record_evidence: List<{approved: Bool, id: Text, kind: Text, observed_at: Instant, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text}>;
+  input record_cash_settlement_population: {complete: Bool, event_ids: List<Text>, evidence_ref: Text, id: Text, observed_at: Instant, period: Period, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text, total: Money<USD>};
+  input record_earnings: List<{base_amount: Money<USD>, effective_date: Date, effective_date_utc: Instant, evidence_ref: Text, id: Text, observed_at: Instant, original_ref: Text, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, sequence: Int, source_ref: Text}>;
+  input record_earning_population: {complete: Bool, earning_ids: List<Text>, evidence_ref: Text, gross_basis_total: Money<USD>, id: Text, observed_at: Instant, period: Period, scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text}, source_ref: Text};
+  input record_case_id: Text;
+  input fact_scope: {agreement_id: Text, asset_id: Text, currency: Text, participant_group: Text, pool_id: Text, purpose: Text};
+  input opening_claims: List<{authorized_principal: Money<USD>, beneficiary: Text, earning_offset: Money<USD>, id: Text, kind: Text, recoupment_credit: Money<USD>, remaining: Money<USD>, source_capacity: Money<USD>, unallocated_source_capacity: Money<USD>}>;
+  input method: Text;
+  define none_text: Option<Text> = none();
+  define empty_event: List<{derived_capacity: Money<USD>, earning_id: Text, eligible_opening_balance: Money<USD>, original_share: Text, recovery_pool: Money<USD>, residual: Money<USD>}> = [];
+  define empty_res: List<{earning_id: Text, participant_id: Text, residual_entitlement: Money<USD>, weight: Ratio}> = [];
+  define empty_alloc: List<{amount: Money<USD>, beneficiary: Text, claim_id: Option<Text>, earning_id: Text, key: List<Text>, kind: Text, measure: Text, source_case_id: Text}> = [];
+  define empty_move: List<{application_kind: Text, applied: Money<USD>, available_after: Money<USD>, available_before: Money<USD>, claim_id: Text, closing_remaining: Money<USD>, earning_id: Text, kind: Text, opening_remaining: Money<USD>}> = [];
+
+  require record_as_of_next == record_period.end and record_period.start < record_period.end and record_cutoff >= record_period_end_utc else "MIXED_COMPLETE_PERIOD";
+  define evidence = for each row in record_evidence {
+    require sum(record_evidence, x => 1) <= 32 and sum(filter(record_evidence, x => x.id == row.id), x => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.approved and row.observed_at < record_cutoff else "MIXED_EVIDENCE_SCOPE_APPROVAL_CUTOFF";
+    yield row;
+  };
+  define cash = record_cash_settlement_population;
+  require cash.scope == fact_scope and cash.source_ref != "" and sum(filter(evidence, ev => ev.id == cash.evidence_ref and ev.kind == "complete_current_claim_cash_settlement_population" and ev.observed_at <= cash.observed_at), ev => 1) == 1 and cash.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+  require cash.complete and cash.period == record_period else "MIXED_CURRENT_CASH_SETTLEMENT_UNKNOWN";
+  require cash.observed_at >= record_period_end_utc else "MIXED_FINAL_POPULATION_OBSERVATION";
+  require sum(cash.event_ids, x => 1) == 0 and cash.total == USD 0 else "MIXED_NONEMPTY_CASH_SETTLEMENT_VARIANT_REQUIRED";
+  define earnings = for each row in sort_by(record_earnings, x => tuple(x.effective_date, x.sequence)) {
+    require row.id != "" and sum(record_earnings, x => 1) <= 32 and sum(filter(record_earnings, x => x.id == row.id), x => 1) == 1 else "MIXED_DUPLICATE_ID";
+    require row.scope == fact_scope and row.source_ref != "" else "MIXED_FACT_SCOPE";
+    require sum(filter(evidence, ev => ev.id == row.evidence_ref and ev.kind == "current_group_earning_basis" and ev.observed_at <= row.observed_at), ev => 1) == 1 and row.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+    require in_period(row.effective_date, record_period) and row.effective_date_utc <= row.observed_at else "MIXED_EARNING_PERIOD_OBSERVATION";
+    require row.sequence >= 0 and sum(filter(record_earnings, x => x.effective_date == row.effective_date and x.sequence == row.sequence), x => 1) == 1 else "MIXED_UNRESOLVED_EARNING_ORDER";
+    require sum(filter(original_static_refs, x => x == row.original_ref), x => 1) == 0 else "MIXED_FUND_SOURCE_AMOUNT_SPACE_OVERLAP";
+    require sum(filter(record_earnings, x => x.original_ref == row.original_ref), x => 1) == 1 else "MIXED_EARNING_REPLAY_ALIAS";
+    require row.base_amount >= USD 0 else "MIXED_EXACT_NONNEGATIVE";
+    yield row;
+  };
+  define pop = record_earning_population;
+  require pop.scope == fact_scope and pop.source_ref != "" and sum(filter(evidence, ev => ev.id == pop.evidence_ref and ev.kind == "complete_earning_population" and ev.observed_at <= pop.observed_at), ev => 1) == 1 and pop.observed_at < record_cutoff else "MIXED_SOURCE_OBSERVATION_AUTHORITY";
+  require pop.complete and pop.period == record_period and sort_by(pop.earning_ids, x => x) == sort_by(map(earnings, x => x.id), x => x) and pop.gross_basis_total == sum(earnings, x => x.base_amount) else "MIXED_COMPLETE_EARNING_POPULATION";
+  require pop.observed_at >= record_period_end_utc else "MIXED_FINAL_POPULATION_OBSERVATION";
+  require sum(filter(earnings, x => x.observed_at > pop.observed_at), x => 1) == 0 else "MIXED_POPULATION_OBSERVATION";
+  define applied_events = fold earnings from {claims: opening_claims, capacity: USD 0, credits: USD 0, offsets: USD 0, residual: USD 0, movements: empty_move, allocations: empty_alloc, offset_records: empty_alloc, residuals: empty_res, events: empty_event} with prior, earning {
+    require in_period(earning.effective_date, original_earning_terms.effective) and original_earning_terms.approved_date <= earning.effective_date else "MIXED_EARNING_TERMS_EFFECTIVE";
+    define capacity = earning.base_amount * original_earning_terms.share;
+    define ordered_authorities = sort_by(filter(original_authorities, x => x.eligible_from <= earning.effective_date), x => tuple(x.priority, x.eligible_from, x.sequence));
+    define eligible = for each authority in ordered_authorities {
+      require authority.observed_at <= earning.observed_at else "MIXED_AUTHORITY_NOT_KNOWN_AT_EARNING";
+      define claim = require_some(lookup(make_map(filter(prior.claims, x => x.id == authority.id), x => 0, x => x), 0), "MIXED_CLAIM_REFERENCE");
+      yield claim;
+    };
+    define denominator = sum(eligible, x => x.remaining);
+    define pool = min(capacity, denominator);
+    define applications = fold eligible from {funds: capacity, movements: empty_move, allocations: empty_alloc, offsets: empty_alloc} with available, claim {
+      define applied = if method == "pro_rata_eligible_balances" then (if denominator > USD 0 then pool * (claim.remaining / denominator) else USD 0) else min(available.funds, claim.remaining);
+      require applied >= USD 0 and applied <= claim.remaining and applied <= available.funds else "MIXED_CLAIM_OVERAPPLICATION";
+      define is_offset = claim.kind == "fee" or claim.kind == "approved_correction";
+      define classification = if is_offset then "earning_offset" else "recoupment_credit";
+      define authority = require_some(lookup(make_map(filter(original_authorities, x => x.id == claim.id), x => 0, x => x), 0), "MIXED_CLAIM_REFERENCE");
+      define record = {key: [record_case_id, earning.original_ref, if is_offset then "6561726e696e675f6f6666736574" else "7265636f75706d656e745f637265646974", authority.original_ref], source_case_id: record_case_id, earning_id: earning.id, claim_id: some(claim.id), kind: claim.kind, beneficiary: claim.beneficiary, amount: applied, measure: if is_offset then "calculated_setoff_not_cash" else "unissued_recoupment_allocation_not_bank_repayment"};
+      define movement = {earning_id: earning.id, claim_id: claim.id, kind: claim.kind, application_kind: classification, opening_remaining: claim.remaining, available_before: available.funds, applied: applied, closing_remaining: claim.remaining - applied, available_after: available.funds - applied};
+      yield {funds: available.funds - applied, movements: append(available.movements, movement), allocations: if not is_offset and applied > USD 0 then append(available.allocations, record) else available.allocations, offsets: if is_offset and applied > USD 0 then append(available.offsets, record) else available.offsets};
+    };
+    define claims = for each claim in prior.claims {
+      define claim_credit = sum(filter(applications.movements, x => x.claim_id == claim.id and x.application_kind == "recoupment_credit"), x => x.applied);
+      define claim_offset = sum(filter(applications.movements, x => x.claim_id == claim.id and x.application_kind == "earning_offset"), x => x.applied);
+      yield {id: claim.id, kind: claim.kind, beneficiary: claim.beneficiary, source_capacity: claim.source_capacity, authorized_principal: claim.authorized_principal, unallocated_source_capacity: claim.unallocated_source_capacity, recoupment_credit: claim.recoupment_credit + claim_credit, earning_offset: claim.earning_offset + claim_offset, remaining: claim.remaining - claim_credit - claim_offset};
+    };
+    define residuals = map(original_weights, weight => {earning_id: earning.id, participant_id: weight.participant_id, weight: weight.weight, residual_entitlement: applications.funds * weight.weight / sum(original_weights, x => x.weight)});
+    define residual_allocations = for each line in filter(residuals, x => x.residual_entitlement > USD 0) {
+      yield {key: [record_case_id, earning.original_ref, "726573696475616c", line.participant_id], source_case_id: record_case_id, earning_id: earning.id, claim_id: none_text, kind: "residual", beneficiary: line.participant_id, amount: line.residual_entitlement, measure: "unissued_residual_entitlement_not_cash"};
+    };
+    define credit = sum(applications.allocations, x => x.amount);
+    define offset = sum(applications.offsets, x => x.amount);
+    yield {claims: claims, capacity: prior.capacity + capacity, credits: prior.credits + credit, offsets: prior.offsets + offset, residual: prior.residual + applications.funds, movements: concat(prior.movements, applications.movements), allocations: concat(prior.allocations, concat(applications.allocations, residual_allocations)), offset_records: concat(prior.offset_records, applications.offsets), residuals: concat(prior.residuals, residuals), events: append(prior.events, {earning_id: earning.id, original_share: original_earning_terms.share_source, derived_capacity: capacity, eligible_opening_balance: denominator, recovery_pool: pool, residual: applications.funds})};
+  };
+  require applied_events.capacity == applied_events.credits + applied_events.offsets + applied_events.residual else "MIXED_CAPACITY_RECONCILIATION";
+  require sum(filter(applied_events.claims, x => x.authorized_principal != x.recoupment_credit + x.earning_offset + x.remaining), x => 1) == 0 else "MIXED_CLAIM_RECONCILIATION";
+  define calculated = {source_case_id: record_case_id, period: record_period, status: "calculated", capacity: applied_events.capacity, recoupment_credits: applied_events.credits, earning_offsets: applied_events.offsets, residual_entitlement: applied_events.residual, unissued_allocations_added: applied_events.credits + applied_events.residual, event_details: applied_events.events, claim_movements: applied_events.movements, residual_lines: applied_events.residuals, claim_ledger: applied_events.claims, current_unissued_allocations: applied_events.allocations, current_offset_records: applied_events.offset_records, original_correction_controls: original_controls.correction_sources, original_source_controls: original_controls, actual_current_claim_cash_settlement: USD 0, cash_evidence_status: "complete_original_empty_population", bank_movement_created: false};
+
+
+}

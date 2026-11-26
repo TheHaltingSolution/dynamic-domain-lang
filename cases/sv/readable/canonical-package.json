@@ -331,7 +331,7 @@
       "batch@1#sha256:21f99ab6161c2fd62e0fef9a7bcef7a13fcb50d6bade92fa48a28a8a4d2be760"
     ],
     "calendar_ref": "calendar@1#sha256:bd3b583d5e7977fe4cbb7a051b838665da81d85120411307e82e2524d296019a",
-    "compiler_build": "5b5c19fe9c38208f5b2ce11b3e79e8c8191db57f9edff65d192a3866050cef2a",
+    "compiler_build": "1ec2ca5ec6df9ae844348d9fe5961c58ecb3dab614b0e01cfdea741ace93a20a",
     "core_version": "0.1-draft",
     "cutoff": "2026-12-31T00:00:00Z",
     "input_mode": "full_snapshot",
@@ -365,7 +365,7 @@
       "source_tokens": 200000
     },
     "run_id": "SV-01-run",
-    "runtime_build": "3a7b794517e03aac89ef5fe88f09cd8b0c069462451239e58843aaedf96a2b9e",
+    "runtime_build": "673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9",
     "scenario_id": "SV-01",
     "schedule_ref": "schedule@1#sha256:b1071eb9128c45b55826ab9c0e9535f63ddc0f16a58297b662bee7de33695c29",
     "schema_version": "0.1-draft",

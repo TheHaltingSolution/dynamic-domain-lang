@@ -16,11 +16,12 @@ from .codecs import (DataError, amount, canonical, check_text, day, digest, exac
                      fail, file_digest, instant, money, number, period, read_json,
                      write_json)
 from .model import SPLException
+from .dimensions import BASE_ADMISSION, BASE_MEANINGS
 
 
 SCHEMA_ROOT = Path(__file__).resolve().parent.parent / "schemas"
 CAPABILITIES = {"spl.core/1", "spl.instant/1", "spl.priority/1", "spl.tuple-map/1",
-                "spl.group-join/1", "spl.fold/1", "spl.modules/1", "spl.calendar-months/1"}
+                "spl.group-join/1", "spl.fold/1", "spl.modules/1", "spl.calendar-months/1", "spl.quantities/1"}
 INPUT_ROLES = {"input": "inputs", "parameter": "parameters", "evidence": "evidence"}
 OUTPUT_ROLES = {"result", "detail", "reconciliation"}
 
@@ -140,7 +141,13 @@ def _parse_source(path):
 
 def _check_capabilities(descriptor, syntax):
     from .model import Type
+    from .dimensions import (UNIT_DICTIONARY, UNITS, FEATURE_CATALOG, UNIT_DEFINITIONS,
+                             CONVERSION_RELATIONS, admission, selected_features)
+    owner = admission(syntax.get("features", ()))
     required = {"spl.core/1"}
+    required.update(owner.features)
+    used_units = set()
+    used_relations = set()
     if descriptor["imports"] or descriptor["interface"]["exports"]:
         required.add("spl.modules/1")
 
@@ -150,11 +157,19 @@ def _check_capabilities(descriptor, syntax):
                 required.add("spl.instant/1")
             if value.name in {"Tuple", "Map"}:
                 required.add("spl.tuple-map/1")
+            if value.name in {"Quantity", "Rate"}:
+                required.add("spl.quantities/1")
+                if value.args:
+                    used_units.add(value.args[0].name)
             for child in value.args:
                 scan(child)
             for _, child in value.fields:
                 scan(child)
         elif isinstance(value, dict):
+            if value.get("name") in {"Quantity", "Rate"} and "args" in value:
+                required.add("spl.quantities/1")
+                if value["args"]:
+                    used_units.add(value["args"][0]["name"])
             if value.get("kind") == "select_rules":
                 required.add("spl.priority/1")
             if value.get("kind") == "fold":
@@ -163,6 +178,13 @@ def _check_capabilities(descriptor, syntax):
                 required.add("spl.modules/1")
             if value.get("kind") == "call":
                 name = value["name"]
+                if any(name in feature.builtins for feature in selected_features(owner)):
+                    # The checker remains the literal/type authority. Registration
+                    # additionally requires the relation and both endpoint entries.
+                    if name == "convert_quantity" and len(value["args"]) == 3:
+                        relation = value["args"][2]
+                        if relation.get("kind") == "text":
+                            used_relations.add(relation["value"])
                 if name == "instant":
                     required.add("spl.instant/1")
                 if name == "add_calendar_months":
@@ -182,10 +204,62 @@ def _check_capabilities(descriptor, syntax):
 
     scan(syntax)
     for port in descriptor["interface"]["ports"]:
-        scan(_port_type(port, descriptor))
+        if port["role"] in OUTPUT_ROLES:
+            # Foreign dimensional result spelling is validated against actual
+            # checked emit inference later; it cannot authorize an input/schema.
+            scan(_type_ast(port["type"], descriptor))
+        else:
+            scan(_port_type(port, descriptor, owner))
+    for schema in descriptor["interface"]["schemas"]:
+        scan(_port_type({"type": {"name": schema["name"], "args": []}}, descriptor, owner))
+    for export in descriptor["interface"]["exports"]:
+        scan(_port_type({"type": export["result"]}, descriptor, owner))
+        for parameter in export["parameters"]:
+            scan(_port_type(parameter, descriptor, owner))
     missing = required - set(descriptor["compatibility"]["capabilities"])
     if missing:
         fail("MODULE_CAPABILITY_UNDECLARED", repr(sorted(missing)))
+    codecs = set(descriptor["compatibility"]["codecs"])
+    if "spl.quantities/1" in required and "spl-quantity/1" not in codecs:
+        fail("MODULE_CODEC_VERSION", "Dimensional interfaces require spl-quantity/1")
+    declared_units = set(descriptor["interface"]["dictionaries"].get(UNIT_DICTIONARY, []))
+    if declared_units - UNITS:
+        fail("UNSUPPORTED_UNIT", repr(sorted(declared_units - UNITS)))
+    declared_relations = set()
+    dictionaries = descriptor["interface"]["dictionaries"]
+    declared_features = set(descriptor["compatibility"]["capabilities"])
+    for feature in FEATURE_CATALOG:
+        # Unselected legacy domain dictionaries are ordinary strings. Their
+        # resemblance to a future namespace must not change old behavior.
+        if feature.identifier not in declared_features and feature.identifier not in owner.features:
+            continue
+        for namespace in (feature.unit_dictionary, feature.relation_dictionary):
+            family = namespace.rsplit("/", 1)[0] + "/"
+            if any(key.startswith(family) and key != namespace for key in dictionaries):
+                fail("MODULE_DIMENSION_DICTIONARY", "Unsupported declared catalog version")
+        allowed_units = {unit.name for unit in UNIT_DEFINITIONS if unit.identifier in feature.units}
+        listed_units = set(dictionaries.get(feature.unit_dictionary, []))
+        listed_relations = set(dictionaries.get(feature.relation_dictionary, []))
+        if listed_units - allowed_units or listed_relations - set(feature.relations):
+            fail("MODULE_DIMENSION_DICTIONARY", "Unknown registered unit or relation")
+        # A base owner may expose a checked foreign output, but cannot register
+        # unused foreign definitions merely because a dependency enables them.
+        if feature.identifier not in owner.features and (listed_relations or listed_units - used_units):
+            fail("MODULE_FEATURE_SOURCE_REQUIRED", "Catalog declaration needs owner source admission or a checked result")
+        declared_units.update(listed_units)
+        declared_relations.update(listed_relations)
+    known_units = {unit.name for unit in UNIT_DEFINITIONS}
+    if used_units - known_units:
+        fail("UNSUPPORTED_UNIT", repr(sorted(used_units - known_units)))
+    if used_units - declared_units:
+        fail("MODULE_UNIT_UNDECLARED", repr(sorted(used_units - declared_units)))
+    if used_relations - declared_relations:
+        fail("MODULE_CONVERSION_UNDECLARED", repr(sorted(used_relations - declared_relations)))
+    for relation in CONVERSION_RELATIONS:
+        if relation.identifier in declared_relations:
+            endpoints = {unit.name for unit in UNIT_DEFINITIONS if unit.identifier in {relation.left, relation.right}}
+            if endpoints - declared_units:
+                fail("MODULE_UNIT_UNDECLARED", "Conversion requires both endpoint declarations")
 
 
 @dataclass
@@ -224,12 +298,16 @@ def resolve_module(reference, registry_root) -> ResolvedModule:
         _validate_document(descriptor, "spl-module-descriptor.schema.json")
         if (descriptor["id"], descriptor["revision"]) != identity:
             fail("MODULE_IDENTITY_MISMATCH", "Descriptor identity differs from registration")
-        if set(descriptor["compatibility"]["codecs"]) != {"spl-exact/1", "spl-instant/1"}:
+        codecs = set(descriptor["compatibility"]["codecs"])
+        if not {"spl-exact/1", "spl-instant/1"} <= codecs or codecs - {"spl-exact/1", "spl-instant/1", "spl-quantity/1"}:
             fail("MODULE_CODEC_VERSION", "The registered interface requires both exact codecs")
-        unsupported = set(descriptor["compatibility"]["capabilities"]) - CAPABILITIES
+        from .dimensions import FEATURE_CATALOG, UNIT_DEFINITIONS, UNITS, admission
+        unsupported = set(descriptor["compatibility"]["capabilities"]) - CAPABILITIES - {feature.identifier for feature in FEATURE_CATALOG}
         if unsupported:
             fail("MODULE_UNSUPPORTED_CAPABILITY", repr(sorted(unsupported)))
         source = _pinned_file(descriptor["source"], registry_root)
+        syntax = _parse_source(source)
+        owner = admission(syntax.get("features", ()))
         policy = _pinned_file(descriptor["policy"]["readable"], registry_root)
         if not policy.read_text(encoding="utf-8").strip():
             fail("MODULE_POLICY_REQUIRED", "Readable economic policy is empty")
@@ -237,7 +315,19 @@ def resolve_module(reference, registry_root) -> ResolvedModule:
         _unique(descriptor["interface"]["schemas"], "name", "MODULE_DUPLICATE_SCHEMA")
         _unique(descriptor["interface"]["exports"], "name", "MODULE_DUPLICATE_EXPORT")
         _unique(descriptor["imports"], "alias", "MODULE_IMPORT_COLLISION")
-        _check_capabilities(descriptor, _parse_source(source))
+        extension_names = {unit.name for unit in UNIT_DEFINITIONS if unit.name not in UNITS
+                           and any(unit.identifier in feature.units for feature in FEATURE_CATALOG if feature.identifier in owner.features)}
+        if extension_names & {schema["name"] for schema in descriptor["interface"]["schemas"]}:
+            fail("MODULE_UNIT_OWNERSHIP_CONFLICT", "A local schema cannot shadow an admitted unit")
+        # Every registered signature is admitted before linking, including
+        # unused structural schemas and exports in imported descriptors.
+        for schema in descriptor["interface"]["schemas"]:
+            _port_type({"type": {"name": schema["name"], "args": []}}, descriptor, owner)
+        for export in descriptor["interface"]["exports"]:
+            _port_type({"type": export["result"]}, descriptor, owner)
+            for parameter in export["parameters"]:
+                _port_type(parameter, descriptor, owner)
+        _check_capabilities(descriptor, syntax)
         if identity != (reference["id"], reference["revision"]):
             if descriptor["constraints"] or descriptor["state"] or any(port["domain"] for port in descriptor["interface"]["ports"]):
                 fail("MODULE_FUNCTION_CONSTRAINT_UNSUPPORTED", "Imported function preconditions must be explicit checked source assertions")
@@ -247,7 +337,7 @@ def resolve_module(reference, registry_root) -> ResolvedModule:
             ports = {port["name"]: port for port in descriptor["interface"]["ports"]}
             for export in descriptor["interface"]["exports"]:
                 parameters = _unique(export["parameters"], "name", "MODULE_DUPLICATE_PARAMETER")
-                if parameters.keys() != ports.keys() or any(not compatible(_port_type(parameter, descriptor), _port_type(ports[name], descriptor))
+                if parameters.keys() != ports.keys() or any(not compatible(_port_type(parameter, descriptor, owner), _port_type(ports[name], descriptor, owner))
                                                             for name, parameter in parameters.items()):
                     fail("MODULE_FUNCTION_INTERFACE", "Export signature differs from declared argument ports")
         active.add(identity)
@@ -262,12 +352,30 @@ def resolve_module(reference, registry_root) -> ResolvedModule:
                 local_names.add(symbol["local"])
         active.remove(identity)
         entry = {"reference": deepcopy(ref), "descriptor": descriptor,
-                 "descriptor_path": descriptor_path, "source_path": source, "policy_path": policy}
+                 "descriptor_path": descriptor_path, "source_path": source, "policy_path": policy, "admission": owner}
         closure.append(entry)
         seen[identity] = entry
         return entry
 
     entry = visit(reference)
+    # Each dependency registers the artifact for its own transitive closure.
+    # Old base libraries remain v1 inside an extended root's v2 artifact.
+    by_identity = {(item["reference"]["id"], item["reference"]["revision"]): item for item in closure}
+    feature_cache = {}
+    def closure_features(item):
+        key = (item["reference"]["id"], item["reference"]["revision"])
+        if key in feature_cache:
+            return feature_cache[key]
+        result = set(item["admission"].features)
+        for imported in item["descriptor"]["imports"]:
+            ref = imported["module_ref"]
+            result.update(closure_features(by_identity[(ref["id"], ref["revision"])]))
+        feature_cache[key] = result
+        return result
+    for item in closure:
+        expected_ir = "spl-ir/0.2" if closure_features(item) else "spl-ir/0.1"
+        if item["descriptor"]["compatibility"]["ir"] != expected_ir:
+            fail("MODULE_IR_VERSION", "Registration must match its complete source-owner closure")
     return ResolvedModule(deepcopy(reference), entry["descriptor"], entry["source_path"],
                           entry["policy_path"], closure, Path(registry_root).resolve())
 
@@ -293,18 +401,70 @@ def _quantity(value):
     return amount(value) if isinstance(value, dict) and "currency" in value else exact(value)
 
 
-def _constraints(package, descriptor, outputs=None):
+def _measure(value, context=BASE_MEANINGS):
+    """Preserve new dimensions while retaining legacy Money/scalar bounds."""
+    from .codecs import dimensional_amount
+    if isinstance(value, dict) and "per_unit" in value:
+        decoded = dimensional_amount(value, value["per_unit"], currency=value.get("currency", "USD"), context=context)
+        return ("Rate", decoded.per_unit, decoded.currency), decoded.value
+    if isinstance(value, dict) and "unit" in value:
+        decoded = dimensional_amount(value, value["unit"], context=context)
+        return ("Quantity", decoded.unit), decoded.value
+    return None, _quantity(value)
+
+
+def _type_path(typ, parts):
+    for part in parts:
+        if part == "*" and typ.name == "List":
+            typ = typ.args[0]
+        elif part in dict(typ.fields):
+            typ = dict(typ.fields)[part]
+        else:
+            return None
+    return typ
+
+
+def _constraint_row_type(descriptor, path, field, owner=BASE_ADMISSION, output_types=None):
+    """Retain declared collection dimensions even when no rows are supplied."""
+    parts = path.split(".")
+    if len(parts) < 2:
+        return None
+    for port in descriptor["interface"]["ports"]:
+        group = INPUT_ROLES.get(port["role"], "outputs" if port["role"] in OUTPUT_ROLES else "")
+        if parts[:2] == [group, port["name"]]:
+            typ = (output_types or {}).get(port["name"]) if group == "outputs" else None
+            typ = _type_path(typ if typ is not None else _port_type(port, descriptor, owner), parts[2:])
+            if typ is None:
+                return None
+            if typ.name == "List":
+                typ = typ.args[0]
+            return _type_path(typ, field.split("."))
+    return None
+
+
+def _measure_type_dimension(typ):
+    if typ.name == "Quantity":
+        return ("Quantity", typ.args[0].name)
+    if typ.name == "Rate":
+        return ("Rate", typ.args[0].name, typ.args[1].name)
+    return None
+
+
+def _constraints(package, descriptor, outputs=None, *, owner=BASE_ADMISSION, meanings=BASE_MEANINGS, output_types=None):
     context = {**package, "dictionaries": descriptor["interface"]["dictionaries"]}
     if outputs is not None:
         context["outputs"] = outputs
     decisions = {d["decision_id"] for d in package["decisions"]}
     for constraint in descriptor["constraints"]:
         kind, path, fields = constraint["kind"], constraint["path"], constraint["fields"]
+        if "required" in constraint and kind != "evidence":
+            fail("MODULE_CONSTRAINT_DEFINITION", "Only evidence constraints can declare required")
         if path.startswith("outputs.") and outputs is None:
             continue
         if not path.startswith("outputs.") and outputs is not None:
             continue
-        rows = _rows(_path(context, path))
+        source = _path(context, path)
+        rows = _rows(source)
         values = [[_path(row, field) for field in fields] if fields else row for row in rows]
         if kind == "unique":
             if len({canonical(value) for value in values}) != len(values):
@@ -313,8 +473,20 @@ def _constraints(package, descriptor, outputs=None):
             allowed = _rows(_path(context, constraint["target"]))
             keys = {canonical(value) for value in allowed}
             selected = [value[0] if fields and len(fields) == 1 else value for value in values]
-            if any(canonical(value) not in keys for value in selected):
-                fail("MODULE_REFERENCE_SCOPE", path)
+            for index, value in enumerate(selected):
+                if canonical(value) not in keys:
+                    parts = path.split(".")
+                    pointer = ""
+                    if "*" not in parts:
+                        if parts[0] == "outputs":
+                            parts[0] = "results"
+                        if isinstance(source, list):
+                            parts.append(str(index))
+                        if len(fields) == 1:
+                            parts.extend(fields[0].split("."))
+                        if "*" not in parts:
+                            pointer = "/" + "/".join(parts)
+                    fail("MODULE_REFERENCE_SCOPE", path, pointer)
         elif kind == "equals":
             expected = _path(context, constraint["target"]) if constraint["target"] else constraint["value"]
             selected = [value[0] if fields and len(fields) == 1 else value for value in values]
@@ -323,11 +495,20 @@ def _constraints(package, descriptor, outputs=None):
         elif kind == "conservation":
             if len(fields) != 1:
                 fail("MODULE_CONSTRAINT_DEFINITION", "Conservation requires one exact quantity field")
-            total = sum((_quantity(value[0]) for value in values), Fraction())
-            if total != _quantity(_path(context, constraint["target"])):
+            target_dimension, target = _measure(_path(context, constraint["target"]), meanings)
+            row_type = _constraint_row_type(descriptor, path, fields[0], owner, output_types)
+            if row_type is not None and _measure_type_dimension(row_type) != target_dimension:
+                fail("MODULE_CONSERVATION_DIMENSION", "Conserved values require the target's explicit dimension")
+            total = Fraction()
+            for value in values:
+                dimension, measured = _measure(value[0], meanings)
+                if dimension != target_dimension:
+                    fail("MODULE_CONSERVATION_DIMENSION", "Conserved values require the target's explicit dimension")
+                total += measured
+            if total != target:
                 fail("MODULE_CONSERVATION", path)
         elif kind == "evidence":
-            if not rows:
+            if not rows and constraint.get("required", True):
                 fail("MODULE_EVIDENCE_REQUIRED", path)
             for row in rows:
                 if not isinstance(row, dict) or not {"observed_at", "approval_ref", "evidence_ref", "kind"} <= row.keys():
@@ -339,13 +520,18 @@ def _constraints(package, descriptor, outputs=None):
                     fail("EVIDENCE_AFTER_CUTOFF", path)
 
 
-def _domain(value, port):
+def _domain(value, port, context=BASE_MEANINGS):
     domain = port["domain"]
     if "choices" in domain and canonical(value) not in {canonical(x) for x in domain["choices"]}:
         fail("MODULE_PARAMETER_DOMAIN", port["name"])
     for key, compare in [("minimum", lambda a, b: a < b), ("maximum", lambda a, b: a > b)]:
-        if key in domain and compare(_quantity(value), _quantity(domain[key])):
-            fail("MODULE_PARAMETER_DOMAIN", port["name"])
+        if key in domain:
+            dimension, measured = _measure(value, context)
+            bound_dimension, bound = _measure(domain[key], context)
+            if dimension != bound_dimension:
+                fail("MODULE_PARAMETER_DIMENSION", "Bounds require the port's explicit dimension: " + port["name"])
+            if compare(measured, bound):
+                fail("MODULE_PARAMETER_DOMAIN", port["name"])
     for key, compare in [("min_items", lambda a, b: a < b), ("max_items", lambda a, b: a > b)]:
         if key in domain and (not isinstance(value, list) or compare(len(value), domain[key])):
             fail("MODULE_CARDINALITY", port["name"])
@@ -368,33 +554,58 @@ def _type_ast(value, descriptor, active=()):
     return result
 
 
-def _port_type(port, descriptor):
+def _port_type(port, descriptor, context=BASE_ADMISSION):
     from .checker import type_from_ast
-    return type_from_ast(_type_ast(port["type"], descriptor))
+    return type_from_ast(_type_ast(port["type"], descriptor), context)
 
 
-def _scope_value(value, typ, package):
+def dimensioned_state_unit(typ, context=BASE_MEANINGS):
+    """Stable state unit for a fully expanded type, including nested dimensions.
+
+    AST input first passes through the compiler's type admission, expanding
+    built-in structural schemas exactly as checked Type input does. The signature
+    retains checked names, sorts record fields and includes an explicit fields
+    list at every node. Argument order is significant.
+    Accept either a checked Type or an expanded type AST; descriptor-local names
+    must first be expanded with the owning descriptor.
+    """
+    if isinstance(typ, dict):
+        from .checker import type_from_meaning_ast
+        typ = type_from_meaning_ast(typ, context)
+
+    def normalized(value):
+        return {"name": value.name, "args": [normalized(arg) for arg in value.args],
+                "fields": [[name, normalized(child)] for name, child in sorted(value.fields)]}
+    from .dimensions import used_unit_definitions, UNITS
+    used = used_unit_definitions(typ, context)
+    if any(unit.name not in UNITS for unit in used):
+        return "dimensioned-v2:" + digest({"type": normalized(typ), "unit_definitions": [
+            {"id": unit.identifier, "sha256": unit.pin} for unit in used]})
+    return "dimensioned:" + digest(normalized(typ))
+
+
+def _scope_value(value, typ, package, pointer=""):
     """Enforce intrinsic typed scope namespaces at every nested boundary."""
     if typ.name == "Id":
         if not value.isascii():
-            fail("UNSUPPORTED_IDENTIFIER_PROFILE", "Canonical native IDs use the ASCII profile")
+            fail("UNSUPPORTED_IDENTIFIER_PROFILE", "Canonical native IDs use the ASCII profile", pointer)
         kind, scope = typ.args[0].name, package["scope"]
         allowed = {"Agreement": [scope["agreement_id"]], "Pool": [scope["pool_id"]],
                    "Participant": scope["participant_ids"], "Asset": scope["asset_ids"]}.get(kind)
         if allowed is not None and value not in allowed:
-            fail("MODULE_REFERENCE_SCOPE", "Out-of-scope Id<" + kind + ">")
+            fail("MODULE_REFERENCE_SCOPE", "Out-of-scope Id<" + kind + ">", pointer)
     elif typ.name in {"List", "Tuple"}:
         for index, item in enumerate(value):
-            _scope_value(item, typ.args[0] if typ.name == "List" else typ.args[index], package)
+            _scope_value(item, typ.args[0] if typ.name == "List" else typ.args[index], package, f"{pointer}/{index}")
     elif typ.name == "Map":
-        for row in value:
-            _scope_value(row["key"], typ.args[0], package)
-            _scope_value(row["value"], typ.args[1], package)
+        for index, row in enumerate(value):
+            _scope_value(row["key"], typ.args[0], package, f"{pointer}/{index}/key")
+            _scope_value(row["value"], typ.args[1], package, f"{pointer}/{index}/value")
     elif typ.name == "Option" and isinstance(value, dict) and "some" in value:
-        _scope_value(value["some"], typ.args[0], package)
+        _scope_value(value["some"], typ.args[0], package, pointer + "/some")
     elif typ.fields:
         for name, field_type in typ.fields:
-            _scope_value(value[name], field_type, package)
+            _scope_value(value[name], field_type, package, pointer + "/" + name)
 
 
 def linking_manifest(resolved):
@@ -417,11 +628,15 @@ def linking_manifest(resolved):
 def _checked_source(resolved):
     from .checker import check_schedule, compatible, type_from_ast
     descriptor = resolved.descriptor
-    for schema in descriptor["interface"]["schemas"]:
-        type_from_ast(_type_ast({"name": schema["name"], "args": []}, descriptor))
-    for port in descriptor["interface"]["ports"]:
-        _port_type(port, descriptor)
     syntax = _parse_source(resolved.source_path)
+    from .dimensions import admission
+    owner = admission(syntax.get("features", ()))
+    extended_closure = any(entry["admission"].features for entry in resolved.closure)
+    for schema in descriptor["interface"]["schemas"]:
+        type_from_ast(_type_ast({"name": schema["name"], "args": []}, descriptor), owner)
+    for port in descriptor["interface"]["ports"]:
+        if port["role"] not in OUTPUT_ROLES or not extended_closure:
+            _port_type(port, descriptor, owner)
     if descriptor["imports"]:
         try:
             from .linker import link_schedule
@@ -435,12 +650,32 @@ def _checked_source(resolved):
         fail("MODULE_PORT_MISMATCH", "Source input/opening ports differ from the registered interface")
     for name, port in expected.items():
         kind = "opening" if port["role"] == "opening" else "input"
-        if declared[name]["kind"] != kind or not compatible(type_from_ast(declared[name]["type"]), _port_type(port, descriptor)):
+        if declared[name]["kind"] != kind or not compatible(type_from_ast(declared[name]["type"], owner), _port_type(port, descriptor, owner)):
             fail("MODULE_PORT_MISMATCH", name)
     names = {d["name"] for d in syntax["declarations"] if d["kind"] == "define"}
     if not {export["definition"] for export in descriptor["interface"]["exports"]} <= names:
         fail("MODULE_EXPORT_MISSING", "Registered export is absent from source definitions")
     return checked
+
+
+def _output_types(checked, descriptor):
+    """A descriptor output matches actual checked inference; it grants no spelling."""
+    from .checker import compatible, type_from_meaning_ast
+    inferred = {node["name"]: node["expr"]["_type"] for node in checked.schedule["declarations"] if node["kind"] == "emit"}
+    result = {}
+    for port in descriptor["interface"]["ports"]:
+        if port["role"] not in OUTPUT_ROLES:
+            continue
+        if not checked.meanings.features:
+            # Preserve the original v1 contract/error lifecycle. Extended
+            # foreign-unit outputs alone need the new provenance comparison.
+            result[port["name"]] = _port_type(port, descriptor, checked.admission)
+            continue
+        typ = type_from_meaning_ast(_type_ast(port["type"], descriptor), checked.meanings)
+        if port["name"] not in inferred or not compatible(typ, inferred[port["name"]]):
+            fail("MODULE_OUTPUT_TYPE", "Result contract must match checked source inference: " + port["name"])
+        result[port["name"]] = typ
+    return result
 
 
 def validate_module_package(package, resolved):
@@ -453,6 +688,9 @@ def validate_module_package(package, resolved):
     descriptor = resolved.descriptor
     period(package["manifest"]["period"])
     instant(package["manifest"]["cutoff"], "/manifest/cutoff")
+    for field in ("report_date", "issue_date"):
+        if field in package["manifest"]:
+            day(package["manifest"][field], "/manifest/" + field)
     decisions = _unique(package["decisions"], "decision_id", "MODULE_DUPLICATE_DECISION")
     required = {}
     for entry in resolved.closure:
@@ -470,6 +708,7 @@ def validate_module_package(package, resolved):
                 decision["status"] != policy["review_status"]):
             fail("MODULE_POLICY_MISMATCH", decision["decision_id"])
     checked = _checked_source(resolved)
+    _output_types(checked, descriptor)
     from .run import _citations
     if not _citations(checked.schedule) <= required.keys():
         fail("MODULE_POLICY_REQUIRED", "An executable source citation is outside the registered policy closure")
@@ -481,10 +720,10 @@ def validate_module_package(package, resolved):
             fail("MODULE_BINDING_PORTS", "Undeclared or missing " + group)
         for name, port in declared.items():
             value = package[group][name]
-            value_type = _port_type(port, descriptor)
-            decode_value(value, value_type, group + "." + name)
-            _scope_value(value, value_type, package)
-            _domain(value, port)
+            value_type = _port_type(port, descriptor, checked.admission)
+            decode_value(value, value_type, group + "." + name, context=checked.meanings)
+            _scope_value(value, value_type, package, f"/{group}/{name}")
+            _domain(value, port, checked.meanings)
             if role == "evidence" and not any(c["kind"] == "evidence" and c["path"] == "evidence." + name
                                               for c in descriptor["constraints"]):
                 fail("MODULE_EVIDENCE_POLICY", "Evidence ports require an explicit observation and authority constraint")
@@ -499,6 +738,15 @@ def validate_module_package(package, resolved):
     openings = {}
     for name, slot in slots.items():
         cell, scope = cells[name], package["scope"]
+        from .dimensions import contains_dimension
+        state_type = _port_type(opening_ports[name], descriptor, checked.admission)
+        dimensional = contains_dimension(state_type)
+        if dimensional:
+            expected_unit = dimensioned_state_unit(state_type, checked.meanings)
+            if slot["unit"] != expected_unit or cell["unit"] != expected_unit or cell["scope"].get("unit") != expected_unit:
+                fail("MODULE_STATE_TYPE", "Dimensional state must retain its complete type in slot, cell and scope units")
+            if "unit" not in slot["key_fields"]:
+                fail("MODULE_STATE_KEY", "Dimensional state keys require unit")
         if cell["purpose"] != slot["purpose"] or cell["unit"] != slot["unit"]:
             fail("MODULE_STATE_PURPOSE", name)
         if (cell["scope"]["agreement_id"] != scope["agreement_id"] or cell["scope"]["pool_id"] != scope["pool_id"] or
@@ -521,18 +769,17 @@ def validate_module_package(package, resolved):
         expected_key = canonical({field: key_record[field] for field in slot["key_fields"]})
         if cell["state_key"] != expected_key:
             fail("MODULE_STATE_KEY", name)
-        state_type = _port_type(opening_ports[name], descriptor)
         is_money = state_type.name == "Money"
         if slot["movement_kinds"] != (["net_change"] if is_money else ["transition"]):
             fail("MODULE_STATE_MOVEMENT_UNSUPPORTED", "Declare net_change for money or transition for structured state")
         if is_money and slot["unit"] != state_type.args[0].name:
             fail("MODULE_STATE_TYPE", "State currency differs from its opening port")
-        if not is_money and slot["unit"] != "structured":
+        if not is_money and not dimensional and slot["unit"] != "structured":
             fail("MODULE_STATE_TYPE", "Non-money state must declare the structured unit")
         openings[name] = money(exact(cell["quantity"])) if is_money else cell["quantity"]
-        decode_value(openings[name], state_type, "state." + name)
+        decode_value(openings[name], state_type, "state." + name, context=checked.meanings)
         _scope_value(openings[name], state_type, package)
-    _constraints(package, descriptor)
+    _constraints(package, descriptor, owner=checked.admission, meanings=checked.meanings)
     return checked, inputs, openings
 
 
@@ -623,29 +870,53 @@ def _input_transport(value, typ):
     return value
 
 
-def _decode_output(value, typ):
+def _decode_output(value, typ, context=BASE_MEANINGS):
     from .evaluator import decode_value
-    return decode_value(_input_transport(value, typ), typ, "result")
+    return decode_value(_input_transport(value, typ), typ, "result", context=context)
 
 
-def run_module_package(package, registry_root, *, backend="compare", artifact_dir=None):
+def run_module_package(package, registry_root, *, backend="compare", artifact_dir=None, blocked_evidence_labels=None, audit_profile="array-v1"):
     """Execute one registered connected scope with strict atomic finalization."""
     from .evaluator import evaluate
     from .lean_tools import compile_schedule, export_ir, interpret_schedule, lean
     from .run import normalize_target
+    from .artifacts import ArtifactPublication
+    unknown_fields = {"payment_evidence_status", "funding_evidence_status", "recovery_evidence_status"}
+    if blocked_evidence_labels is not None and (type(blocked_evidence_labels) is not dict or
+            any(type(code) is not str or type(labels) is not dict or not labels or
+                any(field not in unknown_fields or type(label) is not str or label not in {"not_assessed", "no_event_supplied"}
+                    for field, label in labels.items()) for code, labels in blocked_evidence_labels.items())):
+        raise ValueError("INVALID_BLOCKED_EVIDENCE_LABELS")
     p = deepcopy(package)
     result = {"status": "blocked", "results": {}, "statements": [], "detail": [], "closing_state": [], "trace": [],
               "diagnostics": [], "reconciliation": {}, "policy_review": {}, "manifest": p.get("manifest", {}) if isinstance(p, dict) else {},
               "issuance_status": "unissued", "payment_evidence_status": "not_assessed"}
+    from .compact_execution import checked_head, require_profile
+    from .audited_artifacts import AuditedPublication, unavailable_trace
+    if audit_profile not in {"array-v1", "compact-v2"}:
+        raise ValueError("UNSUPPORTED_AUDIT_PROFILE")
+    compact = audit_profile == "compact-v2"
+    publication = (AuditedPublication if compact else ArtifactPublication)(artifact_dir) if artifact_dir else None
+    require_profile(audit_profile, backend, artifact_dir)
+    if compact:
+        result["trace"] = unavailable_trace()
 
     def publish():
-        if artifact_dir:
-            destination = Path(artifact_dir)
-            for filename, field in [("results", "results"), ("statement", "statements"), ("detail", "detail"), ("trace", "trace"),
-                                    ("closing-state", "closing_state"), ("reconciliation", "reconciliation"),
-                                    ("diagnostics", "diagnostics"), ("policy-review", "policy_review")]:
-                write_json(destination / (filename + ".json"), result[field])
-            write_json(destination / "result.json", result)
+        if result["status"] == "blocked" and blocked_evidence_labels:
+            selected = {}
+            for diagnostic in result["diagnostics"]:
+                for field, label in blocked_evidence_labels.get(diagnostic["code"], {}).items():
+                    if field in selected and selected[field] != label:
+                        raise ValueError("AMBIGUOUS_BLOCKED_EVIDENCE_LABELS")
+                    selected[field] = label
+            if selected:
+                if result.get("result_digest") or result["results"] or result["closing_state"]:
+                    raise ValueError("BLOCKED_RESULT_FINALIZED")
+                result.update(selected)
+        if publication:
+            return publication.finish(result, {"results.json": "results", "statement.json": "statements",
+                "detail.json": "detail", "trace.json": "trace", "closing-state.json": "closing_state",
+                "reconciliation.json": "reconciliation", "diagnostics.json": "diagnostics", "policy-review.json": "policy_review"})
         return result
 
     try:
@@ -660,10 +931,13 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
                 p["manifest"]["module_closure"] != resolved.references):
             fail("MANIFEST_DIGEST_MISMATCH", "Module closure or implementation has changed")
         logical_package = deepcopy(p)
-        logical_package["manifest"].pop("run_id")
+        # Supplied presentation/intended-issue dates cannot choose financial
+        # recognition or alter candidate-state lineage, like invocation labels.
+        for field in ("run_id", "report_date", "issue_date"):
+            logical_package["manifest"].pop(field, None)
         semantic = digest({"package": logical_package, "closure": resolved.references})
         result["policy_review"] = _module_policy_review(p, resolved)
-        work = Path(artifact_dir) if artifact_dir else Path(registry_root) / ".lake/module-runs" / semantic
+        work = publication.work if publication else Path(registry_root) / ".lake/module-runs" / semantic
         work.mkdir(parents=True, exist_ok=True)
         write_json(work / "canonical-package.json", p)
         write_json(work / "bindings.json", {"inputs": inputs, "openings": openings})
@@ -672,36 +946,49 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
         if resolved.descriptor["imports"]:
             link = work / "linking-manifest.json"
             write_json(link, linking_manifest(resolved))
+        private_source = None
         for entry in resolved.closure:
             for field, path in [("descriptor", entry["descriptor_path"]), ("source", entry["source_path"]), ("policy", entry["policy_path"])]:
                 destination = work / "closure" / (entry["reference"]["sha256"] + "-" + field + path.suffix)
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 destination.write_bytes(path.read_bytes())
-        observed = evaluate(checked, inputs, openings).to_dict()
-        origin = "independent_reference_evaluator"
-        if backend in {"compare", "lean"}:
-            link_options = {"link": link} if link else {}
-            export_ir(resolved.source_path, work / "typed-ir.json", **link_options)
-            interpreted = normalize_target(interpret_schedule(resolved.source_path, work / "bindings.json", **link_options))
-            if (interpreted["status"] == "blocked" and interpreted.get("diagnostics") and
-                    interpreted["diagnostics"][0]["code"] == "RESOURCE_LIMIT"):
-                result.update(trace=interpreted.get("trace", []), diagnostics=interpreted["diagnostics"],
-                              trace_origin=interpreted.get("trace_origin", "native_ir_interpreter"),
-                              trace_format=interpreted.get("trace_format", "spl-trace-dag/0.1"),
-                              verification={"backend": backend, "required_audit_completed": False})
-                return publish()
-            target = compile_schedule(resolved.source_path, work / "Settlement.lean", **link_options)
-            generated = normalize_target(read_native(lean(["--run", target, work / "bindings.json"])))
-            for candidate in [observed, interpreted]:
-                for field in ["status", "emissions", "closing"]:
-                    if canonical(generated[field]) != canonical(candidate[field]):
-                        fail("MODULE_DIFFERENTIAL_MISMATCH", field)
-                if [d["code"] for d in generated["diagnostics"]] != [d["code"] for d in candidate["diagnostics"]]:
-                    fail("MODULE_DIFFERENTIAL_MISMATCH", "diagnostics")
-            observed = {**generated, "trace": interpreted["trace"]}
-            origin = interpreted["trace_origin"]
-        result["trace"] = observed["trace"]
-        result["trace_origin"] = origin
+                if field == "source" and path == resolved.source_path:
+                    private_source = destination
+        if compact:
+            from .compact_execution import execute_compact
+            observed, pins, audit_summary = execute_compact(private_source, work, checked, link=link)
+            if pins["source_sha256"] != file_digest(resolved.source_path):
+                fail("AUDIT_SOURCE_CHANGED", "Consumed source differs from reviewed source")
+            trace, _ = publication.attach(work / "audit.native.jsonl", bindings=pins)
+            result.update(trace=trace, trace_origin="native_ir_interpreter", trace_format="spl-trace-dag/0.1")
+        else:
+            observed = evaluate(checked, inputs, openings).to_dict()
+            origin = "independent_reference_evaluator"
+            if backend in {"compare", "lean"}:
+                link_options = {"link": link} if link else {}
+                export_ir(resolved.source_path, work / "typed-ir.json", **link_options)
+                interpreted = checked_head(
+                    interpret_schedule(resolved.source_path, work / "bindings.json", **link_options), checked)
+                interpreted["trace"] = normalize_target(interpreted["trace"])
+                if (interpreted["status"] == "blocked" and interpreted.get("diagnostics") and
+                        interpreted["diagnostics"][0]["code"] == "RESOURCE_LIMIT"):
+                    result.update(trace=interpreted.get("trace", []), diagnostics=interpreted["diagnostics"],
+                                  trace_origin=interpreted.get("trace_origin", "native_ir_interpreter"),
+                                  trace_format=interpreted.get("trace_format", "spl-trace-dag/0.1"),
+                                  verification={"backend": backend, "required_audit_completed": False})
+                    return publish()
+                target = compile_schedule(resolved.source_path, work / "Settlement.lean", **link_options)
+                generated = checked_head(read_native(lean(["--run", target, work / "bindings.json"])), checked)
+                for candidate in [observed, interpreted]:
+                    for field in ["status", "emissions", "closing"]:
+                        if canonical(generated[field]) != canonical(candidate[field]):
+                            fail("MODULE_DIFFERENTIAL_MISMATCH", field)
+                    if [d["code"] for d in generated["diagnostics"]] != [d["code"] for d in candidate["diagnostics"]]:
+                        fail("MODULE_DIFFERENTIAL_MISMATCH", "diagnostics")
+                observed = {**generated, "trace": interpreted["trace"], "diagnostics": observed["diagnostics"]}
+                origin = interpreted["trace_origin"]
+            result["trace"] = observed["trace"]
+            result["trace_origin"] = origin
         if observed["status"] == "blocked":
             result["diagnostics"] = observed["diagnostics"]
             return publish()
@@ -710,13 +997,16 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
             fail("MODULE_OUTPUT_REQUIRED", "A result port is required")
         if observed["emissions"].keys() != output_ports.keys():
             fail("MODULE_OUTPUT_PORTS", "Emitted output differs from registered result/detail/reconciliation ports")
+        output_types = _output_types(checked, resolved.descriptor)
         for name, port in output_ports.items():
-            value_type = _port_type(port, resolved.descriptor)
-            _decode_output(observed["emissions"][name], value_type)
-            _scope_value(observed["emissions"][name], value_type, p)
+            value_type = output_types[name]
+            _decode_output(observed["emissions"][name], value_type, checked.meanings)
+            pointer = "/results/" + name.replace("~", "~0").replace("/", "~1")
+            _scope_value(observed["emissions"][name], value_type, p, pointer)
             if port["role"] == "reconciliation" and port["type"]["name"] == "Bool" and not observed["emissions"][name]:
-                fail("MODULE_RECONCILIATION_FAILED", name)
-        _constraints(p, resolved.descriptor, observed["emissions"])
+                fail("MODULE_RECONCILIATION_FAILED", name, pointer)
+        _constraints(p, resolved.descriptor, observed["emissions"], owner=checked.admission,
+                     meanings=checked.meanings, output_types=output_types)
         slots = resolved.descriptor["state"]
         if observed["closing"].keys() != {slot["closing"] for slot in slots}:
             fail("MODULE_CLOSING_PORTS", "Missing or undeclared state writer")
@@ -725,9 +1015,9 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
         opening_ports = {port["name"]: port for port in resolved.descriptor["interface"]["ports"] if port["role"] == "opening"}
         for slot in slots:
             cell = deepcopy(cells[slot["opening"]])
-            state_type = _port_type(opening_ports[slot["opening"]], resolved.descriptor)
+            state_type = _port_type(opening_ports[slot["opening"]], resolved.descriptor, checked.admission)
             emitted = observed["closing"][slot["closing"]]
-            _decode_output(emitted, state_type)
+            _decode_output(emitted, state_type, checked.meanings)
             _scope_value(emitted, state_type, p)
             if state_type.name == "Money":
                 initial, final = exact(cell["quantity"]), exact(emitted)
@@ -767,6 +1057,8 @@ def run_module_package(package, registry_root, *, backend="compare", artifact_di
         result["diagnostics"] = [diagnostic.to_dict() for diagnostic in error.diagnostics]
     except OSError as error:
         result["diagnostics"] = [{"code": "IO_ERROR", "message": str(error)}]
+    result.update(status="blocked", results={}, statements=[], detail=[], closing_state=[], reconciliation={})
+    result.pop("result_digest", None)
     return publish()
 
 

@@ -1,0 +1,3 @@
+schedule Usage language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  emit "earned" = USD 1;
+}

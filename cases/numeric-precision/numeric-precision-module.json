@@ -1,0 +1,1553 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.agreement_id",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.pool_id",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.scope.participant_id",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.period",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.project",
+      "target": "scope.asset_ids",
+      "value": ""
+    },
+    {
+      "fields": [
+        "scope.asset_id"
+      ],
+      "kind": "equals",
+      "path": "state_cells",
+      "target": "inputs.project",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.fact_scope.agreement_id",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.fact_scope.participant_id",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.fact_scope.pool_id",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.fact_scope.asset_id",
+      "target": "inputs.project",
+      "value": ""
+    }
+  ],
+  "id": "synthetic:numeric-precision",
+  "imports": [
+    {
+      "alias": "ratio_rounding",
+      "module_ref": {
+        "id": "synthetic:numeric-ratio-rounding",
+        "locator": "cases/numeric-precision/ratio-rounding-module.json",
+        "revision": "1",
+        "sha256": "54b3d371c67ab4227836e80c0f190c574d496524fe8ea0cfd1cf92e67bbc4705"
+      },
+      "symbols": [
+        {
+          "export": "round",
+          "local": "round_ratio"
+        }
+      ]
+    },
+    {
+      "alias": "money_rounding",
+      "module_ref": {
+        "id": "synthetic:numeric-money-rounding",
+        "locator": "cases/numeric-precision/money-rounding-module.json",
+        "revision": "1",
+        "sha256": "fa2522052102db7b5e6367a9793448e8ef28349cce5be560b0673bedc342070a"
+      },
+      "symbols": [
+        {
+          "export": "round",
+          "local": "round_money"
+        }
+      ]
+    }
+  ],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "project",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Asset"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "cutoff",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "case_id",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "fact_scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "asset_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Asset"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "currency",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "selected",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "evidence_class",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "ratio_expression_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "ratio_expression_unit",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "ratio_expressed_decimal_places",
+              {
+                "args": [],
+                "name": "Int"
+              }
+            ],
+            [
+              "ratio_quantum",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "ratio_mode",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "ratio_point",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "money_quantum",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "money_mode",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "money_point",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "bridge",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "arithmetic",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "policy_ref",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "sha256",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "expression",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "agreement_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "original_ref",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_ref",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "expressed_unit",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "expressed_value",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "lines",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "NumericLine"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "original_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "basis",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                [
+                  "ratio_expression_id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "population",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "agreement_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "source_ref",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "complete",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "row_ids",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "NumericLine"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "basis_total",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "originals",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "profile",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "identity_codec",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "document",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original_policy",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "revision",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "sha256",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "raw_original",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original_expression",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "raw_original",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original_lines",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "NumericLine"
+                      }
+                    ],
+                    "name": "Id"
+                  }
+                ],
+                [
+                  "raw_original",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original_population",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "raw_original",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "comparison",
+        "role": "result",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "bank_movement_created",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "issuance_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "line_details",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "basis",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "displayed_rounded",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "exact_after_ratio_rounding",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "exact_before_ratio_rounding",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "exact_original_ratio",
+                        {
+                          "args": [],
+                          "name": "Ratio"
+                        }
+                      ],
+                      [
+                        "id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "NumericLine"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "money_rounding_delta",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "original",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      [
+                        "ratio_rounding_effect",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "USD"
+                            }
+                          ],
+                          "name": "Money"
+                        }
+                      ],
+                      [
+                        "selected_ratio",
+                        {
+                          "args": [],
+                          "name": "Ratio"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "payment_evidence_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "policy_ref",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "id",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "revision",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "sha256",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "population",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "ratio_precision",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "declared_decimal_places",
+                    {
+                      "args": [],
+                      "name": "Int"
+                    }
+                  ],
+                  [
+                    "exact_ratio",
+                    {
+                      "args": [],
+                      "name": "Ratio"
+                    }
+                  ],
+                  [
+                    "expressed_exact",
+                    {
+                      "args": [],
+                      "name": "Ratio"
+                    }
+                  ],
+                  [
+                    "expression_unit",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "measure",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "mode",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "original",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "point",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "ratio_quantum",
+                    {
+                      "args": [],
+                      "name": "Ratio"
+                    }
+                  ],
+                  [
+                    "ratio_rounding_delta",
+                    {
+                      "args": [],
+                      "name": "Ratio"
+                    }
+                  ],
+                  [
+                    "rounded_ratio",
+                    {
+                      "args": [],
+                      "name": "Ratio"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "agreement_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "statement",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "aggregate_rounded_control",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "bridge_equation",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "exact_after_ratio_rounding",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "exact_before_ratio_rounding",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "mode",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "money_measure",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "money_quantum",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "money_rounding_delta",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "original_basis_total",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "ratio_rounding_effect_total",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "rounding_bridge",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "selected_point",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "selected_total",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "source_row_ids",
+                    {
+                      "args": [
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "NumericLine"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      "name": "List"
+                    }
+                  ],
+                  [
+                    "sum_rounded_detail",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ],
+                  [
+                    "total_adjustment",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Money"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "reconciliation",
+        "role": "reconciliation",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "NUMERIC_PRECISION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "ratio-percent-fraction-precision",
+      "five-signed-literal-modes",
+      "row-aggregate-half-cent-bridges",
+      "original-exact-policy-pin"
+    ],
+    "evidence_class": "synthetic",
+    "id": "SYNTHETIC-NUMERIC-PRECISION-01",
+    "readable": {
+      "locator": "cases/numeric-precision/policy.md",
+      "sha256": "2f9459ee9acea59428fa76092e94aa307c3077dbc426042ccb62e00194e59b34"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/numeric-precision/numeric-precision.spl",
+    "sha256": "dd09e2000daa4a2d5b7381ae1349112c6b8e9e914697140e3d062f54b4cf0883"
+  },
+  "state": []
+}

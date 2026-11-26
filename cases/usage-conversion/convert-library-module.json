@@ -1,0 +1,108 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.modules/1",
+      "spl.quantities/1",
+      "spl.usage-time/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1",
+      "spl-quantity/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.2",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:usage-convert-library",
+  "imports": [],
+  "interface": {
+    "dictionaries": {
+      "spl.conversions.usage-time/1": [
+        "spl.usage-time/1:minute-hour"
+      ],
+      "spl.units.usage-time/1": [
+        "UsageHour"
+      ],
+      "spl.units/1": [
+        "UsageMinute"
+      ]
+    },
+    "exports": [
+      {
+        "definition": "converted",
+        "name": "to_hour",
+        "parameters": [
+          {
+            "name": "original",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "UsageMinute"
+                }
+              ],
+              "name": "Quantity"
+            }
+          }
+        ],
+        "result": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageHour"
+            }
+          ],
+          "name": "Quantity"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "UsageMinute"
+            }
+          ],
+          "name": "Quantity"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "USAGE_CONVERSION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "ninety-original-usage-minutes",
+      "legacy-base-carry",
+      "new-hour-carry"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:usage-conversion",
+    "readable": {
+      "locator": "cases/usage-conversion/policy.md",
+      "sha256": "2fcd9708270baaed6f75a9fa7dbf3f5d5582f6943b8a16090d18a9fb739799e6"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/usage-conversion/convert-library.spl",
+    "sha256": "ae5ca91e809c18e091f566939889e5b5152c379a30d9533747653706ed22b73c"
+  },
+  "state": []
+}

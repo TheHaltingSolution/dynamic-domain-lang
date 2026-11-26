@@ -1,5 +1,94 @@
 # Compiler extensibility and deliberate capability gaps
 
+## 22 November 2026: stronger requirement before the FX milestone
+
+The user requires the next reserved extension to be necessary for a contract,
+rather than convenient syntax or an awkward method rewritten as a primitive.
+Select and document this gap before implementing the remaining currency/FX
+foundation. No existing capability is removed. The verified `0.4.3-dev` baseline
+at commit `38f00a2` and its external source freeze remain historical evidence;
+this planning update does not republish that baseline or change compiler code.
+
+**No new candidate is selected yet.** Ordinary FX multiplication, date/quote
+selection, rate inversion and staged rounding are not sufficient evidence of
+missing core semantics: existing arithmetic, records, selection and folds can
+express substantial parts of those methods. Currency-tagged records are a
+legitimate competing encoding if they satisfy the full agreed contract/run
+requirements. A new nominal currency/FX type can establish stronger static
+guarantees, but that is the type/interface classification below, not by itself
+proof that the contract's financial calculation was inexpressible.
+
+The user-supplied three-clause research recommendation has now been independently
+assessed in [the DYN-02 design answer](dyn02-design-answer.md). FAME receipt FX
+and complete-period LG compounding are disclosed method fits. Quest's fixed
+target-rate charge is an encoding investigation, not a reserved primitive:
+exact rational comparisons can certify its rounded output without storing an
+irrational factor. A bounded financial-solver probe now computes those amounts
+internally using the unchanged native interpreter and emitted Lean; its four
+cases agree and independent exact certificates pass. Original-date/canonical
+integration and full clause-equivalence remain outside that isolated probe.
+The follow-up must distinguish nearest-cent 95.17 from the
+minimum cent charge reaching at least 20%, 95.18, under their different synthetic
+policies. See [targeted acceptance/research questions](dyn02-research-followups.md).
+The stronger selection gate below remains in force.
+
+23 November execution update: the [selected dated half-even method](../../cases/quest/README.md)
+now includes original-date lookup, exact certificates and generic canonical
+integration. Its 34 supplemental checks and nine full-comparison review scenarios
+pass on the unchanged `0.4.3-dev` kernel. This is a reusable method/library fit;
+the old supplied-day half-away probe remains distinct historical evidence.
+No necessary new core capability is established or reserved by this result.
+
+Targeted research replies have since selected a proposed one-obligation,
+one-full-payment reconstruction, documented in the
+[Quest neutral specification](quest-two-flow-fixture.md). Nearest-cent
+**half-even applies to the additional charge itself**; the existing half-away
+probe is not its tie-case verification. Implement the dated/canonical witness
+and reusable method refinement first. Minimum-at-least-20% remains a separate
+synthetic alternative; partial flows, Excel build equivalence and combined
+monthly liability stay outside this fixture. This disposition reserves no new
+core capability and does not approve the broader contract interpretation.
+
+An actual film-distribution agreement requires conversion of foreign receipts
+to USD at receipt using a specified available exchange-rate source. This is a
+real economic requirement, but its arithmetic and selection still need the
+existing-language encoding test; a sourced clause alone does not establish a
+compiler gap. See [the SEC-filed foreign-funds provision](https://www.sec.gov/Archives/edgar/data/1309152/000094344006000046/exh10132.txt).
+That provision is a development lead, not an independently worked accounting
+baseline, a selected interpretation, or unseen evaluation material.
+
+The next selection gate is:
+
+1. Obtain two or three sourced clauses, with original inputs, required outputs,
+   any state/evidence requirements, and independently supported checkpoints.
+2. Specify what the contract requires separately from a desired native type or
+   authoring style. Define the accepted input/output and trust boundary before
+   assessing candidates, without tailoring it to force a rejection.
+3. Attempt the strongest reusable encoding with the unchanged compiler. Admit
+   records, ratios, libraries, folds and legitimate source/calendar facts. Do
+   not present a missing builtin name as proof that its behavior is unavailable.
+4. Identify exactly what remains unsatisfied. Moving the disputed economic
+   calculation into Python, supplying the answer as an input, mislabelling a
+   currency or hard-coding expected payouts does not meet the original boundary.
+   Conversely, accept a faithful old-language solution and reject that candidate
+   for the stronger demonstration.
+5. Reserve the smallest justified capability, freeze the usable pre-extension
+   compiler, record attempted encodings/diagnostics and the independent oracle,
+   then implement the extension and rerun compatibility checks. If no candidate
+   clears the gate, report that rather than claiming non-expressibility.
+
+Do not promise mathematical impossibility of every imaginable encoding from a
+failed prototype. Such a claim requires an argument about the frozen language
+and the full requirement. The completed calendar-month experiment below remains
+an engineering/API extension with an acknowledged supplied-date alternative;
+it does not satisfy this stronger requirement merely because an API was absent.
+
+The separate [design and research questions](implementation-questions.md#dyn-02-required-contract-extension-before-fx)
+assign contractual necessity to the royalties researcher and encoding analysis
+to the language designer. Both should comment on the final candidate. Pending
+that qualification, native EUR/FX support remains unimplemented; unrelated
+validation and workload work can continue.
+
 ## Executed E0 freeze and E1 extension
 
 K1-K3 and generic module interfaces have now been implemented. The actual frozen E0

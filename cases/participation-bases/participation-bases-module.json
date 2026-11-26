@@ -1,0 +1,1762 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.instant/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.fold/1",
+      "spl.modules/1",
+      "spl.quantities/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1",
+      "spl-quantity/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.agreement_id",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.pool_id",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.scope.participant_id",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.scope.period",
+      "target": "manifest.period",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "parameters.cutoff",
+      "target": "manifest.cutoff",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.project",
+      "target": "scope.asset_ids",
+      "value": ""
+    },
+    {
+      "fields": [
+        "scope.asset_id"
+      ],
+      "kind": "equals",
+      "path": "state_cells",
+      "target": "inputs.project",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.fact_scope.agreement_id",
+      "target": "scope.agreement_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "member_of",
+      "path": "inputs.fact_scope.participant_id",
+      "target": "scope.participant_ids",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.fact_scope.pool_id",
+      "target": "scope.pool_id",
+      "value": ""
+    },
+    {
+      "fields": [],
+      "kind": "equals",
+      "path": "inputs.fact_scope.asset_id",
+      "target": "inputs.project",
+      "value": ""
+    }
+  ],
+  "id": "synthetic:participation-bases",
+  "imports": [],
+  "interface": {
+    "dictionaries": {
+      "spl.units/1": [
+        "Download"
+      ]
+    },
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "project",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "Asset"
+            }
+          ],
+          "name": "Id"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "case_id",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "fact_scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "asset_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Asset"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "currency",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "accounting_period",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Period"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "period_end_utc",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "terms",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "source_ref",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "agreement_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "approved",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "effective",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ],
+            [
+              "observed_at",
+              {
+                "args": [],
+                "name": "Instant"
+              }
+            ],
+            [
+              "percentage",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "unit_rate",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Download"
+                  },
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Rate"
+              }
+            ],
+            [
+              "unit",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "participation_share",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "receipts",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "original_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "effective_midnight",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "deductions",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "original_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "effective_midnight",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "usage",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "original_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "effective_date",
+                  {
+                    "args": [],
+                    "name": "Date"
+                  }
+                ],
+                [
+                  "effective_midnight",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ],
+                [
+                  "amount",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Download"
+                      }
+                    ],
+                    "name": "Quantity"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "populations",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "fields": [
+                [
+                  "id",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "source_ref",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "scope",
+                  {
+                    "args": [],
+                    "fields": [
+                      [
+                        "agreement_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Agreement"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "participant_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Participant"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "asset_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Asset"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "pool_id",
+                        {
+                          "args": [
+                            {
+                              "args": [],
+                              "name": "Pool"
+                            }
+                          ],
+                          "name": "Id"
+                        }
+                      ],
+                      [
+                        "currency",
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ]
+                    ],
+                    "name": "Record"
+                  }
+                ],
+                [
+                  "kind",
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                [
+                  "period",
+                  {
+                    "args": [],
+                    "name": "Period"
+                  }
+                ],
+                [
+                  "complete",
+                  {
+                    "args": [],
+                    "name": "Bool"
+                  }
+                ],
+                [
+                  "row_ids",
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Text"
+                      }
+                    ],
+                    "name": "List"
+                  }
+                ],
+                [
+                  "money_total",
+                  {
+                    "args": [
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "USD"
+                          }
+                        ],
+                        "name": "Money"
+                      }
+                    ],
+                    "name": "Option"
+                  }
+                ],
+                [
+                  "quantity_total",
+                  {
+                    "args": [
+                      {
+                        "args": [
+                          {
+                            "args": [],
+                            "name": "Download"
+                          }
+                        ],
+                        "name": "Quantity"
+                      }
+                    ],
+                    "name": "Option"
+                  }
+                ],
+                [
+                  "observed_at",
+                  {
+                    "args": [],
+                    "name": "Instant"
+                  }
+                ]
+              ],
+              "name": "Record"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "originals",
+        "role": "input",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "profile",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "identity_codec",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "terms_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "cutoff",
+              {
+                "args": [],
+                "name": "Instant"
+              }
+            ],
+            [
+              "unknown_local_offset_paths",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "receipts_ids",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "deductions_ids",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "usage_ids",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "populations_ids",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                "name": "List"
+              }
+            ],
+            [
+              "raw_original",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "method",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Text"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "cutoff",
+        "role": "parameter",
+        "type": {
+          "args": [],
+          "name": "Instant"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "comparison",
+        "role": "result",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "applied_participation",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "case_id",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "deductions",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "gross",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "issuance_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "method",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "net",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "start",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ],
+                  [
+                    "end",
+                    {
+                      "args": [],
+                      "name": "Date"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "pre_participation",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "quantity",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Download"
+                  }
+                ],
+                "name": "Quantity"
+              }
+            ],
+            [
+              "scope",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "agreement_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Agreement"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "participant_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Participant"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "asset_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Asset"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "pool_id",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Pool"
+                        }
+                      ],
+                      "name": "Id"
+                    }
+                  ],
+                  [
+                    "currency",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "selected_money_basis",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Money"
+                  }
+                ],
+                "name": "Option"
+              }
+            ],
+            [
+              "selected_percentage",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Ratio"
+                  }
+                ],
+                "name": "Option"
+              }
+            ],
+            [
+              "selected_quantity_basis",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Download"
+                      }
+                    ],
+                    "name": "Quantity"
+                  }
+                ],
+                "name": "Option"
+              }
+            ],
+            [
+              "selected_unit_rate",
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "args": [],
+                        "name": "Download"
+                      },
+                      {
+                        "args": [],
+                        "name": "USD"
+                      }
+                    ],
+                    "name": "Rate"
+                  }
+                ],
+                "name": "Option"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "original_detail",
+        "role": "detail",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "bank_movement_created",
+              {
+                "args": [],
+                "name": "Bool"
+              }
+            ],
+            [
+              "original_terms",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "id",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "source_ref",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "scope",
+                    {
+                      "args": [],
+                      "fields": [
+                        [
+                          "agreement_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Agreement"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "participant_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Participant"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "asset_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Asset"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "pool_id",
+                          {
+                            "args": [
+                              {
+                                "args": [],
+                                "name": "Pool"
+                              }
+                            ],
+                            "name": "Id"
+                          }
+                        ],
+                        [
+                          "currency",
+                          {
+                            "args": [],
+                            "name": "Text"
+                          }
+                        ]
+                      ],
+                      "name": "Record"
+                    }
+                  ],
+                  [
+                    "approved",
+                    {
+                      "args": [],
+                      "name": "Bool"
+                    }
+                  ],
+                  [
+                    "effective",
+                    {
+                      "args": [],
+                      "fields": [
+                        [
+                          "start",
+                          {
+                            "args": [],
+                            "name": "Date"
+                          }
+                        ],
+                        [
+                          "end",
+                          {
+                            "args": [],
+                            "name": "Date"
+                          }
+                        ]
+                      ],
+                      "name": "Record"
+                    }
+                  ],
+                  [
+                    "observed_at",
+                    {
+                      "args": [],
+                      "name": "Instant"
+                    }
+                  ],
+                  [
+                    "percentage",
+                    {
+                      "args": [],
+                      "name": "Ratio"
+                    }
+                  ],
+                  [
+                    "unit_rate",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Download"
+                        },
+                        {
+                          "args": [],
+                          "name": "USD"
+                        }
+                      ],
+                      "name": "Rate"
+                    }
+                  ],
+                  [
+                    "unit",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "participation_share",
+                    {
+                      "args": [],
+                      "name": "Ratio"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "originals",
+              {
+                "args": [],
+                "fields": [
+                  [
+                    "profile",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "identity_codec",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "case_id",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "terms_id",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ],
+                  [
+                    "cutoff",
+                    {
+                      "args": [],
+                      "name": "Instant"
+                    }
+                  ],
+                  [
+                    "unknown_local_offset_paths",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      "name": "List"
+                    }
+                  ],
+                  [
+                    "receipts_ids",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      "name": "List"
+                    }
+                  ],
+                  [
+                    "deductions_ids",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      "name": "List"
+                    }
+                  ],
+                  [
+                    "usage_ids",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      "name": "List"
+                    }
+                  ],
+                  [
+                    "populations_ids",
+                    {
+                      "args": [
+                        {
+                          "args": [],
+                          "name": "Text"
+                        }
+                      ],
+                      "name": "List"
+                    }
+                  ],
+                  [
+                    "raw_original",
+                    {
+                      "args": [],
+                      "name": "Text"
+                    }
+                  ]
+                ],
+                "name": "Record"
+              }
+            ],
+            [
+              "payment_evidence_status",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "unknown_local_offset_meaning",
+              {
+                "args": [],
+                "name": "Text"
+              }
+            ],
+            [
+              "validated_population_ids",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Text"
+                  }
+                ],
+                "name": "List"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "reconciliation",
+        "role": "reconciliation",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "PARTICIPATION_BASES_SELECTED"
+    ],
+    "discriminating_cases": [
+      "gross_percent",
+      "net_percent",
+      "unit_rate",
+      "unit_rate_then_participation",
+      "money-quantity-asymmetry",
+      "complete-unused-originals",
+      "fractional-exact-no-rounding"
+    ],
+    "evidence_class": "synthetic",
+    "id": "SYNTHETIC-PARTICIPATION-BASES-01",
+    "readable": {
+      "locator": "cases/participation-bases/policy.md",
+      "sha256": "2d7b8f5511670df2a601a74c925ca6b79c1dc4f8009c446dff773d382d898f9a"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/participation-bases/participation-bases.spl",
+    "sha256": "59d0d54f381bbaf23377d23a81b014ef9de672c24a7fbe212331095f39cbcc08"
+  },
+  "state": []
+}

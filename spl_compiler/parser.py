@@ -163,6 +163,9 @@ class Parser:
         core = self.string().value
         self.expect("schema")
         schema = self.string().value
+        features = []
+        while self.accept("uses"):
+            features.append(self.string().value)
         self.expect("{")
         declarations = []
         while not self.at("}"):
@@ -174,6 +177,8 @@ class Parser:
             self.fail("Trailing content after schedule", "TRAILING_CONTENT")
         result = self.node("schedule", start, name=name, language=language,
                            core=core, schema=schema, declarations=declarations)
+        if features:
+            result["features"] = features
         return result
 
     def type(self) -> dict:

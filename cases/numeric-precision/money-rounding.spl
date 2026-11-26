@@ -1,0 +1,13 @@
+// The monetary value and quantum share the actual Money<USD> type.
+schedule MoneyRounding language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input value: Money<USD>;
+  input quantum: Money<USD>;
+  input mode: Text;
+  require quantum > USD 0 else "PRECISION_POSITIVE_QUANTUM";
+  require mode == "floor" or mode == "ceiling" or mode == "toward_zero" or mode == "half_even" or mode == "half_away_from_zero" else "PRECISION_MODE";
+  define rounded = if mode == "floor" then quantize(value, quantum, "floor")
+    else if mode == "ceiling" then quantize(value, quantum, "ceiling")
+    else if mode == "toward_zero" then quantize(value, quantum, "toward_zero")
+    else if mode == "half_even" then quantize(value, quantum, "half_even")
+    else quantize(value, quantum, "half_away_from_zero");
+}

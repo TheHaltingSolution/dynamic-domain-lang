@@ -57,13 +57,15 @@ def interpretFile (schedule : Schedule) (bindingPath : String) : IO Lean.Json :=
     | .opening _ name type _ => some (name, type) | _ => none
   let source ← IO.FS.readFile bindingPath
   let decoded : Except String (SPL.Env × SPL.Env) := do
+    let owner ← SPL.Dimensions.prepare schedule.features
+    let meanings : SPL.Dimensions.Meanings := { features := (program.features ++ program.owners.flatMap Prod.snd).eraseDups }
     let json ← SPL.Bindings.parseStrict source
     let fields ← json.getObj? |>.mapError (fun _ => "EXPECTED_BINDING_ENVELOPE")
     let names := fields.toList.map Prod.fst
     unless names.length == 2 && names.contains "inputs" && names.contains "openings" do
       throw "UNKNOWN_OR_MISSING_FIELD"
-    let inputs ← SPL.Bindings.decodeBindings inputTypes (← json.getObjVal? "inputs")
-    let openings ← SPL.Bindings.decodeBindings openingTypes (← json.getObjVal? "openings")
+    let inputs ← SPL.Bindings.decodeBindingsWith owner meanings inputTypes (← json.getObjVal? "inputs")
+    let openings ← SPL.Bindings.decodeBindingsWith owner meanings openingTypes (← json.getObjVal? "openings")
     pure (inputs, openings)
   match decoded with
   | .error code => return SPL.Interpret.outcomeJson { result := .error code, trace := {} }
@@ -111,7 +113,11 @@ def runCore (args : List String) (linkPath : Option String) : IO UInt32 := do
       match SPL.Elaborate.elaborate schedule with
       | .error diagnostic => report diagnostic source
       | .ok program =>
-        let json := program.toJson.compress
+        let artifact := program.toJson
+        match SPL.IRArtifact.validate artifact with
+        | .error code => return ← report { code, message := "IR artifact preflight" } source
+        | .ok _ => pure ()
+        let json := artifact.compress
         if let [_, _, destination] := args then writeArtifact destination json
         else IO.println json
         return 0

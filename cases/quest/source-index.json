@@ -1,0 +1,12 @@
+{
+  "schema_version": "quest-source-index/1",
+  "source_ref": "sec-quest-agreement@sha256:9f1c535acfa79aaab13b860e18cd731936425e2d42ac519942d37451deeda151",
+  "locator": "Schedule II, page 19, late-payment paragraph",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/824416/000121390025034342/ea023916001ex99-1_quest.htm",
+  "snapshot_kind": "original_http_response_body",
+  "sha256": "9f1c535acfa79aaab13b860e18cd731936425e2d42ac519942d37451deeda151",
+  "bytes": 328902,
+  "retrieved_on": "2026-11-23",
+  "external_path": "C:/Projects/Film_TV_participation_dynamic_DSL/reference/quest/quest-ex99-1.html",
+  "scope": "Provenance index only; agreement bytes remain outside Git; synthetic rounding and domain approval are not inferred"
+}

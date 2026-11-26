@@ -1,14 +1,266 @@
 # SPL compiler: reusable kernel and canonical methods
 
+## Active C1 continuation
+
+The registered first-dollar merchandising method now passes39 combined methods,
+six completed baseline/actualQ1-Q4/preview bundles and a separate carry-purity
+check. All material financial/original-history/state controls match the separate
+oracle, native IR, native-emitted and Python-emitted execution. Q3catch-up210
+is recognized once; Q4new0 and preview closing_state[] are verified. Max actual
+result55,194,678 bytes fits64MiB with11,914,186 margin. Read
+[the case](../../cases/merchandising-reprice/README.md) for the bounded source/
+operating policy, source-profile changes, earlier failures and final20ea/a516/673
+pins. This closes a selected C04/C13recognition witness, not general restatement.
+
+The secondary Python emitter now uses fresh cached definition thunks too.
+Its old closures caused the separate Disney baseline driver to time out at180s.
+The narrow fix passes34 frozen methods/build/both smokes, with actual old/new
+C group calls114->2 and preserved values, lazy/error order and per-call state.
+See [the Python emitter report](python-emitter-memoization-experiment.md).
+The new current pins below supersede the compact-publication-only pins; native
+frontend/runtime/Demos bytes are unchanged by this secondary generator patch.
+
+Complete result envelopes now use compact JSON, preserving all values/nodes and
+the64MiB byte limit; separate review files remain indented. The frozen20-method
+publication cohort,94-job build and both smokes pass. Old indented bundles remain
+readable without repinning. This Python serialization-only change updates the
+current wrapper fingerprints below; native compiler/runtime/Demos bytes remain
+unchanged. Evidence: `publication-whitespace-20261123-a` under external SPL
+artifacts. Older financial/emitter cohorts retain their actual dated pins.
+
+The native emitter now caches local definitions with invocation-local Lean
+thunks, matching interpreter definition reuse. Actual isolated group-building
+calls decrease from 114 to 2 for the retained fixture. Regenerated current demo
+and benchmark targets pass 38 frozen methods, including full original financial
+controls and archived pre-change targets. The complete 94-job build and both
+smokes pass. See [the emitter evidence](emitter-memoization-experiment.md).
+This changes generated target bytes and compiler/module pins; financial source
+bytes and the native arithmetic runtime remain unchanged.
+
+Authorized prospective offsets pass 37 combined methods plus retained actual
+three-period publication/carry. Supplied versioned civil-day relations pass 27
+combined methods. These are separate frozen cohorts, not a combined release
+regression. [Live work](active-work.md) retains publication capacity limits and
+ongoing experiments. Disney merchandising repricing has 26 independent oracle
+checks; its native implementation remains pending.
+
+The [finite plan](completion-plan.md), [backlog](completion-backlog.json) and
+[checkpoint](completion-checkpoint.md) own the remaining feature, performance
+and validation work. Separate verified registered slices include six staged
+deduction/fee variants and cost history, supplied withholding/threshold/
+obligation carry, finite fiscal/calendar terms, original-rate returns/loss
+meters and authorized current-entitlement cross-contract coordination. Their
+independent original-fact controls precede the SPL implementations. Each case
+README and archived cohort records its exact scope; this is not a complete C1
+release or a new combined full-suite result.
+
+Dedicated SV/LG original-fact controls exposed a real LG projection defect:
+allocated receipts omitted `is_home_video`. The projector now preserves the
+original channel and rejects missing classification before calculation. The
+post-repair 22-method LG cohort passes without changing financial expectations.
+The repair's 137052... identity remains the dated fingerprint for those archives.
+
+Measured trace profiling then identified node-to-JSON conversion as a major
+cost. A HashSet collector replaces repeated fact-ID lists/deduplication while
+retaining the exact final lexical ordering and all other node fields. All 34
+focused methods pass, including 560 full legacy formatter comparisons; complete
+mixed-cohort wire bytes and independent financial controls are identical. The
+observed 1,000-record native audit decreases from 14.483345 to 9.269901 seconds.
+This is neither a production percentile nor a 15-second whole-close claim.
+The trace optimization's separate compiler/module identities and paired evidence
+remain in [the mixed report](mixed-workload-plan.md).
+
+The current Python publication integration uses private short invocation
+directories, atomic completion manifests, bounded file/digest verification and
+precommit blocked evidence labels. Root review mirrors remain compatible;
+consumption uses `spl_compiler.artifacts.load_completed_result`. Seven helper
+checks and a 25-method existing artifact/policy cohort pass. The separately frozen 19-method helper/runner integration cohort passes
+in 44.280571 seconds with 24 interruption stages, real native positives and
+serialized carry; all source and Lean dependency pins remain unchanged. See the
+[publication contract](artifact-publication-design.md).
+
+The current working compiler/reference identity is
+`20ea52ba37b7d84b4d5d7ed62c9c38b44a928cf1ffc2287f2bec358bda31c260`
+and generic-module identity is
+`a5165f5db8a42a7365afc553e6e518913ded0065389c1e0a717dd197cd6d412a`.
+The native arithmetic/runtime identity remains
+`673bb0fe936c48a60c1cf5a1a265fb1d1f9f3cd432f380ee9b3011b7729dace9`.
+The primary `0.4.3-dev` baseline is historical and archived byte-for-byte in
+[its saved record](baselines/implementation-0.4.3-dev.json). Fresh invocation
+binding is deliberate; historical issued artifacts were not repinned.
+
+A full 94-job Lake build and both smoke executables pass after the trace change;
+the publication integration adds Python code without altering Lean source.
+The [pure timer](pure-performance.md) measures the actual emitted 1,000-record
+settlement at a median 4.715209 ms per call across nine warm samples with decoded
+inputs and 64 original opening variants checked against complete independent
+outcomes. Default canonical audit still uses expanded traces; opt-in compact
+transport and its strict reader remain separately measured capabilities.
+
+## Supplemental bounded validation: 23 November 2026
+
+The [conformance command and guide](conformance-validation.md) now connect a
+machine-readable requirement/test matrix to reproducible generated cases,
+independent exact expectations, reference/native-IR/native-emitted results and
+source-qualified native decision observations. The complete default campaign
+passes eight generated cases and 14 existing test methods in 468.912938 seconds,
+crediting 12 bounded matrix rows while retaining six gaps. The 19 new harness
+tests pass together; the 86-target build and both smokes pass.
+
+The [verification index](conformance-validation-result.json) records report
+hashes, replay evidence and external source/input snapshots. Source stability
+checks pass; compiler/runtime/module identities equal the existing `0.4.3-dev`
+record. This adds validation tooling outside the kernel and canonical schemas.
+The baseline is unchanged and the historical full regression cohort was not
+rerun. Generated traces are interpreter observations, with no emitted-target
+decision instrumentation or coverage denominator. Matrix backend labels describe
+inspected test paths rather than per-test instrumentation. The guide records
+unobserved generated paths and the next negative-generation increment.
+
+M1b typed quantities are implemented and verified locally on
+`feature/spl-typed-quantities` as profile `0.4.3-dev`. The branch
+starts at merged commit `018dde1`; `main` is unchanged. The published M1a record
+is preserved at
+[`baselines/implementation-0.4.2-dev.json`](baselines/implementation-0.4.2-dev.json).
+The verification histories below continue to describe their dated snapshots.
+
 Reusable-kernel, calendar-extension and M1a iteration, 21 November 2026. The prior
 `spl-implementation/0.3.0-dev` and frozen E0 `0.4.0-dev` baselines are retained
 under `baselines/`; published E1 uses profile `0.4.1-dev`. Its primary record is
 also archived byte-for-byte as
 [`baselines/implementation-0.4.1-dev.json`](baselines/implementation-0.4.1-dev.json).
-M1a is implemented and published as profile `0.4.2-dev`, with verification in
-the [current baseline](implementation-baseline.json).
+M1a is implemented and published as profile `0.4.2-dev`; its archived record
+above retains that verification. The [current baseline](implementation-baseline.json)
+records the completed M1b integration checks on 22 November 2026. This local
+record is not a GitHub release or a claim that the feature branch is merged.
 The language/core/schema labels remain the unfrozen `0.1-draft` labels. Content
 hashes, rather than those labels alone, identify a runnable snapshot.
+
+## M1b candidate: quantities and monetary rates
+
+The finite dictionary `spl.units/1` admits exactly `Download` and `UsageMinute`.
+`Quantity<U>` and `Rate<U,USD>` use existing generic type syntax and typed input
+parameters; no new English literal grammar was added. Tagged exact values
+survive reference evaluation, native IR interpretation, generated Lean,
+containers, outputs and audit. The [operation matrix](next-core-semantics.md#m1b-implemented-dimensional-boundary)
+lists supported arithmetic, typed empty sums and explicit matching-dimensional
+rounding. Sorting permits dimensional scalar keys and tuple components;
+Map/group/ordered-fold keys containing the new dimensions remain unsupported.
+Money divided by Quantity, additional currencies and FX remain unsupported.
+
+The [registered Download source](../../cases/quantities/download-participation.spl)
+and [proposed readable policy](../../cases/quantities/policy.md) sum a supplied
+selected-period usage view, multiply 100 Download by USD 1.50/Download to obtain
+USD 150, then apply the separate 50% participation to obtain USD 75. The
+[adapter and neutral fixture](../../cases/quantities/README.md) transport supplied
+facts and terms; the [independent oracle](../../oracles/quantities.py) has no
+compiler imports. Actual native closing-state carry into a successor with 0.5
+Download gives a tagged meter of 100.5 and earned USD 0.375. Zero activity with
+empty evidence is valid; supplied usage still requires evidence, and every
+supplied observation must precede cutoff. Nonnegativity is this selected case's
+policy; signed fractional quantities and rates remain valid exact core values.
+
+Canonical registration requires `spl.quantities/1`, codec `spl-quantity/1` and
+explicit admitted used units in every descriptor's `spl.units/1` dictionary,
+including unused imported signatures. Dimensional bounds and conservation
+targets require explicit matching tags, including empty typed collections.
+Nested dimensional state uses its complete type hash in slot/cell/scope units
+and the state key. The public helper admits ASTs through the checker before
+hashing, so built-ins such as nested `Period` agree with checked Type inputs.
+See [the module contract](module-interface-v1.md#m1b-dimensional-interfaces-and-state).
+
+Final verification passes the 86-job native build, both smokes, all 16 native
+Lean suites and one complete current-tree run of all 352 Python tests in
+1638.702 seconds. Compiler/schema source pins and implementation identities
+remain unchanged throughout that run. All 35 review paths also pass against
+the final identities: 24 prior cases, seven M1a cases and four quantity cases.
+All 26 bound checked-in packages match those identities; the seven M1a and one
+quantity templates remain deliberately unbound. The previous 0.4.2 record is
+preserved byte-for-byte. These are finite synthetic checks, not full combination
+coverage or a new compiler correctness theorem. Existing toy and scalar proof
+scopes are unchanged and do not cover the new tagged paths.
+
+An initial full-suite attempt found an outdated calendar capability-test fixture
+that omitted schema/dictionary/codec fields. That attempt was interrupted and
+retained; the fixture was corrected without changing compiler sources before
+the successful complete rerun. The current baseline links both records.
+
+The integration audit also reproduced a defensive-IR gap: an unsupported unit
+or rate currency could hide in an empty list or `none` annotation. Every IR
+metadata type and explicit binder/parameter type now receives admitted-type
+validation. Fifteen negative IR cases reject at validation, interpretation and
+both emission entry points. The clean build and existing IR validation suite
+pass after this repair. Working source bytes follow the repository's LF rule
+before implementation identities and run snapshots are recorded.
+
+Run the four quantity scenarios, including actual serialized closing-state
+carry, with:
+
+```powershell
+python scripts/quantity_demo.py
+```
+
+The driver writes statements, closing state, traces, neutral fixtures and
+independent oracle controls under the external `artifacts/spl/quantity-0.4.3/quantity-review`
+folder. It checks 100 Download, a successor with 0.5 Download, zero activity and
+one-third Download. Each canonical run compares native IR, generated Lean and
+the Python reference before finalization.
+
+## Kernel and prior financial methods
+
+Post-baseline DYN-02 review accepts the [design recommendation](dyn02-design-answer.md)
+to reserve no core capability yet. The original half-away supplied-day probe
+and its four-positive/three-negative compiler replay remain historical evidence
+under `artifacts/spl/dyn02-compiler-review`; they have not been overwritten.
+
+On 23 November, the [selected half-even fixture](quest-two-flow-fixture.md) was
+implemented as a [registered dated method](../../cases/quest/README.md), using
+the unchanged `0.4.3-dev` compiler/runtime/module kernel. SPL now looks up the
+original obligation due date and actual principal-payment date in pinned,
+evidenced Gregorian facts and derives their difference internally. It imports
+a pure fold-based integer-power library, searches for cent bounds, rounds the
+additional charge by its own cent-index parity and asserts the exact rounding
+and minimum-cent certificates before emitting results. The adapter transports
+facts and validates ordinary calendar normalization; it supplies neither elapsed
+days nor a solved financial answer. `calendar_date` is a mechanical source-field
+rename because the existing surface reserves `date`.
+
+The [financial source](../../cases/quest/charge.spl),
+[readable policy](../../cases/quest/policy.md) and
+[independent neutral-fact oracle](../../oracles/quest.py) produce baseline USD
+95.17 while preserving the actual USD 1,000 principal payment. Full-year ties
+at USD 0.01 and USD 0.03 with a 50% target produce additional 0.00 and 0.02,
+respectively. A non-origin due-date example subtracts ordinals 180 from 182
+and yields two days, rather than treating the payment ordinal as elapsed days.
+Monthly and combined liability remain explicit nonnumeric statuses; there is
+no generated additional payment or closing financial state.
+
+All 34 supplemental Quest test methods pass in one run of 402.120 seconds:
+20 oracle, nine canonical and five direct execution groups. They cover native
+IR/generated/reference comparisons, exact tie/near-tie certificates, 26 direct
+invalid mutations and two incorrect-rounding source mutations. Build (86 jobs)
+and both smokes pass. The prior kernel's 45 source/schema pins, implementation
+identities, baseline record and original half-away source are unchanged.
+The review/test record is external under `artifacts/spl/quest-two-flow/checks`.
+The nine-scenario [demo](../../scripts/quest_demo.py) also passes native IR,
+generated Lean, reference and independent certificate comparison. Run it with
+`python scripts/quest_demo.py --reuse-registration`; outputs are retained under
+the external `artifacts/spl/quest-two-flow/review` folder.
+The historical 352-test baseline was not rerun or republished.
+
+A separate compatibility rerun passes all six original/readable SV/RQ-07/LG
+cases (payables 18,000/18,000/35) and three direct advance/reserve/correction
+mechanisms (closing/remaining controls 5,000/20/10). No old fixture or issued
+package was refreshed for these checks. The final method evidence record is
+`artifacts/spl/quest-two-flow/checks/final-verification.json`.
+
+These are selected synthetic, proposed, unissued outputs. Partial payments,
+the statutory monthly component, combined liability, Excel operational
+equivalence, owner acceptance of the adjacent patent-rights domain and
+professional approval remain outside this fixture. No new core operation,
+whole-contract compliance or compiler preservation theorem is established.
+The existing pre-FX gate stays in force; see the
+[reconciled next steps](development-plan.md#dyn-02-reconciliation-after-the-design-response).
 
 K1-K3 now execute: registered priority selection, tuple-keyed maps, grouping,
 strict inner/left joins, structural input records, explicit Options, finite
@@ -280,7 +532,7 @@ snapshots.
 | Defensive IR validation | `SPL/ValidateIR.lean`: independently checks annotations, signatures, scope, cycles, schemas, IDs and ports before public emission/interpretation. This is type-annotated IR, not intrinsically typed dependent syntax or a proof |
 | Native generation | `SPL/Emit.lean` traverses validated IR directly; schedule-specific namespace, pure parameterized `settle`, standalone convenience alias `GeneratedSPL.settle` |
 | Native interpretation/audit | `SPL/Interpret.lean`, `Trace.lean`: separate IR semantics and dependency DAG. Emitted execution never calls the interpreter |
-| Exact target | `SPL/Runtime.lean`, `Core.lean`, `Fold.lean`, `Instant.lean`, `Calendar.lean`: Lean `Rat`, exact normalized RFC3339 instants, checked demanded division, pure finite collections, folds, lazy branch/selection and explicit calendar-month primitives |
+| Exact target | `SPL/Runtime.lean`, `Core.lean`, `Fold.lean`, `Instant.lean`, `Calendar.lean`, `Dimensions.lean`: Lean `Rat`, tagged quantities/rates, exact normalized RFC3339 instants, checked demanded division, pure finite collections, folds, lazy branch/selection and explicit calendar-month primitives |
 | Typed binding I/O | `SPL/Bindings.lean`: strict JSON and schema-aware decoding; arbitrary JSON financial numbers rejected |
 | Canonical boundary | `spl_compiler/codecs.py`, `schema.py`, `adapter.py`, `policies.py`, `run.py`: source normalization, authority, scope, incorporated-policy pins and whole-core signature checks, atomic run/result orchestration |
 | Separate reference | Python original/readable parsers and checker/evaluator, plus hand-authored expectations; compare business values/state/error codes across all three paths |
@@ -289,7 +541,8 @@ Per the user's implementation direction, complete compiler verification is
 deferred until after the demo. Keep the boundaries suitable for later formalization.
 The already completed `SPL.Core.lower_correct` and numeric-helper lemmas cover
 only the typed scalar core and value/error preservation for its lowering.
-Generated arithmetic uses these helpers, but that does **not** prove the parser,
+Legacy generated scalar arithmetic uses these helpers. New tagged dimensional
+runtime paths are outside those scalar lemmas. That does **not** prove the parser,
 checker, source-to-core elaboration, emitted text, collections, quantization,
 trace, codecs, wrapper, supplied facts or contract interpretation correct.
 No `sorry` or project-defined axiom is used. Compiler traversals and codecs still
@@ -340,8 +593,8 @@ core use total executable definitions. The existing toy theorem is separate.
   are separate physical/audit identities. Logical set arrays are canonicalized.
   Reordered source facts with unchanged IDs preserve results and reference trace.
 
-General Map/group/join/fold and priority support are implemented as described
-above. FX, quantity/unit algebra, general historical/dependent-period replay,
+General Map/group/join/fold, priority and the bounded M1b quantity/rate algebra
+are implemented as described above. FX, broader unit dictionaries, general historical/dependent-period replay,
 loss policy, broader dynamic gate methods, sourced basis-stage reserves and
 additional vendor adapters remain C1 work. Separate
 [synthetic accounting cases](../../cases/mechanisms/README.md) now exercise
@@ -447,7 +700,7 @@ measurements remain required before transport integration or capacity claims.
 
 | Phase | Next deliverable and acceptance boundary |
 | --- | --- |
-| Broader C1 methods | M1a's selected tier/cap/floor methods now execute. Next are M1b typed quantities and monetary-per-unit inputs, then the scoped USD/EUR FX foundation, declared gate/loss alternatives, dependent-period replay, fiscal/business calendars and remaining tier/cap/threshold variants. Each needs explicit policies and canonical input/output witnesses; M1a does not complete C04/C05. |
+| Broader C1 methods | M1a's selected tier/cap/floor methods and the verified M1b finite quantity/rate slice execute. Before adding the USD/EUR FX foundation, retain the [required-extension selection gate](extensibility-experiment.md#22-november-2026-stronger-requirement-before-the-fx-milestone). DYN-02 currently recommends no reservation: the bounded Quest solver also fits the unchanged core. Resolve the targeted original-fact/flow/numerical acceptance requirements before proposing any remaining extension. Declared gate/loss alternatives, dependent-period replay, fiscal/business calendars and remaining tier/cap/threshold variants also remain. Each needs explicit policies and canonical input/output witnesses; these slices do not complete the broader families. |
 | Systematic validation | Extend independent neutral-fact oracles, boundary/error cases, pairwise and selected higher-order feature combinations, metamorphic checks and mutation testing. Measure emitted-program branch coverage before claiming systematic coverage; current finite regressions do not exercise every feature combination or every compiled line. |
 | Capacity and audit | Reduce trace materialization/serialization costs, define the required audit envelope, and measure representative RR-03 mixes, skew, larger cohorts and memory. Establish a useful single-process capacity before designing distributed execution. |
 | Independent evaluation and later proof | Preserve disclosed-development versus held-out custody boundaries and obtain actual reader/accountant review. After the demo stabilizes, state source/target semantics and assumptions and prove selected compiler passes without widening the toy/scalar claims. |

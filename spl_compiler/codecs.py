@@ -123,6 +123,36 @@ def money(value, currency="USD"):
     return {"value": number(value), "currency": currency}
 
 
+def quantity(value, unit, *, context=None):
+    """Encode an exact quantity without erasing its admitted unit."""
+    from .dimensions import validate_unit
+    try:
+        validate_unit(unit, context)
+    except SPLException:
+        fail("UNSUPPORTED_UNIT", str(unit))
+    return {"value": number(value), "unit": unit}
+
+
+def rate(value, per_unit, currency="USD", *, context=None):
+    """Encode an exact monetary rate with its denominator unit."""
+    from .dimensions import validate_unit
+    try:
+        validate_unit(per_unit, context)
+    except SPLException:
+        fail("UNSUPPORTED_UNIT", str(per_unit))
+    if currency != "USD":
+        fail("UNSUPPORTED_CURRENCY", str(currency))
+    return {"value": number(value), "per_unit": per_unit, "currency": currency}
+
+
+def dimensional_amount(value, unit, *, currency=None, pointer="", context=None):
+    """Strictly decode quantity/rate transport to immutable tagged values."""
+    from .evaluator import decode_value
+    from .model import Type
+    typ = Type("Quantity", (Type(unit),)) if currency is None else Type("Rate", (Type(unit), Type(currency)))
+    return decode_value(value, typ, pointer, context=context)
+
+
 def amount(value, pointer=""):
     if not isinstance(value, dict) or set(value) != {"value", "currency"}:
         fail("INVALID_MONEY", "Expected value and currency", pointer)
@@ -168,15 +198,20 @@ def period(value):
     return value
 
 
-def encode(value):
+def encode(value, *, context=None):
+    from .model import QuantityValue, RateValue
+    if isinstance(value, QuantityValue):
+        return quantity(value.value, value.unit, context=context or value.context)
+    if isinstance(value, RateValue):
+        return rate(value.value, value.per_unit, value.currency, context=context or value.context)
     if isinstance(value, InstantValue):
         return value.canonical
     if isinstance(value, Fraction):
         return number(value)
     if isinstance(value, dict):
-        return {k: encode(v) for k, v in value.items()}
+        return {k: encode(v, context=context) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
-        return [encode(x) for x in value]
+        return [encode(x, context=context) for x in value]
     return value
 
 

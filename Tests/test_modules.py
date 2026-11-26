@@ -255,7 +255,10 @@ class ModuleTests(unittest.TestCase):
                              (lambda p: p["parameters"].update(rate="0.3"), "MODULE_SCOPE_MISMATCH")]:
             package = deepcopy(self.package)
             mutate(package)
-            self.assert_blocked(self.run_reference(package), code)
+            result = self.run_reference(package)
+            self.assert_blocked(result, code)
+            if code == "MODULE_REFERENCE_SCOPE":
+                self.assertEqual(result["diagnostics"][0]["pointer"], "/inputs/rows/1/key")
 
     def test_evidence_cutoff_authority_and_missing_required_attestation(self):
         row_type = {"name": "Record", "args": [], "fields": [["event_id", typ("Id", typ("Event"))],

@@ -1,0 +1,345 @@
+// Original cash/election/return history. All deadlines and money are derived here.
+schedule ElectedBasisReserve language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input scope: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, period: Period};
+  input project: Id<Asset>;
+  input fact_scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>};
+  input case_id: Text;
+  input run_checkpoint_id: Text;
+  input policy: {date_basis: Text, evidence_class: Text, excess_returns: Text, fee_stage: Text, id: Text, invalid_day: Text, liquidation: Text, method: Text, months: Text, professional_review: Text, revision: Text, rounding: Text, same_day_order: Text};
+  input research: {assignment_url: Text, clauses: Text, ld03_sha256: Text, primary_url: Text, rr04_sha256: Text};
+  input cutoff: Instant;
+  input source_cutoff: Text;
+  input authority: {approved: Bool, covered_program: Bool, effective: Period, effective_end_utc: Instant, effective_start_utc: Instant, evidence_ref: Text, evidence_slot: Int, fee_rate: Ratio, fee_substitute: Text, id: Text, observed_at: Instant, original_distributor: Text, raw_original: Text, reserve_rate: Ratio, sales_period_id: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_fee_rate: Text, source_fee_redacted: Bool, source_observed_at: Text, source_ref: Text, source_reserve_rate: Text, successor_authorized: Bool, successor_id: Text, version: Text};
+  input checkpoints: List<{approved: Bool, as_of: Date, as_of_next: Date, as_of_utc: Instant, cutoff: Instant, evidence_ref: Text, evidence_slot: Int, id: Text, observed_at: Instant, period: Period, period_end_utc: Instant, period_start_utc: Instant, raw_original: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_case_id: Text, source_cutoff: Text, source_observed_at: Text, source_ref: Text}>;
+  input receipts: List<{amount: Money<USD>, cash_line_ref: Text, cash_received_country: Text, election_id: Text, evidence_ref: Text, evidence_slot: Int, id: Text, medium: Text, observed_at: Instant, raw_original: Text, receipt_date: Date, receipt_date_utc: Instant, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, sequence: Int, source_amount: Text, source_observed_at: Text, source_ref: Text, territory: Text}>;
+  input elections: List<{approved: Bool, approved_date: Date, approved_date_utc: Instant, elected: Bool, election_date: Date, election_date_utc: Instant, evidence_ref: Text, evidence_slot: Int, id: Text, observed_at: Instant, purpose: Text, raw_original: Text, receipt_id: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_observed_at: Text, source_ref: Text, vintage_id: Text}>;
+  input returns: List<{amount: Money<USD>, authority_id: Text, claim_id: Text, evidence_ref: Text, evidence_slot: Int, id: Text, observed_at: Instant, raw_original: Text, receipt_id: Text, return_date: Date, return_date_utc: Instant, return_line_ref: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, sequence: Int, source_amount: Text, source_observed_at: Text, source_ref: Text, vintage_id: Text}>;
+  input return_authorities: List<{approved: Bool, approved_date: Date, approved_date_utc: Instant, evidence_ref: Text, evidence_slot: Int, id: Text, observed_at: Instant, purpose: Text, raw_original: Text, receipt_id: Text, return_id: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_observed_at: Text, source_ref: Text, vintage_id: Text}>;
+  input populations: List<{authority_ids: List<Text>, checkpoint_id: Text, complete: Bool, election_ids: List<Text>, evidence_ref: Text, evidence_slot: Int, id: Text, observed_at: Instant, other_adjustment_ids: List<Text>, other_adjustment_total: Money<USD>, raw_original: Text, receipt_ids: List<Text>, receipt_total: Money<USD>, return_ids: List<Text>, return_total: Money<USD>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_observed_at: Text, source_other_adjustment_total: Text, source_receipt_total: Text, source_ref: Text, source_return_total: Text}>;
+  input clearances: List<{approved: Bool, checkpoint_id: Text, complete: Bool, evidence_ref: Text, evidence_slot: Int, expense_remaining: Money<USD>, id: Text, minimum_guarantee_remaining: Money<USD>, observed_at: Instant, raw_original: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_expense_remaining: Text, source_minimum_guarantee_remaining: Text, source_observed_at: Text, source_ref: Text, unresolved_claim_ids: List<Text>}>;
+  input evidence: List<{approved: Bool, id: Text, kind: Text, observed_at: Instant, raw_original: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, slot: Int, source_observed_at: Text, source_ref: Text, source_kind: Text, approval_ref: Text, evidence_ref: Text}>;
+  input supplied_opening: {boundary: Date, detail: Option<{authority: Text, cumulative: {added: Money<USD>, allocation: Money<USD>, applied_returns: Money<USD>, fee: Money<USD>, gross: Money<USD>, net_receipts: Money<USD>, released: Money<USD>}, last_checkpoint_id: Text, movements: List<{allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text}>, research: {assignment_url: Text, clauses: Text, ld03_sha256: Text, primary_url: Text, rr04_sha256: Text}, sources: {checkpoints: List<{category: Text, id: Text, record: Text}>, clearances: List<{category: Text, id: Text, record: Text}>, elections: List<{category: Text, id: Text, record: Text}>, evidence: List<{category: Text, id: Text, record: Text}>, populations: List<{category: Text, id: Text, record: Text}>, receipts: List<{category: Text, id: Text, record: Text}>, return_authorities: List<{category: Text, id: Text, record: Text}>, returns: List<{category: Text, id: Text, record: Text}>}, vintages: List<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, election_record: Text, id: Text, origin_date: Date, purpose: Text, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}}>}>, origin: Text, policy: {date_basis: Text, evidence_class: Text, excess_returns: Text, fee_stage: Text, id: Text, invalid_day: Text, liquidation: Text, method: Text, months: Text, professional_review: Text, revision: Text, rounding: Text, same_day_order: Text}, purpose: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_case_id: Text, transport_profile: Text};
+  input predecessor: Option<{source_case_id: Text, period: Period, closing_state: {boundary: Date, detail: Option<{authority: Text, cumulative: {added: Money<USD>, allocation: Money<USD>, applied_returns: Money<USD>, fee: Money<USD>, gross: Money<USD>, net_receipts: Money<USD>, released: Money<USD>}, last_checkpoint_id: Text, movements: List<{allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text}>, research: {assignment_url: Text, clauses: Text, ld03_sha256: Text, primary_url: Text, rr04_sha256: Text}, sources: {checkpoints: List<{category: Text, id: Text, record: Text}>, clearances: List<{category: Text, id: Text, record: Text}>, elections: List<{category: Text, id: Text, record: Text}>, evidence: List<{category: Text, id: Text, record: Text}>, populations: List<{category: Text, id: Text, record: Text}>, receipts: List<{category: Text, id: Text, record: Text}>, return_authorities: List<{category: Text, id: Text, record: Text}>, returns: List<{category: Text, id: Text, record: Text}>}, vintages: List<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, election_record: Text, id: Text, origin_date: Date, purpose: Text, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}}>}>, origin: Text, policy: {date_basis: Text, evidence_class: Text, excess_returns: Text, fee_stage: Text, id: Text, invalid_day: Text, liquidation: Text, method: Text, months: Text, professional_review: Text, revision: Text, rounding: Text, same_day_order: Text}, purpose: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_case_id: Text, transport_profile: Text}}>;
+  opening history: {boundary: Date, detail: Option<{authority: Text, cumulative: {added: Money<USD>, allocation: Money<USD>, applied_returns: Money<USD>, fee: Money<USD>, gross: Money<USD>, net_receipts: Money<USD>, released: Money<USD>}, last_checkpoint_id: Text, movements: List<{allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text}>, research: {assignment_url: Text, clauses: Text, ld03_sha256: Text, primary_url: Text, rr04_sha256: Text}, sources: {checkpoints: List<{category: Text, id: Text, record: Text}>, clearances: List<{category: Text, id: Text, record: Text}>, elections: List<{category: Text, id: Text, record: Text}>, evidence: List<{category: Text, id: Text, record: Text}>, populations: List<{category: Text, id: Text, record: Text}>, receipts: List<{category: Text, id: Text, record: Text}>, return_authorities: List<{category: Text, id: Text, record: Text}>, returns: List<{category: Text, id: Text, record: Text}>}, vintages: List<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, election_record: Text, id: Text, origin_date: Date, purpose: Text, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}}>}>, origin: Text, policy: {date_basis: Text, evidence_class: Text, excess_returns: Text, fee_stage: Text, id: Text, invalid_day: Text, liquidation: Text, method: Text, months: Text, professional_review: Text, revision: Text, rounding: Text, same_day_order: Text}, purpose: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_case_id: Text, transport_profile: Text} from "basis-reserves/original-vintage-history";
+  define source_rows_checkpoints = map(checkpoints, row => {id: row.id, source_case_id: row.source_case_id, period: row.period, period_end_utc: row.period_end_utc, as_of: row.as_of, as_of_next: row.as_of_next, cutoff: row.cutoff, source_cutoff: row.source_cutoff, approved: row.approved, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, scope: row.scope});
+  define state_source_checkpoints = map(checkpoints, row => {id: row.id, observed_at: row.observed_at, raw_original: row.raw_original});
+  define source_rows_receipts = map(receipts, row => {id: row.id, amount: row.amount, receipt_date: row.receipt_date, receipt_date_utc: row.receipt_date_utc, sequence: row.sequence, cash_received_country: row.cash_received_country, territory: row.territory, medium: row.medium, election_id: row.election_id, cash_line_ref: row.cash_line_ref, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, scope: row.scope});
+  define state_source_receipts = map(receipts, row => {id: row.id, observed_at: row.observed_at, raw_original: row.raw_original, receipt_date: row.receipt_date});
+  define source_rows_elections = map(elections, row => {id: row.id, receipt_id: row.receipt_id, vintage_id: row.vintage_id, purpose: row.purpose, elected: row.elected, election_date: row.election_date, approved_date: row.approved_date, approved: row.approved, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, scope: row.scope});
+  define state_source_elections = map(elections, row => {id: row.id, observed_at: row.observed_at, raw_original: row.raw_original, receipt_id: row.receipt_id});
+  define source_rows_returns = map(returns, row => {id: row.id, receipt_id: row.receipt_id, vintage_id: row.vintage_id, claim_id: row.claim_id, amount: row.amount, return_date: row.return_date, return_date_utc: row.return_date_utc, sequence: row.sequence, authority_id: row.authority_id, return_line_ref: row.return_line_ref, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, scope: row.scope});
+  define state_source_returns = map(returns, row => {id: row.id, observed_at: row.observed_at, raw_original: row.raw_original, return_date: row.return_date});
+  define source_rows_return_authorities = map(return_authorities, row => {id: row.id, return_id: row.return_id, receipt_id: row.receipt_id, vintage_id: row.vintage_id, purpose: row.purpose, approved: row.approved, approved_date: row.approved_date, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, scope: row.scope});
+  define state_source_return_authorities = map(return_authorities, row => {id: row.id, observed_at: row.observed_at, raw_original: row.raw_original, return_id: row.return_id});
+  define source_rows_populations = map(populations, row => {id: row.id, checkpoint_id: row.checkpoint_id, complete: row.complete, receipt_ids: row.receipt_ids, receipt_total: row.receipt_total, election_ids: row.election_ids, return_ids: row.return_ids, return_total: row.return_total, authority_ids: row.authority_ids, other_adjustment_ids: row.other_adjustment_ids, other_adjustment_total: row.other_adjustment_total, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, scope: row.scope});
+  define state_source_populations = map(populations, row => {id: row.id, observed_at: row.observed_at, raw_original: row.raw_original, checkpoint_id: row.checkpoint_id});
+  define source_rows_clearances = map(clearances, row => {id: row.id, checkpoint_id: row.checkpoint_id, complete: row.complete, approved: row.approved, minimum_guarantee_remaining: row.minimum_guarantee_remaining, expense_remaining: row.expense_remaining, unresolved_claim_ids: row.unresolved_claim_ids, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, scope: row.scope});
+  define state_source_clearances = map(clearances, row => {id: row.id, observed_at: row.observed_at, raw_original: row.raw_original, checkpoint_id: row.checkpoint_id});
+  define source_rows_evidence = map(evidence, row => {id: row.id, scope: row.scope, observed_at: row.observed_at, source_ref: row.source_ref, source_kind: row.source_kind, approved: row.approved, slot: row.slot});
+  define state_source_evidence = map(evidence, row => {id: row.id, observed_at: row.observed_at, raw_original: row.raw_original});
+  require fact_scope.contract_id == scope.agreement_id and fact_scope.participant_id == scope.participant_id and fact_scope.pool_id == scope.pool_id and fact_scope.asset_id == project and fact_scope.currency == "USD" else "BR_FACT_SCOPE";
+  require history == supplied_opening and history.transport_profile == "basis-reserve-original-json/1" else "BR_OPENING_REQUIRED";
+  require policy.id == "RR04-GENIUS-BASIS-RESERVE-01" and policy.revision == "1" and policy.method == "elected_basis_reserve_within_vintage_only" and policy.excess_returns == "reject_pending_signed_policy" and policy.fee_stage == "after_basis_reserve" and policy.liquidation == "full_unused_on_due_date" and policy.months == "6" and policy.invalid_day == "clamp_day" and policy.same_day_order == "receipt_election_then_return_then_due_release" and policy.date_basis == "supplied_utc_date" and policy.rounding == "exact_no_rounding" and policy.evidence_class == "research_assumption" and policy.professional_review == "proposed" else "BR_SELECTED_POLICY";
+  require research.primary_url == "https://www.sec.gov/Archives/edgar/data/1098016/000119312506200074/dex101.htm" and research.assignment_url == "https://www.sec.gov/Archives/edgar/data/1098016/000101968706002845/genius_10q-093006.htm" and research.clauses == "1-4;9(c);10-11;20;24(d)" else "BR_RESEARCH_SOURCE";
+  define ids_checkpoints = map(source_rows_checkpoints, row => row.id);
+  define count_checkpoints = sum(ids_checkpoints, id => 1);
+  require count_checkpoints <= 256 else "BR_FINITE_BOUND";
+  define unique_checkpoints = fold sort_by(ids_checkpoints, id => id) from {previous: "", started: false, count: 0} with step, id {
+    require id != "" and (not step.started or step.previous != id) else "BR_DUPLICATE_ID";
+    yield {previous: id, started: true, count: step.count + 1};
+  };
+  define ids_receipts = map(source_rows_receipts, row => row.id);
+  define count_receipts = sum(ids_receipts, id => 1);
+  require count_receipts <= 256 else "BR_FINITE_BOUND";
+  define unique_receipts = fold sort_by(ids_receipts, id => id) from {previous: "", started: false, count: 0} with step, id {
+    require id != "" and (not step.started or step.previous != id) else "BR_DUPLICATE_ID";
+    yield {previous: id, started: true, count: step.count + 1};
+  };
+  define ids_elections = map(source_rows_elections, row => row.id);
+  define count_elections = sum(ids_elections, id => 1);
+  require count_elections <= 256 else "BR_FINITE_BOUND";
+  define unique_elections = fold sort_by(ids_elections, id => id) from {previous: "", started: false, count: 0} with step, id {
+    require id != "" and (not step.started or step.previous != id) else "BR_DUPLICATE_ID";
+    yield {previous: id, started: true, count: step.count + 1};
+  };
+  define ids_returns = map(source_rows_returns, row => row.id);
+  define count_returns = sum(ids_returns, id => 1);
+  require count_returns <= 256 else "BR_FINITE_BOUND";
+  define unique_returns = fold sort_by(ids_returns, id => id) from {previous: "", started: false, count: 0} with step, id {
+    require id != "" and (not step.started or step.previous != id) else "BR_DUPLICATE_ID";
+    yield {previous: id, started: true, count: step.count + 1};
+  };
+  define ids_return_authorities = map(source_rows_return_authorities, row => row.id);
+  define count_return_authorities = sum(ids_return_authorities, id => 1);
+  require count_return_authorities <= 256 else "BR_FINITE_BOUND";
+  define unique_return_authorities = fold sort_by(ids_return_authorities, id => id) from {previous: "", started: false, count: 0} with step, id {
+    require id != "" and (not step.started or step.previous != id) else "BR_DUPLICATE_ID";
+    yield {previous: id, started: true, count: step.count + 1};
+  };
+  define ids_populations = map(source_rows_populations, row => row.id);
+  define count_populations = sum(ids_populations, id => 1);
+  require count_populations <= 256 else "BR_FINITE_BOUND";
+  define unique_populations = fold sort_by(ids_populations, id => id) from {previous: "", started: false, count: 0} with step, id {
+    require id != "" and (not step.started or step.previous != id) else "BR_DUPLICATE_ID";
+    yield {previous: id, started: true, count: step.count + 1};
+  };
+  define ids_clearances = map(source_rows_clearances, row => row.id);
+  define count_clearances = sum(ids_clearances, id => 1);
+  require count_clearances <= 256 else "BR_FINITE_BOUND";
+  define unique_clearances = fold sort_by(ids_clearances, id => id) from {previous: "", started: false, count: 0} with step, id {
+    require id != "" and (not step.started or step.previous != id) else "BR_DUPLICATE_ID";
+    yield {previous: id, started: true, count: step.count + 1};
+  };
+  define ids_evidence = map(source_rows_evidence, row => row.id);
+  define count_evidence = sum(ids_evidence, id => 1);
+  require count_evidence <= 256 else "BR_FINITE_BOUND";
+  define unique_evidence = fold sort_by(ids_evidence, id => id) from {previous: "", started: false, count: 0} with step, id {
+    require id != "" and (not step.started or step.previous != id) else "BR_DUPLICATE_ID";
+    yield {previous: id, started: true, count: step.count + 1};
+  };
+  define checked_evidence = for each row in source_rows_evidence {
+    require unique_evidence.count == count_evidence and row.source_ref != "" and row.source_kind != "" else "BR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope and row.approved else "BR_EVIDENCE_APPROVAL";
+    require row.observed_at < cutoff else "BR_EVIDENCE_AFTER_CUTOFF";
+    require row.slot >= 0 and row.slot < count_evidence else "BR_EVIDENCE_SLOT_RANGE";
+    yield {id: row.id, slot: row.slot, observed_at: row.observed_at, kind: row.source_kind};
+  };
+  define evidence_index = make_map(checked_evidence, row => row.slot, row => row);
+  require authority.id != "" and authority.version != "" and authority.source_ref != "" and authority.scope == fact_scope and authority.observed_at < cutoff else "BR_FACT_SCOPE";
+  define authority_support = require_some(lookup(evidence_index, authority.evidence_slot), "BR_EVIDENCE_REQUIRED");
+  require authority_support.id == authority.evidence_ref and authority_support.kind == "approved_successor_and_selected_sales_period_terms" else "BR_EVIDENCE_KIND";
+  require authority.approved and authority.successor_authorized and authority.covered_program and authority.successor_id != "" and authority.original_distributor == "Genius Products Inc." else "BR_SUCCESSOR_SCOPE_AUTHORITY";
+  require authority.sales_period_id == "SalesPeriod3" and authority.effective.start == date "2009-01-01" and authority.effective.end == date "2010-01-01" and authority.reserve_rate == 0.2 and authority.fee_rate == 0.1 and authority.fee_substitute == "synthetic_flat_10_percent" and authority.source_fee_redacted else "BR_SELECTED_TERMS";
+  define checked_checkpoints = for each row in source_rows_checkpoints {
+    require unique_checkpoints.count == count_checkpoints and row.source_ref != "" else "BR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "BR_FACT_SCOPE";
+    require row.observed_at < cutoff else "BR_SOURCE_AFTER_CUTOFF";
+    define support = require_some(lookup(evidence_index, row.evidence_slot), "BR_EVIDENCE_REQUIRED");
+    require support.id == row.evidence_ref else "BR_EVIDENCE_KIND";
+    yield {id: row.id, source_case_id: row.source_case_id, period: row.period, period_end_utc: row.period_end_utc, as_of: row.as_of, as_of_next: row.as_of_next, cutoff: row.cutoff, source_cutoff: row.source_cutoff, approved: row.approved, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, evidence_observed_at: support.observed_at};
+  };
+  define checked_receipts = for each row in source_rows_receipts {
+    require unique_receipts.count == count_receipts and row.source_ref != "" else "BR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "BR_FACT_SCOPE";
+    require row.observed_at < cutoff else "BR_SOURCE_AFTER_CUTOFF";
+    define support = require_some(lookup(evidence_index, row.evidence_slot), "BR_EVIDENCE_REQUIRED");
+    require support.id == row.evidence_ref and support.kind == "actual_qualifying_gross_cash_receipt" else "BR_EVIDENCE_KIND";
+    yield {id: row.id, amount: row.amount, receipt_date: row.receipt_date, receipt_date_utc: row.receipt_date_utc, sequence: row.sequence, cash_received_country: row.cash_received_country, territory: row.territory, medium: row.medium, election_id: row.election_id, cash_line_ref: row.cash_line_ref, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, evidence_observed_at: support.observed_at};
+  };
+  define checked_elections = for each row in source_rows_elections {
+    require unique_elections.count == count_elections and row.source_ref != "" else "BR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "BR_FACT_SCOPE";
+    require row.observed_at < cutoff else "BR_SOURCE_AFTER_CUTOFF";
+    define support = require_some(lookup(evidence_index, row.evidence_slot), "BR_EVIDENCE_REQUIRED");
+    require support.id == row.evidence_ref and support.kind == "original_reserve_election" else "BR_EVIDENCE_KIND";
+    yield {id: row.id, receipt_id: row.receipt_id, vintage_id: row.vintage_id, purpose: row.purpose, elected: row.elected, election_date: row.election_date, approved_date: row.approved_date, approved: row.approved, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, evidence_observed_at: support.observed_at};
+  };
+  define checked_returns = for each row in source_rows_returns {
+    require unique_returns.count == count_returns and row.source_ref != "" else "BR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "BR_FACT_SCOPE";
+    require row.observed_at < cutoff else "BR_SOURCE_AFTER_CUTOFF";
+    define support = require_some(lookup(evidence_index, row.evidence_slot), "BR_EVIDENCE_REQUIRED");
+    require support.id == row.evidence_ref and support.kind == "actual_customer_return" else "BR_EVIDENCE_KIND";
+    yield {id: row.id, receipt_id: row.receipt_id, vintage_id: row.vintage_id, claim_id: row.claim_id, amount: row.amount, return_date: row.return_date, return_date_utc: row.return_date_utc, sequence: row.sequence, authority_id: row.authority_id, return_line_ref: row.return_line_ref, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, evidence_observed_at: support.observed_at};
+  };
+  define checked_return_authorities = for each row in source_rows_return_authorities {
+    require unique_return_authorities.count == count_return_authorities and row.source_ref != "" else "BR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "BR_FACT_SCOPE";
+    require row.observed_at < cutoff else "BR_SOURCE_AFTER_CUTOFF";
+    define support = require_some(lookup(evidence_index, row.evidence_slot), "BR_EVIDENCE_REQUIRED");
+    require support.id == row.evidence_ref and support.kind == "approved_original_return_application" else "BR_EVIDENCE_KIND";
+    yield {id: row.id, return_id: row.return_id, receipt_id: row.receipt_id, vintage_id: row.vintage_id, purpose: row.purpose, approved: row.approved, approved_date: row.approved_date, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, evidence_observed_at: support.observed_at};
+  };
+  define checked_populations = for each row in source_rows_populations {
+    require unique_populations.count == count_populations and row.source_ref != "" else "BR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "BR_FACT_SCOPE";
+    require row.observed_at < cutoff else "BR_SOURCE_AFTER_CUTOFF";
+    define support = require_some(lookup(evidence_index, row.evidence_slot), "BR_EVIDENCE_REQUIRED");
+    require support.id == row.evidence_ref and support.kind == "complete_original_reserve_population" else "BR_EVIDENCE_KIND";
+    yield {id: row.id, checkpoint_id: row.checkpoint_id, complete: row.complete, receipt_ids: row.receipt_ids, receipt_total: row.receipt_total, election_ids: row.election_ids, return_ids: row.return_ids, return_total: row.return_total, authority_ids: row.authority_ids, other_adjustment_ids: row.other_adjustment_ids, other_adjustment_total: row.other_adjustment_total, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, evidence_observed_at: support.observed_at};
+  };
+  define checked_clearances = for each row in source_rows_clearances {
+    require unique_clearances.count == count_clearances and row.source_ref != "" else "BR_IDENTITY_REQUIRED";
+    require row.scope == fact_scope else "BR_FACT_SCOPE";
+    require row.observed_at < cutoff else "BR_SOURCE_AFTER_CUTOFF";
+    define support = require_some(lookup(evidence_index, row.evidence_slot), "BR_EVIDENCE_REQUIRED");
+    require support.id == row.evidence_ref and support.kind == "complete_cleared_recoupment_claims" else "BR_EVIDENCE_KIND";
+    yield {id: row.id, checkpoint_id: row.checkpoint_id, complete: row.complete, approved: row.approved, minimum_guarantee_remaining: row.minimum_guarantee_remaining, expense_remaining: row.expense_remaining, unresolved_claim_ids: row.unresolved_claim_ids, observed_at: row.observed_at, evidence_ref: row.evidence_ref, evidence_slot: row.evidence_slot, source_ref: row.source_ref, evidence_observed_at: support.observed_at};
+  };
+  require count_checkpoints >= 1 and count_checkpoints <= 12 and count_receipts <= 24 and count_returns <= 48 else "BR_FINITE_BOUND";
+  define ordered_checkpoints = sort_by(checked_checkpoints, row => row.period.start);
+  define boundaries = fold ordered_checkpoints from {boundary: authority.effective.start, started: false, previous_cutoff: cutoff} with step, row {
+    require row.period.start == step.boundary and row.period.start < row.period.end and authority.effective.start <= row.period.start and row.period.end <= authority.effective.end and row.as_of_next == row.period.end else "BR_CHECKPOINT_ADJACENCY";
+    require row.approved and row.source_case_id != "" and sum(filter(checked_checkpoints, other => other.source_case_id == row.source_case_id), other => 1) == 1 else "BR_CHECKPOINT_AUTHORITY_ID";
+    require row.period_end_utc <= row.cutoff and (not step.started or step.previous_cutoff < row.cutoff) and row.observed_at < row.cutoff else "BR_CHECKPOINT_CUTOFF";
+    require row.id != run_checkpoint_id or (row.source_case_id == case_id and row.period == scope.period and row.cutoff == cutoff and row.source_cutoff == source_cutoff) else "BR_CURRENT_CHECKPOINT";
+    yield {boundary: row.period.end, started: true, previous_cutoff: row.cutoff};
+  };
+  require boundaries.boundary == scope.period.end and sum(filter(checked_checkpoints, row => row.id == run_checkpoint_id and row.period.end == boundaries.boundary), row => 1) == 1 else "BR_CURRENT_CHECKPOINT";
+  require count_elections == count_receipts else "BR_ELECTION_REQUIRED";
+  define validated_elections = for each row in checked_elections {
+    require row.vintage_id != "" and row.purpose == "basis_stage_videogram_returns" else "BR_VINTAGE_IDENTITY_PURPOSE";
+    require sum(filter(checked_elections, other => other.receipt_id == row.receipt_id), other => 1) == 1 and sum(filter(checked_receipts, receipt => receipt.id == row.receipt_id), receipt => 1) == 1 else "BR_ELECTION_RECEIPT_REFERENCE";
+    require sum(filter(checked_elections, other => other.vintage_id == row.vintage_id), other => 1) == 1 else "BR_VINTAGE_IDENTITY_PURPOSE";
+    require row.approved and row.approved_date <= row.election_date else "BR_ELECTION_AUTHORITY";
+    yield row;
+  };
+  define validated_receipts = for each row in checked_receipts {
+    require row.amount >= USD 0 and row.cash_received_country == "US" and row.territory == "US" and row.medium == "physical_videogram" else "BR_US_PHYSICAL_PROFILE";
+    require sum(filter(validated_elections, election => election.id == row.election_id and election.receipt_id == row.id and election.election_date == row.receipt_date), election => 1) == 1 else "BR_SAME_DAY_ESTABLISHMENT";
+    require row.sequence >= 0 and sum(filter(checked_receipts, other => other.receipt_date == row.receipt_date and other.sequence == row.sequence), other => 1) == 1 else "BR_EXPLICIT_EVENT_SEQUENCE";
+    require sum(filter(checked_receipts, other => other.cash_line_ref == row.cash_line_ref), other => 1) == 1 else "BR_CASH_PARENT_ALIAS";
+    require sum(filter(checked_receipts, other => other.source_ref == row.source_ref), other => 1) == 1 else "BR_SOURCE_ALIAS";
+    require row.receipt_date_utc <= row.observed_at and sum(filter(checked_checkpoints, cp => cp.period.start <= row.receipt_date and row.receipt_date < cp.period.end and row.observed_at < cp.cutoff and row.evidence_observed_at < cp.cutoff), cp => 1) == 1 else "BR_EVENT_WINDOW";
+    yield {id: row.id, amount: row.amount, receipt_date: row.receipt_date, sequence: row.sequence, election_id: row.election_id, cash_line_ref: row.cash_line_ref, source_ref: row.source_ref, observed_at: row.observed_at, evidence_observed_at: row.evidence_observed_at, due_date: add_calendar_months(row.receipt_date, 6, policy.invalid_day)};
+  };
+  define validated_authorities = for each row in checked_return_authorities {
+    require row.approved and row.purpose == "basis_stage_videogram_returns" else "BR_RETURN_AUTHORITY";
+    require sum(filter(checked_returns, returned => returned.id == row.return_id), returned => 1) == 1 and sum(filter(checked_return_authorities, other => other.return_id == row.return_id), other => 1) == 1 else "BR_UNUSED_RETURN_AUTHORITY";
+    yield row;
+  };
+  require sum(validated_authorities, row => 1) == count_returns else "BR_RETURN_AUTHORITY_REQUIRED";
+  define validated_returns = for each row in checked_returns {
+    require row.amount >= USD 0 and row.claim_id != "" else "BR_EXACT_NONNEGATIVE_VALUE";
+    define receipt_slot: Option<{amount: Money<USD>, cash_line_ref: Text, due_date: Date, election_id: Text, evidence_observed_at: Instant, id: Text, observed_at: Instant, receipt_date: Date, sequence: Int, source_ref: Text}> = fold filter(validated_receipts, candidate_receipt => candidate_receipt.id == row.receipt_id) from none() with slot, candidate_receipt { yield some(candidate_receipt); };
+    define receipt = require_some(receipt_slot, "BR_RETURN_REFERENCE");
+    require receipt.receipt_date <= row.return_date else "BR_RETURN_DATE_AUTHORITY";
+    require sum(filter(validated_elections, election => election.id == receipt.election_id and election.vintage_id == row.vintage_id), election => 1) == 1 else "BR_RETURN_VINTAGE_LINEAGE";
+    require sum(filter(validated_authorities, auth => auth.id == row.authority_id and auth.return_id == row.id and auth.receipt_id == row.receipt_id and auth.vintage_id == row.vintage_id and auth.approved_date <= row.return_date and auth.observed_at <= row.observed_at), auth => 1) == 1 else "BR_RETURN_VINTAGE_LINEAGE";
+    require sum(filter(checked_returns, other => other.claim_id == row.claim_id), other => 1) == 1 and sum(filter(checked_returns, other => other.return_line_ref == row.return_line_ref), other => 1) == 1 else "BR_RETURN_CLAIM_ALIAS";
+    require sum(filter(checked_returns, other => other.source_ref == row.source_ref), other => 1) == 1 else "BR_SOURCE_ALIAS";
+    require row.sequence >= 0 and sum(filter(checked_returns, other => other.return_date == row.return_date and other.sequence == row.sequence), other => 1) == 1 else "BR_EXPLICIT_EVENT_SEQUENCE";
+    require row.return_date_utc <= row.observed_at and sum(filter(checked_checkpoints, cp => cp.period.start <= row.return_date and row.return_date < cp.period.end and row.observed_at < cp.cutoff and row.evidence_observed_at < cp.cutoff), cp => 1) == 1 else "BR_EVENT_WINDOW";
+    yield row;
+  };
+  require sum(checked_populations, row => if sum(filter(checked_checkpoints, cp => cp.id == row.checkpoint_id), cp => 1) == 1 then 0 else 1) == 0 and sum(checked_clearances, row => if sum(filter(checked_checkpoints, cp => cp.id == row.checkpoint_id), cp => 1) == 1 then 0 else 1) == 0 else "BR_CONTROL_CHECKPOINT_REFERENCE";
+  define zero_totals = {gross: USD 0, added: USD 0, applied_returns: USD 0, released: USD 0, net_receipts: USD 0, fee: USD 0, allocation: USD 0};
+  define empty_vintages: List<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, id: Text, origin_date: Date, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>}> = [];
+  define empty_movements: List<{allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text}> = [];
+  define empty_snapshots: List<{added: Money<USD>, allocation: Money<USD>, applied_returns: Money<USD>, as_of: Date, checkpoint_id: Text, closing_reserve: Money<USD>, cutoff: Instant, fee: Money<USD>, gross: Money<USD>, id: Text, movements: List<{allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text}>, net_receipts: Money<USD>, period: Period, released: Money<USD>, source_case_id: Text, source_cutoff: Text, vintages: List<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, id: Text, origin_date: Date, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>}>}> = [];
+  define empty_text: List<Text> = [];
+  define empty_keys: List<Tuple<Text, Text>> = [];
+  define empty_days: List<Date> = [];
+  define none_text: Option<Text> = none();
+  define replayed = fold ordered_checkpoints from {vintages: empty_vintages, cumulative: zero_totals, movements: empty_movements, snapshots: empty_snapshots} with ledger, checkpoint {
+    define before = checkpoint.cutoff;
+    require authority.observed_at < before and authority_support.observed_at < before and checkpoint.evidence_observed_at < before else "BR_SOURCE_AFTER_CUTOFF";
+    define populations_for_checkpoint = filter(checked_populations, row => row.checkpoint_id == checkpoint.id);
+    require sum(populations_for_checkpoint, row => 1) == 1 and sum(populations_for_checkpoint, row => if row.complete then 1 else 0) == 1 else "BR_COMPLETE_POPULATION_REQUIRED";
+    define control_slot: Option<{authority_ids: List<Text>, checkpoint_id: Text, complete: Bool, election_ids: List<Text>, evidence_observed_at: Instant, evidence_ref: Text, evidence_slot: Int, id: Text, observed_at: Instant, other_adjustment_ids: List<Text>, other_adjustment_total: Money<USD>, receipt_ids: List<Text>, receipt_total: Money<USD>, return_ids: List<Text>, return_total: Money<USD>, source_ref: Text}> = fold populations_for_checkpoint from none() with slot, row { yield some(row); };
+    define control = require_some(control_slot, "BR_COMPLETE_POPULATION_REQUIRED");
+    require control.observed_at < before and control.evidence_observed_at < before else "BR_SOURCE_AFTER_CUTOFF";
+    define visible_receipts = filter(validated_receipts, row => row.receipt_date <= checkpoint.as_of);
+    define visible_returns = filter(validated_returns, row => row.return_date <= checkpoint.as_of);
+    define visible_elections = filter(validated_elections, row => sum(filter(visible_receipts, receipt => receipt.election_id == row.id), receipt => 1) == 1);
+    define visible_authorities = filter(validated_authorities, row => sum(filter(visible_returns, returned => returned.authority_id == row.id), returned => 1) == 1);
+    define declared_receipt_ids = sort_by(control.receipt_ids, id => id);
+    define actual_receipt_ids = sort_by(map(visible_receipts, row => row.id), id => id);
+    require declared_receipt_ids == actual_receipt_ids and control.receipt_total == sum(visible_receipts, row => row.amount) else "BR_ORIGINAL_POPULATION_CONTROL";
+    require sum(visible_receipts, row => if row.observed_at < before and row.evidence_observed_at < before and row.observed_at <= control.observed_at then 0 else 1) == 0 else "BR_POPULATION_OBSERVATION_ORDER";
+    define declared_election_ids = sort_by(control.election_ids, id => id);
+    define actual_election_ids = sort_by(map(visible_elections, row => row.id), id => id);
+    require declared_election_ids == actual_election_ids else "BR_ORIGINAL_POPULATION_CONTROL";
+    require sum(visible_elections, row => if row.observed_at < before and row.evidence_observed_at < before and row.observed_at <= control.observed_at then 0 else 1) == 0 else "BR_POPULATION_OBSERVATION_ORDER";
+    define declared_return_ids = sort_by(control.return_ids, id => id);
+    define actual_return_ids = sort_by(map(visible_returns, row => row.id), id => id);
+    require declared_return_ids == actual_return_ids and control.return_total == sum(visible_returns, row => row.amount) else "BR_ORIGINAL_POPULATION_CONTROL";
+    require sum(visible_returns, row => if row.observed_at < before and row.evidence_observed_at < before and row.observed_at <= control.observed_at then 0 else 1) == 0 else "BR_POPULATION_OBSERVATION_ORDER";
+    define declared_authority_ids = sort_by(control.authority_ids, id => id);
+    define actual_authority_ids = sort_by(map(visible_authorities, row => row.id), id => id);
+    require declared_authority_ids == actual_authority_ids else "BR_ORIGINAL_POPULATION_CONTROL";
+    require sum(visible_authorities, row => if row.observed_at < before and row.evidence_observed_at < before and row.observed_at <= control.observed_at then 0 else 1) == 0 else "BR_POPULATION_OBSERVATION_ORDER";
+    require sum(control.other_adjustment_ids, id => 1) == 0 and control.other_adjustment_total == USD 0 else "BR_OTHER_ADJUSTMENT_VARIANT_REQUIRED";
+    define clearances_for_checkpoint = filter(checked_clearances, row => row.checkpoint_id == checkpoint.id);
+    require sum(clearances_for_checkpoint, row => 1) == 1 else "BR_CLAIM_CLEARANCE_REQUIRED";
+    require sum(clearances_for_checkpoint, row => if row.complete and row.approved and row.minimum_guarantee_remaining == USD 0 and row.expense_remaining == USD 0 and sum(row.unresolved_claim_ids, id => 1) == 0 then 1 else 0) == 1 else "BR_CLAIMS_NOT_CLEARED";
+    require sum(clearances_for_checkpoint, row => if row.observed_at < before and row.evidence_observed_at < before then 1 else 0) == 1 else "BR_SOURCE_AFTER_CUTOFF";
+    define current_receipts = filter(visible_receipts, row => checkpoint.period.start <= row.receipt_date and row.receipt_date < checkpoint.period.end);
+    define current_returns = filter(visible_returns, row => checkpoint.period.start <= row.return_date and row.return_date < checkpoint.period.end);
+    define candidate_days = concat(concat(map(current_receipts, row => row.receipt_date), map(current_returns, row => row.return_date)), map(filter(visible_receipts, row => checkpoint.period.start <= row.due_date and row.due_date < checkpoint.period.end), row => row.due_date));
+    define unique_days = fold sort_by(candidate_days, day => day) from {started: false, previous: checkpoint.period.start, days: empty_days} with step, day {
+      yield {started: true, previous: day, days: if step.started and step.previous == day then step.days else append(step.days, day)};
+    };
+    define starting_vintages = ledger.vintages;
+    define processed_days = fold unique_days.days from {vintages: starting_vintages, movements: empty_movements} with day_ledger, day {
+      define additions = fold sort_by(filter(current_receipts, row => row.receipt_date == day), row => row.sequence) from day_ledger with added_ledger, receipt {
+        define election_slot: Option<{approved: Bool, approved_date: Date, elected: Bool, election_date: Date, evidence_observed_at: Instant, evidence_ref: Text, evidence_slot: Int, id: Text, observed_at: Instant, purpose: Text, receipt_id: Text, source_ref: Text, vintage_id: Text}> = fold filter(validated_elections, row => row.id == receipt.election_id) from none() with slot, row { yield some(row); };
+        define election = require_some(election_slot, "BR_ELECTION_REQUIRED");
+        require sum(filter(added_ledger.vintages, candidate_vintage => candidate_vintage.id == election.vintage_id), candidate_vintage => 1) == 0 else "BR_VINTAGE_ALREADY_ESTABLISHED";
+        define addition = if election.elected then receipt.amount * authority.reserve_rate else USD 0;
+        define receipt_net = receipt.amount - addition;
+        define receipt_fee = receipt_net * authority.fee_rate;
+        define vintage: {added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, id: Text, origin_date: Date, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>} = {id: election.vintage_id, receipt_id: receipt.id, cash_line_ref: receipt.cash_line_ref, election_id: election.id, reserve_elected: election.elected, origin_date: receipt.receipt_date, due_date: receipt.due_date, added: addition, applied_returns: USD 0, released: USD 0, available: addition, return_ids: empty_text, claim_ids: empty_text, release_ids: empty_keys};
+        define movement: {allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text} = {id: tuple("addition", receipt.id), kind: "receipt_and_election", movement_date: day, receipt_id: receipt.id, vintage_id: election.vintage_id, election_id: some(election.id), source_ref: some(receipt.source_ref), claim_id: none(), authority_id: none(), gross: receipt.amount, reserve_addition: addition, return_applied: USD 0, release: USD 0, net_receipts: receipt_net, fee: receipt_fee, allocation: receipt_net - receipt_fee};
+        yield {vintages: append(added_ledger.vintages, vintage), movements: append(added_ledger.movements, movement)};
+      };
+      define applied_returns = fold sort_by(filter(current_returns, row => row.return_date == day), row => row.sequence) from additions with return_ledger, returned {
+        define vintage_slot: Option<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, id: Text, origin_date: Date, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>}> = fold filter(return_ledger.vintages, candidate_vintage => candidate_vintage.id == returned.vintage_id) from none() with slot, candidate_vintage { yield some(candidate_vintage); };
+        define vintage = require_some(vintage_slot, "BR_ORIGINAL_VINTAGE_REQUIRED");
+        require day <= vintage.due_date else "BR_RETURN_AFTER_LIQUIDATION_VARIANT_REQUIRED";
+        require returned.amount <= vintage.available else "BR_EXCESS_RETURN_VARIANT_REQUIRED";
+        define revised: {added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, id: Text, origin_date: Date, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>} = {id: vintage.id, receipt_id: vintage.receipt_id, cash_line_ref: vintage.cash_line_ref, election_id: vintage.election_id, reserve_elected: vintage.reserve_elected, origin_date: vintage.origin_date, due_date: vintage.due_date, added: vintage.added, applied_returns: vintage.applied_returns + returned.amount, released: vintage.released, available: vintage.available - returned.amount, return_ids: append(vintage.return_ids, returned.id), claim_ids: append(vintage.claim_ids, returned.claim_id), release_ids: vintage.release_ids};
+        define movement: {allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text} = {id: tuple("return", returned.id), kind: "matched_actual_return", movement_date: day, receipt_id: returned.receipt_id, vintage_id: returned.vintage_id, election_id: none(), source_ref: some(returned.source_ref), claim_id: some(returned.claim_id), authority_id: some(returned.authority_id), gross: USD 0, reserve_addition: USD 0, return_applied: returned.amount, release: USD 0, net_receipts: USD 0, fee: USD 0, allocation: USD 0};
+        yield {vintages: map(return_ledger.vintages, row => if row.id == vintage.id then revised else row), movements: append(return_ledger.movements, movement)};
+      };
+      define released_vintages = for each vintage in sort_by(applied_returns.vintages, row => row.id) {
+        require not (vintage.due_date == day and vintage.available > USD 0) or sum(vintage.release_ids, key => 1) == 0 else "BR_VINTAGE_ALREADY_RELEASED";
+        yield if vintage.due_date == day and vintage.available > USD 0 then {id: vintage.id, receipt_id: vintage.receipt_id, cash_line_ref: vintage.cash_line_ref, election_id: vintage.election_id, reserve_elected: vintage.reserve_elected, origin_date: vintage.origin_date, due_date: vintage.due_date, added: vintage.added, applied_returns: vintage.applied_returns, released: vintage.released + vintage.available, available: USD 0, return_ids: vintage.return_ids, claim_ids: vintage.claim_ids, release_ids: append(vintage.release_ids, tuple("due-release", vintage.id))} else vintage;
+      };
+      define release_movements = for each vintage in filter(sort_by(applied_returns.vintages, row => row.id), row => row.due_date == day and row.available > USD 0) {
+        define release_fee = vintage.available * authority.fee_rate;
+        yield {id: tuple("due-release", vintage.id), kind: "calculated_due_unused_release", movement_date: day, receipt_id: vintage.receipt_id, vintage_id: vintage.id, election_id: some(vintage.election_id), source_ref: none_text, claim_id: none_text, authority_id: none_text, gross: USD 0, reserve_addition: USD 0, return_applied: USD 0, release: vintage.available, net_receipts: vintage.available, fee: release_fee, allocation: vintage.available - release_fee};
+      };
+      yield {vintages: released_vintages, movements: concat(applied_returns.movements, release_movements)};
+    };
+    define current_movements = processed_days.movements;
+    define gross = sum(current_movements, row => row.gross);
+    define added = sum(current_movements, row => row.reserve_addition);
+    define total_return_applied = sum(current_movements, row => row.return_applied);
+    define released = sum(current_movements, row => row.release);
+    define net = gross - added + released;
+    define fee = net * authority.fee_rate;
+    define totals = {gross: gross, added: added, applied_returns: total_return_applied, released: released, net_receipts: net, fee: fee, allocation: net - fee};
+    define cumulative = {gross: ledger.cumulative.gross + totals.gross, added: ledger.cumulative.added + totals.added, applied_returns: ledger.cumulative.applied_returns + totals.applied_returns, released: ledger.cumulative.released + totals.released, net_receipts: ledger.cumulative.net_receipts + totals.net_receipts, fee: ledger.cumulative.fee + totals.fee, allocation: ledger.cumulative.allocation + totals.allocation};
+    define closing_vintages = sort_by(processed_days.vintages, row => row.id);
+    define balance = sum(closing_vintages, row => row.available);
+    require sum(closing_vintages, row => if row.added == row.applied_returns + row.released + row.available then 0 else 1) == 0 else "BR_VINTAGE_CONSERVATION";
+    require sum(closing_vintages, row => if row.available == USD 0 or row.due_date > checkpoint.as_of then 0 else 1) == 0 else "BR_OVERDUE_UNRELEASED";
+    require cumulative.gross - cumulative.applied_returns == cumulative.net_receipts + balance and cumulative.fee + cumulative.allocation == cumulative.net_receipts else "BR_LEDGER_CONSERVATION";
+    define snapshot = {id: checkpoint.id, checkpoint_id: checkpoint.id, source_case_id: checkpoint.source_case_id, period: checkpoint.period, as_of: checkpoint.as_of, cutoff: checkpoint.cutoff, source_cutoff: checkpoint.source_cutoff, gross: gross, added: added, applied_returns: total_return_applied, released: released, net_receipts: net, fee: fee, allocation: net - fee, closing_reserve: balance, movements: current_movements, vintages: closing_vintages};
+    yield {vintages: closing_vintages, cumulative: cumulative, movements: concat(ledger.movements, current_movements), snapshots: append(ledger.snapshots, snapshot)};
+  };
+  define checkpoint_results = for each snapshot in replayed.snapshots {
+    define vintages = for each vintage in snapshot.vintages {
+      define election_slot: Option<{id: Text, observed_at: Instant, raw_original: Text, receipt_id: Text}> = fold filter(state_source_elections, row => row.id == vintage.election_id) from none() with slot, row { yield some(row); };
+      define election_record = require_some(election_slot, "BR_ELECTION_REQUIRED").raw_original;
+      yield {id: vintage.id, receipt_id: vintage.receipt_id, cash_line_ref: vintage.cash_line_ref, election_id: vintage.election_id, reserve_elected: vintage.reserve_elected, origin_date: vintage.origin_date, due_date: vintage.due_date, added: vintage.added, applied_returns: vintage.applied_returns, released: vintage.released, available: vintage.available, return_ids: vintage.return_ids, claim_ids: vintage.claim_ids, release_ids: vintage.release_ids, scope: fact_scope, purpose: "basis_stage_videogram_returns", election_record: election_record};
+    };
+    yield {id: snapshot.id, checkpoint_id: snapshot.checkpoint_id, source_case_id: snapshot.source_case_id, period: snapshot.period, as_of: snapshot.as_of, cutoff: snapshot.cutoff, source_cutoff: snapshot.source_cutoff, gross: snapshot.gross, added: snapshot.added, applied_returns: snapshot.applied_returns, released: snapshot.released, net_receipts: snapshot.net_receipts, fee: snapshot.fee, allocation: snapshot.allocation, closing_reserve: snapshot.closing_reserve, movements: snapshot.movements, vintages: vintages};
+  };
+  define state_views = filter(checkpoint_results, row => row.checkpoint_id == run_checkpoint_id or row.period.end == scope.period.start);
+  define state_frames = for each snapshot in state_views {
+    define before = snapshot.cutoff;
+    define processed = map(filter(checked_checkpoints, cp => cp.period.end <= snapshot.period.end), cp => cp.id);
+    define receipts_before = filter(validated_receipts, row => row.receipt_date <= snapshot.as_of);
+    define returns_before = filter(validated_returns, row => row.return_date <= snapshot.as_of);
+    define prefix_sources = {checkpoints: map(sort_by(filter(state_source_checkpoints, row => row.observed_at < before and sum(filter(processed, id => id == row.id), id => 1) == 1), row => row.id), row => {id: row.id, category: "checkpoints", record: row.raw_original}), receipts: map(sort_by(filter(state_source_receipts, row => row.observed_at < before and sum(filter(receipts_before, receipt => receipt.id == row.id), receipt => 1) == 1), row => row.id), row => {id: row.id, category: "receipts", record: row.raw_original}), elections: map(sort_by(filter(state_source_elections, row => row.observed_at < before and sum(filter(receipts_before, receipt => receipt.id == row.receipt_id), receipt => 1) == 1), row => row.id), row => {id: row.id, category: "elections", record: row.raw_original}), returns: map(sort_by(filter(state_source_returns, row => row.observed_at < before and sum(filter(returns_before, returned => returned.id == row.id), returned => 1) == 1), row => row.id), row => {id: row.id, category: "returns", record: row.raw_original}), return_authorities: map(sort_by(filter(state_source_return_authorities, row => row.observed_at < before and sum(filter(returns_before, returned => returned.id == row.return_id), returned => 1) == 1), row => row.id), row => {id: row.id, category: "return_authorities", record: row.raw_original}), populations: map(sort_by(filter(state_source_populations, row => row.observed_at < before and sum(filter(processed, id => id == row.checkpoint_id), id => 1) == 1), row => row.id), row => {id: row.id, category: "populations", record: row.raw_original}), clearances: map(sort_by(filter(state_source_clearances, row => row.observed_at < before and sum(filter(processed, id => id == row.checkpoint_id), id => 1) == 1), row => row.id), row => {id: row.id, category: "clearances", record: row.raw_original}), evidence: map(sort_by(filter(state_source_evidence, row => row.observed_at < before), row => row.id), row => {id: row.id, category: "evidence", record: row.raw_original})};
+    define cumulative = {gross: sum(filter(replayed.snapshots, cp => cp.period.end <= snapshot.period.end), cp => cp.gross), added: sum(filter(replayed.snapshots, cp => cp.period.end <= snapshot.period.end), cp => cp.added), applied_returns: sum(filter(replayed.snapshots, cp => cp.period.end <= snapshot.period.end), cp => cp.applied_returns), released: sum(filter(replayed.snapshots, cp => cp.period.end <= snapshot.period.end), cp => cp.released), net_receipts: sum(filter(replayed.snapshots, cp => cp.period.end <= snapshot.period.end), cp => cp.net_receipts), fee: sum(filter(replayed.snapshots, cp => cp.period.end <= snapshot.period.end), cp => cp.fee), allocation: sum(filter(replayed.snapshots, cp => cp.period.end <= snapshot.period.end), cp => cp.allocation)};
+    define movements = concat(empty_movements, fold filter(replayed.snapshots, cp => cp.period.end <= snapshot.period.end) from empty_movements with previous, cp { yield concat(previous, cp.movements); });
+    yield {id: snapshot.id, state: {scope: fact_scope, purpose: "basis_stage_videogram_returns", policy: policy, boundary: snapshot.period.end, origin: "prior_result", source_case_id: snapshot.source_case_id, transport_profile: "basis-reserve-original-json/1", detail: some({research: research, authority: authority.raw_original, last_checkpoint_id: snapshot.checkpoint_id, vintages: snapshot.vintages, cumulative: cumulative, movements: movements, sources: prefix_sources})}};
+  };
+  define previous_state: Option<{boundary: Date, detail: Option<{authority: Text, cumulative: {added: Money<USD>, allocation: Money<USD>, applied_returns: Money<USD>, fee: Money<USD>, gross: Money<USD>, net_receipts: Money<USD>, released: Money<USD>}, last_checkpoint_id: Text, movements: List<{allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text}>, research: {assignment_url: Text, clauses: Text, ld03_sha256: Text, primary_url: Text, rr04_sha256: Text}, sources: {checkpoints: List<{category: Text, id: Text, record: Text}>, clearances: List<{category: Text, id: Text, record: Text}>, elections: List<{category: Text, id: Text, record: Text}>, evidence: List<{category: Text, id: Text, record: Text}>, populations: List<{category: Text, id: Text, record: Text}>, receipts: List<{category: Text, id: Text, record: Text}>, return_authorities: List<{category: Text, id: Text, record: Text}>, returns: List<{category: Text, id: Text, record: Text}>}, vintages: List<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, election_record: Text, id: Text, origin_date: Date, purpose: Text, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}}>}>, origin: Text, policy: {date_basis: Text, evidence_class: Text, excess_returns: Text, fee_stage: Text, id: Text, invalid_day: Text, liquidation: Text, method: Text, months: Text, professional_review: Text, revision: Text, rounding: Text, same_day_order: Text}, purpose: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_case_id: Text, transport_profile: Text}> = fold filter(state_frames, row => row.id != run_checkpoint_id) from none() with slot, row { yield some(row.state); };
+  define current_state: Option<{boundary: Date, detail: Option<{authority: Text, cumulative: {added: Money<USD>, allocation: Money<USD>, applied_returns: Money<USD>, fee: Money<USD>, gross: Money<USD>, net_receipts: Money<USD>, released: Money<USD>}, last_checkpoint_id: Text, movements: List<{allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text}>, research: {assignment_url: Text, clauses: Text, ld03_sha256: Text, primary_url: Text, rr04_sha256: Text}, sources: {checkpoints: List<{category: Text, id: Text, record: Text}>, clearances: List<{category: Text, id: Text, record: Text}>, elections: List<{category: Text, id: Text, record: Text}>, evidence: List<{category: Text, id: Text, record: Text}>, populations: List<{category: Text, id: Text, record: Text}>, receipts: List<{category: Text, id: Text, record: Text}>, return_authorities: List<{category: Text, id: Text, record: Text}>, returns: List<{category: Text, id: Text, record: Text}>}, vintages: List<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, election_record: Text, id: Text, origin_date: Date, purpose: Text, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}}>}>, origin: Text, policy: {date_basis: Text, evidence_class: Text, excess_returns: Text, fee_stage: Text, id: Text, invalid_day: Text, liquidation: Text, method: Text, months: Text, professional_review: Text, revision: Text, rounding: Text, same_day_order: Text}, purpose: Text, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}, source_case_id: Text, transport_profile: Text}> = fold filter(state_frames, row => row.id == run_checkpoint_id) from none() with slot, row { yield some(row.state); };
+  require history.scope == fact_scope and history.purpose == "basis_stage_videogram_returns" and history.policy == policy and history.boundary == scope.period.start else "BR_OPENING_RECONCILIATION";
+  require not is_some(history.detail) or sum(require_some(history.detail, "BR_OPENING_REQUIRED").vintages, row => if row.available == USD 0 or row.due_date >= history.boundary then 0 else 1) == 0 else "BR_OPENING_OVERDUE";
+  require if is_some(previous_state) then (history.origin == "supplied_history" or history.origin == "prior_result") and history.source_case_id == require_some(previous_state, "BR_OPENING_REQUIRED").source_case_id and history.detail == require_some(previous_state, "BR_OPENING_REQUIRED").detail else history.origin == "genesis" and history.source_case_id == "genesis" and not is_some(history.detail) and not is_some(predecessor) else "BR_OPENING_RECONCILIATION";
+  require if history.origin == "prior_result" then is_some(predecessor) and require_some(predecessor, "BR_PREDECESSOR_REQUIRED").source_case_id == history.source_case_id and require_some(predecessor, "BR_PREDECESSOR_REQUIRED").period.end == scope.period.start and require_some(predecessor, "BR_PREDECESSOR_REQUIRED").closing_state == history else not is_some(predecessor) else "BR_PREDECESSOR_MISMATCH";
+  define current_slot: Option<{added: Money<USD>, allocation: Money<USD>, applied_returns: Money<USD>, as_of: Date, checkpoint_id: Text, closing_reserve: Money<USD>, cutoff: Instant, fee: Money<USD>, gross: Money<USD>, id: Text, movements: List<{allocation: Money<USD>, authority_id: Option<Text>, claim_id: Option<Text>, election_id: Option<Text>, fee: Money<USD>, gross: Money<USD>, id: Tuple<Text, Text>, kind: Text, movement_date: Date, net_receipts: Money<USD>, receipt_id: Text, release: Money<USD>, reserve_addition: Money<USD>, return_applied: Money<USD>, source_ref: Option<Text>, vintage_id: Text}>, net_receipts: Money<USD>, period: Period, released: Money<USD>, source_case_id: Text, source_cutoff: Text, vintages: List<{added: Money<USD>, applied_returns: Money<USD>, available: Money<USD>, cash_line_ref: Text, claim_ids: List<Text>, due_date: Date, election_id: Text, election_record: Text, id: Text, origin_date: Date, purpose: Text, receipt_id: Text, release_ids: List<Tuple<Text, Text>>, released: Money<USD>, reserve_elected: Bool, return_ids: List<Text>, scope: {asset_id: Id<Asset>, contract_id: Id<Agreement>, currency: Text, participant_id: Id<Participant>, pool_id: Id<Pool>}}>}> = fold filter(checkpoint_results, row => row.checkpoint_id == run_checkpoint_id) from none() with slot, row { yield some(row); };
+  define current = require_some(current_slot, "BR_CURRENT_CHECKPOINT");
+  closing history = require_some(current_state, "BR_CURRENT_CHECKPOINT");
+  emit "comparison" = {source_case_id: case_id, period: scope.period, status: "calculated", checkpoint_id: current.checkpoint_id, as_of: current.as_of, cutoff: current.cutoff, source_cutoff: current.source_cutoff, gross: current.gross, added: current.added, applied_returns: current.applied_returns, released: current.released, net_receipts: current.net_receipts, fee: current.fee, allocation: current.allocation, closing_reserve: current.closing_reserve, cumulative: replayed.cumulative, payment_status: "not_assessed_no_bank_payment_measure", source_support: "partial_within_vintage_returns_only", remaining_source_acceptance: "excess actual returns require separate signed Net Receipts/fee/allocation policy"};
+  emit "checkpoint_results" = checkpoint_results;
+  emit "vintages" = current.vintages;
+  emit "movements" = current.movements;
+  emit "reconciliation" = replayed.cumulative.gross - replayed.cumulative.applied_returns == replayed.cumulative.net_receipts + current.closing_reserve and replayed.cumulative.fee + replayed.cumulative.allocation == replayed.cumulative.net_receipts;
+}
