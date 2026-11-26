@@ -1,0 +1,19 @@
+// Appendix for a period-scoped Skouras/Ventura posted-cost feed.
+schedule SVPostingCostValidation language "spl/0.1-draft"
+  core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input costs: List<SVPostingCost>;
+  input period: Period;
+
+  // A fact supplied under the same cost identity may appear only once.
+  define cost_groups = group_by(costs, cost => cost.fact_id);
+  define duplicates = sum(entries(cost_groups), group =>
+    if sum(group.value, member => 1) > 1 then 1 else 0);
+  require duplicates == 0 else "POSTING_COST_DUPLICATE_FACT_ID";
+
+  // Recognition uses the declared posting date carried by this input format.
+  define out_of_period = sum(costs, cost =>
+    if in_period(cost.recognition_date, period) then 0 else 1);
+  require out_of_period == 0 else "POSTING_COST_OUTSIDE_PERIOD";
+
+  define valid: Bool = true;
+}

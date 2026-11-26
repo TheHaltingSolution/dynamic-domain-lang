@@ -11,7 +11,7 @@ from .codecs import fail
 ROOT = Path(__file__).resolve().parent.parent
 LIB = ROOT / ".lake" / "build" / "lib" / "lean"
 MODULES = ["SPL/Instant", "SPL/Calendar", "SPL/Dimensions", "SPL/Runtime", "SPL/Fold", "SPL/Syntax", "SPL/Parser", "SPL/Check", "SPL/Link", "SPL/IR", "SPL/Elaborate", "SPL/IRSource", "SPL/IRArtifact", "SPL/ValidateIR",
-           "SPL/Bindings", "SPL/Emit", "SPL/Core", "SPL/Proofs", "SPL/Trace", "SPL/Interpret", "SPL/Readable", "SPL"]
+           "SPL/Series", "SPL/Bindings", "SPL/ContextProofs", "SPL/Emit", "SPL/Core", "SPL/Proofs", "SPL/ValidationProofs", "SPL/Trace", "SPL/Interpret", "SPL/Readable", "SPL"]
 
 
 def lean_environment():
@@ -81,10 +81,11 @@ def build_native():
         lean(["-DwarningAsError=true", ROOT / (module + ".lean")])
 
 
-def compile_schedule(source, output, *, link=None):
+def compile_schedule(source, output, *, link=None, series=False):
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    lean(["--run", ROOT / "SPL/Main.lean", "compile", source, output, *(["--link",link] if link else [])])
+    command = "compile-series" if series else "compile"
+    lean(["--run", ROOT / "SPL/Main.lean", command, source, output, *(["--link",link] if link else [])])
     return output
 
 

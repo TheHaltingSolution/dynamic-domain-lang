@@ -1,0 +1,24 @@
+Participation Schedule for a Period-Scoped Participation Feed
+
+Incorporate policy "sv-receipt-validation@1".
+Incorporate policy "sv-posting-cost-validation@1".
+Require Receipts pass Validation or fail "RECEIPTS_NOT_VALIDATED".
+Require Posted Costs pass Validation or fail "POSTING_COSTS_NOT_VALIDATED".
+Gross Receipts are the sum of admitted receipts.
+Posted Costs are the sum of admitted posted costs.
+Participation is 20% of (Gross Receipts less Posted Costs).
+Report "participation": Participation.
+
+Bindings:
+  Schedule ValidatedParticipation.
+  Using language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft".
+  input receipts: List<SVReceipt>;
+  input costs: List<SVPostingCost>;
+  input period: Period;
+  Bind "Receipts pass Validation" to validate_receipts(receipts, period).
+  Bind "Posted Costs pass Validation" to validate_posting_costs(costs, period).
+  Bind "Gross Receipts" to gross_receipts.
+  Bind "the sum of admitted receipts" to sum(receipts, receipt => receipt.amount).
+  Bind "Posted Costs" to posted_costs.
+  Bind "the sum of admitted posted costs" to sum(costs, cost => cost.amount).
+  Bind "Participation" to participation.

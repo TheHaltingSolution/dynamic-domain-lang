@@ -1,0 +1,13 @@
+{
+  "inputs": {
+    "receipts": [
+      {"fact_id": "receipt-1", "asset_id": "picture", "amount": {"value": "90", "currency": "USD"}, "cash_received_date": "2026-01-01"},
+      {"fact_id": "receipt-2", "asset_id": "picture", "amount": {"value": "60", "currency": "USD"}, "cash_received_date": "2026-03-31"}
+    ],
+    "costs": [
+      {"fact_id": "cost-1", "asset_id": "picture", "amount": {"value": "25", "currency": "USD"}, "recognition_date": "2026-03-31", "recognition_policy_ref": "posting-date", "eligibility_decision_id": "eligible-cost"}
+    ],
+    "period": {"start": "2026-01-01", "end": "2026-04-01"}
+  },
+  "openings": {}
+}

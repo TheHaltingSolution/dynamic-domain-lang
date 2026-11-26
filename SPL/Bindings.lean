@@ -1,7 +1,9 @@
 import Lean.Data.Json.Parser
 import Lean.Data.Json.Printer
+import Lean.Data.Json.FromToJson.Basic
 import SPL.Runtime
 import SPL.Check
+import SPL.Series
 import Std.Internal.Parsec
 
 /-!
@@ -377,6 +379,54 @@ def runMainWith (owner : Dimensions.Admission) (context : Dimensions.Meanings) (
       pure settlement)
     catch _ => pure (.error "BINDING_FILE_IO_ERROR")
   IO.println (outcomeJson result).compress
+  return 0
+
+private def seriesEnvelope (owner : Dimensions.Admission) (context : Dimensions.Meanings)
+    (openingTypes : List (String × Syntax.TypeExpr)) (source : String) : Eval (Env × List Json) := do
+  let json ← parseStrict source
+  let _ ← exactFields json ["periods", "openings"]
+  let periods ← (← json.getObjVal? "periods").getArr? |>.mapError (fun _ => "SERIES_EXPECTED_PERIODS")
+  checkCollectionSize periods.size
+  if periods.isEmpty then throw "SERIES_EMPTY"
+  let openings ← decodeBindingsWith owner context openingTypes (← json.getObjVal? "openings")
+  pure (openings, periods.toList)
+
+def seriesStep (owner : Dimensions.Admission) (context : Dimensions.Meanings)
+    (inputTypes : List (String × Syntax.TypeExpr)) (settle : Env → Env → Eval Settlement) :
+    Series.Step Json := fun raw opening => do
+  let inputs ← decodeBindingsWith owner context inputTypes raw
+  let result ← settle inputs opening
+  for (_, value) in result.emissions ++ result.closing do validateValueWith context value
+  pure result
+
+def seriesOutcomeJson : Except Series.Failure Series.Result → Json
+  | .ok result => Json.mkObj [
+    ("status", .str "calculated"),
+    ("periods", .arr (result.periods.map (fun period => outcomeJson (.ok period))).toArray),
+    ("closing", valueJson (.obj result.closing)), ("diagnostics", .arr #[])]
+  | .error failure => Json.mkObj [
+    ("status", .str "blocked"), ("periods", .arr #[]), ("closing", Json.mkObj []),
+    ("diagnostics", .arr #[Json.mkObj [("code", .str failure.code), ("period_index", toJson failure.index)]])]
+
+private def blockedSeries (code : String) : Json := Json.mkObj [
+  ("status", .str "blocked"), ("periods", .arr #[]), ("closing", Json.mkObj []),
+  ("diagnostics", .arr #[Json.mkObj [("code", .str code)]])]
+
+/-- The file transport admits initial state once, then admits each period's
+inputs immediately before applying the emitted settlement in the same process. -/
+def runSeriesWith (owner : Dimensions.Admission) (context : Dimensions.Meanings)
+    (inputTypes openingTypes : List (String × Syntax.TypeExpr))
+    (settle : Env → Env → Eval Settlement) (args : List String) : IO UInt32 := do
+  let [path] := args | do
+    IO.println (blockedSeries "BINDING_FILE_ARGUMENT_REQUIRED").compress
+    return 1
+  let admitted ← try
+    pure (seriesEnvelope owner context openingTypes (← IO.FS.readFile path))
+    catch _ => pure (.error "BINDING_FILE_IO_ERROR")
+  let output := match admitted with
+    | .error code => blockedSeries code
+    | .ok (opening, periods) => seriesOutcomeJson (Series.run (seriesStep owner context inputTypes settle) opening periods)
+  IO.println output.compress
   return 0
 
 end SPL.Bindings

@@ -1,0 +1,19 @@
+// Appendix for a period-scoped Skouras/Ventura receipt feed.
+schedule SVReceiptValidation language "spl/0.1-draft"
+  core "spl-core/0.1-draft" schema "spl-data/0.1-draft" {
+  input receipts: List<SVReceipt>;
+  input period: Period;
+
+  // A fact supplied under the same receipt identity may appear only once.
+  define receipt_groups = group_by(receipts, receipt => receipt.fact_id);
+  define duplicates = sum(entries(receipt_groups), group =>
+    if sum(group.value, member => 1) > 1 then 1 else 0);
+  require duplicates == 0 else "RECEIPT_DUPLICATE_FACT_ID";
+
+  // Include the first day of the period and exclude its ending boundary.
+  define out_of_period = sum(receipts, receipt =>
+    if in_period(receipt.cash_received_date, period) then 0 else 1);
+  require out_of_period == 0 else "RECEIPT_OUTSIDE_PERIOD";
+
+  define valid: Bool = true;
+}

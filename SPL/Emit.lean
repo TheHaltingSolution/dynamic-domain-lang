@@ -352,7 +352,10 @@ keywords, punctuation, and collisions caused by replacing punctuation with `_`. 
 def scheduleNamespace (name : String) : String :=
   "GeneratedSPL.S" ++ String.join (name.toList.map fun c => "_" ++ toString c.toNat)
 
-private def generate (schedule : Program) (standalone : Bool) : Gen String := do
+private inductive Entry where
+  | standalone | library | series
+
+private def generate (schedule : Program) (mode : Entry) : Gen String := do
   let mut env : Names := []
   let mut lines : List String := []
   for declaration in schedule.declarations do
@@ -385,15 +388,19 @@ private def generate (schedule : Program) (standalone : Bool) : Gen String := do
     | .opening m name _ => some (pair name (typeSource m.ty)) | _ => none)
   let ns := scheduleNamespace schedule.name
   let config ← read
-  let runner := if config.extended then "SPL.Bindings.runMainWith " ++ admissionSource config.owner ++ " " ++ ns ++ "._spl_dimension_meanings " else "SPL.Bindings.runMain "
-  let entry := if standalone then
+  let context := if config.extended then ns ++ "._spl_dimension_meanings" else "{}"
+  let runner := match mode with
+    | .series => "SPL.Bindings.runSeriesWith " ++ admissionSource config.owner ++ " " ++ context ++ " "
+    | _ => if config.extended then "SPL.Bindings.runMainWith " ++ admissionSource config.owner ++ " " ++ context ++ " " else "SPL.Bindings.runMain "
+  let entry := match mode with
+  | .library => "\n"
+  | .standalone | .series =>
     "\n\nnamespace GeneratedSPL\n" ++
     "abbrev scheduleName := " ++ ns ++ ".scheduleName\n" ++
     "abbrev sourceRules := " ++ ns ++ ".sourceRules\n" ++
     "abbrev settle := " ++ ns ++ ".settle\n" ++
     "end GeneratedSPL\n\n" ++
     "def main (args : List String) : IO UInt32 :=\n  " ++ runner ++ inputTypes ++ " " ++ openingTypes ++ " " ++ ns ++ ".settle args\n"
-    else "\n"
   pure ("import SPL.Fold\nimport SPL.Core\nimport SPL.Bindings\n\nset_option maxRecDepth 4096\nset_option maxHeartbeats 0\n\nnamespace " ++ ns ++ "\n\n" ++
     "def scheduleName : String := " ++ quoted schedule.name ++ "\n" ++
     "def sourceRules : List (String × String) := " ++ rules ++ "\n\n" ++
@@ -405,13 +412,18 @@ private def generate (schedule : Program) (standalone : Bool) : Gen String := do
 
 def emitIR (schedule : Program) : Except Diagnostic String := do
   ValidateIR.validate schedule
-  pure ((← (generate schedule true).run (← generationContext schedule) |>.run {}).1)
+  pure ((← (generate schedule .standalone).run (← generationContext schedule) |>.run {}).1)
 
 /-- Importable module mode has only schedule-specific declarations, with no
 global executable entry or convenience aliases that collide across modules. -/
 def emitLibraryIR (schedule : Program) : Except Diagnostic String := do
   ValidateIR.validate schedule
-  pure ((← (generate schedule false).run (← generationContext schedule) |>.run {}).1)
+  pure ((← (generate schedule .library).run (← generationContext schedule) |>.run {}).1)
+
+/-- A standalone artifact whose entry takes a period series and initial state. -/
+def emitSeriesIR (schedule : Program) : Except Diagnostic String := do
+  ValidateIR.validate schedule
+  pure ((← (generate schedule .series).run (← generationContext schedule) |>.run {}).1)
 
 /-- Compatibility entry: checking and elaboration happen before generation. -/
 def emit (schedule : Syntax.Schedule) : Except Diagnostic String := do

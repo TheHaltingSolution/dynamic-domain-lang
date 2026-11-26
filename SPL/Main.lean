@@ -106,6 +106,17 @@ def runCore (args : List String) (linkPath : Option String) : IO UInt32 := do
         writeArtifact destination generated
         IO.println (Lean.Json.mkObj [("status", .str "compiled_library"), ("output", .str destination)]).compress
         return 0
+  | ["compile-series", source, destination] =>
+    match ← load source linkPath with
+    | .error diagnostic => report diagnostic source
+    | .ok schedule =>
+      let generated := do SPL.Emit.emitSeriesIR (← SPL.Elaborate.elaborate schedule)
+      match generated with
+      | .error diagnostic => report diagnostic source
+      | .ok generated =>
+        writeArtifact destination generated
+        IO.println (Lean.Json.mkObj [("status", .str "compiled_series"), ("output", .str destination)]).compress
+        return 0
   | ["ir", source] | ["ir", source, _] =>
     match ← load source linkPath with
     | .error diagnostic => report diagnostic source
@@ -140,7 +151,7 @@ def runCore (args : List String) (linkPath : Option String) : IO UInt32 := do
       IO.println (Lean.Json.mkObj [("status", .str "expanded"), ("output", .str destination)]).compress
       return 0
   | _ => report { code := "USAGE", message :=
-      "Usage: spl check SOURCE.spl | spl compile SOURCE.spl OUTPUT.lean | spl compile-library SOURCE.spl OUTPUT.lean | spl ir SOURCE.spl [OUTPUT.json] | spl interpret SOURCE.spl BINDINGS.json | spl expand READABLE.spl OUTPUT.spl (source commands accept --link MANIFEST.json)" }
+      "Usage: spl check SOURCE.spl | spl compile SOURCE.spl OUTPUT.lean | spl compile-library SOURCE.spl OUTPUT.lean | spl compile-series SOURCE.spl OUTPUT.lean | spl ir SOURCE.spl [OUTPUT.json] | spl interpret SOURCE.spl BINDINGS.json | spl expand READABLE.spl OUTPUT.spl (source commands accept --link MANIFEST.json)" }
 
 def run (args : List String) : IO UInt32 :=
   match args.reverse with

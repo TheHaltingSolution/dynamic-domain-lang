@@ -13,6 +13,12 @@ Invoke `$royalties-participation` in a project conversation to try the
 The [certification pilot](docs/spl/certification-pilot.md) explains the two
 executable Readable SPL schedules, approval workflow, proof scope, and tests.
 
+The [implemented feature inventory](docs/spl/release-feature-inventory.md)
+defines the scope for general verification. The [verification guide](docs/spl/general-verification-design.md)
+covers comparative kernel certificates, artifact-owned period series, and the
+trusted native build. The [validation appendices](cases/validation/README.md)
+show format-specific SPL rules linked into a Readable schedule.
+
 Earlier completion work is tracked in the
 [finite completion plan](docs/spl/completion-plan.md) and
 [requirement backlog](docs/spl/completion-backlog.json), covering all 17 agreed

@@ -6,6 +6,11 @@ next steps for per-contract certification from Readable SPL. The
 proved and which need participant-facing or deployed-tool tests.
 The [certification pilot](certification-pilot.md) implements the first two
 authored schedules and links the proof obligations to the deployed checks.
+The [implemented feature inventory](release-feature-inventory.md) and
+[general verification design](general-verification-design.md) record the
+release-wide scope, comparative certificate and period series. The [validation
+appendices](../../cases/validation/README.md) provide linkable rules for two
+input formats.
 
 The [bounded research checkpoint](release-checkpoint-2026-11-25.md) records
 the selected release profiles and measured capacity. The
