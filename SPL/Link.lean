@@ -43,6 +43,11 @@ private def referenceKey (json : Lean.Json) : LinkResult String := do
   let sha ← text (← field json "sha256")
   return (Lean.Json.arr #[.str id, .str revision, .str locator, .str sha]).compress
 
+private def describeReference (key : String) : String :=
+  match Lean.Json.parse key with
+  | .ok (.arr #[.str id, .str revision, .str locator, _]) => s!"{id}@{revision} ({locator})"
+  | _ => key
+
 private structure Export where
   name : String
   parameters : List (String × TypeExpr)
@@ -83,8 +88,10 @@ private def parseModule (json : Lean.Json) : LinkResult Module := do
   let revision ← text (← field descriptor "revision")
   unless id == (← text (← field reference "id")) && revision == (← text (← field reference "revision")) do
     reject "MODULE_IDENTITY_MISMATCH" "Descriptor and exact reference disagree"
-  let source ← Parser.parse (← text (← field json "source"))
-  Check.check { source with declarations := [] }
+  let source ← (Parser.parse (← text (← field json "source"))).mapError fun d =>
+    { d with message := s!"Linked source {describeReference key}: {d.message}" }
+  (Check.check { source with declarations := [] }).mapError fun d =>
+    { d with message := s!"Linked source {describeReference key}: {d.message}" }
   unless source.declarations.all (fun d => match d with | .input .. | .define .. | .require .. => true | _ => false) do
     reject "INVALID_FUNCTION_MODULE" "Function modules permit inputs, definitions and assertions"
   let exports ← (← array (← field (← field descriptor "interface") "exports")).mapM parseExport
@@ -101,7 +108,7 @@ private def imports (modules : List Module) (specs : List Lean.Json) (own : List
   for spec in specs do
     let key ← referenceKey (← field spec "module_ref")
     let some dependency := modules.find? (·.key == key)
-      | reject "UNRESOLVED_MODULE" "Complete exact transitive pin is absent"
+      | reject "UNRESOLVED_MODULE" s!"No exact module pin matches {describeReference key}"
     let alias ← text (← field spec "alias")
     if aliases.contains alias then reject "AMBIGUOUS_IMPORT" "Import aliases must be unique"
     aliases := alias :: aliases
@@ -110,13 +117,15 @@ private def imports (modules : List Module) (specs : List Lean.Json) (own : List
       let exported ← text (← field symbol "export")
       if (names.lookup name).isSome || own.contains name || (builtins features).contains name then
         reject "AMBIGUOUS_IMPORT" ("Imported local name collides: " ++ name)
-      unless dependency.exports.any (·.name == exported) do reject "UNRESOLVED_EXPORT" "Symbol is not exported"
+      unless dependency.exports.any (·.name == exported) do
+        reject "UNRESOLVED_EXPORT" s!"{describeReference key} does not export {exported} for import as {name}"
       names := names ++ [(name, (key, exported))]
   return names
 
 private partial def acyclic (modules : List Module) (key : String) (active : List String) : LinkResult Unit := do
-  if active.contains key then reject "MODULE_IMPORT_CYCLE" "Module import graph must be acyclic"
-  let some sourceModule := modules.find? (·.key == key) | reject "UNRESOLVED_MODULE" "Missing module"
+  if active.contains key then reject "MODULE_IMPORT_CYCLE" s!"Module import cycle reaches {describeReference key}"
+  let some sourceModule := modules.find? (·.key == key)
+    | reject "UNRESOLVED_MODULE" s!"No exact transitive module pin matches {describeReference key}"
   for spec in sourceModule.imports do acyclic modules (← referenceKey (← field spec "module_ref")) (key :: active)
 
 mutual

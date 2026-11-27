@@ -214,6 +214,26 @@ case source, including any source, signature or proof mismatch. Each successful
 result checks one emitted artifact for all decoded inputs. Corpus results are
 finite evidence about availability of certificates.
 
+## Diagnostics and the artifact release gate
+
+Use `lake exe spl check SOURCE.spl` to get native frontend diagnostics without
+emitting Lean. The diagnostic identifies the stage and, where available, the
+authored source location. Frontend failures distinguish malformed source,
+linking, types, and recognized unsupported features. The comparative
+`certify` path also reports IR, emission, kernel proof, and resource failures.
+
+`certify` verifies the privately staged source, optional link manifest, typed
+IR, and Lean artifact. It publishes a new bundle as a directory only after the
+proof and file identity checks pass. `verify` and `run` reject missing or
+changed bundle inputs or certificates. Direct `spl compile` and
+`spl compile-series` remain available to generate development candidates.
+
+The [metered usage case](../../cases/verification-usage/README.md) checks a
+combined owner-scoped unit conversion, half-open date filter, half-even
+rounding, typed zero, and carried balance against independent expected results.
+The [contract combination cases](../../cases/verification-combinations/README.md)
+exercise registered rule selection and a larger linked advance-recovery series.
+
 The [context lemmas](../../SPL/ContextProofs.lean) additionally prove that a
 successful checker binding extends the lexical context with the declared type
 at a fresh name and preserves existing resolutions. Successful typed decoding

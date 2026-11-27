@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 from hashlib import sha256
 import json
 import os
@@ -11,7 +12,7 @@ import tempfile
 
 from .artifacts import ArtifactPublication, PublicationError
 from .certification import _runtime_identity
-from .codecs import DataError, digest, fail, file_digest, loads, read_json, write_json
+from .codecs import DataError, digest, fail, file_digest, loads, write_json
 from .lean_tools import compile_schedule, export_ir, lean
 from .source_verification import check_native_ir, check_source
 from .target_verification import check_target
@@ -19,6 +20,42 @@ from .target_verification import check_target
 
 FORMAT = "spl-comparative-certificate/1"
 MAX_BYTES = 64 * 1024 * 1024
+
+
+class VerificationError(DataError):
+    """A gate failure with the original diagnostic and its verification stage."""
+
+    def __init__(self, stage, code, message, pointer="", span=None):
+        super().__init__(code, message, pointer, span)
+        self.stage = stage
+
+    def diagnostic(self):
+        return {**super().diagnostic(), "stage": self.stage}
+
+
+@contextmanager
+def _at(stage, paths=None):
+    try:
+        yield
+    except VerificationError:
+        raise
+    except (OSError, ValueError, RecursionError) as error:
+        if isinstance(error, DataError):
+            code, pointer, span = error.code, error.pointer, error.span
+            stage = getattr(error, "stage", None) or stage
+        elif isinstance(error, RecursionError):
+            code, pointer, span = "VERIFICATION_RESOURCE_LIMIT", "", None
+        else:
+            code, pointer, span = "VERIFICATION_FAILED", "", None
+        if "RESOURCE_LIMIT" in code:
+            stage = "resource"
+        message = str(error)
+        for private, original in (paths or {}).items():
+            for spelling in {str(private), private.as_posix()}:
+                message = message.replace(spelling, str(original))
+                if isinstance(pointer, str):
+                    pointer = pointer.replace(spelling, str(original))
+        raise VerificationError(stage, code, message, pointer, span) from error
 
 
 def _read(path):
@@ -31,76 +68,127 @@ def _read(path):
 
 def _prepare(work, source, link):
     authored = work / "consumed.source.spl"
-    authored.write_bytes(_read(source))
+    with _at("source"):
+        authored.write_bytes(_read(source))
     manifest = None
     if link is not None:
         manifest = work / "consumed.link.json"
-        manifest.write_bytes(_read(link))
+        with _at("link"):
+            manifest.write_bytes(_read(link))
     return authored, manifest
 
 
-def _check(work, source, link, *, mode, expected=None):
-    if mode not in ("single", "series"):
-        fail("VERIFICATION_MODE", "Choose single or series settlement")
-    runtime = _runtime_identity()
-    checked = check_source(source, link=link)
-    typed = work / "typed-ir.json"
-    export_ir(source, typed, link=link)
-    witness = check_native_ir(checked, read_json(typed))
-    artifact = work / "Settlement.lean"
-    compile_schedule(source, artifact, link=link, series=(mode == "series"))
-    pins = {path.name: file_digest(path) for path in (source, typed, artifact)}
+def _check(work, source, link, *, mode, expected=None, paths=None):
+    with _at("certificate" if expected is not None else "unsupported"):
+        if mode not in ("single", "series"):
+            fail("VERIFICATION_MODE", "Choose single or series settlement")
+    with _at("runtime"):
+        runtime = _runtime_identity()
+    with _at("source", paths):
+        pins = {source.name: file_digest(source)}
     if link is not None:
-        pins[link.name] = file_digest(link)
-    if expected is not None:
-        if pins != expected.get("files") or runtime != expected.get("lean_runtime_sha256"):
+        with _at("link", paths):
+            pins[link.name] = file_digest(link)
+    typed = work / "typed-ir.json"
+    with _at("ir", paths):
+        export_ir(source, typed, link=link)
+        typed_bytes = _read(typed)
+    with _at("source", paths):
+        checked = check_source(source, link=link)
+    with _at("ir", paths):
+        witness = check_native_ir(checked, loads(typed_bytes))
+    artifact = work / "Settlement.lean"
+    with _at("emit", paths):
+        pins[typed.name] = sha256(typed_bytes).hexdigest()
+        compile_schedule(source, artifact, link=link, series=(mode == "series"))
+        pins[artifact.name] = sha256(_read(artifact)).hexdigest()
+    with _at("certificate"):
+        if expected is not None and (pins != expected["files"] or runtime != expected.get("lean_runtime_sha256")):
             fail("VERIFICATION_IDENTITY_MISMATCH", "Source, linked inputs, emitted artifact or Lean runtime changed")
-    proof = check_target(work / "proof", artifact, checked, mode=mode)
-    if _runtime_identity() != runtime:
-        fail("VERIFICATION_RUNTIME_CHANGED", "Lean runtime changed during the check")
+    with _at("proof", paths):
+        proof = check_target(work / "proof", artifact, checked, mode=mode)
+        if proof["artifact_sha256"] != pins[artifact.name]:
+            fail("VERIFICATION_PROOF_ARTIFACT_CHANGED", "Kernel proof checked a different emitted artifact")
+        if any(file_digest(work / name) != pin for name, pin in pins.items()):
+            fail("VERIFICATION_PROOF_ARTIFACT_CHANGED", "Staged files changed during the kernel proof")
+    with _at("runtime"):
+        if _runtime_identity() != runtime:
+            fail("VERIFICATION_RUNTIME_CHANGED", "Lean runtime changed during the check")
     receipt = {"format": FORMAT, "mode": mode, "files": pins, "lean_runtime_sha256": runtime,
                "source_witness": witness, "target_proof": proof}
-    if expected is not None and receipt != expected:
-        fail("VERIFICATION_CERTIFICATE_MISMATCH", "Fresh proof evidence differs from the certificate")
+    with _at("certificate"):
+        if expected is not None and receipt != expected:
+            fail("VERIFICATION_CERTIFICATE_MISMATCH", "Fresh proof evidence differs from the certificate")
     return receipt
 
 
+def _release(work, bundle, receipt):
+    bundle = Path(bundle)
+    bundle.parent.mkdir(parents=True, exist_ok=True)
+    if bundle.exists() or bundle.is_symlink():
+        fail("VERIFICATION_BUNDLE_EXISTS", f"Bundle destination already exists: {bundle}")
+    # The public name first becomes visible after the complete bundle is staged
+    # on the same filesystem. A process interruption before rename leaves no
+    # partial directory under that name.
+    with tempfile.TemporaryDirectory(prefix=".spl-release-", dir=bundle.parent) as directory:
+        staged = Path(directory) / "bundle"
+        staged.mkdir()
+        for name, pin in receipt["files"].items():
+            data = _read(work / name)
+            if sha256(data).hexdigest() != pin:
+                fail("VERIFICATION_IDENTITY_MISMATCH", f"Checked file changed before release: {name}")
+            (staged / name).write_bytes(data)
+        write_json(staged / "certificate.json", receipt)
+        if (any(file_digest(staged / name) != pin for name, pin in receipt["files"].items()) or
+                loads(_read(staged / "certificate.json")) != receipt):
+            fail("VERIFICATION_RELEASE_MISMATCH", "Staged release differs from checked bundle")
+        os.rename(staged, bundle)
+
+
 def certify(source, bundle, *, link=None, mode="single"):
-    """Write a new bundle only after independent checks and kernel proof succeed."""
+    """Publish one new bundle after independent checks and kernel proof succeed."""
     with tempfile.TemporaryDirectory(prefix="spl-verification-") as directory:
         work = Path(directory)
         authored, manifest = _prepare(work, source, link)
-        receipt = _check(work, authored, manifest, mode=mode)
-        bundle = Path(bundle)
-        bundle.mkdir(parents=True)
-        for name in receipt["files"]:
-            (bundle / name).write_bytes(_read(work / name))
-        # The receipt is written last. Partial bundles cannot verify.
-        write_json(bundle / "certificate.json", receipt)
+        paths = {authored: source}
+        if manifest is not None:
+            paths[manifest] = link
+        receipt = _check(work, authored, manifest, mode=mode, paths=paths)
+        with _at("release"):
+            _release(work, bundle, receipt)
         return receipt
 
 
 def _verify(work, bundle):
     bundle = Path(bundle)
-    certificate = loads(_read(bundle / "certificate.json"))
-    if type(certificate) is not dict or certificate.get("format") != FORMAT:
-        fail("VERIFICATION_CERTIFICATE_FORMAT", "Expected a comparative SPL certificate")
-    names = {"consumed.source.spl", "typed-ir.json", "Settlement.lean"}
-    files = certificate.get("files")
-    if type(files) is not dict or set(files) not in (names, names | {"consumed.link.json"}):
-        fail("VERIFICATION_CERTIFICATE_FORMAT", "Certificate has an invalid artifact inventory")
-    retained = {}
-    for name in files:
-        payload = _read(bundle / name)
-        if sha256(payload).hexdigest() != files[name]:
-            fail("VERIFICATION_IDENTITY_MISMATCH", f"Bundle file changed: {name}")
-        if name.startswith("consumed."):
-            path = work / name
-            path.write_bytes(payload)
-            retained[name] = path
+    with _at("certificate"):
+        receipt_path = bundle / "certificate.json"
+        try:
+            certificate = loads(_read(receipt_path))
+        except FileNotFoundError:
+            fail("VERIFICATION_CERTIFICATE_MISSING", f"Certificate is missing: {receipt_path}")
+        if type(certificate) is not dict or certificate.get("format") != FORMAT:
+            fail("VERIFICATION_CERTIFICATE_FORMAT", "Expected a comparative SPL certificate")
+        names = {"consumed.source.spl", "typed-ir.json", "Settlement.lean"}
+        files = certificate.get("files")
+        if type(files) is not dict or set(files) not in (names, names | {"consumed.link.json"}):
+            fail("VERIFICATION_CERTIFICATE_FORMAT", "Certificate has an invalid artifact inventory")
+        retained = {}
+        for name, expected in files.items():
+            try:
+                payload = _read(bundle / name)
+            except FileNotFoundError:
+                fail("VERIFICATION_BUNDLE_FILE_MISSING", f"Bundle file missing: {name}")
+            if sha256(payload).hexdigest() != expected:
+                fail("VERIFICATION_IDENTITY_MISMATCH", f"Bundle file changed: {name}")
+            if name.startswith("consumed."):
+                path = work / name
+                path.write_bytes(payload)
+                retained[name] = path
     source = retained["consumed.source.spl"]
     manifest = retained.get("consumed.link.json")
-    return _check(work, source, manifest, mode=certificate.get("mode"), expected=certificate)
+    paths = {path: bundle / name for name, path in retained.items()}
+    return _check(work, source, manifest, mode=certificate.get("mode"), expected=certificate, paths=paths)
 
 
 def verify(bundle):
@@ -112,32 +200,38 @@ def _execute(bundle, bindings, *, native, evidence_dir=None):
     with tempfile.TemporaryDirectory(prefix="spl-verification-") as directory:
         work = Path(directory)
         inputs = work / "bindings.json"
-        inputs.write_bytes(_read(bindings))
+        with _at("bindings"):
+            inputs.write_bytes(_read(bindings))
         receipt = _verify(work, bundle)
         evidence = {"certificate_sha256": digest(receipt), "bindings_sha256": file_digest(inputs)}
         if native:
-            if os.name != "nt":
-                fail("VERIFICATION_NATIVE_PLATFORM", "The pinned ahead-of-time build currently uses Windows Lake")
-            from .compact_execution import _stage, compiled_target
-            executable = compiled_target(work)
-            expected = file_digest(work / "Settlement.exe")
-            if file_digest(executable) != expected:
-                fail("VERIFICATION_EXECUTABLE_CHANGED", "Native executable differs from the recorded build")
-            output = loads(_read(_stage([executable, inputs], work / "execution")))
-            if file_digest(executable) != expected:
-                fail("VERIFICATION_EXECUTABLE_CHANGED", "Native executable changed during execution")
-            evidence.update(execution="pinned-native", executable_sha256=expected,
-                            native_build_sha256=file_digest(work / "native-build.json"))
+            with _at("native-build"):
+                if os.name != "nt":
+                    fail("VERIFICATION_NATIVE_PLATFORM", "The pinned ahead-of-time build currently uses Windows Lake")
+                from .compact_execution import _stage, compiled_target
+                executable = compiled_target(work)
+                expected = file_digest(work / "Settlement.exe")
+                if file_digest(executable) != expected:
+                    fail("VERIFICATION_EXECUTABLE_CHANGED", "Native executable differs from the recorded build")
+            with _at("execution"):
+                output = loads(_read(_stage([executable, inputs], work / "execution")))
+                if file_digest(executable) != expected:
+                    fail("VERIFICATION_EXECUTABLE_CHANGED", "Native executable changed during execution")
+                evidence.update(execution="pinned-native", executable_sha256=expected,
+                                native_build_sha256=file_digest(work / "native-build.json"))
         else:
-            output = loads(lean(["--run", work / "Settlement.lean", inputs]))
+            with _at("execution", {inputs: bindings}):
+                output = loads(lean(["--run", work / "Settlement.lean", inputs]))
             evidence["execution"] = "pinned-lean"
-        if _runtime_identity() != receipt["lean_runtime_sha256"]:
-            fail("VERIFICATION_RUNTIME_CHANGED", "Lean runtime changed during execution")
+        with _at("runtime"):
+            if _runtime_identity() != receipt["lean_runtime_sha256"]:
+                fail("VERIFICATION_RUNTIME_CHANGED", "Lean runtime changed during execution")
         if evidence_dir is not None:
-            write_json(evidence_dir / "certificate.json", receipt)
-            if native:
-                shutil.copyfile(work / "native-build.json", evidence_dir / "native-build.json")
-                shutil.copyfile(work / "execution/process.json", evidence_dir / "execution.json")
+            with _at("publication"):
+                write_json(evidence_dir / "certificate.json", receipt)
+                if native:
+                    shutil.copyfile(work / "native-build.json", evidence_dir / "native-build.json")
+                    shutil.copyfile(work / "execution/process.json", evidence_dir / "execution.json")
         return {**output, "verification": evidence}
 
 
@@ -157,8 +251,9 @@ def run(bundle, bindings, *, native=False, output=None):
 def _diagnostic(error):
     if isinstance(error, DataError):
         return error.diagnostic()
-    code = str(error).split(":", 1)[0] if isinstance(error, PublicationError) else "VERIFICATION_FAILED"
-    return {"code": code, "message": str(error)}
+    if isinstance(error, PublicationError):
+        return {"code": str(error).split(":", 1)[0], "message": str(error), "stage": "publication"}
+    return {"code": "VERIFICATION_FAILED", "message": str(error)}
 
 
 def main(argv=None):

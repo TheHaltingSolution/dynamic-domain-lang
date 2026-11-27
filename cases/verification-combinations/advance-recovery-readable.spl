@@ -1,0 +1,66 @@
+Participation Schedule for Quarterly Validated Advance Recovery
+
+Incorporate policy "sv-receipt-validation@1".
+Incorporate policy "sv-posting-cost-validation@1".
+Incorporate policy "money-rounding@1".
+Account for each calendar quarter.
+Require Settlement Scope matches Recovery Ledger or fail "ADVANCE_SCOPE_MISMATCH".
+Require Settlement Period starts at Prior Close or fail "ADVANCE_PERIOD_DISCONTINUITY".
+Require Available Advance Balance >= USD 0 or fail "ADVANCE_NEGATIVE_OPENING".
+Require Receipts pass Validation or fail "RECEIPTS_NOT_VALIDATED".
+Require Posted Costs pass Validation or fail "POSTING_COSTS_NOT_VALIDATED".
+Gross Receipts are the sum of admitted receipts.
+Posted Costs are the sum of admitted posted costs.
+Net Receipts are Gross Receipts less Posted Costs.
+Require Net Receipts >= USD 0 or fail "ADVANCE_NEGATIVE_BASIS".
+For settlement with Artist:
+  Selected Participation Rate is the highest applicable rate.
+  Unrounded Participation is Selected Participation Rate of Net Receipts.
+  Earned Participation is the unrounded participation rounded to cents.
+  Recouped Advance is the lesser of Earned Participation and Available Advance Balance.
+  Participation Payable is Earned Participation less Recouped Advance.
+  Closing Recovery Ledger is the ledger updated at close.
+  Report "pool": Agreement, Participant, Pool, Settlement Period, Net Receipts, Selected Participation Rate, Earned Participation, Recouped Advance, Participation Payable.
+
+Bindings:
+  Schedule QuarterlyValidatedAdvanceRecovery.
+  Using language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft".
+  input receipts: List<SVReceipt>;
+  input costs: List<SVPostingCost>;
+  input scope: SettlementScope;
+  input launch_approved: Bool;
+  opening ledger: {agreement_id: Id<Agreement>, participant_id: Id<Participant>, pool_id: Id<Pool>, next_start: Date, balance: Money<USD>} from "verification/advance-recovery";
+  Settle "Artist" with scope.participant_id.
+  Bind "calendar quarter" to scope.period.
+  Bind "Settlement Scope matches Recovery Ledger" to scope.agreement_id == ledger.agreement_id and scope.participant_id == ledger.participant_id and scope.pool_id == ledger.pool_id.
+  Bind "Settlement Period starts at Prior Close" to scope.period.start == ledger.next_start.
+  Bind "Available Advance Balance" to ledger.balance.
+  Bind "Receipts pass Validation" to validate_receipts(receipts, scope.period).
+  Bind "Posted Costs pass Validation" to validate_posting_costs(costs, scope.period).
+  Bind "Gross Receipts" to gross_receipts.
+  Bind "the sum of admitted receipts" to sum(receipts, receipt => receipt.amount).
+  Bind "Posted Costs" to posted_costs.
+  Bind "the sum of admitted posted costs" to sum(costs, cost => cost.amount).
+  Bind "Net Receipts" to net_receipts.
+  Bind "Selected Participation Rate" to selected_rate.
+  Bind "the highest applicable rate" to choose priority { rule "launch" priority 20 when launch_approved => 0.50; rule "volume" priority 10 when net_receipts >= USD 0.10 => 0.25; otherwise "base" => 0.10; }.
+  Bind "Unrounded Participation" to unrounded_participation.
+  Bind "Earned Participation" to earned_participation.
+  Bind "the unrounded participation rounded to cents" to round_usd(unrounded_participation, USD 0.01, "half_even").
+  Bind "Recouped Advance" to recouped_advance.
+  Bind "Participation Payable" to participation_payable.
+  Bind "Recovery Ledger" to ledger.
+  Bind "the ledger updated at close" to {agreement_id: ledger.agreement_id, participant_id: ledger.participant_id, pool_id: ledger.pool_id, next_start: scope.period.end, balance: ledger.balance - recouped_advance}.
+  Bind "Agreement" to scope.agreement_id.
+  Bind "Participant" to settlement_participant.
+  Bind "Pool" to scope.pool_id.
+  Bind "Settlement Period" to scope.period.
+  Field "Agreement" as agreement_id.
+  Field "Participant" as participant_id.
+  Field "Pool" as pool_id.
+  Field "Settlement Period" as period.
+  Field "Net Receipts" as basis.
+  Field "Selected Participation Rate" as rate.
+  Field "Earned Participation" as earned.
+  Field "Recouped Advance" as recouped.
+  Field "Participation Payable" as payable.

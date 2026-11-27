@@ -100,6 +100,14 @@ Run representative checks through the actual writer, certification,
 execution and public consumption paths as those parts become available.
 Most of these checks can be shared across contracts.
 
+For the comparative release path, check each negative at the earliest stage
+that can establish it. Use malformed authored text, missing links, bad types,
+and unavailable features for frontend checks. Separately exercise a well-typed
+mistranslation, a proof or resource failure, an interrupted bundle write, and a
+missing or changed certificate at execution. Assert both the diagnostic and
+the absence of any releasable output. Each released bundle binds the exact
+staged source, linked programs, emitted Lean, and checked certificate.
+
 | Scenario | Expected behavior |
 | --- | --- |
 | A certificate is missing, stale, or bound to a different source, policy or executable | The tool refuses the run and identifies the mismatch. |
@@ -128,6 +136,10 @@ rejection, compatibility and operational failures.
 For a compiler change, identify the changed promise and its proof boundary.
 Re-certify changed translations. Add a traditional test when it exercises
 a named behavior or assumption that the checked proofs leave open.
+Retain the previous census selectors when expanding the corpus. Check both
+single-period and series artifacts. For selected new contracts, retain exact
+worked expectations and exercise input rejection and period carry in the
+actual artifact. These expectations check the chosen contract interpretation.
 Use the [26 November handoff](session-handoff-2026-11-26.md) for the
 implementation starting point and the [certification pilot](certification-pilot.md)
 for the first checked translation, admission obligation, and assertion map.

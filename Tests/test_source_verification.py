@@ -64,6 +64,8 @@ class SourceVerificationTests(unittest.TestCase):
         with self.assertRaises(DataError) as stale:
             check_source(source, link=link)
         self.assertEqual(stale.exception.code, "SOURCE_LINK_PIN_MISMATCH")
+        self.assertEqual(stale.exception.diagnostic()["stage"], "link")
+        self.assertEqual(stale.exception.pointer, str(link))
 
         module["descriptor"]["source"]["sha256"] = sha256(module["source"].encode("utf-8")).hexdigest()
         write_json(link, manifest)

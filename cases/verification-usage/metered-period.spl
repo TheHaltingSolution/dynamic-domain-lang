@@ -1,0 +1,12 @@
+schedule MeteredPeriod language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft" uses "spl.usage-time/1" {
+  input activity: List<{ usage_day: Date, duration: Quantity<UsageMinute> }>;
+  input period: Period;
+  input price: Rate<UsageHour,USD>;
+  opening meter: Quantity<UsageHour> from "hour-meter";
+
+  define eligible = filter(activity, row => in_period(row.usage_day, period));
+  define hours = sum(eligible, row => convert_quantity(row.duration, "UsageHour", "spl.usage-time/1:minute-hour"));
+  emit "hours" = hours;
+  emit "payable" = quantize(hours * price, USD 0.01, "half_even");
+  closing meter = meter + hours;
+}

@@ -15,10 +15,34 @@ from .checker import check_schedule, type_from_ast
 from .codecs import DataError, digest, fail, read_json
 from .dimensions import admission
 from .ir_artifacts import validate_ir_artifact
+from .lean_tools import FrontendDiagnostic
 from .linker import link_schedule
 from .model import BOOL, CheckedSchedule, SPLException, Type
 from .parser import parse
 from .readable import is_readable, parse_readable
+
+
+def _check_links(schedule, link):
+    try:
+        manifest = read_json(link)
+        if not isinstance(manifest, dict) or not all(isinstance(manifest.get(key), list)
+                                                    for key in ("modules", "imports")):
+            fail("SOURCE_LINK_INVALID", "Expected a module and import list")
+        for entry in manifest["modules"]:
+            descriptor = entry["descriptor"]
+            if "source" in descriptor:
+                expected = descriptor["source"]["sha256"]
+                actual = sha256(entry["source"].encode("utf-8")).hexdigest()
+                if expected != actual:
+                    fail("SOURCE_LINK_PIN_MISMATCH", f"Changed linked source for {descriptor['id']}")
+        return link_schedule(schedule, manifest)
+    except (DataError, SPLException) as error:
+        message = error.message if isinstance(error, SPLException) else str(error)
+        raise FrontendDiagnostic(error.code, message, source=str(link), span=error.span, stage="link") from error
+    except (TypeError, KeyError, AttributeError) as error:
+        raise FrontendDiagnostic("SOURCE_LINK_INVALID", str(error), source=str(link), span=None, stage="link") from error
+    except (UnicodeError, OSError) as error:
+        raise FrontendDiagnostic("SOURCE_READ_FAILED", str(error), source=str(link), span=None, stage="link") from error
 
 
 def check_source(source: Path, *, link: Path | None = None) -> CheckedSchedule:
@@ -32,25 +56,12 @@ def check_source(source: Path, *, link: Path | None = None) -> CheckedSchedule:
         authored = source.read_bytes().decode("utf-8")
         schedule = (parse_readable if is_readable(authored) else parse)(authored, str(source))
         if link is not None:
-            manifest = read_json(link)
-            if not isinstance(manifest, dict) or not all(isinstance(manifest.get(key), list)
-                                                        for key in ("modules", "imports")):
-                fail("SOURCE_LINK_INVALID", "Expected a module and import list")
-            for entry in manifest["modules"]:
-                descriptor = entry["descriptor"]
-                if "source" in descriptor:
-                    expected = descriptor["source"]["sha256"]
-                    actual = sha256(entry["source"].encode("utf-8")).hexdigest()
-                    if expected != actual:
-                        fail("SOURCE_LINK_PIN_MISMATCH", f"Changed linked source for {descriptor['id']}")
-            schedule = link_schedule(schedule, manifest)
+            schedule = _check_links(schedule, link)
         return check_schedule(schedule)
     except SPLException as error:
         raise DataError(error.code, error.message, str(source), error.span) from error
     except (UnicodeError, OSError) as error:
         raise DataError("SOURCE_READ_FAILED", str(error), str(source)) from error
-    except (TypeError, KeyError, AttributeError) as error:
-        raise DataError("SOURCE_LINK_INVALID", str(error), str(link)) from error
 
 
 def _type(typ: Type) -> dict:

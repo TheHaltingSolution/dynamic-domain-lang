@@ -1,0 +1,343 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.modules/1",
+      "spl.priority/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:quarterly-validated-advance-recovery",
+  "imports": [
+    {
+      "alias": "sv_receipt_validation",
+      "module_ref": {
+        "id": "library:sv-receipt-validation",
+        "locator": "cases/validation/sv-receipt-validation-module.json",
+        "revision": "1",
+        "sha256": "692f303344e601e78faccb01843b0e2983eb600bb8b669ba97c6433ef121afeb"
+      },
+      "symbols": [
+        {
+          "export": "validate",
+          "local": "validate_receipts"
+        }
+      ]
+    },
+    {
+      "alias": "sv_posting_cost_validation",
+      "module_ref": {
+        "id": "library:sv-posting-cost-validation",
+        "locator": "cases/validation/sv-posting-cost-validation-module.json",
+        "revision": "1",
+        "sha256": "ee3e7230862208b208441a9dca1cb3f69788e1d5aaa1ba86c697b5d1d0a0ee51"
+      },
+      "symbols": [
+        {
+          "export": "validate",
+          "local": "validate_posting_costs"
+        }
+      ]
+    },
+    {
+      "alias": "money_rounding",
+      "module_ref": {
+        "id": "synthetic:numeric-money-rounding",
+        "locator": "cases/numeric-precision/money-rounding-module.json",
+        "revision": "1",
+        "sha256": "fa2522052102db7b5e6367a9793448e8ef28349cce5be560b0673bedc342070a"
+      },
+      "symbols": [
+        {
+          "export": "round",
+          "local": "round_usd"
+        }
+      ]
+    }
+  ],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "receipts",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "SVReceipt"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "costs",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "SVPostingCost"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "scope",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "SettlementScope"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "launch_approved",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Bool"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "ledger",
+        "role": "opening",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "next_start",
+              {
+                "args": [],
+                "name": "Date"
+              }
+            ],
+            [
+              "balance",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "pool",
+        "role": "result",
+        "type": {
+          "args": [],
+          "fields": [
+            [
+              "agreement_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Agreement"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "participant_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Participant"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "pool_id",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "Pool"
+                  }
+                ],
+                "name": "Id"
+              }
+            ],
+            [
+              "period",
+              {
+                "args": [],
+                "name": "Period"
+              }
+            ],
+            [
+              "basis",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "rate",
+              {
+                "args": [],
+                "name": "Ratio"
+              }
+            ],
+            [
+              "earned",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "recouped",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ],
+            [
+              "payable",
+              {
+                "args": [
+                  {
+                    "args": [],
+                    "name": "USD"
+                  }
+                ],
+                "name": "Money"
+              }
+            ]
+          ],
+          "name": "Record"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "QUARTERLY_VALIDATED_ADVANCE_RECOVERY_SELECTED"
+    ],
+    "discriminating_cases": [
+      "quarterly-validated-advance-recovery"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:quarterly-validated-advance-recovery:policy",
+    "readable": {
+      "locator": "cases/verification-combinations/policy.md",
+      "sha256": "3592131a000b409f6d281c0354388903f1ac00b21954932d7abbb06177508ffb"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/verification-combinations/advance-recovery-readable.spl",
+    "sha256": "9897fcb718954aa6cfe9cb83fe29e3b88c9d95823de95a902743d983a4948679"
+  },
+  "state": [
+    {
+      "closing": "ledger",
+      "history_required": false,
+      "key_fields": [
+        "agreement_id",
+        "participant_id",
+        "pool_id",
+        "purpose"
+      ],
+      "movement_kinds": [
+        "transition"
+      ],
+      "opening": "ledger",
+      "purpose": "advance_recovery",
+      "unit": "structured"
+    }
+  ]
+}

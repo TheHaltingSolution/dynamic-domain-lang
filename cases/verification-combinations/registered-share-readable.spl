@@ -1,0 +1,20 @@
+Participation Schedule for a Registered Receipt Share
+
+Selected Share is the applicable registered rate.
+Exact Share is Selected Share of Gross Receipt.
+Payable Share is the exact share rounded to cents.
+Report "share": Selected Share.
+Report "payable": Payable Share.
+
+Bindings:
+  Schedule RegisteredReceiptShare.
+  Using language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft".
+  input gross: Money<USD>;
+  input direct_eligible: Bool;
+  input renewal_eligible: Bool;
+  Bind "Selected Share" to selected_share.
+  Bind "the applicable registered rate" to choose registered unique { rule "direct" when direct_eligible => 0.50; rule "renewal" when renewal_eligible => 0.25; otherwise "base" => 0.10; }.
+  Bind "Exact Share" to exact_share.
+  Bind "Gross Receipt" to gross.
+  Bind "Payable Share" to payable_share.
+  Bind "the exact share rounded to cents" to quantize(exact_share, USD 0.01, "half_even").

@@ -10,6 +10,7 @@ open SPL.Syntax
 structure Expansion where
   source : String
   origins : Array Span
+  metadataSpan : Span
   deriving Repr
 
 private structure Line where
@@ -65,7 +66,7 @@ private structure Config where
   declarations : Array (String × Span) := #[]
   settlements : List (String × String) := []
   schedule : Option String := none
-  metadata : Option String := none
+  metadata : Option (String × Span) := none
   deriving Inhabited
 
 private def quoted (line : Line) (text : String) : Except Diagnostic (String × String) := do
@@ -87,7 +88,7 @@ private def parseBindings (lines : Array Line) : Except Diagnostic Config := do
       config := { config with schedule := some name }
     else if text.startsWith "Using " && text.endsWith "." then
       if config.metadata.isSome then failure line "Duplicate Using declaration"
-      config := { config with metadata := some (middle text 6) }
+      config := { config with metadata := some (middle text 6, line.span) }
     else if text.startsWith "Bind " && text.endsWith "." then
       let (phrase, tail) ← quoted line (middle text 5)
       unless tail.startsWith "to " do failure line "Expected Bind quoted-phrase to core-expression."
@@ -446,11 +447,12 @@ private partial def roleLocal (roles : Array (Option String)) (origins : Array S
 end
 
 private def settlementRoles (source : String) (roles : Array (Option String))
-    (origins : Array Span) : Except Diagnostic String := do
+    (origins : Array Span) (metadataSpan : Span) : Except Diagnostic String := do
   let parsed ← match SPL.Parser.parse source with
     | .ok value => pure value
     | .error diagnostic => throw { diagnostic with
-        span := origins[diagnostic.span.line - 1]?.getD (origins[origins.size - 1]?.getD default) }
+        span := if diagnostic.span.line == 1 then metadataSpan
+          else origins[diagnostic.span.line - 1]?.getD (origins[origins.size - 1]?.getD default) }
   let (_, edits) ← (do
     for declaration in parsed.declarations do
       match declaration with
@@ -482,7 +484,7 @@ def expand (source : String) : Except Diagnostic Expansion := do
   let name ← match config.schedule with
     | some v => pure v
     | none => failure lines[split]! "Bindings must explicitly declare Schedule and Using versions"
-  let metadata ← match config.metadata with
+  let (metadata, metadataSpan) ← match config.metadata with
     | some v => pure v
     | none => failure lines[split]! "Bindings must explicitly declare Schedule and Using versions"
   let rules := ((lines.toList.take split).drop 1).toArray
@@ -494,8 +496,8 @@ def expand (source : String) : Except Diagnostic Expansion := do
   let output := state.output.push ("}", (lines[lines.size - 1]?.getD default).span)
   let expanded := String.intercalate "\n" (output.toList.map (·.1))
   let origins := output.map (·.2)
-  let expanded ← if multiple then settlementRoles expanded (state.roles.push none) origins else pure expanded
-  return { source := expanded, origins }
+  let expanded ← if multiple then settlementRoles expanded (state.roles.push none) origins metadataSpan else pure expanded
+  return { source := expanded, origins, metadataSpan }
 
 private def remapSpan (origins : Array Span) (span : Span) : Span :=
   origins[span.line - 1]?.getD (origins[origins.size - 1]?.getD default)
@@ -547,7 +549,8 @@ private def remapDecl (origins : Array Span) : Decl → Decl
 def parse (source : String) : Except Diagnostic Schedule := do
   let expansion ← expand source
   match SPL.Parser.parse expansion.source with
-  | .error diagnostic => throw { diagnostic with span := remapSpan expansion.origins diagnostic.span }
+  | .error diagnostic => throw { diagnostic with
+      span := if diagnostic.span.line == 1 then expansion.metadataSpan else remapSpan expansion.origins diagnostic.span }
   | .ok schedule => return { schedule with span := { start := 0, stop := source.length, line := 1, column := 1 }, declarations := schedule.declarations.map (remapDecl expansion.origins) }
 
 end SPL.Readable
