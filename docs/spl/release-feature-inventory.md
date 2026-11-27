@@ -2,9 +2,9 @@
 
 This inventory defines the starting scope for general certification. It records
 the executable language at commit `8f47311` and identifies the new work in
-this phase separately. The first-release goal is certification for any
-well-formed contract composed of these implemented features, including
-combinations absent from the existing fixture corpus. The pinned language,
+this phase separately. The first release requires checked certificates for
+delivered artifacts and aims for broad coverage of well-formed combinations
+of these features. The pinned language,
 core and schema versions are `spl/0.1-draft`, `spl-core/0.1-draft` and
 `spl-data/0.1-draft`. The reference also describes proposed language features.
 This inventory takes its support claims from the implementation. [Language
@@ -91,13 +91,11 @@ requirements of the registered source and its interface. [Registration checks](.
 | Lean admission lemmas | Distinctness of the supplied IDs returned by the pilot admission and distinct disbursement IDs for successfully checked advance-issue rows. |
 | General compiler and financial tests | Parser, checker, linker, IR validation, interpreter and emitter tests, plus conformance, mutation and independent original-fact controls. Publication, public reload and predecessor carry have qualified finite witnesses. |
 
-Full release certification requires a reusable proof construction over the
-implemented grammar and type rules above. Track the proof coverage for each
-feature family and the observations it supports. Require each well-formed
-in-scope contract to compile and obtain a certificate within the declared
-development and execution budgets. The feature test matrix is a witness
-inventory. The proof construction must also handle compositions beyond its
-examples. [Arithmetic lemmas](../../SPL/Proofs.lean) · [Pilot proof](certification-pilot.md) ·
+Track proof coverage by feature family and observation. Grow certificate
+availability using small and larger feature combinations. The feature test
+matrix is a witness inventory. A well-formed contract may expose a gap and
+enter the future [repair workflow](skill-packaging-plan.md) before it can
+yield a deliverable. [Arithmetic lemmas](../../SPL/Proofs.lean) · [Pilot proof](certification-pilot.md) ·
 [Admission theorem](../../SPL/RoyaltiesAdmission.lean) · [Feature test matrix](feature-test-matrix.json) ·
 [General verification design](general-verification-design.md)
 

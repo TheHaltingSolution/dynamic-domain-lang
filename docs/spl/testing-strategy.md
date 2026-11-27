@@ -30,6 +30,12 @@ semantics. Rechecking an artifact certifies that translation. Acceptance,
 termination of compilation and ability to produce a certificate on the
 supported corpus are separate properties.
 
+Require a valid certificate before delivering a runnable settlement artifact.
+Build confidence in availability with small feature combinations, larger
+representative contracts, and field regressions. A well-formed but uncertifiable
+contract stays blocked and supplies evidence for the future
+[skill packaging and compiler repair workflow](skill-packaging-plan.md).
+
 One certificate can cover future periods for the same artifact. Each run
 must establish that it is using the certified artifact and that the actual
 input and opening state satisfy the stated assumptions. Changed source,

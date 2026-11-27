@@ -11,6 +11,8 @@ The [implemented feature inventory](release-feature-inventory.md) and
 release-wide scope, comparative certificate and period series. The [validation
 appendices](../../cases/validation/README.md) provide linkable rules for two
 input formats.
+The [skill packaging plan](skill-packaging-plan.md) records the future package
+features, the certificate release gate, and the compiler repair workflow.
 
 The [bounded research checkpoint](release-checkpoint-2026-11-25.md) records
 the selected release profiles and measured capacity. The

@@ -1,7 +1,8 @@
 # General SPL verification design
 
-The release goal is a checked certificate for any well-formed contract in the
-[implemented feature inventory](release-feature-inventory.md). The certificate
+Every delivered runnable artifact requires a checked certificate. Broad
+certificate availability across the [implemented feature inventory](release-feature-inventory.md)
+is a coverage goal. The certificate
 connects authored SPL and pinned linked modules to the actual emitted Lean
 calculation. Its meaning ranges over admitted inputs and opening state. The
 same artifact can settle an ordered series of periods and carry its own state
@@ -14,8 +15,10 @@ general claim and the checks that remain at runtime.
 
 ## Claim and observations
 
-For each supported version, define an authored language semantics independently
-of the compiler's parser, Readable expansion and emitters. The source side
+The [language reference](language-reference.md) and [Readable grammar](readable-language.md)
+specify authored SPL. The compiler implements those rules. For verification,
+use a reference interpretation independent of the native translation under
+test, and make its assumptions explicit. The source side
 includes the original text, explicit footer bindings and exact linked module
 closure. Its financial interpretation is a function from typed inputs and
 opening state to a success or failure. The kernel must check that for every
@@ -30,12 +33,13 @@ explicit observation definitions where returned to participants. A certificate
 that compares settlement values and errors covers that projection. The public
 trace and physical artifact format then need their own checked relationships.
 
-The proof relates semantics for the particular contract. To claim release-wide
-certifiability we also need coverage of every constructor and well-formed
-combination in the supported language, including independently checked typing
-and lexical feature rules. A corpus demonstrates finite cases. A reusable
-construction over the grammar and type rules explains why arbitrary valid
-combinations obtain the needed certificate under the stated resource profile.
+The proof relates semantics for the particular contract. Grow certificate
+availability through small feature combinations, larger representative
+contracts, and regressions from field failures. A theorem that every
+well-formed combination obtains a certificate would strengthen the coverage
+claim. The release gate applies to each delivered artifact. An uncertifiable
+case remains blocked and can enter the future
+[packaged repair workflow](skill-packaging-plan.md).
 
 ## Translation checkpoints
 
@@ -73,9 +77,8 @@ The Lean kernel then checks equality of the freshly emitted settlement and
 the Python emitter's reference settlement, including the generated entry
 point's connection to that settlement. This works over general source inputs
 where the two paths agree. The Python source semantics and shared SPL
-runtime meanings remain assumptions of the comparative claim. A separate
-proof of those meanings, constructor coverage and certificate availability
-throughout the release inventory are open obligations. [Source correspondence](../../spl_compiler/source_verification.py) ·
+runtime meanings remain assumptions of the comparative claim. Additional
+kernel proofs can reduce those assumptions and extend coverage. [Source correspondence](../../spl_compiler/source_verification.py) ·
 [Kernel target check](../../spl_compiler/target_verification.py) ·
 [Certificate and execution CLI](../../spl_compiler/verification.py)
 
