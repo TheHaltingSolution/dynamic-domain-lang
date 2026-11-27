@@ -44,31 +44,37 @@ private def failure (stage source : String) (diagnostic : Diagnostic) : Frontend
 
 private abbrev Frontend := ExceptT FrontendFailure IO
 
-private def checkedPhase (stage source : String) (result : Except Diagnostic α) : Frontend α :=
-  liftExcept (result.mapError (failure stage source))
+private def checkedPhase (stage source : String) (result : Except Diagnostic α) : Except FrontendFailure α :=
+  result.mapError (failure stage source)
 
 private def readPhase (stage source : String) : Frontend String :=
   ExceptT.mk (try
     return .ok (← IO.FS.readFile source)
   catch error => return .error (failure stage source { code := "IO_ERROR", message := error.toString }))
 
+private def checkSource (path source : String) (link : Option (String × String)) : Except FrontendFailure Schedule := do
+  let parsed := if SPL.Readable.isReadable source then SPL.Readable.parse source else SPL.Parser.parse source
+  let mut schedule ← checkedPhase "source" path parsed
+  if let some (linkPath, manifest) := link then
+    let json ← checkedPhase "link" linkPath (Lean.Json.parse manifest |>.mapError fun message =>
+      { code := "INVALID_LINK_MANIFEST", message })
+    schedule ← checkedPhase "link" linkPath (SPL.Link.link schedule json)
+  checkedPhase "type" path (SPL.Check.check schedule)
+  let program ← checkedPhase "ir" path (SPL.Elaborate.elaborate schedule)
+  checkedPhase "ir" path (SPL.ValidateIR.validate program)
+  return schedule
+
 def loadStaged (path : String) (linkPath : Option String := none) : IO (Except FrontendFailure Schedule) :=
   (do
     let source ← readPhase "source" path
-    let parsed := if SPL.Readable.isReadable source then SPL.Readable.parse source else SPL.Parser.parse source
-    let mut schedule ← checkedPhase "source" path parsed
-    if let some linkPath := linkPath then
-      let manifest ← readPhase "link" linkPath
-      let json ← checkedPhase "link" linkPath (Lean.Json.parse manifest |>.mapError fun message =>
-        { code := "INVALID_LINK_MANIFEST", message })
-      schedule ← checkedPhase "link" linkPath (SPL.Link.link schedule json)
-    checkedPhase "type" path (SPL.Check.check schedule)
-    let program ← checkedPhase "ir" path (SPL.Elaborate.elaborate schedule)
-    checkedPhase "ir" path (SPL.ValidateIR.validate program)
-    return schedule : Frontend Schedule).run
+    let link ← linkPath.mapM fun manifest => do pure (manifest, ← readPhase "link" manifest)
+    liftExcept (checkSource path source link) : Frontend Schedule).run
 
-def load (path : String) (linkPath : Option String := none) : IO (Except Diagnostic Schedule) :=
-  return (← loadStaged path linkPath).mapError (·.diagnostic)
+/-- Keep the interpreter's load and I/O diagnostics in the trace wire format. -/
+def load (path : String) (linkPath : Option String := none) : IO (Except Diagnostic Schedule) := do
+  let source ← IO.FS.readFile path
+  let link ← linkPath.mapM fun (manifest : String) => do pure (manifest, ← IO.FS.readFile manifest)
+  return (checkSource path source link).mapError (·.diagnostic)
 
 private def reportFailure (error : FrontendFailure) : IO UInt32 :=
   report error.diagnostic error.source error.stage
@@ -167,8 +173,8 @@ def runCore (args : List String) (linkPath : Option String) : IO UInt32 := do
         else IO.println json
         return 0
   | ["interpret", source, bindings] =>
-    match ← loadStaged source linkPath with
-    | .error error => reportFailure error
+    match ← load source linkPath with
+    | .error diagnostic => report diagnostic source
     | .ok schedule =>
       IO.println (← interpretFile schedule bindings).compress
       return 0
