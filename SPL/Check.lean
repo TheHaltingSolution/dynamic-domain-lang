@@ -155,7 +155,8 @@ partial def parseTypeWith (admission : Dimensions.Admission) : TypeExpr → Exce
       if !args.isEmpty then error "TYPE_ARITY" (name ++ " has no type arguments") else pure (.atom name)
     else match name, args with
       | "Money", [.named "USD" []] => pure usdTy
-      | "Money", _ => error "UNSUPPORTED_CURRENCY" "Only Money<USD> is supported"
+      | "Money", [.named currency []] => error "UNSUPPORTED_CURRENCY" s!"Money<{currency}> is unsupported; use Money<USD>"
+      | "Money", _ => error "TYPE_ARITY" "Money requires one currency argument, as in Money<USD>"
       | "Quantity", [.named unit []] =>
         if Dimensions.admittedWith admission unit then pure (.quantity unit)
         else error "UNSUPPORTED_UNIT" ("Unknown quantity unit " ++ unit)
@@ -173,9 +174,18 @@ partial def parseTypeWith (admission : Dimensions.Admission) : TypeExpr → Exce
         unless keyType key do error "INVALID_MAP_KEY_TYPE" "Map requires an admitted total-order key"
         return .map key (← parseTypeWith admission value)
       | "Id", [.named kind []] => pure (idTy kind)
+      | "List", _ | "Option", _ => error "TYPE_ARITY" (name ++ " requires exactly one type argument")
+      | "Map", _ => error "TYPE_ARITY" "Map requires a key type and a value type"
+      | "Id", _ => error "TYPE_ARITY" "Id requires one atomic identifier kind, as in Id<Receipt>"
+      | "Quantity", [_] | "Rate", [_, _] => error "UNSUPPORTED_TYPE" "Dimension arguments must be atomic"
+      | "Quantity", _ => error "TYPE_ARITY" "Quantity requires one atomic unit, as in Quantity<Download>"
+      | "Rate", _ => error "TYPE_ARITY" "Rate requires a unit and a currency, as in Rate<Download,USD>"
       | _, _ => error "UNSUPPORTED_TYPE" ("Unsupported type " ++ name)
 
 def parseType (ty : TypeExpr) : Except Diagnostic Ty := parseTypeWith {} ty
+
+private def parseTypeAt (admission : Dimensions.Admission) (span : Span) (type : TypeExpr) : Except Diagnostic Ty :=
+  (parseTypeWith admission type).mapError fun diagnostic => { diagnostic with span }
 
 abbrev Context := List (String × Ty)
 
@@ -342,7 +352,7 @@ partial def inferRawWith (settings : Inference) (context : Context) (expression 
       if a == usdTy && b == ratioTy then return usdTy
       if a == usdTy && b == usdTy then return ratioTy
       if a == b && (a == ratioTy || a == .atom "Rational") then return a
-    error "TYPE_MISMATCH" ("Invalid operands for " ++ op) span
+    error "TYPE_MISMATCH" (s!"Operator {op} is not defined for {reprStr a} and {reprStr b}") span
   | .ite _ condition yes no =>
     let _ ← inferWith settings context condition (some boolTy)
     if let some ty := expected then
@@ -434,7 +444,10 @@ partial def inferRawWith (settings : Inference) (context : Context) (expression 
     let _ ← inferWith callee nested body (some resultTy)
     pure resultTy
   | .call span name args =>
-    if name == "convert_quantity" && Dimensions.hasBuiltin settings.lexical name then
+    if name == "convert_quantity" then
+      unless Dimensions.hasBuiltin settings.lexical name do
+        error "UNSUPPORTED_BUILTIN"
+          s!"convert_quantity requires uses \"{Dimensions.usageFeature}\" in the calling schedule or module" span
       let [value, .text _ target, .text _ relation] := args
         | return ← error "CONVERSION_LITERAL_REQUIRED" "Expected quantity and literal target/relation" span
       let .quantity source ← inferWith settings context value
@@ -579,14 +592,14 @@ partial def resolvePassWith (settings : Inference) (context : Context) (pending 
   if fuel == 0 then
     match lastError with
     | some d => if d.code == "UNRESOLVED_NAME" then
-        error "UNRESOLVED_NAME_OR_CYCLE" "Unresolved name or cyclic dependency" d.span else .error d
+        error "UNRESOLVED_NAME_OR_CYCLE" d.message d.span else .error d
     | none => error "DEPENDENCY_CYCLE" "Cyclic definition dependencies"
   let mut context := context
   let mut next : List LocalDecl := []
   let mut failure := lastError
   for declaration in pending do
-    if let .define _span name annotation body _ := declaration then
-      let expected ← annotation.mapM (parseTypeWith settings.lexical)
+    if let .define span name annotation body _ := declaration then
+      let expected ← annotation.mapM (parseTypeAt settings.lexical span)
       match inferWith settings context body expected with
       | .ok ty => context := (name, ty) :: context
       | .error d =>
@@ -630,10 +643,10 @@ def check (schedule : Schedule) : Except Diagnostic Unit := do
   for declaration in schedule.declarations do
     match declaration with
     | .input span name ty =>
-      context ← bind context name (← parseTypeWith settings.lexical ty) span
+      context ← bind context name (← parseTypeAt settings.lexical span ty) span
       names := name :: names
     | .opening span name ty alias =>
-      let ty ← parseTypeWith settings.lexical ty
+      let ty ← parseTypeAt settings.lexical span ty
       context ← bind context name ty span
       openings := (name, ty) :: openings
       names := name :: names

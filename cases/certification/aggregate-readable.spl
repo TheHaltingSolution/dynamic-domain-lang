@@ -1,0 +1,17 @@
+Participation Schedule for Two Receipts
+Incorporate policy "money-rounding@1".
+Aggregate Receipts are First Receipt plus Second Receipt.
+Unrounded Participation is 50% of Aggregate Receipts.
+Participation is round_usd(Unrounded Participation, USD 0.01, "half_even").
+Report "participation": Participation.
+
+Bindings:
+  Schedule TwoReceiptParticipation.
+  Using language "spl/0.1-draft" core "spl-core/0.1-draft" schema "spl-data/0.1-draft".
+  input first_receipt: Money<USD>;
+  input second_receipt: Money<USD>;
+  Bind "First Receipt" to first_receipt.
+  Bind "Second Receipt" to second_receipt.
+  Bind "Aggregate Receipts" to aggregate_receipts.
+  Bind "Unrounded Participation" to unrounded_participation.
+  Bind "Participation" to participation.

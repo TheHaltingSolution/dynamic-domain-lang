@@ -234,9 +234,17 @@ Use the repository's pinned `leanprover/lean4:v4.35.0`, `lakefile.toml` and READ
 
 ## 10. Correctness claims and trusted boundary
 
+The owner selected authored Readable SPL as the starting point for the
+per-contract certificate. The core-to-Lean statement below is one step in
+that proof. See the [testing and verification strategy](testing-strategy.md)
+for the complete source-to-artifact goal and boundary obligations.
+The [certification pilot](certification-pilot.md) checks preservation from
+two fixed authored schedules to their emitted Lean settlements over exact
+rational amounts and empty opening state.
+
 A future preservation target is: for each well-typed supported core program `p` and validated environment `i` satisfying its explicit input and policy preconditions, evaluating the compiled Lean calculation has the same outcome as independent core evaluation, under the versioned observation relation. Equality must include errors, selected branches, exact arithmetic, explicit quantization, closing state and required trace if these are claimed observables.
 
-This is a target, not a completed proof. It needs formal source and target semantics, a definition of compilation, arithmetic/collection lemmas and an observation model. Proofs can first cover a smaller operator subset and financial values, with trace preservation explicitly deferred. Their theorem names and documentation must say so. The existing theorem proves only semantic preservation for toy natural-number literals and addition.
+The general claim still requires formal source and target semantics, a definition of compilation, arithmetic and collection lemmas, and an observation model. The pilot proves the exact financial and closing observations of its bounded schedules. The toy preservation theorem covers natural-number literals and addition.
 
 Separate claims are needed for surface elaboration preservation, parser correctness, typed-core validation, emitted Lean text/elaboration, input codecs, canonical serialization and any optimizing passes. A mathematical lowering theorem does not automatically verify its string emitter. Kernel checking of a theorem does not establish the truth of supplied accounting facts or the parties' agreement to an interpretation. Native Lean compilation and the execution platform remain part of the operational trusted boundary unless separately addressed.
 

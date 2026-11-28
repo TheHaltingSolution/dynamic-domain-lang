@@ -1,0 +1,8 @@
+{
+  "inputs": {
+    "gross": {"currency": "USD", "value": "0.03"},
+    "direct_eligible": true,
+    "renewal_eligible": false
+  },
+  "openings": {}
+}

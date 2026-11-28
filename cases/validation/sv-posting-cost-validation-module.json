@@ -1,0 +1,107 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "library:sv-posting-cost-validation",
+  "imports": [],
+  "interface": {
+    "dictionaries": {},
+    "exports": [
+      {
+        "definition": "valid",
+        "name": "validate",
+        "parameters": [
+          {
+            "name": "costs",
+            "type": {
+              "args": [
+                {
+                  "args": [],
+                  "name": "SVPostingCost"
+                }
+              ],
+              "name": "List"
+            }
+          },
+          {
+            "name": "period",
+            "type": {
+              "args": [],
+              "name": "Period"
+            }
+          }
+        ],
+        "result": {
+          "args": [],
+          "name": "Bool"
+        }
+      }
+    ],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "costs",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "SVPostingCost"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "period",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Period"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "SV_POSTING_COST_VALIDATION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "period-scoped-participation-validation"
+    ],
+    "evidence_class": "synthetic",
+    "id": "library:sv-posting-cost-validation:policy",
+    "readable": {
+      "locator": "cases/validation/policy.md",
+      "sha256": "36f0c01b397887f9de7cd947a54f7e7eceb5ad119a80139821cd46860d4ea6dd"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/validation/sv-posting-cost-validation.spl",
+    "sha256": "e14502650bbb37e22f2c9efde7a5fd80dfd7bad326979dbb864bf63f0adc0e64"
+  },
+  "state": []
+}

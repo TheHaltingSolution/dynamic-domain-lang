@@ -3,6 +3,8 @@
 23 November 2026. This records the owner's intended later tool/skill. It is a
 future work plan, not an implemented skill, and does not start currency work.
 Read [the owner decision](ld03-owner-decision.md) for the current boundary.
+The [skill packaging plan](skill-packaging-plan.md) records the broader
+distribution, certification, and repair requirements.
 
 ## Sequence selected by the owner
 

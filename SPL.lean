@@ -7,10 +7,13 @@ import SPL.Link
 import SPL.Syntax
 import SPL.Parser
 import SPL.Check
+import SPL.ContextProofs
 import SPL.Bindings
+import SPL.Series
 import SPL.Emit
 import SPL.Core
 import SPL.Proofs
+import SPL.ValidationProofs
 import SPL.IR
 import SPL.Elaborate
 import SPL.ValidateIR

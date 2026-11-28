@@ -6,12 +6,23 @@ from pathlib import Path
 import shutil
 import subprocess
 
-from .codecs import fail
+from .codecs import DataError, fail
 
 ROOT = Path(__file__).resolve().parent.parent
 LIB = ROOT / ".lake" / "build" / "lib" / "lean"
 MODULES = ["SPL/Instant", "SPL/Calendar", "SPL/Dimensions", "SPL/Runtime", "SPL/Fold", "SPL/Syntax", "SPL/Parser", "SPL/Check", "SPL/Link", "SPL/IR", "SPL/Elaborate", "SPL/IRSource", "SPL/IRArtifact", "SPL/ValidateIR",
-           "SPL/Bindings", "SPL/Emit", "SPL/Core", "SPL/Proofs", "SPL/Trace", "SPL/Interpret", "SPL/Readable", "SPL"]
+           "SPL/Series", "SPL/Bindings", "SPL/ContextProofs", "SPL/Emit", "SPL/Core", "SPL/Proofs", "SPL/ValidationProofs", "SPL/Trace", "SPL/Interpret", "SPL/Readable", "SPL"]
+
+
+class FrontendDiagnostic(DataError):
+    """A compiler diagnostic with its authored path, span and phase."""
+
+    def __init__(self, code, message, *, source, span, stage):
+        super().__init__(code, message, source, span)
+        self.stage = stage
+
+    def diagnostic(self):
+        return {**super().diagnostic(), "stage": self.stage}
 
 
 def lean_environment():
@@ -34,13 +45,15 @@ def lean_environment():
     return str(exe), env
 
 
-def lean(args, timeout=180):
+def lean(args, timeout=180, *, search_paths=()):
     exe, env = lean_environment()
+    if search_paths:
+        env["LEAN_PATH"] = os.pathsep.join([*map(str, search_paths), env["LEAN_PATH"]])
     try:
         proc = subprocess.run([exe, *map(str, args)], cwd=ROOT, env=env,
                               text=True, encoding="utf-8", capture_output=True, timeout=timeout)
     except subprocess.TimeoutExpired:
-        fail("LEAN_RESOURCE_LIMIT", "Lean invocation exceeded declared 180-second limit")
+        fail("LEAN_RESOURCE_LIMIT", f"Lean invocation exceeded declared {timeout:g}-second limit")
     if proc.returncode:
         import json
         try:
@@ -48,8 +61,11 @@ def lean(args, timeout=180):
         except (json.JSONDecodeError, ValueError):
             payload = {}
         if isinstance(payload, dict) and payload.get("status") == "blocked" and payload.get("diagnostics"):
-            from .codecs import DataError
             d = payload["diagnostics"][0]
+            if isinstance(d.get("stage"), str) and d["stage"]:
+                raise FrontendDiagnostic(d.get("code", "LEAN_FAILED"),
+                                         d.get("message", "Native compilation failed"),
+                                         source=d.get("source", ""), span=d.get("span"), stage=d["stage"])
             raise DataError(d.get("code", "LEAN_FAILED"), d.get("message", "Native compilation failed"),
                             d.get("source", ""), d.get("span"))
         fail("LEAN_FAILED", (proc.stdout + proc.stderr).strip() or f"Lean exited {proc.returncode}")
@@ -79,11 +95,18 @@ def build_native():
         lean(["-DwarningAsError=true", ROOT / (module + ".lean")])
 
 
-def compile_schedule(source, output, *, link=None):
+def compile_schedule(source, output, *, link=None, series=False):
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    lean(["--run", ROOT / "SPL/Main.lean", "compile", source, output, *(["--link",link] if link else [])])
+    command = "compile-series" if series else "compile"
+    lean(["--run", ROOT / "SPL/Main.lean", command, source, output, *(["--link",link] if link else [])])
     return output
+
+
+def preflight_schedule(source, *, link=None):
+    """Run the native frontend through checked IR without emitting Lean."""
+    from .codecs import loads
+    return loads(lean(["--run", ROOT / "SPL/Main.lean", "check", source, *(["--link", link] if link else [])]))
 
 
 def interpret_schedule(source, bindings, *, link=None):

@@ -1,0 +1,45 @@
+{
+  "openings": {
+    "ledger": {
+      "agreement_id": "agreement",
+      "participant_id": "artist",
+      "pool_id": "advance-pool",
+      "next_start": "2026-01-01",
+      "balance": {"currency": "USD", "value": "0.20"}
+    }
+  },
+  "periods": [
+    {
+      "scope": {"agreement_id": "agreement", "participant_id": "artist", "pool_id": "advance-pool", "period": {"start": "2026-01-01", "end": "2026-04-01"}},
+      "launch_approved": true,
+      "receipts": [
+        {"fact_id": "receipt-1", "asset_id": "picture", "amount": {"value": "0.20", "currency": "USD"}, "cash_received_date": "2026-01-01"},
+        {"fact_id": "receipt-2", "asset_id": "picture", "amount": {"value": "0.07", "currency": "USD"}, "cash_received_date": "2026-03-31"}
+      ],
+      "costs": [
+        {"fact_id": "cost-1", "asset_id": "picture", "amount": {"value": "0.02", "currency": "USD"}, "recognition_date": "2026-03-31", "recognition_policy_ref": "posting-date", "eligibility_decision_id": "eligible-cost"}
+      ]
+    },
+    {
+      "scope": {"agreement_id": "agreement", "participant_id": "artist", "pool_id": "advance-pool", "period": {"start": "2026-04-01", "end": "2026-07-01"}},
+      "launch_approved": false,
+      "receipts": [
+        {"fact_id": "receipt-3", "asset_id": "picture", "amount": {"value": "0.56", "currency": "USD"}, "cash_received_date": "2026-04-01"},
+        {"fact_id": "receipt-4", "asset_id": "picture", "amount": {"value": "0.10", "currency": "USD"}, "cash_received_date": "2026-06-30"}
+      ],
+      "costs": [
+        {"fact_id": "cost-2", "asset_id": "picture", "amount": {"value": "0.12", "currency": "USD"}, "recognition_date": "2026-06-30", "recognition_policy_ref": "posting-date", "eligibility_decision_id": "eligible-cost"}
+      ]
+    },
+    {
+      "scope": {"agreement_id": "agreement", "participant_id": "artist", "pool_id": "advance-pool", "period": {"start": "2026-07-01", "end": "2026-10-01"}},
+      "launch_approved": false,
+      "receipts": [
+        {"fact_id": "receipt-5", "asset_id": "picture", "amount": {"value": "0.06", "currency": "USD"}, "cash_received_date": "2026-07-01"}
+      ],
+      "costs": [
+        {"fact_id": "cost-3", "asset_id": "picture", "amount": {"value": "0.01", "currency": "USD"}, "recognition_date": "2026-09-30", "recognition_policy_ref": "posting-date", "eligibility_decision_id": "eligible-cost"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "compatibility": {
+    "capabilities": [
+      "spl.core/1",
+      "spl.tuple-map/1",
+      "spl.group-join/1",
+      "spl.modules/1"
+    ],
+    "codecs": [
+      "spl-exact/1",
+      "spl-instant/1"
+    ],
+    "core": "spl-core/0.1-draft",
+    "ir": "spl-ir/0.1",
+    "package": "spl-module/1",
+    "surface": "spl/0.1-draft",
+    "toolchain": "leanprover/lean4:v4.35.0"
+  },
+  "constraints": [],
+  "id": "synthetic:validated-participation",
+  "imports": [
+    {
+      "alias": "sv_receipt_validation",
+      "module_ref": {
+        "id": "library:sv-receipt-validation",
+        "locator": "cases/validation/sv-receipt-validation-module.json",
+        "revision": "1",
+        "sha256": "692f303344e601e78faccb01843b0e2983eb600bb8b669ba97c6433ef121afeb"
+      },
+      "symbols": [
+        {
+          "export": "validate",
+          "local": "validate_receipts"
+        }
+      ]
+    },
+    {
+      "alias": "sv_posting_cost_validation",
+      "module_ref": {
+        "id": "library:sv-posting-cost-validation",
+        "locator": "cases/validation/sv-posting-cost-validation-module.json",
+        "revision": "1",
+        "sha256": "ee3e7230862208b208441a9dca1cb3f69788e1d5aaa1ba86c697b5d1d0a0ee51"
+      },
+      "symbols": [
+        {
+          "export": "validate",
+          "local": "validate_posting_costs"
+        }
+      ]
+    }
+  ],
+  "interface": {
+    "dictionaries": {},
+    "exports": [],
+    "ports": [
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "receipts",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "SVReceipt"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "costs",
+        "role": "input",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "SVPostingCost"
+            }
+          ],
+          "name": "List"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "period",
+        "role": "input",
+        "type": {
+          "args": [],
+          "name": "Period"
+        }
+      },
+      {
+        "dimensions": [],
+        "domain": {},
+        "name": "participation",
+        "role": "result",
+        "type": {
+          "args": [
+            {
+              "args": [],
+              "name": "USD"
+            }
+          ],
+          "name": "Money"
+        }
+      }
+    ],
+    "schemas": []
+  },
+  "policy": {
+    "decision_ids": [
+      "PARTICIPATION_SELECTED"
+    ],
+    "discriminating_cases": [
+      "period-scoped-participation-validation"
+    ],
+    "evidence_class": "synthetic",
+    "id": "synthetic:validated-participation:policy",
+    "readable": {
+      "locator": "cases/validation/policy.md",
+      "sha256": "36f0c01b397887f9de7cd947a54f7e7eceb5ad119a80139821cd46860d4ea6dd"
+    },
+    "review_status": "proposed",
+    "revision": "1"
+  },
+  "revision": "1",
+  "schema_version": "spl-module-descriptor/1",
+  "source": {
+    "locator": "cases/validation/participation-readable.spl",
+    "sha256": "60a5c3050c8f0117a99b87b9552c367166d065cfd036ec205dce618c287fe882"
+  },
+  "state": []
+}

@@ -13,6 +13,22 @@ private def json (source : String) : IO Lean.Json :=
   | .ok value => pure value
   | .error code => throw (IO.userError s!"test JSON failed: {code}")
 
+private def checkAdvanceDisbursementAdmission : IO Unit := do
+  let fixture ← json (← IO.FS.readFile "cases/mechanisms/advance-issues-bindings.json")
+  let first ← match ((fixture.getObjValD "inputs").getObjValD "issues").getArrVal? 0 with
+    | .ok row => pure row
+    | .error code => throw (IO.userError code)
+  let second := first.setObjVal! "event_id" (.str "issue-2") |>.setObjVal! "issue_id" (.str "advance-2")
+  let distinct := second.setObjVal! "disbursement_id" (.str "disbursement-2")
+  let third := first.setObjVal! "event_id" (.str "issue-3") |>.setObjVal! "issue_id" (.str "advance-3")
+  let listType : SPL.Syntax.TypeExpr := .named "List" [.named "AdvanceIssue" []]
+  let decode rows := Bindings.decodeBindings [("issues", listType)] (.mkObj [("issues", .arr rows)])
+  match decode #[first, distinct] with
+  | .ok [("issues", .seq [_, _])] => pure ()
+  | _ => throw (IO.userError "Distinct disbursement identities did not reach typed bindings")
+  expectFailure "nonadjacent original disbursement reuse" "DUPLICATE_DISBURSEMENT_ID"
+    (decode #[first, distinct, third])
+
 def main : IO Unit := do
   expectFailure "duplicate keys" "DUPLICATE_JSON_KEY"
     (Bindings.parseStrict "{\"x\":\"1\",\"x\":\"2\"}")
@@ -47,4 +63,5 @@ def main : IO Unit := do
     | .ok value => pure value
     | .error code => throw (IO.userError code)
   unless exact == mkRat (-201) 200 do throw (IO.userError "decimal was not exact")
+  checkAdvanceDisbursementAdmission
   IO.println "Native SPL strict binding transport checks passed."
